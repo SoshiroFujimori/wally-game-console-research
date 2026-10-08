@@ -1,0 +1,30 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="800" viewBox="0 0 1200 800" role="img" aria-labelledby="title desc">
+<title id="title">一語を保持して要求と確認を往復させる</title><desc id="desc">上から下へ時間が進む。データAを固定し、要求1、確認1、要求0、確認0を順に渡す。</desc>
+<defs><marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z" fill="#1673C3"/></marker></defs>
+<rect width="1200" height="100%" fill="white"/>
+<g font-family="Noto Sans CJK JP,Noto Sans JP,Meiryo,Yu Gothic,sans-serif" fill="#231F20">
+<text x="40" y="48" font-size="29" text-anchor="start" font-weight="bold">一語を保持して要求と確認を往復させる</text>
+<text x="250" y="100" font-size="25" text-anchor="middle" font-weight="normal">CPU側</text>
+<text x="940" y="100" font-size="25" text-anchor="middle" font-weight="normal">RasterIX側</text>
+<polyline points="250,125 250,675" fill="none" stroke="#231F20" stroke-width="2" stroke-dasharray=""/>
+<polyline points="940,125 940,675" fill="none" stroke="#231F20" stroke-width="2" stroke-dasharray=""/>
+<polyline points="70,150 70,675" fill="none" stroke="#1673C3" stroke-width="3" stroke-dasharray="" marker-end="url(#arrow)"/>
+<text x="42" y="122" font-size="21" text-anchor="start" font-weight="normal">時間</text>
+<rect x="120" y="158" width="95" height="515" fill="#E5EBF8" stroke="#231F20" stroke-width="2" stroke-dasharray=""/>
+<text x="167.5" y="407.85" font-size="21" text-anchor="middle" font-weight="normal">Aを</text>
+<text x="167.5" y="437.85" font-size="21" text-anchor="middle" font-weight="normal">保持</text>
+<polyline points="250,205 940,255" fill="none" stroke="#1673C3" stroke-width="3" stroke-dasharray="" marker-end="url(#arrow)"/>
+<text x="585" y="190" font-size="23" text-anchor="middle" font-weight="normal">要求を1：Aを用意した</text>
+<polyline points="940,330 250,380" fill="none" stroke="#1673C3" stroke-width="3" stroke-dasharray="" marker-end="url(#arrow)"/>
+<text x="585" y="315" font-size="23" text-anchor="middle" font-weight="normal">確認を1：Aが受理された</text>
+<polyline points="250,460 940,510" fill="none" stroke="#1673C3" stroke-width="3" stroke-dasharray="" marker-end="url(#arrow)"/>
+<text x="585" y="445" font-size="23" text-anchor="middle" font-weight="normal">要求を0へ戻す</text>
+<polyline points="940,580 250,630" fill="none" stroke="#1673C3" stroke-width="3" stroke-dasharray="" marker-end="url(#arrow)"/>
+<text x="585" y="565" font-size="23" text-anchor="middle" font-weight="normal">確認を0へ戻す</text>
+<text x="968" y="284" font-size="20" text-anchor="start" font-weight="normal">受信側へ</text>
+<text x="968" y="313" font-size="20" text-anchor="start" font-weight="normal">値を写す</text>
+<text x="270" y="410" font-size="22" text-anchor="start" font-weight="normal">APB書込みの完了を返す</text>
+<text x="275" y="692" font-size="23" text-anchor="start" font-weight="normal">次の語へ進める</text>
+<text x="40" y="776" font-size="19" text-anchor="start" font-weight="normal">説明用の時系列。同期の段数や待ち時間は縮尺で表していない。</text>
+</g>
+</svg>

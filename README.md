@@ -13,10 +13,14 @@ Wallyと公式RasterIXをNexys Video上で結合し、二次元ゲームを動�
 図・表・コード・ジャンプできる目次をGitHub上で読めます。Wordのダウンロードやcloneは不要です。
 読みたい分野から探す場合は、[資料の読み方と分野別の入口](docs/thesis/README.md)を使ってください。
 
+用語の前提や処理の途中から詳しく理解したい場合は、[図と数値例で読む技術詳説](docs/technical/README.md)
+を使ってください。回路、CPU、Linux、描画、実験に分かれており、既存の技術付録と実装へ進めます。
+
 | 内容 | 入口 |
 |---|---|
 | 目的、仕組み、設計、実験結果 | [論文本文](docs/thesis/本文.md) / [Word版](docs/thesis/本文.docx) |
 | HDL、Wally、Linux、RasterIX、実装の詳細 | [技術付録](docs/thesis/技術付録.md) / [Word版](docs/thesis/技術付録.docx) |
+| 前提から理解する説明、図、数値例、実行できるモデル | [技術詳説・分野別目次](docs/technical/README.md) |
 | FIFO三方式の比較と更新版の検証 | [E6の結果と判断](docs/thesis/再現資料/実験記録/E6/report/結果と判断.md) |
 | 過去の設計変更、測定コード、実験記録 | [再現資料](docs/thesis/再現資料/README.md) |
 | 論文中の旧ローカルパスとの対応 | [参照先の一覧](docs/references.md) |
@@ -48,10 +52,13 @@ E1〜E5とE6は使用版が異なります。E6の更新後ソースを再現す
 ```text
 console/                    製品リポジトリの固定版
 docs/thesis/                公開用の論文、図、技術付録、実験記録E1〜E6
+docs/technical/             回路・CPU・Linux・描画・検証の詳説とSVG図
+examples/technical-models/  本文の数値と受渡し規則を確かめる説明用モデル
 source/thesis/              論文の章別原稿と生成プログラム
 experiments/                補足試験、数学・RTL検証、当時の実験スクリプト
 tools/sdwire3/              設定を引数で渡す機器操作ツール
 tools/publication/          匿名化、公開前の検査、ファイル参照の確認
+tools/docs/                 技術詳説の図と目次の生成・検査
 publication/               公開版のファイル検証情報と確認済みメディア
 LICENSES/                  コピーした上流ソースのライセンス
 ```

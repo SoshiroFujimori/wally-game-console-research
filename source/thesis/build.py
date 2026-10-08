@@ -275,7 +275,10 @@ dest.write_bytes(sanitize_docx(dest.read_bytes(),config))
 alltoc=[t for t in tokens if t['kind']=='heading']
 intro='# '+TITLE+'\n\n'
 other='技術付録' if NAME=='本文' else '本文'
-intro+=f'[資料全体の入口](README.md) ｜ [{other}を開く]({other}.md)\n\n## ジャンプできる目次\n\n'
+intro+=f'[資料全体の入口](README.md) ｜ [{other}を開く]({other}.md)'
+if NAME == '技術付録':
+    intro+=' ｜ [図と数値例で読む技術詳説](../technical/README.md)'
+intro+='\n\n## ジャンプできる目次\n\n'
 intro+='\n'.join('  '*(t['level']-1)+f'- [{t["text"]}](#{t["anchor"]})' for t in alltoc)+'\n\n'
 linked=[];hi=0;fence=False
 def md_inline(line):
