@@ -46,8 +46,8 @@
       "sha256": "9a610ed291f447c9c9f5d4f3966a3a9fb01bafc394d8d43fcfc48d74e12e2942"
     },
     "README.md": {
-      "bytes": 4635,
-      "sha256": "5e099c1f63e927690b6caca72fac101fed14031c7582993040dd66aeb20cb882"
+      "bytes": 5020,
+      "sha256": "03421280f47aaef0a3fb4fc790c929628688f5c0eeb3dd0dde128408133539ef"
     },
     "docs/privacy.md": {
       "bytes": 5063,
@@ -62,8 +62,8 @@
       "sha256": "c9996c92b9cbff196c3336c64dda6c0a44e248184e82e0775b66a47fece0808b"
     },
     "docs/thesis/README.md": {
-      "bytes": 3059,
-      "sha256": "e1434a18ed984ad1a2c3bcddee913122685ffb55011afe214958ea75aba86090"
+      "bytes": 4406,
+      "sha256": "fbfccef986d72dd3134490c4f9b8cbd578d6465e1832f237e06cb9c8b0c459f6"
     },
     "docs/thesis/figs/accept-one-word.png": {
       "bytes": 177064,
@@ -1138,8 +1138,8 @@
       "sha256": "3f64ab2575452e0ab8ad1e74f75eae436318cbb70d1ba382d90dd8ecf0cfb672"
     },
     "docs/thesis/再現資料/README.md": {
-      "bytes": 1772,
-      "sha256": "f868d521456b74e8a5590483c64cad74d87951b664bd701e30ccf225a197ee81"
+      "bytes": 2321,
+      "sha256": "c58edc441a7f04510bcd9223363e050fbee4362ba9841061bd2fc99bcefecac3"
     },
     "docs/thesis/再現資料/manifest.json": {
       "bytes": 120583,
