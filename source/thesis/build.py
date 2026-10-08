@@ -102,7 +102,7 @@ for name in ['Caption']:
 footer=sec.footer.paragraphs[0];footer.clear();footer.alignment=WD_ALIGN_PARAGRAPH.CENTER;footer.paragraph_format.first_line_indent=Pt(0)
 field=OxmlElement('w:fldSimple');field.set(qn('w:instr'),'PAGE');footer._p.append(field)
 doc.core_properties.title=TITLE;doc.core_properties.author='';doc.core_properties.subject='Wallyと公式RasterIXを用いたFPGAゲーム機の設計と検証'
-for t,style in [('2026年度 卒業研究論文' if NAME=='本文' else '卒業研究論文 技術付録','Subtitle'),(TITLE.replace('ための技術付録','ための\n技術付録'),'Title'),('所属・学籍情報 非公開\n研究者（非公開）','Subtitle'),('指導教員 非公開','Subtitle'),('2026年10月8日 改訂','Subtitle')]:
+for t,style in [('2026年度 卒業研究論文' if NAME=='本文' else '卒業研究論文 技術付録','Subtitle'),(TITLE.replace('ための技術付録','ための\n技術付録'),'Title'),('所属・学籍情報 非公開\n研究者（非公開）','Subtitle'),('指導教員 非公開','Subtitle'),(('2026年10月9日 改訂' if NAME=='本文' else '2026年10月8日 改訂'),'Subtitle')]:
  p=doc.add_paragraph(t,style);p.alignment=WD_ALIGN_PARAGRAPH.CENTER;p.paragraph_format.first_line_indent=Pt(0);p.paragraph_format.space_before=Pt(30);p.paragraph_format.space_after=Pt(24)
 
 if NAME=='本文' and tokens and tokens[0]['kind']=='para' and tokens[0]['text'].startswith('公開用資料では'):
@@ -201,7 +201,10 @@ def table(t):
  if rows[0]==['区別する版','E6で固定した識別子']:widths=[43,117]
  if rows[0]==['同梱E6内の場所','調べられる内容']:widths=[70,90]
  if rows[0]==['開始ステップ','描画方式','1語ずつ','16語FIFO','512語FIFO']:widths=[25,39,32,32,32]
- if rows[0]==['通常版の確認項目','更新後の結果']:widths=[68,92]
+ if rows[0]==['通常版の確認項目','接続比較版での結果']:widths=[68,92]
+ if rows[0]==['版の呼び方','対応する実験記録','固定したソース']:widths=[29,34,97]
+ if rows[0]==['記録','使用した版と構成','評価する項目']:widths=[16,57,87]
+ if rows[0]==['機能','受け持つこと','本構成での実装']:widths=[35,60,65]
  for c,w in zip(tab.columns,widths):c.width=Mm(w)
  # Do not chain large tables into a single unsplittable page block.
  small=(len(rows)<=7 and sum(sum(len(c) for c in r) for r in rows)<700) or t['text'].startswith(('表14.2','表Y.4'))
