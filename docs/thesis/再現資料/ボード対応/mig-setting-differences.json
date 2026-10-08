@@ -1,0 +1,113 @@
+[
+  {
+    "field": "Project/Controller/AXIParameters/C0_C_RD_WR_ARB_ALGORITHM",
+    "before": {
+      "text": "RD_PRI_REG",
+      "attributes": {}
+    },
+    "after": {
+      "text": "ROUND_ROBIN",
+      "attributes": {}
+    }
+  },
+  {
+    "field": "Project/Controller/AXIParameters/C0_S_AXI_DATA_WIDTH",
+    "before": {
+      "text": "32",
+      "attributes": {}
+    },
+    "after": {
+      "text": "64",
+      "attributes": {}
+    }
+  },
+  {
+    "field": "Project/Controller/AXIParameters/C0_S_AXI_ID_WIDTH",
+    "before": {
+      "text": "2",
+      "attributes": {}
+    },
+    "after": {
+      "text": "4",
+      "attributes": {}
+    }
+  },
+  {
+    "field": "Project/Controller/AXIParameters/C0_S_AXI_SUPPORTS_NARROW_BURST",
+    "before": {
+      "text": "0",
+      "attributes": {}
+    },
+    "after": {
+      "text": "1",
+      "attributes": {}
+    }
+  },
+  {
+    "field": "Project/Controller/System_Clock/Pin[sys_clk_i]",
+    "before": {
+      "text": "",
+      "attributes": {
+        "Bank": "34",
+        "PADName": "R4(MRCC_P)",
+        "name": "sys_clk_i"
+      }
+    },
+    "after": {
+      "text": "",
+      "attributes": {
+        "Bank": "Select Bank",
+        "PADName": "No connect",
+        "name": "sys_clk_i"
+      }
+    }
+  },
+  {
+    "field": "Project/Controller/UIExtraClocks",
+    "before": {
+      "text": "1",
+      "attributes": {}
+    },
+    "after": {
+      "text": "0",
+      "attributes": {}
+    }
+  },
+  {
+    "field": "Project/Controller/emrOutputDriveStrength[Output Driver Impedance Control]",
+    "before": {
+      "text": "RZQ/7",
+      "attributes": {
+        "name": "Output Driver Impedance Control"
+      }
+    },
+    "after": {
+      "text": "RZQ/6",
+      "attributes": {
+        "name": "Output Driver Impedance Control"
+      }
+    }
+  },
+  {
+    "field": "Project/ModuleName",
+    "before": {
+      "text": "design_1_mig_7series_0_0",
+      "attributes": {}
+    },
+    "after": {
+      "text": "ddr3",
+      "attributes": {}
+    }
+  },
+  {
+    "field": "Project/SystemClock",
+    "before": {
+      "text": "Single-Ended",
+      "attributes": {}
+    },
+    "after": {
+      "text": "No Buffer",
+      "attributes": {}
+    }
+  }
+]

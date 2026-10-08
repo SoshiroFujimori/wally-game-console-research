@@ -1,0 +1,19 @@
+mkdir -p /mnt/nexys-test && mount -t ext4 -o ro /dev/mmcblk0p4 /mnt/nexys-test && sh /mnt/nexys-test/nexys-video-tests/board-tests.sh info; nv_status=$?; printf "\nNV_DONE_19974ddc861a=%s\n" "$nv_status"
+[   77.119836] EXT4-fs (mmcblk0p4): mounted filesystem 4cd26447-2ac1-4501-b5e0-4a23309fb661 ro with ordered data mode. Quota mode: disabled.
+[   82.047288] random: crng init done
+memtester: OK
+board-tests.sh: OK
+MEMTESTER-COPYING: OK
+memtester.8: OK
+coremark.exe: OK
+COREMARK-LICENSE.md: OK
+
+Board: Wally on Digilent Nexys Video
+Linux WallyHostname 6.19.14 #8 Tue Sep  8 13:29:00 JST 2026 riscv64 GNU/Linux for Wally
+Uptime: 92.29 41.05
+MemTotal: 503340 KiB
+MemAvailable: 476664 KiB
+INFO_PASS
+
+NV_DONE_19974ddc861a=0
+# 

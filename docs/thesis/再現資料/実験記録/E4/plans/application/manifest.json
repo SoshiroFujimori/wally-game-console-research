@@ -1,0 +1,154 @@
+{
+  "createdUtc": "2026-09-10T23:04:08.544340+00:00",
+  "candidate": "final-game-v2",
+  "hardware": "prototype720-v13, unmodified upstream HDMI transmitter, 640x480 picture scaled equally by 3/2 into 720p",
+  "hardwareSourceHashes": {
+    "fpga/src/rasterixdisplay.sv": "cbe9277c7b5a052af5e99d6c0b60b68cd1da5ff26591af4070be69aae33d95a1",
+    "fpga/generator/videoclock.tcl": "88218762d19c3cc5d186faf6455c21e666ffad8a4c52f24899a47dc5fca5bacf",
+    "fpga/constraints/constraints-rasterixdisplay.xdc": "08aa457487ab0c300914bad237ba1a77a62c29c1ae522fe6d06f7c4a4d08181f",
+    "fpga/generator/rasterixmem.tcl": "a2924d689e66637dd6e9f2649246eea73ed6abea33df822ff13aa6755cfcfdf6",
+    "fpga/generator/wally.tcl": "10ef220bc35dcbe65823c379dcf56959277c01e96c3f0f474f3c6371d6d682e2",
+    ".gitmodules": "fbacb789a684a18b429a044569292081284c6c33659dbed90c894a531ee851c0"
+  },
+  "hdmiCommit": "83b1c9543a91b776671a44e68e130f81cae437b7",
+  "reason": "The controlled same-bit acquisition assay succeeded in four HDMI trials and failed in four DVI trials. Qualify this protocol on Wally with repeated programmed boots and sustained game video.",
+  "obsTransform": {
+    "source": [
+      1280,
+      720
+    ],
+    "scale": [
+      1.5,
+      1.5
+    ],
+    "position": [
+      0,
+      0
+    ],
+    "canvas": [
+      1920,
+      1080
+    ]
+  },
+  "geometryChecks": "Existing 640x480 known-scene verifier applied to the equal-scale 1440x1080 picture. All flagged intervals need visual review.",
+  "requirements": [
+    "No desktop UI control or capture. Only the dedicated FPGA input is recorded.",
+    "Six separately programmed Wally boots must display moving game video without restarting OBS or changing capture settings.",
+    "Native final-image replay, startup, controls, game-over, old demo and 15-minute motion gates must pass.",
+    "Do not pool older DVI/640p/720p measurements with this hardware. No physical power-cycle claim."
+  ],
+  "cases": [
+    {
+      "label": "finalhdmi-game-startup-01",
+      "recordSeconds": 32,
+      "runner": "/mnt/c/Users/researcher/.codex/tmp/hdmi-recovery-20260910/run-candidate.py",
+      "argsFile": "C:\\Users\\researcher\\.codex\\tmp\\hdmi-recovery-20260910\\finalhdmi-case-plans\\finalhdmi-game-startup-01.json",
+      "argsSha256": "aa68379600256cd98eebe5f52b25cf02b1b584c28911d6519638028600061646"
+    },
+    {
+      "label": "finalhdmi-game-startup-02",
+      "recordSeconds": 32,
+      "runner": "/mnt/c/Users/researcher/.codex/tmp/hdmi-recovery-20260910/run-candidate.py",
+      "argsFile": "C:\\Users\\researcher\\.codex\\tmp\\hdmi-recovery-20260910\\finalhdmi-case-plans\\finalhdmi-game-startup-02.json",
+      "argsSha256": "f114aac3218ecfd42818a58ad290898969553eefb263561cb4810a91fdaf372e"
+    },
+    {
+      "label": "finalhdmi-game-startup-03",
+      "recordSeconds": 32,
+      "runner": "/mnt/c/Users/researcher/.codex/tmp/hdmi-recovery-20260910/run-candidate.py",
+      "argsFile": "C:\\Users\\researcher\\.codex\\tmp\\hdmi-recovery-20260910\\finalhdmi-case-plans\\finalhdmi-game-startup-03.json",
+      "argsSha256": "d632b03d49b6a8f577b49fdc9683559e150a16c3ae3cbc424fce8933921bab30"
+    },
+    {
+      "label": "finalhdmi-game-demo-01",
+      "recordSeconds": 105,
+      "runner": "/mnt/c/Users/researcher/.codex/tmp/hdmi-recovery-20260910/run-candidate.py",
+      "argsFile": "C:\\Users\\researcher\\.codex\\tmp\\hdmi-recovery-20260910\\finalhdmi-case-plans\\finalhdmi-game-demo-01.json",
+      "argsSha256": "e9b05d0c8cbb25e55f5f0a07196e51493bf1c9ed211e91ca39b856c8c440d9ce"
+    },
+    {
+      "label": "finalhdmi-game-probe-01",
+      "recordSeconds": 115,
+      "runner": "/mnt/c/Users/researcher/.codex/tmp/hdmi-recovery-20260910/run-candidate.py",
+      "argsFile": "C:\\Users\\researcher\\.codex\\tmp\\hdmi-recovery-20260910\\finalhdmi-case-plans\\finalhdmi-game-probe-01.json",
+      "argsSha256": "22e9b0acb6c9fcb15f9161234b6e0c3b2b75774b4fd07456328722c87db35306"
+    },
+    {
+      "label": "finalhdmi-game-controls-01",
+      "recordSeconds": 55,
+      "runner": "/mnt/c/Users/researcher/.codex/tmp/hdmi-recovery-20260910/run-candidate.py",
+      "argsFile": "C:\\Users\\researcher\\.codex\\tmp\\hdmi-recovery-20260910\\finalhdmi-case-plans\\finalhdmi-game-controls-01.json",
+      "argsSha256": "005e9731c1acf4182199762a39293f37acacbbb6cc50a105d3ba1ffe4fa04a8c"
+    },
+    {
+      "label": "finalhdmi-game-gameover-01",
+      "recordSeconds": 55,
+      "runner": "/mnt/c/Users/researcher/.codex/tmp/hdmi-recovery-20260910/run-candidate.py",
+      "argsFile": "C:\\Users\\researcher\\.codex\\tmp\\hdmi-recovery-20260910\\finalhdmi-case-plans\\finalhdmi-game-gameover-01.json",
+      "argsSha256": "7411d98cc5b4d04db7e8e21c740ef70024fa053c2469b93730f248ebf609e00c"
+    },
+    {
+      "label": "finalhdmi-triangle-01",
+      "recordSeconds": 45,
+      "runner": "/mnt/c/Users/researcher/.codex/tmp/hdmi-recovery-20260910/run-candidate.py",
+      "argsFile": "C:\\Users\\researcher\\.codex\\tmp\\hdmi-recovery-20260910\\finalhdmi-case-plans\\finalhdmi-triangle-01.json",
+      "argsSha256": "746f6211c1d83ee20cd2015907041eb4ace377ac819d60c35e967fec188be9c6"
+    },
+    {
+      "label": "finalhdmi-stage-full-01",
+      "recordSeconds": 105,
+      "runner": "/mnt/c/Users/researcher/.codex/tmp/hdmi-recovery-20260910/run-candidate.py",
+      "argsFile": "C:\\Users\\researcher\\.codex\\tmp\\hdmi-recovery-20260910\\finalhdmi-case-plans\\finalhdmi-stage-full-01.json",
+      "argsSha256": "2314a7a302c9d39280fdfa9d20eb51f28d4b03aa77a6210210e8deae0039e3de"
+    },
+    {
+      "label": "finalhdmi-stage-grouped-01",
+      "recordSeconds": 105,
+      "runner": "/mnt/c/Users/researcher/.codex/tmp/hdmi-recovery-20260910/run-candidate.py",
+      "argsFile": "C:\\Users\\researcher\\.codex\\tmp\\hdmi-recovery-20260910\\finalhdmi-case-plans\\finalhdmi-stage-grouped-01.json",
+      "argsSha256": "3e354f868823011344ade9137c08d0b083e07f4f57e818b0690d35b39a331d50"
+    },
+    {
+      "label": "finalhdmi-game-demo-02",
+      "recordSeconds": 105,
+      "runner": "/mnt/c/Users/researcher/.codex/tmp/hdmi-recovery-20260910/run-candidate.py",
+      "argsFile": "C:\\Users\\researcher\\.codex\\tmp\\hdmi-recovery-20260910\\finalhdmi-case-plans\\finalhdmi-game-demo-02.json",
+      "argsSha256": "8f30aa0649e3dc582b8fa6e00349dbc28c895aafc99aec7f259ecf4421d69591"
+    },
+    {
+      "label": "finalhdmi-game-demo-03",
+      "recordSeconds": 105,
+      "runner": "/mnt/c/Users/researcher/.codex/tmp/hdmi-recovery-20260910/run-candidate.py",
+      "argsFile": "C:\\Users\\researcher\\.codex\\tmp\\hdmi-recovery-20260910\\finalhdmi-case-plans\\finalhdmi-game-demo-03.json",
+      "argsSha256": "fdbebf2b82d75e9e9244db4d8666aacc6ec5e03312351238ccb378e14218a228"
+    },
+    {
+      "label": "finalhdmi-game-sustained-01",
+      "recordSeconds": 940,
+      "runner": "/mnt/c/Users/researcher/.codex/tmp/hdmi-recovery-20260910/run-candidate.py",
+      "argsFile": "C:\\Users\\researcher\\.codex\\tmp\\hdmi-recovery-20260910\\finalhdmi-case-plans\\finalhdmi-game-sustained-01.json",
+      "argsSha256": "bfd12187f78795e5929b12f44442094f7779b00589d00c3b8ce482cc21dec030"
+    },
+    {
+      "label": "finalhdmi-game-demo-04",
+      "recordSeconds": 105,
+      "runner": "/mnt/c/Users/researcher/.codex/tmp/hdmi-recovery-20260910/run-candidate.py",
+      "argsFile": "C:\\Users\\researcher\\.codex\\tmp\\hdmi-recovery-20260910\\finalhdmi-case-plans\\finalhdmi-game-demo-04.json",
+      "argsSha256": "6ea3c1313a747372ed16495c0b02dfcae7cc50ca7d3af2477cc0998a5797281e"
+    },
+    {
+      "label": "finalhdmi-game-demo-05",
+      "recordSeconds": 105,
+      "runner": "/mnt/c/Users/researcher/.codex/tmp/hdmi-recovery-20260910/run-candidate.py",
+      "argsFile": "C:\\Users\\researcher\\.codex\\tmp\\hdmi-recovery-20260910\\finalhdmi-case-plans\\finalhdmi-game-demo-05.json",
+      "argsSha256": "0c7cbfe5257e83c70c4550e371de20cf250bbe5f03d7371bbd5989126478297e"
+    },
+    {
+      "label": "finalhdmi-game-demo-06",
+      "recordSeconds": 105,
+      "runner": "/mnt/c/Users/researcher/.codex/tmp/hdmi-recovery-20260910/run-candidate.py",
+      "argsFile": "C:\\Users\\researcher\\.codex\\tmp\\hdmi-recovery-20260910\\finalhdmi-case-plans\\finalhdmi-game-demo-06.json",
+      "argsSha256": "7d93ede1a86fbccca2f577488046a660494f604ce7cdb717d09066c288adac13"
+    }
+  ]
+}

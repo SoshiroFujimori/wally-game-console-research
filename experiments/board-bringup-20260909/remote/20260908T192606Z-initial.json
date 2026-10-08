@@ -1,0 +1,9 @@
+{
+  "label": "initial",
+  "elapsed_seconds": 3.0292174199994406,
+  "bytes_received": 780,
+  "command": null,
+  "command_exit": null,
+  "login_sent": false,
+  "log": "/path/to/research/experiments/remote-20260909/20260908T192606Z-initial.raw"
+}

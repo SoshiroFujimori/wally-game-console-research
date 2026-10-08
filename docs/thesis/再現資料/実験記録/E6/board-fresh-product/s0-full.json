@@ -1,0 +1,7 @@
+{
+  "label": "s0-full",
+  "state": 0,
+  "style": "full",
+  "result": "RESULT frames=180 elapsed_s=12.271907150 fps=14.667647 logic_ms=0.961240 api_ms=21.854888 swap_ms=41.894826 wait_ms=3.322266 worker_inclusive_ms=41.656546 upload_inclusive_ms=7.634931 write_ms=7.387794 bytes_per_frame=30951.56 p50_ms=66.877200 p95_ms=83.597350 max_ms=83.601850 late_60hz=180 first_count=35 last_count=214 state_hash=8f34e8fd remaining=38 score=20",
+  "pixel_result": "FRAME_CHECK count=214 address=9fe00000 fnv1a=79c99b23 pixels=307200 mismatches=0"
+}

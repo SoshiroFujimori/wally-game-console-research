@@ -1,0 +1,22 @@
+[
+  {
+    "name": "controlled-throughput",
+    "source": "\\\\wsl.localhost\\Ubuntu\\home\\researcher\\nexys-video-tests\\hdmi-recovery-20260910\\controlled-finalhdmi-summary.json",
+    "sourceSha256": "f5b6f4d0baa183aa34523234681ca9a05590178fc74a3a55e954748adefdcb8c",
+    "files": {
+      "controlled-throughput.png": "9844e455ae523add125dd32bca61b434098e222500ee6077f30add91c5a83833",
+      "controlled-throughput.svg": "8cf20f9b44b3d1763ebdd8405fc5bfcff1e8586a1664cf233ed402c069299331",
+      "controlled-throughput.pdf": "ccd879f55d24a59a8fae236fdba04d055428e1142e81bfe0ae5a8e44a5cb49c2"
+    }
+  },
+  {
+    "name": "preparation-and-command-size",
+    "source": "\\\\wsl.localhost\\Ubuntu\\home\\researcher\\nexys-video-tests\\hdmi-recovery-20260910\\controlled-finalhdmi-summary.json",
+    "sourceSha256": "f5b6f4d0baa183aa34523234681ca9a05590178fc74a3a55e954748adefdcb8c",
+    "files": {
+      "preparation-and-command-size.png": "7075c4789ba26ee2be22e099ad33384674022fec236cb85832564b3e67557fe4",
+      "preparation-and-command-size.svg": "a4fd7079886ab4eb9c2477b3923875f89067752dcf0e2433af7ad377c34b40dd",
+      "preparation-and-command-size.pdf": "63e004d679d00fe0c5f8c18d0090b0a969d43f75412a107c9665c942b16353cf"
+    }
+  }
+]

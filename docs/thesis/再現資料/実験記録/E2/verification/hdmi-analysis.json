@@ -1,0 +1,60 @@
+{
+  "video": "C:\\Users\\researcher\\.codex\\tmp\\breakout-study-20260909\\precommit-thirteen-dvi-visual\\2026-09-13 05-51-26.mp4",
+  "sha256": "78f6d991674cf1e94c16595b209d78e6db0e608f6aad0643570a0005c66e3f80",
+  "durationSeconds": 94.966667,
+  "decodedFrames": 5697,
+  "decodeExit": 0,
+  "sceneFirstFrame": 308,
+  "sceneLastFrame": 5696,
+  "sceneIntervalFrames": 5389,
+  "framesWithBothCompleteWalls": 5389,
+  "suspectedMissingScanlineFrames": [],
+  "ballDetectedFrames": 5382,
+  "paddleDetectedFrames": 5382,
+  "distinctBallPositions": 4381,
+  "samples": [
+    {
+      "seconds": 10.0,
+      "file": "hdmi-verified-01.png",
+      "sha256": "39ffa77543c3f792b8f6cb8839578d490b06306f4c0516ed6fb5b2fe38345a3a",
+      "blackSideFraction": 1.0
+    },
+    {
+      "seconds": 20.0,
+      "file": "hdmi-verified-02.png",
+      "sha256": "bede3d64c76a47449d7af8e6c8af3afb0b0ff7c687db2aa521a902009d64b8ed",
+      "blackSideFraction": 1.0
+    },
+    {
+      "seconds": 40.0,
+      "file": "hdmi-verified-03.png",
+      "sha256": "15416d70e3a856f6b59fb7695b0b3fac7029f1b6621e53f6e3fabf61043fc0ab",
+      "blackSideFraction": 1.0
+    },
+    {
+      "seconds": 65.0,
+      "file": "hdmi-verified-04.png",
+      "sha256": "c34fd6926027506ae3a3d84072f698f5e7f1e9f942fa5385d6e8fc4e7d6d556e",
+      "blackSideFraction": 1.0
+    },
+    {
+      "seconds": 78.0,
+      "file": "hdmi-verified-05.png",
+      "sha256": "65fdb21b193c883393f171bf2eecb9c3fbb9f8cc74579f17edd0a51024a0f4f6",
+      "blackSideFraction": 1.0
+    },
+    {
+      "seconds": 90.0,
+      "file": "hdmi-verified-06.png",
+      "sha256": "b029cdf41dc16ed2aa2fccf320e63aeb5f64b82a51054519e999246f3fa5503c",
+      "blackSideFraction": 1.0
+    }
+  ],
+  "recordingCleanupVerified": true,
+  "limits": [
+    "Compressed images are not a pixel-exact framebuffer comparison.",
+    "A ball touching the paddle or outside the playfield may not be separable.",
+    "The encoding frame rate is not application FPS.",
+    "Scene transitions and all flagged intervals require inspection; this report does not automatically grant acceptance."
+  ]
+}

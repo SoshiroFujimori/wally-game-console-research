@@ -1,0 +1,21 @@
+{
+  "unrelated_note_content_unchanged": true,
+  "guide_anchor_count": 33,
+  "guide_internal_link_count": 50,
+  "verified_local_links": 31,
+  "top_lines_covered_once": 233,
+  "changed_files_covered": 12,
+  "all_code_and_patch_embeds_match_saved_git_sources": true,
+  "tcl_structural_syntax_files": [
+    "fpga/generator/ddr3-nexysvideo.tcl",
+    "fpga/generator/mmcm-nexysvideo.tcl",
+    "fpga/generator/ahbaxibridge.tcl",
+    "fpga/generator/clkconverter.tcl",
+    "fpga/constraints/constraints-nexysvideo.xdc",
+    "fpga/generator/wally.tcl"
+  ],
+  "tcl_scope": "Balanced Tcl commands only, not Vivado IP validation or synthesis.",
+  "note_entry_line": 7003,
+  "guide_lines": 2172,
+  "guide_bytes": 146650
+}

@@ -1,0 +1,45 @@
+{
+  "utc": "2026-10-08T10:50:55.912429+00:00",
+  "configuration": "rv64gc",
+  "simulator": "Verilator 5.036",
+  "tests": [
+    {
+      "suite": "arch64m",
+      "exit": 0,
+      "passed": true,
+      "tests": 13,
+      "log": "/path/to/research/experiments/fifo-study-20261008/logs/wally-arch64m.log"
+    },
+    {
+      "suite": "arch64a_amo",
+      "exit": 0,
+      "passed": true,
+      "tests": 18,
+      "log": "/path/to/research/experiments/fifo-study-20261008/logs/wally-arch64a_amo.log"
+    },
+    {
+      "suite": "arch64c",
+      "exit": 0,
+      "passed": true,
+      "tests": 37,
+      "log": "/path/to/research/experiments/fifo-study-20261008/logs/wally-arch64c.log"
+    },
+    {
+      "suite": "arch64f",
+      "exit": 0,
+      "passed": true,
+      "tests": 139,
+      "log": "/path/to/research/experiments/fifo-study-20261008/logs/wally-arch64f.log"
+    },
+    {
+      "suite": "arch64d",
+      "exit": 0,
+      "passed": true,
+      "tests": 150,
+      "log": "/path/to/research/experiments/fifo-study-20261008/logs/wally-arch64d.log"
+    }
+  ],
+  "reference_sources": "Official riscv-arch-test test sources selected by the CVW tests.vh lists; Sail reference model through the unchanged CVW RISCOF plugin.",
+  "reference_build": "reference-extended/result.json",
+  "simulator_binary_sha256": "6db6ca46740d846a16ef31ee5fccc90c4bcbdb4eaa10a32c0f415d48b506174b"
+}

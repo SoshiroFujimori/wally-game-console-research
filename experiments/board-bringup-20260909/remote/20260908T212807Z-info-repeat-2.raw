@@ -1,0 +1,20 @@
+cd / && mkdir -p /mnt/nexys-test && mount -t ext4 -o ro /dev/mmcblk0p4 /mnt/nexys-test && sh /mnt/nexys-test/nexys-video-tests/board-tests.sh info && case $(sha256sum /mnt/nexys-test/nexys-video-tests/sd-roundtrip-20260909-1.bin) in 42cbe69b28b1929235af054b20b61282f54e6f105c5f93807bcfd19778775943*) echo SD_PERSISTENCE_PASS;; *) echo SD_PERSISTENCE_FAIL; false;; esac; nv_status=$?; printf "\nNV_DONE_bca51f3daab3=%s\n" "$nv_status"
+[   54.007256] EXT4-fs (mmcblk0p4): mounted filesystem 4cd26447-2ac1-4501-b5e0-4a23309fb661 ro with ordered data mode. Quota mode: disabled.
+[   59.843418] random: crng init done
+memtester: OK
+board-tests.sh: OK
+MEMTESTER-COPYING: OK
+memtester.8: OK
+coremark.exe: OK
+COREMARK-LICENSE.md: OK
+
+Board: Wally on Digilent Nexys Video
+Linux WallyHostname 6.19.14 #8 Tue Sep  8 13:29:00 JST 2026 riscv64 GNU/Linux for Wally
+Uptime: 69.12 17.86
+MemTotal: 503340 KiB
+MemAvailable: 476664 KiB
+INFO_PASS
+SD_PERSISTENCE_PASS
+
+NV_DONE_bca51f3daab3=0
+# 

@@ -1,0 +1,9 @@
+(mkdir -p /mnt/fifo-study && mount -t ext4 -o ro /dev/mmcblk0p4 /mnt/fifo-study && gzip -dc /mnt/fifo-study/fifo-study-20261008-v2/bench.gz > /tmp/fifo-bench && chmod +x /tmp/fifo-bench && sha256sum /tmp/fifo-bench && umount /mnt/fifo-study); nv_status=$?; printf "\nNV_DONE_4bf4fc0cbd58=%s\n" "$nv_status"
+[   39.179680] EXT4-fs (mmcblk0p4): mounted filesystem 4cd26447-2ac1-4501-b5e0-4a23309fb661 ro with ordered data mode. Quota mode: disabled.
+[   45.152485] random: crng init done
+65bd34eda88f108465f17bb33f31a28da89d4744d86fbe65bdd7a863912e577b  /tmp/fifo-bench
+[  153.944506] EXT4-fs (mmcblk0p4): unmounting filesystem 4cd26447-2ac1-4501-b5e0-4a23309fb661.
+
+NV_DONE_4bf4fc0cbd58=0
+# 
+CAPTURE: {"label": "reconfigured-fifo512-load", "elapsed_seconds": 119.87039809399994, "bytes_received": 697, "command": "(mkdir -p /mnt/fifo-study && mount -t ext4 -o ro /dev/mmcblk0p4 /mnt/fifo-study && gzip -dc /mnt/fifo-study/fifo-study-20261008-v2/bench.gz > /tmp/fifo-bench && chmod +x /tmp/fifo-bench && sha256sum /tmp/fifo-bench && umount /mnt/fifo-study)", "command_exit": 0, "login_sent": false, "log": "/path/to/research/experiments/fifo-study-20261008/20261008T122145Z-reconfigured-fifo512-load.raw"}

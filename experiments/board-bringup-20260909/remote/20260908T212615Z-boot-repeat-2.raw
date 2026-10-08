@@ -1,0 +1,242 @@
+ █▀█        █▀█        █▀█        █▀▀                 █ █
+ █          █ █        █▄▀        █▄▄       ▄▄▄       █ █
+ █▄█        █▄█        █ █        █▄▄                 ▀▄▀
+ ____          ____  ____      ___      ___   ____    ___
+ \   \        /   / /    \    |   |    |   |  \   \  /  /
+  \   \  __  /   / /      \   |   |    |   |   \   \/  /
+   \   \/  \/   / /   /\   \  |   |    |   |    \     /
+    \          / /   ____   \ |   |___ |   |___  |   |
+     \___/\___/ /___/    \___\|_______||_______| |___|
+
+[\x000.05343] Initializing SPI Controller.
+[\x000.05703] Initializing SD Card in SPI mode.
+[\x000.06125] CMD0: Success, r = 0x01
+[\x000.06435] CMD8: Success, 0x01000001AA
+[\x000.06797] ACMD41: Success, r = 0x00
+[\x000.10833] New clock frequency: \x005000000\x00
+[\x000.11212] SD card is initialized.
+[\x000.11529] Getting GPT information.
+          Blocks loaded: 0/\x001\x00          Blocks loaded: \x00\x00/\x001\x00          Blocks loaded: \x001\x00/\x001\x00
+[\x000.12798] Getting partition entries.
+          Blocks loaded: 0/\x001\x00          Blocks loaded: \x00\x00/\x001\x00          Blocks loaded: \x001\x00/\x001\x00
+[\x000.14084] Loading device tree at: 0x9F000000
+          Blocks loaded: 0/\x005\x00          Blocks loaded: \x00\x00/\x005\x00          Blocks loaded: \x005\x00/\x005\x00
+[\x000.15819] Loading OpenSBI at: 0x80000000
+          Blocks loaded: 0/\x00534\x00          Blocks loaded: \x00\x00/\x00534\x00          Blocks loaded: \x00534\x00/\x00534\x00
+[\x000.69675] Loading Linux Kernel at: 0x80200000
+          Blocks loaded: 0/\x0030098\x00          Blocks loaded: \x00\x00/\x0030098\x00          Blocks loaded: \x001220\x00/\x0030098\x00          Blocks loaded: \x002440\x00/\x0030098\x00          Blocks loaded: \x003660\x00/\x0030098\x00          Blocks loaded: \x004880\x00/\x0030098\x00          Blocks loaded: \x006100\x00/\x0030098\x00          Blocks loaded: \x007320\x00/\x0030098\x00          Blocks loaded: \x008540\x00/\x0030098\x00          Blocks loaded: \x009760\x00/\x0030098\x00          Blocks loaded: \x0010980\x00/\x0030098\x00          Blocks loaded: \x0012200\x00/\x0030098\x00          Blocks loaded: \x0013420\x00/\x0030098\x00          Blocks loaded: \x0014640\x00/\x0030098\x00          Blocks loaded: \x0015860\x00/\x0030098\x00          Blocks loaded: \x0017080\x00/\x0030098\x00          Blocks loaded: \x0018300\x00/\x0030098\x00          Blocks loaded: \x0019520\x00/\x0030098\x00          Blocks loaded: \x0020740\x00/\x0030098\x00          Blocks loaded: \x0021960\x00/\x0030098\x00          Blocks loaded: \x0023180\x00/\x0030098\x00          Blocks loaded: \x0024400\x00/\x0030098\x00          Blocks loaded: \x0025620\x00/\x0030098\x00          Blocks loaded: \x0026840\x00/\x0030098\x00          Blocks loaded: \x0028060\x00/\x0030098\x00          Blocks loaded: \x0029280\x00/\x0030098\x00          Blocks loaded: \x0030098\x00/\x0030098\x00
+[\x0030.43203] Done! Flashing LEDs and jumping to OpenSBI...
+
+OpenSBI v1.7
+   ____                    _____ ____ _____
+  / __ \                  / ____|  _ \_   _|
+ | |  | |_ __   ___ _ __ | (___ | |_) || |
+ | |  | | '_ \ / _ \ '_ \ \___ \|  _ < | |
+ | |__| | |_) |  __/ | | |____) | |_) || |_
+  \____/| .__/ \___|_| |_|_____/|____/_____|
+        | |
+        |_|
+
+Platform Name               : Wally on Digilent Nexys Video
+Platform Features           : medeleg
+Platform HART Count         : 1
+Platform IPI Device         : aclint-mswi
+Platform Timer Device       : aclint-mtimer @ 20000000Hz
+Platform Console Device     : uart8250
+Platform HSM Device         : ---
+Platform PMU Device         : ---
+Platform Reboot Device      : ---
+Platform Shutdown Device    : ---
+Platform Suspend Device     : ---
+Platform CPPC Device        : ---
+Firmware Base               : 0x80000000
+Firmware Size               : 317 KB
+Firmware RW Offset          : 0x40000
+Firmware RW Size            : 61 KB
+Firmware Heap Offset        : 0x46000
+Firmware Heap Size          : 37 KB (total), 2 KB (reserved), 10 KB (used), 24 KB (free)
+Firmware Scratch Size       : 4096 B (total), 1336 B (used), 2760 B (free)
+Runtime SBI Version         : 3.0
+Standard SBI Extensions     : time,rfnc,ipi,base,hsm,pmu,dbcn,fwft,legacy,sse
+Experimental SBI Extensions : none
+
+Domain0 Name                : root
+Domain0 Boot HART           : 0
+Domain0 HARTs               : 0*
+Domain0 Region00            : 0x0000000010000000-0x0000000010000fff M: (I,R,W) S/U: (R,W)
+Domain0 Region01            : 0x0000000002000000-0x000000000200ffff M: (I,R,W) S/U: ()
+Domain0 Region02            : 0x000000000c200000-0x000000000c20ffff M: (I,R,W) S/U: (R,W)
+Domain0 Region03            : 0x0000000080040000-0x000000008004ffff M: (R,W) S/U: ()
+Domain0 Region04            : 0x0000000080000000-0x000000008003ffff M: (R,X) S/U: ()
+Domain0 Region05            : 0x000000000c000000-0x000000000c1fffff M: (I,R,W) S/U: (R,W)
+Domain0 Region06            : 0x0000000000000000-0xffffffffffffffff M: () S/U: (R,W,X)
+Domain0 Next Address        : 0x0000000080200000
+Domain0 Next Arg1           : 0x0000000082200000
+Domain0 Next Mode           : S-mode
+Domain0 SysReset            : yes
+Domain0 SysSuspend          : yes
+
+Boot HART ID                : 0
+Boot HART Domain            : root
+Boot HART Priv Version      : v1.12
+Boot HART Base ISA          : rv64imafdcb
+Boot HART ISA Extensions    : sstc,zicntr,zihpm,zicboz,zicbom,svpbmt,svade,svadu
+Boot HART PMP Count         : 16
+Boot HART PMP Granularity   : 6 bits
+Boot HART PMP Address Bits  : 54
+Boot HART MHPM Info         : 20 (0xfff6d230)
+Boot HART Debug Triggers    : 0 triggers
+Boot HART MIDELEG           : 0x0000000000000222
+Boot HART MEDELEG           : 0x000000000000b108
+[    0.000000] Linux version 6.19.14 (researcher@RESEARCH-HOST) (riscv64-buildroot-linux-gnu-gcc.br_real (Buildroot 2026.02.3) 15.2.0, GNU ld (GNU Binutils) 2.45.1) #8 Tue Sep  8 13:29:00 JST 2026
+[    0.000000] Machine model: Wally on Digilent Nexys Video
+[    0.000000] SBI specification v3.0 detected
+[    0.000000] SBI implementation ID=0x1 Version=0x10007
+[    0.000000] SBI TIME extension detected
+[    0.000000] SBI IPI extension detected
+[    0.000000] SBI RFENCE extension detected
+[    0.000000] SBI DBCN extension detected
+[    0.000000] SBI FWFT extension detected
+[    0.000000] efi: UEFI not found.
+[    0.000000] OF: reserved mem: 0x0000000080000000..0x000000008003ffff (256 KiB) nomap non-reusable mmode_resv1@80000000
+[    0.000000] OF: reserved mem: 0x0000000080040000..0x000000008004ffff (64 KiB) nomap non-reusable mmode_resv0@80040000
+[    0.000000] Zone ranges:
+[    0.000000]   DMA32    [mem 0x0000000080000000-0x000000009fffffff]
+[    0.000000]   Normal   empty
+[    0.000000] Movable zone start for each node
+[    0.000000] Early memory node ranges
+[    0.000000]   node   0: [mem 0x0000000080000000-0x000000008004ffff]
+[    0.000000]   node   0: [mem 0x0000000080050000-0x000000009fffffff]
+[    0.000000] Initmem setup node 0 [mem 0x0000000080000000-0x000000009fffffff]
+[    0.000000] riscv: base ISA extensions acdfim
+[    0.000000] riscv: ELF capabilities acdfim
+[    0.000000] Ticket spinlock: enabled
+[    0.000000] Kernel command line: console=ttyS0,115200 loglevel=7
+[    0.000000] printk: log buffer data + meta data: 131072 + 458752 = 589824 bytes
+[    0.000000] Dentry cache hash table entries: 65536 (order: 7, 524288 bytes, linear)
+[    0.000000] Inode-cache hash table entries: 32768 (order: 6, 262144 bytes, linear)
+[    0.000000] software IO TLB: SWIOTLB bounce buffer size adjusted to 0MB
+[    0.000000] software IO TLB: area num 1.
+[    0.000000] software IO TLB: mapped [mem 0x000000009f6ad000-0x000000009f72d000] (0MB)
+[    0.000000] Virtual kernel memory layout:
+[    0.000000]       fixmap : 0xffff8d7ffea00000 - 0xffff8d7fff000000   (6144 kB)
+[    0.000000]       pci io : 0xffff8d7fff000000 - 0xffff8d8000000000   (  16 MB)
+[    0.000000]      vmemmap : 0xffff8d8000000000 - 0xffff8f8000000000   (2048 GB)
+[    0.000000]      vmalloc : 0xffff8f8000000000 - 0xffffaf8000000000   (  32 TB)
+[    0.000000]      modules : 0xffffffff00ef1000 - 0xffffffff80000000   (2033 MB)
+[    0.000000]       lowmem : 0xffffaf8000000000 - 0xffffaf8020000000   ( 512 MB)
+[    0.000000]       kernel : 0xffffffff80000000 - 0xffffffffffffffff   (2047 MB)
+[    0.000000] Built 1 zonelists, mobility grouping on.  Total pages: 131072
+[    0.000000] mem auto-init: stack:off, heap alloc:off, heap free:off
+[    0.000000] SLUB: HWalign=64, Order=0-3, MinObjects=0, CPUs=1, Nodes=1
+[    0.000000] NR_IRQS: 64, nr_irqs: 64, preallocated irqs: 0
+[    0.000000] riscv-intc: 64 local interrupts mapped
+[    0.000000] clocksource: riscv_clocksource: mask: 0xffffffffffffffff max_cycles: 0x49cd42e20, max_idle_ns: 440795202120 ns
+[    0.000038] sched_clock: 64 bits at 20MHz, resolution 50ns, wraps every 4398046511100ns
+[    0.000657] riscv-timer: Timer interrupt in S-mode is available via sstc extension
+[    0.007244] Console: colour dummy device 80x25
+[    0.009393] Calibrating delay loop (skipped), value calculated using timer frequency.. 40.00 BogoMIPS (lpj=80000)
+[    0.010122] pid_max: default: 32768 minimum: 301
+[    0.021453] Mount-cache hash table entries: 1024 (order: 1, 8192 bytes, linear)
+[    0.022416] Mountpoint-cache hash table entries: 1024 (order: 1, 8192 bytes, linear)
+[    0.129947] riscv: ELF compat mode unsupported
+[    0.131546] ASID allocator using 16 bits (65536 entries)
+[    0.144631] EFI services will not be available.
+[    0.150094] Memory: 496588K/524288K available (3108K kernel code, 3587K rwdata, 2048K rodata, 5317K init, 247K bss, 26264K reserved, 0K cma-reserved)
+[    0.173264] devtmpfs: initialized
+[    0.248444] clocksource: jiffies: mask: 0xffffffff max_cycles: 0xffffffff, max_idle_ns: 7645041785100000 ns
+[    0.250289] posixtimers hash table entries: 512 (order: 2, 16384 bytes, linear)
+[    0.254471] futex hash table entries: 256 (14336 bytes on 1 NUMA nodes, total 14 KiB, linear).
+[    0.271724] DMI not present or invalid.
+[    0.277947] DMA: preallocated 128 KiB GFP_KERNEL|GFP_DMA32 pool for atomic allocations
+[    0.297466] SBI misaligned access exception delegation ok
+[    0.326925] cpu0: Ratio of byte access time to unaligned word access is 7.94, unaligned accesses are fast
+[    0.540964] clocksource: Switched to clocksource riscv_clocksource
+[    1.346539] workingset: timestamp_bits=62 max_order=17 bucket_order=0
+[    1.424754] io scheduler mq-deadline registered
+[    1.426046] io scheduler kyber registered
+[    1.428192] io scheduler bfq registered
+[    1.482909] riscv-plic: plic@c000000: mapped 54 interrupts with 1 handlers for 2 contexts.
+[    9.267902] Serial: 8250/16550 driver, 1 ports, IRQ sharing disabled
+[    9.392119] printk: legacy console [ttyS0] disabled
+[    9.456305] 10000000.uart: ttyS0 at MMIO 0x10000000 (irq = 2, base_baud = 1250000) is a 16550A
+[    9.458738] printk: legacy console [ttyS0] enabled
+[   10.315408] sifive_spi 13000.spi: mapped; irq=3, cs=4
+[   10.423938] mmc_spi spi0.0: SD/MMC host mmc0, no WP, no poweroff, cd polling
+[   11.267768] debug_vm_pgtable: [debug_vm_pgtable         ]: Validating architecture page table helpers
+[   11.319901] clk: Disabling unused clocks
+[   11.753798] Freeing unused kernel image (initmem) memory: 5316K
+[   11.762538] Run /init as init process
+[   11.935188] mmc0: host does not support reading read-only switch, assuming write-enable
+[   11.946032] mmc0: new SDHC card on SPI
+[   12.054410] mmcblk0: mmc0:0000 SA32G 29.1 GiB
+init started: BusyBox v1.37.0 (2026-09-08 13:16:18 JST)
+[   20.227682]  mmcblk0: p1 p2 p3 p4
+Saving 256 bits of non-creditable seed for next boot
+Starting syslogd: OK
+Starting klogd: OK
+Running sysctl: OK
+Starting network: /etc/init.d/S40network: line 12: /sbin/ifup: not found
+FAIL
+Starting crond: OK
+crond[63]: can't change directory to '/var/spool/cron/crontabs': No such file or directory
+
+
+
+BusyBox v1.37.0 (2026-09-08 13:16:18 JST) built-in shell (ash)
+Enter 'help' for a list of built-in commands.
+
+Hello this ~/.profile is meant to demonstrate running some basic commands on Wally.
+I am root
+And I am on WallyHostname
+Created myFile.txt and moved it to myDir. It contains:
+Hello World!
+And farewell!
+Created myScript.sh. Running it yields:
+Hello this is another example script
+Created symLinkToMyScript.sh. Running it yields:
+Hello this is another example script
+Now let's remove all these example files and scripts
+Here is disk usage:
+Filesystem                Size      Used Available Use% Mounted on
+devtmpfs                243.2M         0    243.2M   0% /dev
+tmpfs                   245.8M         0    245.8M   0% /dev/shm
+tmpfs                   245.8M         0    245.8M   0% /tmp
+tmpfs                   245.8M     12.0K    245.8M   0% /run
+And here are the current processes:
+  PID USER       VSZ STAT COMMAND
+    1 root      2160 S    init
+    2 root         0 SW   [kthreadd]
+    3 root         0 SW   [pool_workqueue_]
+    4 root         0 IW<  [kworker/R-slub_]
+    5 root         0 IW   [kworker/0:0-eve]
+    6 root         0 IW<  [kworker/0:0H]
+    7 root         0 IW   [kworker/0:1-eve]
+    8 root         0 IW   [kworker/u4:0-ev]
+    9 root         0 IW<  [kworker/R-mm_pe]
+   10 root         0 SW   [ksoftirqd/0]
+   11 root         0 SW   [kdevtmpfs]
+   12 root         0 SW   [khungtaskd]
+   13 root         0 SW   [oom_reaper]
+   14 root         0 IW<  [kworker/R-write]
+   15 root         0 SW   [kcompactd0]
+   16 root         0 IW<  [kworker/R-kbloc]
+   17 root         0 SW   [kswapd0]
+   18 root         0 IW   [kworker/u4:1]
+   19 root         0 IW<  [kworker/u5:0]
+   20 root         0 SW   [spi0]
+   21 root         0 IW<  [kworker/R-mmc_c]
+   22 root         0 IW   [kworker/0:2-eve]
+   25 root         0 IW<  [kworker/0:1H-kb]
+   46 root      2160 S    /sbin/klogd -n
+   64 root      2160 S    -/bin/sh
+   80 root      2164 R    ps
+And finally a login prompt.
+WallyHostname login: root
+login[81]: root login on 'console'
+
+
+BusyBox v1.37.0 (2026-09-08 13:16:18 JST) built-in shell (ash)
+Enter 'help' for a list of built-in commands.
+
+# 

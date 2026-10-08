@@ -1,0 +1,9 @@
+make: Entering directory '/path/to/wally-game-console/addins/coremark'
+md5sum -c coremark.md5 
+core_list_join.c: FAILED
+core_main.c: FAILED
+core_matrix.c: OK
+core_state.c: FAILED
+core_util.c: OK
+coremark.h: OK
+make: Leaving directory '/path/to/wally-game-console/addins/coremark'

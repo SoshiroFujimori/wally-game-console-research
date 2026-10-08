@@ -1,0 +1,52 @@
+{
+  "passed": true,
+  "checked_local_markdown_links": [
+    {
+      "document": "\u4e2d\u65ad\u6642\u70b9\u3068\u518d\u958b\u624b\u9806.md",
+      "target": "\u7d50\u679c\u3068\u5224\u65ad.md"
+    },
+    {
+      "document": "\u4e2d\u65ad\u6642\u70b9\u3068\u518d\u958b\u624b\u9806.md",
+      "target": "\u7d50\u679c\u3068\u5224\u65ad.md"
+    },
+    {
+      "document": "\u5b9f\u9a13\u306e\u76ee\u7684\u3068\u65b9\u6cd5.md",
+      "target": "\u7d50\u679c\u3068\u5224\u65ad.md"
+    },
+    {
+      "document": "\u5b9f\u9a13\u7d4c\u904e\u3068\u78ba\u8a8d\u6e08\u307f\u4e8b\u9805.md",
+      "target": "\u7d50\u679c\u3068\u5224\u65ad.md"
+    },
+    {
+      "document": "\u5b9f\u9a13\u7d4c\u904e\u3068\u78ba\u8a8d\u6e08\u307f\u4e8b\u9805.md",
+      "target": "\u7d50\u679c\u3068\u5224\u65ad.md"
+    },
+    {
+      "document": "\u7d50\u679c\u3068\u5224\u65ad.md",
+      "target": "results/transfer-wait.png"
+    },
+    {
+      "document": "\u7d50\u679c\u3068\u5224\u65ad.md",
+      "target": "results/game-comparison.png"
+    },
+    {
+      "document": "\u7d50\u679c\u3068\u5224\u65ad.md",
+      "target": "results/texture-mismatch.png"
+    },
+    {
+      "document": "\u7d50\u679c\u3068\u5224\u65ad.md",
+      "target": "results/command-parser-reproducer.zip"
+    },
+    {
+      "document": "\u7d50\u679c\u3068\u5224\u65ad.md",
+      "target": "results/video/breakout-latest-30s.mp4"
+    },
+    {
+      "document": "\u7d50\u679c\u3068\u5224\u65ad.md",
+      "target": "results/video/verified-frame-03.png"
+    }
+  ],
+  "video_frames": 1801,
+  "matching_product_provenance": true,
+  "uncommitted": true
+}

@@ -1,0 +1,356 @@
+{
+  "started_utc": "2026-09-09T10:53:14.939442+00:00",
+  "qualification": {
+    "utc": "2026-09-09T10:53:01.512607+00:00",
+    "bitstream": "/path/to/research/experiments/rasterix-integration-20260909/upstream-refinement/fpgaTop.bit",
+    "sha256": "f7bc0386db7da40077f04691feb45e50df4118d513bbe4985a84e00a07d29a13",
+    "wns_ns": 0.17,
+    "whs_ns": 0.008,
+    "fully_routed_nets": 115858,
+    "routing_errors": 0,
+    "drc_errors": 0,
+    "drc_warnings": 220,
+    "drc_report_limits": 0,
+    "bus_skew_paths_checked": 19,
+    "bus_skew_min_slack_ns": 8.858,
+    "unconstrained_internal_endpoints": 0,
+    "cdc_critical_rows": 0,
+    "source_manifest": "source-manifest.json",
+    "build_method": "Reused the complete normal-make synthesis checkpoint after the user-requested pause; rebuilt ordinary project implementation with unchanged settings and no incremental reference.",
+    "source_changes_since_build": [],
+    "review": "report-review.json"
+  },
+  "boots": [
+    {
+      "bitstream": "/path/to/research/experiments/rasterix-integration-20260909/upstream-refinement/fpgaTop.bit",
+      "sha256": "f7bc0386db7da40077f04691feb45e50df4118d513bbe4985a84e00a07d29a13",
+      "started_utc": "2026-09-09T10:53:46.167924+00:00",
+      "uart_pid": 75849,
+      "uart_start_ticks": "420453",
+      "program_exit": 0,
+      "uart_exit": 0,
+      "finished_utc": "2026-09-09T10:55:08.335527+00:00"
+    },
+    {
+      "bitstream": "/path/to/research/experiments/rasterix-integration-20260909/upstream-refinement/fpgaTop.bit",
+      "sha256": "f7bc0386db7da40077f04691feb45e50df4118d513bbe4985a84e00a07d29a13",
+      "started_utc": "2026-09-09T10:55:40.883518+00:00",
+      "uart_pid": 76311,
+      "uart_start_ticks": "431925",
+      "program_exit": 0,
+      "uart_exit": 0,
+      "finished_utc": "2026-09-09T10:57:03.689160+00:00"
+    },
+    {
+      "bitstream": "/path/to/research/experiments/rasterix-integration-20260909/upstream-refinement/fpgaTop.bit",
+      "sha256": "f7bc0386db7da40077f04691feb45e50df4118d513bbe4985a84e00a07d29a13",
+      "started_utc": "2026-09-09T10:57:36.065698+00:00",
+      "uart_pid": 76777,
+      "uart_start_ticks": "443443",
+      "program_exit": 0,
+      "uart_exit": 0,
+      "finished_utc": "2026-09-09T10:58:58.557441+00:00"
+    }
+  ],
+  "tests": [
+    {
+      "label": "refinement-unmount-before-boot-1",
+      "elapsed_seconds": 0.9320790170004329,
+      "bytes_received": 175,
+      "command": "sync && if grep -q \" /mnt/rasterix \" /proc/mounts; then umount /mnt/rasterix; fi",
+      "command_exit": 0,
+      "login_sent": false,
+      "log": "/path/to/research/experiments/rasterix-integration-20260909/20260909T105314Z-refinement-unmount-before-boot-1.raw",
+      "runner_exit": 0,
+      "required_evidence": [],
+      "missing_evidence": []
+    },
+    {
+      "label": "refinement-boot-health-1",
+      "elapsed_seconds": 1.0224038979995385,
+      "bytes_received": 1383,
+      "command": "uname -m && cat /proc/meminfo",
+      "command_exit": 0,
+      "login_sent": false,
+      "log": "/path/to/research/experiments/rasterix-integration-20260909/20260909T105508Z-refinement-boot-health-1.raw",
+      "runner_exit": 0,
+      "required_evidence": [
+        "riscv64",
+        "MemTotal:"
+      ],
+      "missing_evidence": []
+    },
+    {
+      "label": "refinement-unmount-before-boot-2",
+      "elapsed_seconds": 0.9315467489996081,
+      "bytes_received": 175,
+      "command": "sync && if grep -q \" /mnt/rasterix \" /proc/mounts; then umount /mnt/rasterix; fi",
+      "command_exit": 0,
+      "login_sent": false,
+      "log": "/path/to/research/experiments/rasterix-integration-20260909/20260909T105509Z-refinement-unmount-before-boot-2.raw",
+      "runner_exit": 0,
+      "required_evidence": [],
+      "missing_evidence": []
+    },
+    {
+      "label": "refinement-boot-health-2",
+      "elapsed_seconds": 1.0220697179993294,
+      "bytes_received": 1383,
+      "command": "uname -m && cat /proc/meminfo",
+      "command_exit": 0,
+      "login_sent": false,
+      "log": "/path/to/research/experiments/rasterix-integration-20260909/20260909T105703Z-refinement-boot-health-2.raw",
+      "runner_exit": 0,
+      "required_evidence": [
+        "riscv64",
+        "MemTotal:"
+      ],
+      "missing_evidence": []
+    },
+    {
+      "label": "refinement-unmount-before-boot-3",
+      "elapsed_seconds": 0.9294997549995969,
+      "bytes_received": 175,
+      "command": "sync && if grep -q \" /mnt/rasterix \" /proc/mounts; then umount /mnt/rasterix; fi",
+      "command_exit": 0,
+      "login_sent": false,
+      "log": "/path/to/research/experiments/rasterix-integration-20260909/20260909T105704Z-refinement-unmount-before-boot-3.raw",
+      "runner_exit": 0,
+      "required_evidence": [],
+      "missing_evidence": []
+    },
+    {
+      "label": "refinement-boot-health-3",
+      "elapsed_seconds": 1.0213307980002355,
+      "bytes_received": 1383,
+      "command": "uname -m && cat /proc/meminfo",
+      "command_exit": 0,
+      "login_sent": false,
+      "log": "/path/to/research/experiments/rasterix-integration-20260909/20260909T105858Z-refinement-boot-health-3.raw",
+      "runner_exit": 0,
+      "required_evidence": [
+        "riscv64",
+        "MemTotal:"
+      ],
+      "missing_evidence": []
+    },
+    {
+      "label": "refinement-device-tree",
+      "elapsed_seconds": 2.3702892460005387,
+      "bytes_received": 723,
+      "command": "(for p in /proc/device-tree/cpus/cpu@0/clock-frequency /proc/device-tree/cpus/timebase-frequency /proc/device-tree/soc/uart@10000000/clock-frequency /proc/device-tree/memory@80000000/reg /proc/device-tree/reserved-memory/framebuffer@9e000000/reg; do echo \"$p\"; xxd -p \"$p\" || exit 1; done)",
+      "command_exit": 0,
+      "login_sent": false,
+      "log": "/path/to/research/experiments/rasterix-integration-20260909/20260909T110318Z-refinement-device-tree.raw",
+      "runner_exit": 0,
+      "required_evidence": [
+        "/proc/device-tree/cpus/cpu@0/clock-frequency\n01312d00",
+        "/proc/device-tree/cpus/timebase-frequency\n01312d00",
+        "/proc/device-tree/soc/uart@10000000/clock-frequency\n01312d00",
+        "/proc/device-tree/memory@80000000/reg\n00000000800000000000000020000000",
+        "/proc/device-tree/reserved-memory/framebuffer@9e000000/reg\n000000009e0000000000000002000000"
+      ],
+      "missing_evidence": []
+    },
+    {
+      "label": "refinement-red-cold",
+      "elapsed_seconds": 184.73127117000058,
+      "bytes_received": 760,
+      "command": "mkdir -p /mnt/rasterix && mount -o ro /dev/mmcblk0p4 /mnt/rasterix && /mnt/rasterix/rasterix-20260909/split/rasterix-demo red 4 && /mnt/rasterix/rasterix-20260909/diag/rasterix-framecheck-chunks red",
+      "command_exit": 0,
+      "login_sent": false,
+      "log": "/path/to/research/experiments/rasterix-integration-20260909/20260909T110321Z-refinement-red-cold.raw",
+      "runner_exit": 0,
+      "required_evidence": [
+        "FRAME_READBACK_PASS",
+        "fnv1a=0x4ed49dc5"
+      ],
+      "missing_evidence": []
+    },
+    {
+      "label": "refinement-red-cold-read-1",
+      "elapsed_seconds": 71.4197017309998,
+      "bytes_received": 401,
+      "command": "echo 3 > /proc/sys/vm/drop_caches && /mnt/rasterix/rasterix-20260909/diag/rasterix-framecheck-chunks red",
+      "command_exit": 0,
+      "login_sent": false,
+      "log": "/path/to/research/experiments/rasterix-integration-20260909/20260909T110625Z-refinement-red-cold-read-1.raw",
+      "runner_exit": 0,
+      "required_evidence": [
+        "FRAME_READBACK_PASS",
+        "fnv1a=0x4ed49dc5"
+      ],
+      "missing_evidence": []
+    },
+    {
+      "label": "refinement-red-cold-read-2",
+      "elapsed_seconds": 71.05213171000014,
+      "bytes_received": 401,
+      "command": "echo 3 > /proc/sys/vm/drop_caches && /mnt/rasterix/rasterix-20260909/diag/rasterix-framecheck-chunks red",
+      "command_exit": 0,
+      "login_sent": false,
+      "log": "/path/to/research/experiments/rasterix-integration-20260909/20260909T110737Z-refinement-red-cold-read-2.raw",
+      "runner_exit": 0,
+      "required_evidence": [
+        "FRAME_READBACK_PASS",
+        "fnv1a=0x4ed49dc5"
+      ],
+      "missing_evidence": []
+    },
+    {
+      "label": "refinement-red-cold-read-3",
+      "elapsed_seconds": 70.68568632400002,
+      "bytes_received": 401,
+      "command": "echo 3 > /proc/sys/vm/drop_caches && /mnt/rasterix/rasterix-20260909/diag/rasterix-framecheck-chunks red",
+      "command_exit": 0,
+      "login_sent": false,
+      "log": "/path/to/research/experiments/rasterix-integration-20260909/20260909T110848Z-refinement-red-cold-read-3.raw",
+      "runner_exit": 0,
+      "required_evidence": [
+        "FRAME_READBACK_PASS",
+        "fnv1a=0x4ed49dc5"
+      ],
+      "missing_evidence": []
+    },
+    {
+      "label": "refinement-green",
+      "elapsed_seconds": 108.78332377199968,
+      "bytes_received": 555,
+      "command": "/mnt/rasterix/rasterix-20260909/split/rasterix-demo green 4 && /mnt/rasterix/rasterix-20260909/diag/rasterix-framecheck-chunks green",
+      "command_exit": 0,
+      "login_sent": false,
+      "log": "/path/to/research/experiments/rasterix-integration-20260909/20260909T110958Z-refinement-green.raw",
+      "runner_exit": 0,
+      "required_evidence": [
+        "FRAME_READBACK_PASS",
+        "fnv1a=0x9db75dc5"
+      ],
+      "missing_evidence": []
+    },
+    {
+      "label": "refinement-blue",
+      "elapsed_seconds": 7.443581460999667,
+      "bytes_received": 554,
+      "command": "/mnt/rasterix/rasterix-20260909/split/rasterix-demo blue 4 && /mnt/rasterix/rasterix-20260909/diag/rasterix-framecheck-chunks blue",
+      "command_exit": 0,
+      "login_sent": false,
+      "log": "/path/to/research/experiments/rasterix-integration-20260909/20260909T111147Z-refinement-blue.raw",
+      "runner_exit": 0,
+      "required_evidence": [
+        "FRAME_READBACK_PASS",
+        "fnv1a=0xcea0ddc5"
+      ],
+      "missing_evidence": []
+    },
+    {
+      "label": "refinement-triangle",
+      "elapsed_seconds": 9.458111289000044,
+      "bytes_received": 574,
+      "command": "/mnt/rasterix/rasterix-20260909/split/rasterix-demo triangle 4 && /mnt/rasterix/rasterix-20260909/diag/rasterix-framecheck-chunks triangle",
+      "command_exit": 0,
+      "login_sent": false,
+      "log": "/path/to/research/experiments/rasterix-integration-20260909/20260909T111155Z-refinement-triangle.raw",
+      "runner_exit": 0,
+      "required_evidence": [
+        "FRAME_READBACK_PASS",
+        "fnv1a=0xac4762fd"
+      ],
+      "missing_evidence": []
+    },
+    {
+      "label": "refinement-cube",
+      "elapsed_seconds": 8.44676444200013,
+      "bytes_received": 558,
+      "command": "/mnt/rasterix/rasterix-20260909/split/rasterix-demo cube 4 && /mnt/rasterix/rasterix-20260909/diag/rasterix-framecheck-chunks cube",
+      "command_exit": 0,
+      "login_sent": false,
+      "log": "/path/to/research/experiments/rasterix-integration-20260909/20260909T111204Z-refinement-cube.raw",
+      "runner_exit": 0,
+      "required_evidence": [
+        "FRAME_READBACK_PASS",
+        "fnv1a=0x785d98a6"
+      ],
+      "missing_evidence": []
+    },
+    {
+      "label": "refinement-ddu",
+      "elapsed_seconds": 68.9441407760005,
+      "bytes_received": 542,
+      "command": "/mnt/rasterix/rasterix-20260909/split/rasterix-memory-test",
+      "command_exit": 0,
+      "login_sent": false,
+      "log": "/path/to/research/experiments/rasterix-integration-20260909/20260909T111213Z-refinement-ddu.raw",
+      "runner_exit": 0,
+      "required_evidence": [
+        "DDU_READBACK_PASS size=64 address=0x9f600000",
+        "DDU_READBACK_PASS size=256 address=0x9f600000",
+        "DDU_READBACK_PASS size=4096 address=0x9f600000",
+        "DDU_READBACK_PASS size=65536 address=0x9f600000"
+      ],
+      "missing_evidence": []
+    },
+    {
+      "label": "refinement-cpu-memory",
+      "elapsed_seconds": 70.61303235999912,
+      "bytes_received": 3159,
+      "command": "/mnt/rasterix/nexys-video-tests/coremark.exe 0 0 0x66 0 7 1 2000 && MEMTESTER_TEST_MASK=0x18081 /mnt/rasterix/nexys-video-tests/memtester 4M 1",
+      "command_exit": 0,
+      "login_sent": false,
+      "log": "/path/to/research/experiments/rasterix-integration-20260909/20260909T111322Z-refinement-cpu-memory.raw",
+      "runner_exit": 0,
+      "required_evidence": [
+        "Correct operation validated.",
+        "Stuck Address",
+        "Random Value",
+        "Sequential Increment",
+        "8-bit Writes",
+        "16-bit Writes",
+        "Done."
+      ],
+      "missing_evidence": []
+    },
+    {
+      "label": "refinement-software-sha",
+      "elapsed_seconds": 16.570829921999575,
+      "bytes_received": 655,
+      "command": "sha256sum /mnt/rasterix/rasterix-20260909/split/rasterix-demo /mnt/rasterix/rasterix-20260909/diag/rasterix-framecheck-chunks /mnt/rasterix/rasterix-20260909/split/rasterix-memory-test",
+      "command_exit": 0,
+      "login_sent": false,
+      "log": "/path/to/research/experiments/rasterix-integration-20260909/20260909T111432Z-refinement-software-sha.raw",
+      "runner_exit": 0,
+      "required_evidence": [
+        "ab5716480d00a570d5b40bd6a3726865b0f73f8f1e608aa2272fb3fba6c2a8fd",
+        "a170533ca73bd827171337da27c25e4222f65b02fe5aaf1e7734df8f7da50e9c",
+        "c2480e842984fd7a8bbdb27dd8298d7abd1b446116d45d7a9d8c11e7025b2d1f"
+      ],
+      "missing_evidence": []
+    }
+  ],
+  "harness_issues": [
+    {
+      "label": "refinement-device-tree",
+      "elapsed_seconds": 30.15981449299943,
+      "bytes_received": 430,
+      "command": "for p in /proc/device-tree/cpus/cpu@0/clock-frequency /proc/device-tree/cpus/timebase-frequency /proc/device-tree/soc/uart@10000000/clock-frequency /proc/device-tree/memory@80000000/reg /proc/device-tree/reserved-memory/framebuffer@9e000000/reg; do echo \"$p\"; od -An -tx1 -v \"$p\" || exit 1; done",
+      "command_exit": null,
+      "login_sent": false,
+      "log": "/path/to/research/experiments/rasterix-integration-20260909/20260909T105859Z-refinement-device-tree.raw",
+      "runner_exit": 1,
+      "required_evidence": [
+        "01 31 2d 00",
+        "00 00 00 00 80 00 00 00 00 00 00 00 20 00 00 00",
+        "00 00 00 00 9e 00 00 00 00 00 00 00 02 00 00 00"
+      ],
+      "missing_evidence": [
+        "01 31 2d 00",
+        "00 00 00 00 80 00 00 00 00 00 00 00 20 00 00 00",
+        "00 00 00 00 9e 00 00 00 00 00 00 00 02 00 00 00"
+      ],
+      "cause": "The target BusyBox build does not provide od. Retried using the available xxd applet; no hardware or repository changes."
+    }
+  ],
+  "continued_utc": "2026-09-09T11:03:18.597077+00:00",
+  "finished_utc": "2026-09-09T11:14:49.391867+00:00",
+  "all_passed": true,
+  "state": "SD data mounted read-only; no active serial reader; ready for sustained cube and HDMI capture"
+}

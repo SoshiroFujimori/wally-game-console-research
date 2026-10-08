@@ -1,0 +1,7 @@
+{
+  "label": "s1800-grouped",
+  "state": 1800,
+  "style": "grouped",
+  "result": "RESULT frames=180 elapsed_s=9.128681750 fps=19.718072 logic_ms=0.884515 api_ms=11.861574 swap_ms=30.692031 wait_ms=7.139727 worker_inclusive_ms=30.473331 upload_inclusive_ms=6.416899 write_ms=6.172886 bytes_per_frame=24140.89 p50_ms=50.158050 p95_ms=50.504900 max_ms=66.878300 late_60hz=180 first_count=249 last_count=428 state_hash=1022e19f remaining=21 score=190",
+  "pixel_result": "FRAME_CHECK count=428 address=9fe00000 fnv1a=9868c45b pixels=307200 mismatches=0"
+}

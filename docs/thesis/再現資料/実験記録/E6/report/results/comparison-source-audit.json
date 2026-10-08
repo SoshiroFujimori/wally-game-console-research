@@ -1,0 +1,40 @@
+{
+  "utc": "2026-10-08T12:41:37.867255+00:00",
+  "passed": true,
+  "variants": [
+    {
+      "variant": "fifo512",
+      "checked_existing_rtl_and_configuration_files": 280,
+      "differences_from_fifo512": [],
+      "counter_difference": "Read-only variant identifier only",
+      "renderer_difference": "Command crossing instance plus mailbox destination reset pin only",
+      "upstream_renderer_shared": true,
+      "recorded_variant_file_hashes_match": true
+    },
+    {
+      "variant": "fifo16",
+      "checked_existing_rtl_and_configuration_files": 280,
+      "differences_from_fifo512": [
+        "fpga/src/rasterix.sv",
+        "fpga/src/rasterix_apb.sv"
+      ],
+      "counter_difference": "Read-only variant identifier only",
+      "renderer_difference": "Command crossing instance plus mailbox destination reset pin only",
+      "upstream_renderer_shared": true,
+      "recorded_variant_file_hashes_match": true
+    },
+    {
+      "variant": "mailbox",
+      "checked_existing_rtl_and_configuration_files": 280,
+      "differences_from_fifo512": [
+        "fpga/src/rasterix.sv",
+        "fpga/src/rasterix_apb.sv"
+      ],
+      "counter_difference": "Read-only variant identifier only",
+      "renderer_difference": "Command crossing instance plus mailbox destination reset pin only",
+      "upstream_renderer_shared": true,
+      "recorded_variant_file_hashes_match": true
+    }
+  ],
+  "additional_files": "FIFO16 vendor command-FIFO generator; mailbox module and its CDC constraints are explicit additions recorded by prepare-variants.py. Implementation recipes are separately qualified without changing original clock periods."
+}

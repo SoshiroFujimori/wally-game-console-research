@@ -1,0 +1,8 @@
+[
+  "finalhdmi-game-demo-01",
+  "--load",
+  "hdmi13-game-load-01",
+  "--seconds",
+  "80",
+  "--demo"
+]

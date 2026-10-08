@@ -1,0 +1,9 @@
+{
+  "variant": "mailbox",
+  "repeat": 2,
+  "state": 0,
+  "style": "grouped",
+  "result": "RESULT frames=180 elapsed_s=12.037542550 fps=14.953218 logic_ms=0.999112 api_ms=14.969064 swap_ms=42.468494 wait_ms=8.293730 worker_inclusive_ms=42.220453 upload_inclusive_ms=12.256912 write_ms=12.016744 bytes_per_frame=30951.56 p50_ms=66.876950 p95_ms=67.074150 max_ms=67.405000 late_60hz=180 first_count=4565 last_count=4744 state_hash=8f34e8fd remaining=38 score=20",
+  "counters": "HW_COUNTERS id=46490001 words=1392820 wait_cycles=15933956 longest_wait_cycles=4620 total_cycles=240753414 cpu_hz=20000000",
+  "pixel_check": false
+}

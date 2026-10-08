@@ -1,0 +1,15 @@
+# CPU command-preparation follow-up
+
+For an identical 640x480 image with 78 quads and312 submitted vertices, grouping draw submissions reduced CPU preparation from 57.958 to 47.883 ms/frame (17.38%), and increased completed-swap throughput from 11.962 to 14.707/s. Each condition has three runs of180 measured frames after30 warmup frames. The refactored group-of-one control measured 57.444 ms/frame; grouping still reduced preparation by 16.64% relative to that control. Transfer volume stayed34332bytes/frame.
+
+Holding draw groups at two and preserving the image,78/198/678 quads required 47.883/109.816/360.655 ms/frame. The extra198/678-quad conditions have three120-frame runs after30 warmup frames. Vertices and triangles increase together. This identifies per-draw and per-primitive preparation as actionable costs, without assigning an exact isolated cost to each operation.
+
+Paired180-frame moving windows at ticks0/1800/3600 preserved all1080 measured state hashes. Preparation decreased in all three windows, while late-game throughput changed little because other intervals, including display-completion waiting, still matter. Each moving pair was run once. These are not whole-game average or human-controlled measurements.
+
+The39 primary/extension/sampling runs passed all307200 final reference pixels and 6660 state hashes. The93 archived native files passed SHA256 checks; all frame/sample CSVs matched UART retrieval, and seven selected native framebuffers matched independent host rendering. Four additional boot12 qualification runs are included in that archive. Earlier pilot/failure records remain separate.
+
+SIGPROF PC sampling is exploratory localization. The7ms method was rejected for26.23% preparation overhead. New41/73/113ms sampling has interleaved off controls; period-specific counts and overhead are in analysis.json. Signal-delivery counts are not exact wall-time shares. The causal timing above has sampling off.
+
+Acquisition used unchanged CVW b3c4f6b91be0b3a3729a0aa72142d45b76aedcab, official RasterIX9fdcf97a31b2e4247594e06d605871980cd5e9e1, the original f7bc0386... bitstream, and20MHz Wally. No repository edits, commits or pushes were made. Full identities, timing definitions and limits are in METHODS.md and the frozen plans/manifests.
+
+Boot12 HDMI capture reported Video Format Not Supported despite native framebuffer checks. The same symptom reproduced with a recorded HDMI-only fixture after archival, excluding Wally game execution and RasterIX preparation but not locating the shared output/cable/receiver fault. Do not treat these runs as verified HDMI captures. Final restoration is recorded separately. The unchanged one-page v005 font workaround is retained; the known multi-page upstream parser issue is not fixed here. Exact function time shares, cache-miss/stall causes and a completed optimized game remain outside these results. Reusing unchanged drawing work or updating changed regions is a candidate next step, not a measured result of this study.

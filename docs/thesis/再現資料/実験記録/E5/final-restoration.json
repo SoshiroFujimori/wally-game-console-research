@@ -1,0 +1,67 @@
+{
+  "utc": "2026-09-09T23:31:26.645571+00:00",
+  "originalBitstreamRestored": true,
+  "bitstreamSha256": "f7bc0386db7da40077f04691feb45e50df4118d513bbe4985a84e00a07d29a13",
+  "boot": "base-boot-13",
+  "payload": "v005",
+  "payloadSha256": "06f5742b1aabbc20dd291053de0c47132d1c7b8eb78f6856f8edb955833fcf1f",
+  "nativeFrameCheckPassed": true,
+  "nativeFrameCheck": "FRAME_CHECK count=34 address=9fe00000 fnv1a=9868c45b pixels=307200 mismatches=0",
+  "hostReferenceFnv1a": "9868c45b",
+  "frameStateHash": "1022e19f",
+  "captureCheckPassed": false,
+  "captureSymptom": "Video Format Not Supported; visually inspected final-original.png",
+  "captureOnHdmiOnlyFixturePassed": false,
+  "captureCauseKnown": false,
+  "obs": {
+    "utc": "2026-09-09T23:29:36.878576+00:00",
+    "settingsRestored": true,
+    "transformRestored": true,
+    "enabledRestored": true,
+    "recordingActive": false,
+    "streamingActive": false,
+    "screenshot": "C:\\Users\\researcher\\.codex\\tmp\\breakout-study-20260909\\cpu-followup-recovery-obs\\final-original.png"
+  },
+  "usb": [
+    {
+      "busId": "10-2",
+      "instanceId": "USB\\VID_0403&PID_6001\\UART_SERIAL",
+      "attachedToWsl": true
+    },
+    {
+      "busId": "9-2",
+      "instanceId": "USB\\VID_0403&PID_6010\\210276BE7FCB",
+      "attachedToWsl": true
+    },
+    {
+      "busId": "8-3",
+      "instanceId": "USB\\VID_0BDA&PID_0316\\SDWIRE_READER_SERIAL",
+      "attachedToWsl": false
+    },
+    {
+      "busId": "6-3",
+      "instanceId": "USB\\VID_2B89&PID_5389\\20230204",
+      "attachedToWsl": false
+    }
+  ],
+  "sdUnmounted": true,
+  "sdWireState": "Target",
+  "sdReaderDetached": true,
+  "uartUnowned": true,
+  "ownedHelperStopped": true,
+  "cleanupComplete": true,
+  "repositories": [
+    {
+      "path": "/path/to/wally-game-console",
+      "head": "b3c4f6b91be0b3a3729a0aa72142d45b76aedcab",
+      "clean": true
+    },
+    {
+      "path": "/path/to/wally-game-console/addins/rasterix",
+      "head": "9fdcf97a31b2e4247594e06d605871980cd5e9e1",
+      "clean": true
+    }
+  ],
+  "repositoryEditsMade": false,
+  "commitsOrPushesMade": false
+}

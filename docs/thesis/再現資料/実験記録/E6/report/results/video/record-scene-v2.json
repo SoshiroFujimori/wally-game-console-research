@@ -1,0 +1,46 @@
+{
+  "started_utc": "2026-10-08T13:16:30.813498+00:00",
+  "label": "fifo-study-normal-product-40s-20261008",
+  "previous_transform": {
+    "alignment": 5,
+    "boundsType": "OBS_BOUNDS_NONE",
+    "cropBottom": 0,
+    "cropLeft": 0,
+    "cropRight": 0,
+    "cropTop": 0,
+    "positionX": 0.0,
+    "positionY": 0.0,
+    "rotation": 0.0,
+    "scaleX": 1.5,
+    "scaleY": 1.5
+  },
+  "recording_transform": {
+    "alignment": 5,
+    "boundsType": "OBS_BOUNDS_NONE",
+    "cropBottom": 0,
+    "cropLeft": 0,
+    "cropRight": 0,
+    "cropTop": 0,
+    "positionX": 240.0,
+    "positionY": 0.0,
+    "rotation": 0.0,
+    "scaleX": 1.125,
+    "scaleY": 1.5
+  },
+  "purpose": "Restore native 640x480 game aspect ratio for the recording. The capture source delivers a stretched 1280x720 image.",
+  "record_exit": 0,
+  "restored_transform": {
+    "alignment": 5,
+    "boundsType": "OBS_BOUNDS_NONE",
+    "cropBottom": 0,
+    "cropLeft": 0,
+    "cropRight": 0,
+    "cropTop": 0,
+    "positionX": 0.0,
+    "positionY": 0.0,
+    "rotation": 0.0,
+    "scaleX": 1.5,
+    "scaleY": 1.5
+  },
+  "finished_utc": "2026-10-08T13:17:12.315281+00:00"
+}

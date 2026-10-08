@@ -1,0 +1,17 @@
+{
+  "generated_utc": "2026-10-08T08:35:32.362684+00:00",
+  "runs": 90,
+  "measured_frames": 16200,
+  "game_runs": 81,
+  "replay_runs": 9,
+  "exact_pixel_checked_cases": 27,
+  "refresh_period_ms_from_rtl": 16.719285714285714,
+  "refresh_hz_from_rtl": 59.81116759943607,
+  "refresh_parameters": {
+    "horizontal_counter_states": 801,
+    "vertical_counter_states": 526,
+    "pixel_clock_hz": 25200000
+  },
+  "plots": "Median with min/max of three repetitions; not confidence intervals",
+  "clock": "CLOCK_MONOTONIC_RAW on the board; hardware waiting counters at 20 MHz"
+}

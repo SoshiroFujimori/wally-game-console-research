@@ -1,0 +1,103 @@
+{
+  "rasterix_commit": "9fdcf97a31b2e4247594e06d605871980cd5e9e1",
+  "z3_version": "5.1.0",
+  "logic_scope": "unbounded Int/Real identities plus exact fixed-width ColorMixer equivalence",
+  "checks": {
+    "edge_sum_identity": {
+      "solver_result_for_negation": "unsat",
+      "result": "proved"
+    },
+    "edge_x_increment": {
+      "solver_result_for_negation": "unsat",
+      "result": "proved"
+    },
+    "edge_y_increment": {
+      "solver_result_for_negation": "unsat",
+      "result": "proved"
+    },
+    "perspective_common_scale": {
+      "solver_result_for_negation": "unsat",
+      "result": "proved"
+    },
+    "clip_intersection_plane": {
+      "solver_result_for_negation": "unsat",
+      "result": "proved"
+    },
+    "color_mixer_all_8bit_inputs": {
+      "solver_result_for_negation": "unsat",
+      "result": "proved"
+    },
+    "color_mixer_range": {
+      "solver_result_for_negation": "unsat",
+      "result": "proved"
+    },
+    "color_lerp_u0": {
+      "solver_result_for_negation": "unsat",
+      "result": "proved"
+    },
+    "color_lerp_u255": {
+      "solver_result_for_negation": "unsat",
+      "result": "proved"
+    },
+    "float_underflow_p_minus_1_rounds_to_one": {
+      "solver_result_for_negation": "unsat",
+      "result": "proved"
+    },
+    "float_underflow_p_le_minus_2_is_below_half": {
+      "solver_result_for_negation": "unsat",
+      "result": "proved"
+    },
+    "float_underflow_source_safe_p_minus_8_to_minus_2": {
+      "solver_result_for_negation": "unsat",
+      "result": "proved"
+    },
+    "float_source_p_minus_1_round_bit_is_one": {
+      "solver_result_for_negation": "unsat",
+      "result": "proved"
+    },
+    "float_source_p_0_to_22_matches_half_up_magnitude": {
+      "solver_result_for_negation": "unsat",
+      "result": "proved"
+    },
+    "float_source_p_24_to_30_is_exact_and_signed_safe": {
+      "solver_result_for_negation": "unsat",
+      "result": "proved"
+    },
+    "float_source_sign_is_exact_twos_complement": {
+      "solver_result_for_negation": "unsat",
+      "result": "proved"
+    },
+    "q5_int32_geometry_bounds": {
+      "argument": "multiaffine determinant reaches extrema at rectangle corners",
+      "corner_triples_per_rectangle": 64,
+      "screens": {
+        "640x480": {
+          "triangle_determinant_bound": 314572800,
+          "walker_x_plus_one_bound": 315064320,
+          "triangle_within_int32": true,
+          "walker_within_int32": true
+        },
+        "1280x720": {
+          "triangle_determinant_bound": 943718400,
+          "walker_x_plus_one_bound": 944455680,
+          "triangle_within_int32": true,
+          "walker_within_int32": true
+        },
+        "1920x1080": {
+          "triangle_determinant_bound": 2123366400,
+          "walker_x_plus_one_bound": 2124472320,
+          "triangle_within_int32": true,
+          "walker_within_int32": true
+        },
+        "2048x2048": {
+          "triangle_determinant_bound": 4294967296,
+          "walker_x_plus_one_bound": 4297064448,
+          "triangle_within_int32": false,
+          "walker_within_int32": false
+        }
+      },
+      "result": "proved for stated coordinate rectangles"
+    }
+  },
+  "all_checks_passed": true
+}

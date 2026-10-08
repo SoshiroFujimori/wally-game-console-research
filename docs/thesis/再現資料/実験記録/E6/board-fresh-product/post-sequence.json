@@ -1,0 +1,7 @@
+{
+  "label": "post-sequence",
+  "state": 0,
+  "style": "retained",
+  "result": "RESULT frames=180 elapsed_s=3.126466200 fps=57.572988 logic_ms=0.981902 api_ms=3.085050 swap_ms=5.213356 wait_ms=7.940965 worker_inclusive_ms=4.987892 upload_inclusive_ms=1.436515 write_ms=1.226888 bytes_per_frame=3578.67 p50_ms=16.719200 p95_ms=17.172450 max_ms=33.441750 late_60hz=164 first_count=677 last_count=856 state_hash=8f34e8fd remaining=38 score=20",
+  "pixel_result": "FRAME_CHECK count=856 address=9fe00000 fnv1a=79c99b23 pixels=307200 mismatches=0"
+}

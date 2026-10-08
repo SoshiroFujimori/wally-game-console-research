@@ -1,0 +1,7 @@
+{
+  "label": "s3600-retained",
+  "state": 3600,
+  "style": "retained",
+  "result": "RESULT frames=180 elapsed_s=3.009425200 fps=59.812086 logic_ms=0.833589 api_ms=2.238946 swap_ms=4.894889 wait_ms=8.601369 worker_inclusive_ms=4.676746 upload_inclusive_ms=1.312599 write_ms=1.159591 bytes_per_frame=3455.56 p50_ms=16.719050 p95_ms=17.003650 max_ms=20.669850 late_60hz=162 first_count=463 last_count=642 state_hash=3933ec17 remaining=6 score=340",
+  "pixel_result": "FRAME_CHECK count=642 address=9fe00000 fnv1a=c250e403 pixels=307200 mismatches=0"
+}

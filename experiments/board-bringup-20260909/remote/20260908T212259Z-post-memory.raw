@@ -1,0 +1,141 @@
+sh /mnt/nexys-test/nexys-video-tests/board-tests.sh info && dmesg && ps; nv_status=$?; printf "\nNV_DONE_942030262a0f=%s\n" "$nv_status"
+memtester: OK
+board-tests.sh: OK
+MEMTESTER-COPYING: OK
+memtester.8: OK
+coremark.exe: OK
+COREMARK-LICENSE.md: OK
+
+Board: Wally on Digilent Nexys Video
+Linux WallyHostname 6.19.14 #8 Tue Sep  8 13:29:00 JST 2026 riscv64 GNU/Linux for Wally
+Uptime: 6414.45 210.59
+MemTotal: 503340 KiB
+MemAvailable: 429064 KiB
+INFO_PASS
+[    0.000000] Linux version 6.19.14 (researcher@RESEARCH-HOST) (riscv64-buildroot-linux-gnu-gcc.br_real (Buildroot 2026.02.3) 15.2.0, GNU ld (GNU Binutils) 2.45.1) #8 Tue Sep  8 13:29:00 JST 2026
+[    0.000000] Machine model: Wally on Digilent Nexys Video
+[    0.000000] SBI specification v3.0 detected
+[    0.000000] SBI implementation ID=0x1 Version=0x10007
+[    0.000000] SBI TIME extension detected
+[    0.000000] SBI IPI extension detected
+[    0.000000] SBI RFENCE extension detected
+[    0.000000] SBI DBCN extension detected
+[    0.000000] SBI FWFT extension detected
+[    0.000000] efi: UEFI not found.
+[    0.000000] OF: reserved mem: 0x0000000080000000..0x000000008003ffff (256 KiB) nomap non-reusable mmode_resv1@80000000
+[    0.000000] OF: reserved mem: 0x0000000080040000..0x000000008004ffff (64 KiB) nomap non-reusable mmode_resv0@80040000
+[    0.000000] Zone ranges:
+[    0.000000]   DMA32    [mem 0x0000000080000000-0x000000009fffffff]
+[    0.000000]   Normal   empty
+[    0.000000] Movable zone start for each node
+[    0.000000] Early memory node ranges
+[    0.000000]   node   0: [mem 0x0000000080000000-0x000000008004ffff]
+[    0.000000]   node   0: [mem 0x0000000080050000-0x000000009fffffff]
+[    0.000000] Initmem setup node 0 [mem 0x0000000080000000-0x000000009fffffff]
+[    0.000000] riscv: base ISA extensions acdfim
+[    0.000000] riscv: ELF capabilities acdfim
+[    0.000000] Ticket spinlock: enabled
+[    0.000000] pcpu-alloc: s0 r0 d32768 u32768 alloc=1*32768
+[    0.000000] pcpu-alloc: [0] 0 
+[    0.000000] Kernel command line: console=ttyS0,115200 loglevel=7
+[    0.000000] printk: log buffer data + meta data: 131072 + 458752 = 589824 bytes
+[    0.000000] Dentry cache hash table entries: 65536 (order: 7, 524288 bytes, linear)
+[    0.000000] Inode-cache hash table entries: 32768 (order: 6, 262144 bytes, linear)
+[    0.000000] software IO TLB: SWIOTLB bounce buffer size adjusted to 0MB
+[    0.000000] software IO TLB: area num 1.
+[    0.000000] software IO TLB: mapped [mem 0x000000009f6ad000-0x000000009f72d000] (0MB)
+[    0.000000] Virtual kernel memory layout:
+[    0.000000]       fixmap : 0xffff8d7ffea00000 - 0xffff8d7fff000000   (6144 kB)
+[    0.000000]       pci io : 0xffff8d7fff000000 - 0xffff8d8000000000   (  16 MB)
+[    0.000000]      vmemmap : 0xffff8d8000000000 - 0xffff8f8000000000   (2048 GB)
+[    0.000000]      vmalloc : 0xffff8f8000000000 - 0xffffaf8000000000   (  32 TB)
+[    0.000000]      modules : 0xffffffff00ef1000 - 0xffffffff80000000   (2033 MB)
+[    0.000000]       lowmem : 0xffffaf8000000000 - 0xffffaf8020000000   ( 512 MB)
+[    0.000000]       kernel : 0xffffffff80000000 - 0xffffffffffffffff   (2047 MB)
+[    0.000000] Built 1 zonelists, mobility grouping on.  Total pages: 131072
+[    0.000000] mem auto-init: stack:off, heap alloc:off, heap free:off
+[    0.000000] SLUB: HWalign=64, Order=0-3, MinObjects=0, CPUs=1, Nodes=1
+[    0.000000] NR_IRQS: 64, nr_irqs: 64, preallocated irqs: 0
+[    0.000000] riscv-intc: 64 local interrupts mapped
+[    0.000000] clocksource: riscv_clocksource: mask: 0xffffffffffffffff max_cycles: 0x49cd42e20, max_idle_ns: 440795202120 ns
+[    0.000038] sched_clock: 64 bits at 20MHz, resolution 50ns, wraps every 4398046511100ns
+[    0.000657] riscv-timer: Timer interrupt in S-mode is available via sstc extension
+[    0.007244] Console: colour dummy device 80x25
+[    0.009395] Calibrating delay loop (skipped), value calculated using timer frequency.. 40.00 BogoMIPS (lpj=80000)
+[    0.010125] pid_max: default: 32768 minimum: 301
+[    0.021454] Mount-cache hash table entries: 1024 (order: 1, 8192 bytes, linear)
+[    0.022417] Mountpoint-cache hash table entries: 1024 (order: 1, 8192 bytes, linear)
+[    0.129916] riscv: ELF compat mode unsupported
+[    0.131515] ASID allocator using 16 bits (65536 entries)
+[    0.144601] EFI services will not be available.
+[    0.150077] Memory: 496588K/524288K available (3108K kernel code, 3587K rwdata, 2048K rodata, 5317K init, 247K bss, 26264K reserved, 0K cma-reserved)
+[    0.173242] devtmpfs: initialized
+[    0.248430] clocksource: jiffies: mask: 0xffffffff max_cycles: 0xffffffff, max_idle_ns: 7645041785100000 ns
+[    0.250282] posixtimers hash table entries: 512 (order: 2, 16384 bytes, linear)
+[    0.254453] futex hash table entries: 256 (14336 bytes on 1 NUMA nodes, total 14 KiB, linear).
+[    0.271726] DMI not present or invalid.
+[    0.277943] DMA: preallocated 128 KiB GFP_KERNEL|GFP_DMA32 pool for atomic allocations
+[    0.298166] SBI misaligned access exception delegation ok
+[    0.326742] cpu0: Ratio of byte access time to unaligned word access is 7.94, unaligned accesses are fast
+[    0.540585] clocksource: Switched to clocksource riscv_clocksource
+[    1.347995] workingset: timestamp_bits=62 max_order=17 bucket_order=0
+[    1.426430] io scheduler mq-deadline registered
+[    1.426909] io scheduler kyber registered
+[    1.429907] io scheduler bfq registered
+[    1.482579] riscv-plic: plic@c000000: mapped 54 interrupts with 1 handlers for 2 contexts.
+[    9.280423] Serial: 8250/16550 driver, 1 ports, IRQ sharing disabled
+[    9.407794] printk: legacy console [ttyS0] disabled
+[    9.467103] 10000000.uart: ttyS0 at MMIO 0x10000000 (irq = 2, base_baud = 1250000) is a 16550A
+[    9.469517] printk: legacy console [ttyS0] enabled
+[   10.315381] sifive_spi 13000.spi: mapped; irq=3, cs=4
+[   10.423581] mmc_spi spi0.0: SD/MMC host mmc0, no WP, no poweroff, cd polling
+[   10.436300] start plist test
+[   10.849551] end plist test
+[   11.399191] debug_vm_pgtable: [debug_vm_pgtable         ]: Validating architecture page table helpers
+[   11.451723] clk: Disabling unused clocks
+[   11.883581] Freeing unused kernel image (initmem) memory: 5316K
+[   11.893081] Run /init as init process
+[   11.898357]   with arguments:
+[   11.898776]     /init
+[   11.899124]   with environment:
+[   11.899434]     HOME=/
+[   11.899773]     TERM=linux
+[   12.058514] mmc0: host does not support reading read-only switch, assuming write-enable
+[   12.069445] mmc0: new SDHC card on SPI
+[   12.179620] mmcblk0: mmc0:0000 SA32G 29.1 GiB
+[   20.407553]  mmcblk0: p1 p2 p3 p4
+[   77.119836] EXT4-fs (mmcblk0p4): mounted filesystem 4cd26447-2ac1-4501-b5e0-4a23309fb661 ro with ordered data mode. Quota mode: disabled.
+[   82.047288] random: crng init done
+  PID USER       VSZ STAT COMMAND
+    1 root      2160 S    init
+    2 root         0 SW   [kthreadd]
+    3 root         0 SW   [pool_workqueue_]
+    4 root         0 IW<  [kworker/R-slub_]
+    5 root         0 IW   [kworker/0:0-eve]
+    6 root         0 IW<  [kworker/0:0H]
+    8 root         0 IW   [kworker/u4:0-ev]
+    9 root         0 IW<  [kworker/R-mm_pe]
+   10 root         0 SW   [ksoftirqd/0]
+   11 root         0 SW   [kdevtmpfs]
+   12 root         0 SW   [khungtaskd]
+   13 root         0 SW   [oom_reaper]
+   14 root         0 IW<  [kworker/R-write]
+   15 root         0 SW   [kcompactd0]
+   16 root         0 IW<  [kworker/R-kbloc]
+   17 root         0 SW   [kswapd0]
+   18 root         0 IW   [kworker/u4:1-ev]
+   19 root         0 IW<  [kworker/u5:0]
+   20 root         0 SW   [spi0]
+   21 root         0 IW<  [kworker/R-mmc_c]
+   22 root         0 IW   [kworker/0:2-eve]
+   25 root         0 IW<  [kworker/0:1H-kb]
+   46 root      2160 S    /sbin/klogd -n
+   64 root      2160 S    -/bin/sh
+   81 root      2160 S    -sh
+   83 root         0 IW   [kworker/u4:2]
+   86 root         0 SW   [jbd2/mmcblk0p4-]
+   87 root         0 IW<  [kworker/R-ext4-]
+  131 root      2164 R    ps
+
+NV_DONE_942030262a0f=0
+# 

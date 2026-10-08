@@ -1,0 +1,101 @@
+{"bitstream": "/path/to/research/experiments/fifo-study-20261008/variants/fifo16/qualification-wldriven-extra/fpgaTop.bit", "sha256": "27f563c662385b58da7917421e85b68c4eebaa89b0b20ee4d6dbc055bd7b56d4", "started_utc": "2026-10-08T12:30:47.080190+00:00", "uart_pid": 88745, "uart_start_ticks": "194841", "program_exit": 0, "uart_exit": 0, "finished_utc": "2026-10-08T12:32:10.266356+00:00"}
+s, linear)
+[    0.279889] futex hash table entries: 256 (14336 bytes on 1 NUMA nodes, total 14 KiB, linear).
+[    0.298765] DMI not present or invalid.
+[    0.305508] DMA: preallocated 128 KiB GFP_KERNEL|GFP_DMA32 pool for atomic allocations
+[    0.326136] SBI misaligned access exception delegation ok
+[    0.354584] cpu0: Ratio of byte access time to unaligned word access is 7.88, unaligned accesses are fast
+[    0.593591] clocksource: Switched to clocksource riscv_clocksource
+[    1.488205] workingset: timestamp_bits=62 max_order=17 bucket_order=0
+[    1.576404] io scheduler mq-deadline registered
+[    1.576908] io scheduler kyber registered
+[    1.580056] io scheduler bfq registered
+[    1.635866] riscv-plic: plic@c000000: mapped 54 interrupts with 1 handlers for 2 contexts.
+[   10.169150] Serial: 8250/16550 driver, 1 ports, IRQ sharing disabled
+[   10.308560] printk: legacy console [ttyS0] disabled
+[   10.375374] 10000000.uart: ttyS0 at MMIO 0x10000000 (irq = 2, base_baud = 1250000) is a 16550A
+[   10.377250] printk: legacy console [ttyS0] enabled
+[   11.488218] sifive_spi 13000.spi: mapped; irq=3, cs=4
+[   11.604698] mmc_spi spi0.0: SD/MMC host mmc0, no WP, no poweroff, cd polling
+[   12.479014] debug_vm_pgtable: [debug_vm_pgtable         ]: Validating architecture page table helpers
+[   12.568969] clk: Disabling unused clocks
+[   13.039514] Freeing unused kernel image (initmem) memory: 5316K
+[   13.048647] Run /init as init process
+[   13.238474] mmc0: host does not support reading read-only switch, assuming write-enable
+[   13.249051] mmc0: new SDHC card on SPI
+[   13.371220] mmcblk0: mmc0:0000 SA32G 29.1 GiB
+
+init started: BusyBox v1.37.0 (2026-09-08 13:16:18 JST)
+[   22.187162]  mmcblk0: p1 p2 p3 p4
+Saving 256 bits of non-creditable seed for next boot
+Starting syslogd: OK
+Starting klogd: OK
+Running sysctl: OK
+Starting network: /etc/init.d/S40network: line 12: /sbin/ifup: not found
+FAIL
+Starting crond: OK
+crond[63]: can't change directory to '/var/spool/cron/crontabs': No such file or directory
+
+
+
+
+BusyBox v1.37.0 (2026-09-08 13:16:18 JST) built-in shell (ash)
+Enter 'help' for a list of built-in commands.
+
+Hello this ~/.profile is meant to demonstrate running some basic commands on Wally.
+I am root
+And I am on WallyHostname
+Created myFile.txt and moved it to myDir. It contains:
+Hello World!
+And farewell!
+Created myScript.sh. Running it yields:
+Hello this is another example script
+Created symLinkToMyScript.sh. Running it yields:
+Hello this is another example script
+Now let's remove all these example files and scripts
+Here is disk usage:
+Filesystem                Size      Used Available Use% Mounted on
+devtmpfs                227.2M         0    227.2M   0% /dev
+tmpfs                   229.8M         0    229.8M   0% /dev/shm
+tmpfs                   229.8M         0    229.8M   0% /tmp
+tmpfs                   229.8M     12.0K    229.8M   0% /run
+And here are the current processes:
+  PID USER       VSZ STAT COMMAND
+    1 root      2160 S    init
+    2 root         0 SW   [kthreadd]
+    3 root         0 SW   [pool_workqueue_]
+    4 root         0 IW<  [kworker/R-slub_]
+    5 root         0 IW   [kworker/0:0-eve]
+    6 root         0 IW<  [kworker/0:0H]
+    7 root         0 IW   [kworker/0:1-eve]
+    8 root         0 IW   [kworker/u4:0-ev]
+    9 root         0 IW<  [kworker/R-mm_pe]
+   10 root         0 SW   [ksoftirqd/0]
+   11 root         0 SW   [kdevtmpfs]
+   12 root         0 SW   [khungtaskd]
+   13 root         0 SW   [oom_reaper]
+   14 root         0 IW<  [kworker/R-write]
+   15 root         0 SW   [kcompactd0]
+   16 root         0 IW<  [kworker/R-kbloc]
+   17 root         0 SW   [kswapd0]
+   18 root         0 IW   [kworker/u4:1]
+   19 root         0 IW<  [kworker/u5:0]
+   20 root         0 SW   [spi0]
+   21 root         0 IW   [kworker/0:2-eve]
+   22 root         0 IW<  [kworker/R-mmc_c]
+   25 root         0 IW<  [kworker/0:1H-kb]
+   46 root      2160 S    /sbin/klogd -n
+   64 root      2160 S    -/bin/sh
+   80 root      2164 R    ps
+And finally a login prompt.
+WallyHostname login: root
+login[81]: root login on 'console'
+
+
+
+BusyBox v1.37.0 (2026-09-08 13:16:18 JST) built-in shell (ash)
+Enter 'help' for a list of built-in commands.
+
+# 
+CAPTURE: {"label": "reconfigured-fifo16-boot", "elapsed_seconds": 83.15485841899999, "bytes_received": 14146, "command": null, "command_exit": null, "login_sent": true, "log": "/path/to/research/experiments/fifo-study-20261008/20261008T123047Z-reconfigured-fifo16-boot.raw"}
+

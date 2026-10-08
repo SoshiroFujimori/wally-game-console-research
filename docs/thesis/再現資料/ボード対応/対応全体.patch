@@ -1,0 +1,930 @@
+diff --git a/config/derivlist.txt b/config/derivlist.txt
+index 1dfbe70163bcbd4fced024b87f1c36a2e551936f..176a9d6c3db7774351dc4c5ae6aabdfb42b82781 100644
+--- a/config/derivlist.txt
++++ b/config/derivlist.txt
+@@ -71,6 +71,9 @@ EXT_MEM_RANGE       64'h7FFFFFFF
+ deriv fpganexysa7 fpga
+ EXT_MEM_RANGE       64'h07FFFFFF
+ 
++deriv fpganexysvideo fpga
++EXT_MEM_RANGE       64'h1FFFFFFF
++
+ # temporary spitest configuration
+ deriv spitest rv64gc
+ UNCORE_RAM_RANGE    64'h0FFFFFFF
+diff --git a/fpga/README.md b/fpga/README.md
+index 33f001a5f6777d2ed61bcfe0f7182a5cfb3bc85e..c79665ef676547ec1139764ebea09e4be2b2c804 100644
+--- a/fpga/README.md
++++ b/fpga/README.md
+@@ -3,6 +3,7 @@ Wally supports the following boards
+ 1. ArtyA7
+ 2. vcu108
+ 3. vcu118 (Do not recommend.)
++4. Nexys Video (`nexysvideo`)
+ 
+ # Quick Start
+ 
+@@ -18,12 +19,16 @@ Example:
+ make vcu108
+ ```
+ 
++For Nexys Video, use `make nexysvideo`. The CPU runs at 20 MHz and uses the
++onboard 512 MiB DDR3. Run `make cleanIP` before switching between boards, since
++the generated IP directory is shared.
++
+ ## Make flash card image
+ `ls /dev/sd*` or `ls /dev/mmc*` to see which flash card devices you have.
+ Insert the flash card into the reader and `ls /dev/sd*` or `/dev/mmc*` again.  The new device is the one you want to use.  Make sure you select the root device (i.e. `/dev/sdb`) not the partition (i.e. `/dev/sdb1`).
+ 
+ ```bash
+-cd $WALLY/linux/sd-card
++cd $WALLY/linux/sdcard
+ ```
+ 
+ This following script requires root.
+@@ -40,12 +45,19 @@ Example with vcu108, buildroot installed to `/opt/riscv/buildroot`, and the flas
+ 
+ Wait until the the script completes then remove the card.
+ 
++For Nexys Video, pass the compiled `wally-nexysvideo.dtb` to `flash-sd.sh` with
++`-d`. It describes 512 MiB of RAM and a 20 MHz CPU, timebase, and UART clock.
++
+ ## FPGA setup
+ 
+ For the Arty A7 insert the PMOD daughter board into the right most slot and insert the sd card.
+ 
+ For the VCU108 and VCU118 boards insert the PMOD daughter board into the only PMOD slot on the right side of the boards.
+ 
++For Nexys Video, use the onboard microSD slot and the 12 V power supply. Connect
++USB PROG (J12) for JTAG and the separate USB UART connector (J13) for the console.
++Leave VADJ at its default 1.2 V and select JTAG configuration on JP4.
++
+ Power on the boards. For Arty A7 just plug in the USB connector. For the VCU boards make sure the power supply is connected and the two usb cables are connected. Flip on the switch.
+ The VCU118's on board UART converter does not work. Use a spark fun FTDI usb to UART adapter and plug into the mail PMOD on the right side of the board.  Also the level sifters on the
+ VCU118 do not work correctly with the digilent sd PMOD board.  We have a custom board which works instead.
+@@ -59,6 +71,10 @@ Open the design in the current directory `WallyFPGA.xpr`.
+ 
+ Then click "Open Target" under "PROGRAM AND DEBUG".  Then Program the device.
+ 
++On Nexys Video, LD0-LD7 connect directly to GPIO output bits 0-7. SW0-SW7 connect
++to GPIO input bits 0-7; input bit 8 is active-low card detect. CPU RESET restarts
++the system. The microSD slot stays powered while the FPGA is configured.
++
+ ## Connect to UART
+ 
+ In another terminal `ls /dev/ttyUSB*`. One of these devices will be the UART connected to Wally. You may have to experiment by the running the following command multiple times.
+diff --git a/fpga/constraints/constraints-nexysvideo.xdc b/fpga/constraints/constraints-nexysvideo.xdc
+new file mode 100644
+index 0000000000000000000000000000000000000000..5d5b2cbbeaeeae8a1972ab819db42bf12e193dc2
+--- /dev/null
++++ b/fpga/constraints/constraints-nexysvideo.xdc
+@@ -0,0 +1,68 @@
++###########################################
++## constraints-nexysvideo.xdc
++## Purpose: Nexys Video Rev. A board I/O for the Wally-only design.
++## Pin source: Digilent/digilent-xdc, Nexys-Video-Master.xdc.
++## DDR3 pin locations and PHY timing come from the MIG profile.
++## SPDX-License-Identifier: Apache-2.0 WITH SHL-2.1
++###########################################
++
++set_property -dict {PACKAGE_PIN R4 IOSTANDARD LVCMOS33} [get_ports clk]
++# The Clocking Wizard supplies the 100 MHz primary clock constraint.
++set_property -dict {PACKAGE_PIN G4 IOSTANDARD LVCMOS15} [get_ports resetn]
++
++# VADJ is left at the board's default 1.2 V; do not use LVCMOS33 on these pins.
++set_property IOSTANDARD LVCMOS12 [get_ports {GPI[*]}]
++set_property PACKAGE_PIN E22 [get_ports {GPI[0]}]
++set_property PACKAGE_PIN F21 [get_ports {GPI[1]}]
++set_property PACKAGE_PIN G21 [get_ports {GPI[2]}]
++set_property PACKAGE_PIN G22 [get_ports {GPI[3]}]
++set_property PACKAGE_PIN H17 [get_ports {GPI[4]}]
++set_property PACKAGE_PIN J16 [get_ports {GPI[5]}]
++set_property PACKAGE_PIN K13 [get_ports {GPI[6]}]
++set_property PACKAGE_PIN M17 [get_ports {GPI[7]}]
++
++set_property IOSTANDARD LVCMOS25 [get_ports {GPO[*]}]
++set_property PACKAGE_PIN T14 [get_ports {GPO[0]}]
++set_property PACKAGE_PIN T15 [get_ports {GPO[1]}]
++set_property PACKAGE_PIN T16 [get_ports {GPO[2]}]
++set_property PACKAGE_PIN U16 [get_ports {GPO[3]}]
++set_property PACKAGE_PIN V15 [get_ports {GPO[4]}]
++set_property PACKAGE_PIN W16 [get_ports {GPO[5]}]
++set_property PACKAGE_PIN W15 [get_ports {GPO[6]}]
++set_property PACKAGE_PIN Y13 [get_ports {GPO[7]}]
++
++# UART signal directions are from the FPGA's point of view.
++set_property -dict {PACKAGE_PIN V18 IOSTANDARD LVCMOS33} [get_ports UARTSin]
++set_property -dict {PACKAGE_PIN AA19 IOSTANDARD LVCMOS33} [get_ports UARTSout]
++
++# microSD: DAT0 = MISO, CMD = MOSI, DAT3 = chip select.
++set_property -dict {PACKAGE_PIN V19 IOSTANDARD LVCMOS33} [get_ports SDCIn]
++set_property -dict {PACKAGE_PIN W20 IOSTANDARD LVCMOS33} [get_ports SDCCmd]
++set_property -dict {PACKAGE_PIN U18 IOSTANDARD LVCMOS33} [get_ports SDCCS]
++set_property -dict {PACKAGE_PIN W19 IOSTANDARD LVCMOS33} [get_ports SDCCLK]
++set_property -dict {PACKAGE_PIN T18 IOSTANDARD LVCMOS33} [get_ports SDCCD]
++set_property -dict {PACKAGE_PIN V20 IOSTANDARD LVCMOS33} [get_ports SDCReset]
++set_property PULLUP true [get_ports {SDCIn SDCCmd SDCCS SDCCD UARTSin}]
++set_property SLEW SLOW [get_ports {GPO[*] UARTSout SDCCmd SDCCS SDCCLK SDCReset}]
++set_property DRIVE 8 [get_ports {GPO[*] UARTSout SDCCmd SDCCS SDCCLK SDCReset}]
++
++# Asynchronous controls and UART are synchronized before use.
++set_false_path -from [get_ports {resetn GPI[*] UARTSin SDCCD}]
++set_false_path -to [get_ports {GPO[*] UARTSout SDCReset}]
++# MIG sequences the asynchronous DDR3 reset independently of data transfers.
++set_false_path -to [get_ports DDR3Resetn]
++
++# SPI edges are generated on CPU clock edges. Use conservative single-cycle budgets
++# at 20 MHz: 10 ns for FPGA output, 25 ns for card/PCB return, 35 ns input arrival.
++# The selected card must meet this return budget at the configured <=5 MHz SPI rate.
++# Vendor IP supplies the internal AXI CDC and DDR3 timing exceptions.
++set cpuClock [get_clocks -of_objects [get_pins mmcm/clk_out3]]
++set_input_delay -clock $cpuClock -max 35.0 [get_ports SDCIn]
++set_input_delay -clock $cpuClock -min 0.0 [get_ports SDCIn]
++set_output_delay -clock $cpuClock -max 0.0 [get_ports {SDCCmd SDCCS SDCCLK}]
++set_output_delay -clock $cpuClock -min 0.0 [get_ports {SDCCmd SDCCS SDCCLK}]
++set_max_delay -datapath_only 10.0 -to [get_ports {SDCCmd SDCCS SDCCLK}]
++
++set_property CONFIG_VOLTAGE 3.3 [current_design]
++set_property CFGBVS VCCO [current_design]
++set_property BITSTREAM.GENERAL.COMPRESS true [current_design]
+diff --git a/fpga/generator/Makefile b/fpga/generator/Makefile
+index cce80f832103e42b59fe8f8a9daa6d514db13d95..f667f5e71beb1edfa960ebe78ac1e1bfa223d6ca 100644
+--- a/fpga/generator/Makefile
++++ b/fpga/generator/Makefile
+@@ -2,7 +2,7 @@ dst := IP
+ 
+ all: ArtyA7
+ 
+-.PHONY: ArtyA7 vcu118 vcu108 genesys2 nexysa7
++.PHONY: ArtyA7 vcu118 vcu108 genesys2 nexysa7 nexysvideo
+ 
+ ArtyA7: export XILINX_PART := xc7a100tcsg324-1
+ ArtyA7: export XILINX_BOARD := digilentinc.com:arty-a7-100:part0:1.1
+@@ -39,13 +39,20 @@ nexysa7: export SYSTEMCLOCK := 20000000
+ nexysa7: export MAXSDCCLOCK  :=  10000000
+ nexysa7: FPGA_NEXYSA7
+ 
++nexysvideo: export XILINX_PART := xc7a200tsbg484-1
++nexysvideo: export XILINX_BOARD := digilentinc.com:nexys_video:part0:1.2
++nexysvideo: export board := nexysvideo
++nexysvideo: export SYSTEMCLOCK := 20000000
++nexysvideo: export MAXSDCCLOCK  :=  5000000
++nexysvideo: FPGA_NEXYSVIDEO
++
+ # variables computed from config
+ EXT_MEM_BASE = $(shell grep 'EXT_MEM_BASE' ../../config/deriv/fpga$(board)/config.vh | sed 's/.*=.*h\([[:alnum:]]*\);/0x\1/g')
+ 
+ EXT_MEM_RANGE = $(shell grep 'EXT_MEM_RANGE' ../../config/deriv/fpga$(board)/config.vh | sed 's/.*=.*h\([[:alnum:]]*\);/\1/g' | sed 's/\(.*\)/base=16;\1+1/g' | bc | sed 's/\(.*\)/0x\1/g')
+ 
+ 
+-.PHONY: FPGA_Arty FPGA_VCU
++.PHONY: FPGA_Arty FPGA_VCU FPGA_NEXYSVIDEO
+ FPGA_Arty: PreProcessFiles IP_Arty zsbl
+ 	vivado -mode tcl -source wally.tcl 2>&1 | tee wally.log
+ FPGA_VCU: PreProcessFiles IP_VCU zsbl
+@@ -57,8 +64,11 @@ FPGA_GENESYS2: PreProcessFiles IP_GENESYS2 zsbl
+ FPGA_NEXYSA7: PreProcessFiles IP_NEXYSA7 zsbl
+ 	vivado -mode tcl -source wally.tcl 2>&1 | tee wally.log
+ 
++FPGA_NEXYSVIDEO: PreProcessFiles IP_NEXYSVIDEO zsbl
++	vivado -mode tcl -source wally.tcl 2>&1 | tee wally.log
++
+ # Generate IP Blocks
+-.PHONY: IP_Arty IP_VCU
++.PHONY: IP_Arty IP_VCU IP_NEXYSVIDEO
+ IP_VCU: $(dst)/sysrst.log \
+ 	MEM_VCU \
+ 	$(dst)/clkconverter.log \
+@@ -81,8 +91,14 @@ IP_NEXYSA7: $(dst)/sysrst.log \
+ 	$(dst)/clkconverter.log \
+ 	$(dst)/ahbaxibridge.log
+ 
++IP_NEXYSVIDEO: $(dst)/sysrst.log \
++	MEM_NEXYSVIDEO \
++	$(dst)/mmcm-nexysvideo.log \
++	$(dst)/clkconverter.log \
++	$(dst)/ahbaxibridge.log
++
+ # Generate Memory IP Blocks
+-.PHONY: MEM_VCU MEM_Arty
++.PHONY: MEM_VCU MEM_Arty MEM_NEXYSVIDEO
+ MEM_VCU:
+ 	$(MAKE) $(dst)/ddr4-$(board).log
+ MEM_Arty:
+@@ -94,6 +110,9 @@ MEM_GENESYS2:
+ MEM_NEXYSA7:
+ 	$(MAKE) $(dst)/ddr2-$(board).log
+ 
++MEM_NEXYSVIDEO:
++	$(MAKE) $(dst)/ddr3-$(board).log
++
+ # Copy files and make necessary modifications
+ .PHONY: PreProcessFiles
+ PreProcessFiles:
+@@ -117,6 +136,8 @@ zsbl:
+ 	SYSTEMCLOCK=$(SYSTEMCLOCK) EXT_MEM_BASE=$(EXT_MEM_BASE) EXT_MEM_RANGE=$(EXT_MEM_RANGE) $(MAKE) -C ../zsbl
+ 
+ # Generate Individual IP Blocks
++$(dst)/ddr3-nexysvideo.log: xlnx_ddr3-nexysvideo-mig.prj
++
+ $(dst)/%.log: %.tcl
+ 	mkdir -p IP
+ 	cd IP;\
+diff --git a/fpga/generator/ahbaxibridge.tcl b/fpga/generator/ahbaxibridge.tcl
+index e41eed6ce883abd490a72c883aeae31f934988c0..da82f7f94680b482980dd4bcffa86bd9579ef936 100644
+--- a/fpga/generator/ahbaxibridge.tcl
++++ b/fpga/generator/ahbaxibridge.tcl
+@@ -12,6 +12,9 @@ if {$boardName!="ArtyA7"} {
+ # really just these two lines which change
+ create_ip -name ahblite_axi_bridge -vendor xilinx.com -library ip -module_name $ipName
+ set_property -dict [list CONFIG.C_M_AXI_DATA_WIDTH {64} CONFIG.C_S_AHB_DATA_WIDTH {64} CONFIG.C_M_AXI_THREAD_ID_WIDTH {4}] [get_ips $ipName]
++if {[string match "digilentinc.com:nexys_video:*" $boardName]} {
++    set_property CONFIG.C_M_AXI_SUPPORTS_NARROW_BURST {1} [get_ips $ipName]
++}
+ 
+ generate_target {instantiation_template} [get_files ./$ipName.srcs/sources_1/ip/$ipName/$ipName.xci]
+ generate_target all [get_files  ./$ipName.srcs/sources_1/ip/$ipName/$ipName.xci]
+diff --git a/fpga/generator/clkconverter.tcl b/fpga/generator/clkconverter.tcl
+index e574303008010a11c44653471442273a37959b5a..198b90a78333495fd65b4403f2d72f2aa1933824 100644
+--- a/fpga/generator/clkconverter.tcl
++++ b/fpga/generator/clkconverter.tcl
+@@ -20,6 +20,10 @@ set_property -dict [list CONFIG.ACLK_ASYNC {1} \
+       CONFIG.ID_WIDTH {4} \
+       CONFIG.MI_CLK.FREQ_HZ {208333333} \
+       CONFIG.SI_CLK.FREQ_HZ {10000000}] [get_ips $ipName]
++if {[string match "digilentinc.com:nexys_video:*" $boardName]} {
++    set_property -dict [list CONFIG.MI_CLK.FREQ_HZ {100000000} \
++                            CONFIG.SI_CLK.FREQ_HZ $::env(SYSTEMCLOCK)] [get_ips $ipName]
++}
+ 
+ generate_target {instantiation_template} [get_files ./$ipName.srcs/sources_1/ip/$ipName/$ipName.xci]
+ generate_target all [get_files  ./$ipName.srcs/sources_1/ip/$ipName/$ipName.xci]
+diff --git a/fpga/generator/ddr3-nexysvideo.tcl b/fpga/generator/ddr3-nexysvideo.tcl
+new file mode 100644
+index 0000000000000000000000000000000000000000..59e4b988c44539d5dc0ea29bb9bf96701cc0a45d
+--- /dev/null
++++ b/fpga/generator/ddr3-nexysvideo.tcl
+@@ -0,0 +1,27 @@
++###########################################
++## ddr3-nexysvideo.tcl
++## Purpose: Generate the Nexys Video DDR3 controller with a 64-bit AXI interface.
++## SPDX-License-Identifier: Apache-2.0 WITH SHL-2.1
++###########################################
++
++set partNumber $::env(XILINX_PART)
++set boardName $::env(XILINX_BOARD)
++
++set ipName ddr3
++
++create_project $ipName . -force -part $partNumber
++set_property board_part $boardName [current_project]
++
++# Use the board's DDR3 pinout and the Wally AXI data width.
++create_ip -name mig_7series -vendor xilinx.com -library ip -module_name $ipName
++
++exec mkdir -p $ipName.srcs/sources_1/ip/$ipName
++exec cp ../xlnx_ddr3-nexysvideo-mig.prj $ipName.srcs/sources_1/ip/$ipName/xlnx_ddr3-nexysvideo-mig.prj
++
++set_property -dict [list CONFIG.XML_INPUT_FILE {xlnx_ddr3-nexysvideo-mig.prj} CONFIG.RESET_BOARD_INTERFACE {Custom} CONFIG.MIG_DONT_TOUCH_PARAM {Custom} CONFIG.BOARD_MIG_PARAM {Custom}] [get_ips $ipName]
++
++generate_target {instantiation_template} [get_files ./$ipName.srcs/sources_1/ip/$ipName/$ipName.xci]
++generate_target all [get_files  ./$ipName.srcs/sources_1/ip/$ipName/$ipName.xci]
++create_ip_run [get_files -of_objects [get_fileset sources_1] ./$ipName.srcs/sources_1/ip/$ipName/$ipName.xci]
++launch_run -jobs 8 ${ipName}_synth_1
++wait_on_run ${ipName}_synth_1
+diff --git a/fpga/generator/mmcm-nexysvideo.tcl b/fpga/generator/mmcm-nexysvideo.tcl
+new file mode 100644
+index 0000000000000000000000000000000000000000..d88c38a557aaad448777500050467493ab5bcf96
+--- /dev/null
++++ b/fpga/generator/mmcm-nexysvideo.tcl
+@@ -0,0 +1,33 @@
++###########################################
++## mmcm-nexysvideo.tcl
++## Purpose: Generate 100 MHz MIG, 200 MHz reference, and CPU clocks for Nexys Video.
++## SPDX-License-Identifier: Apache-2.0 WITH SHL-2.1
++###########################################
++
++set partNumber $::env(XILINX_PART)
++set boardName  $::env(XILINX_BOARD)
++set SYSTEMCLOCK $::env(SYSTEMCLOCK)
++set ipName mmcm
++
++set SYSTEMCLOCK_MHz [expr $SYSTEMCLOCK/1000000.0]
++
++create_project $ipName . -force -part $partNumber
++set_property board_part $boardName [current_project]
++
++create_ip -name clk_wiz -vendor xilinx.com -library ip -module_name $ipName
++
++set_property -dict [list CONFIG.PRIM_IN_FREQ {100.000} \
++                        CONFIG.NUM_OUT_CLKS {3} \
++                        CONFIG.CLKOUT2_USED {true} \
++                        CONFIG.CLKOUT3_USED {true} \
++                        CONFIG.CLKOUT1_REQUESTED_OUT_FREQ {100} \
++                        CONFIG.CLKOUT2_REQUESTED_OUT_FREQ {200} \
++                        CONFIG.CLKOUT3_REQUESTED_OUT_FREQ $SYSTEMCLOCK_MHz \
++                        CONFIG.CLKIN1_JITTER_PS {100.0} \
++                       ] [get_ips $ipName]
++
++generate_target {instantiation_template} [get_files ./$ipName.srcs/sources_1/ip/$ipName/$ipName.xci]
++generate_target all [get_files  ./$ipName.srcs/sources_1/ip/$ipName/$ipName.xci]
++create_ip_run [get_files -of_objects [get_fileset sources_1] ./$ipName.srcs/sources_1/ip/$ipName/$ipName.xci]
++launch_run -jobs 8 ${ipName}_synth_1
++wait_on_run ${ipName}_synth_1
+diff --git a/fpga/generator/wally.tcl b/fpga/generator/wally.tcl
+index ca7aeb3bd31d31e0230847c1b9789972601d7946..fb206e3bb81a0a54ee047e0d8f7a606c139f1eda 100644
+--- a/fpga/generator/wally.tcl
++++ b/fpga/generator/wally.tcl
+@@ -32,6 +32,8 @@ if {$board=="ArtyA7"} {
+     add_files  {../src/fpgaTopGenesys2.sv}
+ } elseif {$board=="nexysa7"} {
+     add_files  {../src/fpgaTopNexysA7.sv}
++} elseif {$board=="nexysvideo"} {
++    add_files  {../src/fpgaTopNexysVideo.sv}
+ } else {
+     add_files  {../src/fpgaTop.sv}
+ }
+@@ -41,7 +43,7 @@ import_ip IP/sysrst.srcs/sources_1/ip/sysrst/sysrst.xci
+ import_ip IP/ahbaxibridge.srcs/sources_1/ip/ahbaxibridge/ahbaxibridge.xci
+ import_ip IP/clkconverter.srcs/sources_1/ip/clkconverter/clkconverter.xci
+ 
+-if {$board=="ArtyA7" || $board=="genesys2"} {
++if {$board=="ArtyA7" || $board=="genesys2" || $board=="nexysvideo"} {
+     import_ip IP/ddr3.srcs/sources_1/ip/ddr3/ddr3.xci
+     import_ip IP/mmcm.srcs/sources_1/ip/mmcm/mmcm.xci
+ } elseif {$board=="nexysa7" } {
+@@ -72,7 +74,7 @@ report_compile_order -constraints > reports/compile_order.rpt
+ #synth_design -rtl -name rtl_1  -flatten_hierarchy none
+ 
+ # apply timing constraint after elaboration
+-if {$board=="ArtyA7" || $board=="genesys2" || $board=="nexysa7" } {
++if {$board=="ArtyA7" || $board=="genesys2" || $board=="nexysa7" || $board=="nexysvideo"} {
+     add_files -fileset constrs_1 -norecurse ../constraints/constraints-$board.xdc
+     set_property PROCESSING_ORDER NORMAL [get_files  ../constraints/constraints-$board.xdc]
+ } else {
+@@ -100,6 +102,7 @@ report_utilization -hierarchical                                        -file re
+ report_cdc                                                              -file reports/cdc.rpt
+ report_clock_interaction                                                -file reports/clock_interaction.rpt
+ 
++file mkdir sim
+ write_verilog -force -mode funcsim sim/syn-funcsim.v
+ 
+ if {$board=="ArtyA7"} {
+@@ -110,6 +113,8 @@ if {$board=="ArtyA7"} {
+     source ../constraints/small-debug.xdc
+ } elseif {$board=="nexysa7"} {
+     source ../constraints/small-debug.xdc
++} elseif {$board=="nexysvideo"} {
++    # No on-chip logic analyzer in the base Nexys Video design.
+ } else {
+     #source ../constraints/vcu-small-debug.xdc
+     #source ../constraints/small-debug.xdc
+@@ -122,6 +127,11 @@ if {$board=="ArtyA7"} {
+ #set_property "steps.place_design.args.directive" "RuntimeOptimized" [get_runs impl_1]
+ #set_property "steps.route_design.args.directive" "RuntimeOptimized" [get_runs impl_1]
+ 
++if {$board=="nexysvideo"} {
++    set_property STEPS.POST_ROUTE_PHYS_OPT_DESIGN.IS_ENABLED true [get_runs impl_1]
++    set_property STEPS.POST_ROUTE_PHYS_OPT_DESIGN.ARGS.DIRECTIVE Explore [get_runs impl_1]
++}
++
+ launch_runs impl_1 -jobs 16
+ wait_on_run impl_1
+ launch_runs impl_1 -to_step write_bitstream
+diff --git a/fpga/generator/xlnx_ddr3-nexysvideo-mig.prj b/fpga/generator/xlnx_ddr3-nexysvideo-mig.prj
+new file mode 100644
+index 0000000000000000000000000000000000000000..1b24bbfa4c512843989deb34fe9477f3bf30b793
+--- /dev/null
++++ b/fpga/generator/xlnx_ddr3-nexysvideo-mig.prj
+@@ -0,0 +1,165 @@
++<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
++<!-- Nexys Video DDR3 profile, based on the pinned Digilent board file:
++     addins/vivado-boards/new/board_files/nexys_video/A.0/1.2/mig.prj
++     Physical memory timing and pin assignments are retained.
++     Wally uses a 64-bit AXI port, four ID bits, and narrow transfers.
++     The system and reference clocks are driven by the board wrapper MMCM.
++     RZQ/6 output impedance follows the Nexys Video reference manual, Table 3. -->
++<Project NoOfControllers="1">
++
++
++
++<!-- IMPORTANT: This is an internal file that has been generated by the MIG software. Any direct editing or changes made to this file may result in unpredictable behavior or data corruption. It is strongly advised that users do not edit the contents of this file. Re-run the MIG GUI with the required settings if any of the options provided below need to be altered. -->
++
++  <ModuleName>ddr3</ModuleName>
++
++  <dci_inouts_inputs>1</dci_inouts_inputs>
++
++  <dci_inputs>1</dci_inputs>
++
++  <Debug_En>OFF</Debug_En>
++
++  <DataDepth_En>1024</DataDepth_En>
++
++  <LowPower_En>ON</LowPower_En>
++
++  <XADC_En>Enabled</XADC_En>
++
++  <TargetFPGA>xc7a200t-sbg484/-1</TargetFPGA>
++
++  <Version>4.2</Version>
++
++  <SystemClock>No Buffer</SystemClock>
++
++  <ReferenceClock>No Buffer</ReferenceClock>
++
++  <SysResetPolarity>ACTIVE LOW</SysResetPolarity>
++
++  <BankSelectionFlag>FALSE</BankSelectionFlag>
++
++  <InternalVref>1</InternalVref>
++
++  <dci_hr_inouts_inputs>50 Ohms</dci_hr_inouts_inputs>
++
++  <dci_cascade>0</dci_cascade>
++
++  <Controller number="0">
++    <MemoryDevice>DDR3_SDRAM/Components/MT41K256M16XX-125</MemoryDevice>
++    <TimePeriod>2500</TimePeriod>
++    <VccAuxIO>1.8V</VccAuxIO>
++    <PHYRatio>4:1</PHYRatio>
++    <InputClkFreq>100</InputClkFreq>
++    <UIExtraClocks>0</UIExtraClocks>
++    <MMCM_VCO>800</MMCM_VCO>
++    <MMCMClkOut0> 4.000</MMCMClkOut0>
++    <MMCMClkOut1>1</MMCMClkOut1>
++    <MMCMClkOut2>1</MMCMClkOut2>
++    <MMCMClkOut3>1</MMCMClkOut3>
++    <MMCMClkOut4>1</MMCMClkOut4>
++    <DataWidth>16</DataWidth>
++    <DeepMemory>1</DeepMemory>
++    <DataMask>1</DataMask>
++    <ECC>Disabled</ECC>
++    <Ordering>Normal</Ordering>
++    <BankMachineCnt>4</BankMachineCnt>
++    <CustomPart>FALSE</CustomPart>
++    <NewPartName/>
++    <RowAddress>15</RowAddress>
++    <ColAddress>10</ColAddress>
++    <BankAddress>3</BankAddress>
++    <MemoryVoltage>1.5V</MemoryVoltage>
++    <C0_MEM_SIZE>536870912</C0_MEM_SIZE>
++    <UserMemoryAddressMap>BANK_ROW_COLUMN</UserMemoryAddressMap>
++    <PinSelection>
++      <Pin IN_TERM="" IOSTANDARD="SSTL15" PADName="M2" SLEW="" VCCAUX_IO="" name="ddr3_addr[0]"/>
++      <Pin IN_TERM="" IOSTANDARD="SSTL15" PADName="L5" SLEW="" VCCAUX_IO="" name="ddr3_addr[10]"/>
++      <Pin IN_TERM="" IOSTANDARD="SSTL15" PADName="N5" SLEW="" VCCAUX_IO="" name="ddr3_addr[11]"/>
++      <Pin IN_TERM="" IOSTANDARD="SSTL15" PADName="N4" SLEW="" VCCAUX_IO="" name="ddr3_addr[12]"/>
++      <Pin IN_TERM="" IOSTANDARD="SSTL15" PADName="P2" SLEW="" VCCAUX_IO="" name="ddr3_addr[13]"/>
++      <Pin IN_TERM="" IOSTANDARD="SSTL15" PADName="P6" SLEW="" VCCAUX_IO="" name="ddr3_addr[14]"/>
++      <Pin IN_TERM="" IOSTANDARD="SSTL15" PADName="M5" SLEW="" VCCAUX_IO="" name="ddr3_addr[1]"/>
++      <Pin IN_TERM="" IOSTANDARD="SSTL15" PADName="M3" SLEW="" VCCAUX_IO="" name="ddr3_addr[2]"/>
++      <Pin IN_TERM="" IOSTANDARD="SSTL15" PADName="M1" SLEW="" VCCAUX_IO="" name="ddr3_addr[3]"/>
++      <Pin IN_TERM="" IOSTANDARD="SSTL15" PADName="L6" SLEW="" VCCAUX_IO="" name="ddr3_addr[4]"/>
++      <Pin IN_TERM="" IOSTANDARD="SSTL15" PADName="P1" SLEW="" VCCAUX_IO="" name="ddr3_addr[5]"/>
++      <Pin IN_TERM="" IOSTANDARD="SSTL15" PADName="N3" SLEW="" VCCAUX_IO="" name="ddr3_addr[6]"/>
++      <Pin IN_TERM="" IOSTANDARD="SSTL15" PADName="N2" SLEW="" VCCAUX_IO="" name="ddr3_addr[7]"/>
++      <Pin IN_TERM="" IOSTANDARD="SSTL15" PADName="M6" SLEW="" VCCAUX_IO="" name="ddr3_addr[8]"/>
++      <Pin IN_TERM="" IOSTANDARD="SSTL15" PADName="R1" SLEW="" VCCAUX_IO="" name="ddr3_addr[9]"/>
++      <Pin IN_TERM="" IOSTANDARD="SSTL15" PADName="L3" SLEW="" VCCAUX_IO="" name="ddr3_ba[0]"/>
++      <Pin IN_TERM="" IOSTANDARD="SSTL15" PADName="K6" SLEW="" VCCAUX_IO="" name="ddr3_ba[1]"/>
++      <Pin IN_TERM="" IOSTANDARD="SSTL15" PADName="L4" SLEW="" VCCAUX_IO="" name="ddr3_ba[2]"/>
++      <Pin IN_TERM="" IOSTANDARD="SSTL15" PADName="K3" SLEW="" VCCAUX_IO="" name="ddr3_cas_n"/>
++      <Pin IN_TERM="" IOSTANDARD="DIFF_SSTL15" PADName="P4" SLEW="" VCCAUX_IO="" name="ddr3_ck_n[0]"/>
++      <Pin IN_TERM="" IOSTANDARD="DIFF_SSTL15" PADName="P5" SLEW="" VCCAUX_IO="" name="ddr3_ck_p[0]"/>
++      <Pin IN_TERM="" IOSTANDARD="SSTL15" PADName="J6" SLEW="" VCCAUX_IO="" name="ddr3_cke[0]"/>
++      <Pin IN_TERM="" IOSTANDARD="SSTL15" PADName="G3" SLEW="" VCCAUX_IO="" name="ddr3_dm[0]"/>
++      <Pin IN_TERM="" IOSTANDARD="SSTL15" PADName="F1" SLEW="" VCCAUX_IO="" name="ddr3_dm[1]"/>
++      <Pin IN_TERM="" IOSTANDARD="SSTL15" PADName="G2" SLEW="" VCCAUX_IO="" name="ddr3_dq[0]"/>
++      <Pin IN_TERM="" IOSTANDARD="SSTL15" PADName="F3" SLEW="" VCCAUX_IO="" name="ddr3_dq[10]"/>
++      <Pin IN_TERM="" IOSTANDARD="SSTL15" PADName="D2" SLEW="" VCCAUX_IO="" name="ddr3_dq[11]"/>
++      <Pin IN_TERM="" IOSTANDARD="SSTL15" PADName="C2" SLEW="" VCCAUX_IO="" name="ddr3_dq[12]"/>
++      <Pin IN_TERM="" IOSTANDARD="SSTL15" PADName="A1" SLEW="" VCCAUX_IO="" name="ddr3_dq[13]"/>
++      <Pin IN_TERM="" IOSTANDARD="SSTL15" PADName="E2" SLEW="" VCCAUX_IO="" name="ddr3_dq[14]"/>
++      <Pin IN_TERM="" IOSTANDARD="SSTL15" PADName="B1" SLEW="" VCCAUX_IO="" name="ddr3_dq[15]"/>
++      <Pin IN_TERM="" IOSTANDARD="SSTL15" PADName="H4" SLEW="" VCCAUX_IO="" name="ddr3_dq[1]"/>
++      <Pin IN_TERM="" IOSTANDARD="SSTL15" PADName="H5" SLEW="" VCCAUX_IO="" name="ddr3_dq[2]"/>
++      <Pin IN_TERM="" IOSTANDARD="SSTL15" PADName="J1" SLEW="" VCCAUX_IO="" name="ddr3_dq[3]"/>
++      <Pin IN_TERM="" IOSTANDARD="SSTL15" PADName="K1" SLEW="" VCCAUX_IO="" name="ddr3_dq[4]"/>
++      <Pin IN_TERM="" IOSTANDARD="SSTL15" PADName="H3" SLEW="" VCCAUX_IO="" name="ddr3_dq[5]"/>
++      <Pin IN_TERM="" IOSTANDARD="SSTL15" PADName="H2" SLEW="" VCCAUX_IO="" name="ddr3_dq[6]"/>
++      <Pin IN_TERM="" IOSTANDARD="SSTL15" PADName="J5" SLEW="" VCCAUX_IO="" name="ddr3_dq[7]"/>
++      <Pin IN_TERM="" IOSTANDARD="SSTL15" PADName="E3" SLEW="" VCCAUX_IO="" name="ddr3_dq[8]"/>
++      <Pin IN_TERM="" IOSTANDARD="SSTL15" PADName="B2" SLEW="" VCCAUX_IO="" name="ddr3_dq[9]"/>
++      <Pin IN_TERM="" IOSTANDARD="DIFF_SSTL15" PADName="J2" SLEW="" VCCAUX_IO="" name="ddr3_dqs_n[0]"/>
++      <Pin IN_TERM="" IOSTANDARD="DIFF_SSTL15" PADName="D1" SLEW="" VCCAUX_IO="" name="ddr3_dqs_n[1]"/>
++      <Pin IN_TERM="" IOSTANDARD="DIFF_SSTL15" PADName="K2" SLEW="" VCCAUX_IO="" name="ddr3_dqs_p[0]"/>
++      <Pin IN_TERM="" IOSTANDARD="DIFF_SSTL15" PADName="E1" SLEW="" VCCAUX_IO="" name="ddr3_dqs_p[1]"/>
++      <Pin IN_TERM="" IOSTANDARD="SSTL15" PADName="K4" SLEW="" VCCAUX_IO="" name="ddr3_odt[0]"/>
++      <Pin IN_TERM="" IOSTANDARD="SSTL15" PADName="J4" SLEW="" VCCAUX_IO="" name="ddr3_ras_n"/>
++      <Pin IN_TERM="" IOSTANDARD="LVCMOS15" PADName="G1" SLEW="" VCCAUX_IO="" name="ddr3_reset_n"/>
++      <Pin IN_TERM="" IOSTANDARD="SSTL15" PADName="L1" SLEW="" VCCAUX_IO="" name="ddr3_we_n"/>
++    </PinSelection>
++    <System_Clock>
++      <Pin Bank="Select Bank" PADName="No connect" name="sys_clk_i"/>
++    </System_Clock>
++    <System_Control>
++      <Pin Bank="Select Bank" PADName="No connect" name="sys_rst"/>
++      <Pin Bank="Select Bank" PADName="No connect" name="init_calib_complete"/>
++      <Pin Bank="Select Bank" PADName="No connect" name="tg_compare_error"/>
++    </System_Control>
++    <TimingParameters>
++      <Parameters tcke="5" tfaw="40" tras="35" trcd="13.75" trefi="7.8" trfc="260" trp="13.75" trrd="7.5" trtp="7.5" twtr="7.5"/>
++    </TimingParameters>
++    <mrBurstLength name="Burst Length">8 - Fixed</mrBurstLength>
++    <mrBurstType name="Read Burst Type and Length">Sequential</mrBurstType>
++    <mrCasLatency name="CAS Latency">6</mrCasLatency>
++    <mrMode name="Mode">Normal</mrMode>
++    <mrDllReset name="DLL Reset">No</mrDllReset>
++    <mrPdMode name="DLL control for precharge PD">Slow Exit</mrPdMode>
++    <emrDllEnable name="DLL Enable">Enable</emrDllEnable>
++    <emrOutputDriveStrength name="Output Driver Impedance Control">RZQ/6</emrOutputDriveStrength>
++    <emrMirrorSelection name="Address Mirroring">Disable</emrMirrorSelection>
++    <emrCSSelection name="Controller Chip Select Pin">Disable</emrCSSelection>
++    <emrRTT name="RTT (nominal) - On Die Termination (ODT)">RZQ/6</emrRTT>
++    <emrPosted name="Additive Latency (AL)">0</emrPosted>
++    <emrOCD name="Write Leveling Enable">Disabled</emrOCD>
++    <emrDQS name="TDQS enable">Enabled</emrDQS>
++    <emrRDQS name="Qoff">Output Buffer Enabled</emrRDQS>
++    <mr2PartialArraySelfRefresh name="Partial-Array Self Refresh">Full Array</mr2PartialArraySelfRefresh>
++    <mr2CasWriteLatency name="CAS write latency">5</mr2CasWriteLatency>
++    <mr2AutoSelfRefresh name="Auto Self Refresh">Enabled</mr2AutoSelfRefresh>
++    <mr2SelfRefreshTempRange name="High Temparature Self Refresh Rate">Normal</mr2SelfRefreshTempRange>
++    <mr2RTTWR name="RTT_WR - Dynamic On Die Termination (ODT)">Dynamic ODT off</mr2RTTWR>
++    <PortInterface>AXI</PortInterface>
++    <AXIParameters>
++      <C0_C_RD_WR_ARB_ALGORITHM>ROUND_ROBIN</C0_C_RD_WR_ARB_ALGORITHM>
++      <C0_S_AXI_ADDR_WIDTH>29</C0_S_AXI_ADDR_WIDTH>
++      <C0_S_AXI_DATA_WIDTH>64</C0_S_AXI_DATA_WIDTH>
++      <C0_S_AXI_ID_WIDTH>4</C0_S_AXI_ID_WIDTH>
++      <C0_S_AXI_SUPPORTS_NARROW_BURST>1</C0_S_AXI_SUPPORTS_NARROW_BURST>
++    </AXIParameters>
++  </Controller>
++
++
++</Project>
+diff --git a/fpga/src/fpgaTopNexysVideo.sv b/fpga/src/fpgaTopNexysVideo.sv
+new file mode 100644
+index 0000000000000000000000000000000000000000..06bf32c4ec888834ca34b711e6dc3df91e075044
+--- /dev/null
++++ b/fpga/src/fpgaTopNexysVideo.sv
+@@ -0,0 +1,233 @@
++///////////////////////////////////////////
++// fpgaTopNexysVideo.sv
++// Written: SoshiroFujimori <research@example.invalid> 8 September 2026
++// Purpose: Wally, DDR3, UART, GPIO, and SPI-mode microSD on the Nexys Video.
++// A component of the CORE-V-WALLY configurable RISC-V project.
++// SPDX-License-Identifier: Apache-2.0 WITH SHL-2.1
++///////////////////////////////////////////
++
++`include "config.vh"
++import cvw::*;
++
++module fpgaTop(input logic clk, resetn,
++  input  logic [7:0]  GPI,
++  output logic [7:0]  GPO,
++  input  logic        UARTSin,
++  output logic        UARTSout,
++  input  logic        SDCIn, SDCCD,
++  output logic        SDCCLK, SDCCmd, SDCCS, SDCReset,
++  inout  tri   [15:0] DDR3DQ,
++  inout  tri   [1:0]  DDR3DQSn, DDR3DQSp,
++  output logic [14:0] DDR3Addr,
++  output logic [2:0]  DDR3BA,
++  output logic        DDR3RASn, DDR3CASn, DDR3WEn, DDR3Resetn,
++  output logic [0:0]  DDR3CKp, DDR3CKn, DDR3CKE, DDR3ODT,
++  output logic [1:0]  DDR3DM);
++
++  `include "parameter-defs.vh"
++
++  logic               CPUCLK, DDRCLK, DDRRefCLK, DDRSysCLK;
++  logic               ClockLocked, DDRCalibComplete, DDRSyncReset;
++  logic               CPUReset, CPUResetn, DDRResetn;
++  logic [31:0]         GPIOIN, GPIOOUT;
++  logic [3:0]          SDCCSAll;
++  logic [P.PA_BITS-1:0] HADDR;
++  logic [P.AHBW-1:0]   HWDATA, HRDATAEXT;
++  logic               HWRITE, HREADY, HREADYEXT, HRESPEXT, HSELEXT;
++  logic [2:0]          HSIZE, HBURST;
++  logic [3:0]          HPROT;
++  logic [1:0]          HTRANS;
++  (* ASYNC_REG = "TRUE" *) logic [9:0] BoardInputMeta, BoardInputSync;
++
++  // 20 MHz CPU clock domain; 64-bit AXI data throughout.
++  logic [3:0]   CPUAXIAWID;
++  logic [31:0]  CPUAXIAWADDR;
++  logic [7:0]   CPUAXIAWLEN;
++  logic [2:0]   CPUAXIAWSIZE;
++  logic [1:0]   CPUAXIAWBURST;
++  logic         CPUAXIAWLOCK;
++  logic [3:0]   CPUAXIAWCACHE;
++  logic [2:0]   CPUAXIAWPROT;
++  logic         CPUAXIAWVALID;
++  logic         CPUAXIAWREADY;
++  logic [63:0]  CPUAXIWDATA;
++  logic [7:0]   CPUAXIWSTRB;
++  logic         CPUAXIWLAST;
++  logic         CPUAXIWVALID;
++  logic         CPUAXIWREADY;
++  logic [3:0]   CPUAXIBID;
++  logic [1:0]   CPUAXIBRESP;
++  logic         CPUAXIBVALID;
++  logic         CPUAXIBREADY;
++  logic [3:0]   CPUAXIARID;
++  logic [31:0]  CPUAXIARADDR;
++  logic [7:0]   CPUAXIARLEN;
++  logic [2:0]   CPUAXIARSIZE;
++  logic [1:0]   CPUAXIARBURST;
++  logic         CPUAXIARLOCK;
++  logic [3:0]   CPUAXIARCACHE;
++  logic [2:0]   CPUAXIARPROT;
++  logic         CPUAXIARVALID;
++  logic         CPUAXIARREADY;
++  logic [3:0]   CPUAXIRID;
++  logic [63:0]  CPUAXIRDATA;
++  logic [1:0]   CPUAXIRRESP;
++  logic         CPUAXIRLAST;
++  logic         CPUAXIRVALID;
++  logic         CPUAXIRREADY;
++
++  // 100 MHz DDR3 user-interface clock domain; 64-bit AXI data throughout.
++  logic [3:0]   DDRAXIAWID;
++  logic [31:0]  DDRAXIAWADDR;
++  logic [7:0]   DDRAXIAWLEN;
++  logic [2:0]   DDRAXIAWSIZE;
++  logic [1:0]   DDRAXIAWBURST;
++  logic         DDRAXIAWLOCK;
++  logic [3:0]   DDRAXIAWCACHE;
++  logic [2:0]   DDRAXIAWPROT;
++  logic         DDRAXIAWVALID;
++  logic         DDRAXIAWREADY;
++  logic [63:0]  DDRAXIWDATA;
++  logic [7:0]   DDRAXIWSTRB;
++  logic         DDRAXIWLAST;
++  logic         DDRAXIWVALID;
++  logic         DDRAXIWREADY;
++  logic [3:0]   DDRAXIBID;
++  logic [1:0]   DDRAXIBRESP;
++  logic         DDRAXIBVALID;
++  logic         DDRAXIBREADY;
++  logic [3:0]   DDRAXIARID;
++  logic [31:0]  DDRAXIARADDR;
++  logic [7:0]   DDRAXIARLEN;
++  logic [2:0]   DDRAXIARSIZE;
++  logic [1:0]   DDRAXIARBURST;
++  logic         DDRAXIARLOCK;
++  logic [3:0]   DDRAXIARCACHE;
++  logic [2:0]   DDRAXIARPROT;
++  logic         DDRAXIARVALID;
++  logic         DDRAXIARREADY;
++  logic [3:0]   DDRAXIRID;
++  logic [63:0]  DDRAXIRDATA;
++  logic [1:0]   DDRAXIRRESP;
++  logic         DDRAXIRLAST;
++  logic         DDRAXIRVALID;
++  logic         DDRAXIRREADY;
++
++  // Synchronize asynchronous inputs before the GPIO enable and UART loopback muxes.
++  // ASYNC_REG keeps these stages together during placement.
++  always_ff @(posedge CPUCLK) begin
++    BoardInputMeta <= {UARTSin, SDCCD, GPI};
++    BoardInputSync <= BoardInputMeta;
++  end
++  assign GPIOIN = {23'b0, BoardInputSync[8:0]};
++  assign GPO = GPIOOUT[7:0];
++  assign SDCCS = SDCCSAll[0];
++
++  // Drive the board's active-high SD_RESET low to power the microSD slot.
++  assign SDCReset = 1'b0;
++
++  mmcm mmcm(
++    .clk_in1(clk), .reset(~resetn), .locked(ClockLocked),
++    .clk_out1(DDRSysCLK), .clk_out2(DDRRefCLK), .clk_out3(CPUCLK));
++
++  // Each AXI endpoint has reset deassertion synchronized to its own clock.
++  // The CPU cannot access DDR3 until calibration has completed.
++  sysrst cpureset(
++    .slowest_sync_clk(CPUCLK), .ext_reset_in(~resetn | DDRSyncReset | ~ClockLocked),
++    .aux_reset_in(1'b0), .mb_debug_sys_rst(1'b0), .dcm_locked(DDRCalibComplete),
++    .mb_reset(), .bus_struct_reset(CPUReset), .peripheral_reset(),
++    .interconnect_aresetn(), .peripheral_aresetn(CPUResetn));
++
++  sysrst ddrreset(
++    .slowest_sync_clk(DDRCLK), .ext_reset_in(DDRSyncReset), .aux_reset_in(~resetn),
++    .mb_debug_sys_rst(1'b0), .dcm_locked(ClockLocked),
++    .mb_reset(), .bus_struct_reset(), .peripheral_reset(),
++    .interconnect_aresetn(), .peripheral_aresetn(DDRResetn));
++
++  wallypipelinedsoc #(P) wallypipelinedsoc(
++    .clk(CPUCLK), .reset_ext(CPUReset), .reset(), .ExternalStall(1'b0),
++    .HRDATAEXT, .HREADYEXT, .HRESPEXT, .HSELEXT, .HCLK(), .HRESETn(),
++    .HADDR, .HWDATA, .HWSTRB(), .HWRITE, .HSIZE, .HBURST, .HPROT, .HTRANS,
++    .HMASTLOCK(), .HREADY, .TIMECLK(1'b0), .GPIOIN, .GPIOOUT, .GPIOEN(),
++    .UARTSin(BoardInputSync[9]), .UARTSout, .SPIIn(1'b1), .SPIOut(), .SPICS(), .SPICLK(),
++    .SDCIn, .SDCCmd, .SDCCS(SDCCSAll), .SDCCLK, .PWMGPIO());
++
++  // Wally selects only 0x80000000-0x9fffffff on this external AHB port.
++  // The vendor bridge derives AXI byte strobes from HSIZE and HADDR.
++  ahbaxibridge ahbaxibridge(
++    .s_ahb_hclk(CPUCLK), .s_ahb_hresetn(CPUResetn), .s_ahb_hsel(HSELEXT),
++    .s_ahb_haddr(HADDR[31:0]), .s_ahb_hprot(HPROT), .s_ahb_htrans(HTRANS),
++    .s_ahb_hsize(HSIZE), .s_ahb_hwrite(HWRITE), .s_ahb_hburst(HBURST),
++    .s_ahb_hwdata(HWDATA), .s_ahb_hready_out(HREADYEXT), .s_ahb_hready_in(HREADY),
++    .s_ahb_hrdata(HRDATAEXT), .s_ahb_hresp(HRESPEXT), .m_axi_awid(CPUAXIAWID),
++    .m_axi_awaddr(CPUAXIAWADDR), .m_axi_awlen(CPUAXIAWLEN), .m_axi_awsize(CPUAXIAWSIZE),
++    .m_axi_awburst(CPUAXIAWBURST), .m_axi_awlock(CPUAXIAWLOCK),
++    .m_axi_awcache(CPUAXIAWCACHE), .m_axi_awprot(CPUAXIAWPROT),
++    .m_axi_awvalid(CPUAXIAWVALID), .m_axi_awready(CPUAXIAWREADY), .m_axi_wdata(CPUAXIWDATA),
++    .m_axi_wstrb(CPUAXIWSTRB), .m_axi_wlast(CPUAXIWLAST), .m_axi_wvalid(CPUAXIWVALID),
++    .m_axi_wready(CPUAXIWREADY), .m_axi_bid(CPUAXIBID), .m_axi_bresp(CPUAXIBRESP),
++    .m_axi_bvalid(CPUAXIBVALID), .m_axi_bready(CPUAXIBREADY), .m_axi_arid(CPUAXIARID),
++    .m_axi_araddr(CPUAXIARADDR), .m_axi_arlen(CPUAXIARLEN), .m_axi_arsize(CPUAXIARSIZE),
++    .m_axi_arburst(CPUAXIARBURST), .m_axi_arlock(CPUAXIARLOCK),
++    .m_axi_arcache(CPUAXIARCACHE), .m_axi_arprot(CPUAXIARPROT),
++    .m_axi_arvalid(CPUAXIARVALID), .m_axi_arready(CPUAXIARREADY), .m_axi_rid(CPUAXIRID),
++    .m_axi_rdata(CPUAXIRDATA), .m_axi_rresp(CPUAXIRRESP), .m_axi_rlast(CPUAXIRLAST),
++    .m_axi_rvalid(CPUAXIRVALID), .m_axi_rready(CPUAXIRREADY));
++
++  clkconverter clkconverter(
++    .s_axi_aclk(CPUCLK), .s_axi_aresetn(CPUResetn), .s_axi_awregion(4'b0),
++    .s_axi_arregion(4'b0), .s_axi_awqos(4'b0), .s_axi_arqos(4'b0), .s_axi_awid(CPUAXIAWID),
++    .s_axi_awaddr(CPUAXIAWADDR), .s_axi_awlen(CPUAXIAWLEN), .s_axi_awsize(CPUAXIAWSIZE),
++    .s_axi_awburst(CPUAXIAWBURST), .s_axi_awlock(CPUAXIAWLOCK),
++    .s_axi_awcache(CPUAXIAWCACHE), .s_axi_awprot(CPUAXIAWPROT),
++    .s_axi_awvalid(CPUAXIAWVALID), .s_axi_awready(CPUAXIAWREADY), .s_axi_wdata(CPUAXIWDATA),
++    .s_axi_wstrb(CPUAXIWSTRB), .s_axi_wlast(CPUAXIWLAST), .s_axi_wvalid(CPUAXIWVALID),
++    .s_axi_wready(CPUAXIWREADY), .s_axi_bid(CPUAXIBID), .s_axi_bresp(CPUAXIBRESP),
++    .s_axi_bvalid(CPUAXIBVALID), .s_axi_bready(CPUAXIBREADY), .s_axi_arid(CPUAXIARID),
++    .s_axi_araddr(CPUAXIARADDR), .s_axi_arlen(CPUAXIARLEN), .s_axi_arsize(CPUAXIARSIZE),
++    .s_axi_arburst(CPUAXIARBURST), .s_axi_arlock(CPUAXIARLOCK),
++    .s_axi_arcache(CPUAXIARCACHE), .s_axi_arprot(CPUAXIARPROT),
++    .s_axi_arvalid(CPUAXIARVALID), .s_axi_arready(CPUAXIARREADY), .s_axi_rid(CPUAXIRID),
++    .s_axi_rdata(CPUAXIRDATA), .s_axi_rresp(CPUAXIRRESP), .s_axi_rlast(CPUAXIRLAST),
++    .s_axi_rvalid(CPUAXIRVALID), .s_axi_rready(CPUAXIRREADY), .m_axi_aclk(DDRCLK),
++    .m_axi_aresetn(DDRResetn), .m_axi_awregion(), .m_axi_arregion(), .m_axi_awqos(),
++    .m_axi_arqos(), .m_axi_awid(DDRAXIAWID), .m_axi_awaddr(DDRAXIAWADDR),
++    .m_axi_awlen(DDRAXIAWLEN), .m_axi_awsize(DDRAXIAWSIZE), .m_axi_awburst(DDRAXIAWBURST),
++    .m_axi_awlock(DDRAXIAWLOCK), .m_axi_awcache(DDRAXIAWCACHE), .m_axi_awprot(DDRAXIAWPROT),
++    .m_axi_awvalid(DDRAXIAWVALID), .m_axi_awready(DDRAXIAWREADY), .m_axi_wdata(DDRAXIWDATA),
++    .m_axi_wstrb(DDRAXIWSTRB), .m_axi_wlast(DDRAXIWLAST), .m_axi_wvalid(DDRAXIWVALID),
++    .m_axi_wready(DDRAXIWREADY), .m_axi_bid(DDRAXIBID), .m_axi_bresp(DDRAXIBRESP),
++    .m_axi_bvalid(DDRAXIBVALID), .m_axi_bready(DDRAXIBREADY), .m_axi_arid(DDRAXIARID),
++    .m_axi_araddr(DDRAXIARADDR), .m_axi_arlen(DDRAXIARLEN), .m_axi_arsize(DDRAXIARSIZE),
++    .m_axi_arburst(DDRAXIARBURST), .m_axi_arlock(DDRAXIARLOCK),
++    .m_axi_arcache(DDRAXIARCACHE), .m_axi_arprot(DDRAXIARPROT),
++    .m_axi_arvalid(DDRAXIARVALID), .m_axi_arready(DDRAXIARREADY), .m_axi_rid(DDRAXIRID),
++    .m_axi_rdata(DDRAXIRDATA), .m_axi_rresp(DDRAXIRRESP), .m_axi_rlast(DDRAXIRLAST),
++    .m_axi_rvalid(DDRAXIRVALID), .m_axi_rready(DDRAXIRREADY));
++
++  // Dropping address bits [31:29] converts the selected physical address to a
++  // byte offset in the 512 MiB device. Narrow AXI transfers remain enabled in MIG.
++  ddr3 ddr3(
++    .ddr3_dq(DDR3DQ), .ddr3_dqs_n(DDR3DQSn), .ddr3_dqs_p(DDR3DQSp), .ddr3_addr(DDR3Addr),
++    .ddr3_ba(DDR3BA), .ddr3_ras_n(DDR3RASn), .ddr3_cas_n(DDR3CASn), .ddr3_we_n(DDR3WEn),
++    .ddr3_reset_n(DDR3Resetn), .ddr3_ck_p(DDR3CKp), .ddr3_ck_n(DDR3CKn), .ddr3_cke(DDR3CKE),
++    .ddr3_dm(DDR3DM), .ddr3_odt(DDR3ODT), .sys_clk_i(DDRSysCLK), .clk_ref_i(DDRRefCLK),
++    .ui_clk(DDRCLK), .ui_clk_sync_rst(DDRSyncReset), .aresetn(DDRResetn),
++    .sys_rst(resetn & ClockLocked), .init_calib_complete(DDRCalibComplete), .mmcm_locked(),
++    .app_sr_req(1'b0), .app_ref_req(1'b0), .app_zq_req(1'b0), .app_sr_active(),
++    .app_ref_ack(), .app_zq_ack(), .device_temp(), .s_axi_awqos(4'b0), .s_axi_arqos(4'b0),
++    .s_axi_awid(DDRAXIAWID), .s_axi_awaddr(DDRAXIAWADDR[28:0]), .s_axi_awlen(DDRAXIAWLEN),
++    .s_axi_awsize(DDRAXIAWSIZE), .s_axi_awburst(DDRAXIAWBURST), .s_axi_awlock(DDRAXIAWLOCK),
++    .s_axi_awcache(DDRAXIAWCACHE), .s_axi_awprot(DDRAXIAWPROT),
++    .s_axi_awvalid(DDRAXIAWVALID), .s_axi_awready(DDRAXIAWREADY), .s_axi_wdata(DDRAXIWDATA),
++    .s_axi_wstrb(DDRAXIWSTRB), .s_axi_wlast(DDRAXIWLAST), .s_axi_wvalid(DDRAXIWVALID),
++    .s_axi_wready(DDRAXIWREADY), .s_axi_bid(DDRAXIBID), .s_axi_bresp(DDRAXIBRESP),
++    .s_axi_bvalid(DDRAXIBVALID), .s_axi_bready(DDRAXIBREADY), .s_axi_arid(DDRAXIARID),
++    .s_axi_araddr(DDRAXIARADDR[28:0]), .s_axi_arlen(DDRAXIARLEN),
++    .s_axi_arsize(DDRAXIARSIZE), .s_axi_arburst(DDRAXIARBURST), .s_axi_arlock(DDRAXIARLOCK),
++    .s_axi_arcache(DDRAXIARCACHE), .s_axi_arprot(DDRAXIARPROT),
++    .s_axi_arvalid(DDRAXIARVALID), .s_axi_arready(DDRAXIARREADY), .s_axi_rid(DDRAXIRID),
++    .s_axi_rdata(DDRAXIRDATA), .s_axi_rresp(DDRAXIRRESP), .s_axi_rlast(DDRAXIRLAST),
++    .s_axi_rvalid(DDRAXIRVALID), .s_axi_rready(DDRAXIRREADY));
++
++endmodule
+diff --git a/linux/devicetree/wally-nexysvideo.dts b/linux/devicetree/wally-nexysvideo.dts
+new file mode 100644
+index 0000000000000000000000000000000000000000..f2acdeed1ee3ac3448a7ac02270dab41542e38bb
+--- /dev/null
++++ b/linux/devicetree/wally-nexysvideo.dts
+@@ -0,0 +1,121 @@
++// SPDX-License-Identifier: Apache-2.0 WITH SHL-2.1
++// Wally on Nexys Video: 20 MHz CPU/timebase/UART, 512 MiB DDR3.
++// Based on wally-artya7.dts; peripheral addresses and ISA match the fpga derivative.
++/dts-v1/;
++
++/ {
++  #address-cells = <0x02>;
++  #size-cells = <0x02>;
++  compatible = "openhwgroup,wally-nexys-video", "wally-virt";
++  model = "Wally on Digilent Nexys Video";
++
++  chosen {
++    bootargs = "console=ttyS0,115200 loglevel=7";
++    stdout-path = "/soc/uart@10000000";
++  };
++
++  memory@80000000 {
++    device_type = "memory";
++    reg = <0x00 0x80000000 0x00 0x20000000>;
++  };
++
++  cpus {
++    #address-cells = <0x01>;
++    #size-cells = <0x00>;
++    timebase-frequency = <20000000>;
++
++    cpu@0 {
++      device_type = "cpu";
++      clock-frequency = <20000000>;
++      reg = <0x00>;
++      status = "okay";
++      compatible = "riscv";
++      riscv,isa-base = "rv64i";
++      riscv,isa-extensions = "i", "m", "a", "f", "d", "c", "sstc",
++        "svade", "svadu", "svinval", "svnapot", "svpbmt", "zba", "zbb", "zbc",
++        "zbs", "zca", "zcb", "zcd", "zfa", "zfh", "zkn", "zkt", "zicbom", "zicboz", "zicntr",
++        "zicond", "zicsr", "zifencei", "zihpm";
++      riscv,cboz-block-size = <64>;
++      riscv,cbom-block-size = <64>;
++      mmu-type = "riscv,sv48";
++
++      cpu_intc: interrupt-controller {
++        #interrupt-cells = <0x01>;
++        interrupt-controller;
++        compatible = "riscv,cpu-intc";
++        #address-cells = <0>;
++      };
++    };
++  };
++
++  refclk: refclk {
++    #clock-cells = <0>;
++    compatible = "fixed-clock";
++    clock-frequency = <20000000>;
++    clock-output-names = "xtal";
++  };
++
++  soc {
++    #address-cells = <0x02>;
++    #size-cells = <0x02>;
++    compatible = "simple-bus";
++    ranges;
++
++    gpio0: gpio@10060000 {
++      compatible = "sifive,gpio0";
++      interrupt-parent = <&plic>;
++      interrupts = <3>;
++      reg = <0x00 0x10060000 0x00 0x1000>;
++      reg-names = "control";
++      gpio-controller;
++      #gpio-cells = <2>;
++      #address-cells = <0>;
++      interrupt-controller;
++      #interrupt-cells = <2>;
++    };
++
++    uart@10000000 {
++      interrupts = <0x0a>;
++      interrupt-parent = <&plic>;
++      clock-frequency = <20000000>;
++      reg = <0x00 0x10000000 0x00 0x100>;
++      compatible = "ns16550a";
++    };
++
++    plic: plic@c000000 {
++      riscv,ndev = <0x35>;
++      reg = <0x00 0xc000000 0x00 0x210000>;
++      interrupts-extended = <&cpu_intc 11 &cpu_intc 9>;
++      interrupt-controller;
++      compatible = "sifive,plic-1.0.0", "riscv,plic0";
++      #interrupt-cells = <0x01>;
++      #address-cells = <0x00>;
++    };
++
++    spi@13000 {
++      compatible = "sifive,spi0";
++      interrupt-parent = <&plic>;
++      interrupts = <0x14>;
++      reg = <0x0 0x13000 0x0 0x1000>;
++      reg-names = "control";
++      clocks = <&refclk>;
++
++      #address-cells = <1>;
++      #size-cells = <0>;
++      mmc@0 {
++        compatible = "mmc-spi-slot";
++        reg = <0>;
++        spi-max-frequency = <1000000>;
++        voltage-ranges = <3300 3300>;
++        disable-wp;
++        // Use SPI polling; GPIO bit 8 also exposes the active-low card detect pin.
++      };
++    };
++
++    clint@2000000 {
++      interrupts-extended = <&cpu_intc 3 &cpu_intc 7>;
++      reg = <0x00 0x2000000 0x00 0x10000>;
++      compatible = "sifive,clint0", "riscv,clint0";
++    };
++  };
++};

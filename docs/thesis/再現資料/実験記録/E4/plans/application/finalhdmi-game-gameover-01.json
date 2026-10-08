@@ -1,0 +1,9 @@
+[
+  "finalhdmi-game-gameover-01",
+  "--load",
+  "hdmi13-game-load-01",
+  "--seconds",
+  "30",
+  "--keys",
+  "/path/to/research/experiments/breakout-final-20260910/plans/gameover-keys.json"
+]

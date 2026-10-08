@@ -1,0 +1,265 @@
+{
+  "target": "f0764f003f7c55197882bc1b2f90c84132395472",
+  "parent": "2345ec2ad68d9a9073b2dfec0929ce87c90cb0ce",
+  "canonical_head": "d3e181ac434a01a1f174549b5fbc7ee03a8875b4",
+  "canonical_status_before": "",
+  "files": [
+    {
+      "step": 1,
+      "path": "config/derivlist.txt",
+      "status": "M",
+      "patch": "01-derivlist.txt.patch",
+      "after_sha256": "6471970fb56c09edcad405e4a5cf7adc4c134d5749bf5782b875ad4fb5313b96",
+      "after_blob": "176a9d6c3db7774351dc4c5ae6aabdfb42b82781",
+      "after_lines": 1496,
+      "before_sha256": "9f5fb3a9d8d6229b835a584f2bd6fb75989d4ace8f142d08a6c0de5aa4202c96"
+    },
+    {
+      "step": 2,
+      "path": "fpga/generator/xlnx_ddr3-nexysvideo-mig.prj",
+      "status": "A",
+      "patch": "02-xlnx_ddr3-nexysvideo-mig.prj.patch",
+      "after_sha256": "cc93190fccf1d3840324e3cea0ffde730e9d7756687dba878a79a55549661b81",
+      "after_blob": "1b24bbfa4c512843989deb34fe9477f3bf30b793",
+      "after_lines": 165
+    },
+    {
+      "step": 3,
+      "path": "fpga/generator/ddr3-nexysvideo.tcl",
+      "status": "A",
+      "patch": "03-ddr3-nexysvideo.tcl.patch",
+      "after_sha256": "5119e717d6a0457f6fd161083a39fae2dea512f7131608e1ce568436efe1d13b",
+      "after_blob": "59e4b988c44539d5dc0ea29bb9bf96701cc0a45d",
+      "after_lines": 27
+    },
+    {
+      "step": 4,
+      "path": "fpga/generator/mmcm-nexysvideo.tcl",
+      "status": "A",
+      "patch": "04-mmcm-nexysvideo.tcl.patch",
+      "after_sha256": "2bc750311f0a96bb828e93f8eca786f3766667f0095764d2526a6712f8255c0d",
+      "after_blob": "d88c38a557aaad448777500050467493ab5bcf96",
+      "after_lines": 33
+    },
+    {
+      "step": 5,
+      "path": "fpga/generator/ahbaxibridge.tcl",
+      "status": "M",
+      "patch": "05-ahbaxibridge.tcl.patch",
+      "after_sha256": "fd0321f49c78b84e02d0c00fcde9168bf2cb55207b151f67cbf60c23b683eda2",
+      "after_blob": "da82f7f94680b482980dd4bcffa86bd9579ef936",
+      "after_lines": 23,
+      "before_sha256": "8ec8bea4955e8f79d90d3de0f25263c955c19ec50970e9db1da0fce2778dfbf3"
+    },
+    {
+      "step": 6,
+      "path": "fpga/generator/clkconverter.tcl",
+      "status": "M",
+      "patch": "06-clkconverter.tcl.patch",
+      "after_sha256": "0c2b269614996f7e59cbe0e0e1fb84c2bf304bfb42fbbfab671100542030f9f7",
+      "after_blob": "198b90a78333495fd65b4403f2d72f2aa1933824",
+      "after_lines": 32,
+      "before_sha256": "582ff207366b97b20314353106c1c7953bc5dd2308065dd79683de1b35e62e7d"
+    },
+    {
+      "step": 7,
+      "path": "fpga/src/fpgaTopNexysVideo.sv",
+      "status": "A",
+      "patch": "07-fpgaTopNexysVideo.sv.patch",
+      "after_sha256": "78db9fdb712aae0ab7ab7d4fcacece70f398fceef2cbe59f401043f7d98aed3e",
+      "after_blob": "06bf32c4ec888834ca34b711e6dc3df91e075044",
+      "after_lines": 233
+    },
+    {
+      "step": 8,
+      "path": "fpga/constraints/constraints-nexysvideo.xdc",
+      "status": "A",
+      "patch": "08-constraints-nexysvideo.xdc.patch",
+      "after_sha256": "bc68dabf8d08f14c853a0de9f62c4ad033d4f14cdf52a795bda4d814baff644e",
+      "after_blob": "5d5b2cbbeaeeae8a1972ab819db42bf12e193dc2",
+      "after_lines": 68
+    },
+    {
+      "step": 9,
+      "path": "linux/devicetree/wally-nexysvideo.dts",
+      "status": "A",
+      "patch": "09-wally-nexysvideo.dts.patch",
+      "after_sha256": "37982e97adf7a5de06b8db52646c4bbaf07625a836b026ab2dc32717c8c06efe",
+      "after_blob": "f2acdeed1ee3ac3448a7ac02270dab41542e38bb",
+      "after_lines": 121
+    },
+    {
+      "step": 10,
+      "path": "fpga/generator/Makefile",
+      "status": "M",
+      "patch": "10-Makefile.patch",
+      "after_sha256": "5eb97c6a8ccab2386ea3448e879d1145e45eb5a1efef634093a4e86e9e028f47",
+      "after_blob": "f667f5e71beb1edfa960ebe78ac1e1bfa223d6ca",
+      "after_lines": 160,
+      "before_sha256": "76212364882023fc57843397c84a26859a9d244b510defd671b46148a99bdf55"
+    },
+    {
+      "step": 11,
+      "path": "fpga/generator/wally.tcl",
+      "status": "M",
+      "patch": "11-wally.tcl.patch",
+      "after_sha256": "8a43650e45ecb4ccca7105e6ba8a74501b9be66981f6d796e31e211a92b6824b",
+      "after_blob": "fb206e3bb81a0a54ee047e0d8f7a606c139f1eda",
+      "after_lines": 153,
+      "before_sha256": "b8d21ecdcd898b1344c6aaf4a23c9263438b659f10ebe5af6d74b62392d3f27d"
+    },
+    {
+      "step": 12,
+      "path": "fpga/README.md",
+      "status": "M",
+      "patch": "12-README.md.patch",
+      "after_sha256": "a25e9941792c3377e273197a39a79da55d285b5f0ba3e04703f81a9e7e6d93ca",
+      "after_blob": "c79665ef676547ec1139764ebea09e4be2b2c804",
+      "after_lines": 86,
+      "before_sha256": "6184c951ba6caeb74ddbf2a39fb7ad685192ded1dca6b99f0b5c0caf6bda51bd"
+    }
+  ],
+  "references": [
+    {
+      "path": "fpga/src/fpgaTopArtyA7.sv",
+      "commit": "2345ec2ad68d9a9073b2dfec0929ce87c90cb0ce",
+      "sha256": "e293c13143abdab0a4923cec6fc0e16af52c2c7e44c2195edff28296da7d6a16"
+    },
+    {
+      "path": "fpga/src/fpgaTopNexysA7.sv",
+      "commit": "2345ec2ad68d9a9073b2dfec0929ce87c90cb0ce",
+      "sha256": "eac970361eb03601476c641b7c9864c72538b43487b59a04749764de0d87e2a3"
+    },
+    {
+      "path": "fpga/generator/mmcm-nexysa7.tcl",
+      "commit": "2345ec2ad68d9a9073b2dfec0929ce87c90cb0ce",
+      "sha256": "709e0739167e72aada0cb8d8ef191b2899724cfa43c87a39cbc7e8b53b0753ff"
+    },
+    {
+      "path": "fpga/generator/ddr3-genesys2.tcl",
+      "commit": "2345ec2ad68d9a9073b2dfec0929ce87c90cb0ce",
+      "sha256": "5d900c06200e038806c059bb6f4f20d5a5ef8ca469bb78b5e64ae5c9efb3c950"
+    },
+    {
+      "path": "fpga/generator/sysrst.tcl",
+      "commit": "2345ec2ad68d9a9073b2dfec0929ce87c90cb0ce",
+      "sha256": "1c5b838f6dd578824be29bcc6531fbd9a1cc3ec8dc075d084e029b08a8997d67"
+    },
+    {
+      "path": "linux/devicetree/wally-artya7.dts",
+      "commit": "2345ec2ad68d9a9073b2dfec0929ce87c90cb0ce",
+      "sha256": "85b4859fcc083480e5761cfdef4fd4bdc58fed6faf1fbc9a8c04d93c93cdaa25"
+    },
+    {
+      "path": "fpga/zsbl/Makefile",
+      "commit": "2345ec2ad68d9a9073b2dfec0929ce87c90cb0ce",
+      "sha256": "7f6eb6fb0d77ed8047481835dd48bd3c12481d26fdae9404bcc782e80f047239"
+    },
+    {
+      "path": "fpga/zsbl/system.h",
+      "commit": "2345ec2ad68d9a9073b2dfec0929ce87c90cb0ce",
+      "sha256": "2dda08c065d2ffb6aea3599659234d78feba02c52729bd8c220dcb84f47e53c1"
+    },
+    {
+      "path": "fpga/zsbl/bios.S",
+      "commit": "2345ec2ad68d9a9073b2dfec0929ce87c90cb0ce",
+      "sha256": "153c29f5d25630048074e3a8cfdbc72e0e32b72bd852dc4bcfe16da9ec8608a1"
+    },
+    {
+      "path": "fpga/zsbl/boot.c",
+      "commit": "2345ec2ad68d9a9073b2dfec0929ce87c90cb0ce",
+      "sha256": "5e961d51ff1b583bb9d605db1d851fdb2302cd2290aed3d557f31a902061aa10"
+    },
+    {
+      "path": "fpga/zsbl/spi.c",
+      "commit": "2345ec2ad68d9a9073b2dfec0929ce87c90cb0ce",
+      "sha256": "3329dbc70b5bd388767e2dbc089f098e22bc223ad7b1d902161c079d512df631"
+    },
+    {
+      "path": "fpga/zsbl/uart.c",
+      "commit": "2345ec2ad68d9a9073b2dfec0929ce87c90cb0ce",
+      "sha256": "514f2fdce990c3b272d7308b16cbe91a798c8f9e68663449e63ca6f591769394"
+    },
+    {
+      "path": "fpga/zsbl/gpt.c",
+      "commit": "2345ec2ad68d9a9073b2dfec0929ce87c90cb0ce",
+      "sha256": "d11566624e5368f032a76a4821dcf9c0f196bb88ddbbf6d002335304c87fb2db"
+    },
+    {
+      "path": "setup.sh",
+      "commit": "2345ec2ad68d9a9073b2dfec0929ce87c90cb0ce",
+      "sha256": "02986059e538c74ba6223a11ddff48e1b69efc898fd2f54f1c7f8326fdef6b28"
+    },
+    {
+      "path": ".gitmodules",
+      "commit": "2345ec2ad68d9a9073b2dfec0929ce87c90cb0ce",
+      "sha256": "765ea5ce73af9e88c51cffa89ce7643aaecb8295ee88e2930c5e3d1a08805b2a"
+    },
+    {
+      "path": "src/uncore/uncore.sv",
+      "commit": "2345ec2ad68d9a9073b2dfec0929ce87c90cb0ce",
+      "sha256": "38becf35a2fe9065bd15b8e78977981d5f103870b1cbc7da66d2855e690ee389"
+    },
+    {
+      "path": "src/generic/mem/rom1p1r.sv",
+      "commit": "2345ec2ad68d9a9073b2dfec0929ce87c90cb0ce",
+      "sha256": "05a06791add228133f09c3ca33aa21d199ac62946ec87a5b815f7df0f10be251"
+    },
+    {
+      "path": "src/wally/wallypipelinedsoc.sv",
+      "commit": "2345ec2ad68d9a9073b2dfec0929ce87c90cb0ce",
+      "sha256": "0f28bc9c9824cb73262081a2b79c5565c8cd9426c0a422c88776d088f2dec7d0"
+    },
+    {
+      "path": "addins/vivado-boards/new/board_files/nexys_video/A.0/1.2/mig.prj",
+      "commit": "36f34ab687b7fa9c778b779d027f3bce63b3ace9",
+      "sha256": "82122fb1a992c4c2c540f31068ab6a08fe4782552562051c4d7a7548698853f1"
+    },
+    {
+      "path": "addins/vivado-boards/new/board_files/nexys_video/A.0/1.2/board.xml",
+      "commit": "36f34ab687b7fa9c778b779d027f3bce63b3ace9",
+      "sha256": "5fe56998aaae57825f28e999b1415126be8ce273030398d38678912af6f14a58"
+    },
+    {
+      "path": "src/uncore/clint_apb.sv",
+      "commit": "2345ec2ad68d9a9073b2dfec0929ce87c90cb0ce",
+      "sha256": "80e4f82f73d2f19a4a5fe11bc855d522fe23190882ef542cde235dd3a4a76b01"
+    },
+    {
+      "path": "src/uncore/spi_apb.sv",
+      "commit": "2345ec2ad68d9a9073b2dfec0929ce87c90cb0ce",
+      "sha256": "9d433be22d226c8a5a0e56e1314a473d7d4e185b34a1a65015597bd9fa332126"
+    },
+    {
+      "path": "src/mmu/adrdec.sv",
+      "commit": "2345ec2ad68d9a9073b2dfec0929ce87c90cb0ce",
+      "sha256": "7318abb669888f462b363080fd2a994094dcb5626a83daaedadb7e8bd70ef6fa"
+    },
+    {
+      "path": "src/mmu/adrdecs.sv",
+      "commit": "2345ec2ad68d9a9073b2dfec0929ce87c90cb0ce",
+      "sha256": "6d10bd6d914ea597b7298c753145d2e27a1fdf838548d5bc1ccf6bd58d94b1b1"
+    },
+    {
+      "path": "bin/derivgen.pl",
+      "commit": "2345ec2ad68d9a9073b2dfec0929ce87c90cb0ce",
+      "sha256": "11f0a7037e20d1ddb127dcb1ea90923cd0d4d28c953eb3e3661d720c2422501f"
+    },
+    {
+      "path": "sim/Makefile",
+      "commit": "2345ec2ad68d9a9073b2dfec0929ce87c90cb0ce",
+      "sha256": "fb63891a7f1a9bb2a7fd651a13fe3824064e81a49aa98fbfa18cc05ac7d55cc8"
+    },
+    {
+      "path": "config/rv64gc/config.vh",
+      "commit": "2345ec2ad68d9a9073b2dfec0929ce87c90cb0ce",
+      "sha256": "2653cec0c34a838f22014ad9c593349ff34931b252c3c44b3b5ff4c1241ed8bb"
+    },
+    {
+      "path": "linux/sdcard/flash-sd.sh",
+      "commit": "2345ec2ad68d9a9073b2dfec0929ce87c90cb0ce",
+      "sha256": "d0bfd92f6a8009dc06c123ee0dda0293bdb5a975f837bb0cae3ad74da5f7573f"
+    }
+  ],
+  "vivado_boards_commit": "36f34ab687b7fa9c778b779d027f3bce63b3ace9"
+}

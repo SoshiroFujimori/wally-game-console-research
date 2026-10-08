@@ -1,0 +1,357 @@
+[
+  {
+    "file": "詳説用ソース/Wally/.gitmodules",
+    "commit": "d3e181ac434a01a1f174549b5fbc7ee03a8875b4",
+    "sha256": "f8cdaa80778221c7b26002bb6c3c249ebb3cfd3c46f6cef38452ae537bfdee4f"
+  },
+  {
+    "file": "詳説用ソース/Wally/LICENSE",
+    "commit": "d3e181ac434a01a1f174549b5fbc7ee03a8875b4",
+    "sha256": "9a610ed291f447c9c9f5d4f3966a3a9fb01bafc394d8d43fcfc48d74e12e2942"
+  },
+  {
+    "file": "詳説用ソース/Wally/addins/README.md",
+    "commit": "d3e181ac434a01a1f174549b5fbc7ee03a8875b4",
+    "sha256": "3ee81a6d5fd8d4c9034a75491b1ee2ae8b0a79575efa2cfc199c97138e9fc089"
+  },
+  {
+    "file": "詳説用ソース/Wally/config/derivlist.txt",
+    "commit": "d3e181ac434a01a1f174549b5fbc7ee03a8875b4",
+    "sha256": "1a20d504b8d3216820e432ee65a1b0c92e34c3d348a34031b193c1965546dbdf"
+  },
+  {
+    "file": "詳説用ソース/Wally/config/rv32e/config.vh",
+    "commit": "d3e181ac434a01a1f174549b5fbc7ee03a8875b4",
+    "sha256": "cd81ede60dbf3fc0b0149efe7a580a3d27704cfe0b0fb898f17ccac12a86fafb"
+  },
+  {
+    "file": "詳説用ソース/Wally/config/rv32gc/config.vh",
+    "commit": "d3e181ac434a01a1f174549b5fbc7ee03a8875b4",
+    "sha256": "cb70987963e61608985fdc298a5a187582ca1814d12a18c84123650295d8f607"
+  },
+  {
+    "file": "詳説用ソース/Wally/config/rv32i/config.vh",
+    "commit": "d3e181ac434a01a1f174549b5fbc7ee03a8875b4",
+    "sha256": "c2008fb8327e610dd910b3fdd950c590d5caad97eeb411fc3f39f60fa0b23c8b"
+  },
+  {
+    "file": "詳説用ソース/Wally/config/rv32imc/config.vh",
+    "commit": "d3e181ac434a01a1f174549b5fbc7ee03a8875b4",
+    "sha256": "c4365ec7f5492770d2660e6942c2f9be080f35073d9ac8fc582ef6c8f2f30114"
+  },
+  {
+    "file": "詳説用ソース/Wally/config/rv64gc/config.vh",
+    "commit": "d3e181ac434a01a1f174549b5fbc7ee03a8875b4",
+    "sha256": "68c38131127a5ed2078a3e4de47de6350021e03d224275db1864e9429fee5eb1"
+  },
+  {
+    "file": "詳説用ソース/Wally/config/rv64i/config.vh",
+    "commit": "d3e181ac434a01a1f174549b5fbc7ee03a8875b4",
+    "sha256": "ed1abbf3a624ec8fcf9906e3617f75724543c72f23edd53a2aa39f3d99498186"
+  },
+  {
+    "file": "詳説用ソース/Wally/config/shared/parameter-defs.vh",
+    "commit": "d3e181ac434a01a1f174549b5fbc7ee03a8875b4",
+    "sha256": "48aa5f39510b53e739a824405452590ebc7eaf20b2852dc389f50b28eca73325"
+  },
+  {
+    "file": "詳説用ソース/Wally/examples/rasterix/CMakeLists.txt",
+    "commit": "d3e181ac434a01a1f174549b5fbc7ee03a8875b4",
+    "sha256": "3e103150746ca49bc49c3d3ba988b3f62f7603582f269b0eac2a632af4887830"
+  },
+  {
+    "file": "詳説用ソース/Wally/examples/rasterix/WallyBusConnector.hpp",
+    "commit": "d3e181ac434a01a1f174549b5fbc7ee03a8875b4",
+    "sha256": "8375310bab47a755a8e42d0579cf43e16e92eadd9d695758f8b325ed3c6d3ce9"
+  },
+  {
+    "file": "詳説用ソース/Wally/examples/rasterix/main.cpp",
+    "commit": "d3e181ac434a01a1f174549b5fbc7ee03a8875b4",
+    "sha256": "e53ce285b294143ecebad2e9cd4c46785e660cb324dcccdff08a788c6460b611"
+  },
+  {
+    "file": "詳説用ソース/Wally/fpga/README.md",
+    "commit": "d3e181ac434a01a1f174549b5fbc7ee03a8875b4",
+    "sha256": "b531bf61e0a9d27a8209563f9a21ec7b56eda187800ddf70ec46a152351b116b"
+  },
+  {
+    "file": "詳説用ソース/Wally/fpga/constraints/constraints-nexysvideo.xdc",
+    "commit": "d3e181ac434a01a1f174549b5fbc7ee03a8875b4",
+    "sha256": "c89137c2eb390cd461cb34c648e97b00eac09529be44a9f2aa14f80fafc773b5"
+  },
+  {
+    "file": "詳説用ソース/Wally/fpga/constraints/constraints-rasterixdisplay.xdc",
+    "commit": "d3e181ac434a01a1f174549b5fbc7ee03a8875b4",
+    "sha256": "a553b72dc076bb279b4e7795a42bad42800ee57b40388cfd2ebd292fcb635ecc"
+  },
+  {
+    "file": "詳説用ソース/Wally/fpga/generator/Makefile",
+    "commit": "d3e181ac434a01a1f174549b5fbc7ee03a8875b4",
+    "sha256": "dfdb310e19423037715440974bbd2dbefd1d587be07cba9a55d67568e53b8c10"
+  },
+  {
+    "file": "詳説用ソース/Wally/fpga/generator/axiscdc.tcl",
+    "commit": "d3e181ac434a01a1f174549b5fbc7ee03a8875b4",
+    "sha256": "f5dd25bdbade667586a5f7c16f0dc020bca9e08638a9d38ccb65a02c4d090392"
+  },
+  {
+    "file": "詳説用ソース/Wally/fpga/generator/rasterixmem.tcl",
+    "commit": "d3e181ac434a01a1f174549b5fbc7ee03a8875b4",
+    "sha256": "c834e4eccdba35f6ab48c910aa8f49c320a257f97bead1d5cbf00b0fa961e2be"
+  },
+  {
+    "file": "詳説用ソース/Wally/fpga/generator/videoclock.tcl",
+    "commit": "d3e181ac434a01a1f174549b5fbc7ee03a8875b4",
+    "sha256": "2a12cbbe483230f969fd62415d5f4b6e7c4d12ab0b31d98f3c52f51e288b3799"
+  },
+  {
+    "file": "詳説用ソース/Wally/fpga/generator/wally.tcl",
+    "commit": "d3e181ac434a01a1f174549b5fbc7ee03a8875b4",
+    "sha256": "b097103a29cb46c0b4463be6e2aa8910a1639482d69f9c40ea4977e70ce44ba1"
+  },
+  {
+    "file": "詳説用ソース/Wally/fpga/src/fpgaTop.sv",
+    "commit": "d3e181ac434a01a1f174549b5fbc7ee03a8875b4",
+    "sha256": "afffa6bd337e1101fffdc2bd10a727e996108d5edc819fa49c35aac24f0bbe0b"
+  },
+  {
+    "file": "詳説用ソース/Wally/fpga/src/fpgaTopArtyA7.sv",
+    "commit": "d3e181ac434a01a1f174549b5fbc7ee03a8875b4",
+    "sha256": "2d50ee24e5a6b4d1cc3d14350511c4b1bfc0162b2d0a6daf8326b6d72872bf40"
+  },
+  {
+    "file": "詳説用ソース/Wally/fpga/src/fpgaTopGenesys2.sv",
+    "commit": "d3e181ac434a01a1f174549b5fbc7ee03a8875b4",
+    "sha256": "10453188b70c753d5cd6a7b3cf15b4d824876eeddcb8521725a775384617c8a8"
+  },
+  {
+    "file": "詳説用ソース/Wally/fpga/src/fpgaTopNexysA7.sv",
+    "commit": "d3e181ac434a01a1f174549b5fbc7ee03a8875b4",
+    "sha256": "e9a87dc8e3572c3bd54b5e7f587b373b7bb378e2f3f2be9faf640a72734c3daa"
+  },
+  {
+    "file": "詳説用ソース/Wally/fpga/src/fpgaTopNexysVideo.sv",
+    "commit": "d3e181ac434a01a1f174549b5fbc7ee03a8875b4",
+    "sha256": "3470d6d674634eb9b14bcc7acae5afa380698af71ac75fb82b862425eeed3efc"
+  },
+  {
+    "file": "詳説用ソース/Wally/fpga/src/rasterix.sv",
+    "commit": "d3e181ac434a01a1f174549b5fbc7ee03a8875b4",
+    "sha256": "d3e3c0d2f67a23af728c97c12e4b9417a9cb2426bf3d88ac145c2d2de9e13541"
+  },
+  {
+    "file": "詳説用ソース/Wally/fpga/src/rasterix_apb.sv",
+    "commit": "d3e181ac434a01a1f174549b5fbc7ee03a8875b4",
+    "sha256": "a3680dcf06a248ca7b1a2e18fcf8a7f000fb88247054980fbf61a610916bec20"
+  },
+  {
+    "file": "詳説用ソース/Wally/fpga/src/rasterixdisplay.sv",
+    "commit": "d3e181ac434a01a1f174549b5fbc7ee03a8875b4",
+    "sha256": "690a27a8493c2c8d7d1a688adfa82569ad41de04c4f16b588b65e66ccb199c3c"
+  },
+  {
+    "file": "詳説用ソース/Wally/fpga/src/wallypipelinedsocwrapper.sv",
+    "commit": "d3e181ac434a01a1f174549b5fbc7ee03a8875b4",
+    "sha256": "6105e43cd7660f37ba57c45d2145f51fc474291dcd1e0cafbc6812f83889c996"
+  },
+  {
+    "file": "詳説用ソース/Wally/fpga/zsbl/Makefile",
+    "commit": "d3e181ac434a01a1f174549b5fbc7ee03a8875b4",
+    "sha256": "7f6eb6fb0d77ed8047481835dd48bd3c12481d26fdae9404bcc782e80f047239"
+  },
+  {
+    "file": "詳説用ソース/Wally/fpga/zsbl/bios.S",
+    "commit": "d3e181ac434a01a1f174549b5fbc7ee03a8875b4",
+    "sha256": "153c29f5d25630048074e3a8cfdbc72e0e32b72bd852dc4bcfe16da9ec8608a1"
+  },
+  {
+    "file": "詳説用ソース/Wally/fpga/zsbl/boot.c",
+    "commit": "d3e181ac434a01a1f174549b5fbc7ee03a8875b4",
+    "sha256": "5e961d51ff1b583bb9d605db1d851fdb2302cd2290aed3d557f31a902061aa10"
+  },
+  {
+    "file": "詳説用ソース/Wally/fpga/zsbl/boot.h",
+    "commit": "d3e181ac434a01a1f174549b5fbc7ee03a8875b4",
+    "sha256": "fa1e54c3c8df8d3cc28aabd20e5e876dbca56b62b2483670041b5445396445e1"
+  },
+  {
+    "file": "詳説用ソース/Wally/fpga/zsbl/fail.c",
+    "commit": "d3e181ac434a01a1f174549b5fbc7ee03a8875b4",
+    "sha256": "d74ab0961f953eb362b3f0e3fc443178401bb7b10e4b4a09dfefb2095255708d"
+  },
+  {
+    "file": "詳説用ソース/Wally/fpga/zsbl/fail.h",
+    "commit": "d3e181ac434a01a1f174549b5fbc7ee03a8875b4",
+    "sha256": "ddac1f06b8988c3a4f9787b5561faa9e244f1c476e4d38d96d56b908cb3b7591"
+  },
+  {
+    "file": "詳説用ソース/Wally/fpga/zsbl/gpt.c",
+    "commit": "d3e181ac434a01a1f174549b5fbc7ee03a8875b4",
+    "sha256": "d11566624e5368f032a76a4821dcf9c0f196bb88ddbbf6d002335304c87fb2db"
+  },
+  {
+    "file": "詳説用ソース/Wally/fpga/zsbl/gpt.h",
+    "commit": "d3e181ac434a01a1f174549b5fbc7ee03a8875b4",
+    "sha256": "b99e95e1dc8a2fa369afe098822c6c6b78464b524a6f54d6f2744f2a2076324d"
+  },
+  {
+    "file": "詳説用ソース/Wally/fpga/zsbl/linker1000.x",
+    "commit": "d3e181ac434a01a1f174549b5fbc7ee03a8875b4",
+    "sha256": "31aefdeb1568394e4434ca859dd568d55b0f0fe0ba9446926582631e389ce4ec"
+  },
+  {
+    "file": "詳説用ソース/Wally/fpga/zsbl/riscv.S",
+    "commit": "d3e181ac434a01a1f174549b5fbc7ee03a8875b4",
+    "sha256": "22812d29287bdc3c570d2cfdc3daf19ded1c8356089d22365018cc0bcf43c086"
+  },
+  {
+    "file": "詳説用ソース/Wally/fpga/zsbl/riscv.h",
+    "commit": "d3e181ac434a01a1f174549b5fbc7ee03a8875b4",
+    "sha256": "768f4efa87f39bc0f6fb09322cbc289b994d7aaa048d7f22ba87021f38711f98"
+  },
+  {
+    "file": "詳説用ソース/Wally/fpga/zsbl/sd.c",
+    "commit": "d3e181ac434a01a1f174549b5fbc7ee03a8875b4",
+    "sha256": "de4c21c75eb2ff8bc7bcf58120a2c69d889f410b7f4557812437b1571a41f14d"
+  },
+  {
+    "file": "詳説用ソース/Wally/fpga/zsbl/sd.h",
+    "commit": "d3e181ac434a01a1f174549b5fbc7ee03a8875b4",
+    "sha256": "3d5b29afe152c10c2b469ed1c6f8195c93a91db51ba2f87f54c62375c5436af0"
+  },
+  {
+    "file": "詳説用ソース/Wally/fpga/zsbl/spi.c",
+    "commit": "d3e181ac434a01a1f174549b5fbc7ee03a8875b4",
+    "sha256": "3329dbc70b5bd388767e2dbc089f098e22bc223ad7b1d902161c079d512df631"
+  },
+  {
+    "file": "詳説用ソース/Wally/fpga/zsbl/spi.h",
+    "commit": "d3e181ac434a01a1f174549b5fbc7ee03a8875b4",
+    "sha256": "fc797cf144fe004bd6a02398504efa3bc4625faa1fcc30b254e40eef2dd91508"
+  },
+  {
+    "file": "詳説用ソース/Wally/fpga/zsbl/splitfile.sh",
+    "commit": "d3e181ac434a01a1f174549b5fbc7ee03a8875b4",
+    "sha256": "78303e487f07beca9a0439be4a2125cbfe917e96ed1852558dcdf0fdf28da43b"
+  },
+  {
+    "file": "詳説用ソース/Wally/fpga/zsbl/system.h",
+    "commit": "d3e181ac434a01a1f174549b5fbc7ee03a8875b4",
+    "sha256": "2dda08c065d2ffb6aea3599659234d78feba02c52729bd8c220dcb84f47e53c1"
+  },
+  {
+    "file": "詳説用ソース/Wally/fpga/zsbl/time.c",
+    "commit": "d3e181ac434a01a1f174549b5fbc7ee03a8875b4",
+    "sha256": "54b22255ed2930d69f14b2ce3f9e291e1fbb9d10c4fc8103de36b5ea730aa5c1"
+  },
+  {
+    "file": "詳説用ソース/Wally/fpga/zsbl/time.h",
+    "commit": "d3e181ac434a01a1f174549b5fbc7ee03a8875b4",
+    "sha256": "ecf2319ef3d294b7fd0d343a64ba8f811b9bb11fa3fb75bb3f06de4ee342d0c9"
+  },
+  {
+    "file": "詳説用ソース/Wally/fpga/zsbl/uart.c",
+    "commit": "d3e181ac434a01a1f174549b5fbc7ee03a8875b4",
+    "sha256": "514f2fdce990c3b272d7308b16cbe91a798c8f9e68663449e63ca6f591769394"
+  },
+  {
+    "file": "詳説用ソース/Wally/fpga/zsbl/uart.h",
+    "commit": "d3e181ac434a01a1f174549b5fbc7ee03a8875b4",
+    "sha256": "29e887a0dd7b3e0e49169158427057c033b0186b06b854b7247019d8edf8bad3"
+  },
+  {
+    "file": "詳説用ソース/Wally/linux/br2-external-tree/configs/wally_defconfig",
+    "commit": "d3e181ac434a01a1f174549b5fbc7ee03a8875b4",
+    "sha256": "5979ed99975ef1540bda4691cd55cedcc112407c268d890cdc1c57ad89214a66"
+  },
+  {
+    "file": "詳説用ソース/Wally/linux/devicetree/wally-nexysvideo-rasterix.dts",
+    "commit": "d3e181ac434a01a1f174549b5fbc7ee03a8875b4",
+    "sha256": "4c55cdd7629f459038fb4a72e49517ff1ca1888f145ab4f2db0bddcc8cfdb5b6"
+  },
+  {
+    "file": "詳説用ソース/Wally/linux/sdcard/flash-sd.sh",
+    "commit": "d3e181ac434a01a1f174549b5fbc7ee03a8875b4",
+    "sha256": "d0bfd92f6a8009dc06c123ee0dda0293bdb5a975f837bb0cae3ad74da5f7573f"
+  },
+  {
+    "file": "詳説用ソース/Wally/src/cvw.sv",
+    "commit": "d3e181ac434a01a1f174549b5fbc7ee03a8875b4",
+    "sha256": "0abf20311ff2659f48e5039577e2b03d7b50730bace0bff1df70afac581e7b39"
+  },
+  {
+    "file": "詳説用ソース/Wally/src/mmu/adrdecs.sv",
+    "commit": "d3e181ac434a01a1f174549b5fbc7ee03a8875b4",
+    "sha256": "48fbd52e2bf27d27c9bb4d78f4ca9baaea34d5bf4daaa6bd56b3a30bd092a7fc"
+  },
+  {
+    "file": "詳説用ソース/Wally/src/mmu/pmachecker.sv",
+    "commit": "d3e181ac434a01a1f174549b5fbc7ee03a8875b4",
+    "sha256": "a83d9c9b1cf9d93d262700bc61095061d85cc8f8834842a922941b024c62424a"
+  },
+  {
+    "file": "詳説用ソース/Wally/src/uncore/ahbapbbridge.sv",
+    "commit": "d3e181ac434a01a1f174549b5fbc7ee03a8875b4",
+    "sha256": "1430892d1b4f06c121c07f2e83022b5c979f53ada54f2d455e2030dc73a2daa5"
+  },
+  {
+    "file": "詳説用ソース/Wally/src/uncore/uncore.sv",
+    "commit": "d3e181ac434a01a1f174549b5fbc7ee03a8875b4",
+    "sha256": "a54e39cf638d97cf129bff6282d1a34ae4a1b1f3c3a4a60f02e046414bddf994"
+  },
+  {
+    "file": "詳説用ソース/Wally/src/wally/wallypipelinedsoc.sv",
+    "commit": "d3e181ac434a01a1f174549b5fbc7ee03a8875b4",
+    "sha256": "21b78d95f1392e237feb08838749642e8ce080ee4cf2a2dc13d875954c98c880"
+  },
+  {
+    "file": "詳説用ソース/Wally/testbench/testbench.sv",
+    "commit": "d3e181ac434a01a1f174549b5fbc7ee03a8875b4",
+    "sha256": "a8720c33605033a6c5e4bb7967d87de17282032f254c89467079d6edc29d1ad7"
+  },
+  {
+    "file": "詳説用ソース/Wally/testbench/wallywrapper.sv",
+    "commit": "d3e181ac434a01a1f174549b5fbc7ee03a8875b4",
+    "sha256": "12cd35e8d4bb894df0f1751b7de114e3cdfc4bf4c21a79cff2ab170c51efd423"
+  },
+  {
+    "file": "詳説用ソース/RasterIX/LICENSE",
+    "commit": "9fdcf97a31b2e4247594e06d605871980cd5e9e1",
+    "sha256": "3972dc9744f6499f0f9b2dbf76696f2ae7ad8af9b23dde66d6af86c9dfb36986"
+  },
+  {
+    "file": "詳説用ソース/RasterIX/lib/gl/IBusConnector.hpp",
+    "commit": "9fdcf97a31b2e4247594e06d605871980cd5e9e1",
+    "sha256": "1dc3881ff82b0c2d064bfbd1cef3a399d3970715d227e6ed00239f20124a04f9"
+  },
+  {
+    "file": "詳説用ソース/RasterIX/lib/gl/RenderConfigs.hpp",
+    "commit": "9fdcf97a31b2e4247594e06d605871980cd5e9e1",
+    "sha256": "9b98891443f5948e5e8888b5db35aaabaad2721f6fb9ca43c3265ade96c71920"
+  },
+  {
+    "file": "詳説用ソース/RasterIX/lib/gl/renderer/devicedatauploader/DeviceDataUploader.cpp",
+    "commit": "9fdcf97a31b2e4247594e06d605871980cd5e9e1",
+    "sha256": "7c85407540144b5f0c8507fde1d7c4fd683e1ad64a53f459f56521c8d4c2f11c"
+  },
+  {
+    "file": "詳説用ソース/RasterIX/lib/gl/renderer/displaylist/DisplayListDispatcher.hpp",
+    "commit": "9fdcf97a31b2e4247594e06d605871980cd5e9e1",
+    "sha256": "0d34e7e973f6b430c9c7b3f18c217c148a1bb01224e1e3b471bdfeb76c988d45"
+  },
+  {
+    "file": "詳説用ソース/RasterIX/lib/gl/renderer/displaylist/RIXDisplayListAssembler.hpp",
+    "commit": "9fdcf97a31b2e4247594e06d605871980cd5e9e1",
+    "sha256": "93529fa41f8f04ffa3ef351b8d7659ef422614b09dd2cf41198eb93a9eda3c10"
+  },
+  {
+    "file": "詳説用ソース/RasterIX/lib/gl/renderer/threadedvertextransformer/ThreadedVertexTransformer.hpp",
+    "commit": "9fdcf97a31b2e4247594e06d605871980cd5e9e1",
+    "sha256": "b68752f902d39759e5a360413c7ce0096997686223ea49b0acb8f179bcd22be4"
+  },
+  {
+    "file": "詳説用ソース/RasterIX/lib/threadrunner/NoThreadRunner.hpp",
+    "commit": "9fdcf97a31b2e4247594e06d605871980cd5e9e1",
+    "sha256": "aeeaede12931e8c8921742842ce75e5179533f535839442598ecd1c7957b0eb2"
+  }
+]

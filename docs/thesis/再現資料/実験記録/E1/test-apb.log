@@ -1,0 +1,5 @@
+APB_PASS: 32-bit lanes, FIFO backpressure, response wait, ID and frame count
+- /path/to/research/experiments/rasterix-integration-20260909/tb_apb.sv:46: Verilog $finish
+- S i m u l a t i o n   R e p o r t: Verilator 5.026 2024-06-15
+- Verilator: $finish at 320ps; walltime 0.002 s; speed 0.000 s/s
+- Verilator: cpu 0.000 s on 1 threads; alloced 249 MB

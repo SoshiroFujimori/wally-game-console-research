@@ -1,0 +1,9 @@
+[
+  "finalhdmi-game-controls-01",
+  "--load",
+  "hdmi13-game-load-01",
+  "--seconds",
+  "40",
+  "--keys",
+  "/path/to/research/experiments/breakout-final-20260910/plans/terminal-controls.json"
+]

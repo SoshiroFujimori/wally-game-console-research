@@ -1,0 +1,9 @@
+{
+  "variant": "fifo16",
+  "repeat": 1,
+  "state": 0,
+  "style": "full",
+  "result": "RESULT frames=180 elapsed_s=12.873499450 fps=13.982212 logic_ms=1.024621 api_ms=22.057487 swap_ms=43.734104 wait_ms=4.580023 worker_inclusive_ms=43.504416 upload_inclusive_ms=9.865585 write_ms=9.602207 bytes_per_frame=30951.56 p50_ms=66.878850 p95_ms=83.599600 max_ms=83.601700 late_60hz=180 first_count=2611 last_count=2790 state_hash=8f34e8fd remaining=38 score=20",
+  "counters": "HW_COUNTERS id=46490010 words=1392820 wait_cycles=8068884 longest_wait_cycles=3959 total_cycles=257472527 cpu_hz=20000000",
+  "pixel_check": false
+}

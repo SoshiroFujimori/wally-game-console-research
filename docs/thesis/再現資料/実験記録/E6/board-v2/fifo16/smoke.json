@@ -1,0 +1,5 @@
+{
+  "passed": true,
+  "result": "RESULT frames=180 elapsed_s=3.092816350 fps=58.199382 logic_ms=0.992958 api_ms=3.070052 swap_ms=6.680956 wait_ms=6.290701 worker_inclusive_ms=6.455234 upload_inclusive_ms=3.010418 write_ms=2.837868 bytes_per_frame=3578.67 p50_ms=16.719550 p95_ms=17.059950 max_ms=33.440550 late_60hz=162 first_count=35 last_count=214 state_hash=8f34e8fd remaining=38 score=20",
+  "pixel_check": "FRAME_CHECK count=214 address=9fe00000 fnv1a=79c99b23 pixels=307200 mismatches=0"
+}

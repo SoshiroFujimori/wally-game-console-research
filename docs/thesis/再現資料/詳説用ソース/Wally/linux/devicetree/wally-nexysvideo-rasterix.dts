@@ -1,0 +1,23 @@
+// SPDX-License-Identifier: Apache-2.0 WITH SHL-2.1
+// RasterIX uses the last 32 MiB of DDR3 for display and texture buffers.
+/include/ "wally-nexysvideo.dts"
+
+/ {
+  reserved-memory {
+    #address-cells = <2>;
+    #size-cells = <2>;
+    ranges;
+    rasterix_memory: framebuffer@9e000000 {
+      reg = <0 0x9e000000 0 0x02000000>;
+      no-map;
+    };
+  };
+};
+
+&{/soc} {
+  rasterix@10080000 {
+    compatible = "openhwgroup,wally-rasterix";
+    reg = <0 0x10080000 0 0x100>;
+    memory-region = <&rasterix_memory>;
+  };
+};

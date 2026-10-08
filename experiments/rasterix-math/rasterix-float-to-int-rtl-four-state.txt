@@ -1,0 +1,64 @@
+#-----------------------------------------------------------
+# xsim v2025.2 (64-bit)
+# SW Build 6299465 on Fri Nov 14 12:34:56 MST 2025
+# IP Build 6300035 on Fri Nov 14 10:48:45 MST 2025
+# SharedData Build 6298862 on Thu Nov 13 04:50:51 MST 2025
+# Start of session at: Sat Oct  3 01:49:32 2026
+# Process ID         : 339827
+# Current directory  : /home/researcher/.cache/codex/rasterix-float-to-int-four-state-9fdcf97
+# Command line       : xsim -mode tcl -source {xsim.dir/tb_sim/xsim_script.tcl}
+# Log file           : /home/researcher/.cache/codex/rasterix-float-to-int-four-state-9fdcf97/xsim.log
+# Journal file       : /home/researcher/.cache/codex/rasterix-float-to-int-four-state-9fdcf97/xsim.jou
+# Running On         : RESEARCH-HOST
+# Platform           : Ubuntu
+# Operating System   : Ubuntu 24.04.4 LTS
+# Processor Detail   : AMD Ryzen 9 9950X3D 16-Core Processor
+# CPU Frequency      : 4299.927 MHz
+# CPU Physical cores : 16
+# CPU Logical cores  : 32
+# Host memory        : 49218 MB
+# Swap memory        : 12884 MB
+# Total Virtual      : 62103 MB
+# Available Virtual  : 61323 MB
+#-----------------------------------------------------------
+source xsim.dir/tb_sim/xsim_script.tcl
+# xsim {tb_sim} -autoloadwcfg -runall
+Time resolution is 1 ps
+run -all
+CASE color_pos_0p5_shift0 in=3f000000 offset=-24 out=xxxxxxxx unknown=1 expected=00800000
+INTERNAL sign=0 number=00800000 overflow=0 underflow=0 round=x two_out=xxxxxxxx
+AUDIT_FAIL unknown output for color_pos_0p5_shift0
+CASE color_neg_0p5_shift0 in=bf000000 offset=-24 out=00000001 unknown=0 expected=ff800000
+INTERNAL sign=1 number=00800000 overflow=0 underflow=0 round=x two_out=00000001
+AUDIT_FAIL mismatch for color_neg_0p5_shift0
+CASE color_pos_below1_shift0 in=3f7fffff offset=-24 out=xxxxxxxx unknown=1 expected=00ffffff
+INTERNAL sign=0 number=00ffffff overflow=0 underflow=0 round=x two_out=xxxxxxxx
+AUDIT_FAIL unknown output for color_pos_below1_shift0
+CASE color_neg_above_minus1_shift0 in=bf7fffff offset=-24 out=00000001 unknown=0 expected=ff000001
+INTERNAL sign=1 number=00ffffff overflow=0 underflow=0 round=x two_out=00000001
+AUDIT_FAIL mismatch for color_neg_above_minus1_shift0
+CASE texture_pos_0p03125_shift0 in=3d000000 offset=-28 out=xxxxxxxx unknown=1 expected=00800000
+INTERNAL sign=0 number=00800000 overflow=0 underflow=0 round=x two_out=xxxxxxxx
+AUDIT_FAIL unknown output for texture_pos_0p03125_shift0
+CASE depth_pos_0p0078125_shift0 in=3c000000 offset=-30 out=xxxxxxxx unknown=1 expected=00800000
+INTERNAL sign=0 number=00800000 overflow=0 underflow=0 round=x two_out=xxxxxxxx
+AUDIT_FAIL unknown output for depth_pos_0p0078125_shift0
+CASE color_pos_0p25_shift1 in=3e800000 offset=-24 out=00400000 unknown=0 expected=00400000
+INTERNAL sign=0 number=00400000 overflow=0 underflow=0 round=0 two_out=00400000
+AUDIT_PASS color_pos_0p25_shift1
+CASE color_pos_1_left in=3f800000 offset=-24 out=01000000 unknown=0 expected=01000000
+INTERNAL sign=0 number=01000000 overflow=0 underflow=0 round=0 two_out=01000000
+AUDIT_PASS color_pos_1_left
+CASE color_tiny_shift32 in=2f000000 offset=-24 out=00000000 unknown=0 expected=00000000
+INTERNAL sign=0 number=00800000 overflow=0 underflow=1 round=x two_out=00000000
+AUDIT_PASS color_tiny_shift32
+CASE color_tiny_shift33_lsb1 in=2e800001 offset=-24 out=00000001 unknown=0 expected=00000000
+INTERNAL sign=0 number=00400000 overflow=0 underflow=1 round=1 two_out=00000001
+AUDIT_FAIL mismatch for color_tiny_shift33_lsb1
+CASE color_tiny_negative_shift33_lsb1 in=ae800001 offset=-24 out=ffffffff unknown=0 expected=00000000
+INTERNAL sign=1 number=00400000 overflow=0 underflow=1 round=1 two_out=ffffffff
+AUDIT_FAIL mismatch for color_tiny_negative_shift33_lsb1
+$finish called at time : 656 ns : File "/home/researcher/.cache/codex/rasterix-float-to-int-four-state-9fdcf97/tb.sv" Line 95
+exit
+INFO: xsimkernel Simulation Memory Usage: 277036 KB (Peak: 333600 KB), Simulation CPU Usage: 490 ms
+INFO: [Common 17-206] Exiting xsim at Sat Oct  3 01:49:34 2026...

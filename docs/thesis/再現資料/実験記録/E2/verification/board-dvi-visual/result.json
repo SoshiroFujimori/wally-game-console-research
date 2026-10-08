@@ -1,0 +1,38 @@
+{
+  "passed": true,
+  "bitstreamSha256": "f7bc0386db7da40077f04691feb45e50df4118d513bbe4985a84e00a07d29a13",
+  "commands": [
+    {
+      "label": "precommit-visual-frequency",
+      "elapsed_seconds": 1.3391442550000647,
+      "bytes_received": 494,
+      "command": "printf %s '37245e95179c06979b2e1cabbe0b495df7bb77d67d0b32930d83e6ade24e90ff  /sys/firmware/devicetree/base/cpus/cpu@0/clock-frequency\n37245e95179c06979b2e1cabbe0b495df7bb77d67d0b32930d83e6ade24e90ff  /sys/firmware/devicetree/base/cpus/timebase-frequency\n' | sha256sum -c -",
+      "command_exit": 0,
+      "login_sent": false,
+      "log": "/path/to/research/experiments/breakout-study-20260909/results/20260912T205126Z-precommit-visual-frequency.raw"
+    },
+    {
+      "label": "precommit-visual-game",
+      "elapsed_seconds": 84.57497723699998,
+      "bytes_received": 464,
+      "command": "before=$(stty -g); /tmp/precommit-thirteen/game-5 --demo --seconds 80; status=$?; test \"$status\" = 0 && test \"$(stty -g)\" = \"$before\"",
+      "command_exit": 0,
+      "login_sent": false,
+      "log": "/path/to/research/experiments/breakout-study-20260909/results/20260912T205127Z-precommit-visual-game.raw"
+    },
+    {
+      "label": "precommit-visual-pixels",
+      "elapsed_seconds": 4.075503840999772,
+      "bytes_received": 236,
+      "command": "/tmp/precommit-thirteen/framebuffer-check game 4799",
+      "command_exit": 0,
+      "login_sent": false,
+      "log": "/path/to/research/experiments/breakout-study-20260909/results/20260912T205252Z-precommit-visual-pixels.raw"
+    }
+  ],
+  "score": 400,
+  "lives": 3,
+  "frames": 4654,
+  "ticks": 4799,
+  "elapsed": 80.002
+}

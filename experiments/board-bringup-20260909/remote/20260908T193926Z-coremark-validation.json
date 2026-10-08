@@ -1,0 +1,9 @@
+{
+  "label": "coremark-validation",
+  "elapsed_seconds": 16.369911102001424,
+  "bytes_received": 751,
+  "command": "cd /mnt/nexys-test/nexys-video-tests && ./coremark.exe 0x3415 0x3415 0x66 0 7 1 2000",
+  "command_exit": 0,
+  "login_sent": false,
+  "log": "/path/to/research/experiments/remote-20260909/20260908T193926Z-coremark-validation.raw"
+}

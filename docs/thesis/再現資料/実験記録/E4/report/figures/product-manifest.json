@@ -1,0 +1,12 @@
+[
+  {
+    "name": "product-completion-intervals",
+    "source": "\\\\wsl.localhost\\Ubuntu\\home\\researcher\\nexys-video-tests\\hdmi-recovery-20260910\\finalhdmi-acceptance.json",
+    "sourceSha256": "0cbeb74c744742aa46b46f3cf83785e88243d145d84aa7ad772ad3472a93c77a",
+    "files": {
+      "product-completion-intervals.png": "c17807f2e0450058d358f2bf7c1f77145c17e4fd82d101d54d03ac654ff344e6",
+      "product-completion-intervals.svg": "329983de274720f035fcde8edb51a8b3e1c4681c03daba90c3eb41cfee4064ac",
+      "product-completion-intervals.pdf": "3ac10bd22532d17748b3b9b1e4ea7970c4fa587478decc45928dfaa9e177b474"
+    }
+  }
+]

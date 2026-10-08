@@ -1,0 +1,36 @@
+cmake_minimum_required(VERSION 3.14)
+project(wally_rasterix LANGUAGES C CXX)
+set(CMAKE_CXX_STANDARD 17)
+
+# Match fpganexysvideo_rasterix and its reserved memory.
+# Buffer locations are offsets from GRAM_MEMORY_LOC in the upstream driver.
+set(RIX_CORE_TMU_COUNT 1 CACHE STRING "Texture units")
+set(RIX_CORE_FRAMEBUFFER_SIZE_IN_PIXEL_LG 16 CACHE STRING "Internal framebuffer log2 size")
+# The upstream command processor splits the display across the internal buffer.
+set(RIX_CORE_THREADED_RASTERIZATION true CACHE STRING "Enable the upstream command processor")
+set(RIX_CORE_MAX_DISPLAY_WIDTH 640 CACHE STRING "Display width")
+set(RIX_CORE_MAX_DISPLAY_HEIGHT 480 CACHE STRING "Display height")
+set(RIX_CORE_ENABLE_VSYNC true CACHE STRING "Synchronize framebuffer reuse")
+set(RIX_CORE_GRAM_MEMORY_LOC 0x9e000000 CACHE STRING "Texture memory base")
+# Leave the second buffer on screen; the next context initializes the first.
+set(RIX_CORE_COLOR_BUFFER_LOC_0 0x01c00000 CACHE STRING "System framebuffer")
+set(RIX_CORE_COLOR_BUFFER_LOC_1 0x01e00000 CACHE STRING "First framebuffer")
+set(RIX_CORE_COLOR_BUFFER_LOC_2 0x01c00000 CACHE STRING "Second framebuffer")
+set(RIX_CORE_DEPTH_BUFFER_LOC 0x01a00000 CACHE STRING "Depth buffer")
+set(RIX_CORE_STENCIL_BUFFER_LOC 0x01800000 CACHE STRING "Stencil buffer")
+set(RIX_CORE_NUMBER_OF_TEXTURE_PAGES 4096 CACHE STRING "Texture pages")
+set(RIX_CORE_NUMBER_OF_TEXTURES 256 CACHE STRING "Texture objects")
+add_subdirectory(../../addins/rasterix rasterix)
+add_executable(rasterix-demo main.cpp)
+target_link_libraries(rasterix-demo PRIVATE gl span spdlog::spdlog threadrunner)
+target_include_directories(rasterix-demo PRIVATE ../../addins/rasterix/example/minimal)
+option(WALLY_STATIC "Link the example statically for the FPGA Linux image" ON)
+if(WALLY_STATIC)
+    target_link_options(rasterix-demo PRIVATE -static)
+endif()
+
+add_executable(rasterix-breakout breakout.cpp)
+target_link_libraries(rasterix-breakout PRIVATE gl span spdlog::spdlog threadrunner)
+if(WALLY_STATIC)
+    target_link_options(rasterix-breakout PRIVATE -static)
+endif()

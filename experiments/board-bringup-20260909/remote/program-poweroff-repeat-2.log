@@ -1,0 +1,74 @@
+#-----------------------------------------------------------
+# Vivado v2025.2 (64-bit)
+# SW Build 6299465 on Fri Nov 14 12:34:56 MST 2025
+# IP Build 6300035 on Fri Nov 14 10:48:45 MST 2025
+# SharedData Build 6298862 on Thu Nov 13 04:50:51 MST 2025
+# Start of session at: Wed Sep  9 06:25:43 2026
+# Process ID         : 2223178
+# Current directory  : /path/to/research/experiments/remote-20260909
+# Command line       : vivado -mode batch -nojournal -log program-poweroff-repeat-2.log -source program.tcl -tclargs /path/to/research/experiments/remote-20260909/sd_poweroff_nexysvideo.bit
+# Log file           : /path/to/research/experiments/remote-20260909/program-poweroff-repeat-2.log
+# Journal file       : 
+# Running On         : RESEARCH-HOST
+# Platform           : Ubuntu
+# Operating System   : Ubuntu 24.04.4 LTS
+# Processor Detail   : AMD Ryzen 9 9950X3D 16-Core Processor
+# CPU Frequency      : 4299.893 MHz
+# CPU Physical cores : 16
+# CPU Logical cores  : 32
+# Host memory        : 49218 MB
+# Swap memory        : 12884 MB
+# Total Virtual      : 62103 MB
+# Available Virtual  : 61132 MB
+#-----------------------------------------------------------
+source program.tcl
+# if {$argc != 1} { error "Supply one bitstream path, or read." }
+# set bitfile [lindex $argv 0]
+# if {$bitfile ne "read" && ![file isfile $bitfile]} { error "Bitstream is missing: $bitfile" }
+# open_hw_manager
+# connect_hw_server -url localhost:3121
+INFO: [Labtools 27-2285] Connecting to hw_server url TCP:localhost:3121
+INFO: [Labtools 27-3415] Connecting to cs_server url TCP:localhost:0
+INFO: [Labtools 27-3417] Launching cs_server...
+INFO: [Labtools 27-2221] Launch Output:
+
+
+******** Xilinx cs_server v2025.2.0
+  ****** Build date   : Nov 14 2025-08:16:52
+    **** Build number : 2025.2.1763075812
+      ** Copyright 2017-2022 Xilinx, Inc. All Rights Reserved.
+      ** Copyright 2022-2026 Advanced Micro Devices, Inc. All Rights Reserved.
+
+
+
+# set targets [get_hw_targets -quiet {localhost:3121/xilinx_tcf/Digilent/210276BE7FCBB}]
+# if {[llength $targets] != 1} { error "Expected the single Nexys Video target 210276BE7FCBB: $targets" }
+# current_hw_target [lindex $targets 0]
+# open_hw_target
+INFO: [Labtoolstcl 44-466] Opening hw_target localhost:3121/xilinx_tcf/Digilent/210276BE7FCBB
+# set devices [get_hw_devices -quiet xc7a200t_0]
+# if {[llength $devices] != 1} { error "Expected the single xc7a200t_0 device: $devices" }
+# current_hw_device [lindex $devices 0]
+# if {$bitfile ne "read"} {
+#     set_property PROGRAM.FILE [file normalize $bitfile] [current_hw_device]
+#     program_hw_devices [current_hw_device]
+# }
+INFO: [Labtools 27-3164] End of startup status: HIGH
+program_hw_devices: Time (s): cpu = 00:00:06 ; elapsed = 00:00:06 . Memory (MB): peak = 1648.824 ; gain = 0.000 ; free physical = 42947 ; free virtual = 57838
+# refresh_hw_device [current_hw_device]
+INFO: [Labtools 27-1434] Device xc7a200t (JTAG device index = 0) is programmed with a design that has no supported soft debug core(s) in it.
+# foreach property {PART PROGRAM.FILE REGISTER.CONFIG_STATUS.BIT00_CRC_ERROR REGISTER.CONFIG_STATUS.BIT13_DONE_INTERNAL_SIGNAL_STATUS REGISTER.CONFIG_STATUS.BIT14_DONE_PIN} {
+#     puts "$property = [get_property $property [current_hw_device]]"
+# }
+PART = xc7a200t
+PROGRAM.FILE = /path/to/research/experiments/remote-20260909/sd_poweroff_nexysvideo.bit
+REGISTER.CONFIG_STATUS.BIT00_CRC_ERROR = 0
+REGISTER.CONFIG_STATUS.BIT13_DONE_INTERNAL_SIGNAL_STATUS = 1
+REGISTER.CONFIG_STATUS.BIT14_DONE_PIN = 1
+# if {[get_property REGISTER.CONFIG_STATUS.BIT00_CRC_ERROR [current_hw_device]] ne "0"} { error "Configuration CRC error" }
+# if {[get_property REGISTER.CONFIG_STATUS.BIT14_DONE_PIN [current_hw_device]] ne "1"} { error "FPGA DONE is not asserted" }
+# close_hw_target
+INFO: [Labtoolstcl 44-464] Closing hw_target localhost:3121/xilinx_tcf/Digilent/210276BE7FCBB
+# disconnect_hw_server
+# close_hw_manager
+INFO: [Common 17-206] Exiting Vivado at Wed Sep  9 06:25:54 2026...

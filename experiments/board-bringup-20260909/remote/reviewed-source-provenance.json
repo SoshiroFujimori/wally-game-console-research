@@ -1,0 +1,51 @@
+{
+  "recorded_utc": "2026-09-08T21:30:57.521922+00:00",
+  "head": "dfd37833a7f5d243998e41e301ec1a86178afe2f",
+  "branch": "main",
+  "source_sha256": {
+    "config/derivlist.txt": "6471970fb56c09edcad405e4a5cf7adc4c134d5749bf5782b875ad4fb5313b96",
+    "fpga/README.md": "a25e9941792c3377e273197a39a79da55d285b5f0ba3e04703f81a9e7e6d93ca",
+    "fpga/constraints/constraints-nexysvideo.xdc": "bc68dabf8d08f14c853a0de9f62c4ad033d4f14cdf52a795bda4d814baff644e",
+    "fpga/generator/Makefile": "5eb97c6a8ccab2386ea3448e879d1145e45eb5a1efef634093a4e86e9e028f47",
+    "fpga/generator/ahbaxibridge.tcl": "fd0321f49c78b84e02d0c00fcde9168bf2cb55207b151f67cbf60c23b683eda2",
+    "fpga/generator/clkconverter.tcl": "0c2b269614996f7e59cbe0e0e1fb84c2bf304bfb42fbbfab671100542030f9f7",
+    "fpga/generator/ddr3-nexysvideo.tcl": "5119e717d6a0457f6fd161083a39fae2dea512f7131608e1ce568436efe1d13b",
+    "fpga/generator/mmcm-nexysvideo.tcl": "2bc750311f0a96bb828e93f8eca786f3766667f0095764d2526a6712f8255c0d",
+    "fpga/generator/wally.tcl": "92d3e678a175bd5f3496478e0f03237b1066f879f1f0d73b998a7f9a0f0d0985",
+    "fpga/generator/xlnx_ddr3-nexysvideo-mig.prj": "cc93190fccf1d3840324e3cea0ffde730e9d7756687dba878a79a55549661b81",
+    "fpga/src/fpgaTopNexysVideo.sv": "78db9fdb712aae0ab7ab7d4fcacece70f398fceef2cbe59f401043f7d98aed3e",
+    "linux/devicetree/wally-nexysvideo.dts": "37982e97adf7a5de06b8db52646c4bbaf07625a836b026ab2dc32717c8c06efe"
+  },
+  "changes_since_bitstream_build": [
+    "fpga/README.md"
+  ],
+  "setup_sh_sha256": "02986059e538c74ba6223a11ddff48e1b69efc898fd2f54f1c7f8326fdef6b28",
+  "bitstream": "/path/to/wally-game-console/fpga/generator/WallyFPGA.runs/impl_1/fpgaTop.bit",
+  "bitstream_sha256": "0d562f25ea7ab34ca70d2b87fee9ff53cd4f8f10ff49da2d99291e496b828c3d",
+  "boot_images": {
+    "wally-nexysvideo.dtb": {
+      "size": 2453,
+      "sha256": "9b19f7a291f71022dae87c620975751da0b7180dcf8b8729534d1fa9b5e9e03b"
+    },
+    "fw_jump.bin": {
+      "size": 273008,
+      "sha256": "62dd520c4b4e7aade50a961fe857eef76dde3ccac0a05dcb1214db75eeb8fbfc"
+    },
+    "Image": {
+      "size": 15410176,
+      "sha256": "f6d09e6439be372ae38f313ef894c20460239674b0a3f1581464dadca09d5d79"
+    }
+  },
+  "test_fixture_bitstream_sha256": "2e02bc1c475e1943b6f272db9be16c0c4987bc70b3dc94cf8277b9656d80845a",
+  "coremark_head": "f3e8f2e0941e42961aadcc52750b1b5577c157c9",
+  "package_sha256": {
+    "COREMARK-LICENSE.md": "9577b9c846f61fd69a0d8ac965998c6450c7d8969f71f0bb4a931b91aebad28a",
+    "MEMTESTER-COPYING": "dcc100d4161cc0b7177545ab6e47216f84857cda3843847c792a25289852dcaa",
+    "SHA256SUMS": "1d93ea7de827cc72ea34716db5f4e820552aeb9600e9f1a2ef1517097aec2276",
+    "board-tests.sh": "62dc36099b994fe5ebbf4825e18e3e89248bdfdf79587c48e8f6fa936c883d86",
+    "coremark.exe": "42cbe69b28b1929235af054b20b61282f54e6f105c5f93807bcfd19778775943",
+    "memtester": "4c17a394a48e8c6271381359229e6ba29351da8eaa8e4eaec4607a13cd789adb",
+    "memtester.8": "b982e63ba8755b425cba6a25f16bbea757a73480ba186a8c7ae4de533f8ebe80"
+  },
+  "status": "SOURCE_AND_ARTIFACT_IDENTITY_PASS"
+}

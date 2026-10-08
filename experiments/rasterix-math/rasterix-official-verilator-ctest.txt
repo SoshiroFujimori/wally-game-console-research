@@ -1,0 +1,67 @@
+Test project /path/to/research/build/rasterix-verilator
+      Start  1: frameStreamingCore
+ 1/31 Test  #1: frameStreamingCore ..................   Passed    0.03 sec
+      Start  2: simulationILI9486
+ 2/31 Test  #2: simulationILI9486 ...................   Passed    0.01 sec
+      Start  3: simulationILI9341
+ 3/31 Test  #3: simulationILI9341 ...................   Passed    0.01 sec
+      Start  4: attributeInterpolator
+ 4/31 Test  #4: attributeInterpolator ...............   Passed    0.01 sec
+      Start  5: functionInterpolator
+ 5/31 Test  #5: functionInterpolator ................   Passed    0.01 sec
+      Start  6: textureSampler
+ 6/31 Test  #6: textureSampler ......................   Passed    0.03 sec
+      Start  7: colorInterpolator
+ 7/31 Test  #7: colorInterpolator ...................   Passed    0.01 sec
+      Start  8: texEnv
+ 8/31 Test  #8: texEnv ..............................   Passed    0.07 sec
+      Start  9: stencilOp
+ 9/31 Test  #9: stencilOp ...........................   Passed    0.02 sec
+      Start 10: memoryReadRequestGenerator
+10/31 Test #10: memoryReadRequestGenerator ..........   Passed    0.01 sec
+      Start 11: framebufferSerializer
+11/31 Test #11: framebufferSerializer ...............   Passed    0.01 sec
+      Start 12: streamConcatFifo
+12/31 Test #12: streamConcatFifo ....................   Passed    0.01 sec
+      Start 13: framebufferPacker
+13/31 Test #13: framebufferPacker ...................   Passed    0.02 sec
+      Start 14: framebufferScissor
+14/31 Test #14: framebufferScissor ..................   Passed    0.01 sec
+      Start 15: framebufferMMU
+15/31 Test #15: framebufferMMU ......................   Passed    0.01 sec
+      Start 16: framebufferWriterStrobeGen
+16/31 Test #16: framebufferWriterStrobeGen ..........   Passed    0.01 sec
+      Start 17: framebufferWriterClear
+17/31 Test #17: framebufferWriterClear ..............   Passed    0.01 sec
+      Start 18: framebufferReader
+18/31 Test #18: framebufferReader ...................   Passed    0.01 sec
+      Start 19: lodCalculator
+19/31 Test #19: lodCalculator .......................   Passed    0.03 sec
+      Start 20: attributeInterpolationX
+20/31 Test #20: attributeInterpolationX .............   Passed    0.02 sec
+      Start 21: attributePerspectiveCorrectionX
+21/31 Test #21: attributePerspectiveCorrectionX .....   Passed    0.01 sec
+      Start 22: triangleStreamF2XConverter
+22/31 Test #22: triangleStreamF2XConverter ..........   Passed    0.01 sec
+      Start 23: pagedMemoryReader
+23/31 Test #23: pagedMemoryReader ...................   Passed    0.01 sec
+      Start 24: internalFramebufferCommandHandler
+24/31 Test #24: internalFramebufferCommandHandler ...   Passed    0.01 sec
+      Start 25: axisToAxiAdapter
+25/31 Test #25: axisToAxiAdapter ....................   Passed    0.01 sec
+      Start 26: axisToAxiCrossbar
+26/31 Test #26: axisToAxiCrossbar ...................   Passed    0.02 sec
+      Start 27: logicOp
+27/31 Test #27: logicOp .............................   Passed    0.04 sec
+      Start 28: coalesceFiFo
+28/31 Test #28: coalesceFiFo ........................   Passed    0.01 sec
+      Start 29: coalesceAddrGen
+29/31 Test #29: coalesceAddrGen .....................   Passed    0.02 sec
+      Start 30: streamSemaphore
+30/31 Test #30: streamSemaphore .....................   Passed    0.01 sec
+      Start 31: axiToAvalonBridge
+31/31 Test #31: axiToAvalonBridge ...................   Passed    0.01 sec
+
+100% tests passed, 0 tests failed out of 31
+
+Total Test time (real) =   0.51 sec

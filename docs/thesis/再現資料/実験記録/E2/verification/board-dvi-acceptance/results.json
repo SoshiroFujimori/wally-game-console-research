@@ -1,0 +1,310 @@
+[
+  {
+    "label": "loaded-files-check",
+    "expectedExit": 0,
+    "capture": {
+      "label": "precommit-loaded-files-check",
+      "elapsed_seconds": 0.8112829900001088,
+      "bytes_received": 211,
+      "command": "test ! -e /proc/mounts.missing && test -x /tmp/precommit-thirteen/game-5 && ! grep -q /mnt/precommit-ro /proc/mounts",
+      "command_exit": 0,
+      "login_sent": false,
+      "log": "/path/to/research/experiments/breakout-study-20260909/results/20260912T204339Z-precommit-loaded-files-check.raw"
+    },
+    "passed": true
+  },
+  {
+    "label": "runtime-dvi",
+    "expectedExit": 0,
+    "capture": {
+      "label": "precommit-runtime-dvi",
+      "elapsed_seconds": 0.9123341040003652,
+      "bytes_received": 699,
+      "command": "od -An -tx1 /sys/firmware/devicetree/base/cpus/cpu@0/clock-frequency; od -An -tx1 /sys/firmware/devicetree/base/cpus/timebase-frequency; cat /proc/mounts; ulimit -s",
+      "command_exit": 0,
+      "login_sent": false,
+      "log": "/path/to/research/experiments/breakout-study-20260909/results/20260912T204340Z-precommit-runtime-dvi.raw"
+    },
+    "passed": true
+  },
+  {
+    "label": "old-green-seed",
+    "expectedExit": 0,
+    "capture": {
+      "label": "precommit-old-green-seed",
+      "elapsed_seconds": 7.799165329000061,
+      "bytes_received": 523,
+      "command": "ulimit -s 8192; /tmp/precommit-thirteen/old-demo green 3 && /tmp/precommit-thirteen/framebuffer-check green",
+      "command_exit": 0,
+      "login_sent": false,
+      "log": "/path/to/research/experiments/breakout-study-20260909/results/20260912T204341Z-precommit-old-green-seed.raw"
+    },
+    "passed": true
+  },
+  {
+    "label": "old-short-reproduces",
+    "expectedExit": 1,
+    "capture": {
+      "label": "precommit-old-short-reproduces",
+      "elapsed_seconds": 7.559892357000081,
+      "bytes_received": 459,
+      "command": "/tmp/precommit-thirteen/old-demo red 1 && /tmp/precommit-thirteen/framebuffer-check red",
+      "command_exit": 1,
+      "login_sent": false,
+      "log": "/path/to/research/experiments/breakout-study-20260909/results/20260912T204348Z-precommit-old-short-reproduces.raw"
+    },
+    "passed": true
+  },
+  {
+    "label": "demo-1-red-1",
+    "expectedExit": 0,
+    "capture": {
+      "label": "precommit-demo-1-red-1",
+      "elapsed_seconds": 7.77353556900016,
+      "bytes_received": 453,
+      "command": "/tmp/precommit-thirteen/demo-1 red 1 && /tmp/precommit-thirteen/framebuffer-check red",
+      "command_exit": 0,
+      "login_sent": false,
+      "log": "/path/to/research/experiments/breakout-study-20260909/results/20260912T204356Z-precommit-demo-1-red-1.raw"
+    },
+    "passed": true
+  },
+  {
+    "label": "demo-1-blue-2",
+    "expectedExit": 0,
+    "capture": {
+      "label": "precommit-demo-1-blue-2",
+      "elapsed_seconds": 7.7671991479996905,
+      "bytes_received": 504,
+      "command": "/tmp/precommit-thirteen/demo-1 blue 2 && /tmp/precommit-thirteen/framebuffer-check blue",
+      "command_exit": 0,
+      "login_sent": false,
+      "log": "/path/to/research/experiments/breakout-study-20260909/results/20260912T204404Z-precommit-demo-1-blue-2.raw"
+    },
+    "passed": true
+  },
+  {
+    "label": "demo-1-green-3",
+    "expectedExit": 0,
+    "capture": {
+      "label": "precommit-demo-1-green-3",
+      "elapsed_seconds": 7.75941115400019,
+      "bytes_received": 507,
+      "command": "/tmp/precommit-thirteen/demo-1 green 3 && /tmp/precommit-thirteen/framebuffer-check green",
+      "command_exit": 0,
+      "login_sent": false,
+      "log": "/path/to/research/experiments/breakout-study-20260909/results/20260912T204412Z-precommit-demo-1-green-3.raw"
+    },
+    "passed": true
+  },
+  {
+    "label": "demo-5-red-1",
+    "expectedExit": 0,
+    "capture": {
+      "label": "precommit-demo-5-red-1",
+      "elapsed_seconds": 7.55343471299966,
+      "bytes_received": 453,
+      "command": "/tmp/precommit-thirteen/demo-5 red 1 && /tmp/precommit-thirteen/framebuffer-check red",
+      "command_exit": 0,
+      "login_sent": false,
+      "log": "/path/to/research/experiments/breakout-study-20260909/results/20260912T204419Z-precommit-demo-5-red-1.raw"
+    },
+    "passed": true
+  },
+  {
+    "label": "demo-5-blue-2",
+    "expectedExit": 0,
+    "capture": {
+      "label": "precommit-demo-5-blue-2",
+      "elapsed_seconds": 7.57003366500021,
+      "bytes_received": 504,
+      "command": "/tmp/precommit-thirteen/demo-5 blue 2 && /tmp/precommit-thirteen/framebuffer-check blue",
+      "command_exit": 0,
+      "login_sent": false,
+      "log": "/path/to/research/experiments/breakout-study-20260909/results/20260912T204427Z-precommit-demo-5-blue-2.raw"
+    },
+    "passed": true
+  },
+  {
+    "label": "game-2-early-interrupt",
+    "expectedExit": 0,
+    "capture": {
+      "label": "precommit-game-2-early-interrupt",
+      "elapsed_seconds": 14.657817762999912,
+      "bytes_received": 1120,
+      "command": "(before=$(stty -g); /tmp/precommit-thirteen/game-2 --demo --seconds 5 > /tmp/precommit-startup-2.log 2>&1 & pid=$!; for n in $(seq 1 100); do grep -q \"^Movement continues\" /tmp/precommit-startup-2.log && break; sleep 0.05; done; kill -INT \"$pid\"; wait \"$pid\"; status=$?; cat /tmp/precommit-startup-2.log; test \"$status\" = 0 && test \"$(stty -g)\" = \"$before\" && /tmp/precommit-thirteen/framebuffer-check game 0)",
+      "command_exit": 0,
+      "login_sent": false,
+      "log": "/path/to/research/experiments/breakout-study-20260909/results/20260912T204435Z-precommit-game-2-early-interrupt.raw"
+    },
+    "passed": true
+  },
+  {
+    "label": "game-5-early-interrupt",
+    "expectedExit": 0,
+    "capture": {
+      "label": "precommit-game-5-early-interrupt",
+      "elapsed_seconds": 14.441250080000373,
+      "bytes_received": 1120,
+      "command": "(before=$(stty -g); /tmp/precommit-thirteen/game-5 --demo --seconds 5 > /tmp/precommit-startup-5.log 2>&1 & pid=$!; for n in $(seq 1 100); do grep -q \"^Movement continues\" /tmp/precommit-startup-5.log && break; sleep 0.05; done; kill -INT \"$pid\"; wait \"$pid\"; status=$?; cat /tmp/precommit-startup-5.log; test \"$status\" = 0 && test \"$(stty -g)\" = \"$before\" && /tmp/precommit-thirteen/framebuffer-check game 0)",
+      "command_exit": 0,
+      "login_sent": false,
+      "log": "/path/to/research/experiments/breakout-study-20260909/results/20260912T204449Z-precommit-game-5-early-interrupt.raw"
+    },
+    "passed": true
+  },
+  {
+    "label": "game-2-demo",
+    "expectedExit": 0,
+    "capture": {
+      "label": "precommit-game-2-demo",
+      "elapsed_seconds": 84.83186625400003,
+      "bytes_received": 464,
+      "command": "before=$(stty -g); /tmp/precommit-thirteen/game-2 --demo --seconds 80; status=$?; test \"$status\" = 0 && test \"$(stty -g)\" = \"$before\"",
+      "command_exit": 0,
+      "login_sent": false,
+      "log": "/path/to/research/experiments/breakout-study-20260909/results/20260912T204504Z-precommit-game-2-demo.raw"
+    },
+    "passed": true,
+    "game": {
+      "score": 400,
+      "lives": 3,
+      "frames": 1293,
+      "ticks": 4798,
+      "elapsed": 80.02
+    }
+  },
+  {
+    "label": "game-2-pixels",
+    "expectedExit": 0,
+    "capture": {
+      "label": "precommit-game-2-pixels",
+      "elapsed_seconds": 4.07414795800014,
+      "bytes_received": 236,
+      "command": "/tmp/precommit-thirteen/framebuffer-check game 4798",
+      "command_exit": 0,
+      "login_sent": false,
+      "log": "/path/to/research/experiments/breakout-study-20260909/results/20260912T204629Z-precommit-game-2-pixels.raw"
+    },
+    "passed": true
+  },
+  {
+    "label": "game-3-demo",
+    "expectedExit": 0,
+    "capture": {
+      "label": "precommit-game-3-demo",
+      "elapsed_seconds": 84.81421521200036,
+      "bytes_received": 464,
+      "command": "before=$(stty -g); /tmp/precommit-thirteen/game-3 --demo --seconds 80; status=$?; test \"$status\" = 0 && test \"$(stty -g)\" = \"$before\"",
+      "command_exit": 0,
+      "login_sent": false,
+      "log": "/path/to/research/experiments/breakout-study-20260909/results/20260912T204633Z-precommit-game-3-demo.raw"
+    },
+    "passed": true,
+    "game": {
+      "score": 400,
+      "lives": 3,
+      "frames": 1432,
+      "ticks": 4798,
+      "elapsed": 80.02
+    }
+  },
+  {
+    "label": "game-3-pixels",
+    "expectedExit": 0,
+    "capture": {
+      "label": "precommit-game-3-pixels",
+      "elapsed_seconds": 4.074696381000194,
+      "bytes_received": 236,
+      "command": "/tmp/precommit-thirteen/framebuffer-check game 4798",
+      "command_exit": 0,
+      "login_sent": false,
+      "log": "/path/to/research/experiments/breakout-study-20260909/results/20260912T204758Z-precommit-game-3-pixels.raw"
+    },
+    "passed": true
+  },
+  {
+    "label": "game-4-demo",
+    "expectedExit": 0,
+    "capture": {
+      "label": "precommit-game-4-demo",
+      "elapsed_seconds": 84.61647499399987,
+      "bytes_received": 464,
+      "command": "before=$(stty -g); /tmp/precommit-thirteen/game-4 --demo --seconds 80; status=$?; test \"$status\" = 0 && test \"$(stty -g)\" = \"$before\"",
+      "command_exit": 0,
+      "login_sent": false,
+      "log": "/path/to/research/experiments/breakout-study-20260909/results/20260912T204802Z-precommit-game-4-demo.raw"
+    },
+    "passed": true,
+    "game": {
+      "score": 400,
+      "lives": 3,
+      "frames": 3956,
+      "ticks": 4799,
+      "elapsed": 80.0
+    }
+  },
+  {
+    "label": "game-4-pixels",
+    "expectedExit": 0,
+    "capture": {
+      "label": "precommit-game-4-pixels",
+      "elapsed_seconds": 4.0812349049997465,
+      "bytes_received": 236,
+      "command": "/tmp/precommit-thirteen/framebuffer-check game 4799",
+      "command_exit": 0,
+      "login_sent": false,
+      "log": "/path/to/research/experiments/breakout-study-20260909/results/20260912T204926Z-precommit-game-4-pixels.raw"
+    },
+    "passed": true
+  },
+  {
+    "label": "game-5-demo",
+    "expectedExit": 0,
+    "capture": {
+      "label": "precommit-game-5-demo",
+      "elapsed_seconds": 84.59677814199995,
+      "bytes_received": 464,
+      "command": "before=$(stty -g); /tmp/precommit-thirteen/game-5 --demo --seconds 80; status=$?; test \"$status\" = 0 && test \"$(stty -g)\" = \"$before\"",
+      "command_exit": 0,
+      "login_sent": false,
+      "log": "/path/to/research/experiments/breakout-study-20260909/results/20260912T204930Z-precommit-game-5-demo.raw"
+    },
+    "passed": true,
+    "game": {
+      "score": 400,
+      "lives": 3,
+      "frames": 4654,
+      "ticks": 4799,
+      "elapsed": 80.002
+    }
+  },
+  {
+    "label": "game-5-pixels",
+    "expectedExit": 0,
+    "capture": {
+      "label": "precommit-game-5-pixels",
+      "elapsed_seconds": 4.074846777999937,
+      "bytes_received": 236,
+      "command": "/tmp/precommit-thirteen/framebuffer-check game 4799",
+      "command_exit": 0,
+      "login_sent": false,
+      "log": "/path/to/research/experiments/breakout-study-20260909/results/20260912T205055Z-precommit-game-5-pixels.raw"
+    },
+    "passed": true
+  },
+  {
+    "label": "triangle-final",
+    "expectedExit": 0,
+    "capture": {
+      "label": "precommit-triangle-final",
+      "elapsed_seconds": 4.872304622000229,
+      "bytes_received": 367,
+      "command": "/tmp/precommit-thirteen/demo-5 triangle 60",
+      "command_exit": 0,
+      "login_sent": false,
+      "log": "/path/to/research/experiments/breakout-study-20260909/results/20260912T205059Z-precommit-triangle-final.raw"
+    },
+    "passed": true
+  }
+]

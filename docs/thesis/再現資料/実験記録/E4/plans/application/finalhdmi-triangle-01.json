@@ -1,0 +1,13 @@
+[
+  "finalhdmi-triangle-01",
+  "--load",
+  "hdmi13-extras-load-01",
+  "--seconds",
+  "80",
+  "--payload",
+  "rasterix-demo",
+  "--scene",
+  "triangle",
+  "--frames",
+  "60"
+]

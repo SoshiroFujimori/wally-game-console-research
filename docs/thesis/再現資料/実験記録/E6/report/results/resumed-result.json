@@ -1,0 +1,203 @@
+{
+  "utc": "2026-10-08T13:29:07.174267+00:00",
+  "status": "completed_with_documented_limits",
+  "main_comparison_runs": 90,
+  "reconfiguration_comparison_runs": 18,
+  "comparison_frames": 19440,
+  "comparison_whole_frame_checks": 33,
+  "normal_product": {
+    "passed": true,
+    "finished_utc": "2026-10-08T13:10:03.441904+00:00",
+    "bitstream_sha256": "16173de97a91e711cd7bc5389acd9739807adebedf192efc29fe78f5b96c0acf",
+    "source_manifest": "fresh-product-source.json",
+    "bench_sha256": "65bd34eda88f108465f17bb33f31a28da89d4744d86fbe65bdd7a863912e577b",
+    "game_sha256": "e8fa6130aa47bf6131b1077ebbd03f26e90055a8dcc9c11c8c814322ab71b1ae",
+    "linux_boot": "fresh-product-boot-result.json",
+    "whole_frame_checks": [
+      {
+        "label": "s0-full",
+        "state": 0,
+        "style": "full",
+        "result": "RESULT frames=180 elapsed_s=12.271907150 fps=14.667647 logic_ms=0.961240 api_ms=21.854888 swap_ms=41.894826 wait_ms=3.322266 worker_inclusive_ms=41.656546 upload_inclusive_ms=7.634931 write_ms=7.387794 bytes_per_frame=30951.56 p50_ms=66.877200 p95_ms=83.597350 max_ms=83.601850 late_60hz=180 first_count=35 last_count=214 state_hash=8f34e8fd remaining=38 score=20",
+        "pixel_result": "FRAME_CHECK count=214 address=9fe00000 fnv1a=79c99b23 pixels=307200 mismatches=0"
+      },
+      {
+        "label": "s1800-grouped",
+        "state": 1800,
+        "style": "grouped",
+        "result": "RESULT frames=180 elapsed_s=9.128681750 fps=19.718072 logic_ms=0.884515 api_ms=11.861574 swap_ms=30.692031 wait_ms=7.139727 worker_inclusive_ms=30.473331 upload_inclusive_ms=6.416899 write_ms=6.172886 bytes_per_frame=24140.89 p50_ms=50.158050 p95_ms=50.504900 max_ms=66.878300 late_60hz=180 first_count=249 last_count=428 state_hash=1022e19f remaining=21 score=190",
+        "pixel_result": "FRAME_CHECK count=428 address=9fe00000 fnv1a=9868c45b pixels=307200 mismatches=0"
+      },
+      {
+        "label": "s3600-retained",
+        "state": 3600,
+        "style": "retained",
+        "result": "RESULT frames=180 elapsed_s=3.009425200 fps=59.812086 logic_ms=0.833589 api_ms=2.238946 swap_ms=4.894889 wait_ms=8.601369 worker_inclusive_ms=4.676746 upload_inclusive_ms=1.312599 write_ms=1.159591 bytes_per_frame=3455.56 p50_ms=16.719050 p95_ms=17.003650 max_ms=20.669850 late_60hz=162 first_count=463 last_count=642 state_hash=3933ec17 remaining=6 score=340",
+        "pixel_result": "FRAME_CHECK count=642 address=9fe00000 fnv1a=c250e403 pixels=307200 mismatches=0"
+      },
+      {
+        "label": "post-sequence",
+        "state": 0,
+        "style": "retained",
+        "result": "RESULT frames=180 elapsed_s=3.126466200 fps=57.572988 logic_ms=0.981902 api_ms=3.085050 swap_ms=5.213356 wait_ms=7.940965 worker_inclusive_ms=4.987892 upload_inclusive_ms=1.436515 write_ms=1.226888 bytes_per_frame=3578.67 p50_ms=16.719200 p95_ms=17.172450 max_ms=33.441750 late_60hz=164 first_count=677 last_count=856 state_hash=8f34e8fd remaining=38 score=20",
+        "pixel_result": "FRAME_CHECK count=856 address=9fe00000 fnv1a=79c99b23 pixels=307200 mismatches=0"
+      }
+    ],
+    "continuous_game": "Game ended: score=400 lives=3 frames=17853 ticks=17999 elapsed=300.011 s",
+    "continuous_evidence": "board-v2/latest/continuous-resumed.json",
+    "continuous_scope": "The existing 300-second normal-product run applies to the byte-identical configuration payload. It was not rerun on the fresh .bit file.",
+    "continuous_seconds": 300.011,
+    "completed_swaps": 17853,
+    "note": "Counterless product from a complete new stock-generator run. Pixel and swap counts are distinct from the separately validated 30-second HDMI video. Capture acquisition is intermittent and its cause is unresolved.",
+    "visual_demo": {
+      "command": "/tmp/fifo-game --demo --seconds 75",
+      "exit_code": 0,
+      "game_result": "Game ended: score=390 lives=3 frames=4398 ticks=4499 elapsed=75.003 s",
+      "elapsed_seconds": 75.003,
+      "completed_swaps": 4398,
+      "uart_log": "20261008T131545Z-fresh-product-visual-demo.raw",
+      "video_validation": "/path/to/research/archive\\experiment-fifo-20261008\\results\\video\\validation.json",
+      "video_sha256": "00980e57a0cd75521f56bdad4667ae78ebae17688dd2d7445304e3a1f8e34bc0",
+      "video_duration_seconds": 30.016667,
+      "decoded_frames": 1801,
+      "scope": "Every encoded video frame decoded and checked for the playfield border; white-ball bounding-box motion tracked in the logical 640x480 crop. Full-resolution sampled images verify 4:3 pillarboxing. Encoding rate is not a game-FPS measurement.",
+      "input": "Built-in deterministic demo mode; no physical controller input."
+    }
+  },
+  "source_update": {
+    "wally": "2064ca2bb8a88e3e3ec43753be93d00bef49345b",
+    "rasterix": "9269a01c9bd4c3342bfa70ef8e3cdd751c15c6d0",
+    "committed": false,
+    "pushed": false,
+    "official_rasterix_files_modified": false
+  },
+  "known_limits": [
+    "Upstream parser duplicates texture page addresses under certain valid source gaps and sink stalls; diagnostic candidate not adopted or board-tested.",
+    "Thirty seconds of normal-product gameplay video were decoded and validated. Capture acquisition was intermittent with a byte-identical configuration; the cause and repeated-acquisition reliability remain unresolved.",
+    "Only one four-phase no-queue design and FIFO depths 16/512 were compared; no global optimum or necessity claim."
+  ],
+  "report": "/path/to/research/archive\\experiment-fifo-20261008\\\u7d50\u679c\u3068\u5224\u65ad.md",
+  "supersedes_for_current_status": "PAUSED.json (retained as a historical checkpoint)",
+  "visual_validation": {
+    "passed": true,
+    "video": "/path/to/research/archive\\experiment-fifo-20261008\\results\\video\\breakout-latest-30s.mp4",
+    "sha256": "00980e57a0cd75521f56bdad4667ae78ebae17688dd2d7445304e3a1f8e34bc0",
+    "source_video": "C:\\Users\\researcher\\.codex\\tmp\\rasterix-integration-20260909\\fifo-study-normal-product-40s-20261008\\2026-10-08 22-16-30.mp4",
+    "source_sha256": "69188248e9f48b8a0b0d80ddc326dc90e3f4555cd21078dda6375db4aee240e6",
+    "duration_seconds": 30.016667,
+    "video_stream": {
+      "index": 0,
+      "codec_name": "h264",
+      "codec_long_name": "H.264 / AVC / MPEG-4 AVC / MPEG-4 part 10",
+      "profile": "High",
+      "codec_type": "video",
+      "codec_tag_string": "avc1",
+      "codec_tag": "0x31637661",
+      "width": 1920,
+      "height": 1080,
+      "coded_width": 1920,
+      "coded_height": 1080,
+      "has_b_frames": 1,
+      "sample_aspect_ratio": "1:1",
+      "display_aspect_ratio": "16:9",
+      "pix_fmt": "yuv420p",
+      "level": 42,
+      "color_range": "tv",
+      "color_space": "bt709",
+      "color_transfer": "bt709",
+      "color_primaries": "bt709",
+      "chroma_location": "left",
+      "field_order": "progressive",
+      "refs": 1,
+      "is_avc": "true",
+      "nal_length_size": "4",
+      "id": "0x1",
+      "r_frame_rate": "60/1",
+      "avg_frame_rate": "60/1",
+      "time_base": "1/15360",
+      "start_pts": 0,
+      "start_time": "0.000000",
+      "duration_ts": 461056,
+      "duration": "30.016667",
+      "bit_rate": "6000480",
+      "bits_per_raw_sample": "8",
+      "nb_frames": "1801",
+      "extradata_size": 58,
+      "disposition": {
+        "default": 1,
+        "dub": 0,
+        "original": 0,
+        "comment": 0,
+        "lyrics": 0,
+        "karaoke": 0,
+        "forced": 0,
+        "hearing_impaired": 0,
+        "visual_impaired": 0,
+        "clean_effects": 0,
+        "attached_pic": 0,
+        "timed_thumbnails": 0,
+        "non_diegetic": 0,
+        "captions": 0,
+        "descriptions": 0,
+        "metadata": 0,
+        "dependent": 0,
+        "still_image": 0,
+        "multilayer": 0
+      },
+      "tags": {
+        "language": "und",
+        "handler_name": "OBS Video Handler",
+        "vendor_id": "[0][0][0][0]",
+        "encoder": "obs_nvenc_h264_tex"
+      }
+    },
+    "decoded_frames": 1801,
+    "decode_exit": 0,
+    "frames_with_game_border": 1801,
+    "ball_detected_frames": 1801,
+    "eligible_motion_pairs": 1800,
+    "moving_pairs": 1749,
+    "frames": [
+      {
+        "file": "verified-frame-01.png",
+        "seconds": 1,
+        "black_side_fraction": 1.0,
+        "sha256": "90e3613ae382dd99a6213184172ce6f158699b1139bfad6225cf0ad540397dff"
+      },
+      {
+        "file": "verified-frame-02.png",
+        "seconds": 8,
+        "black_side_fraction": 1.0,
+        "sha256": "0180ae1d1722fef26a47d0fb49df9578495806a8f04e865cec2fc5989216e827"
+      },
+      {
+        "file": "verified-frame-03.png",
+        "seconds": 15,
+        "black_side_fraction": 1.0,
+        "sha256": "c50af49afea5bed77d9911cef4303052416cdefbd5ad9585c6675849f67bec07"
+      },
+      {
+        "file": "verified-frame-04.png",
+        "seconds": 22,
+        "black_side_fraction": 1.0,
+        "sha256": "95aec75422ff20f01f22bb27ee2c1df7ea35dce545529ce993bc0a46c7f1cfd2"
+      },
+      {
+        "file": "verified-frame-05.png",
+        "seconds": 29,
+        "black_side_fraction": 1.0,
+        "sha256": "315751375146286c68f03f6d240dcb0ee7c47eef757bfc3c2465a2d45cf219f0"
+      }
+    ],
+    "recording_cleanup_verified": true,
+    "scope": "Every encoded video frame decoded and checked for the playfield border; white-ball bounding-box motion tracked in the logical 640x480 crop. Full-resolution sampled images verify 4:3 pillarboxing. Encoding rate is not a game-FPS measurement.",
+    "selection": "First 30 seconds of a 40-second recording; the source recording includes the intentional end of the 75-second game run near its end. Original recording and UART log retained.",
+    "bitstream_sha256": "16173de97a91e711cd7bc5389acd9739807adebedf192efc29fe78f5b96c0acf",
+    "input": "Built-in deterministic demo mode; no physical controller input.",
+    "motion_threshold_pixels": 0.9,
+    "longest_consecutive_pairs_below_motion_threshold": 1,
+    "longest_run_frames_without_motion_above_threshold": 2,
+    "metric_note": "The longest-still metric was relabeled to distinguish adjacent pairs from frames and the 0.9-pixel threshold from exact position equality. The measured data were unchanged."
+  },
+  "completed_utc": "2026-10-08T13:29:07.198287+00:00"
+}

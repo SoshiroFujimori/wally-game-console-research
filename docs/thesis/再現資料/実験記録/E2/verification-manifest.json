@@ -1,0 +1,250 @@
+{
+  "abstract-build.json": {
+    "bytes": 775,
+    "sha256": "c09ea46eb3c4416e4c89877841b19e58d16d3dbd52dc6c8835785123041c1bb1"
+  },
+  "abstract-qa.json": {
+    "bytes": 747,
+    "sha256": "23a0eb61c8707db38e98fe35f63bb03a6dbeb0a068ada9968b7b7c213657004d"
+  },
+  "artifact.md": {
+    "bytes": 1898,
+    "sha256": "87eddcc57fffdbb8f80317eab1fe468d73b5b3cdc2b33d797bc07e98e0d25eea"
+  },
+  "board-final-state.json": {
+    "bytes": 314,
+    "sha256": "cc0329c9b4792e7cd531cdaedc5154567ca5c11c601cba847d568de78e8d4a2a"
+  },
+  "board-final-state.raw": {
+    "bytes": 1752,
+    "sha256": "fd70f989f74356ad91c141c35253ea7c1e83de431a2060e800349575abd12b27"
+  },
+  "build-results.json": {
+    "bytes": 1349,
+    "sha256": "342746c95bafe7b44d283272623fc7f34ff4601e1fcc2803c7bdfe93854d67c0"
+  },
+  "commits.json": {
+    "bytes": 1605,
+    "sha256": "98f7cf4381a739fe94ed56b5e4be7734b88448654d9ec8b0760aa4b0a7af04dc"
+  },
+  "dvi-boot.json": {
+    "bytes": 374,
+    "sha256": "60691f79404ede28291db07e8ae32ca106206e0ff77bccd6d561f69a01a30083"
+  },
+  "dvi-visual-plan.json": {
+    "bytes": 1831,
+    "sha256": "a6c2a45ad2c065ecc292517fcbef5b2acb9dea97fe754ead4989b8a581d333d3"
+  },
+  "final-patches.json": {
+    "bytes": 1561,
+    "sha256": "c5c09e8856444b154665055313136dbcba4108a920ca81d66bbe5938018b840a"
+  },
+  "game-clear.png": {
+    "bytes": 29312,
+    "sha256": "b029cdf41dc16ed2aa2fccf320e63aeb5f64b82a51054519e999246f3fa5503c"
+  },
+  "game-dvi.mp4": {
+    "bytes": 71415299,
+    "sha256": "78f6d991674cf1e94c16595b209d78e6db0e608f6aad0643570a0005c66e3f80"
+  },
+  "game-dvi.png": {
+    "bytes": 36144,
+    "sha256": "39ffa77543c3f792b8f6cb8839578d490b06306f4c0516ed6fb5b2fe38345a3a"
+  },
+  "hardware-source-verification.json": {
+    "bytes": 4315,
+    "sha256": "420cc4cb7235d17c1af58aea96a7a10189df0d8c392eaa098b03de8d764e8da6"
+  },
+  "hdmi-all-frames.csv": {
+    "bytes": 341815,
+    "sha256": "2e71f031450ec42aa0897187f098d031105c1153fd6c236adf79db2587450cca"
+  },
+  "hdmi-analysis.json": {
+    "bytes": 2141,
+    "sha256": "cfde586d80d40f4dc5c9e8053b5bffe71a80cc7930694d7dac221572630a99f0"
+  },
+  "hdmi-ffprobe.json": {
+    "bytes": 4058,
+    "sha256": "94dca4b3bf3cdf651429ccb36d040e64b99a276fc78df9340a975369248f89f8"
+  },
+  "hdmi-full-decode.log": {
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  "obs-cleanup.json": {
+    "bytes": 1919,
+    "sha256": "fc308ac0bd50783189a11319991530cac5225eb688ddc71b6922c9e4ea11f6da"
+  },
+  "recording.json": {
+    "bytes": 4698,
+    "sha256": "816556ec4bf047a2a5ddce2d82daa0e0df98fbd6f400bd20cf189d23d16a4f5f"
+  },
+  "sdwire-rebind-result.json": {
+    "bytes": 1090,
+    "sha256": "94f0399e6fdb08a71a16043a84166be3d740540d6ef3564d33669667deb6ed71"
+  },
+  "source-binary-recheck.json": {
+    "bytes": 1533,
+    "sha256": "c0eb9e02f2506364c81dc8065a3f4a4c1522e4fac90e1ec13a1d1b238cd3e5e8"
+  },
+  "stages.json": {
+    "bytes": 3667,
+    "sha256": "2d23dff3ed2e38bb197d7da8a86489c0b3a403097248a20c99fa244870198256"
+  },
+  "video-checks.json": {
+    "bytes": 2927,
+    "sha256": "b37929d6562708cea0c18d76aff17a135cc52f4507cdd06705737c5bcea6632d"
+  },
+  "visual-transform.json": {
+    "bytes": 1987,
+    "sha256": "02eb391ebcf196e33fff24bd48fd37d036729568195e6e87d61611817427b5a0"
+  },
+  "board-dvi/load-continuation.json": {
+    "bytes": 107,
+    "sha256": "7a3ddf146f47f49f159daad9b523b32055a300dd7e0753e4b383fb72f1f4fe61"
+  },
+  "board-dvi-acceptance/demo-1-blue-2.log": {
+    "bytes": 874,
+    "sha256": "4509e95b662f61cc16d239a26ab276e171ab81b3a6066eff78a0a6998054d1cc"
+  },
+  "board-dvi-acceptance/demo-1-green-3.log": {
+    "bytes": 879,
+    "sha256": "688d88674ea4b7de1ccd1fe96a1d42d9bf67154a1e0f10deeb9dc2c22f423dc8"
+  },
+  "board-dvi-acceptance/demo-1-red-1.log": {
+    "bytes": 817,
+    "sha256": "4eb742c8f88c4118432d18eb5d3266c0d42e368427b08e40637b327e57003044"
+  },
+  "board-dvi-acceptance/demo-5-blue-2.log": {
+    "bytes": 872,
+    "sha256": "42ffdede65cdabab30dc5b140418efe5117c968b8ae03eb1df97a6f239fbf444"
+  },
+  "board-dvi-acceptance/demo-5-red-1.log": {
+    "bytes": 817,
+    "sha256": "e65aba7714792ceff0b307895f343040a19d74afafca0d6020c18a4e711d4ea1"
+  },
+  "board-dvi-acceptance/game-2-demo.log": {
+    "bytes": 881,
+    "sha256": "dc8f462ac80c8cc74188e3bd65fdca9e1d34f4efcc55d6b3587078d29306ee72"
+  },
+  "board-dvi-acceptance/game-2-early-interrupt.log": {
+    "bytes": 1843,
+    "sha256": "ba5fb9bac284c30fc7a65c5dafc41ac1aacf41b8e7bf9d1ba05ebb9988d0404c"
+  },
+  "board-dvi-acceptance/game-2-pixels.log": {
+    "bytes": 568,
+    "sha256": "3dc2e8e2d47d22e4d33e624e1cb59b7ca44c3fdb8067e66aac765c456c786c60"
+  },
+  "board-dvi-acceptance/game-3-demo.log": {
+    "bytes": 881,
+    "sha256": "89c70ef5edb6a5458ffb018c3e9ed2393d90ce75c9c1ab88abcdb00ee76c9bb0"
+  },
+  "board-dvi-acceptance/game-3-pixels.log": {
+    "bytes": 569,
+    "sha256": "99945d657b5e95c406e7bcd74e685b6a3a1fe97f7f9ea3c3a036eee19d409da8"
+  },
+  "board-dvi-acceptance/game-4-demo.log": {
+    "bytes": 881,
+    "sha256": "f557faea2c32bef9a44e62fe9ebbfe79e7baa92a9868d0a328293ed0571b224a"
+  },
+  "board-dvi-acceptance/game-4-pixels.log": {
+    "bytes": 570,
+    "sha256": "fbb373bef936654f95c6fe424430356a5fe45a3c3d0a7a20cffeb5e3fef51a4f"
+  },
+  "board-dvi-acceptance/game-5-demo.log": {
+    "bytes": 881,
+    "sha256": "c86045ee013a143215df5ce32c7521eb8067dfe67dd953a38171946024885b85"
+  },
+  "board-dvi-acceptance/game-5-early-interrupt.log": {
+    "bytes": 1843,
+    "sha256": "14288a6f71652e86fb145a6bc96b77f36c908d1e03c2d281a96e874bbf27f661"
+  },
+  "board-dvi-acceptance/game-5-pixels.log": {
+    "bytes": 569,
+    "sha256": "494ebdf913d955933f1168f4a7bcfe2110b3b0b43e92b19dff38b0ff421c650f"
+  },
+  "board-dvi-acceptance/loaded-files-check.log": {
+    "bytes": 620,
+    "sha256": "f912580a9a101eb176c7067d9a7e81008f3c2add0bfba22b5ed8490abd28d82e"
+  },
+  "board-dvi-acceptance/old-green-seed.log": {
+    "bytes": 914,
+    "sha256": "dc806c7eedcd06955a217677d688e2f7d339f1b5b933e1ecf8f595292e61f647"
+  },
+  "board-dvi-acceptance/old-short-reproduces.log": {
+    "bytes": 842,
+    "sha256": "9ed9101021cbf835c9ca8007af3c74a4746e5afb0e29f476beaa5703cfd39e92"
+  },
+  "board-dvi-acceptance/results.json": {
+    "bytes": 11459,
+    "sha256": "8495ded2e1e721f11c7d696b447ff9e30387fd34bb987057f47dba174a027320"
+  },
+  "board-dvi-acceptance/runtime-dvi.log": {
+    "bytes": 1142,
+    "sha256": "f7e523d41c4b30a7115d24ba2a937d26bfbe433baf1ed74698fda33bea6c1a28"
+  },
+  "board-dvi-acceptance/triangle-final.log": {
+    "bytes": 693,
+    "sha256": "0f28e1fcd42e67c593554af5da2f6ff8dca71e63b7a1e00e5234a3f964a271bc"
+  },
+  "board-dvi-visual/frequency.log": {
+    "bytes": 1057,
+    "sha256": "fb867b527faa4cad36091e0c02f95e6f4af773816ab0385ed12fa92a5f288ea6"
+  },
+  "board-dvi-visual/game.log": {
+    "bytes": 881,
+    "sha256": "6e0d46e770c8aab6bb5e525e0578060b8aa9433cc4cd05914dbef5fc0444ea9c"
+  },
+  "board-dvi-visual/pixels.log": {
+    "bytes": 569,
+    "sha256": "13fcb4c12ae8f3e2564c54d790a488f1f109494820126467aecb04058efac2da"
+  },
+  "board-dvi-visual/result.json": {
+    "bytes": 1657,
+    "sha256": "b45f663ba32b8249b705a65ba69ab6ab359e3c8b528cb45df455f629cc0581a4"
+  },
+  "commit-messages/01.txt": {
+    "bytes": 671,
+    "sha256": "05f80b5d93a1cb5f921b703ccb9b16e3729171ac6592249cbfbae03d0209f142"
+  },
+  "commit-messages/02.txt": {
+    "bytes": 653,
+    "sha256": "e55ef7e43bf8af6f0ab05b42d96d2d889733505ace84015411436984f62dbd67"
+  },
+  "commit-messages/03.txt": {
+    "bytes": 390,
+    "sha256": "ea269bcf575e14aff05ae9b2bcb21089e378950561c003a7d155e33c1286bee7"
+  },
+  "commit-messages/04.txt": {
+    "bytes": 619,
+    "sha256": "06c2bd3ec0d216eb9797214c7f57a781002abd3fa6ba94516b2b94278a047361"
+  },
+  "commit-messages/05.txt": {
+    "bytes": 512,
+    "sha256": "5317621e5a9b3252c1e2fd8365ab604f28b9d1402babab93c4308682a9c9fb4a"
+  },
+  "final-patches/01.patch": {
+    "bytes": 2774,
+    "sha256": "4a034f81627cf90e094d083050f67ba207afe58516f1cca161fc38c9bb7687a8"
+  },
+  "final-patches/02.patch": {
+    "bytes": 21777,
+    "sha256": "15a4e7fe9843d714b07cee2d7abee59def5b280d5db8ab04687b862b9a0dcee2"
+  },
+  "final-patches/03.patch": {
+    "bytes": 983,
+    "sha256": "bca2f053c1b791e7e9da99a910f898978c6c3c4b7f2726ab680922e199bba14f"
+  },
+  "final-patches/04.patch": {
+    "bytes": 7486,
+    "sha256": "9952156ccfa6b33a6b46b9896bbff03d9d84e86da0fb6f1ae721e14469c2a252"
+  },
+  "final-patches/05.patch": {
+    "bytes": 719,
+    "sha256": "cb666bf53aae357b736b46be71c22a6ade8407ddb9b5c8957f11447177076b09"
+  },
+  "host-checks/results.json": {
+    "bytes": 320,
+    "sha256": "2cdacd8a614ce1b610b07b731dbe4729880477c387fc322f8063c2496d05314e"
+  }
+}

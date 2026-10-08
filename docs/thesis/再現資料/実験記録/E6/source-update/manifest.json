@@ -1,0 +1,8 @@
+{
+  "utc": "2026-10-08T13:37:42.705474+00:00",
+  "base_parent_commit": "cdf907bc1752b0f300e4fc70b9a51b2bae983b7f",
+  "wally_upstream": "2064ca2bb8a88e3e3ec43753be93d00bef49345b",
+  "rasterix": "9269a01c9bd4c3342bfa70ef8e3cdd751c15c6d0",
+  "patch_sha256": "286e510d52beda84976e4cc0cc0982f483fc5197901954b1063b2e830fe1c32e",
+  "scope": "Working tree diff from the parent HEAD, including uncommitted upstream merge, submodule pointer and three local product edits. No commit or push made."
+}

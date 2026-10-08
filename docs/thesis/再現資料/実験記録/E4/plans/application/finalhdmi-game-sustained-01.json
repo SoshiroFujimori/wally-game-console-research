@@ -1,0 +1,10 @@
+[
+  "finalhdmi-game-sustained-01",
+  "--load",
+  "hdmi13-game-load-01",
+  "--seconds",
+  "900",
+  "--demo",
+  "--keys",
+  "/path/to/research/experiments/hdmi-recovery-20260910/plans/sustained-keys.json"
+]

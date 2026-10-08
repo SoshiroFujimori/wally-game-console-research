@@ -1,0 +1,9 @@
+{
+  "label": "boot-repeat-2",
+  "elapsed_seconds": 93.55745339999885,
+  "bytes_received": 13941,
+  "command": null,
+  "command_exit": null,
+  "login_sent": true,
+  "log": "/path/to/research/experiments/remote-20260909/20260908T212615Z-boot-repeat-2.raw"
+}

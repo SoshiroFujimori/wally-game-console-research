@@ -1,0 +1,9 @@
+{
+  "label": "before-repeat-3",
+  "elapsed_seconds": 0.8422313749997556,
+  "bytes_received": 230,
+  "command": "cd / && umount /mnt/nexys-test && sync",
+  "command_exit": 0,
+  "login_sent": false,
+  "log": "/path/to/research/experiments/remote-20260909/20260908T212835Z-before-repeat-3.raw"
+}

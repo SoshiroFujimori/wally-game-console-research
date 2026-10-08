@@ -1,0 +1,9 @@
+{
+  "label": "ddr-memory",
+  "elapsed_seconds": 6115.227348712,
+  "bytes_received": 131471,
+  "command": "sh /mnt/nexys-test/nexys-video-tests/board-tests.sh memory",
+  "command_exit": 0,
+  "login_sent": false,
+  "log": "/path/to/research/experiments/remote-20260909/20260908T194035Z-ddr-memory.raw"
+}

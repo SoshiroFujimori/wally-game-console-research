@@ -1,0 +1,232 @@
+
+****** Vivado v2025.2 (64-bit)
+  **** SW Build 6299465 on Fri Nov 14 12:34:56 MST 2025
+  **** IP Build 6300035 on Fri Nov 14 10:48:45 MST 2025
+  **** SharedData Build 6298862 on Thu Nov 13 04:50:51 MST 2025
+  **** Start of session at: Sat Oct  3 01:49:41 2026
+    ** Copyright 1986-2022 Xilinx, Inc. All Rights Reserved.
+    ** Copyright 2022-2025 Advanced Micro Devices, Inc. All Rights Reserved.
+
+source /home/researcher/.cache/codex/rasterix-float-to-int-post-synth-9fdcf97/synth.tcl
+# set repo [lindex $argv 0]
+# set out [lindex $argv 1]
+# read_verilog -sv "$repo/rtl/Float/rtl/float/ValueDelay.v"
+# read_verilog -sv "$repo/rtl/Float/rtl/float/FloatToInt.v"
+# read_verilog -sv "$out/wrapper.sv"
+# synth_design -top FloatToIntAuditTop -part xc7a200tsbg484-1 -mode out_of_context
+Command: synth_design -top FloatToIntAuditTop -part xc7a200tsbg484-1 -mode out_of_context
+Starting synth_design
+Attempting to get a license for feature 'Synthesis' and/or device 'xc7a200t'
+INFO: [Common 17-349] Got license for feature 'Synthesis' and/or device 'xc7a200t'
+INFO: [Synth 8-7079] Multithreading enabled for synth_design using a maximum of 7 processes.
+INFO: [Synth 8-7078] Launching helper process for spawning children vivado processes
+INFO: [Synth 8-7075] Helper process launched with PID 339991
+---------------------------------------------------------------------------------
+Starting Synthesize : Time (s): cpu = 00:00:02 ; elapsed = 00:00:03 . Memory (MB): peak = 2046.266 ; gain = 439.172 ; free physical = 41771 ; free virtual = 57429
+---------------------------------------------------------------------------------
+INFO: [Synth 8-6157] synthesizing module 'FloatToIntAuditTop' [/home/researcher/.cache/codex/rasterix-float-to-int-post-synth-9fdcf97/wrapper.sv:1]
+INFO: [Synth 8-6157] synthesizing module 'FloatToInt' [/path/to/wally-game-console/addins/rasterix/rtl/Float/rtl/float/FloatToInt.v:21]
+	Parameter MANTISSA_SIZE bound to: 23 - type: integer 
+	Parameter EXPONENT_SIZE bound to: 8 - type: integer 
+	Parameter INT_SIZE bound to: 32 - type: integer 
+	Parameter DELAY bound to: 0 - type: integer 
+INFO: [Synth 8-6157] synthesizing module 'ValueDelay' [/path/to/wally-game-console/addins/rasterix/rtl/Float/rtl/float/ValueDelay.v:23]
+	Parameter VALUE_SIZE bound to: 32 - type: integer 
+	Parameter DELAY bound to: 0 - type: integer 
+INFO: [Synth 8-6155] done synthesizing module 'ValueDelay' (0#1) [/path/to/wally-game-console/addins/rasterix/rtl/Float/rtl/float/ValueDelay.v:23]
+INFO: [Synth 8-6155] done synthesizing module 'FloatToInt' (0#1) [/path/to/wally-game-console/addins/rasterix/rtl/Float/rtl/float/FloatToInt.v:21]
+INFO: [Synth 8-6155] done synthesizing module 'FloatToIntAuditTop' (0#1) [/home/researcher/.cache/codex/rasterix-float-to-int-post-synth-9fdcf97/wrapper.sv:1]
+WARNING: [Synth 8-6014] Unused sequential element Unpack.exponent_reg was removed.  [/path/to/wally-game-console/addins/rasterix/rtl/Float/rtl/float/FloatToInt.v:70]
+WARNING: [Synth 8-6014] Unused sequential element Unpack.number_reg was removed.  [/path/to/wally-game-console/addins/rasterix/rtl/Float/rtl/float/FloatToInt.v:73]
+WARNING: [Synth 8-6014] Unused sequential element Unpack.shiftLeft_reg was removed.  [/path/to/wally-game-console/addins/rasterix/rtl/Float/rtl/float/FloatToInt.v:75]
+WARNING: [Synth 8-6014] Unused sequential element Unpack.signedShiftSize_reg was removed.  [/path/to/wally-game-console/addins/rasterix/rtl/Float/rtl/float/FloatToInt.v:78]
+WARNING: [Synth 8-6014] Unused sequential element Unpack.shiftSize_reg was removed.  [/path/to/wally-game-console/addins/rasterix/rtl/Float/rtl/float/FloatToInt.v:84]
+WARNING: [Synth 8-6014] Unused sequential element Pack.underflow_reg was removed.  [/path/to/wally-game-console/addins/rasterix/rtl/Float/rtl/float/FloatToInt.v:114]
+WARNING: [Synth 8-6014] Unused sequential element Pack.number_reg was removed.  [/path/to/wally-game-console/addins/rasterix/rtl/Float/rtl/float/FloatToInt.v:115]
+WARNING: [Synth 8-6014] Unused sequential element Pack.overflow_reg was removed.  [/path/to/wally-game-console/addins/rasterix/rtl/Float/rtl/float/FloatToInt.v:128]
+WARNING: [Synth 8-6014] Unused sequential element Pack.sign_reg was removed.  [/path/to/wally-game-console/addins/rasterix/rtl/Float/rtl/float/FloatToInt.v:129]
+WARNING: [Synth 8-7129] Port clk in module ValueDelay is either unconnected or has no load
+WARNING: [Synth 8-7129] Port ce in module ValueDelay is either unconnected or has no load
+---------------------------------------------------------------------------------
+Finished Synthesize : Time (s): cpu = 00:00:03 ; elapsed = 00:00:04 . Memory (MB): peak = 2131.234 ; gain = 524.141 ; free physical = 41670 ; free virtual = 57327
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Constraint Validation : Time (s): cpu = 00:00:03 ; elapsed = 00:00:04 . Memory (MB): peak = 2143.109 ; gain = 536.016 ; free physical = 41669 ; free virtual = 57327
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Loading Part and Timing Information
+---------------------------------------------------------------------------------
+Loading part: xc7a200tsbg484-1
+INFO: [Device 21-403] Loading part xc7a200tsbg484-1
+---------------------------------------------------------------------------------
+Finished Loading Part and Timing Information : Time (s): cpu = 00:00:03 ; elapsed = 00:00:04 . Memory (MB): peak = 2143.109 ; gain = 536.016 ; free physical = 41669 ; free virtual = 57326
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished RTL Optimization Phase 2 : Time (s): cpu = 00:00:04 ; elapsed = 00:00:04 . Memory (MB): peak = 2176.938 ; gain = 569.844 ; free physical = 41634 ; free virtual = 57291
+---------------------------------------------------------------------------------
+No constraint files found.
+---------------------------------------------------------------------------------
+Start RTL Component Statistics 
+---------------------------------------------------------------------------------
+Detailed RTL Component Info : 
++---Adders : 
+	   2 Input   32 Bit       Adders := 2     
+	   3 Input    9 Bit       Adders := 1     
+	   2 Input    8 Bit       Adders := 1     
+	   2 Input    5 Bit       Adders := 2     
++---Registers : 
+	               32 Bit    Registers := 2     
+	                1 Bit    Registers := 4     
++---Muxes : 
+	   2 Input   32 Bit        Muxes := 3     
+	   2 Input    5 Bit        Muxes := 1     
+---------------------------------------------------------------------------------
+Finished RTL Component Statistics 
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Part Resource Summary
+---------------------------------------------------------------------------------
+Part Resources:
+DSPs: 740 (col length:100)
+BRAMs: 730 (col length: RAMB18 100 RAMB36 50)
+---------------------------------------------------------------------------------
+Finished Part Resource Summary
+---------------------------------------------------------------------------------
+No constraint files found.
+---------------------------------------------------------------------------------
+Start Cross Boundary and Area Optimization
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Cross Boundary and Area Optimization : Time (s): cpu = 00:00:06 ; elapsed = 00:00:07 . Memory (MB): peak = 2339.930 ; gain = 732.836 ; free physical = 41470 ; free virtual = 57128
+---------------------------------------------------------------------------------
+No constraint files found.
+---------------------------------------------------------------------------------
+Start Timing Optimization
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Timing Optimization : Time (s): cpu = 00:00:06 ; elapsed = 00:00:07 . Memory (MB): peak = 2342.898 ; gain = 735.805 ; free physical = 41471 ; free virtual = 57129
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Technology Mapping
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Technology Mapping : Time (s): cpu = 00:00:06 ; elapsed = 00:00:07 . Memory (MB): peak = 2350.906 ; gain = 743.812 ; free physical = 41460 ; free virtual = 57117
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start IO Insertion
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Flattening Before IO Insertion
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Flattening Before IO Insertion
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Final Netlist Cleanup
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Final Netlist Cleanup
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished IO Insertion : Time (s): cpu = 00:00:08 ; elapsed = 00:00:09 . Memory (MB): peak = 2501.719 ; gain = 894.625 ; free physical = 41328 ; free virtual = 56986
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Renaming Generated Instances
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Renaming Generated Instances : Time (s): cpu = 00:00:08 ; elapsed = 00:00:09 . Memory (MB): peak = 2501.719 ; gain = 894.625 ; free physical = 41328 ; free virtual = 56986
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Rebuilding User Hierarchy
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Rebuilding User Hierarchy : Time (s): cpu = 00:00:08 ; elapsed = 00:00:09 . Memory (MB): peak = 2501.719 ; gain = 894.625 ; free physical = 41328 ; free virtual = 56986
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Renaming Generated Ports
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Renaming Generated Ports : Time (s): cpu = 00:00:08 ; elapsed = 00:00:09 . Memory (MB): peak = 2501.719 ; gain = 894.625 ; free physical = 41328 ; free virtual = 56986
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Handling Custom Attributes
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Handling Custom Attributes : Time (s): cpu = 00:00:08 ; elapsed = 00:00:09 . Memory (MB): peak = 2501.719 ; gain = 894.625 ; free physical = 41328 ; free virtual = 56986
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Renaming Generated Nets
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Renaming Generated Nets : Time (s): cpu = 00:00:08 ; elapsed = 00:00:09 . Memory (MB): peak = 2501.719 ; gain = 894.625 ; free physical = 41328 ; free virtual = 56985
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Writing Synthesis Report
+---------------------------------------------------------------------------------
+
+Report BlackBoxes: 
++-+--------------+----------+
+| |BlackBox name |Instances |
++-+--------------+----------+
++-+--------------+----------+
+
+Report Cell Usage: 
++------+-------+------+
+|      |Cell   |Count |
++------+-------+------+
+|1     |CARRY4 |    19|
+|2     |LUT1   |    33|
+|3     |LUT2   |    39|
+|4     |LUT3   |    22|
+|5     |LUT4   |    46|
+|6     |LUT5   |    33|
+|7     |LUT6   |   114|
+|8     |FDRE   |    68|
++------+-------+------+
+
+Report Instance Areas: 
++------+---------+-----------+------+
+|      |Instance |Module     |Cells |
++------+---------+-----------+------+
+|1     |top      |           |   374|
+|2     |  core   |FloatToInt |   374|
++------+---------+-----------+------+
+---------------------------------------------------------------------------------
+Finished Writing Synthesis Report : Time (s): cpu = 00:00:08 ; elapsed = 00:00:09 . Memory (MB): peak = 2501.719 ; gain = 894.625 ; free physical = 41328 ; free virtual = 56985
+---------------------------------------------------------------------------------
+Synthesis finished with 0 errors, 0 critical warnings and 11 warnings.
+Synthesis Optimization Runtime : Time (s): cpu = 00:00:08 ; elapsed = 00:00:09 . Memory (MB): peak = 2501.719 ; gain = 894.625 ; free physical = 41328 ; free virtual = 56985
+Synthesis Optimization Complete : Time (s): cpu = 00:00:08 ; elapsed = 00:00:09 . Memory (MB): peak = 2501.727 ; gain = 894.625 ; free physical = 41328 ; free virtual = 56985
+INFO: [Project 1-571] Translating synthesized netlist
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 2516.594 ; gain = 0.000 ; free physical = 41478 ; free virtual = 57135
+INFO: [Netlist 29-17] Analyzing 19 Unisim elements for replacement
+INFO: [Netlist 29-28] Unisim Transformation completed in 0 CPU seconds
+INFO: [Project 1-570] Preparing netlist for logic optimization
+INFO: [Opt 31-138] Pushed 0 inverter(s) to 0 load pin(s).
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 2662.207 ; gain = 0.000 ; free physical = 41375 ; free virtual = 57032
+INFO: [Project 1-111] Unisim Transformation Summary:
+No Unisim elements were transformed.
+
+Synth Design complete | Checksum: dd91380c
+INFO: [Common 17-83] Releasing license: Synthesis
+18 Infos, 11 Warnings, 0 Critical Warnings and 0 Errors encountered.
+synth_design completed successfully
+synth_design: Time (s): cpu = 00:00:11 ; elapsed = 00:00:11 . Memory (MB): peak = 2662.242 ; gain = 1055.148 ; free physical = 41375 ; free virtual = 57032
+INFO: [Common 17-2834] synth_design peak Physical Memory [PSS] (MB): overall = 2085.496; main = 2085.496; forked = 0.000
+INFO: [Common 17-2834] synth_design peak Virtual Memory [VSS] (MB): overall = 2662.207; main = 2662.207; forked = 0.000
+# report_utilization -file "$out/post_synth_utilization.rpt"
+# report_drc -file "$out/post_synth_drc.rpt"
+Command: report_drc -file /home/researcher/.cache/codex/rasterix-float-to-int-post-synth-9fdcf97/post_synth_drc.rpt
+INFO: [IP_Flow 19-234] Refreshing IP repositories
+INFO: [IP_Flow 19-1704] No user IP repositories specified
+INFO: [IP_Flow 19-2313] Loaded Vivado IP repository '/home/researcher/AMD/2025.2/data/ip'.
+INFO: [DRC 23-27] Running DRC with 8 threads
+WARNING: [DRC 23-814] Not all possible (connectivity based) DRCs may have been run because this design is seen as Out of Context.
+INFO: [Vivado_Tcl 2-168] The results of DRC are in file /home/researcher/.cache/codex/rasterix-float-to-int-post-synth-9fdcf97/post_synth_drc.rpt.
+report_drc completed successfully
+# write_checkpoint -force "$out/FloatToIntAuditTop_post_synth.dcp"
+INFO: [Timing 38-35] Done setting XDC timing constraints.
+Write ShapeDB Complete: Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.01 . Memory (MB): peak = 2758.254 ; gain = 8.004 ; free physical = 41355 ; free virtual = 57012
+INFO: [Common 17-1381] The checkpoint '/home/researcher/.cache/codex/rasterix-float-to-int-post-synth-9fdcf97/FloatToIntAuditTop_post_synth.dcp' has been generated.
+# write_verilog -force -mode funcsim "$out/FloatToIntAuditTop_post_synth.v"
+INFO: [Common 17-206] Exiting Vivado at Sat Oct  3 01:49:59 2026...

@@ -1,0 +1,22 @@
+{
+  "bench": {
+    "sha256": "65bd34eda88f108465f17bb33f31a28da89d4744d86fbe65bdd7a863912e577b",
+    "gzip_sha256": "ebf5551d008c0f01ac09714633d59c55618a0c2da3fb3805aad8d031c794f120",
+    "size": 1569304
+  },
+  "game": {
+    "sha256": "e8fa6130aa47bf6131b1077ebbd03f26e90055a8dcc9c11c8c814322ab71b1ae",
+    "gzip_sha256": "2dc30f53ac6633851b68a570c01608bede72b422a32c989b776b518c779cb60f",
+    "size": 856328
+  },
+  "demo": {
+    "sha256": "432e0012f82cae05bca9f53c4cb736ade260f7f46be3a4a045e34220654d3b1e",
+    "gzip_sha256": "313127a54cf29a8f518595cf514b578758178247dfe97229fd6e5182a16d0ac1",
+    "size": 856352
+  },
+  "texture2d": {
+    "sha256": "8b027c2456c0919d3b8e6e4d18c3f73a53aec781bcee7c04f490219950a4edec",
+    "gzip_sha256": "16090e6c72910dd73f76a148ba94ded183e3786b7b9e384bb064eadbdb7c4657",
+    "size": 848104
+  }
+}

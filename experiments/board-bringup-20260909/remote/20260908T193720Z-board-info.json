@@ -1,0 +1,9 @@
+{
+  "label": "board-info",
+  "elapsed_seconds": 20.08682172599947,
+  "bytes_received": 741,
+  "command": "mkdir -p /mnt/nexys-test && mount -t ext4 -o ro /dev/mmcblk0p4 /mnt/nexys-test && sh /mnt/nexys-test/nexys-video-tests/board-tests.sh info",
+  "command_exit": 0,
+  "login_sent": false,
+  "log": "/path/to/research/experiments/remote-20260909/20260908T193720Z-board-info.raw"
+}

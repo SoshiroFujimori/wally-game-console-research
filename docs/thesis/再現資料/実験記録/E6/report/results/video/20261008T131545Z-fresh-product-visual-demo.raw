@@ -1,0 +1,9 @@
+/tmp/fifo-game --demo --seconds 75; nv_status=$?; printf "\nNV_DONE_c45e3d52e3e9=%s\n" "$nv_status"
+Wally Breakout
+A/D: move left/right; S: stop; Space: launch
+R: restart; M: toggle demo; Q: quit
+Movement continues until S or the opposite direction is pressed.
+Game ended: score=390 lives=3 frames=4398 ticks=4499 elapsed=75.003 s
+
+NV_DONE_c45e3d52e3e9=0
+# 

@@ -1,0 +1,18 @@
+{
+  "utc": "2026-09-09T23:22:46.179859+00:00",
+  "measurementBoot": "base-boot-12",
+  "measurementCapturePassed": false,
+  "symptom": "Video Format Not Supported",
+  "attempts": [
+    "Source deactivate/reactivate",
+    "Explicit default mode and restoration",
+    "UGREEN USBDEVFS_RESET with exact VID/PID/serial",
+    "Original FPGA reprogramming (boot12)",
+    "Explicit MJPEG60 and MJPEG30 then original OBS restoration",
+    "Recorded640x480 HDMI-only fixture8b692556815d02036193ad2b5e2793132206cba062f033c4c4941c1eb1554604"
+  ],
+  "hdmiOnlyFixtureCapturePassed": false,
+  "fixtureObservation": "Same unsupported-format overlay with source active. PLL Locked1 and PixelCount advancing. HPD read0, as also seen in earlier fixture logs; no cable-disconnection conclusion is made from it.",
+  "limits": "The fixture excludes Wally game execution and RasterIX command preparation. It does not identify which shared output/cable/receiver component is responsible.",
+  "obsOriginalSettingsRestored": true
+}

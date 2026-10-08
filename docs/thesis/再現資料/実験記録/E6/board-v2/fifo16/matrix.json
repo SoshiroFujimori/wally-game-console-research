@@ -1,0 +1,269 @@
+[
+  {
+    "variant": "fifo16",
+    "repeat": 0,
+    "state": 0,
+    "style": "full",
+    "result": "RESULT frames=180 elapsed_s=13.007075100 fps=13.838622 logic_ms=1.005060 api_ms=22.239549 swap_ms=43.704739 wait_ms=5.176744 worker_inclusive_ms=43.476774 upload_inclusive_ms=9.749096 write_ms=9.475568 bytes_per_frame=30951.56 p50_ms=66.879050 p95_ms=83.601250 max_ms=83.799300 late_60hz=180 first_count=257 last_count=436 state_hash=8f34e8fd remaining=38 score=20",
+    "counters": "HW_COUNTERS id=46490010 words=1392820 wait_cycles=8113346 longest_wait_cycles=3947 total_cycles=260143789 cpu_hz=20000000",
+    "pixel_check": true
+  },
+  {
+    "variant": "fifo16",
+    "repeat": 0,
+    "state": 0,
+    "style": "grouped",
+    "result": "RESULT frames=180 elapsed_s=12.037538450 fps=14.953223 logic_ms=1.029664 api_ms=15.010302 swap_ms=40.335487 wait_ms=10.359101 worker_inclusive_ms=40.103087 upload_inclusive_ms=9.752011 write_ms=9.497110 bytes_per_frame=30951.56 p50_ms=66.877300 p95_ms=67.075600 max_ms=71.069300 late_60hz=180 first_count=471 last_count=650 state_hash=8f34e8fd remaining=38 score=20",
+    "counters": "HW_COUNTERS id=46490010 words=1392820 wait_cycles=8025418 longest_wait_cycles=3949 total_cycles=240753300 cpu_hz=20000000",
+    "pixel_check": true
+  },
+  {
+    "variant": "fifo16",
+    "repeat": 0,
+    "state": 0,
+    "style": "retained",
+    "result": "RESULT frames=180 elapsed_s=3.109416400 fps=57.888676 logic_ms=1.014787 api_ms=3.059318 swap_ms=6.748164 wait_ms=6.305587 worker_inclusive_ms=6.498771 upload_inclusive_ms=3.057819 write_ms=2.862096 bytes_per_frame=3578.67 p50_ms=16.719400 p95_ms=17.068300 max_ms=33.698850 late_60hz=162 first_count=685 last_count=864 state_hash=8f34e8fd remaining=38 score=20",
+    "counters": "HW_COUNTERS id=46490010 words=161040 wait_cycles=5626157 longest_wait_cycles=4560 total_cycles=62190921 cpu_hz=20000000",
+    "pixel_check": true
+  },
+  {
+    "variant": "fifo16",
+    "repeat": 0,
+    "state": 1800,
+    "style": "full",
+    "result": "RESULT frames=180 elapsed_s=12.037854000 fps=14.952831 logic_ms=0.870524 api_ms=18.004136 swap_ms=35.530268 wait_ms=12.335651 worker_inclusive_ms=35.306811 upload_inclusive_ms=8.217780 write_ms=7.983264 bytes_per_frame=24140.89 p50_ms=66.876750 p95_ms=67.124100 max_ms=67.283600 late_60hz=180 first_count=899 last_count=1078 state_hash=1022e19f remaining=21 score=190",
+    "counters": "HW_COUNTERS id=46490010 words=1086340 wait_cycles=7963159 longest_wait_cycles=3945 total_cycles=240759516 cpu_hz=20000000",
+    "pixel_check": true
+  },
+  {
+    "variant": "fifo16",
+    "repeat": 0,
+    "state": 1800,
+    "style": "grouped",
+    "result": "RESULT frames=180 elapsed_s=9.161818300 fps=19.646755 logic_ms=0.869923 api_ms=11.881000 swap_ms=32.807358 wait_ms=5.202580 worker_inclusive_ms=32.610247 upload_inclusive_ms=8.345014 write_ms=8.118321 bytes_per_frame=24140.89 p50_ms=50.157850 p95_ms=50.665950 max_ms=67.489950 late_60hz=180 first_count=1113 last_count=1292 state_hash=1022e19f remaining=21 score=190",
+    "counters": "HW_COUNTERS id=46490010 words=1086340 wait_cycles=8226304 longest_wait_cycles=3962 total_cycles=183238666 cpu_hz=20000000",
+    "pixel_check": true
+  },
+  {
+    "variant": "fifo16",
+    "repeat": 0,
+    "state": 1800,
+    "style": "retained",
+    "result": "RESULT frames=180 elapsed_s=3.090628700 fps=58.240577 logic_ms=0.904001 api_ms=2.404448 swap_ms=6.179631 wait_ms=7.544775 worker_inclusive_ms=5.973972 upload_inclusive_ms=2.830438 write_ms=2.653940 bytes_per_frame=3235.56 p50_ms=16.719150 p95_ms=17.054750 max_ms=33.439400 late_60hz=163 first_count=1327 last_count=1506 state_hash=1022e19f remaining=21 score=190",
+    "counters": "HW_COUNTERS id=46490010 words=145600 wait_cycles=5293934 longest_wait_cycles=4562 total_cycles=61815100 cpu_hz=20000000",
+    "pixel_check": true
+  },
+  {
+    "variant": "fifo16",
+    "repeat": 0,
+    "state": 3600,
+    "style": "full",
+    "result": "RESULT frames=180 elapsed_s=9.061508400 fps=19.864242 logic_ms=0.802873 api_ms=12.821565 swap_ms=27.825167 wait_ms=8.757110 worker_inclusive_ms=27.615929 upload_inclusive_ms=7.223035 write_ms=6.966353 bytes_per_frame=18724.00 p50_ms=50.158150 p95_ms=50.479900 max_ms=66.877050 late_60hz=180 first_count=1541 last_count=1720 state_hash=3933ec17 remaining=6 score=340",
+    "counters": "HW_COUNTERS id=46490010 words=842580 wait_cycles=8183827 longest_wait_cycles=3898 total_cycles=181232646 cpu_hz=20000000",
+    "pixel_check": true
+  },
+  {
+    "variant": "fifo16",
+    "repeat": 0,
+    "state": 3600,
+    "style": "grouped",
+    "result": "RESULT frames=180 elapsed_s=9.027653600 fps=19.938736 logic_ms=0.772756 api_ms=8.883891 swap_ms=25.762689 wait_ms=14.582325 worker_inclusive_ms=25.561486 upload_inclusive_ms=7.121681 write_ms=6.903714 bytes_per_frame=18724.00 p50_ms=50.157900 p95_ms=50.387400 max_ms=53.195400 late_60hz=180 first_count=1755 last_count=1934 state_hash=3933ec17 remaining=6 score=340",
+    "counters": "HW_COUNTERS id=46490010 words=842580 wait_cycles=8255980 longest_wait_cycles=3957 total_cycles=180555701 cpu_hz=20000000",
+    "pixel_check": true
+  },
+  {
+    "variant": "fifo16",
+    "repeat": 0,
+    "state": 3600,
+    "style": "retained",
+    "result": "RESULT frames=180 elapsed_s=3.059741400 fps=58.828501 logic_ms=0.860111 api_ms=2.227145 swap_ms=6.519069 wait_ms=7.251484 worker_inclusive_ms=6.317844 upload_inclusive_ms=2.973771 write_ms=2.782837 bytes_per_frame=3455.56 p50_ms=16.719400 p95_ms=17.006150 max_ms=33.440750 late_60hz=162 first_count=1969 last_count=2148 state_hash=3933ec17 remaining=6 score=340",
+    "counters": "HW_COUNTERS id=46490010 words=155500 wait_cycles=5536181 longest_wait_cycles=4559 total_cycles=61197383 cpu_hz=20000000",
+    "pixel_check": true
+  },
+  {
+    "variant": "fifo16",
+    "repeat": 1,
+    "state": 0,
+    "style": "grouped",
+    "result": "RESULT frames=180 elapsed_s=12.037533250 fps=14.953230 logic_ms=1.034824 api_ms=15.024962 swap_ms=40.299454 wait_ms=10.380562 worker_inclusive_ms=40.080038 upload_inclusive_ms=9.718953 write_ms=9.476422 bytes_per_frame=30951.56 p50_ms=66.877000 p95_ms=67.090900 max_ms=67.423450 late_60hz=180 first_count=2183 last_count=2362 state_hash=8f34e8fd remaining=38 score=20",
+    "counters": "HW_COUNTERS id=46490010 words=1392820 wait_cycles=8042693 longest_wait_cycles=3950 total_cycles=240753019 cpu_hz=20000000",
+    "pixel_check": false
+  },
+  {
+    "variant": "fifo16",
+    "repeat": 1,
+    "state": 0,
+    "style": "retained",
+    "result": "RESULT frames=180 elapsed_s=3.092694050 fps=58.201683 logic_ms=1.048358 api_ms=3.052206 swap_ms=6.624911 wait_ms=6.307555 worker_inclusive_ms=6.394562 upload_inclusive_ms=2.992197 write_ms=2.813034 bytes_per_frame=3578.67 p50_ms=16.719300 p95_ms=17.106300 max_ms=33.472750 late_60hz=160 first_count=2397 last_count=2576 state_hash=8f34e8fd remaining=38 score=20",
+    "counters": "HW_COUNTERS id=46490010 words=161040 wait_cycles=5585761 longest_wait_cycles=4566 total_cycles=61856538 cpu_hz=20000000",
+    "pixel_check": false
+  },
+  {
+    "variant": "fifo16",
+    "repeat": 1,
+    "state": 0,
+    "style": "full",
+    "result": "RESULT frames=180 elapsed_s=12.873499450 fps=13.982212 logic_ms=1.024621 api_ms=22.057487 swap_ms=43.734104 wait_ms=4.580023 worker_inclusive_ms=43.504416 upload_inclusive_ms=9.865585 write_ms=9.602207 bytes_per_frame=30951.56 p50_ms=66.878850 p95_ms=83.599600 max_ms=83.601700 late_60hz=180 first_count=2611 last_count=2790 state_hash=8f34e8fd remaining=38 score=20",
+    "counters": "HW_COUNTERS id=46490010 words=1392820 wait_cycles=8068884 longest_wait_cycles=3959 total_cycles=257472527 cpu_hz=20000000",
+    "pixel_check": false
+  },
+  {
+    "variant": "fifo16",
+    "repeat": 1,
+    "state": 1800,
+    "style": "grouped",
+    "result": "RESULT frames=180 elapsed_s=9.161825550 fps=19.646740 logic_ms=0.870832 api_ms=11.813656 swap_ms=32.750260 wait_ms=5.318150 worker_inclusive_ms=32.519593 upload_inclusive_ms=8.364474 write_ms=8.125845 bytes_per_frame=24140.89 p50_ms=50.158450 p95_ms=51.206900 max_ms=66.878600 late_60hz=180 first_count=2825 last_count=3004 state_hash=1022e19f remaining=21 score=190",
+    "counters": "HW_COUNTERS id=46490010 words=1086340 wait_cycles=8192222 longest_wait_cycles=3925 total_cycles=183239016 cpu_hz=20000000",
+    "pixel_check": false
+  },
+  {
+    "variant": "fifo16",
+    "repeat": 1,
+    "state": 1800,
+    "style": "retained",
+    "result": "RESULT frames=180 elapsed_s=3.092703250 fps=58.201510 logic_ms=0.947257 api_ms=2.464635 swap_ms=6.148979 wait_ms=7.477532 worker_inclusive_ms=5.944286 upload_inclusive_ms=2.804180 write_ms=2.598114 bytes_per_frame=3235.56 p50_ms=16.719450 p95_ms=17.031400 max_ms=35.122300 late_60hz=163 first_count=3039 last_count=3218 state_hash=1022e19f remaining=21 score=190",
+    "counters": "HW_COUNTERS id=46490010 words=145600 wait_cycles=5297375 longest_wait_cycles=4564 total_cycles=61865264 cpu_hz=20000000",
+    "pixel_check": false
+  },
+  {
+    "variant": "fifo16",
+    "repeat": 1,
+    "state": 1800,
+    "style": "full",
+    "result": "RESULT frames=180 elapsed_s=12.037543350 fps=14.953217 logic_ms=0.904343 api_ms=17.527649 swap_ms=35.813324 wait_ms=12.495874 worker_inclusive_ms=35.608059 upload_inclusive_ms=8.194763 write_ms=7.954591 bytes_per_frame=24140.89 p50_ms=66.877000 p95_ms=67.054400 max_ms=67.391550 late_60hz=180 first_count=3253 last_count=3432 state_hash=1022e19f remaining=21 score=190",
+    "counters": "HW_COUNTERS id=46490010 words=1086340 wait_cycles=7996393 longest_wait_cycles=3904 total_cycles=240753195 cpu_hz=20000000",
+    "pixel_check": false
+  },
+  {
+    "variant": "fifo16",
+    "repeat": 1,
+    "state": 3600,
+    "style": "grouped",
+    "result": "RESULT frames=180 elapsed_s=9.028058100 fps=19.937842 logic_ms=0.771718 api_ms=8.815922 swap_ms=25.851399 wait_ms=14.541214 worker_inclusive_ms=25.636692 upload_inclusive_ms=7.193799 write_ms=6.980095 bytes_per_frame=18724.00 p50_ms=50.157750 p95_ms=50.355750 max_ms=51.202450 late_60hz=180 first_count=3467 last_count=3646 state_hash=3933ec17 remaining=6 score=340",
+    "counters": "HW_COUNTERS id=46490010 words=842580 wait_cycles=8176038 longest_wait_cycles=3940 total_cycles=180563579 cpu_hz=20000000",
+    "pixel_check": false
+  },
+  {
+    "variant": "fifo16",
+    "repeat": 1,
+    "state": 3600,
+    "style": "retained",
+    "result": "RESULT frames=180 elapsed_s=3.042536150 fps=59.161171 logic_ms=0.854580 api_ms=2.298386 swap_ms=6.532403 wait_ms=7.073305 worker_inclusive_ms=6.333169 upload_inclusive_ms=2.946413 write_ms=2.755740 bytes_per_frame=3455.56 p50_ms=16.719150 p95_ms=17.031600 max_ms=33.410600 late_60hz=161 first_count=3681 last_count=3860 state_hash=3933ec17 remaining=6 score=340",
+    "counters": "HW_COUNTERS id=46490010 words=155500 wait_cycles=5515945 longest_wait_cycles=4554 total_cycles=60853184 cpu_hz=20000000",
+    "pixel_check": false
+  },
+  {
+    "variant": "fifo16",
+    "repeat": 1,
+    "state": 3600,
+    "style": "full",
+    "result": "RESULT frames=180 elapsed_s=9.028058450 fps=19.937842 logic_ms=0.765761 api_ms=12.829337 swap_ms=27.986397 wait_ms=8.422892 worker_inclusive_ms=27.768404 upload_inclusive_ms=7.179076 write_ms=6.949713 bytes_per_frame=18724.00 p50_ms=50.158000 p95_ms=50.366000 max_ms=51.591550 late_60hz=180 first_count=3895 last_count=4074 state_hash=3933ec17 remaining=6 score=340",
+    "counters": "HW_COUNTERS id=46490010 words=842580 wait_cycles=8299539 longest_wait_cycles=3933 total_cycles=180563787 cpu_hz=20000000",
+    "pixel_check": false
+  },
+  {
+    "variant": "fifo16",
+    "repeat": 2,
+    "state": 0,
+    "style": "retained",
+    "result": "RESULT frames=180 elapsed_s=3.092698450 fps=58.201601 logic_ms=0.982794 api_ms=3.078191 swap_ms=6.627864 wait_ms=6.345474 worker_inclusive_ms=6.443125 upload_inclusive_ms=2.984231 write_ms=2.795739 bytes_per_frame=3578.67 p50_ms=16.719450 p95_ms=17.095350 max_ms=33.439800 late_60hz=159 first_count=4109 last_count=4288 state_hash=8f34e8fd remaining=38 score=20",
+    "counters": "HW_COUNTERS id=46490010 words=161040 wait_cycles=5584728 longest_wait_cycles=4571 total_cycles=61856456 cpu_hz=20000000",
+    "pixel_check": false
+  },
+  {
+    "variant": "fifo16",
+    "repeat": 2,
+    "state": 0,
+    "style": "full",
+    "result": "RESULT frames=180 elapsed_s=12.856282600 fps=14.000937 logic_ms=1.022690 api_ms=22.151789 swap_ms=43.518644 wait_ms=4.587088 worker_inclusive_ms=43.309729 upload_inclusive_ms=9.787682 write_ms=9.541541 bytes_per_frame=30951.56 p50_ms=66.878350 p95_ms=83.602200 max_ms=83.858050 late_60hz=180 first_count=4323 last_count=4502 state_hash=8f34e8fd remaining=38 score=20",
+    "counters": "HW_COUNTERS id=46490010 words=1392820 wait_cycles=8123979 longest_wait_cycles=3946 total_cycles=257128432 cpu_hz=20000000",
+    "pixel_check": false
+  },
+  {
+    "variant": "fifo16",
+    "repeat": 2,
+    "state": 0,
+    "style": "grouped",
+    "result": "RESULT frames=180 elapsed_s=12.036970700 fps=14.953929 logic_ms=1.010528 api_ms=15.035740 swap_ms=40.166266 wait_ms=10.516325 worker_inclusive_ms=39.926559 upload_inclusive_ms=9.781935 write_ms=9.527324 bytes_per_frame=30951.56 p50_ms=66.877250 p95_ms=67.173700 max_ms=70.796800 late_60hz=180 first_count=4537 last_count=4716 state_hash=8f34e8fd remaining=38 score=20",
+    "counters": "HW_COUNTERS id=46490010 words=1392820 wait_cycles=8025556 longest_wait_cycles=3965 total_cycles=240741978 cpu_hz=20000000",
+    "pixel_check": false
+  },
+  {
+    "variant": "fifo16",
+    "repeat": 2,
+    "state": 1800,
+    "style": "retained",
+    "result": "RESULT frames=180 elapsed_s=3.075982100 fps=58.517896 logic_ms=0.921211 api_ms=2.457316 swap_ms=6.196413 wait_ms=7.375480 worker_inclusive_ms=5.992168 upload_inclusive_ms=2.876047 write_ms=2.673719 bytes_per_frame=3235.56 p50_ms=16.719300 p95_ms=17.068100 max_ms=33.441500 late_60hz=163 first_count=4751 last_count=4930 state_hash=1022e19f remaining=21 score=190",
+    "counters": "HW_COUNTERS id=46490010 words=145600 wait_cycles=5309660 longest_wait_cycles=4563 total_cycles=61522043 cpu_hz=20000000",
+    "pixel_check": false
+  },
+  {
+    "variant": "fifo16",
+    "repeat": 2,
+    "state": 1800,
+    "style": "full",
+    "result": "RESULT frames=180 elapsed_s=12.037531250 fps=14.953232 logic_ms=0.887887 api_ms=17.564547 swap_ms=35.473274 wait_ms=12.810459 worker_inclusive_ms=35.253449 upload_inclusive_ms=8.224924 write_ms=7.992964 bytes_per_frame=24140.89 p50_ms=66.876950 p95_ms=67.145800 max_ms=69.312500 late_60hz=180 first_count=4965 last_count=5144 state_hash=1022e19f remaining=21 score=190",
+    "counters": "HW_COUNTERS id=46490010 words=1086340 wait_cycles=8019967 longest_wait_cycles=3939 total_cycles=240753045 cpu_hz=20000000",
+    "pixel_check": false
+  },
+  {
+    "variant": "fifo16",
+    "repeat": 2,
+    "state": 1800,
+    "style": "grouped",
+    "result": "RESULT frames=180 elapsed_s=9.161818750 fps=19.646754 logic_ms=0.860417 api_ms=11.832078 swap_ms=32.730097 wait_ms=5.331214 worker_inclusive_ms=32.515577 upload_inclusive_ms=8.471465 write_ms=8.230460 bytes_per_frame=24140.89 p50_ms=50.157800 p95_ms=50.700750 max_ms=66.879550 late_60hz=180 first_count=5179 last_count=5358 state_hash=1022e19f remaining=21 score=190",
+    "counters": "HW_COUNTERS id=46490010 words=1086340 wait_cycles=8181374 longest_wait_cycles=3965 total_cycles=183238961 cpu_hz=20000000",
+    "pixel_check": false
+  },
+  {
+    "variant": "fifo16",
+    "repeat": 2,
+    "state": 3600,
+    "style": "retained",
+    "result": "RESULT frames=180 elapsed_s=3.008556200 fps=59.829363 logic_ms=0.812515 api_ms=2.233493 swap_ms=6.530965 wait_ms=6.990809 worker_inclusive_ms=6.333073 upload_inclusive_ms=2.977363 write_ms=2.792580 bytes_per_frame=3455.56 p50_ms=16.719200 p95_ms=16.996000 max_ms=18.652850 late_60hz=162 first_count=5393 last_count=5572 state_hash=3933ec17 remaining=6 score=340",
+    "counters": "HW_COUNTERS id=46490010 words=155500 wait_cycles=5559708 longest_wait_cycles=4577 total_cycles=60173730 cpu_hz=20000000",
+    "pixel_check": false
+  },
+  {
+    "variant": "fifo16",
+    "repeat": 2,
+    "state": 3600,
+    "style": "full",
+    "result": "RESULT frames=180 elapsed_s=9.044188700 fps=19.902283 logic_ms=0.805059 api_ms=12.839579 swap_ms=27.907761 wait_ms=8.551307 worker_inclusive_ms=27.692955 upload_inclusive_ms=7.278563 write_ms=7.050491 bytes_per_frame=18724.00 p50_ms=50.157900 p95_ms=50.408950 max_ms=66.540550 late_60hz=180 first_count=5607 last_count=5786 state_hash=3933ec17 remaining=6 score=340",
+    "counters": "HW_COUNTERS id=46490010 words=842580 wait_cycles=8247438 longest_wait_cycles=3925 total_cycles=180886458 cpu_hz=20000000",
+    "pixel_check": false
+  },
+  {
+    "variant": "fifo16",
+    "repeat": 2,
+    "state": 3600,
+    "style": "grouped",
+    "result": "RESULT frames=180 elapsed_s=9.028059700 fps=19.937839 logic_ms=0.773968 api_ms=8.874541 swap_ms=25.798569 wait_ms=14.569386 worker_inclusive_ms=25.590748 upload_inclusive_ms=7.184504 write_ms=6.935004 bytes_per_frame=18724.00 p50_ms=50.157900 p95_ms=50.398300 max_ms=52.556900 late_60hz=180 first_count=5821 last_count=6000 state_hash=3933ec17 remaining=6 score=340",
+    "counters": "HW_COUNTERS id=46490010 words=842580 wait_cycles=8125331 longest_wait_cycles=3948 total_cycles=180563621 cpu_hz=20000000",
+    "pixel_check": false
+  },
+  {
+    "variant": "fifo16",
+    "repeat": 0,
+    "state": 0,
+    "style": "replay",
+    "result": "RESULT frames=180 elapsed_s=3.059259650 fps=58.837765 logic_ms=0.860948 api_ms=0.008492 swap_ms=12.806527 wait_ms=3.179887 worker_inclusive_ms=0.000000 upload_inclusive_ms=0.000000 write_ms=8.666594 bytes_per_frame=34372.00 p50_ms=16.719300 p95_ms=17.048850 max_ms=33.611800 late_60hz=159 first_count=6037 last_count=6216 state_hash=de3c9d08 remaining=40 score=0",
+    "counters": "HW_COUNTERS id=46490010 words=1546740 wait_cycles=5787036 longest_wait_cycles=3607 total_cycles=61187686 cpu_hz=20000000"
+  },
+  {
+    "variant": "fifo16",
+    "repeat": 1,
+    "state": 0,
+    "style": "replay",
+    "result": "RESULT frames=180 elapsed_s=3.075990850 fps=58.517729 logic_ms=0.930475 api_ms=0.007969 swap_ms=12.795885 wait_ms=3.222938 worker_inclusive_ms=0.000000 upload_inclusive_ms=0.000000 write_ms=8.683246 bytes_per_frame=34372.00 p50_ms=16.719300 p95_ms=17.134400 max_ms=33.441150 late_60hz=162 first_count=6253 last_count=6432 state_hash=de3c9d08 remaining=40 score=0",
+    "counters": "HW_COUNTERS id=46490010 words=1546740 wait_cycles=5789175 longest_wait_cycles=3610 total_cycles=61522295 cpu_hz=20000000"
+  },
+  {
+    "variant": "fifo16",
+    "repeat": 2,
+    "state": 0,
+    "style": "replay",
+    "result": "RESULT frames=180 elapsed_s=3.075979750 fps=58.517941 logic_ms=0.859549 api_ms=0.007689 swap_ms=12.845179 wait_ms=3.235854 worker_inclusive_ms=0.000000 upload_inclusive_ms=0.000000 write_ms=8.707289 bytes_per_frame=34372.00 p50_ms=16.719250 p95_ms=17.109350 max_ms=33.440900 late_60hz=163 first_count=6469 last_count=6648 state_hash=de3c9d08 remaining=40 score=0",
+    "counters": "HW_COUNTERS id=46490010 words=1546740 wait_cycles=5814584 longest_wait_cycles=3606 total_cycles=61522058 cpu_hz=20000000"
+  }
+]

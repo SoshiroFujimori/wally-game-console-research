@@ -1,0 +1,22 @@
+/tmp/fifo-texture2d; nv_status=$?; printf "\nNV_DONE_62f6e65dc388=%s\n" "$nv_status"
+TEXTURE_BEGIN size=32
+TEXTURE_CHECK size=32 pixels=307200 mismatches=0
+TEXTURE_BEGIN size=64
+TEXTURE_DIFF x=288 y=240 actual=ffff expected=f81f
+TEXTURE_DIFF x=289 y=240 actual=ffff expected=f81f
+TEXTURE_DIFF x=290 y=240 actual=ffff expected=f81f
+TEXTURE_DIFF x=291 y=240 actual=ffff expected=f81f
+TEXTURE_DIFF x=292 y=240 actual=ffff expected=f81f
+TEXTURE_DIFF x=293 y=240 actual=ffff expected=f81f
+TEXTURE_DIFF x=294 y=240 actual=ffff expected=f81f
+TEXTURE_DIFF x=295 y=240 actual=ffff expected=f81f
+TEXTURE_DIFF x=296 y=240 actual=0000 expected=07ff
+TEXTURE_DIFF x=297 y=240 actual=0000 expected=07ff
+TEXTURE_DIFF x=298 y=240 actual=0000 expected=07ff
+TEXTURE_DIFF x=299 y=240 actual=0000 expected=07ff
+TEXTURE_CHECK size=64 pixels=307200 mismatches=2048
+TEXTURE_2D_FAIL texture reference mismatch
+
+NV_DONE_62f6e65dc388=1
+# 
+CAPTURE: {"label": "fifo16-texture2d", "elapsed_seconds": 5.213815073999285, "bytes_received": 931, "command": "/tmp/fifo-texture2d", "command_exit": 1, "login_sent": false, "log": "/path/to/research/experiments/fifo-study-20261008/20261008T071034Z-fifo16-texture2d.raw"}

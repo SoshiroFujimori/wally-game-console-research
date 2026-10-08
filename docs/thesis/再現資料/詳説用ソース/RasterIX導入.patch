@@ -1,0 +1,1751 @@
+commit 5b6adcd97f9d778cfb8240d08023bfcaf680074d
+Author:     Codex <codex@openai.com>
+AuthorDate: Wed Sep 9 22:54:36 2026 +0900
+Commit:     Codex <codex@openai.com>
+CommitDate: Thu Sep 10 08:39:13 2026 +0900
+
+    Add optional RasterIX support for Nexys Video
+    
+    Expose a configurable external APB port and connect the unmodified
+    upstream RasterIX submodule through command/response clock-crossing
+    FIFOs. Share DDR3 with Wally and the DVI framebuffer using buffered
+    GPU bursts and acknowledged framebuffer swaps.
+    
+    Add the nexysvideo-rasterix build target, video clocks and constraints,
+    a reserved-memory device tree, and a Linux OpenGL example using the
+    upstream library. Keep the external APB configuration independent of
+    the board-specific renderer selection.
+    
+    Validated the qualified bitstream with three Linux boot cycles,
+    full-frame readbacks, device-data transfers, CoreMark, a 4 MiB memory
+    test, 3600 rendered frames, and a 39.95-second HDMI recording.
+    HDMI capture reacquisition after FPGA reconfiguration was intermittent
+    in the test setup; reinitializing the capture source restored it.
+
+diff --git a/.gitmodules b/.gitmodules
+index 895f27958..186cd9765 100644
+--- a/.gitmodules
++++ b/.gitmodules
+@@ -33,3 +33,6 @@
+   path = addins/riscv-arch-test-cvw
+   url = https://github.com/riscv-non-isa/riscv-arch-test
+   branch = act4
++[submodule "addins/rasterix"]
++  path = addins/rasterix
++  url = https://github.com/ToNi3141/RasterIX.git
+diff --git a/addins/README.md b/addins/README.md
+index ba04e05eb..ea0551da7 100644
+--- a/addins/README.md
++++ b/addins/README.md
+@@ -1,3 +1,8 @@
+ verilog-ethernet contains many ethernet devices.  Wally's synthesizable RVVI interface only requires a small subset of these files.
+ To do a sparse checkout of this repo copy sparse-checkout to cvw/.git/modules/addins/verilog-ethernet/info
+ This will make the working directory only contain the necessary files.
++
++`rasterix` contains the unmodified upstream RasterIX renderer and its software
++library. The optional Nexys Video video configuration uses it; see
++[the FPGA instructions](../fpga/README.md#rasterix-on-nexys-video). Initialize
++its recursive submodules before building.
+diff --git a/addins/rasterix b/addins/rasterix
+new file mode 160000
+index 000000000..9fdcf97a3
+--- /dev/null
++++ b/addins/rasterix
+@@ -0,0 +1 @@
++Subproject commit 9fdcf97a31b2e4247594e06d605871980cd5e9e1
+diff --git a/config/derivlist.txt b/config/derivlist.txt
+index 176a9d6c3..32d2986ac 100644
+--- a/config/derivlist.txt
++++ b/config/derivlist.txt
+@@ -74,6 +74,10 @@ EXT_MEM_RANGE       64'h07FFFFFF
+ deriv fpganexysvideo fpga
+ EXT_MEM_RANGE       64'h1FFFFFFF
+ 
++# RasterIX command port on the external APB interface.
++deriv fpganexysvideo_rasterix fpganexysvideo
++EXT_IO_SUPPORTED   1
++
+ # temporary spitest configuration
+ deriv spitest rv64gc
+ UNCORE_RAM_RANGE    64'h0FFFFFFF
+diff --git a/config/rv32e/config.vh b/config/rv32e/config.vh
+index 660e1d4bc..ec68ff922 100644
+--- a/config/rv32e/config.vh
++++ b/config/rv32e/config.vh
+@@ -186,6 +186,11 @@ localparam logic [63:0] SDC_RANGE        = 64'h00000FFF;
+ localparam logic SPI_SUPPORTED = 0;
+ localparam logic [63:0] SPI_BASE         = 64'h10040000;
+ localparam logic [63:0] SPI_RANGE        = 64'h00000FFF;
++// External APB peripherals
++localparam logic EXT_IO_SUPPORTED = 0;
++localparam logic [63:0] EXT_IO_BASE = 64'h10080000;
++localparam logic [63:0] EXT_IO_RANGE = 64'h000000FF;
++
+ localparam logic PWM_SUPPORTED = 0;
+ localparam logic [63:0] PWM_BASE         = 64'h10020000;
+ localparam logic [63:0] PWM_RANGE        = 64'h000000FF;
+diff --git a/config/rv32gc/config.vh b/config/rv32gc/config.vh
+index e26890e63..8424549e4 100644
+--- a/config/rv32gc/config.vh
++++ b/config/rv32gc/config.vh
+@@ -188,6 +188,11 @@ localparam logic [63:0] SDC_RANGE        = 64'h00000FFF;
+ localparam logic SPI_SUPPORTED = 1;
+ localparam logic [63:0] SPI_BASE         = 64'h10040000;
+ localparam logic [63:0] SPI_RANGE        = 64'h00000FFF;
++// External APB peripherals
++localparam logic EXT_IO_SUPPORTED = 0;
++localparam logic [63:0] EXT_IO_BASE = 64'h10080000;
++localparam logic [63:0] EXT_IO_RANGE = 64'h000000FF;
++
+ localparam logic PWM_SUPPORTED = 1;
+ localparam logic [63:0] PWM_BASE         = 64'h10020000;
+ localparam logic [63:0] PWM_RANGE        = 64'h000000FF;
+diff --git a/config/rv32i/config.vh b/config/rv32i/config.vh
+index 875d7d2b3..d614bdaed 100644
+--- a/config/rv32i/config.vh
++++ b/config/rv32i/config.vh
+@@ -186,6 +186,11 @@ localparam logic [63:0] SDC_RANGE        = 64'h00000FFF;
+ localparam logic SPI_SUPPORTED = 0;
+ localparam logic [63:0] SPI_BASE         = 64'h10040000;
+ localparam logic [63:0] SPI_RANGE        = 64'h00000FFF;
++// External APB peripherals
++localparam logic EXT_IO_SUPPORTED = 0;
++localparam logic [63:0] EXT_IO_BASE = 64'h10080000;
++localparam logic [63:0] EXT_IO_RANGE = 64'h000000FF;
++
+ localparam logic PWM_SUPPORTED = 0;
+ localparam logic [63:0] PWM_BASE         = 64'h10020000;
+ localparam logic [63:0] PWM_RANGE        = 64'h000000FF;
+diff --git a/config/rv32imc/config.vh b/config/rv32imc/config.vh
+index 82f6340f9..90013911c 100644
+--- a/config/rv32imc/config.vh
++++ b/config/rv32imc/config.vh
+@@ -186,6 +186,11 @@ localparam logic [63:0] SDC_RANGE        = 64'h00000FFF;
+ localparam logic SPI_SUPPORTED = 1;
+ localparam logic [63:0] SPI_BASE         = 64'h10040000;
+ localparam logic [63:0] SPI_RANGE        = 64'h00000FFF;
++// External APB peripherals
++localparam logic EXT_IO_SUPPORTED = 0;
++localparam logic [63:0] EXT_IO_BASE = 64'h10080000;
++localparam logic [63:0] EXT_IO_RANGE = 64'h000000FF;
++
+ localparam logic PWM_SUPPORTED = 1;
+ localparam logic [63:0] PWM_BASE         = 64'h10020000;
+ localparam logic [63:0] PWM_RANGE        = 64'h000000FF;
+diff --git a/config/rv64gc/config.vh b/config/rv64gc/config.vh
+index 981b742c6..97f73b51b 100644
+--- a/config/rv64gc/config.vh
++++ b/config/rv64gc/config.vh
+@@ -189,6 +189,11 @@ localparam logic [63:0] SDC_RANGE        = 64'h00000FFF;
+ localparam logic SPI_SUPPORTED = 1;
+ localparam logic [63:0] SPI_BASE         = 64'h10040000;
+ localparam logic [63:0] SPI_RANGE        = 64'h00000FFF;
++// External APB peripherals
++localparam logic EXT_IO_SUPPORTED = 0;
++localparam logic [63:0] EXT_IO_BASE = 64'h10080000;
++localparam logic [63:0] EXT_IO_RANGE = 64'h000000FF;
++
+ localparam logic PWM_SUPPORTED = 1;
+ localparam logic [63:0] PWM_BASE         = 64'h10020000;
+ localparam logic [63:0] PWM_RANGE        = 64'h000000FF;
+diff --git a/config/rv64i/config.vh b/config/rv64i/config.vh
+index 84d98f1ae..17704ce62 100644
+--- a/config/rv64i/config.vh
++++ b/config/rv64i/config.vh
+@@ -185,6 +185,11 @@ localparam logic [63:0] SDC_RANGE        = 64'h00000FFF;
+ localparam logic SPI_SUPPORTED = 0;
+ localparam logic [63:0] SPI_BASE         = 64'h10040000;
+ localparam logic [63:0] SPI_RANGE        = 64'h00000FFF;
++// External APB peripherals
++localparam logic EXT_IO_SUPPORTED = 0;
++localparam logic [63:0] EXT_IO_BASE = 64'h10080000;
++localparam logic [63:0] EXT_IO_RANGE = 64'h000000FF;
++
+ localparam logic PWM_SUPPORTED = 0;
+ localparam logic [63:0] PWM_BASE         = 64'h10020000;
+ localparam logic [63:0] PWM_RANGE        = 64'h000000FF;
+diff --git a/config/shared/parameter-defs.vh b/config/shared/parameter-defs.vh
+index 935166276..72f6b7c26 100644
+--- a/config/shared/parameter-defs.vh
++++ b/config/shared/parameter-defs.vh
+@@ -90,6 +90,9 @@ localparam cvw_t P = '{
+   SPI_SUPPORTED :        SPI_SUPPORTED,
+   SPI_BASE :        SPI_BASE,
+   SPI_RANGE :        SPI_RANGE,
++  EXT_IO_SUPPORTED : EXT_IO_SUPPORTED,
++  EXT_IO_BASE : EXT_IO_BASE,
++  EXT_IO_RANGE : EXT_IO_RANGE,
+   PWM_SUPPORTED :        PWM_SUPPORTED,
+   PWM_BASE :        PWM_BASE,
+   PWM_RANGE :        PWM_RANGE,
+diff --git a/examples/rasterix/CMakeLists.txt b/examples/rasterix/CMakeLists.txt
+new file mode 100644
+index 000000000..e5d3f0391
+--- /dev/null
++++ b/examples/rasterix/CMakeLists.txt
+@@ -0,0 +1,29 @@
++cmake_minimum_required(VERSION 3.14)
++project(wally_rasterix LANGUAGES C CXX)
++set(CMAKE_CXX_STANDARD 17)
++
++# Match fpganexysvideo_rasterix and its reserved memory.
++# Buffer locations are offsets from GRAM_MEMORY_LOC in the upstream driver.
++set(RIX_CORE_TMU_COUNT 1 CACHE STRING "Texture units")
++set(RIX_CORE_FRAMEBUFFER_SIZE_IN_PIXEL_LG 16 CACHE STRING "Internal framebuffer log2 size")
++# The upstream command processor splits the display across the internal buffer.
++set(RIX_CORE_THREADED_RASTERIZATION true CACHE STRING "Enable the upstream command processor")
++set(RIX_CORE_MAX_DISPLAY_WIDTH 640 CACHE STRING "Display width")
++set(RIX_CORE_MAX_DISPLAY_HEIGHT 480 CACHE STRING "Display height")
++set(RIX_CORE_ENABLE_VSYNC true CACHE STRING "Synchronize framebuffer reuse")
++set(RIX_CORE_GRAM_MEMORY_LOC 0x9e000000 CACHE STRING "Texture memory base")
++set(RIX_CORE_COLOR_BUFFER_LOC_0 0x01e00000 CACHE STRING "System framebuffer")
++set(RIX_CORE_COLOR_BUFFER_LOC_1 0x01e00000 CACHE STRING "First framebuffer")
++set(RIX_CORE_COLOR_BUFFER_LOC_2 0x01c00000 CACHE STRING "Second framebuffer")
++set(RIX_CORE_DEPTH_BUFFER_LOC 0x01a00000 CACHE STRING "Depth buffer")
++set(RIX_CORE_STENCIL_BUFFER_LOC 0x01800000 CACHE STRING "Stencil buffer")
++set(RIX_CORE_NUMBER_OF_TEXTURE_PAGES 4096 CACHE STRING "Texture pages")
++set(RIX_CORE_NUMBER_OF_TEXTURES 256 CACHE STRING "Texture objects")
++add_subdirectory(../../addins/rasterix rasterix)
++add_executable(rasterix-demo main.cpp)
++target_link_libraries(rasterix-demo PRIVATE gl span spdlog::spdlog threadrunner)
++target_include_directories(rasterix-demo PRIVATE ../../addins/rasterix/example/minimal)
++option(WALLY_STATIC "Link the example statically for the FPGA Linux image" ON)
++if(WALLY_STATIC)
++    target_link_options(rasterix-demo PRIVATE -static)
++endif()
+diff --git a/examples/rasterix/WallyBusConnector.hpp b/examples/rasterix/WallyBusConnector.hpp
+new file mode 100644
+index 000000000..1e5ab093a
+--- /dev/null
++++ b/examples/rasterix/WallyBusConnector.hpp
+@@ -0,0 +1,89 @@
++// SPDX-License-Identifier: GPL-3.0-or-later
++// Written: Codex <codex@openai.com> 9 September 2026
++// Linux transport for the Wally APB RasterIX command port.
++#pragma once
++#include "IBusConnector.hpp"
++#include "RenderConfigs.hpp"
++#include <array>
++#include <chrono>
++#include <cstring>
++#include <fcntl.h>
++#include <stdexcept>
++#include <sys/mman.h>
++#include <unistd.h>
++#include <vector>
++
++class WallyBusConnector final : public rr::IBusConnector {
++public:
++    WallyBusConnector() {
++        for (auto& buffer : buffers) buffer.resize(1024 * 1024 / sizeof(uint32_t));
++        int fd = open("/dev/mem", O_RDWR | O_SYNC);
++        if (fd < 0) throw std::runtime_error("Cannot open /dev/mem");
++        void* mapping = mmap(nullptr, 4096, PROT_READ | PROT_WRITE, MAP_SHARED, fd, 0x10080000);
++        close(fd);
++        if (mapping == MAP_FAILED) throw std::runtime_error("Cannot map RasterIX registers");
++        regs = static_cast<volatile uint32_t*>(mapping);
++        if (regs[3] != 0x52495831) {
++            munmap(mapping, 4096);
++            regs = nullptr;
++            throw std::runtime_error("RasterIX register ID does not match");
++        }
++    }
++    ~WallyBusConnector() override {
++        if (regs) munmap(const_cast<uint32_t*>(regs), 4096);
++    }
++    WallyBusConnector(const WallyBusConnector&) = delete;
++    WallyBusConnector& operator=(const WallyBusConnector&) = delete;
++
++    void writeData(uint8_t index, uint32_t size, uint32_t offset = 0) override {
++        checkRange(index, size, offset);
++        const uint32_t* data = buffers[index].data() + offset / 4;
++        for (uint32_t i = 0; i < size / 4; ++i) {
++            // PREADY applies backpressure until the asynchronous FIFO has room.
++            regs[(i + 1 == size / 4) ? 1 : 0] = data[i];
++        }
++        blockUntilTransferIsComplete();
++    }
++    void readData(uint8_t index, uint32_t size) override {
++        checkRange(index, size, 0);
++        const auto deadline = std::chrono::steady_clock::now() + std::chrono::seconds(30);
++        for (uint32_t i = 0; i < size / 4; ++i) {
++            while ((regs[2] & 2) == 0) {
++                if (std::chrono::steady_clock::now() > deadline)
++                    throw std::runtime_error("RasterIX response timeout");
++            }
++            buffers[index][i] = regs[6];
++        }
++        blockUntilTransferIsComplete();
++    }
++    void blockUntilTransferIsComplete() override {
++        // Once the MMIO writes complete, the FIFO owns the copied words.
++        asm volatile("fence iorw, iorw" ::: "memory");
++    }
++    tcb::span<uint8_t> requestWriteBuffer(uint8_t index) override {
++        if (index >= buffers.size()) return {};
++        return {reinterpret_cast<uint8_t*>(buffers[index].data()), buffers[index].size() * 4};
++    }
++    tcb::span<uint8_t> requestReadBuffer(uint8_t index) override { return requestWriteBuffer(index); }
++    uint8_t getWriteBufferCount() const override { return buffers.size(); }
++    uint8_t getReadBufferCount() const override { return buffers.size(); }
++    uint32_t frameCount() const { return regs[4]; }
++    uint32_t frameAddress() const { return regs[5]; }
++    void waitForFrame(uint32_t previous) const {
++        const auto deadline = std::chrono::steady_clock::now() + std::chrono::seconds(30);
++        while (frameCount() == previous) {
++            if (std::chrono::steady_clock::now() > deadline)
++                throw std::runtime_error("RasterIX display swap timeout");
++            usleep(1000);
++        }
++    }
++private:
++    void checkRange(uint8_t index, uint32_t size, uint32_t offset) const {
++        if (index >= buffers.size() || (size | offset) % 4 ||
++            offset > buffers[index].size() * 4 || size > buffers[index].size() * 4 - offset)
++            throw std::runtime_error("Invalid RasterIX transfer range");
++    }
++    volatile uint32_t* regs = nullptr;
++    // Two lists per framebuffer strip and a separate buffer for device transfers.
++    std::array<std::vector<uint32_t>, 2 * rr::RenderConfig::getDisplayLines() + 1> buffers;
++};
+diff --git a/examples/rasterix/main.cpp b/examples/rasterix/main.cpp
+new file mode 100644
+index 000000000..eac67e036
+--- /dev/null
++++ b/examples/rasterix/main.cpp
+@@ -0,0 +1,80 @@
++// SPDX-License-Identifier: GPL-3.0-or-later
++// Written: Codex <codex@openai.com> 9 September 2026
++// Render a triangle or the upstream textured-cube example through Wally.
++#include "WallyBusConnector.hpp"
++#include "RIXGL.hpp"
++#include "renderer/devicedatauploader/DeviceDataUploader.hpp"
++#include "renderer/threadedvertextransformer/ThreadedVertexTransformer.hpp"
++#include "NoThreadRunner.hpp"
++#include "Minimal.hpp"
++#include "gl.h"
++#include <cstdio>
++#include <cstdlib>
++#include <cstring>
++#include <memory>
++
++int main(int argc, char** argv) {
++    const char* scene = argc > 1 ? argv[1] : "triangle";
++    unsigned frames = argc > 2 ? std::strtoul(argv[2], nullptr, 10) : 120;
++    if ((std::strcmp(scene, "triangle") && std::strcmp(scene, "cube") &&
++         std::strcmp(scene, "red") && std::strcmp(scene, "green") && std::strcmp(scene, "blue")) || !frames) {
++        std::fprintf(stderr, "Usage: %s [triangle|cube|red|green|blue] [frames]\n", argv[0]);
++        return 1;
++    }
++    try {
++        WallyBusConnector bus;
++        rr::devicedatauploader::DeviceDataUploader uploader(bus);
++        // Process the upstream framebuffer strips synchronously on the single CPU.
++        rr::NoThreadRunner worker, transfer;
++        auto device = std::make_unique<rr::threadedvertextransformer::ThreadedVertexTransformer>(uploader, worker, transfer);
++        if (!rr::RIXGL::createInstance(*device)) throw std::runtime_error("Cannot create OpenGL context");
++        auto& gl = rr::RIXGL::getInstance();
++        if (!gl.setRenderResolution(640, 480)) throw std::runtime_error("Unsupported resolution");
++        const bool cube = std::strcmp(scene, "cube") == 0;
++        Minimal cubeScene;
++        if (cube) cubeScene.init(640, 480);
++        else {
++            glViewport(0, 0, 640, 480);
++            glMatrixMode(GL_PROJECTION);
++            glLoadIdentity();
++            glOrtho(0, 640, 0, 480, -1, 1);
++            glMatrixMode(GL_MODELVIEW);
++            glLoadIdentity();
++        }
++        std::printf("RasterIX scene=%s frames=%u resolution=640x480\n", scene, frames);
++        std::fflush(stdout);
++        for (unsigned frame = 0; frame < frames; ++frame) {
++            if (cube) cubeScene.draw();
++            else {
++                glClearColor(!std::strcmp(scene, "red") ? 1.0f : 0.0f,
++                             !std::strcmp(scene, "green") ? 1.0f : 0.0f,
++                             !std::strcmp(scene, "blue") ? 1.0f : 0.0f, 1.0f);
++                glClear(GL_COLOR_BUFFER_BIT);
++                if (!std::strcmp(scene, "triangle")) {
++                    glBegin(GL_TRIANGLES);
++                    glColor3f(1, 0, 0); glVertex2f(320, 400);
++                    glColor3f(0, 1, 0); glVertex2f(120, 80);
++                    glColor3f(0, 0, 1); glVertex2f(520, 80);
++                    glEnd();
++                }
++            }
++            const uint32_t previous = bus.frameCount();
++            gl.swapDisplayList();
++            bus.waitForFrame(previous);
++            if (glGetError() != GL_NO_ERROR) throw std::runtime_error("OpenGL error");
++            if (frame == 0 || frame + 1 == frames || (frame + 1) % 30 == 0) {
++                std::printf("Frame %u displayed: count=%u address=0x%08x\n", frame + 1,
++                            bus.frameCount(), bus.frameAddress());
++                std::fflush(stdout);
++            }
++        }
++        // Release the context and select the system framebuffer.
++        rr::RIXGL::destroy();
++        device->deinit();
++        std::puts("Rendering completed");
++        return 0;
++    } catch (const std::exception& error) {
++        std::fprintf(stderr, "%s\n", error.what());
++        return 1;
++    }
++}
+diff --git a/fpga/README.md b/fpga/README.md
+index c79665ef6..05439ae4f 100644
+--- a/fpga/README.md
++++ b/fpga/README.md
+@@ -84,3 +84,93 @@ screen /dev/ttyUSB1 115200
+ ```
+ 
+ Swap out the `USB1` for `USB0` or `USB1` as needed.
++
++## RasterIX on Nexys Video
++
++The optional `nexysvideo-rasterix` target adds [RasterIX](https://github.com/ToNi3141/RasterIX)
++and DVI video on HDMI OUT. RasterIX is an unmodified upstream submodule in
++`addins/rasterix`; its source and software library retain their upstream licenses.
++Initialize its nested dependencies before building:
++
++```bash
++cd $WALLY
++git submodule update --init --recursive addins/rasterix
++cd fpga/generator
++make nexysvideo-rasterix
++```
++
++The `nexysvideo-rasterix` target selects the `fpganexysvideo_rasterix`
++derivative and sets `RASTERIX=1` for both IP generation and the board's
++`RASTERIX_SUPPORTED` parameter. The derivative enables Wally's external APB
++port; enabling that port alone does not select a particular peripheral.
++An asynchronous command FIFO connects that port to `RasterIX_IF`, with a
++64-bit memory interface, a 65536-pixel internal framebuffer, one texture unit,
++and depth and stencil buffers. Wally and RasterIX share DDR3 with the upstream
++DVI framebuffer through an AXI interconnect. Wally runs at 20 MHz, RasterIX at
++100 MHz, and video uses a 25.2 MHz pixel clock (640x480, approximately 60 Hz).
++Packet FIFOs buffer complete GPU memory bursts before they reach the shared DDR3
++port, so CPU-controlled stream backpressure cannot block CPU memory access.
++The display acknowledges a swap after it starts reading the new framebuffer
++and drains reads from the previous buffer.
++
++Use `wally-nexysvideo-rasterix.dts` with this design. It reserves the last
++32 MiB of DDR3 for textures and display buffers. Build its device tree and pass
++the resulting file to `flash-sd.sh -d` as above:
++
++```bash
++dtc -I dts -O dtb -i $WALLY/linux/devicetree \
++    -o wally-nexysvideo-rasterix.dtb \
++    $WALLY/linux/devicetree/wally-nexysvideo-rasterix.dts
++```
++
++### Linux example
++
++`examples/rasterix` supplies a Linux implementation of RasterIX's
++`IBusConnector` and a small OpenGL example. Build it with a RISC-V Linux C/C++
++toolchain; the toolchain must support C++17 and static linking. For example,
++with a Buildroot host toolchain directory on `PATH`:
++
++```bash
++cmake -S $WALLY/examples/rasterix -B rasterix-build \
++    -DCMAKE_SYSTEM_NAME=Linux -DCMAKE_SYSTEM_PROCESSOR=riscv64 \
++    -DCMAKE_C_COMPILER=riscv64-buildroot-linux-gnu-gcc \
++    -DCMAKE_CXX_COMPILER=riscv64-buildroot-linux-gnu-g++ \
++    -DCMAKE_BUILD_TYPE=Release
++cmake --build rasterix-build -j
++```
++
++The example uses the upstream command processor to divide each frame into
++five strips that fit the internal framebuffer. Its `NoThreadRunner` executes
++the processing and transfers sequentially on Wally's single CPU.
++
++Copy `rasterix-build/rasterix-demo` to the board through the SD card. Run as
++root because the connector accesses the command registers through `/dev/mem`:
++
++```bash
++./rasterix-demo triangle 120
++./rasterix-demo cube 120
++```
++
++The cube uses RasterIX's upstream `Minimal` example, including texture mapping,
++lighting, and depth testing. Solid `red`, `green`, and `blue` scenes are also
++available. The driver configuration must match the hardware: display buffers
++are at physical addresses `0x9fe00000` and `0x9fc00000`, with textures starting
++at `0x9e000000`. Depth and stencil buffers are at `0x9fa00000` and
++`0x9f800000`, respectively. RasterIX's buffer locations in CMake are offsets from that
++texture-memory base. The reserved device tree is required before running the
++example.
++
++### Command registers
++
++Registers occupy `0x10080000` through `0x100800ff`. Only aligned 32-bit accesses
++are supported. The region is uncached, non-idempotent, and non-executable.
++
++| Offset | Access | Description |
++| --- | --- | --- |
++| `0x00` | W | Command word; wait if the FIFO is full |
++| `0x04` | W | Last command word of a transfer (`TLAST`) |
++| `0x08` | R | Status: bit 0 command ready, bit 1 response available, bit 2 GPU busy |
++| `0x0c` | R | Interface ID, `0x52495831` |
++| `0x10` | R | Completed display swap count |
++| `0x14` | R | Most recently acknowledged framebuffer address |
++| `0x18` | R | Response word; wait if the response FIFO is empty |
+diff --git a/fpga/constraints/constraints-nexysvideo.xdc b/fpga/constraints/constraints-nexysvideo.xdc
+index 5d5b2cbbe..56f6ffdc1 100644
+--- a/fpga/constraints/constraints-nexysvideo.xdc
++++ b/fpga/constraints/constraints-nexysvideo.xdc
+@@ -1,6 +1,6 @@
+ ###########################################
+ ## constraints-nexysvideo.xdc
+-## Purpose: Nexys Video Rev. A board I/O for the Wally-only design.
++## Purpose: Nexys Video Rev. A board I/O for Wally with optional RasterIX video output.
+ ## Pin source: Digilent/digilent-xdc, Nexys-Video-Master.xdc.
+ ## DDR3 pin locations and PHY timing come from the MIG profile.
+ ## SPDX-License-Identifier: Apache-2.0 WITH SHL-2.1
+@@ -61,8 +61,20 @@ set_input_delay -clock $cpuClock -max 35.0 [get_ports SDCIn]
+ set_input_delay -clock $cpuClock -min 0.0 [get_ports SDCIn]
+ set_output_delay -clock $cpuClock -max 0.0 [get_ports {SDCCmd SDCCS SDCCLK}]
+ set_output_delay -clock $cpuClock -min 0.0 [get_ports {SDCCmd SDCCS SDCCLK}]
+-set_max_delay -datapath_only 10.0 -to [get_ports {SDCCmd SDCCS SDCCLK}]
++set_max_delay -datapath_only 10.0 -from $cpuClock -to [get_ports {SDCCmd SDCCS SDCCLK}]
+ 
+ set_property CONFIG_VOLTAGE 3.3 [current_design]
+ set_property CFGBVS VCCO [current_design]
+ set_property BITSTREAM.GENERAL.COMPRESS true [current_design]
++
++# HDMI output pairs from the Digilent Nexys Video master constraints.
++set_property -dict {PACKAGE_PIN T1 IOSTANDARD TMDS_33} [get_ports HDMITXCLKp]
++set_property -dict {PACKAGE_PIN U1 IOSTANDARD TMDS_33} [get_ports HDMITXCLKn]
++set_property -dict {PACKAGE_PIN W1 IOSTANDARD TMDS_33} [get_ports {HDMITXp[0]}]
++set_property -dict {PACKAGE_PIN Y1 IOSTANDARD TMDS_33} [get_ports {HDMITXn[0]}]
++set_property -dict {PACKAGE_PIN AA1 IOSTANDARD TMDS_33} [get_ports {HDMITXp[1]}]
++set_property -dict {PACKAGE_PIN AB1 IOSTANDARD TMDS_33} [get_ports {HDMITXn[1]}]
++set_property -dict {PACKAGE_PIN AB3 IOSTANDARD TMDS_33} [get_ports {HDMITXp[2]}]
++set_property -dict {PACKAGE_PIN AB2 IOSTANDARD TMDS_33} [get_ports {HDMITXn[2]}]
++# TMDS has no synchronous external capture clock; internal serializer paths remain timed.
++set_false_path -to [get_ports {HDMITXp[*] HDMITXn[*] HDMITXCLKp HDMITXCLKn}]
+diff --git a/fpga/constraints/constraints-rasterixdisplay.xdc b/fpga/constraints/constraints-rasterixdisplay.xdc
+new file mode 100644
+index 000000000..91511dc63
+--- /dev/null
++++ b/fpga/constraints/constraints-rasterixdisplay.xdc
+@@ -0,0 +1,10 @@
++# The display uses a separate MMCM. The four-phase handshake holds the address
++# until acknowledged; bound each crossing to one 100 MHz GPU clock period.
++# Synchronizer stages within each clock domain retain normal setup/hold checks.
++# SPDX-License-Identifier: Apache-2.0 WITH SHL-2.1
++set_max_delay -datapath_only 10.0 -from [get_cells Request_reg] \
++    -to [get_cells {RequestSync_reg[0]}]
++set_max_delay -datapath_only 10.0 -from [get_cells Ack_reg] \
++    -to [get_cells {AckSync_reg[0]}]
++set_max_delay -datapath_only 10.0 -from [get_cells {RequestAddr_reg[*]}] \
++    -to [get_cells {PendingAddr_reg[*]}]
+diff --git a/fpga/generator/Makefile b/fpga/generator/Makefile
+index f667f5e71..6a46654fb 100644
+--- a/fpga/generator/Makefile
++++ b/fpga/generator/Makefile
+@@ -1,4 +1,6 @@
+ dst := IP
++CONFIG ?= fpga$(board)
++export RASTERIX ?= 0
+ 
+ all: ArtyA7
+ 
+@@ -46,10 +48,18 @@ nexysvideo: export SYSTEMCLOCK := 20000000
+ nexysvideo: export MAXSDCCLOCK  :=  5000000
+ nexysvideo: FPGA_NEXYSVIDEO
+ 
++.PHONY: nexysvideo-rasterix
++nexysvideo-rasterix:
++	$(MAKE) RASTERIX=1 CONFIG=fpganexysvideo_rasterix nexysvideo
++
++ifeq ($(RASTERIX),1)
++IP_NEXYSVIDEO: $(dst)/axiscdc.log $(dst)/videoclock.log
++endif
++
+ # variables computed from config
+-EXT_MEM_BASE = $(shell grep 'EXT_MEM_BASE' ../../config/deriv/fpga$(board)/config.vh | sed 's/.*=.*h\([[:alnum:]]*\);/0x\1/g')
++EXT_MEM_BASE = $(shell grep 'EXT_MEM_BASE' ../../config/deriv/$(CONFIG)/config.vh | sed 's/.*=.*h\([[:alnum:]]*\);/0x\1/g')
+ 
+-EXT_MEM_RANGE = $(shell grep 'EXT_MEM_RANGE' ../../config/deriv/fpga$(board)/config.vh | sed 's/.*=.*h\([[:alnum:]]*\);/\1/g' | sed 's/\(.*\)/base=16;\1+1/g' | bc | sed 's/\(.*\)/0x\1/g')
++EXT_MEM_RANGE = $(shell grep 'EXT_MEM_RANGE' ../../config/deriv/$(CONFIG)/config.vh | sed 's/.*=.*h\([[:alnum:]]*\);/\1/g' | sed 's/\(.*\)/base=16;\1+1/g' | bc | sed 's/\(.*\)/0x\1/g')
+ 
+ 
+ .PHONY: FPGA_Arty FPGA_VCU FPGA_NEXYSVIDEO
+@@ -122,7 +132,7 @@ PreProcessFiles:
+ 	cp -r ../../addins/verilog-ethernet/*/*.sv ../src/CopiedFiles_do_not_add_to_repo/rvvi
+ 	cp -r ../../addins/verilog-ethernet/*/*/*/*.sv ../src/CopiedFiles_do_not_add_to_repo/rvvi
+ 	mkdir ../src/CopiedFiles_do_not_add_to_repo/config/
+-	cp ../../config/deriv/fpga$(board)/config.vh ../src/CopiedFiles_do_not_add_to_repo/config/
++	cp ../../config/deriv/$(CONFIG)/config.vh ../src/CopiedFiles_do_not_add_to_repo/config/
+ 	./insert_debug_comment.sh
+ 	# This line allows the Bootloader to be loaded in a Block RAM on the FPGA
+ 	sed -i "s/bit \[DATA_WIDTH-1:0\].*ROM.*/(\* rom_style=\"block\" \*) &/g" ../src/CopiedFiles_do_not_add_to_repo/generic/mem/rom1p1r.sv
+diff --git a/fpga/generator/axiscdc.tcl b/fpga/generator/axiscdc.tcl
+new file mode 100644
+index 000000000..d39b0be9c
+--- /dev/null
++++ b/fpga/generator/axiscdc.tcl
+@@ -0,0 +1,12 @@
++# Asynchronous 32-bit command/response FIFO for external FPGA peripherals.
++# SPDX-License-Identifier: Apache-2.0 WITH SHL-2.1
++set partNumber $::env(XILINX_PART)
++set ipName axiscdc
++create_project $ipName . -force -part $partNumber
++create_ip -name axis_data_fifo -vendor xilinx.com -library ip -module_name $ipName
++set_property -dict [list CONFIG.TDATA_NUM_BYTES {4} CONFIG.FIFO_DEPTH {512} \
++    CONFIG.IS_ACLK_ASYNC {1} CONFIG.HAS_TLAST {1} CONFIG.HAS_TKEEP {0} CONFIG.HAS_TSTRB {0}] [get_ips $ipName]
++generate_target all [get_files ./$ipName.srcs/sources_1/ip/$ipName/$ipName.xci]
++create_ip_run [get_files ./$ipName.srcs/sources_1/ip/$ipName/$ipName.xci]
++launch_run -jobs 8 ${ipName}_synth_1
++wait_on_run ${ipName}_synth_1
+diff --git a/fpga/generator/rasterixmem.tcl b/fpga/generator/rasterixmem.tcl
+new file mode 100644
+index 000000000..52ad1e624
+--- /dev/null
++++ b/fpga/generator/rasterixmem.tcl
+@@ -0,0 +1,53 @@
++# Shared DDR3 interconnect: Wally and RasterIX at 100 MHz; display at 25.2 MHz.
++# SPDX-License-Identifier: Apache-2.0 WITH SHL-2.1
++create_bd_design rasterixmem
++set interconnect [create_bd_cell -type ip -vlnv xilinx.com:ip:smartconnect:1.0 interconnect]
++set_property -dict [list CONFIG.NUM_SI {3} CONFIG.NUM_MI {1} CONFIG.NUM_CLKS {2}] $interconnect
++# Complete memory bursts are buffered before reaching the shared DDR3 port.
++# CPU-controlled command/response backpressure must not hold a DDR3 transaction
++# while the CPU needs that same memory to supply or consume the stream.
++set gpubuffer [create_bd_cell -type ip -vlnv xilinx.com:ip:axi_data_fifo:2.1 gpubuffer]
++set_property -dict [list CONFIG.WRITE_FIFO_DEPTH {512} CONFIG.WRITE_FIFO_DELAY {1} \
++    CONFIG.READ_FIFO_DEPTH {512} CONFIG.READ_FIFO_DELAY {1}] $gpubuffer
++foreach {name mode width ids addrwidth access freq} {
++    S00_AXI Slave 64 4 32 READ_WRITE 100000000
++    S01_AXI Slave 64 4 32 READ_WRITE 100000000
++    S02_AXI Slave 32 4 32 READ_ONLY   25200000
++    M00_AXI Master 64 0 29 READ_WRITE 100000000
++} {
++    set port [create_bd_intf_port -mode $mode -vlnv xilinx.com:interface:aximm_rtl:1.0 $name]
++    set_property -dict [list CONFIG.PROTOCOL AXI4 CONFIG.DATA_WIDTH $width \
++        CONFIG.ADDR_WIDTH $addrwidth CONFIG.READ_WRITE_MODE $access CONFIG.FREQ_HZ $freq \
++        CONFIG.HAS_BURST {1} CONFIG.HAS_LOCK {1} CONFIG.HAS_CACHE {1} CONFIG.HAS_QOS {1}] $port
++    if {$mode == "Slave"} {
++        set_property CONFIG.ID_WIDTH $ids $port
++    }
++    if {$name == "S01_AXI"} {
++        connect_bd_intf_net $port [get_bd_intf_pins gpubuffer/S_AXI]
++        connect_bd_intf_net [get_bd_intf_pins gpubuffer/M_AXI] [get_bd_intf_pins interconnect/$name]
++    } else {
++        connect_bd_intf_net $port [get_bd_intf_pins interconnect/$name]
++    }
++}
++set aclk [create_bd_port -dir I -type clk -freq_hz 100000000 aclk]
++set aclk1 [create_bd_port -dir I -type clk -freq_hz 25200000 aclk1]
++set aresetn [create_bd_port -dir I -type rst aresetn]
++set_property CONFIG.POLARITY ACTIVE_LOW $aresetn
++set_property CONFIG.ASSOCIATED_BUSIF {S00_AXI:S01_AXI:M00_AXI} $aclk
++set_property CONFIG.ASSOCIATED_BUSIF {S02_AXI} $aclk1
++set_property CONFIG.ASSOCIATED_RESET {aresetn} $aclk
++connect_bd_net $aclk [get_bd_pins interconnect/aclk]
++connect_bd_net $aclk [get_bd_pins gpubuffer/aclk]
++connect_bd_net $aclk1 [get_bd_pins interconnect/aclk1]
++connect_bd_net $aresetn [get_bd_pins interconnect/aresetn]
++connect_bd_net $aresetn [get_bd_pins gpubuffer/aresetn]
++foreach port {S00_AXI S01_AXI S02_AXI} {
++    assign_bd_address -target_address_space [get_bd_addr_spaces $port] \
++        -offset 0x00000000 -range 0x20000000 [get_bd_addr_segs M00_AXI/Reg] -force
++}
++validate_bd_design
++save_bd_design
++set design [get_files rasterixmem.bd]
++set_property synth_checkpoint_mode None $design
++generate_target all $design
++add_files -norecurse [make_wrapper -files $design -top]
+diff --git a/fpga/generator/videoclock.tcl b/fpga/generator/videoclock.tcl
+new file mode 100644
+index 000000000..5f7e436a9
+--- /dev/null
++++ b/fpga/generator/videoclock.tcl
+@@ -0,0 +1,14 @@
++# Pixel and TMDS serializer clocks for a 640x480 display.
++# SPDX-License-Identifier: Apache-2.0 WITH SHL-2.1
++set partNumber $::env(XILINX_PART)
++set ipName videoclock
++create_project $ipName . -force -part $partNumber
++create_ip -name clk_wiz -vendor xilinx.com -library ip -module_name $ipName
++set_property -dict [list CONFIG.PRIM_IN_FREQ {100.000} CONFIG.PRIM_SOURCE {No_buffer} \
++    CONFIG.NUM_OUT_CLKS {2} \
++    CONFIG.CLKOUT2_USED {true} CONFIG.CLKOUT1_REQUESTED_OUT_FREQ {25.2} \
++    CONFIG.CLKOUT2_REQUESTED_OUT_FREQ {126} CONFIG.CLKIN1_JITTER_PS {150.0}] [get_ips $ipName]
++generate_target all [get_files ./$ipName.srcs/sources_1/ip/$ipName/$ipName.xci]
++create_ip_run [get_files ./$ipName.srcs/sources_1/ip/$ipName/$ipName.xci]
++launch_run -jobs 8 ${ipName}_synth_1
++wait_on_run ${ipName}_synth_1
+diff --git a/fpga/generator/wally.tcl b/fpga/generator/wally.tcl
+index fb206e3bb..d5b903706 100644
+--- a/fpga/generator/wally.tcl
++++ b/fpga/generator/wally.tcl
+@@ -59,6 +59,32 @@ add_files [glob -type f  ../src/CopiedFiles_do_not_add_to_repo/*/*.sv ../src/Cop
+ set_property include_dirs {../src/CopiedFiles_do_not_add_to_repo/config ../../config/shared} [current_fileset]
+ 
+ 
++# The same board option selects IP dependencies and the top-level hardware.
++set rasterixEnabled $::env(RASTERIX)
++if {$rasterixEnabled} {
++    if {$board != "nexysvideo"} {error "RasterIX requires the Nexys Video board"}
++    set configFile [open ../src/CopiedFiles_do_not_add_to_repo/config/config.vh r]
++    set externalAPB [regexp {EXT_IO_SUPPORTED\s*=\s*1;} [read $configFile]]
++    close $configFile
++    if {!$externalAPB} {error "RasterIX requires EXT_IO_SUPPORTED in the selected configuration"}
++    set_property generic {RASTERIX_SUPPORTED=1} [current_fileset]
++    add_files {../src/rasterix.sv ../src/rasterix_apb.sv ../src/rasterixdisplay.sv}
++    import_ip IP/axiscdc.srcs/sources_1/ip/axiscdc/axiscdc.xci
++    import_ip IP/videoclock.srcs/sources_1/ip/videoclock/videoclock.xci
++    add_files -fileset constrs_1 ../constraints/constraints-rasterixdisplay.xdc
++    set_property SCOPED_TO_REF rasterixdisplay [get_files constraints-rasterixdisplay.xdc]
++    set rasterixRoot ../../addins/rasterix/rtl
++    add_files [glob $rasterixRoot/RasterIX/*.v $rasterixRoot/Float/rtl/float/*.v \
++        $rasterixRoot/3rdParty/verilog-axi/*.v $rasterixRoot/3rdParty/verilog-axis/*.v \
++        $rasterixRoot/3rdParty/core_dvi_framebuffer/src_v/*.v]
++    add_files [list $rasterixRoot/3rdParty/sfifo.v $rasterixRoot/3rdParty/skidbuffer.v]
++    set_property include_dirs [concat [get_property include_dirs [current_fileset]] \
++        [list $rasterixRoot/RasterIX $rasterixRoot/3rdParty/core_dvi_framebuffer/src_v]] [current_fileset]
++    # Keep the upstream AXI utility modules separate from the RVVI dependency.
++    set_property library rasterix [get_files -all -filter {NAME =~ *addins/rasterix/*}]
++    source rasterixmem.tcl
++}
++
+ # define top level
+ set_property top fpgaTop [current_fileset]
+ 
+@@ -127,6 +153,11 @@ if {$board=="ArtyA7"} {
+ #set_property "steps.place_design.args.directive" "RuntimeOptimized" [get_runs impl_1]
+ #set_property "steps.route_design.args.directive" "RuntimeOptimized" [get_runs impl_1]
+ 
++if {$rasterixEnabled} {
++    # Spread the renderer and CPU logic to reduce routing congestion.
++    set_property STEPS.PLACE_DESIGN.ARGS.DIRECTIVE AltSpreadLogic_high [get_runs impl_1]
++}
++
+ if {$board=="nexysvideo"} {
+     set_property STEPS.POST_ROUTE_PHYS_OPT_DESIGN.IS_ENABLED true [get_runs impl_1]
+     set_property STEPS.POST_ROUTE_PHYS_OPT_DESIGN.ARGS.DIRECTIVE Explore [get_runs impl_1]
+diff --git a/fpga/src/fpgaTop.sv b/fpga/src/fpgaTop.sv
+index 71d1557a1..f77804930 100644
+--- a/fpga/src/fpgaTop.sv
++++ b/fpga/src/fpgaTop.sv
+@@ -209,7 +209,10 @@ module fpgaTop
+ 
+   // Wally
+   wallypipelinedsoc  #(P)
+-  wallypipelinedsoc(.clk(CPUCLK), .reset_ext(bus_struct_reset), .reset(),
++  wallypipelinedsoc(
++    .PSELEXT(), .PENABLEEXT(), .PWRITEEXT(), .PADDREXT(), .PWDATAEXT(), .PSTRBEXT(),
++    .PRDATAEXT('0), .PREADYEXT(1'b1),
++    .clk(CPUCLK), .reset_ext(bus_struct_reset), .reset(),
+                     .HRDATAEXT, .HREADYEXT, .HRESPEXT, .HSELEXT,
+                     .HCLK(HCLKOpen), .HRESETn(HRESETnOpen),
+                     .HADDR, .HWDATA, .HWSTRB, .HWRITE, .HSIZE, .HBURST, .HPROT,
+diff --git a/fpga/src/fpgaTopArtyA7.sv b/fpga/src/fpgaTopArtyA7.sv
+index 4662a526b..42884fd93 100644
+--- a/fpga/src/fpgaTopArtyA7.sv
++++ b/fpga/src/fpgaTopArtyA7.sv
+@@ -252,7 +252,10 @@ module fpgaTop #(parameter logic RVVI_SYNTH_SUPPORTED = 0)
+ 
+   // Wally
+   wallypipelinedsoc  #(P)
+-  wallypipelinedsoc(.clk(CPUCLK), .reset_ext(bus_struct_reset), .reset(),
++  wallypipelinedsoc(
++    .PSELEXT(), .PENABLEEXT(), .PWRITEEXT(), .PADDREXT(), .PWDATAEXT(), .PSTRBEXT(),
++    .PRDATAEXT('0), .PREADYEXT(1'b1),
++    .clk(CPUCLK), .reset_ext(bus_struct_reset), .reset(),
+                     .HRDATAEXT, .HREADYEXT, .HRESPEXT, .HSELEXT,
+                     .HCLK(HCLKOpen), .HRESETn(HRESETnOpen),
+                     .HADDR, .HWDATA, .HWSTRB, .HWRITE, .HSIZE, .HBURST, .HPROT,
+diff --git a/fpga/src/fpgaTopGenesys2.sv b/fpga/src/fpgaTopGenesys2.sv
+index 3c1b47551..24cc7fbab 100644
+--- a/fpga/src/fpgaTopGenesys2.sv
++++ b/fpga/src/fpgaTopGenesys2.sv
+@@ -251,7 +251,10 @@ module fpgaTop #(parameter logic RVVI_SYNTH_SUPPORTED = 0)
+ 
+   // Wally
+   wallypipelinedsoc  #(P)
+-  wallypipelinedsoc(.clk(CPUCLK), .reset_ext(bus_struct_reset), .reset(),
++  wallypipelinedsoc(
++    .PSELEXT(), .PENABLEEXT(), .PWRITEEXT(), .PADDREXT(), .PWDATAEXT(), .PSTRBEXT(),
++    .PRDATAEXT('0), .PREADYEXT(1'b1),
++    .clk(CPUCLK), .reset_ext(bus_struct_reset), .reset(),
+                     .HRDATAEXT, .HREADYEXT, .HRESPEXT, .HSELEXT,
+                     .HCLK(HCLKOpen), .HRESETn(HRESETnOpen),
+                     .HADDR, .HWDATA, .HWSTRB, .HWRITE, .HSIZE, .HBURST, .HPROT,
+diff --git a/fpga/src/fpgaTopNexysA7.sv b/fpga/src/fpgaTopNexysA7.sv
+index 9b4c0dbbb..8b08d1e8b 100644
+--- a/fpga/src/fpgaTopNexysA7.sv
++++ b/fpga/src/fpgaTopNexysA7.sv
+@@ -274,7 +274,10 @@ module fpgaTop #(parameter logic RVVI_SYNTH_SUPPORTED = 0)
+ 
+   // Wally
+   wallypipelinedsoc  #(P)
+-  wallypipelinedsoc(.clk(CPUCLK), .reset_ext(bus_struct_reset), .reset(),
++  wallypipelinedsoc(
++    .PSELEXT(), .PENABLEEXT(), .PWRITEEXT(), .PADDREXT(), .PWDATAEXT(), .PSTRBEXT(),
++    .PRDATAEXT('0), .PREADYEXT(1'b1),
++    .clk(CPUCLK), .reset_ext(bus_struct_reset), .reset(),
+                     .HRDATAEXT, .HREADYEXT, .HRESPEXT, .HSELEXT,
+                     .HCLK(HCLKOpen), .HRESETn(HRESETnOpen),
+                     .HADDR, .HWDATA, .HWSTRB, .HWRITE, .HSIZE, .HBURST, .HPROT,
+diff --git a/fpga/src/fpgaTopNexysVideo.sv b/fpga/src/fpgaTopNexysVideo.sv
+index 06bf32c4e..e446a2ef1 100644
+--- a/fpga/src/fpgaTopNexysVideo.sv
++++ b/fpga/src/fpgaTopNexysVideo.sv
+@@ -9,7 +9,8 @@
+ `include "config.vh"
+ import cvw::*;
+ 
+-module fpgaTop(input logic clk, resetn,
++module fpgaTop #(parameter logic RASTERIX_SUPPORTED = 0) (
++  input  logic        clk, resetn,
+   input  logic [7:0]  GPI,
+   output logic [7:0]  GPO,
+   input  logic        UARTSin,
+@@ -22,11 +23,13 @@ module fpgaTop(input logic clk, resetn,
+   output logic [2:0]  DDR3BA,
+   output logic        DDR3RASn, DDR3CASn, DDR3WEn, DDR3Resetn,
+   output logic [0:0]  DDR3CKp, DDR3CKn, DDR3CKE, DDR3ODT,
+-  output logic [1:0]  DDR3DM);
++  output logic [1:0]  DDR3DM,
++  output logic [2:0]  HDMITXp, HDMITXn,
++  output logic        HDMITXCLKp, HDMITXCLKn);
+ 
+   `include "parameter-defs.vh"
+ 
+-  logic               CPUCLK, DDRCLK, DDRRefCLK, DDRSysCLK;
++  logic               CPUCLK, DDRCLK, DDRRefCLK, DDRSysCLK, PixelCLK, SerialCLK;
+   logic               ClockLocked, DDRCalibComplete, DDRSyncReset;
+   logic               CPUReset, CPUResetn, DDRResetn;
+   logic [31:0]         GPIOIN, GPIOOUT;
+@@ -113,6 +116,47 @@ module fpgaTop(input logic clk, resetn,
+   logic         DDRAXIRVALID;
+   logic         DDRAXIRREADY;
+ 
++  logic               PixelResetn, PSELEXT, PENABLEEXT, PWRITEEXT, PREADYEXT;
++  logic [31:0]        PADDREXT;
++  logic [63:0]        PWDATAEXT, PRDATAEXT;
++  logic [7:0]         PSTRBEXT;
++  logic [3:0]         TMDS;
++  logic [3:0]    SharedAXIAWID;
++  logic [31:0]   SharedAXIAWADDR;
++  logic [7:0]    SharedAXIAWLEN;
++  logic [2:0]    SharedAXIAWSIZE;
++  logic [1:0]    SharedAXIAWBURST;
++  logic          SharedAXIAWLOCK;
++  logic [3:0]    SharedAXIAWCACHE;
++  logic [2:0]    SharedAXIAWPROT;
++  logic          SharedAXIAWVALID;
++  logic          SharedAXIAWREADY;
++  logic [63:0]   SharedAXIWDATA;
++  logic [7:0]    SharedAXIWSTRB;
++  logic          SharedAXIWLAST;
++  logic          SharedAXIWVALID;
++  logic          SharedAXIWREADY;
++  logic [3:0]    SharedAXIBID;
++  logic [1:0]    SharedAXIBRESP;
++  logic          SharedAXIBVALID;
++  logic          SharedAXIBREADY;
++  logic [3:0]    SharedAXIARID;
++  logic [31:0]   SharedAXIARADDR;
++  logic [7:0]    SharedAXIARLEN;
++  logic [2:0]    SharedAXIARSIZE;
++  logic [1:0]    SharedAXIARBURST;
++  logic          SharedAXIARLOCK;
++  logic [3:0]    SharedAXIARCACHE;
++  logic [2:0]    SharedAXIARPROT;
++  logic          SharedAXIARVALID;
++  logic          SharedAXIARREADY;
++  logic [3:0]    SharedAXIRID;
++  logic [63:0]   SharedAXIRDATA;
++  logic [1:0]    SharedAXIRRESP;
++  logic          SharedAXIRLAST;
++  logic          SharedAXIRVALID;
++  logic          SharedAXIRREADY;
++
+   // Synchronize asynchronous inputs before the GPIO enable and UART loopback muxes.
+   // ASYNC_REG keeps these stages together during placement.
+   always_ff @(posedge CPUCLK) begin
+@@ -146,6 +190,7 @@ module fpgaTop(input logic clk, resetn,
+ 
+   wallypipelinedsoc #(P) wallypipelinedsoc(
+     .clk(CPUCLK), .reset_ext(CPUReset), .reset(), .ExternalStall(1'b0),
++    .PSELEXT, .PENABLEEXT, .PWRITEEXT, .PADDREXT, .PWDATAEXT, .PSTRBEXT, .PRDATAEXT, .PREADYEXT,
+     .HRDATAEXT, .HREADYEXT, .HRESPEXT, .HSELEXT, .HCLK(), .HRESETn(),
+     .HADDR, .HWDATA, .HWSTRB(), .HWRITE, .HSIZE, .HBURST, .HPROT, .HTRANS,
+     .HMASTLOCK(), .HREADY, .TIMECLK(1'b0), .GPIOIN, .GPIOOUT, .GPIOEN(),
+@@ -191,19 +236,100 @@ module fpgaTop(input logic clk, resetn,
+     .s_axi_rdata(CPUAXIRDATA), .s_axi_rresp(CPUAXIRRESP), .s_axi_rlast(CPUAXIRLAST),
+     .s_axi_rvalid(CPUAXIRVALID), .s_axi_rready(CPUAXIRREADY), .m_axi_aclk(DDRCLK),
+     .m_axi_aresetn(DDRResetn), .m_axi_awregion(), .m_axi_arregion(), .m_axi_awqos(),
+-    .m_axi_arqos(), .m_axi_awid(DDRAXIAWID), .m_axi_awaddr(DDRAXIAWADDR),
+-    .m_axi_awlen(DDRAXIAWLEN), .m_axi_awsize(DDRAXIAWSIZE), .m_axi_awburst(DDRAXIAWBURST),
+-    .m_axi_awlock(DDRAXIAWLOCK), .m_axi_awcache(DDRAXIAWCACHE), .m_axi_awprot(DDRAXIAWPROT),
+-    .m_axi_awvalid(DDRAXIAWVALID), .m_axi_awready(DDRAXIAWREADY), .m_axi_wdata(DDRAXIWDATA),
+-    .m_axi_wstrb(DDRAXIWSTRB), .m_axi_wlast(DDRAXIWLAST), .m_axi_wvalid(DDRAXIWVALID),
+-    .m_axi_wready(DDRAXIWREADY), .m_axi_bid(DDRAXIBID), .m_axi_bresp(DDRAXIBRESP),
+-    .m_axi_bvalid(DDRAXIBVALID), .m_axi_bready(DDRAXIBREADY), .m_axi_arid(DDRAXIARID),
+-    .m_axi_araddr(DDRAXIARADDR), .m_axi_arlen(DDRAXIARLEN), .m_axi_arsize(DDRAXIARSIZE),
+-    .m_axi_arburst(DDRAXIARBURST), .m_axi_arlock(DDRAXIARLOCK),
+-    .m_axi_arcache(DDRAXIARCACHE), .m_axi_arprot(DDRAXIARPROT),
+-    .m_axi_arvalid(DDRAXIARVALID), .m_axi_arready(DDRAXIARREADY), .m_axi_rid(DDRAXIRID),
+-    .m_axi_rdata(DDRAXIRDATA), .m_axi_rresp(DDRAXIRRESP), .m_axi_rlast(DDRAXIRLAST),
+-    .m_axi_rvalid(DDRAXIRVALID), .m_axi_rready(DDRAXIRREADY));
++    .m_axi_arqos(), .m_axi_awid(SharedAXIAWID), .m_axi_awaddr(SharedAXIAWADDR),
++    .m_axi_awlen(SharedAXIAWLEN), .m_axi_awsize(SharedAXIAWSIZE), .m_axi_awburst(SharedAXIAWBURST),
++    .m_axi_awlock(SharedAXIAWLOCK), .m_axi_awcache(SharedAXIAWCACHE), .m_axi_awprot(SharedAXIAWPROT),
++    .m_axi_awvalid(SharedAXIAWVALID), .m_axi_awready(SharedAXIAWREADY), .m_axi_wdata(SharedAXIWDATA),
++    .m_axi_wstrb(SharedAXIWSTRB), .m_axi_wlast(SharedAXIWLAST), .m_axi_wvalid(SharedAXIWVALID),
++    .m_axi_wready(SharedAXIWREADY), .m_axi_bid(SharedAXIBID), .m_axi_bresp(SharedAXIBRESP),
++    .m_axi_bvalid(SharedAXIBVALID), .m_axi_bready(SharedAXIBREADY), .m_axi_arid(SharedAXIARID),
++    .m_axi_araddr(SharedAXIARADDR), .m_axi_arlen(SharedAXIARLEN), .m_axi_arsize(SharedAXIARSIZE),
++    .m_axi_arburst(SharedAXIARBURST), .m_axi_arlock(SharedAXIARLOCK),
++    .m_axi_arcache(SharedAXIARCACHE), .m_axi_arprot(SharedAXIARPROT),
++    .m_axi_arvalid(SharedAXIARVALID), .m_axi_arready(SharedAXIARREADY), .m_axi_rid(SharedAXIRID),
++    .m_axi_rdata(SharedAXIRDATA), .m_axi_rresp(SharedAXIRRESP), .m_axi_rlast(SharedAXIRLAST),
++    .m_axi_rvalid(SharedAXIRVALID), .m_axi_rready(SharedAXIRREADY));
++
++  // Optional RasterIX shares DDR3 through the existing external memory interface.
++  if (RASTERIX_SUPPORTED) begin : rasterixgen
++    logic VideoLocked;
++    // Reuse the buffered 100 MHz clock; the board input has one input buffer.
++    videoclock videoclock(
++      .clk_in1(DDRSysCLK), .reset(~resetn | ~ClockLocked), .locked(VideoLocked),
++      .clk_out1(PixelCLK), .clk_out2(SerialCLK));
++    // Synchronize DDR reset and calibration separately, before combining them.
++    // The board reset also resets videoclock; VideoLocked holds the display in reset.
++    sysrst pixelreset(
++      .slowest_sync_clk(PixelCLK), .ext_reset_in(DDRSyncReset), .aux_reset_in(~DDRCalibComplete),
++      .mb_debug_sys_rst(1'b0), .dcm_locked(VideoLocked),
++      .mb_reset(), .bus_struct_reset(), .peripheral_reset(),
++      .interconnect_aresetn(), .peripheral_aresetn(PixelResetn));
++    rasterix rasterix(
++      .CPUCLK, .CPUResetn, .DDRCLK, .DDRResetn, .PixelCLK, .SerialCLK, .PixelResetn,
++      .PSEL(PSELEXT), .PENABLE(PENABLEEXT), .PWRITE(PWRITEEXT), .PADDR(PADDREXT),
++      .PWDATA(PWDATAEXT), .PSTRB(PSTRBEXT), .PRDATA(PRDATAEXT), .PREADY(PREADYEXT), .TMDS,
++      .CPUAWID(SharedAXIAWID), .CPUAWADDR(SharedAXIAWADDR), .CPUAWLEN(SharedAXIAWLEN), .CPUAWSIZE(SharedAXIAWSIZE),
++      .CPUAWBURST(SharedAXIAWBURST), .CPUAWLOCK(SharedAXIAWLOCK), .CPUAWCACHE(SharedAXIAWCACHE), .CPUAWPROT(SharedAXIAWPROT),
++      .CPUAWVALID(SharedAXIAWVALID), .CPUAWREADY(SharedAXIAWREADY), .CPUWDATA(SharedAXIWDATA), .CPUWSTRB(SharedAXIWSTRB),
++      .CPUWLAST(SharedAXIWLAST), .CPUWVALID(SharedAXIWVALID), .CPUWREADY(SharedAXIWREADY), .CPUBID(SharedAXIBID),
++      .CPUBRESP(SharedAXIBRESP), .CPUBVALID(SharedAXIBVALID), .CPUBREADY(SharedAXIBREADY), .CPUARID(SharedAXIARID),
++      .CPUARADDR(SharedAXIARADDR), .CPUARLEN(SharedAXIARLEN), .CPUARSIZE(SharedAXIARSIZE), .CPUARBURST(SharedAXIARBURST),
++      .CPUARLOCK(SharedAXIARLOCK), .CPUARCACHE(SharedAXIARCACHE), .CPUARPROT(SharedAXIARPROT), .CPUARVALID(SharedAXIARVALID),
++      .CPUARREADY(SharedAXIARREADY), .CPURID(SharedAXIRID), .CPURDATA(SharedAXIRDATA), .CPURRESP(SharedAXIRRESP),
++      .CPURLAST(SharedAXIRLAST), .CPURVALID(SharedAXIRVALID), .CPURREADY(SharedAXIRREADY), .DDRAWID(DDRAXIAWID),
++      .DDRAWADDR(DDRAXIAWADDR), .DDRAWLEN(DDRAXIAWLEN), .DDRAWSIZE(DDRAXIAWSIZE), .DDRAWBURST(DDRAXIAWBURST),
++      .DDRAWLOCK(DDRAXIAWLOCK), .DDRAWCACHE(DDRAXIAWCACHE), .DDRAWPROT(DDRAXIAWPROT), .DDRAWVALID(DDRAXIAWVALID),
++      .DDRAWREADY(DDRAXIAWREADY), .DDRWDATA(DDRAXIWDATA), .DDRWSTRB(DDRAXIWSTRB), .DDRWLAST(DDRAXIWLAST),
++      .DDRWVALID(DDRAXIWVALID), .DDRWREADY(DDRAXIWREADY), .DDRBID(DDRAXIBID), .DDRBRESP(DDRAXIBRESP),
++      .DDRBVALID(DDRAXIBVALID), .DDRBREADY(DDRAXIBREADY), .DDRARID(DDRAXIARID), .DDRARADDR(DDRAXIARADDR),
++      .DDRARLEN(DDRAXIARLEN), .DDRARSIZE(DDRAXIARSIZE), .DDRARBURST(DDRAXIARBURST), .DDRARLOCK(DDRAXIARLOCK),
++      .DDRARCACHE(DDRAXIARCACHE), .DDRARPROT(DDRAXIARPROT), .DDRARVALID(DDRAXIARVALID), .DDRARREADY(DDRAXIARREADY),
++      .DDRRID(DDRAXIRID), .DDRRDATA(DDRAXIRDATA), .DDRRRESP(DDRAXIRRESP), .DDRRLAST(DDRAXIRLAST),
++      .DDRRVALID(DDRAXIRVALID), .DDRRREADY(DDRAXIRREADY));
++  end else begin : rasterixgen
++    assign PRDATAEXT = '0;
++    assign PREADYEXT = 1'b1;
++    assign TMDS = '0;
++    assign DDRAXIAWID = SharedAXIAWID;
++    assign DDRAXIAWADDR = SharedAXIAWADDR;
++    assign DDRAXIAWLEN = SharedAXIAWLEN;
++    assign DDRAXIAWSIZE = SharedAXIAWSIZE;
++    assign DDRAXIAWBURST = SharedAXIAWBURST;
++    assign DDRAXIAWLOCK = SharedAXIAWLOCK;
++    assign DDRAXIAWCACHE = SharedAXIAWCACHE;
++    assign DDRAXIAWPROT = SharedAXIAWPROT;
++    assign DDRAXIAWVALID = SharedAXIAWVALID;
++    assign SharedAXIAWREADY = DDRAXIAWREADY;
++    assign DDRAXIWDATA = SharedAXIWDATA;
++    assign DDRAXIWSTRB = SharedAXIWSTRB;
++    assign DDRAXIWLAST = SharedAXIWLAST;
++    assign DDRAXIWVALID = SharedAXIWVALID;
++    assign SharedAXIWREADY = DDRAXIWREADY;
++    assign SharedAXIBID = DDRAXIBID;
++    assign SharedAXIBRESP = DDRAXIBRESP;
++    assign SharedAXIBVALID = DDRAXIBVALID;
++    assign DDRAXIBREADY = SharedAXIBREADY;
++    assign DDRAXIARID = SharedAXIARID;
++    assign DDRAXIARADDR = SharedAXIARADDR;
++    assign DDRAXIARLEN = SharedAXIARLEN;
++    assign DDRAXIARSIZE = SharedAXIARSIZE;
++    assign DDRAXIARBURST = SharedAXIARBURST;
++    assign DDRAXIARLOCK = SharedAXIARLOCK;
++    assign DDRAXIARCACHE = SharedAXIARCACHE;
++    assign DDRAXIARPROT = SharedAXIARPROT;
++    assign DDRAXIARVALID = SharedAXIARVALID;
++    assign SharedAXIARREADY = DDRAXIARREADY;
++    assign SharedAXIRID = DDRAXIRID;
++    assign SharedAXIRDATA = DDRAXIRDATA;
++    assign SharedAXIRRESP = DDRAXIRRESP;
++    assign SharedAXIRLAST = DDRAXIRLAST;
++    assign SharedAXIRVALID = DDRAXIRVALID;
++    assign DDRAXIRREADY = SharedAXIRREADY;
++  end
++  for (genvar i=0; i<3; i++) begin : hdmi
++    OBUFDS #(.IOSTANDARD("TMDS_33")) data(.I(TMDS[i]), .O(HDMITXp[i]), .OB(HDMITXn[i]));
++  end
++  OBUFDS #(.IOSTANDARD("TMDS_33")) hdmiclock(.I(TMDS[3]), .O(HDMITXCLKp), .OB(HDMITXCLKn));
+ 
+   // Dropping address bits [31:29] converts the selected physical address to a
+   // byte offset in the 512 MiB device. Narrow AXI transfers remain enabled in MIG.
+diff --git a/fpga/src/rasterix.sv b/fpga/src/rasterix.sv
+new file mode 100644
+index 000000000..f87189cbb
+--- /dev/null
++++ b/fpga/src/rasterix.sv
+@@ -0,0 +1,259 @@
++///////////////////////////////////////////
++// rasterix.sv
++// Written: Codex <codex@openai.com> 9 September 2026
++// Purpose: RasterIX, display, and shared DDR3 interface on Nexys Video.
++// A component of the CORE-V-WALLY configurable RISC-V project.
++// SPDX-License-Identifier: Apache-2.0 WITH SHL-2.1
++///////////////////////////////////////////
++
++// The unmodified RasterIX_IF uses a 64-bit memory interface, 65536-pixel
++// internal framebuffer, one texture unit, and depth and stencil buffers.
++// Software must use the same configuration and reserve its external buffers.
++module rasterix(
++  input  logic        CPUCLK, CPUResetn, DDRCLK, DDRResetn, PixelCLK, SerialCLK, PixelResetn,
++  input  logic        PSEL, PENABLE, PWRITE,
++  input  logic [31:0] PADDR,
++  input  logic [63:0] PWDATA,
++  input  logic [7:0]  PSTRB,
++  output logic [63:0] PRDATA,
++  output logic        PREADY,
++  output logic [3:0]  TMDS,
++  input  logic [3:0]  CPUAWID,
++  input  logic [31:0] CPUAWADDR,
++  input  logic [7:0]  CPUAWLEN,
++  input  logic [2:0]  CPUAWSIZE,
++  input  logic [1:0]  CPUAWBURST,
++  input  logic        CPUAWLOCK,
++  input  logic [3:0]  CPUAWCACHE,
++  input  logic [2:0]  CPUAWPROT,
++  input  logic        CPUAWVALID,
++  output logic        CPUAWREADY,
++  input  logic [63:0] CPUWDATA,
++  input  logic [7:0]  CPUWSTRB,
++  input  logic        CPUWLAST,
++  input  logic        CPUWVALID,
++  output logic        CPUWREADY,
++  output logic [3:0]  CPUBID,
++  output logic [1:0]  CPUBRESP,
++  output logic        CPUBVALID,
++  input  logic        CPUBREADY,
++  input  logic [3:0]  CPUARID,
++  input  logic [31:0] CPUARADDR,
++  input  logic [7:0]  CPUARLEN,
++  input  logic [2:0]  CPUARSIZE,
++  input  logic [1:0]  CPUARBURST,
++  input  logic        CPUARLOCK,
++  input  logic [3:0]  CPUARCACHE,
++  input  logic [2:0]  CPUARPROT,
++  input  logic        CPUARVALID,
++  output logic        CPUARREADY,
++  output logic [3:0]  CPURID,
++  output logic [63:0] CPURDATA,
++  output logic [1:0]  CPURRESP,
++  output logic        CPURLAST,
++  output logic        CPURVALID,
++  input  logic        CPURREADY,
++  output logic [3:0]  DDRAWID,
++  output logic [31:0] DDRAWADDR,
++  output logic [7:0]  DDRAWLEN,
++  output logic [2:0]  DDRAWSIZE,
++  output logic [1:0]  DDRAWBURST,
++  output logic        DDRAWLOCK,
++  output logic [3:0]  DDRAWCACHE,
++  output logic [2:0]  DDRAWPROT,
++  output logic        DDRAWVALID,
++  input  logic        DDRAWREADY,
++  output logic [63:0] DDRWDATA,
++  output logic [7:0]  DDRWSTRB,
++  output logic        DDRWLAST,
++  output logic        DDRWVALID,
++  input  logic        DDRWREADY,
++  input  logic [3:0]  DDRBID,
++  input  logic [1:0]  DDRBRESP,
++  input  logic        DDRBVALID,
++  output logic        DDRBREADY,
++  output logic [3:0]  DDRARID,
++  output logic [31:0] DDRARADDR,
++  output logic [7:0]  DDRARLEN,
++  output logic [2:0]  DDRARSIZE,
++  output logic [1:0]  DDRARBURST,
++  output logic        DDRARLOCK,
++  output logic [3:0]  DDRARCACHE,
++  output logic [2:0]  DDRARPROT,
++  output logic        DDRARVALID,
++  input  logic        DDRARREADY,
++  input  logic [3:0]  DDRRID,
++  input  logic [63:0] DDRRDATA,
++  input  logic [1:0]  DDRRRESP,
++  input  logic        DDRRLAST,
++  input  logic        DDRRVALID,
++  output logic        DDRRREADY
++);
++  logic [3:0]  GPUAWID;
++  logic [31:0] GPUAWADDR;
++  logic [7:0]  GPUAWLEN;
++  logic [2:0]  GPUAWSIZE;
++  logic [1:0]  GPUAWBURST;
++  logic        GPUAWLOCK;
++  logic [3:0]  GPUAWCACHE;
++  logic [2:0]  GPUAWPROT;
++  logic        GPUAWVALID;
++  logic        GPUAWREADY;
++  logic [63:0] GPUWDATA;
++  logic [7:0]  GPUWSTRB;
++  logic        GPUWLAST;
++  logic        GPUWVALID;
++  logic        GPUWREADY;
++  logic [3:0]  GPUBID;
++  logic [1:0]  GPUBRESP;
++  logic        GPUBVALID;
++  logic        GPUBREADY;
++  logic [3:0]  GPUARID;
++  logic [31:0] GPUARADDR;
++  logic [7:0]  GPUARLEN;
++  logic [2:0]  GPUARSIZE;
++  logic [1:0]  GPUARBURST;
++  logic        GPUARLOCK;
++  logic [3:0]  GPUARCACHE;
++  logic [2:0]  GPUARPROT;
++  logic        GPUARVALID;
++  logic        GPUARREADY;
++  logic [3:0]  GPURID;
++  logic [63:0] GPURDATA;
++  logic [1:0]  GPURRESP;
++  logic        GPURLAST;
++  logic        GPURVALID;
++  logic        GPURREADY;
++  logic [3:0]  VideoARID;
++  logic [31:0] VideoARADDR;
++  logic [7:0]  VideoARLEN;
++  logic [2:0]  VideoARSIZE;
++  logic [1:0]  VideoARBURST;
++  logic        VideoARLOCK;
++  logic [3:0]  VideoARCACHE;
++  logic [2:0]  VideoARPROT;
++  logic        VideoARVALID;
++  logic        VideoARREADY;
++  logic [3:0]  VideoRID;
++  logic [31:0] VideoRDATA;
++  logic [1:0]  VideoRRESP;
++  logic        VideoRLAST;
++  logic        VideoRVALID;
++  logic        VideoRREADY;
++
++  logic        CmdValid, CmdReady, CmdLast, RespValid, RespReady, GPUCmdValid, GPUCmdReady, GPUCmdLast;
++  logic        GPURespValid, GPURespReady, GPURespLast, Busy, Swap, Swapped, GPUFrameDone;
++  logic [31:0] CmdData, RespData, GPUCmdData, GPURespData, FbAddr, GPUFrameAddr;
++  logic        FrameToggle, FrameSeen;
++  (* ASYNC_REG = "TRUE" *) logic [1:0] FrameSync, BusySync;
++
++  always_ff @(posedge DDRCLK)
++    if (~DDRResetn) FrameToggle <= 1'b0;
++    else if (GPUFrameDone) FrameToggle <= ~FrameToggle;
++  always_ff @(posedge CPUCLK)
++    if (~CPUResetn) begin
++      FrameSync <= '0;
++      FrameSeen <= 1'b0;
++      BusySync <= '0;
++    end else begin
++      FrameSync <= {FrameSync[0], FrameToggle};
++      FrameSeen <= FrameSync[1];
++      BusySync <= {BusySync[0], Busy};
++    end
++
++  rasterix_apb apb(
++    .PCLK(CPUCLK), .PRESETn(CPUResetn), .PSEL, .PENABLE, .PWRITE,
++    .PADDR(PADDR[7:0]), .PWDATA, .PSTRB, .PRDATA, .PREADY,
++    .CmdValid, .CmdReady, .CmdLast, .CmdData, .RespValid, .RespReady, .RespData,
++    .Busy(BusySync[1]), .FrameDone(FrameSync[1] ^ FrameSeen), .FrameAddr(GPUFrameAddr));
++
++  axiscdc commandfifo(
++    .s_axis_aresetn(CPUResetn), .s_axis_aclk(CPUCLK), .m_axis_aclk(DDRCLK),
++    .s_axis_tvalid(CmdValid), .s_axis_tready(CmdReady), .s_axis_tlast(CmdLast), .s_axis_tdata(CmdData),
++    .m_axis_tvalid(GPUCmdValid), .m_axis_tready(GPUCmdReady), .m_axis_tlast(GPUCmdLast), .m_axis_tdata(GPUCmdData));
++  axiscdc responsefifo(
++    .s_axis_aresetn(DDRResetn), .s_axis_aclk(DDRCLK), .m_axis_aclk(CPUCLK),
++    .s_axis_tvalid(GPURespValid), .s_axis_tready(GPURespReady), .s_axis_tlast(GPURespLast), .s_axis_tdata(GPURespData),
++    .m_axis_tvalid(RespValid), .m_axis_tready(RespReady), .m_axis_tlast(), .m_axis_tdata(RespData));
++
++  RasterIX_IF #(.FRAMEBUFFER_SIZE_IN_PIXEL_LG(16), .TMU_COUNT(1), .DATA_WIDTH(64), .ID_WIDTH(4)) gpu(
++    .aclk(DDRCLK), .resetn(DDRResetn),
++    .s_cmd_axis_tvalid(GPUCmdValid), .s_cmd_axis_tready(GPUCmdReady),
++    .s_cmd_axis_tlast(GPUCmdLast), .s_cmd_axis_tdata(GPUCmdData),
++    .m_cmd_resp_axis_tvalid(GPURespValid), .m_cmd_resp_axis_tready(GPURespReady),
++    .m_cmd_resp_axis_tlast(GPURespLast), .m_cmd_resp_axis_tdata(GPURespData),
++    .swap_fb(Swap), .swap_fb_enable_vsync(), .fb_addr(FbAddr), .fb_size(), .fb_swapped(Swapped),
++    .perfBusy(Busy), .perfTriangleRendering(), .perfRasterizerStall(),
++    .m_axi_awid(GPUAWID), .m_axi_awaddr(GPUAWADDR), .m_axi_awlen(GPUAWLEN), .m_axi_awsize(GPUAWSIZE),
++    .m_axi_awburst(GPUAWBURST), .m_axi_awlock(GPUAWLOCK), .m_axi_awcache(GPUAWCACHE), .m_axi_awprot(GPUAWPROT),
++    .m_axi_awvalid(GPUAWVALID), .m_axi_awready(GPUAWREADY), .m_axi_wdata(GPUWDATA), .m_axi_wstrb(GPUWSTRB),
++    .m_axi_wlast(GPUWLAST), .m_axi_wvalid(GPUWVALID), .m_axi_wready(GPUWREADY), .m_axi_bid(GPUBID),
++    .m_axi_bresp(GPUBRESP), .m_axi_bvalid(GPUBVALID), .m_axi_bready(GPUBREADY), .m_axi_arid(GPUARID),
++    .m_axi_araddr(GPUARADDR), .m_axi_arlen(GPUARLEN), .m_axi_arsize(GPUARSIZE), .m_axi_arburst(GPUARBURST),
++    .m_axi_arlock(GPUARLOCK), .m_axi_arcache(GPUARCACHE), .m_axi_arprot(GPUARPROT), .m_axi_arvalid(GPUARVALID),
++    .m_axi_arready(GPUARREADY), .m_axi_rid(GPURID), .m_axi_rdata(GPURDATA), .m_axi_rresp(GPURRESP),
++    .m_axi_rlast(GPURLAST), .m_axi_rvalid(GPURVALID), .m_axi_rready(GPURREADY));
++
++  rasterixdisplay display(
++    .GPUCLK(DDRCLK), .GPUResetn(DDRResetn), .PixelCLK, .SerialCLK, .PixelResetn,
++    .Swap, .FbAddr, .Swapped, .FrameDone(GPUFrameDone), .FrameAddr(GPUFrameAddr),
++    .ARID(VideoARID), .ARADDR(VideoARADDR), .ARLEN(VideoARLEN), .ARBURST(VideoARBURST),
++    .ARVALID(VideoARVALID), .ARREADY(VideoARREADY), .RID(VideoRID), .RDATA(VideoRDATA),
++    .RRESP(VideoRRESP), .RLAST(VideoRLAST), .RVALID(VideoRVALID), .RREADY(VideoRREADY), .TMDS);
++
++  // SmartConnect routes response IDs internally on its single DDR master port.
++  assign DDRAWID = '0;
++  assign DDRARID = '0;
++  logic [28:0] DDRWriteOffset, DDRReadOffset;
++  assign DDRAWADDR = {3'b0, DDRWriteOffset};
++  assign DDRARADDR = {3'b0, DDRReadOffset};
++  assign VideoARSIZE = 3'd2;
++  assign VideoARLOCK = 1'b0;
++  assign VideoARCACHE = 4'b0;
++  assign VideoARPROT = 3'b0;
++
++  rasterixmem_wrapper memory(
++    .aclk(DDRCLK), .aclk1(PixelCLK), .aresetn(DDRResetn),
++    .S00_AXI_awid(CPUAWID), .S00_AXI_awaddr({3'b0, CPUAWADDR[28:0]}), .S00_AXI_awlen(CPUAWLEN),
++    .S00_AXI_awsize(CPUAWSIZE), .S00_AXI_awburst(CPUAWBURST), .S00_AXI_awlock(CPUAWLOCK),
++    .S00_AXI_awcache(CPUAWCACHE), .S00_AXI_awprot(CPUAWPROT), .S00_AXI_awvalid(CPUAWVALID),
++    .S00_AXI_awready(CPUAWREADY), .S00_AXI_wdata(CPUWDATA), .S00_AXI_wstrb(CPUWSTRB),
++    .S00_AXI_wlast(CPUWLAST), .S00_AXI_wvalid(CPUWVALID), .S00_AXI_wready(CPUWREADY),
++    .S00_AXI_bid(CPUBID), .S00_AXI_bresp(CPUBRESP), .S00_AXI_bvalid(CPUBVALID),
++    .S00_AXI_bready(CPUBREADY), .S00_AXI_arid(CPUARID), .S00_AXI_araddr({3'b0, CPUARADDR[28:0]}),
++    .S00_AXI_arlen(CPUARLEN), .S00_AXI_arsize(CPUARSIZE), .S00_AXI_arburst(CPUARBURST),
++    .S00_AXI_arlock(CPUARLOCK), .S00_AXI_arcache(CPUARCACHE), .S00_AXI_arprot(CPUARPROT),
++    .S00_AXI_arvalid(CPUARVALID), .S00_AXI_arready(CPUARREADY), .S00_AXI_rid(CPURID),
++    .S00_AXI_rdata(CPURDATA), .S00_AXI_rresp(CPURRESP), .S00_AXI_rlast(CPURLAST),
++    .S00_AXI_rvalid(CPURVALID), .S00_AXI_rready(CPURREADY), .S00_AXI_awqos(4'b0),
++    .S00_AXI_arqos(4'b0), .S01_AXI_awid(GPUAWID), .S01_AXI_awaddr({3'b0, GPUAWADDR[28:0]}),
++    .S01_AXI_awlen(GPUAWLEN), .S01_AXI_awsize(GPUAWSIZE), .S01_AXI_awburst(GPUAWBURST),
++    .S01_AXI_awlock(GPUAWLOCK), .S01_AXI_awcache(GPUAWCACHE), .S01_AXI_awprot(GPUAWPROT),
++    .S01_AXI_awvalid(GPUAWVALID), .S01_AXI_awready(GPUAWREADY), .S01_AXI_wdata(GPUWDATA),
++    .S01_AXI_wstrb(GPUWSTRB), .S01_AXI_wlast(GPUWLAST), .S01_AXI_wvalid(GPUWVALID),
++    .S01_AXI_wready(GPUWREADY), .S01_AXI_bid(GPUBID), .S01_AXI_bresp(GPUBRESP),
++    .S01_AXI_bvalid(GPUBVALID), .S01_AXI_bready(GPUBREADY), .S01_AXI_arid(GPUARID),
++    .S01_AXI_araddr({3'b0, GPUARADDR[28:0]}), .S01_AXI_arlen(GPUARLEN), .S01_AXI_arsize(GPUARSIZE),
++    .S01_AXI_arburst(GPUARBURST), .S01_AXI_arlock(GPUARLOCK), .S01_AXI_arcache(GPUARCACHE),
++    .S01_AXI_arprot(GPUARPROT), .S01_AXI_arvalid(GPUARVALID), .S01_AXI_arready(GPUARREADY),
++    .S01_AXI_rid(GPURID), .S01_AXI_rdata(GPURDATA), .S01_AXI_rresp(GPURRESP),
++    .S01_AXI_rlast(GPURLAST), .S01_AXI_rvalid(GPURVALID), .S01_AXI_rready(GPURREADY),
++    .S01_AXI_awqos(4'b0), .S01_AXI_arqos(4'b0), .S02_AXI_arid(VideoARID),
++    .S02_AXI_araddr({3'b0, VideoARADDR[28:0]}), .S02_AXI_arlen(VideoARLEN), .S02_AXI_arsize(VideoARSIZE),
++    .S02_AXI_arburst(VideoARBURST), .S02_AXI_arlock(VideoARLOCK), .S02_AXI_arcache(VideoARCACHE),
++    .S02_AXI_arprot(VideoARPROT), .S02_AXI_arvalid(VideoARVALID), .S02_AXI_arready(VideoARREADY),
++    .S02_AXI_rid(VideoRID), .S02_AXI_rdata(VideoRDATA), .S02_AXI_rresp(VideoRRESP),
++    .S02_AXI_rlast(VideoRLAST), .S02_AXI_rvalid(VideoRVALID), .S02_AXI_rready(VideoRREADY),
++    .S02_AXI_arqos(4'b0), .M00_AXI_awaddr(DDRWriteOffset), .M00_AXI_awlen(DDRAWLEN),
++    .M00_AXI_awsize(DDRAWSIZE), .M00_AXI_awburst(DDRAWBURST), .M00_AXI_awlock(DDRAWLOCK),
++    .M00_AXI_awcache(DDRAWCACHE), .M00_AXI_awprot(DDRAWPROT), .M00_AXI_awvalid(DDRAWVALID),
++    .M00_AXI_awready(DDRAWREADY), .M00_AXI_wdata(DDRWDATA), .M00_AXI_wstrb(DDRWSTRB),
++    .M00_AXI_wlast(DDRWLAST), .M00_AXI_wvalid(DDRWVALID), .M00_AXI_wready(DDRWREADY),
++    .M00_AXI_bresp(DDRBRESP), .M00_AXI_bvalid(DDRBVALID), .M00_AXI_bready(DDRBREADY),
++    .M00_AXI_araddr(DDRReadOffset), .M00_AXI_arlen(DDRARLEN), .M00_AXI_arsize(DDRARSIZE),
++    .M00_AXI_arburst(DDRARBURST), .M00_AXI_arlock(DDRARLOCK), .M00_AXI_arcache(DDRARCACHE),
++    .M00_AXI_arprot(DDRARPROT), .M00_AXI_arvalid(DDRARVALID), .M00_AXI_arready(DDRARREADY),
++    .M00_AXI_rdata(DDRRDATA), .M00_AXI_rresp(DDRRRESP), .M00_AXI_rlast(DDRRLAST),
++    .M00_AXI_rvalid(DDRRVALID), .M00_AXI_rready(DDRRREADY), .M00_AXI_awqos(),
++    .M00_AXI_arqos());
++endmodule
+diff --git a/fpga/src/rasterix_apb.sv b/fpga/src/rasterix_apb.sv
+new file mode 100644
+index 000000000..00aa91716
+--- /dev/null
++++ b/fpga/src/rasterix_apb.sv
+@@ -0,0 +1,70 @@
++///////////////////////////////////////////
++// rasterix_apb.sv
++// Written: Codex <codex@openai.com> 9 September 2026
++// Purpose: APB command and response port for an unmodified RasterIX core.
++// A component of the CORE-V-WALLY configurable RISC-V project.
++// SPDX-License-Identifier: Apache-2.0 WITH SHL-2.1
++///////////////////////////////////////////
++
++// Registers are accessed with aligned 32-bit loads and stores.
++// 00 CMD: write one stream word; 04 CMD_LAST: write the last word.
++// 08 STATUS: bit 0 command ready, bit 1 response valid, bit 2 renderer busy.
++// 0c ID: "RIX1"; 10 FRAME_COUNT: completed display swaps.
++// 14 FB_ADDR: last displayed physical address; 18 RESP: read one stream word.
++// APB waits for stream backpressure. No command is dropped when the FIFO fills.
++module rasterix_apb #(
++  parameter XLEN = 64
++)(
++  input  logic              PCLK, PRESETn, PSEL, PENABLE, PWRITE,
++  input  logic [7:0]        PADDR,
++  input  logic [XLEN-1:0]   PWDATA,
++  input  logic [XLEN/8-1:0] PSTRB,
++  output logic [XLEN-1:0]   PRDATA,
++  output logic              PREADY,
++  output logic              CmdValid, CmdLast,
++  output logic [31:0]       CmdData,
++  input  logic              CmdReady,
++  input  logic              RespValid,
++  input  logic [31:0]       RespData,
++  output logic              RespReady,
++  input  logic              Busy, FrameDone,
++  input  logic [31:0]       FrameAddr
++);
++  logic [31:0] ReadData, WriteData, FrameCount, DisplayAddr;
++  logic       WordWrite, CommandWrite, ResponseRead;
++
++  if (XLEN == 64) begin : rv64
++    assign WriteData = PADDR[2] ? PWDATA[63:32] : PWDATA[31:0];
++    assign WordWrite = PADDR[2] ? &PSTRB[7:4] : &PSTRB[3:0];
++  end else begin : rv32
++    assign WriteData = PWDATA[31:0];
++    assign WordWrite = &PSTRB[3:0];
++  end
++  assign CommandWrite = PSEL & PENABLE & PWRITE & WordWrite & (PADDR[7:3] == 5'b0);
++  assign ResponseRead = PSEL & PENABLE & ~PWRITE & (PADDR == 8'h18);
++  assign CmdValid = CommandWrite;
++  assign CmdLast = PADDR[2];
++  assign CmdData = WriteData;
++  assign RespReady = ResponseRead;
++  assign PREADY = CommandWrite ? CmdReady : ResponseRead ? RespValid : 1'b1;
++  assign PRDATA = {(XLEN/32){ReadData}};
++
++  always_ff @(posedge PCLK)
++    if (~PRESETn) begin
++      FrameCount <= '0;
++      DisplayAddr <= '0;
++    end else if (FrameDone) begin
++      FrameCount <= FrameCount + 1'b1;
++      DisplayAddr <= FrameAddr;
++    end
++
++  always_comb
++    case (PADDR)
++      8'h08: ReadData = {29'b0, Busy, RespValid, CmdReady};
++      8'h0c: ReadData = 32'h52495831;
++      8'h10: ReadData = FrameCount;
++      8'h14: ReadData = DisplayAddr;
++      8'h18: ReadData = RespData;
++      default: ReadData = '0;
++    endcase
++endmodule
+diff --git a/fpga/src/rasterixdisplay.sv b/fpga/src/rasterixdisplay.sv
+new file mode 100644
+index 000000000..60ef329b5
+--- /dev/null
++++ b/fpga/src/rasterixdisplay.sv
+@@ -0,0 +1,147 @@
++///////////////////////////////////////////
++// rasterixdisplay.sv
++// Written: Codex <codex@openai.com> 9 September 2026
++// Purpose: Connect RasterIX swaps to the upstream DVI framebuffer configuration port.
++// A component of the CORE-V-WALLY configurable RISC-V project.
++// SPDX-License-Identifier: Apache-2.0 WITH SHL-2.1
++///////////////////////////////////////////
++
++// The request and address remain stable until acknowledged across the clock domains.
++// The display changes its fetch base between frames. A swap completes only after
++// the first burst from the new buffer has returned, so the old buffer can be reused.
++module rasterixdisplay(
++  input  logic        GPUCLK, GPUResetn, PixelCLK, SerialCLK, PixelResetn,
++  input  logic        Swap,
++  input  logic [31:0] FbAddr,
++  output logic        Swapped, FrameDone,
++  output logic [31:0] FrameAddr,
++  output logic [3:0]  ARID,
++  output logic [31:0] ARADDR,
++  output logic [7:0]  ARLEN,
++  output logic [1:0]  ARBURST,
++  output logic        ARVALID,
++  input  logic        ARREADY,
++  input  logic [3:0]  RID,
++  input  logic [31:0] RDATA,
++  input  logic [1:0]  RRESP,
++  input  logic        RLAST, RVALID,
++  output logic        RREADY,
++  output logic [3:0]  TMDS
++);
++  typedef enum logic [1:0] {IDLE, WAITACK, WAITDROP, WAITCLEAR} requeststate;
++  requeststate RequestState;
++  logic       Request, Ack;
++  logic [31:0] RequestAddr, PendingAddr;
++  (* ASYNC_REG = "TRUE" *) logic [1:0] RequestSync, AckSync;
++
++  always_ff @(posedge GPUCLK)
++    if (~GPUResetn) AckSync <= '0;
++    else AckSync <= {AckSync[0], Ack};
++  always_ff @(posedge PixelCLK)
++    if (~PixelResetn) RequestSync <= '0;
++    else RequestSync <= {RequestSync[0], Request};
++
++  assign Swapped = ~Swap | (RequestState == WAITDROP);
++  always_ff @(posedge GPUCLK)
++    if (~GPUResetn) begin
++      RequestState <= IDLE;
++      Request <= 1'b0;
++      RequestAddr <= '0;
++      FrameDone <= 1'b0;
++      FrameAddr <= '0;
++    end else begin
++      FrameDone <= 1'b0;
++      case (RequestState)
++        IDLE: if (Swap) begin
++          RequestAddr <= FbAddr;
++          Request <= 1'b1;
++          RequestState <= WAITACK;
++        end
++        WAITACK: if (AckSync[1]) begin
++          FrameDone <= 1'b1;
++          FrameAddr <= RequestAddr;
++          RequestState <= WAITDROP;
++        end
++        WAITDROP: if (~Swap) begin
++          Request <= 1'b0;
++          RequestState <= WAITCLEAR;
++        end
++        WAITCLEAR: if (~AckSync[1]) RequestState <= IDLE;
++        default: RequestState <= IDLE;
++      endcase
++    end
++
++  typedef enum logic [2:0] {WAITREQ, SETADDR, ADDRRESP, ENABLE, ENABLERESP,
++                            WAITFETCH, WAITREAD, COMPLETE} displaystate;
++  displaystate DisplayState;
++  logic       ConfigValid, ConfigAWReady, ConfigWReady, ConfigBValid;
++  logic [31:0] ConfigAddr, ConfigData;
++  logic [7:0] Outstanding, Remaining;
++  logic       ReadAccepted, ReadCompleted;
++  assign ReadAccepted = ARVALID & ARREADY;
++  assign ReadCompleted = RVALID & RREADY & RLAST;
++  assign ConfigValid = (DisplayState == SETADDR) | (DisplayState == ENABLE);
++  assign ConfigAddr = (DisplayState == SETADDR) ? 32'h8 : 32'h0;
++  assign ConfigData = (DisplayState == SETADDR) ? PendingAddr : 32'h1;
++
++  always_ff @(posedge PixelCLK)
++    if (~PixelResetn) Outstanding <= '0;
++    else case ({ReadAccepted, ReadCompleted})
++      2'b10: Outstanding <= Outstanding + 1'b1;
++      2'b01: Outstanding <= Outstanding - 1'b1;
++      default: ;
++    endcase
++
++  always_ff @(posedge PixelCLK)
++    if (~PixelResetn) begin
++      DisplayState <= WAITREQ;
++      PendingAddr <= '0;
++      Remaining <= '0;
++      Ack <= 1'b0;
++    end else
++      case (DisplayState)
++        WAITREQ: if (RequestSync[1]) begin
++          PendingAddr <= RequestAddr;
++          DisplayState <= SETADDR;
++        end
++        SETADDR: if (ConfigAWReady & ConfigWReady) DisplayState <= ADDRRESP;
++        ADDRRESP: if (ConfigBValid) DisplayState <= ENABLE;
++        ENABLE: if (ConfigAWReady & ConfigWReady) DisplayState <= ENABLERESP;
++        ENABLERESP: if (ConfigBValid) DisplayState <= WAITFETCH;
++        WAITFETCH: if (ReadAccepted & (ARADDR == PendingAddr)) begin
++          Remaining <= Outstanding + 1'b1 - {7'b0, ReadCompleted};
++          DisplayState <= WAITREAD;
++        end
++        WAITREAD: if (ReadCompleted) begin
++          Remaining <= Remaining - 1'b1;
++          if (Remaining == 1) begin
++            Ack <= 1'b1;
++            DisplayState <= COMPLETE;
++          end
++        end
++        COMPLETE: if (~RequestSync[1]) begin
++          Ack <= 1'b0;
++          DisplayState <= WAITREQ;
++        end
++        default: DisplayState <= WAITREQ;
++      endcase
++
++  dvi_framebuffer #(.VIDEO_WIDTH(640), .VIDEO_HEIGHT(480), .VIDEO_REFRESH(60),
++    .VIDEO_ENABLE(0), .VIDEO_X2_MODE(0), .VIDEO_FB_RAM(0)) display(
++    .clk_i(PixelCLK), .rst_i(~PixelResetn), .clk_x5_i(SerialCLK),
++    .cfg_awvalid_i(ConfigValid), .cfg_awaddr_i(ConfigAddr), .cfg_wvalid_i(ConfigValid),
++    .cfg_wdata_i(ConfigData), .cfg_wstrb_i(4'hf), .cfg_bready_i(1'b1),
++    .cfg_arvalid_i(1'b0), .cfg_araddr_i(32'b0), .cfg_rready_i(1'b1),
++    .cfg_awready_o(ConfigAWReady), .cfg_wready_o(ConfigWReady), .cfg_bvalid_o(ConfigBValid),
++    .cfg_bresp_o(), .cfg_arready_o(), .cfg_rvalid_o(), .cfg_rdata_o(), .cfg_rresp_o(), .intr_o(),
++    .outport_awready_i(1'b0), .outport_wready_i(1'b0), .outport_bvalid_i(1'b0),
++    .outport_bresp_i(2'b0), .outport_bid_i(4'b0),
++    .outport_awvalid_o(), .outport_awaddr_o(), .outport_awid_o(), .outport_awlen_o(),
++    .outport_awburst_o(), .outport_wvalid_o(), .outport_wdata_o(), .outport_wstrb_o(),
++    .outport_wlast_o(), .outport_bready_o(),
++    .outport_arvalid_o(ARVALID), .outport_arready_i(ARREADY), .outport_araddr_o(ARADDR),
++    .outport_arid_o(ARID), .outport_arlen_o(ARLEN), .outport_arburst_o(ARBURST),
++    .outport_rvalid_i(RVALID), .outport_rready_o(RREADY), .outport_rdata_i(RDATA),
++    .outport_rresp_i(RRESP), .outport_rid_i(RID), .outport_rlast_i(RLAST),
++    .dvi_red_o(TMDS[2]), .dvi_green_o(TMDS[1]), .dvi_blue_o(TMDS[0]), .dvi_clock_o(TMDS[3]));
++endmodule
+diff --git a/fpga/src/wallypipelinedsocwrapper.sv b/fpga/src/wallypipelinedsocwrapper.sv
+index eaf7755da..1f72165a5 100644
+--- a/fpga/src/wallypipelinedsocwrapper.sv
++++ b/fpga/src/wallypipelinedsocwrapper.sv
+@@ -62,7 +62,10 @@ module wallypipelinedsocwrapper (
+ );
+   `include "parameter-defs.vh"
+ 
+-  wallypipelinedsoc  #(P) wallypipelinedsoc(.clk, .reset_ext, .reset, .HRDATAEXT,.HREADYEXT, .HRESPEXT, .HSELEXT,
++  wallypipelinedsoc  #(P) wallypipelinedsoc(
++    .PSELEXT(), .PENABLEEXT(), .PWRITEEXT(), .PADDREXT(), .PWDATAEXT(), .PSTRBEXT(),
++    .PRDATAEXT('0), .PREADYEXT(1'b1),
++    .clk, .reset_ext, .reset, .HRDATAEXT,.HREADYEXT, .HRESPEXT, .HSELEXT,
+     .HSELEXTSDC, .HCLK, .HRESETn, .HADDR, .HWDATA, .HWSTRB, .HWRITE, .HSIZE, .HBURST, .HPROT,
+     .HTRANS, .HMASTLOCK, .HREADY, .TIMECLK(1'b0), .GPIOIN, .GPIOOUT, .GPIOEN,
+     .UARTSin, .UARTSout, .SDCIntr);
+diff --git a/linux/devicetree/wally-nexysvideo-rasterix.dts b/linux/devicetree/wally-nexysvideo-rasterix.dts
+new file mode 100644
+index 000000000..ed02d380c
+--- /dev/null
++++ b/linux/devicetree/wally-nexysvideo-rasterix.dts
+@@ -0,0 +1,23 @@
++// SPDX-License-Identifier: Apache-2.0 WITH SHL-2.1
++// RasterIX uses the last 32 MiB of DDR3 for display and texture buffers.
++/include/ "wally-nexysvideo.dts"
++
++/ {
++  reserved-memory {
++    #address-cells = <2>;
++    #size-cells = <2>;
++    ranges;
++    rasterix_memory: framebuffer@9e000000 {
++      reg = <0 0x9e000000 0 0x02000000>;
++      no-map;
++    };
++  };
++};
++
++&{/soc} {
++  rasterix@10080000 {
++    compatible = "openhwgroup,wally-rasterix";
++    reg = <0 0x10080000 0 0x100>;
++    memory-region = <&rasterix_memory>;
++  };
++};
+diff --git a/src/cvw.sv b/src/cvw.sv
+index ceb0503a1..5dde67bc3 100644
+--- a/src/cvw.sv
++++ b/src/cvw.sv
+@@ -145,6 +145,9 @@ typedef struct packed {
+   logic         SPI_SUPPORTED;
+   logic [63:0]  SPI_BASE;
+   logic [63:0]  SPI_RANGE;
++  logic         EXT_IO_SUPPORTED;
++  logic [63:0]  EXT_IO_BASE;
++  logic [63:0]  EXT_IO_RANGE;
+   logic         PWM_SUPPORTED;
+   logic [63:0]  PWM_BASE;
+   logic [63:0]  PWM_RANGE;
+diff --git a/src/mmu/adrdecs.sv b/src/mmu/adrdecs.sv
+index bc7d3fc4a..f2c92bf74 100644
+--- a/src/mmu/adrdecs.sv
++++ b/src/mmu/adrdecs.sv
+@@ -33,7 +33,7 @@ module adrdecs import cvw::*;  #(parameter cvw_t P) (
+   input  logic [P.PA_BITS-1:0] PhysicalAddress,
+   input  logic                 AccessRW, AccessRX, AccessRWXC,
+   input  logic [1:0]           Size,
+-  output logic [12:0]          SelRegions
++  output logic [13:0]          SelRegions
+ );
+ 
+   localparam logic [3:0]       SUPPORTED_SIZE = (P.LLEN == 32 ? 4'b0111 : 4'b1111);
+@@ -51,7 +51,9 @@ module adrdecs import cvw::*;  #(parameter cvw_t P) (
+   adrdec #(P.PA_BITS) spidec(PhysicalAddress, P.SPI_BASE[P.PA_BITS-1:0], P.SPI_RANGE[P.PA_BITS-1:0], P.SPI_SUPPORTED, AccessRW, Size, 4'b0100, SelRegions[11]);
+   adrdec #(P.PA_BITS) pwmdec(PhysicalAddress, P.PWM_BASE[P.PA_BITS-1:0], P.PWM_RANGE[P.PA_BITS-1:0], P.PWM_SUPPORTED, AccessRW, Size, 4'b0100, SelRegions[12]);
+ 
+-  assign SelRegions[0] = ~|(SelRegions[12:1]); // none of the regions are selected
++  adrdec #(P.PA_BITS) extiodec(PhysicalAddress, P.EXT_IO_BASE[P.PA_BITS-1:0], P.EXT_IO_RANGE[P.PA_BITS-1:0], P.EXT_IO_SUPPORTED, AccessRW, Size, 4'b0100, SelRegions[13]);
++
++  assign SelRegions[0] = ~|(SelRegions[13:1]); // none of the regions are selected
+ endmodule
+ 
+   // verilator lint_on UNOPTFLAT
+diff --git a/src/mmu/pmachecker.sv b/src/mmu/pmachecker.sv
+index 2a59b5035..fa48db719 100644
+--- a/src/mmu/pmachecker.sv
++++ b/src/mmu/pmachecker.sv
+@@ -46,7 +46,7 @@ module pmachecker import cvw::*;  #(parameter cvw_t P) (
+ 
+   logic                        PMAAccessFault;
+   logic                        AccessRW, AccessRWXC, AccessRX;
+-  logic [12:0]                 SelRegions;
++  logic [13:0]                 SelRegions;
+   logic                        AtomicAllowed;
+   logic                        CacheableRegion, IdempotentRegion;
+ 
+diff --git a/src/uncore/uncore.sv b/src/uncore/uncore.sv
+index 2d3beb321..c91fdff93 100644
+--- a/src/uncore/uncore.sv
++++ b/src/uncore/uncore.sv
+@@ -46,6 +46,13 @@ module uncore import cvw::*;  #(parameter cvw_t P)(
+   output logic [P.AHBW-1:0]    HRDATA,
+   output logic                 HREADY, HRESP,
+   output logic                 HSELEXT,
++  // External APB peripheral interface; all signals use the SoC clock.
++  output logic                PSELEXT, PENABLEEXT, PWRITEEXT,
++  output logic [31:0]         PADDREXT,
++  output logic [P.XLEN-1:0]   PWDATAEXT,
++  output logic [P.XLEN/8-1:0] PSTRBEXT,
++  input  logic [P.XLEN-1:0]   PRDATAEXT,
++  input  logic                PREADYEXT,
+   // peripheral pins
+   output logic                 MTimerInt, MSwInt,         // Timer and software interrupts from CLINT
+   output logic                 MExtInt, SExtInt,          // External interrupts from PLIC
+@@ -67,25 +74,25 @@ module uncore import cvw::*;  #(parameter cvw_t P)(
+ 
+   logic [P.XLEN-1:0]           HREADRam, HREADSDC;
+ 
+-  logic [12:0]                 HSELRegions;
++  logic [13:0]                 HSELRegions;
+   logic                        HSELDTIM, HSELIROM, HSELRam, HSELCLINT, HSELPLIC, HSELGPIO, HSELUART,HSELSDC, HSELSPI, HSELPWM;
+   logic                        HSELDTIMD, HSELIROMD, HSELEXTD, HSELRamD, HSELCLINTD, HSELPLICD, HSELGPIOD, HSELUARTD, HSELSDCD, HSELSPID, HSELPWMD;
+   logic                        HRESPRam,  HRESPSDC;
+   logic                        HREADYRam, HRESPSDCD;
+   logic [P.XLEN-1:0]           HREADBootRom;
+   logic                        HSELBootRom, HSELBootRomD, HRESPBootRom, HREADYBootRom, HREADYSDC;
+-  logic                        HSELNoneD;
++  logic                        HSELNoneD, HSELEXTIO, HSELEXTIOD;
+   logic                        UARTIntr,GPIOIntr, SPIIntr, PWMIntr;
+   logic                        SDCIntM;
+ 
+   logic                        PCLK, PRESETn, PWRITE, PENABLE;
+-  logic [6:0]                  PSEL;
++  logic [7:0]                  PSEL;
+   logic [31:0]                 PADDR;
+   logic [P.XLEN-1:0]           PWDATA;
+   logic [P.XLEN/8-1:0]         PSTRB;
+   /* verilator lint_off UNDRIVEN */ // undriven in rv32e configuration
+-  logic [6:0]                  PREADY;
+-  logic [6:0][P.XLEN-1:0]      PRDATA;
++  logic [7:0]                  PREADY;
++  logic [7:0][P.XLEN-1:0]      PRDATA;
+   /* verilator lint_on UNDRIVEN */
+   logic [P.XLEN-1:0]           HREADBRIDGE;
+   logic                        HRESPBRIDGE, HREADYBRIDGE, HSELBRIDGE, HSELBRIDGED;
+@@ -99,14 +106,14 @@ module uncore import cvw::*;  #(parameter cvw_t P)(
+   adrdecs #(P) adrdecs(HADDR, 1'b1, 1'b1, 1'b1, HSIZE[1:0], HSELRegions);
+ 
+   // unswizzle HSEL signals
+-  assign {HSELPWM, HSELSPI, HSELSDC, HSELPLIC, HSELUART, HSELGPIO, HSELCLINT, HSELRam, HSELBootRom, HSELEXT, HSELIROM, HSELDTIM} = HSELRegions[12:1];
++  assign {HSELEXTIO, HSELPWM, HSELSPI, HSELSDC, HSELPLIC, HSELUART, HSELGPIO, HSELCLINT, HSELRam, HSELBootRom, HSELEXT, HSELIROM, HSELDTIM} = HSELRegions[13:1];
+ 
+   // AHB -> APB bridge
+-  ahbapbbridge #(P, 7) ahbapbbridge (
+-    .HCLK, .HRESETn, .HSEL({HSELPWM, HSELSDC, HSELSPI, HSELUART, HSELPLIC, HSELCLINT, HSELGPIO}), .HADDR, .HWDATA, .HWSTRB, .HWRITE, .HTRANS, .HREADY,
++  ahbapbbridge #(P, 8) ahbapbbridge (
++    .HCLK, .HRESETn, .HSEL({HSELEXTIO, HSELPWM, HSELSDC, HSELSPI, HSELUART, HSELPLIC, HSELCLINT, HSELGPIO}), .HADDR, .HWDATA, .HWSTRB, .HWRITE, .HTRANS, .HREADY,
+     .HRDATA(HREADBRIDGE), .HRESP(HRESPBRIDGE), .HREADYOUT(HREADYBRIDGE),
+     .PCLK, .PRESETn, .PSEL, .PWRITE, .PENABLE, .PADDR, .PWDATA, .PSTRB, .PREADY, .PRDATA);
+-  assign HSELBRIDGE = HSELGPIO | HSELCLINT | HSELPLIC | HSELUART | HSELSPI | HSELSDC | HSELPWM; // if any of the bridge signals are selected
++  assign HSELBRIDGE = HSELEXTIO | HSELGPIO | HSELCLINT | HSELPLIC | HSELUART | HSELSPI | HSELSDC | HSELPWM; // if any of the bridge signals are selected
+ 
+   // on-chip RAM
+   if (P.UNCORE_RAM_SUPPORTED) begin : ram
+@@ -185,6 +192,22 @@ module uncore import cvw::*;  #(parameter cvw_t P)(
+     assign PWMIntr = 1'b0; assign PWMGPIO = '0;
+   end
+ 
++  // Expose an optional peripheral without adding device-specific pins to the SoC.
++  assign PADDREXT = PADDR;
++  assign PWDATAEXT = PWDATA;
++  assign PSTRBEXT = PSTRB;
++  assign PWRITEEXT = PWRITE;
++  assign PENABLEEXT = PENABLE;
++  if (P.EXT_IO_SUPPORTED) begin : extio
++    assign PSELEXT = PSEL[7];
++    assign PREADY[7] = PREADYEXT;
++    assign PRDATA[7] = PRDATAEXT;
++  end else begin : extio
++    assign PSELEXT = 1'b0;
++    assign PREADY[7] = 1'b1;
++    assign PRDATA[7] = '0;
++  end
++
+   // AHB Read Multiplexer
+   assign HRDATA = ({P.XLEN{HSELRamD}} & HREADRam) |
+                   ({P.XLEN{HSELEXTD}} & HRDATAEXT) |
+@@ -207,8 +230,8 @@ module uncore import cvw::*;  #(parameter cvw_t P)(
+   // takes more than 1 cycle to respond it needs to hold on to the old select until the
+   // device is ready.  Hence this register must be selectively enabled by HREADY.
+   // However on reset None must be selected.
+-  flopenl #(13) hseldelayreg(HCLK, ~HRESETn, HREADY, HSELRegions, 13'b1,
+-    {HSELPWMD, HSELSPID, HSELSDCD, HSELPLICD, HSELUARTD, HSELGPIOD, HSELCLINTD,
++  flopenl #(14) hseldelayreg(HCLK, ~HRESETn, HREADY, HSELRegions, 14'b1,
++    {HSELEXTIOD, HSELPWMD, HSELSPID, HSELSDCD, HSELPLICD, HSELUARTD, HSELGPIOD, HSELCLINTD,
+       HSELRamD, HSELBootRomD, HSELEXTD, HSELIROMD, HSELDTIMD, HSELNoneD});
+   flopenr #(1) hselbridgedelayreg(HCLK, ~HRESETn, HREADY, HSELBRIDGE, HSELBRIDGED);
+ endmodule
+diff --git a/src/wally/wallypipelinedsoc.sv b/src/wally/wallypipelinedsoc.sv
+index 0a3f64192..5813f1d44 100644
+--- a/src/wally/wallypipelinedsoc.sv
++++ b/src/wally/wallypipelinedsoc.sv
+@@ -49,6 +49,13 @@ module wallypipelinedsoc import cvw::*; #(parameter cvw_t P)  (
+   output logic [1:0]          HTRANS,
+   output logic                HMASTLOCK,
+   output logic                HREADY,
++  // External APB peripheral interface; all signals use the SoC clock.
++  output logic                PSELEXT, PENABLEEXT, PWRITEEXT,
++  output logic [31:0]         PADDREXT,
++  output logic [P.XLEN-1:0]   PWDATAEXT,
++  output logic [P.XLEN/8-1:0] PSTRBEXT,
++  input  logic [P.XLEN-1:0]   PRDATAEXT,
++  input  logic                PREADYEXT,
+   // I/O Interface
+   input  logic                TIMECLK,          // optional for CLINT MTIME counter
+   input  logic [31:0]         GPIOIN,           // inputs from GPIO
+@@ -88,11 +95,13 @@ module wallypipelinedsoc import cvw::*; #(parameter cvw_t P)  (
+   if (P.BUS_SUPPORTED) begin : uncoregen // Hack to work around Verilator bug https://github.com/verilator/verilator/issues/4769
+     uncore #(P) uncore(.HCLK, .HRESETn, .TIMECLK,
+       .HADDR, .HWDATA, .HWSTRB, .HWRITE, .HSIZE, .HBURST, .HPROT, .HTRANS, .HMASTLOCK, .HRDATAEXT,
++      .PSELEXT, .PENABLEEXT, .PWRITEEXT, .PADDREXT, .PWDATAEXT, .PSTRBEXT, .PRDATAEXT, .PREADYEXT,
+       .HREADYEXT, .HRESPEXT, .HRDATA, .HREADY, .HRESP, .HSELEXT,
+       .MTimerInt, .MSwInt, .MExtInt, .SExtInt, .GPIOIN, .GPIOOUT, .GPIOEN, .UARTSin,
+       .UARTSout, .MTIME_CLINT, .SPIIn, .SPIOut, .SPICS, .SPICLK, .SDCIn, .SDCCmd, .SDCCS, .SDCCLK, .PWMGPIO);
+   end else begin
+     assign {HRDATA, HREADY, HRESP, HSELEXT, MTimerInt, MSwInt, MExtInt, SExtInt,
++            PSELEXT, PENABLEEXT, PWRITEEXT, PADDREXT, PWDATAEXT, PSTRBEXT,
+             MTIME_CLINT, GPIOOUT, GPIOEN, UARTSout, SPIOut, SPICS, SPICLK, SDCCmd, SDCCS, SDCCLK, PWMGPIO} = '0;
+   end
+ 
+diff --git a/testbench/testbench.sv b/testbench/testbench.sv
+index 0ef0d6f95..10c9a1f3e 100644
+--- a/testbench/testbench.sv
++++ b/testbench/testbench.sv
+@@ -666,7 +666,10 @@ module testbench;
+ 
+   end
+ 
+-  wallypipelinedsoc  #(P) dut(.clk, .reset_ext, .reset, .ExternalStall(RVVIStall),
++  wallypipelinedsoc  #(P) dut(
++    .PSELEXT(), .PENABLEEXT(), .PWRITEEXT(), .PADDREXT(), .PWDATAEXT(), .PSTRBEXT(),
++    .PRDATAEXT('0), .PREADYEXT(1'b1),
++    .clk, .reset_ext, .reset, .ExternalStall(RVVIStall),
+     .HRDATAEXT, .HREADYEXT, .HRESPEXT, .HSELEXT,
+     .HCLK, .HRESETn, .HADDR, .HWDATA, .HWSTRB, .HWRITE, .HSIZE, .HBURST, .HPROT,
+     .HTRANS, .HMASTLOCK, .HREADY, .TIMECLK(1'b0), .GPIOIN, .GPIOOUT, .GPIOEN,
+diff --git a/testbench/wallywrapper.sv b/testbench/wallywrapper.sv
+index ce09dbf9b..9b1ed66f5 100644
+--- a/testbench/wallywrapper.sv
++++ b/testbench/wallywrapper.sv
+@@ -78,7 +78,10 @@ module wallywrapper import cvw::*;(
+ 
+   assign ExternalStall = '0;
+ 
+-  wallypipelinedsoc  #(P) dut(.clk, .reset_ext, .reset, .ExternalStall, .HRDATAEXT,.HREADYEXT, .HRESPEXT,.HSELEXT,
++  wallypipelinedsoc  #(P) dut(
++    .PSELEXT(), .PENABLEEXT(), .PWRITEEXT(), .PADDREXT(), .PWDATAEXT(), .PSTRBEXT(),
++    .PRDATAEXT('0), .PREADYEXT(1'b1),
++    .clk, .reset_ext, .reset, .ExternalStall, .HRDATAEXT,.HREADYEXT, .HRESPEXT,.HSELEXT,
+                         .HCLK, .HRESETn, .HADDR, .HWDATA, .HWSTRB, .HWRITE, .HSIZE, .HBURST, .HPROT,
+                         .HTRANS, .HMASTLOCK, .HREADY, .TIMECLK(1'b0), .GPIOIN, .GPIOOUT, .GPIOEN,
+                         .UARTSin, .UARTSout, .SPIIn, .SPIOut, .SPICS, .SPICLK, .SDCIn, .SDCCmd, .SDCCS, .SDCCLK, .PWMGPIO);

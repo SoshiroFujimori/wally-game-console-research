@@ -1,0 +1,54 @@
+{
+  "base": "5b6adcd97f9d778cfb8240d08023bfcaf680074d",
+  "commits": [
+    {
+      "stage": 1,
+      "commit": "1749fe0ef2f5c2dc759fd91abb59d1a8a7ed7e5d",
+      "subject": "Fix RasterIX example framebuffer initialization",
+      "paths": [
+        "examples/rasterix/CMakeLists.txt",
+        "examples/rasterix/main.cpp"
+      ]
+    },
+    {
+      "stage": 2,
+      "commit": "4b4e986b1325dc026b474264839c3affc0183830",
+      "subject": "Add a RasterIX Breakout example",
+      "paths": [
+        "examples/rasterix/Breakout.hpp",
+        "examples/rasterix/BreakoutRenderer.hpp",
+        "examples/rasterix/CMakeLists.txt",
+        "examples/rasterix/breakout.cpp"
+      ]
+    },
+    {
+      "stage": 3,
+      "commit": "71364d8b2a178da59678247d1f82079973a15f91",
+      "subject": "Batch compatible Breakout draw calls",
+      "paths": [
+        "examples/rasterix/BreakoutRenderer.hpp"
+      ]
+    },
+    {
+      "stage": 4,
+      "commit": "46968347e249884e596f7bcde3bba00936a59840",
+      "subject": "Redraw only changed Breakout regions",
+      "paths": [
+        "examples/rasterix/BreakoutDamage.hpp",
+        "examples/rasterix/BreakoutRenderer.hpp"
+      ]
+    },
+    {
+      "stage": 5,
+      "commit": "d3e181ac434a01a1f174549b5fbc7ee03a8875b4",
+      "subject": "Avoid sleeps while waiting for RasterIX frame completion",
+      "paths": [
+        "examples/rasterix/WallyBusConnector.hpp"
+      ]
+    }
+  ],
+  "pushed": true,
+  "head": "d3e181ac434a01a1f174549b5fbc7ee03a8875b4",
+  "remoteMain": "d3e181ac434a01a1f174549b5fbc7ee03a8875b4",
+  "verifiedUtc": "2026-09-12T20:57:25.480240+00:00"
+}

@@ -1,0 +1,78 @@
+{
+  "scope": "Exact tracked Git tree after applying all 12 per-file patches to the original parent; DTS compilation only. No Vivado build or hardware test.",
+  "parent": "2345ec2ad68d9a9073b2dfec0929ce87c90cb0ce",
+  "target": "f0764f003f7c55197882bc1b2f90c84132395472",
+  "reconstructed_tree": "1f5076d73be3b3a13b7842c84379a5b6f317ac4e",
+  "expected_tree": "1f5076d73be3b3a13b7842c84379a5b6f317ac4e",
+  "tree_equal": true,
+  "steps": [
+    {
+      "step": 1,
+      "path": "config/derivlist.txt",
+      "tree": "b4c23f4fc5633e0e86034756e0575c082c6edc4f"
+    },
+    {
+      "step": 2,
+      "path": "fpga/generator/xlnx_ddr3-nexysvideo-mig.prj",
+      "tree": "0e98256db27415a75deb0ec5568f660b9d736563"
+    },
+    {
+      "step": 3,
+      "path": "fpga/generator/ddr3-nexysvideo.tcl",
+      "tree": "89fb0f9f96b7d81d1715e8079c6a112f2de7e27f"
+    },
+    {
+      "step": 4,
+      "path": "fpga/generator/mmcm-nexysvideo.tcl",
+      "tree": "5ce1ab17b0dd429e0add6764e74f7b2699b231eb"
+    },
+    {
+      "step": 5,
+      "path": "fpga/generator/ahbaxibridge.tcl",
+      "tree": "68f0cfd360a3f52ee4f54a9b4ca9118281b9a4a1"
+    },
+    {
+      "step": 6,
+      "path": "fpga/generator/clkconverter.tcl",
+      "tree": "1454388ced6f63ecde35cdfba0b1cd4e89ea7435"
+    },
+    {
+      "step": 7,
+      "path": "fpga/src/fpgaTopNexysVideo.sv",
+      "tree": "fba8b658f69fd0c517c023c7ab77a8dd61ab959f"
+    },
+    {
+      "step": 8,
+      "path": "fpga/constraints/constraints-nexysvideo.xdc",
+      "tree": "5daf0c8617e611e1721401a324f06e9d4e309602"
+    },
+    {
+      "step": 9,
+      "path": "linux/devicetree/wally-nexysvideo.dts",
+      "tree": "9d3dedc37a2d2ef17f7ff4ff36b3f7cfefbf736f"
+    },
+    {
+      "step": 10,
+      "path": "fpga/generator/Makefile",
+      "tree": "6c028bafd10496d1993a425da2e8b7d362919923"
+    },
+    {
+      "step": 11,
+      "path": "fpga/generator/wally.tcl",
+      "tree": "f369c2d8b7ae9728857a0fd1b63d928bfbd3f6b6"
+    },
+    {
+      "step": 12,
+      "path": "fpga/README.md",
+      "tree": "1f5076d73be3b3a13b7842c84379a5b6f317ac4e"
+    }
+  ],
+  "dtc_returncode": 0,
+  "dtc_diagnostics": "",
+  "dtb_bytes": 2453,
+  "check_directory": "/home/researcher/nexys-video-learning/ch39-reconstruction-check-20260923",
+  "canonical_head_after": "d3e181ac434a01a1f174549b5fbc7ee03a8875b4",
+  "canonical_status_after": "",
+  "ddr_pin_count": 48,
+  "ddr_pins_unchanged": true
+}

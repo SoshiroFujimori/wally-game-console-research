@@ -1,0 +1,9 @@
+{
+  "label": "boot-1",
+  "elapsed_seconds": 180.16319615999964,
+  "bytes_received": 840,
+  "command": null,
+  "command_exit": null,
+  "login_sent": false,
+  "log": "/path/to/research/experiments/remote-20260909/20260908T193125Z-boot-1.raw"
+}

@@ -1,0 +1,12 @@
+[
+  {
+    "name": "completion-wait-policy",
+    "source": "\\\\wsl.localhost\\Ubuntu\\home\\researcher\\nexys-video-tests\\hdmi-recovery-20260910\\wait-finalhdmi-summary.json",
+    "sourceSha256": "37fe17d0df7d5feb79f5d04ed95523b9a7ceab71e942f7ab9f870694f9686ae4",
+    "files": {
+      "completion-wait-policy.png": "f8aa3149220fffcff12335e5838870288370fa908c4ab198ee76beacde6e68c1",
+      "completion-wait-policy.svg": "0fe1338f4f01d045489fd781059714ee1fcff12903c9e478112d00bfcd58ced3",
+      "completion-wait-policy.pdf": "3b7a2217b566d4faab116d295ec7ba6059bd34eae792f05eab5adfc6fc78e2c2"
+    }
+  }
+]

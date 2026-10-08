@@ -1,0 +1,19 @@
+{
+  "cwd": "/path/to/research/experiments/breakout-study-20260909/build/causal-v007",
+  "args": [
+    "/home/researcher/cvw/linux/buildroot/output/host/bin/riscv64-buildroot-linux-gnu-g++",
+    "-march=rv64gc",
+    "-mabi=lp64d",
+    "-O3",
+    "-DNDEBUG",
+    "-g",
+    "-static",
+    "/path/to/research/experiments/breakout-study-20260909/versions/v009/build/cross/target.cpp.o",
+    "-o",
+    "/path/to/research/experiments/breakout-study-20260909/versions/v009/build/cross/breakout-unstripped",
+    "cvw-example/rasterix/lib/gl/libgl.a"
+  ],
+  "staticLibraries": {
+    "cvw-example/rasterix/lib/gl/libgl.a": "cfa0d30fc46b827ff885ada9da45dbe895bc2670fa58abcf4994dde31071c66f"
+  }
+}

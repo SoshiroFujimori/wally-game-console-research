@@ -1,0 +1,34 @@
+{
+  "registered_utc": "2026-10-08T12:20:20.792791+00:00",
+  "purpose": "Supplement the within-boot comparison with a new FPGA reconfiguration and Linux boot for each variant. Keep separate from the original 90 runs.",
+  "scope": "One additional JTAG reconfiguration and boot per variant; not physical power cycles.",
+  "variants": [
+    [
+      "fifo512",
+      "variants/fifo512/qualification-wldriven/fpgaTop.bit",
+      "eaeeb0d7ef884b66adf6ee42c523b6b773e60f130342f2c8382abc751d77c288"
+    ],
+    [
+      "mailbox",
+      "variants/mailbox/qualification-wldriven/fpgaTop.bit",
+      "ab8b0751ae79233db90fb011e2daaf03c91b329de9ceefd08c40b1d15a40fdd6"
+    ],
+    [
+      "fifo16",
+      "variants/fifo16/qualification-wldriven-extra/fpgaTop.bit",
+      "27f563c662385b58da7917421e85b68c4eebaa89b0b20ee4d6dbc055bd7b56d4"
+    ]
+  ],
+  "state_frame": 0,
+  "warmup_frames": 30,
+  "measured_frames": 180,
+  "repetitions": 3,
+  "styles": [
+    "full",
+    "retained"
+  ],
+  "bench_sha256": "65bd34eda88f108465f17bb33f31a28da89d4744d86fbe65bdd7a863912e577b",
+  "all_frames_state_and_word_counts_checked": true,
+  "whole_frame_check": "First repetition of each style, six final images total",
+  "order": "fifo512, mailbox, fifo16; styles alternate order on repetition 1"
+}

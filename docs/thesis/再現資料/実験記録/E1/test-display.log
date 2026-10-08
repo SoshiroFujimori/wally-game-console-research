@@ -1,0 +1,5 @@
+DISPLAY_PASS: four swaps with asynchronous clocks, AXI backpressure and delayed responses
+- /path/to/research/experiments/rasterix-integration-20260909/tb_display.sv:59: Verilog $finish
+- S i m u l a t i o n   R e p o r t: Verilator 5.026 2024-06-15
+- Verilator: $finish at 66us; walltime 2.941 s; speed 0.000 s/s
+- Verilator: cpu 0.000 s on 1 threads; alloced 249 MB

@@ -1,0 +1,10 @@
+[
+  "finalhdmi-game-probe-01",
+  "--load",
+  "hdmi13-extras-load-01",
+  "--seconds",
+  "80",
+  "--demo",
+  "--payload",
+  "rasterix-probe"
+]

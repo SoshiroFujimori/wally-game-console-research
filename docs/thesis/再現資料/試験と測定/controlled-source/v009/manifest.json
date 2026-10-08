@@ -1,0 +1,15 @@
+{
+  "CMakeLists.txt": "d1d8f398051143d75a53b296e1f5865eb5c562fb5f46b64a683c40dccbcd8297",
+  "STUDY.md": "01a6c397737de144f7653ae89078aa6f6d546287cb65b1ffd86060087d4be52f",
+  "AMENDMENT.md": "cfc1ad6578f1f6783c06751868254c002c80186307308ddad3c6189062005813",
+  "compile_commands.json": "0eefa69c9ff948da5ddf66d6bfba01bf96beebc5ddb7ece6eb48e75be7144faf",
+  "link-command.json": "8ea84af88878feb8cc8513aace3cf30bef50d91647ea89cbbc7202073774ba4c",
+  "src/damage.hpp": "578f7784a907da89d7d30bc6c3fb98838dc810e4a0ce049990dcb94be7a436fa",
+  "src/target.cpp": "ed2d0c87b1bd9ef3f8f57948d715f163e4bdeee7cc894e7b34ddf169dae70f35",
+  "src/game.hpp": "bc4ffee907f65f774b69b0e15f089466b118155882717c42effd34bff52350f2",
+  "src/damage-test.cpp": "28cd6b39b2e526037610a87ebb626e1a87aa3d91af76408f48638e567f3cd778",
+  "src/host.cpp": "b1ab447c07a0f8193ab6014a4fdbd774e330acff0bf467c71903d5576cc292e8",
+  "build/cross/breakout": "b1702d1c44e2553b4af7fd72005e744b6a74952e40cd2c7422851aa789c05ccc",
+  "build/cross/breakout.gz": "0043f3b2fc56b9c5169d5da24e4357c8faf5b16cf6fa636c44ccc0b70eff7a1d",
+  "build/cross/breakout-unstripped": "ec275449b510c4043ecc9beb9763cde4219870ef3d35b2cb84401bfd5f02c549"
+}

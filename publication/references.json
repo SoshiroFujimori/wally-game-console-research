@@ -1,0 +1,47 @@
+[
+  {
+    "id": "E1",
+    "path": "docs/thesis/再現資料/実験記録/E1"
+  },
+  {
+    "id": "E2",
+    "path": "docs/thesis/再現資料/実験記録/E2"
+  },
+  {
+    "id": "E3",
+    "path": "docs/thesis/再現資料/実験記録/E3"
+  },
+  {
+    "id": "E4",
+    "path": "docs/thesis/再現資料/実験記録/E4"
+  },
+  {
+    "id": "E5",
+    "path": "docs/thesis/再現資料/実験記録/E5"
+  },
+  {
+    "id": "E6",
+    "path": "docs/thesis/再現資料/実験記録/E6"
+  },
+  {
+    "id": "rasterix-math",
+    "path": "experiments/rasterix-math"
+  },
+  {
+    "id": "sdwire3",
+    "path": "tools/sdwire3"
+  },
+  {
+    "id": "board-bringup",
+    "path": "experiments/board-bringup-20260909"
+  },
+  {
+    "id": "fifo-archived-scripts",
+    "path": "experiments/fifo-study-20261008/archive-scripts"
+  },
+  {
+    "id": "product",
+    "path": "console",
+    "kind": "git-submodule"
+  }
+]

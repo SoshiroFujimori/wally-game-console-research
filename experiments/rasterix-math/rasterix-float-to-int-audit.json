@@ -1,0 +1,199 @@
+{
+  "wally_commit": "d3e181ac434a01a1f174549b5fbc7ee03a8875b4",
+  "rasterix_commit": "9fdcf97a31b2e4247594e06d605871980cd5e9e1",
+  "rtl_four_state": {
+    "log": "rasterix-float-to-int-rtl-four-state.txt",
+    "cases": [
+      {
+        "label": "color_pos_0p5_shift0",
+        "input_hex": "3f000000",
+        "offset": -24,
+        "output_hex": "xxxxxxxx",
+        "unknown": true,
+        "expected_hex": "00800000"
+      },
+      {
+        "label": "color_neg_0p5_shift0",
+        "input_hex": "bf000000",
+        "offset": -24,
+        "output_hex": "00000001",
+        "unknown": false,
+        "expected_hex": "ff800000"
+      },
+      {
+        "label": "color_pos_below1_shift0",
+        "input_hex": "3f7fffff",
+        "offset": -24,
+        "output_hex": "xxxxxxxx",
+        "unknown": true,
+        "expected_hex": "00ffffff"
+      },
+      {
+        "label": "color_neg_above_minus1_shift0",
+        "input_hex": "bf7fffff",
+        "offset": -24,
+        "output_hex": "00000001",
+        "unknown": false,
+        "expected_hex": "ff000001"
+      },
+      {
+        "label": "texture_pos_0p03125_shift0",
+        "input_hex": "3d000000",
+        "offset": -28,
+        "output_hex": "xxxxxxxx",
+        "unknown": true,
+        "expected_hex": "00800000"
+      },
+      {
+        "label": "depth_pos_0p0078125_shift0",
+        "input_hex": "3c000000",
+        "offset": -30,
+        "output_hex": "xxxxxxxx",
+        "unknown": true,
+        "expected_hex": "00800000"
+      },
+      {
+        "label": "color_pos_0p25_shift1",
+        "input_hex": "3e800000",
+        "offset": -24,
+        "output_hex": "00400000",
+        "unknown": false,
+        "expected_hex": "00400000"
+      },
+      {
+        "label": "color_pos_1_left",
+        "input_hex": "3f800000",
+        "offset": -24,
+        "output_hex": "01000000",
+        "unknown": false,
+        "expected_hex": "01000000"
+      },
+      {
+        "label": "color_tiny_shift32",
+        "input_hex": "2f000000",
+        "offset": -24,
+        "output_hex": "00000000",
+        "unknown": false,
+        "expected_hex": "00000000"
+      },
+      {
+        "label": "color_tiny_shift33_lsb1",
+        "input_hex": "2e800001",
+        "offset": -24,
+        "output_hex": "00000001",
+        "unknown": false,
+        "expected_hex": "00000000"
+      },
+      {
+        "label": "color_tiny_negative_shift33_lsb1",
+        "input_hex": "ae800001",
+        "offset": -24,
+        "output_hex": "ffffffff",
+        "unknown": false,
+        "expected_hex": "00000000"
+      }
+    ],
+    "pass_count": 3,
+    "fail_count": 8
+  },
+  "artix7_post_synthesis": {
+    "log": "rasterix-float-to-int-post-synth.txt",
+    "cases": [
+      {
+        "label": "color_pos_0p5_shift0",
+        "input_hex": "3f000000",
+        "offset": -24,
+        "output_hex": "00800000",
+        "unknown": false,
+        "expected_hex": "00800000"
+      },
+      {
+        "label": "color_neg_0p5_shift0",
+        "input_hex": "bf000000",
+        "offset": -24,
+        "output_hex": "ff800000",
+        "unknown": false,
+        "expected_hex": "ff800000"
+      },
+      {
+        "label": "color_pos_below1_shift0",
+        "input_hex": "3f7fffff",
+        "offset": -24,
+        "output_hex": "00ffffff",
+        "unknown": false,
+        "expected_hex": "00ffffff"
+      },
+      {
+        "label": "color_neg_above_minus1_shift0",
+        "input_hex": "bf7fffff",
+        "offset": -24,
+        "output_hex": "ff000001",
+        "unknown": false,
+        "expected_hex": "ff000001"
+      },
+      {
+        "label": "texture_pos_0p03125_shift0",
+        "input_hex": "3d000000",
+        "offset": -28,
+        "output_hex": "00800000",
+        "unknown": false,
+        "expected_hex": "00800000"
+      },
+      {
+        "label": "depth_pos_0p0078125_shift0",
+        "input_hex": "3c000000",
+        "offset": -30,
+        "output_hex": "00800000",
+        "unknown": false,
+        "expected_hex": "00800000"
+      },
+      {
+        "label": "color_pos_0p25_shift1",
+        "input_hex": "3e800000",
+        "offset": -24,
+        "output_hex": "00400000",
+        "unknown": false,
+        "expected_hex": "00400000"
+      },
+      {
+        "label": "color_pos_1_left",
+        "input_hex": "3f800000",
+        "offset": -24,
+        "output_hex": "01000000",
+        "unknown": false,
+        "expected_hex": "01000000"
+      },
+      {
+        "label": "color_tiny_shift32",
+        "input_hex": "2f000000",
+        "offset": -24,
+        "output_hex": "00000000",
+        "unknown": false,
+        "expected_hex": "00000000"
+      },
+      {
+        "label": "color_tiny_shift33_lsb1",
+        "input_hex": "2e800001",
+        "offset": -24,
+        "output_hex": "00000001",
+        "unknown": false,
+        "expected_hex": "00000000"
+      },
+      {
+        "label": "color_tiny_negative_shift33_lsb1",
+        "input_hex": "ae800001",
+        "offset": -24,
+        "output_hex": "ffffffff",
+        "unknown": false,
+        "expected_hex": "00000000"
+      }
+    ],
+    "pass_count": 9,
+    "fail_count": 2
+  },
+  "interpretation": {
+    "rtl": "shiftSize==0 reads number[shiftSize-1], so four-state simulation propagates X; very small normalized values can also alias mantissa bits after the five-bit shift count truncates",
+    "post_synthesis": "Vivado 2025.2 xc7a200tsbg484-1 functional netlist selected the expected no-round behavior for the shiftSize==0 representatives, but reproduced the two tiny-value alias failures",
+    "scope": "The post-synthesis result covers the listed boundary representatives; it is not a formal equivalence proof for every IEEE-754 bit pattern."
+  }
+}

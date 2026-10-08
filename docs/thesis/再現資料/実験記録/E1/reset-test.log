@@ -1,0 +1,72 @@
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "/path/to/research/experiments/rasterix-integration-20260909/upstream-refinement/tb_pixelreset.sv" into library work
+INFO: [VRFC 10-311] analyzing module tb_pixelreset
+INFO: [VRFC 10-2263] Analyzing Verilog file "/path/to/wally-game-console/fpga/generator/IP/sysrst.gen/sources_1/ip/sysrst/sysrst_sim_netlist.v" into library work
+INFO: [VRFC 10-311] analyzing module sysrst
+INFO: [VRFC 10-311] analyzing module sysrst_lpf
+INFO: [VRFC 10-311] analyzing module sysrst_proc_sys_reset
+INFO: [VRFC 10-311] analyzing module sysrst_sequence_psr
+INFO: [VRFC 10-311] analyzing module sysrst_upcnt_n
+INFO: [VRFC 10-311] analyzing module sysrst_xpm_cdc_single
+INFO: [VRFC 10-311] analyzing module sysrst_xpm_cdc_single__1
+INFO: [VRFC 10-311] analyzing module glbl
+INFO: [VRFC 10-2263] Analyzing Verilog file "/path/to/wally-game-console/fpga/generator/IP/videoclock.gen/sources_1/ip/videoclock/videoclock_sim_netlist.v" into library work
+INFO: [VRFC 10-311] analyzing module videoclock
+INFO: [VRFC 10-311] analyzing module videoclock_clk_wiz
+INFO: [VRFC 10-2263] Analyzing Verilog file "/home/researcher/AMD/2025.2/data/verilog/src/glbl.v" into library work
+Vivado Simulator v2025.2
+Copyright 1986-2022 Xilinx, Inc. All Rights Reserved.
+Copyright 2022-2025 Advanced Micro Devices, Inc. All Rights Reserved.
+Running: /home/researcher/AMD/2025.2/Vivado/bin/unwrapped/lnx64.o/xelab tb_pixelreset glbl -L unisims_ver -L secureip -s reset_snapshot 
+Multi-threading is on. Using 30 slave threads.
+WARNING: [XSIM 43-3431] One or more environment variables have been detected which affect the operation of the C compiler. These are typically not set in standard installations and are not tested by AMD, however they may be appropriate for your system, so the flow will attempt to continue.  If errors occur, try running xelab with the "-mt off -v 1" switches to see more information from the C compiler. The following environment variables have been detected:
+    LIBRARY_PATH
+Starting static elaboration
+Pass Through NonSizing Optimizer
+Completed static elaboration
+Starting simulation data flow analysis
+Completed simulation data flow analysis
+Time Resolution for simulation is 1ps
+Compiling module unisims_ver.BUFG
+Compiling module unisims_ver.MMCME2_ADV(CLKFBOUT_MULT_F=31.5,...
+Compiling module work.videoclock_clk_wiz
+Compiling module work.videoclock
+Compiling module unisims_ver.FDRE_default
+Compiling module work.sysrst_xpm_cdc_single
+Compiling module work.sysrst_xpm_cdc_single__1
+Compiling module unisims_ver.x_lut2_mux4
+Compiling module unisims_ver.LUT2
+Compiling module unisims_ver.SRL16E(INIT=16'b1111111111111111...
+Compiling module unisims_ver.LUT4
+Compiling module work.sysrst_lpf
+Compiling module unisims_ver.x_lut1_mux2
+Compiling module unisims_ver.LUT1
+Compiling module unisims_ver.FDSE_default
+Compiling module unisims_ver.x_lut3_mux8
+Compiling module unisims_ver.LUT3(INIT=8'b01111000)
+Compiling module unisims_ver.LUT5(INIT=32'b011111111111111110...
+Compiling module unisims_ver.LUT6(INIT=64'b011111111111111111...
+Compiling module work.sysrst_upcnt_n
+Compiling module work.sysrst_sequence_psr
+Compiling module work.sysrst_proc_sys_reset
+Compiling module work.sysrst
+Compiling module work.tb_pixelreset
+Compiling module work.glbl
+Built simulation snapshot reset_snapshot
+
+****** xsim v2025.2 (64-bit)
+  **** SW Build 6299465 on Fri Nov 14 12:34:56 MST 2025
+  **** IP Build 6300035 on Fri Nov 14 10:48:45 MST 2025
+  **** SharedData Build 6298862 on Thu Nov 13 04:50:51 MST 2025
+  **** Start of session at: Wed Sep  9 18:19:27 2026
+    ** Copyright 1986-2022 Xilinx, Inc. All Rights Reserved.
+    ** Copyright 2022-2025 Advanced Micro Devices, Inc. All Rights Reserved.
+
+source xsim.dir/reset_snapshot/xsim_script.tcl
+# xsim {reset_snapshot} -autoloadwcfg -runall -onfinish quit -onerror quit
+Time resolution is 1 ps
+run -all
+PIXEL_RESET_PASS releases=13 board_reset=3 clock_loss=3 calibration_loss=3 ddr_reset=3
+$finish called at time : 173511984 ps : File "/path/to/research/experiments/rasterix-integration-20260909/upstream-refinement/tb_pixelreset.sv" Line 68
+exit 0
+INFO: xsimkernel Simulation Memory Usage: 275420 KB (Peak: 336336 KB), Simulation CPU Usage: 620 ms
+INFO: [Common 17-206] Exiting xsim at Wed Sep  9 18:19:30 2026...

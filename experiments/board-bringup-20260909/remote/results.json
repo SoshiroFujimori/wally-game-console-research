@@ -1,0 +1,274 @@
+{
+  "recorded_utc": "2026-09-08T21:36:48.919806+00:00",
+  "coremark": {
+    "coremark-performance": {
+      "passed": true,
+      "iterations": 600.0,
+      "seconds": 13.142,
+      "iterations_per_second": 45.655151
+    },
+    "coremark-validation": {
+      "passed": true,
+      "iterations": 600.0,
+      "seconds": 13.23,
+      "iterations_per_second": 45.351474
+    }
+  },
+  "memory": {
+    "capture_finished": true,
+    "stages": {
+      "WIDE": {
+        "mib": 256,
+        "locked": true,
+        "passed": true,
+        "seconds": 3027.58,
+        "tests_reported_ok": [
+          "Stuck Address",
+          "Random Value",
+          "Sequential Increment",
+          "8-bit Writes",
+          "16-bit Writes"
+        ]
+      },
+      "PATTERNS": {
+        "mib": 16,
+        "locked": true,
+        "passed": true,
+        "seconds": 3084.1,
+        "tests_reported_ok": [
+          "Stuck Address",
+          "Random Value",
+          "Compare XOR",
+          "Compare SUB",
+          "Compare MUL",
+          "Compare DIV",
+          "Compare OR",
+          "Compare AND",
+          "Sequential Increment",
+          "Solid Bits",
+          "Block Sequential",
+          "Checkerboard",
+          "Bit Spread",
+          "Bit Flip",
+          "Walking Ones",
+          "Walking Zeroes",
+          "8-bit Writes",
+          "16-bit Writes"
+        ]
+      }
+    },
+    "passed": true
+  },
+  "successful_reconfiguration_boots": 3,
+  "reconfiguration_boots": {
+    "boot-2-usb-detached": true,
+    "boot-repeat-2": true,
+    "boot-repeat-3": true
+  },
+  "info_passes": {
+    "board-info": true,
+    "info-repeat-2": true,
+    "info-repeat-3": true
+  },
+  "post_memory_info_pass": true,
+  "sd_write_read_pass": true,
+  "sd_persistence_passes": {
+    "info-repeat-2": true,
+    "info-repeat-3": true
+  },
+  "final_board_state_pass": true,
+  "sd_roundtrip_bytes": 23608,
+  "sd_roundtrip_sha256": "42cbe69b28b1929235af054b20b61282f54e6f105c5f93807bcfd19778775943",
+  "captures": {
+    "initial": {
+      "label": "initial",
+      "elapsed_seconds": 3.0292174199994406,
+      "bytes_received": 780,
+      "command": null,
+      "command_exit": null,
+      "login_sent": false,
+      "log": "/path/to/research/experiments/remote-20260909/20260908T192606Z-initial.raw",
+      "raw_sha256": "14ce307cb995d3ac95eb783a0a9dc600cf60d466c8c7d989ab97e2f953eeb6a5",
+      "metadata_file": "20260908T192606Z-initial.json"
+    },
+    "boot-1": {
+      "label": "boot-1",
+      "elapsed_seconds": 180.16319615999964,
+      "bytes_received": 840,
+      "command": null,
+      "command_exit": null,
+      "login_sent": false,
+      "log": "/path/to/research/experiments/remote-20260909/20260908T193125Z-boot-1.raw",
+      "raw_sha256": "9be30ee8855bec32310f2c4f0f5318d5e375a7d8bd71ae3197b5d98d6317de1c",
+      "metadata_file": "20260908T193125Z-boot-1.json"
+    },
+    "boot-2-usb-detached": {
+      "label": "boot-2-usb-detached",
+      "elapsed_seconds": 87.57953521499985,
+      "bytes_received": 13941,
+      "command": null,
+      "command_exit": null,
+      "login_sent": true,
+      "log": "/path/to/research/experiments/remote-20260909/20260908T193511Z-boot-2-usb-detached.raw",
+      "raw_sha256": "252d90bb8d61cfc7b7470ceae1080fe4dbdbcc4b80a13d1ea60150c9ed579e76",
+      "metadata_file": "20260908T193511Z-boot-2-usb-detached.json"
+    },
+    "board-info": {
+      "label": "board-info",
+      "elapsed_seconds": 20.08682172599947,
+      "bytes_received": 741,
+      "command": "mkdir -p /mnt/nexys-test && mount -t ext4 -o ro /dev/mmcblk0p4 /mnt/nexys-test && sh /mnt/nexys-test/nexys-video-tests/board-tests.sh info",
+      "command_exit": 0,
+      "login_sent": false,
+      "log": "/path/to/research/experiments/remote-20260909/20260908T193720Z-board-info.raw",
+      "raw_sha256": "4dc1b9e9b92e1cbe470640286a846bfa39ccaf380deb60964dfa8f09b0f4a3de",
+      "metadata_file": "20260908T193720Z-board-info.json"
+    },
+    "coremark-performance": {
+      "label": "coremark-performance",
+      "elapsed_seconds": 16.144318438999107,
+      "bytes_received": 823,
+      "command": "cd /mnt/nexys-test/nexys-video-tests && ./coremark.exe 0 0 0x66 0 7 1 2000",
+      "command_exit": 0,
+      "login_sent": false,
+      "log": "/path/to/research/experiments/remote-20260909/20260908T193758Z-coremark-performance.raw",
+      "raw_sha256": "29ded48abe065cd812b7827cbed68d0e5cd4caa097567d1940be6cdabbb94f4c",
+      "metadata_file": "20260908T193758Z-coremark-performance.json"
+    },
+    "coremark-validation": {
+      "label": "coremark-validation",
+      "elapsed_seconds": 16.369911102001424,
+      "bytes_received": 751,
+      "command": "cd /mnt/nexys-test/nexys-video-tests && ./coremark.exe 0x3415 0x3415 0x66 0 7 1 2000",
+      "command_exit": 0,
+      "login_sent": false,
+      "log": "/path/to/research/experiments/remote-20260909/20260908T193926Z-coremark-validation.raw",
+      "raw_sha256": "714a5d4c7b69e3cbfd0f1682251e82176987ec0848bbdabd56cfc29c665d5d7c",
+      "metadata_file": "20260908T193926Z-coremark-validation.json"
+    },
+    "ddr-memory": {
+      "label": "ddr-memory",
+      "elapsed_seconds": 6115.227348712,
+      "bytes_received": 131471,
+      "command": "sh /mnt/nexys-test/nexys-video-tests/board-tests.sh memory",
+      "command_exit": 0,
+      "login_sent": false,
+      "log": "/path/to/research/experiments/remote-20260909/20260908T194035Z-ddr-memory.raw",
+      "raw_sha256": "38575098547ce58366c70bb63ab118f80a595b1790c0bd5652b589e215574ddd",
+      "metadata_file": "20260908T194035Z-ddr-memory.json"
+    },
+    "post-memory": {
+      "label": "post-memory",
+      "elapsed_seconds": 4.316489568000179,
+      "bytes_received": 8127,
+      "command": "sh /mnt/nexys-test/nexys-video-tests/board-tests.sh info && dmesg && ps",
+      "command_exit": 0,
+      "login_sent": false,
+      "log": "/path/to/research/experiments/remote-20260909/20260908T212259Z-post-memory.raw",
+      "raw_sha256": "7bea4f17495659ec599b79292315ce47b7536871d4daa91f528f0eefde9c7eb0",
+      "metadata_file": "20260908T212259Z-post-memory.json"
+    },
+    "sd-write-read": {
+      "label": "sd-write-read",
+      "elapsed_seconds": 29.32493221599907,
+      "bytes_received": 782,
+      "command": "mount -o remount,rw /mnt/nexys-test && test ! -e /mnt/nexys-test/nexys-video-tests/sd-roundtrip-20260909-1.bin && cp /mnt/nexys-test/nexys-video-tests/coremark.exe /mnt/nexys-test/nexys-video-tests/sd-roundtrip-20260909-1.bin && sync && umount /mnt/nexys-test && mount -t ext4 -o ro /dev/mmcblk0p4 /mnt/nexys-test && case $(sha256sum /mnt/nexys-test/nexys-video-tests/sd-roundtrip-20260909-1.bin) in 42cbe69b28b1929235af054b20b61282f54e6f105c5f93807bcfd19778775943*) echo SD_WRITE_READ_PASS;; *) echo SD_WRITE_READ_FAIL; false;; esac",
+      "command_exit": 1,
+      "login_sent": false,
+      "log": "/path/to/research/experiments/remote-20260909/20260908T212345Z-sd-write-read.raw",
+      "raw_sha256": "f95ddeddfd419ae0fded38acab45756dc49c15f18112a37b20b0763e7a53034b",
+      "metadata_file": "20260908T212345Z-sd-write-read.json"
+    },
+    "sd-write-read-finish": {
+      "label": "sd-write-read-finish",
+      "elapsed_seconds": 12.802607564999562,
+      "bytes_received": 910,
+      "command": "pwd; cd / && sync && umount /mnt/nexys-test && mount -t ext4 -o ro /dev/mmcblk0p4 /mnt/nexys-test && sha256sum /mnt/nexys-test/nexys-video-tests/sd-roundtrip-20260909-1.bin && case $(sha256sum /mnt/nexys-test/nexys-video-tests/sd-roundtrip-20260909-1.bin) in 42cbe69b28b1929235af054b20b61282f54e6f105c5f93807bcfd19778775943*) echo SD_WRITE_READ_PASS;; *) echo SD_WRITE_READ_FAIL; false;; esac",
+      "command_exit": 0,
+      "login_sent": false,
+      "log": "/path/to/research/experiments/remote-20260909/20260908T212449Z-sd-write-read-finish.raw",
+      "raw_sha256": "e88f7c6b424e92a490165339314b9ad5914de20739a9dc42a2971ad517fc9fac",
+      "metadata_file": "20260908T212449Z-sd-write-read-finish.json"
+    },
+    "before-repeat-2": {
+      "label": "before-repeat-2",
+      "elapsed_seconds": 0.8413674499988701,
+      "bytes_received": 230,
+      "command": "cd / && umount /mnt/nexys-test && sync",
+      "command_exit": 0,
+      "login_sent": false,
+      "log": "/path/to/research/experiments/remote-20260909/20260908T212534Z-before-repeat-2.raw",
+      "raw_sha256": "c2b2c731399cc8936de991632fecde57f33d087bedc6e7ce24c1befb50ae24f2",
+      "metadata_file": "20260908T212534Z-before-repeat-2.json"
+    },
+    "boot-repeat-2": {
+      "label": "boot-repeat-2",
+      "elapsed_seconds": 93.55745339999885,
+      "bytes_received": 13941,
+      "command": null,
+      "command_exit": null,
+      "login_sent": true,
+      "log": "/path/to/research/experiments/remote-20260909/20260908T212615Z-boot-repeat-2.raw",
+      "raw_sha256": "c4fb69e0e1bb4391f04067ef699ebbeccc158d2e1c7c422ee5df7b9c344b5dc8",
+      "metadata_file": "20260908T212615Z-boot-repeat-2.json"
+    },
+    "info-repeat-2": {
+      "label": "info-repeat-2",
+      "elapsed_seconds": 23.77280740200149,
+      "bytes_received": 992,
+      "command": "cd / && mkdir -p /mnt/nexys-test && mount -t ext4 -o ro /dev/mmcblk0p4 /mnt/nexys-test && sh /mnt/nexys-test/nexys-video-tests/board-tests.sh info && case $(sha256sum /mnt/nexys-test/nexys-video-tests/sd-roundtrip-20260909-1.bin) in 42cbe69b28b1929235af054b20b61282f54e6f105c5f93807bcfd19778775943*) echo SD_PERSISTENCE_PASS;; *) echo SD_PERSISTENCE_FAIL; false;; esac",
+      "command_exit": 0,
+      "login_sent": false,
+      "log": "/path/to/research/experiments/remote-20260909/20260908T212807Z-info-repeat-2.raw",
+      "raw_sha256": "7d514f7cb15738378da94d0719446980ea7859b8c587fc832362851e6533314b",
+      "metadata_file": "20260908T212807Z-info-repeat-2.json"
+    },
+    "before-repeat-3": {
+      "label": "before-repeat-3",
+      "elapsed_seconds": 0.8422313749997556,
+      "bytes_received": 230,
+      "command": "cd / && umount /mnt/nexys-test && sync",
+      "command_exit": 0,
+      "login_sent": false,
+      "log": "/path/to/research/experiments/remote-20260909/20260908T212835Z-before-repeat-3.raw",
+      "raw_sha256": "213979d86bdf0ee39b7a4bdc90e1a849030ef1639198918f9c0031444ac134cf",
+      "metadata_file": "20260908T212835Z-before-repeat-3.json"
+    },
+    "boot-repeat-3": {
+      "label": "boot-repeat-3",
+      "elapsed_seconds": 94.75879434300077,
+      "bytes_received": 13941,
+      "command": null,
+      "command_exit": null,
+      "login_sent": true,
+      "log": "/path/to/research/experiments/remote-20260909/20260908T213001Z-boot-repeat-3.raw",
+      "raw_sha256": "db5fc251d5346e669c8cf4da67c8de5664fd155bf04176f74e0c4c9936e84f06",
+      "metadata_file": "20260908T213001Z-boot-repeat-3.json"
+    },
+    "info-repeat-3": {
+      "label": "info-repeat-3",
+      "elapsed_seconds": 23.57075225800145,
+      "bytes_received": 993,
+      "command": "cd / && mkdir -p /mnt/nexys-test && mount -t ext4 -o ro /dev/mmcblk0p4 /mnt/nexys-test && sh /mnt/nexys-test/nexys-video-tests/board-tests.sh info && case $(sha256sum /mnt/nexys-test/nexys-video-tests/sd-roundtrip-20260909-1.bin) in 42cbe69b28b1929235af054b20b61282f54e6f105c5f93807bcfd19778775943*) echo SD_PERSISTENCE_PASS;; *) echo SD_PERSISTENCE_FAIL; false;; esac",
+      "command_exit": 0,
+      "login_sent": false,
+      "log": "/path/to/research/experiments/remote-20260909/20260908T213228Z-info-repeat-3.raw",
+      "raw_sha256": "07abd42890b6b9ded3b7cec7eea4f023b823015f53aa0aa08f9d128056e966c2",
+      "metadata_file": "20260908T213228Z-info-repeat-3.json"
+    },
+    "final-board-state": {
+      "label": "final-board-state",
+      "elapsed_seconds": 1.3687911039996834,
+      "bytes_received": 717,
+      "command": "cd / && umount /mnt/nexys-test && sync && cat /proc/mounts && echo BOARD_LEFT_RUNNING_SD_UNMOUNTED",
+      "command_exit": 0,
+      "login_sent": false,
+      "log": "/path/to/research/experiments/remote-20260909/20260908T213323Z-final-board-state.raw",
+      "raw_sha256": "92a34708726931b3bc345eaafdf587eb2fa4db2ef4659334c0d41156948332b2",
+      "metadata_file": "20260908T213323Z-final-board-state.json"
+    }
+  },
+  "physical_cold_power_cycle_tested": false,
+  "all_physical_switch_positions_tested_by_assistant": false,
+  "remote_checks_complete": true
+}

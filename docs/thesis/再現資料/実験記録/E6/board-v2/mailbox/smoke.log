@@ -1,0 +1,11 @@
+/tmp/fifo-bench --frames 180 --warmup 30 --retained --wait spin --state-frame 0 --csv /tmp/fifo-smoke.csv --dump /tmp/fifo-smoke.rgb565; nv_status=$?; printf "\nNV_DONE_03a45581565d=%s\n" "$nv_status"
+BEGIN_BREAKOUT frames=180 warmup=30 fixed=0 blocks=40 tiles=1 hud=1 wait=spin replay=0 state_frame=0 profile=detailed pixel_centers=1 clock_call_ns=5332
+HW_COUNTERS id=46490001 words=161040 wait_cycles=7598982 longest_wait_cycles=4612 total_cycles=62191160 cpu_hz=20000000
+RESULT frames=180 elapsed_s=3.109423500 fps=57.888544 logic_ms=0.970758 api_ms=3.060739 swap_ms=7.361086 wait_ms=5.722247 worker_inclusive_ms=7.163882 upload_inclusive_ms=3.685377 write_ms=3.480769 bytes_per_frame=3578.67 p50_ms=16.719150 p95_ms=17.065550 max_ms=33.858600 late_60hz=160 first_count=71 last_count=250 state_hash=8f34e8fd remaining=38 score=20
+RENDER_PATH retained=1 grouped=0 quads=645 full_frames=0
+FRAME_CHECK count=250 address=9fe00000 fnv1a=79c99b23 pixels=307200 mismatches=0
+BREAKOUT_PASS
+
+NV_DONE_03a45581565d=0
+# 
+CAPTURE: {"label": "mailbox-smoke", "elapsed_seconds": 12.272639490000074, "bytes_received": 1020, "command": "/tmp/fifo-bench --frames 180 --warmup 30 --retained --wait spin --state-frame 0 --csv /tmp/fifo-smoke.csv --dump /tmp/fifo-smoke.rgb565", "command_exit": 0, "login_sent": false, "log": "/path/to/research/experiments/fifo-study-20261008/20261008T074506Z-mailbox-smoke.raw"}

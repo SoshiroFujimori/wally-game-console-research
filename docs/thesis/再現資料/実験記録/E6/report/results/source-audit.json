@@ -1,0 +1,77 @@
+{
+  "utc": "2026-10-08T13:07:28.925133+00:00",
+  "source_files_checked": 995,
+  "same_as_paused_manifest_common_files": 995,
+  "paused_only_files": [
+    "tests/riscof/spike/coverage_rv32gc.svh",
+    "tests/riscof/spike/coverage_rv64gc.svh",
+    "tests/riscof/spike/env/model_test.h"
+  ],
+  "fresh_only_files": [],
+  "source_changed_during_build": [],
+  "submodules": [
+    {
+      "name": "addins/berkeley-softfloat-3",
+      "commit": "a0c6494cdc11865811dec815d5c0049fba9d82a8",
+      "dirty": false
+    },
+    {
+      "name": "addins/berkeley-testfloat-3",
+      "commit": "a9c849f1b0eb0264b626d9686ffae167d996e3be",
+      "dirty": false
+    },
+    {
+      "name": "addins/branch-predictor-simulator",
+      "commit": "3e424e902f2088d0c9f482f3900ab780affb6350",
+      "dirty": false
+    },
+    {
+      "name": "addins/coremark",
+      "commit": "f3e8f2e0941e42961aadcc52750b1b5577c157c9",
+      "dirty": false
+    },
+    {
+      "name": "addins/embench-iot",
+      "commit": "54fd9a0f10aabc662991567ca19ff3e61bfd3939",
+      "dirty": false
+    },
+    {
+      "name": "addins/rasterix",
+      "commit": "9269a01c9bd4c3342bfa70ef8e3cdd751c15c6d0",
+      "dirty": false
+    },
+    {
+      "name": "addins/riscv-arch-test",
+      "commit": "241b1fe294567751bd3ae6f338b1dbfc40c41a20",
+      "dirty": false
+    },
+    {
+      "name": "addins/riscv-arch-test-cvw",
+      "commit": "d243ff6a252f4b7945b55c43ed18b5d271b8d9f1",
+      "dirty": false
+    },
+    {
+      "name": "addins/riscv-dv",
+      "commit": "b7a0b4b0b51346a3c64f159f81ea262d867c14a9",
+      "dirty": false
+    },
+    {
+      "name": "addins/verilog-ethernet",
+      "commit": "c180b22ed5f4112d0ef35b2c5ac1acc45f9ebb5d",
+      "dirty": false
+    },
+    {
+      "name": "addins/vivado-boards",
+      "commit": "36f34ab687b7fa9c778b779d027f3bce63b3ace9",
+      "dirty": false
+    }
+  ],
+  "worktree_changes": [
+    "examples/rasterix/BreakoutRenderer.hpp",
+    "examples/rasterix/CMakeLists.txt",
+    "fpga/generator/wally.tcl"
+  ],
+  "unmerged_paths": 0,
+  "main_head": "cdf907bc1752b0f300e4fc70b9a51b2bae983b7f",
+  "upstream_merge_head": "2064ca2bb8a88e3e3ec43753be93d00bef49345b"
+}

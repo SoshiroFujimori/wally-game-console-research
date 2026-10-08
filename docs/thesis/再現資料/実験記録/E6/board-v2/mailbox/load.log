@@ -1,0 +1,11 @@
+(mkdir -p /mnt/fifo-study && mount -t ext4 -o ro /dev/mmcblk0p4 /mnt/fifo-study && gzip -dc /mnt/fifo-study/fifo-study-20261008-v2/bench.gz > /tmp/fifo-bench && gzip -dc /mnt/fifo-study/fifo-study-20261008-v2/game.gz > /tmp/fifo-game && gzip -dc /mnt/fifo-study/fifo-study-20261008-v2/texture2d.gz > /tmp/fifo-texture2d && chmod +x /tmp/fifo-bench /tmp/fifo-game /tmp/fifo-texture2d && sha256sum /tmp/fifo-bench /tmp/fifo-game /tmp/fifo-texture2d && umount /mnt/fifo-study); nv_status=$?; printf "\nNV_DONE_fc871f9c7f6b=%s\n" "$nv_status"
+[  127.101245] EXT4-fs (mmcblk0p4): mounted filesystem 4cd26447-2ac1-4501-b5e0-4a23309fb661 ro with ordered data mode. Quota mode: disabled.
+[  127.544031] random: crng init done
+65bd34eda88f108465f17bb33f31a28da89d4744d86fbe65bdd7a863912e577b  /tmp/fifo-bench
+e8fa6130aa47bf6131b1077ebbd03f26e90055a8dcc9c11c8c814322ab71b1ae  /tmp/fifo-game
+8b027c2456c0919d3b8e6e4d18c3f73a53aec781bcee7c04f490219950a4edec  /tmp/fifo-texture2d
+[  368.648001] EXT4-fs (mmcblk0p4): unmounting filesystem 4cd26447-2ac1-4501-b5e0-4a23309fb661.
+
+NV_DONE_fc871f9c7f6b=0
+# 
+CAPTURE: {"label": "mailbox-load", "elapsed_seconds": 247.18535286800034, "bytes_received": 1098, "command": "(mkdir -p /mnt/fifo-study && mount -t ext4 -o ro /dev/mmcblk0p4 /mnt/fifo-study && gzip -dc /mnt/fifo-study/fifo-study-20261008-v2/bench.gz > /tmp/fifo-bench && gzip -dc /mnt/fifo-study/fifo-study-20261008-v2/game.gz > /tmp/fifo-game && gzip -dc /mnt/fifo-study/fifo-study-20261008-v2/texture2d.gz > /tmp/fifo-texture2d && chmod +x /tmp/fifo-bench /tmp/fifo-game /tmp/fifo-texture2d && sha256sum /tmp/fifo-bench /tmp/fifo-game /tmp/fifo-texture2d && umount /mnt/fifo-study)", "command_exit": 0, "login_sent": false, "log": "/path/to/research/experiments/fifo-study-20261008/20261008T073310Z-mailbox-load.raw"}

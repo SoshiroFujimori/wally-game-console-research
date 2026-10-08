@@ -1,0 +1,8 @@
+{
+  "utc": "2026-09-10T19:33:16.829868+00:00",
+  "selected": "spin",
+  "basisSha256": "50fdd6593fb12efd4f27c445f1aff5fbe6661ed0188d935094f16369bb0b323c",
+  "reason": "Every spin run outperformed every sleep run in its matched scene window; p95 frame processing time improved and all state/pixel checks passed. Prioritize game cadence for this single application.",
+  "tradeoff": "Whole-process CPU occupancy is approximately 99 percent. This includes initialization, warmup and readback and does not isolate the game frame loop. Energy and competing workloads were not measured.",
+  "nextGate": "Qualify the final uninstrumented game and its separate trace probe on hardware before canonical adoption."
+}

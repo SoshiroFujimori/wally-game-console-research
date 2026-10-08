@@ -1,0 +1,23 @@
+Test project /path/to/research/build/rasterix-software
+    Start 1: attributeInterpolator
+1/9 Test #1: attributeInterpolator ............   Passed    0.01 sec
+    Start 2: blendFunc
+2/9 Test #2: blendFunc ........................   Passed    0.01 sec
+    Start 3: fog
+3/9 Test #3: fog ..............................   Passed    0.01 sec
+    Start 4: logicOp
+4/9 Test #4: logicOp ..........................   Passed    0.01 sec
+    Start 5: rasterizer
+5/9 Test #5: rasterizer .......................   Passed    0.01 sec
+    Start 6: stencilOp
+6/9 Test #6: stencilOp ........................   Passed    0.01 sec
+    Start 7: testFunc
+7/9 Test #7: testFunc .........................   Passed    0.01 sec
+    Start 8: texEnv
+8/9 Test #8: texEnv ...........................   Passed    0.01 sec
+    Start 9: textureMap
+9/9 Test #9: textureMap .......................   Passed    0.01 sec
+
+100% tests passed, 0 tests failed out of 9
+
+Total Test time (real) =   0.06 sec

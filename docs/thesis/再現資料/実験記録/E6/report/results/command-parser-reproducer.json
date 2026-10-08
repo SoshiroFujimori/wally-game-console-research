@@ -1,0 +1,64 @@
+{
+  "file": "command-parser-reproducer.zip",
+  "sha256": "5784f3ffe946e40369b9680ca68916768a7461b9344c4ad0d632d8fe1b564557",
+  "bytes": 29511,
+  "verified_result": {
+    "utc": "2026-10-08T12:44:39.863556+00:00",
+    "verilator": "Verilator 5.026 2024-06-15 rev v5.026",
+    "expected_failure_reproduced": true,
+    "results": [
+      {
+        "variant": "original",
+        "exit": 1,
+        "cases": 12,
+        "failures": 6,
+        "command": [
+          "/usr/local/bin/verilator",
+          "--cc",
+          "--exe",
+          "--build",
+          "-j",
+          "2",
+          "-Wno-fatal",
+          "--top-module",
+          "CommandParser",
+          "-I/path/to/research/experiments/fifo-study-20261008/upstream-reproducer/portable",
+          "--Mdir",
+          "/path/to/research/experiments/fifo-study-20261008/upstream-reproducer/portable/run-20261008T124437Z/original",
+          "-o",
+          "parser_test",
+          "/path/to/research/experiments/fifo-study-20261008/upstream-reproducer/portable/CommandParser-original.v",
+          "/path/to/research/experiments/fifo-study-20261008/upstream-reproducer/portable/test-command-parser.cpp"
+        ],
+        "sha256": "bdf5fe0e9049795b7b5480fbf858174aa16ab8e313849aa1a5d4bcd767fdc72e"
+      },
+      {
+        "variant": "candidate",
+        "exit": 0,
+        "cases": 12,
+        "failures": 0,
+        "command": [
+          "/usr/local/bin/verilator",
+          "--cc",
+          "--exe",
+          "--build",
+          "-j",
+          "2",
+          "-Wno-fatal",
+          "--top-module",
+          "CommandParser",
+          "-I/path/to/research/experiments/fifo-study-20261008/upstream-reproducer/portable",
+          "--Mdir",
+          "/path/to/research/experiments/fifo-study-20261008/upstream-reproducer/portable/run-20261008T124437Z/candidate",
+          "-o",
+          "parser_test",
+          "/path/to/research/experiments/fifo-study-20261008/upstream-reproducer/portable/CommandParser-candidate.v",
+          "/path/to/research/experiments/fifo-study-20261008/upstream-reproducer/portable/test-command-parser.cpp"
+        ],
+        "sha256": "eb1dadf27297ca86d38d42442fa89312d160ac5f445e2c9deae28c26ec4fde10"
+      }
+    ],
+    "limits": "Twelve deterministic texture-command cases only. The candidate has not been validated on a board or as a general upstream repair."
+  },
+  "published_or_sent": false
+}

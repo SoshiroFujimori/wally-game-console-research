@@ -1,0 +1,75 @@
+{
+  "inspection_date": "2026-09-14",
+  "scope": "Reopened the existing routed standard-DVI checkpoint to inspect RAM cells. No synthesis, implementation, programming, or gameplay measurement was performed.",
+  "checkpoint": "\\\\wsl.localhost\\Ubuntu\\home\\researcher\\nexys-video-tests\\rasterix-integration-20260909\\upstream-refinement\\fpgaTop-qualified.dcp",
+  "checkpoint_sha256": "a211ce4eb4ffb888880097ea8b9837f46b1368fd5c5f917c84bc9fe854eb7613",
+  "hardware_source_files_verified": 31,
+  "hardware_source_differences": [],
+  "device_tiles": 365,
+  "used_tiles": 210.0,
+  "free_tiles": 155.0,
+  "used_percent": 57.534246575342465,
+  "free_percent": 42.465753424657535,
+  "groups": {
+    "color": {
+      "RAMB36": 24,
+      "RAMB18": 12,
+      "tiles": 30.0
+    },
+    "depth": {
+      "RAMB36": 32,
+      "RAMB18": 0,
+      "tiles": 32.0
+    },
+    "stencil": {
+      "RAMB36": 0,
+      "RAMB18": 16,
+      "tiles": 8.0
+    },
+    "texture": {
+      "RAMB36": 48,
+      "RAMB18": 0,
+      "tiles": 48.0
+    },
+    "other": {
+      "RAMB36": 72,
+      "RAMB18": 40,
+      "tiles": 92.0
+    }
+  },
+  "capacity_cases": [
+    {
+      "lg": 16,
+      "pixels": 65536,
+      "bands": 5,
+      "band_height": 96,
+      "estimated_total_tiles": 210.0,
+      "resource_estimate_only": false
+    },
+    {
+      "lg": 17,
+      "pixels": 131072,
+      "bands": 3,
+      "band_height": 160,
+      "estimated_total_tiles": 280.0,
+      "resource_estimate_only": true
+    },
+    {
+      "lg": 18,
+      "pixels": 262144,
+      "bands": 2,
+      "band_height": 240,
+      "estimated_total_tiles": 420.0,
+      "resource_estimate_only": true
+    },
+    {
+      "lg": 19,
+      "pixels": 524288,
+      "bands": 1,
+      "band_height": 480,
+      "estimated_total_tiles": 700.0,
+      "resource_estimate_only": true
+    }
+  ],
+  "estimation_assumption": "Scale the observed color/depth/stencil RAM cells with the pixel capacity and retain all other RAM cells. This is not a new synthesis result and does not prove placement, timing, or performance."
+}

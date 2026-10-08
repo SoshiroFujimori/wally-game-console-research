@@ -1,0 +1,9 @@
+{
+  "label": "coremark-performance",
+  "elapsed_seconds": 16.144318438999107,
+  "bytes_received": 823,
+  "command": "cd /mnt/nexys-test/nexys-video-tests && ./coremark.exe 0 0 0x66 0 7 1 2000",
+  "command_exit": 0,
+  "login_sent": false,
+  "log": "/path/to/research/experiments/remote-20260909/20260908T193758Z-coremark-performance.raw"
+}

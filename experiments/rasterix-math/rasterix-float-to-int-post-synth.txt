@@ -1,0 +1,50 @@
+
+****** xsim v2025.2 (64-bit)
+  **** SW Build 6299465 on Fri Nov 14 12:34:56 MST 2025
+  **** IP Build 6300035 on Fri Nov 14 10:48:45 MST 2025
+  **** SharedData Build 6298862 on Thu Nov 13 04:50:51 MST 2025
+  **** Start of session at: Sat Oct  3 01:50:03 2026
+    ** Copyright 1986-2022 Xilinx, Inc. All Rights Reserved.
+    ** Copyright 2022-2025 Advanced Micro Devices, Inc. All Rights Reserved.
+
+source xsim.dir/tb_post_sim/xsim_script.tcl
+# xsim {tb_post_sim} -autoloadwcfg -runall
+Time resolution is 1 ps
+run -all
+CASE color_pos_0p5_shift0 in=3f000000 offset=-24 out=00800000 unknown=0 expected=00800000
+POST_INTERNAL gsr=0 ce=1 clk=1
+AUDIT_PASS color_pos_0p5_shift0
+CASE color_neg_0p5_shift0 in=bf000000 offset=-24 out=ff800000 unknown=0 expected=ff800000
+POST_INTERNAL gsr=0 ce=1 clk=1
+AUDIT_PASS color_neg_0p5_shift0
+CASE color_pos_below1_shift0 in=3f7fffff offset=-24 out=00ffffff unknown=0 expected=00ffffff
+POST_INTERNAL gsr=0 ce=1 clk=1
+AUDIT_PASS color_pos_below1_shift0
+CASE color_neg_above_minus1_shift0 in=bf7fffff offset=-24 out=ff000001 unknown=0 expected=ff000001
+POST_INTERNAL gsr=0 ce=1 clk=1
+AUDIT_PASS color_neg_above_minus1_shift0
+CASE texture_pos_0p03125_shift0 in=3d000000 offset=-28 out=00800000 unknown=0 expected=00800000
+POST_INTERNAL gsr=0 ce=1 clk=1
+AUDIT_PASS texture_pos_0p03125_shift0
+CASE depth_pos_0p0078125_shift0 in=3c000000 offset=-30 out=00800000 unknown=0 expected=00800000
+POST_INTERNAL gsr=0 ce=1 clk=1
+AUDIT_PASS depth_pos_0p0078125_shift0
+CASE color_pos_0p25_shift1 in=3e800000 offset=-24 out=00400000 unknown=0 expected=00400000
+POST_INTERNAL gsr=0 ce=1 clk=1
+AUDIT_PASS color_pos_0p25_shift1
+CASE color_pos_1_left in=3f800000 offset=-24 out=01000000 unknown=0 expected=01000000
+POST_INTERNAL gsr=0 ce=1 clk=1
+AUDIT_PASS color_pos_1_left
+CASE color_tiny_shift32 in=2f000000 offset=-24 out=00000000 unknown=0 expected=00000000
+POST_INTERNAL gsr=0 ce=1 clk=1
+AUDIT_PASS color_tiny_shift32
+CASE color_tiny_shift33_lsb1 in=2e800001 offset=-24 out=00000001 unknown=0 expected=00000000
+POST_INTERNAL gsr=0 ce=1 clk=1
+AUDIT_FAIL mismatch for color_tiny_shift33_lsb1
+CASE color_tiny_negative_shift33_lsb1 in=ae800001 offset=-24 out=ffffffff unknown=0 expected=00000000
+POST_INTERNAL gsr=0 ce=1 clk=1
+AUDIT_FAIL mismatch for color_tiny_negative_shift33_lsb1
+$finish called at time : 656 ns : File "/home/researcher/.cache/codex/rasterix-float-to-int-post-synth-9fdcf97/tb.sv" Line 95
+exit
+INFO: xsimkernel Simulation Memory Usage: 281408 KB (Peak: 337712 KB), Simulation CPU Usage: 500 ms
+INFO: [Common 17-206] Exiting xsim at Sat Oct  3 01:50:05 2026...

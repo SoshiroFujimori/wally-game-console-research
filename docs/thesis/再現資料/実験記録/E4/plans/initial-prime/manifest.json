@@ -1,0 +1,13 @@
+{
+  "createdUtc": "2026-09-10T23:06:42.470976+00:00",
+  "reason": "One initial game run precedes the three warm-start trials. It is not counted as a warm-start result. The six programmed boot tests still require fresh acquisition.",
+  "cases": [
+    {
+      "label": "finalhdmi-game-prime-01",
+      "recordSeconds": 32,
+      "runner": "/mnt/c/Users/researcher/.codex/tmp/hdmi-recovery-20260910/run-candidate.py",
+      "argsFile": "C:\\Users\\researcher\\.codex\\tmp\\hdmi-recovery-20260910\\finalhdmi-prime-plan\\finalhdmi-game-prime-01.json",
+      "argsSha256": "c8bb9ba41bb90663f15367b2d9dbc16c5711bdd486ae418ae4c4c68b68cab72a"
+    }
+  ]
+}

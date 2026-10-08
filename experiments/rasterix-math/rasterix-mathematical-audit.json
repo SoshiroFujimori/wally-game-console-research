@@ -1,0 +1,931 @@
+{
+  "rasterix_commit": "9fdcf97a31b2e4247594e06d605871980cd5e9e1",
+  "random_seed": 5392728,
+  "scope": "mathematical identities and selected source-level boundary behavior",
+  "checks": {
+    "edge_function": {
+      "cases": 200000,
+      "identity": "E(v1,v2,p)+E(v2,v0,p)+E(v0,v1,p)=E(v0,v1,v2)",
+      "x_increment": "E(a,b,p+(32,0))-E(a,b,p)=(by-ay)*32",
+      "y_increment": "E(a,b,p+(0,32))-E(a,b,p)=(ax-bx)*32",
+      "max_abs_value_in_test": 3910338,
+      "result": "pass"
+    },
+    "q5_conversion": {
+      "formula": "trunc_toward_zero(value*32+0.5)",
+      "inputs": [
+        -1.0,
+        -0.5,
+        -0.03125,
+        0.0,
+        0.03125,
+        0.5,
+        1.0,
+        1.5
+      ],
+      "outputs": [
+        -31,
+        -15,
+        0,
+        0,
+        1,
+        16,
+        32,
+        48
+      ],
+      "negative_asymmetry_confirmed": true,
+      "result": "pass"
+    },
+    "clip_intersection": {
+      "cases": 100000,
+      "amount": "d_current/(d_current-d_previous)",
+      "max_abs_plane_distance_after_intersection": 1.7053025658242404e-13,
+      "result": "pass"
+    },
+    "color_and_bilinear": {
+      "random_mixer_cases": 200000,
+      "mixer_formula": "min(255,floor((A*B+C*D+255)/256))",
+      "lerp_formula": "mix(A,255-u8,B,u8)",
+      "bilinear_order": "horizontal row 0, horizontal row 1, vertical",
+      "all_8bit_endpoint_pairs": 65536,
+      "result": "pass"
+    },
+    "fixed_point_formats": {
+      "formats": {
+        "S3.28": {
+          "minimum": -8.0,
+          "maximum": 7.99999999627471,
+          "step": 3.725290298461914e-09
+        },
+        "S1.30": {
+          "minimum": -2.0,
+          "maximum": 1.9999999990686774,
+          "step": 9.313225746154785e-10
+        },
+        "S7.24": {
+          "minimum": -128.0,
+          "maximum": 127.99999994039536,
+          "step": 5.960464477539063e-08
+        },
+        "S16.15": {
+          "minimum": -65536.0,
+          "maximum": 65535.99996948242,
+          "step": 3.0517578125e-05
+        }
+      },
+      "result": "pass"
+    },
+    "int32_edge_range": {
+      "int32_max": 2147483647,
+      "640x480_max_axis_aligned_determinant": 314572800,
+      "640x480_margin": 6.826666663487752,
+      "2048x2048_determinant": 4294967296,
+      "largest_safe_square_side_under_this_bound": 1448,
+      "source_language_warning": "signed C++ overflow is undefined; RTL 32-bit arithmetic wraps",
+      "result": "pass"
+    },
+    "float_to_int_underflow_alias": {
+      "shift_width_bits": 5,
+      "condition": "for normalized nonzero input, p=e+F; p=-1 rounds to one and p<=-2 must round to zero",
+      "formats": {
+        "F=24": {
+          "safe_nonzero_lower_bound": 2.3283064365386963e-10,
+          "normalized_underflow_exponent_class_counts": {
+            "correct_half_to_one": 1,
+            "guaranteed_zero": 26,
+            "out_of_range_select": 3,
+            "mantissa_alias_possible": 69,
+            "hidden_bit_alias_always_wrong": 3
+          },
+          "effective_exponents_by_class": {
+            "correct_half_to_one": [
+              -1
+            ],
+            "guaranteed_zero": [
+              -102,
+              -101,
+              -100,
+              -99,
+              -98,
+              -72,
+              -71,
+              -70,
+              -69,
+              -68,
+              -67,
+              -66,
+              -40,
+              -39,
+              -38,
+              -37,
+              -36,
+              -35,
+              -34,
+              -8,
+              -7,
+              -6,
+              -5,
+              -4,
+              -3,
+              -2
+            ],
+            "out_of_range_select": [
+              -73,
+              -41,
+              -9
+            ],
+            "mantissa_alias_possible": [
+              -96,
+              -95,
+              -94,
+              -93,
+              -92,
+              -91,
+              -90,
+              -89,
+              -88,
+              -87,
+              -86,
+              -85,
+              -84,
+              -83,
+              -82,
+              -81,
+              -80,
+              -79,
+              -78,
+              -77,
+              -76,
+              -75,
+              -74,
+              -64,
+              -63,
+              -62,
+              -61,
+              -60,
+              -59,
+              -58,
+              -57,
+              -56,
+              -55,
+              -54,
+              -53,
+              -52,
+              -51,
+              -50,
+              -49,
+              -48,
+              -47,
+              -46,
+              -45,
+              -44,
+              -43,
+              -42,
+              -32,
+              -31,
+              -30,
+              -29,
+              -28,
+              -27,
+              -26,
+              -25,
+              -24,
+              -23,
+              -22,
+              -21,
+              -20,
+              -19,
+              -18,
+              -17,
+              -16,
+              -15,
+              -14,
+              -13,
+              -12,
+              -11,
+              -10
+            ],
+            "hidden_bit_alias_always_wrong": [
+              -97,
+              -65,
+              -33
+            ]
+          }
+        },
+        "F=28": {
+          "safe_nonzero_lower_bound": 1.4551915228366852e-11,
+          "normalized_underflow_exponent_class_counts": {
+            "correct_half_to_one": 1,
+            "guaranteed_zero": 22,
+            "out_of_range_select": 3,
+            "mantissa_alias_possible": 69,
+            "hidden_bit_alias_always_wrong": 3
+          },
+          "effective_exponents_by_class": {
+            "correct_half_to_one": [
+              -1
+            ],
+            "guaranteed_zero": [
+              -98,
+              -72,
+              -71,
+              -70,
+              -69,
+              -68,
+              -67,
+              -66,
+              -40,
+              -39,
+              -38,
+              -37,
+              -36,
+              -35,
+              -34,
+              -8,
+              -7,
+              -6,
+              -5,
+              -4,
+              -3,
+              -2
+            ],
+            "out_of_range_select": [
+              -73,
+              -41,
+              -9
+            ],
+            "mantissa_alias_possible": [
+              -96,
+              -95,
+              -94,
+              -93,
+              -92,
+              -91,
+              -90,
+              -89,
+              -88,
+              -87,
+              -86,
+              -85,
+              -84,
+              -83,
+              -82,
+              -81,
+              -80,
+              -79,
+              -78,
+              -77,
+              -76,
+              -75,
+              -74,
+              -64,
+              -63,
+              -62,
+              -61,
+              -60,
+              -59,
+              -58,
+              -57,
+              -56,
+              -55,
+              -54,
+              -53,
+              -52,
+              -51,
+              -50,
+              -49,
+              -48,
+              -47,
+              -46,
+              -45,
+              -44,
+              -43,
+              -42,
+              -32,
+              -31,
+              -30,
+              -29,
+              -28,
+              -27,
+              -26,
+              -25,
+              -24,
+              -23,
+              -22,
+              -21,
+              -20,
+              -19,
+              -18,
+              -17,
+              -16,
+              -15,
+              -14,
+              -13,
+              -12,
+              -11,
+              -10
+            ],
+            "hidden_bit_alias_always_wrong": [
+              -97,
+              -65,
+              -33
+            ]
+          }
+        },
+        "F=30": {
+          "safe_nonzero_lower_bound": 3.637978807091713e-12,
+          "normalized_underflow_exponent_class_counts": {
+            "correct_half_to_one": 1,
+            "guaranteed_zero": 21,
+            "out_of_range_select": 3,
+            "mantissa_alias_possible": 69,
+            "hidden_bit_alias_always_wrong": 2
+          },
+          "effective_exponents_by_class": {
+            "correct_half_to_one": [
+              -1
+            ],
+            "guaranteed_zero": [
+              -72,
+              -71,
+              -70,
+              -69,
+              -68,
+              -67,
+              -66,
+              -40,
+              -39,
+              -38,
+              -37,
+              -36,
+              -35,
+              -34,
+              -8,
+              -7,
+              -6,
+              -5,
+              -4,
+              -3,
+              -2
+            ],
+            "out_of_range_select": [
+              -73,
+              -41,
+              -9
+            ],
+            "mantissa_alias_possible": [
+              -96,
+              -95,
+              -94,
+              -93,
+              -92,
+              -91,
+              -90,
+              -89,
+              -88,
+              -87,
+              -86,
+              -85,
+              -84,
+              -83,
+              -82,
+              -81,
+              -80,
+              -79,
+              -78,
+              -77,
+              -76,
+              -75,
+              -74,
+              -64,
+              -63,
+              -62,
+              -61,
+              -60,
+              -59,
+              -58,
+              -57,
+              -56,
+              -55,
+              -54,
+              -53,
+              -52,
+              -51,
+              -50,
+              -49,
+              -48,
+              -47,
+              -46,
+              -45,
+              -44,
+              -43,
+              -42,
+              -32,
+              -31,
+              -30,
+              -29,
+              -28,
+              -27,
+              -26,
+              -25,
+              -24,
+              -23,
+              -22,
+              -21,
+              -20,
+              -19,
+              -18,
+              -17,
+              -16,
+              -15,
+              -14,
+              -13,
+              -12,
+              -11,
+              -10
+            ],
+            "hidden_bit_alias_always_wrong": [
+              -65,
+              -33
+            ]
+          }
+        }
+      },
+      "counterexample_color_bits": "0x2e800001",
+      "counterexample_effective_exponent": -10,
+      "counterexample_true_shift": 33,
+      "counterexample_truncated_shift": 1,
+      "result": "counterexample_confirmed"
+    },
+    "official_source_harness": {
+      "triangle0_bbox": [
+        0,
+        0,
+        5,
+        5
+      ],
+      "triangle1_bbox": [
+        0,
+        0,
+        5,
+        5
+      ],
+      "triangle0_w_init": [
+        14224,
+        0,
+        1905
+      ],
+      "triangle0_w_x_inc": [
+        -4064,
+        4064,
+        0
+      ],
+      "triangle0_w_y_inc": [
+        0,
+        -4064,
+        4064
+      ],
+      "triangle1_w_init": [
+        14224,
+        1905,
+        0
+      ],
+      "triangle1_w_x_inc": [
+        0,
+        4064,
+        -4064
+      ],
+      "triangle1_w_y_inc": [
+        -4064,
+        0,
+        4064
+      ],
+      "triangle0_pixels": [
+        [
+          0,
+          0
+        ],
+        [
+          1,
+          0
+        ],
+        [
+          1,
+          1
+        ],
+        [
+          2,
+          0
+        ],
+        [
+          2,
+          1
+        ],
+        [
+          2,
+          2
+        ],
+        [
+          3,
+          0
+        ],
+        [
+          3,
+          1
+        ],
+        [
+          3,
+          2
+        ],
+        [
+          3,
+          3
+        ]
+      ],
+      "triangle1_pixels": [
+        [
+          0,
+          0
+        ],
+        [
+          0,
+          1
+        ],
+        [
+          0,
+          2
+        ],
+        [
+          0,
+          3
+        ],
+        [
+          1,
+          1
+        ],
+        [
+          1,
+          2
+        ],
+        [
+          1,
+          3
+        ],
+        [
+          2,
+          2
+        ],
+        [
+          2,
+          3
+        ],
+        [
+          3,
+          3
+        ]
+      ],
+      "triangle0_sequence": [
+        [
+          0,
+          0,
+          240
+        ],
+        [
+          1,
+          0,
+          241
+        ],
+        [
+          2,
+          0,
+          242
+        ],
+        [
+          3,
+          0,
+          243
+        ],
+        [
+          3,
+          1,
+          227
+        ],
+        [
+          2,
+          1,
+          226
+        ],
+        [
+          1,
+          1,
+          225
+        ],
+        [
+          2,
+          2,
+          210
+        ],
+        [
+          3,
+          2,
+          211
+        ],
+        [
+          3,
+          3,
+          195
+        ]
+      ],
+      "triangle1_sequence": [
+        [
+          0,
+          0,
+          240
+        ],
+        [
+          1,
+          1,
+          225
+        ],
+        [
+          0,
+          1,
+          224
+        ],
+        [
+          0,
+          2,
+          208
+        ],
+        [
+          1,
+          2,
+          209
+        ],
+        [
+          2,
+          2,
+          210
+        ],
+        [
+          3,
+          3,
+          195
+        ],
+        [
+          2,
+          3,
+          194
+        ],
+        [
+          1,
+          3,
+          193
+        ],
+        [
+          0,
+          3,
+          192
+        ]
+      ],
+      "shared_edge_pixels": [
+        [
+          0,
+          0
+        ],
+        [
+          1,
+          1
+        ],
+        [
+          2,
+          2
+        ],
+        [
+          3,
+          3
+        ]
+      ],
+      "union_count": 16,
+      "fragment_count_with_duplicates": 20,
+      "scissor_rewrites_descriptor_bbox": false,
+      "fixed_inputs": [
+        -1.0,
+        -0.5,
+        -0.03125,
+        0.0,
+        0.03125,
+        0.5,
+        1.0,
+        1.5
+      ],
+      "fixed_outputs": [
+        -31,
+        -15,
+        0,
+        0,
+        1,
+        16,
+        32,
+        48
+      ],
+      "interior_triangle0_bbox": [
+        10,
+        10,
+        15,
+        15
+      ],
+      "interior_triangle0_w_init": [
+        14336,
+        0,
+        2048
+      ],
+      "interior_triangle0_w_x_inc": [
+        -4096,
+        4096,
+        0
+      ],
+      "interior_triangle0_w_y_inc": [
+        0,
+        -4096,
+        4096
+      ],
+      "interior_triangle1_bbox": [
+        10,
+        10,
+        15,
+        15
+      ],
+      "interior_triangle1_w_init": [
+        14336,
+        2048,
+        0
+      ],
+      "interior_triangle1_w_x_inc": [
+        0,
+        4096,
+        -4096
+      ],
+      "interior_triangle1_w_y_inc": [
+        -4096,
+        0,
+        4096
+      ],
+      "interior_triangle0_pixels": [
+        [
+          10,
+          10
+        ],
+        [
+          11,
+          10
+        ],
+        [
+          11,
+          11
+        ],
+        [
+          12,
+          10
+        ],
+        [
+          12,
+          11
+        ],
+        [
+          12,
+          12
+        ],
+        [
+          13,
+          10
+        ],
+        [
+          13,
+          11
+        ],
+        [
+          13,
+          12
+        ],
+        [
+          13,
+          13
+        ]
+      ],
+      "interior_triangle1_pixels": [
+        [
+          10,
+          10
+        ],
+        [
+          10,
+          11
+        ],
+        [
+          10,
+          12
+        ],
+        [
+          10,
+          13
+        ],
+        [
+          11,
+          11
+        ],
+        [
+          11,
+          12
+        ],
+        [
+          11,
+          13
+        ],
+        [
+          12,
+          12
+        ],
+        [
+          12,
+          13
+        ],
+        [
+          13,
+          13
+        ]
+      ],
+      "interior_shared_edge_pixels": [
+        [
+          10,
+          10
+        ],
+        [
+          11,
+          11
+        ],
+        [
+          12,
+          12
+        ],
+        [
+          13,
+          13
+        ]
+      ],
+      "interior_union_count": 16,
+      "interior_fragment_count_with_duplicates": 20,
+      "solid_color_x_inc": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "solid_color_y_inc": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "solid_depth_x_inc": [
+        0,
+        0
+      ],
+      "solid_depth_y_inc": [
+        0,
+        0
+      ],
+      "glyph_color_x_inc": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "glyph_color_y_inc": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "glyph_texture_stq": [
+        0.00451055,
+        0.0090211,
+        0.57735
+      ],
+      "glyph_texture_x_inc": [
+        0.0090211,
+        0,
+        0
+      ],
+      "glyph_texture_y_inc": [
+        0,
+        0.0180422,
+        0
+      ],
+      "glyph_minimum_nonzero_texture_value": 0.00451055,
+      "S3.28_conservative_nonzero_lower_bound": 1.4551915228366852e-11,
+      "result": "pass"
+    }
+  },
+  "all_checks_passed": true
+}

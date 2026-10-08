@@ -1,0 +1,13 @@
+## main...origin/main [behind 1]
+ M config/derivlist.txt
+ M fpga/README.md
+ M fpga/generator/Makefile
+ M fpga/generator/ahbaxibridge.tcl
+ M fpga/generator/clkconverter.tcl
+ M fpga/generator/wally.tcl
+?? fpga/constraints/constraints-nexysvideo.xdc
+?? fpga/generator/ddr3-nexysvideo.tcl
+?? fpga/generator/mmcm-nexysvideo.tcl
+?? fpga/generator/xlnx_ddr3-nexysvideo-mig.prj
+?? fpga/src/fpgaTopNexysVideo.sv
+?? linux/devicetree/wally-nexysvideo.dts
