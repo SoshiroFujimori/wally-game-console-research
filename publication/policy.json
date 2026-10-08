@@ -1,0 +1,23 @@
+{
+  "allowed_attribution_emails": [
+    "David_Harris@hmc.edu",
+    "charlesc-memtester@pyropus.ca",
+    "codex@openai.com",
+    "david_harris@hmc.edu",
+    "harris@hmc.edu",
+    "jacob.pease@okstate.edu",
+    "jacobpease@protonmail.com",
+    "jcarlin@hmc.edu",
+    "jtorrey@hmc.edu",
+    "kekim@hmc.edu",
+    "naichewa@gmail.com",
+    "nwhyteaguayo@g.hmc.edu",
+    "research@example.invalid",
+    "rose@rosethompson.net",
+    "sanarayanan@hmc.edu",
+    "sim@neato.org",
+    "sim@stormix.com",
+    "tfleming@hmc.edu"
+  ],
+  "note": "Upstream code attribution is retained. Exact private terms are never stored in this public policy."
+}

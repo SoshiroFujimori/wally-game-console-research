@@ -1,0 +1,5 @@
+#!/bin/sh
+set -eu
+if [ -x .venv/bin/python ]; then default_python=.venv/bin/python; else default_python=python3; fi
+exec "${PUBLICATION_PYTHON:-$default_python}" tools/publication/check.py --staged
+
