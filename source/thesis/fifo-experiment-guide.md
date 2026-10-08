@@ -12,17 +12,20 @@
 
 比較した1語方式は4相ハンドシェイクである。通知を反転させる2相方式、複数語のまとめ転送、DMA、位相関係を保証した同期変換は比較していない。今回の表は、実装した三方式の結果であり、存在するすべての接続方式の順位ではない。
 
-### 29.2 更新前後のソースと証拠を対応付ける
+### 29.2 ソースの版と実験記録を対応付ける
 
-本文と付録の基礎説明・再現演習は、従来の固定版を出発点としている。E6で使った版は次のとおりである。ここで親HEADは、作業ツリーの内容すべてを表す完成コミットではない。
+本文と付録の基礎説明・再現演習は、従来の固定版を出発点としている。E6の通常版は次の公開コミットから取得できる。実験時の親HEADと差分も保存しており、公開コミットと当時の実装を照合できる。
 
 | 区別する版 | E6で固定した識別子 |
 |---|---|
-| 更新前の親HEAD | cdf907bc1752b0f300e4fc70b9a51b2bae983b7f |
+| E6通常版の公開コミット | 261832d48832dd6e26c4971ab8893ce61200688b |
+| 実験時の更新前の親HEAD | cdf907bc1752b0f300e4fc70b9a51b2bae983b7f |
 | 取り込んだ公式Wally | 2064ca2bb8a88e3e3ec43753be93d00bef49345b |
 | 公式RasterIX | 9269a01c9bd4c3342bfa70ef8e3cdd751c15c6d0 |
 
-親リポジトリは公式Wallyを取り込んだ未コミットの状態である。さらに、Wally側でテクスチャのページサイズ指定、文字画像の説明コメント、Vivadoの生成設定を調整した。したがって、親HEADだけを取得してもE6の通常版と同じ内容にはならない。保存した`source-update/product-from-cdf907bc.patch`と`source-update/manifest.json`を組にして使う。公式RasterIXのファイル自体は変更していない。
+通常版は、公式Wallyの変更と公式RasterIXの参照先の更新に加え、Wally側のテクスチャページサイズ指定、文字画像の説明コメント、Vivadoの生成設定を含む。公式RasterIXのファイル自体は変更していない。公開コミットの995ファイルと11サブモジュールは、実機試験用の生成時に保存した`fresh-product-source.json`と一致する。
+
+実験時の記録では未コミットだったため、`source-update/product-from-cdf907bc.patch`と`source-update/manifest.json`を保存している。この差分を更新前の親HEADに適用しても、同じ通常版を再現できる。公開コミットには同じ差分が含まれるため、両方を重ねて適用しない。
 
 実験資料は、同梱の`再現資料/実験記録/E6`に整理した。元の実験ルートはUbuntuの`/path/to/research/experiments/fifo-study-20261008`であり、生成プロジェクトや大きなビットストリーム、生ログの原本もそこに保存している。同梱版には、本文の数値を再集計する記録、必要な回路・測定ソース、通常版の差分、単体再現試験を収録した。
 
@@ -279,24 +282,21 @@ for variant in ('mailbox', 'fifo16', 'fifo512'):
 
 期待する表示は、順に4.393、2.254、0.465 ms/frameである。さらにフレーム別CSVを調べる場合は、`scripts/analyze-v2.py`の語数、状態ハッシュ列、表示連番の照合を読む。保存した原本スクリプトには実験ルートの絶対パスがあるため、別の場所で使う際は、入出力先をそのコピーの配置に合わせる。元の実験記録を出力先として上書きしない。
 
-### 29.17 新しい通常版のソースをそろえる
+### 29.17 E6の通常版ソースをそろえる
 
-従来の付録Mは初期版を再現する手順として残した。E6を追試する場合は、別の空の作業ディレクトリで、保存した親HEADと差分を使う。実験資料を展開した場所に合わせて、次の`patchfile`だけを指定する。
+付録Mは初期版を再現する手順として残した。E6を追試する場合は、別の作業ディレクトリへ通常版の公開コミットを取得する。次の手順ではソースだけを用意し、FPGAやSDカードへは書き込まない。
 
 ```bash
-patchfile=/path/to/E6/source-update/product-from-cdf907bc.patch
 git clone --no-recurse-submodules \
   https://github.com/SoshiroFujimori/wally-game-console.git \
   wally-e6-reproduction
 cd wally-e6-reproduction
-git checkout cdf907bc1752b0f300e4fc70b9a51b2bae983b7f
-git apply --check "$patchfile"
-git apply --index "$patchfile"
+git checkout --detach 261832d48832dd6e26c4971ab8893ce61200688b
 git submodule update --init --recursive
 git -C addins/rasterix rev-parse HEAD
 ```
 
-RasterIXのHEADが29.2節の値と一致することを確認する。`fresh-product-source.json`には通常版を作る際のファイルハッシュを保存した。未コミットの差分を再現する手順であり、この作業だけで新しい公開コミットが作られるわけではない。
+RasterIXのHEADが29.2節の値と一致することを確認する。`fresh-product-source.json`には通常版を生成した際の995ファイルのハッシュと11サブモジュールの参照先を保存した。研究リポジトリの`publication/console-source.json`には、公開コミットとの照合結果を記録している。
 
 通常版の回路生成、Linuxの起動、SDカードの準備は付録Mの各段階を使い、ソースの版とページサイズは本章へ合わせる。比較用の1語回路や16語FIFO、計測カウンタは、その通常版とは別の実験用コピーに追加する。保存した`prepare-variants.py`は変更箇所を示すが、作業ディレクトリと生成済みIPに関する前提を持つため、無条件に一行で全環境を用意するインストーラではない。
 

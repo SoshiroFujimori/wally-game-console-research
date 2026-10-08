@@ -2,7 +2,7 @@
   "version": 1,
   "scope": "Git index blobs; excludes this manifest and submodule contents",
   "submodules": {
-    "console": "cdf907bc1752b0f300e4fc70b9a51b2bae983b7f"
+    "console": "261832d48832dd6e26c4971ab8893ce61200688b"
   },
   "files": {
     ".gitattributes": {
@@ -46,16 +46,16 @@
       "sha256": "9a610ed291f447c9c9f5d4f3966a3a9fb01bafc394d8d43fcfc48d74e12e2942"
     },
     "README.md": {
-      "bytes": 5694,
-      "sha256": "8e25441e71634e879ca435eb5773fc3417aee992d56ebd0aaa0b47ebf658535d"
+      "bytes": 6008,
+      "sha256": "1104269158dd175c3f1259c70fadc538eb0ab373554ea56decf3b6d939b49c51"
     },
     "docs/privacy.md": {
       "bytes": 5063,
       "sha256": "54df5f95a1dc5ef99b95c85e725818e49dd668d61a2b233f1f4513db4232d9ce"
     },
     "docs/references.md": {
-      "bytes": 2908,
-      "sha256": "1d47dbddd5ddd89baa4220350394b0bc1d1da3135707d6da9597b9bd9e037aad"
+      "bytes": 3151,
+      "sha256": "3be55eb091fa287fe5241c8521c508e301910b7623340a25c57e743ebd8833fb"
     },
     "docs/scope.md": {
       "bytes": 1588,
@@ -66,8 +66,8 @@
       "sha256": "c25866746494f4041a073d08cec8f9c46c0655a17b6aa55b73d89800186aea79"
     },
     "docs/technical/board-reproduction.md": {
-      "bytes": 11086,
-      "sha256": "62957aadee027b8f7c3633cc1160d4f1a8030183b73afd7ea45310b0be60123c"
+      "bytes": 11416,
+      "sha256": "db156fc723c69a4e6e1e42b20a4b83b6ea81fdd1aeff68d5782271e5987a0dea"
     },
     "docs/technical/cdc-protocols.md": {
       "bytes": 16440,
@@ -162,8 +162,8 @@
       "sha256": "e8516f97000b5de00b33e2d4b194d3b1f90a6f4822809ca5cbe5888744d2b94a"
     },
     "docs/technical/sources.md": {
-      "bytes": 8164,
-      "sha256": "a5434f936a5dad509bca319af5bb8bdd4898f66decfaac345a3fa6dd8b0f645b"
+      "bytes": 8500,
+      "sha256": "40c7ccf8af110bb1916806a0d3004e5ef279cdfdc015c4797d43df5c0f71cc5a"
     },
     "docs/technical/timing-fpga.md": {
       "bytes": 12154,
@@ -178,8 +178,8 @@
       "sha256": "0923d6dfd5b6f45641f68c075f3ea2560f6548e584f54e34ea60c813d96d46e6"
     },
     "docs/thesis/README.md": {
-      "bytes": 4862,
-      "sha256": "cb62cfd883f05983b7b504d9edf4e13cba1cb64f3a9a88230062ca48b8375925"
+      "bytes": 4984,
+      "sha256": "db0fb216aa92c23c267cb038a140ac51ce16c0d4a577f219d1d8c2c731ba5092"
     },
     "docs/thesis/figs/accept-one-word.png": {
       "bytes": 177064,
@@ -2346,8 +2346,8 @@
       "sha256": "b65489ca4a685eda1b184685fa73ed550e46792a67a6dc8f828724f38019fc34"
     },
     "docs/thesis/再現資料/実験記録/E6/README.md": {
-      "bytes": 3012,
-      "sha256": "10683c4d5e0fd24dc0fed259eaf4190c56b481b188e0ce3b083be523d10f493a"
+      "bytes": 3494,
+      "sha256": "76d494055e4c62b4050a637d576ee281b859a889053a25753d2471351617d29a"
     },
     "docs/thesis/再現資料/実験記録/E6/board-fresh-product/boot.log": {
       "bytes": 4872,
@@ -4626,20 +4626,20 @@
       "sha256": "ffe0493880dd0f7ca48d3d71dfa08833a3856b55d217a37d9c93202461dea026"
     },
     "docs/thesis/技術付録.docx": {
-      "bytes": 36494590,
-      "sha256": "f0ff854bfc6c64def14fbd9682e55006b2932cf84273d9a28031961d69e62d20"
+      "bytes": 36494709,
+      "sha256": "0ae0cadbf65451cafb528623f2e4711ad88801262cbc5bdbd76283b9ea562a08"
     },
     "docs/thesis/技術付録.md": {
-      "bytes": 616521,
-      "sha256": "480928a202a554c93937ad5baeb5d476133ebbb6849c3fb62e272665b997d584"
+      "bytes": 616790,
+      "sha256": "e1e765576b92fc0953fb0670593615f3a678edc6b373f3d5d081a86473fb66cf"
     },
     "docs/thesis/本文.docx": {
-      "bytes": 23052654,
-      "sha256": "7e82fbab2de6af52c221ab89f9a13635bffc06784a9bfa6b940a9958aa5efb10"
+      "bytes": 23052660,
+      "sha256": "ca4600e2006ccdaf20cac91d3694f688a4adae496db72798aba0d20a5e648987"
     },
     "docs/thesis/本文.md": {
-      "bytes": 276643,
-      "sha256": "30cd76a1cc40f193718cd5ca2eae77eda7b76d453f9afa0e3c67a37ace684efd"
+      "bytes": 276657,
+      "sha256": "c6668b12c30f2b0a594c79053b44e434a83e03a2b05e05776a34c01376d307a3"
     },
     "examples/technical-models/README.md": {
       "bytes": 3060,
@@ -5457,6 +5457,10 @@
       "bytes": 1371,
       "sha256": "103c0220f3465e5243f0e10c612747415999260a5ac84b33885f62fd64f2fc02"
     },
+    "publication/console-source.json": {
+      "bytes": 1093,
+      "sha256": "edd21b65bc0d6109fbbdd1c5b29c6eb730e800e218d4d6362ccdd952732a8ca1"
+    },
     "publication/media-review.json": {
       "bytes": 14086,
       "sha256": "a99fb9ad009710b06273e56ce1d5d6d4fff1c0dcbcc4b1cb57df0a97e6916adc"
@@ -5482,12 +5486,12 @@
       "sha256": "41e571f3ee745e053d58d852f431a4c61f0b476c9e036762ab866c28f181a673"
     },
     "source/thesis/build.py": {
-      "bytes": 20089,
-      "sha256": "224334e67105351ac671d399663f22a86dc8d4c4fcec7dbb82ff87dcea3cfce7"
+      "bytes": 20038,
+      "sha256": "d16a009686edfe38dd56d7df611eee05863c2bd8ea4da6278eb7afb65a0420f7"
     },
     "source/thesis/fifo-experiment-guide.md": {
-      "bytes": 32573,
-      "sha256": "b1cdb0d9e27c4f1e7978efcc2604db719342b3277b3b718cb9a5863c8429de1c"
+      "bytes": 32862,
+      "sha256": "7c09e186c2f08e1fed5363bbca623a607505b940e74d604a59a3510e01650b6e"
     },
     "source/thesis/figlib.py": {
       "bytes": 3411,
@@ -5538,12 +5542,12 @@
       "sha256": "a894b551f20d384181016b49717e396ce1c04064c4aa5eb6464b5d2c7f6be2d3"
     },
     "source/thesis/技術付録.md": {
-      "bytes": 188923,
-      "sha256": "dd08fa4ebe69126067eea59ebe996f0ae664355b9ddc6afcfecaf49beee4d66c"
+      "bytes": 188913,
+      "sha256": "1da2d0cb9195e6b4bc3eb9e07bb0fb583736d7efb8dc5f054f1734bab3bf59eb"
     },
     "source/thesis/本文.md": {
-      "bytes": 259008,
-      "sha256": "bc280b2dd4f07c46b4944416529fbaa8a8adf30f96abf7f53d1bf31c61c75b70"
+      "bytes": 259022,
+      "sha256": "6ec8fa2761d87279f768c4e7fc4b1e906b170e0b468f6311a12655a31c985d14"
     },
     "tests/test_publication.py": {
       "bytes": 9817,

@@ -1,0 +1,18 @@
+{
+  "date": "2026-10-09",
+  "console_commit": "261832d48832dd6e26c4971ab8893ce61200688b",
+  "console_tree": "dbe511f115be563ae596985895cde2df9783c6a7",
+  "upstream_wally": "2064ca2bb8a88e3e3ec43753be93d00bef49345b",
+  "rasterix": "9269a01c9bd4c3342bfa70ef8e3cdd751c15c6d0",
+  "base_parent_commit": "cdf907bc1752b0f300e4fc70b9a51b2bae983b7f",
+  "upstream_merge_commit": "cecaef0f0ca6473e2d507d9c66e7456d6fa8325a",
+  "recorded_experiment": "E6",
+  "source_manifest": "docs/thesis/再現資料/実験記録/E6/fresh-product-source.json",
+  "source_files_checked": 995,
+  "source_file_mismatches": [],
+  "submodules_checked": 11,
+  "patch_manifest": "docs/thesis/再現資料/実験記録/E6/source-update/manifest.json",
+  "patch_sha256": "286e510d52beda84976e4cc0cc0982f483fc5197901954b1063b2e830fe1c32e",
+  "patch_matches_archived_experiment": true,
+  "verification_scope": "The committed product source and submodule pins match the archived E6 normal-build source. Publishing these commits is not a new hardware trial; experimental variants and known rendering limitations remain separate."
+}

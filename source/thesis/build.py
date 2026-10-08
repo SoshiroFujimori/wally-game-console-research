@@ -102,7 +102,7 @@ for name in ['Caption']:
 footer=sec.footer.paragraphs[0];footer.clear();footer.alignment=WD_ALIGN_PARAGRAPH.CENTER;footer.paragraph_format.first_line_indent=Pt(0)
 field=OxmlElement('w:fldSimple');field.set(qn('w:instr'),'PAGE');footer._p.append(field)
 doc.core_properties.title=TITLE;doc.core_properties.author='';doc.core_properties.subject='Wallyと公式RasterIXを用いたFPGAゲーム機の設計と検証'
-for t,style in [('2026年度 卒業研究論文' if NAME=='本文' else '卒業研究論文 技術付録','Subtitle'),(TITLE.replace('ための技術付録','ための\n技術付録'),'Title'),('所属・学籍情報 非公開\n研究者（非公開）','Subtitle'),('指導教員 非公開','Subtitle'),(('2026年10月9日 改訂' if NAME=='本文' else '2026年10月8日 改訂'),'Subtitle')]:
+for t,style in [('2026年度 卒業研究論文' if NAME=='本文' else '卒業研究論文 技術付録','Subtitle'),(TITLE.replace('ための技術付録','ための\n技術付録'),'Title'),('所属・学籍情報 非公開\n研究者（非公開）','Subtitle'),('指導教員 非公開','Subtitle'),('2026年10月9日 改訂','Subtitle')]:
  p=doc.add_paragraph(t,style);p.alignment=WD_ALIGN_PARAGRAPH.CENTER;p.paragraph_format.first_line_indent=Pt(0);p.paragraph_format.space_before=Pt(30);p.paragraph_format.space_after=Pt(24)
 
 if NAME=='本文' and tokens and tokens[0]['kind']=='para' and tokens[0]['text'].startswith('公開用資料では'):
