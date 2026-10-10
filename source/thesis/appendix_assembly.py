@@ -101,6 +101,7 @@ def assemble_technical_appendix(root):
         pieces.append(_demote(base_chapters[label]))
 
     pieces.append(_demote((root / 'fifo-experiment-guide.md').read_text(encoding='utf-8')))
+    pieces.append(_demote((root / 'transport-experiment-guide.md').read_text(encoding='utf-8')))
 
     pieces.append(reference_block)
     return '\n\n'.join(pieces) + '\n'

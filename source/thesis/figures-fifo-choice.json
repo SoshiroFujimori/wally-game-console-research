@@ -1,0 +1,465 @@
+{
+  "fifo-choice": {
+    "width": 1200,
+    "height": 930,
+    "items": [
+      {
+        "kind": "text",
+        "x": 20,
+        "y": 0,
+        "w": 1160,
+        "h": 55,
+        "text": "RasterIXが受け取れない間に CPUは次の語へ進めるか",
+        "size": 31,
+        "color": "#231F20",
+        "bold": true,
+        "align": "center"
+      },
+      {
+        "kind": "box",
+        "x": 20,
+        "y": 72,
+        "w": 1160,
+        "h": 355,
+        "fill": "#E5EBF8",
+        "stroke": "#D8D8D8"
+      },
+      {
+        "kind": "text",
+        "x": 44,
+        "y": 85,
+        "w": 1110,
+        "h": 50,
+        "text": "FIFOなし　Aを受け取るまで CPU側を待たせる",
+        "size": 29,
+        "color": "#231F20",
+        "bold": true,
+        "align": "left"
+      },
+      {
+        "kind": "box",
+        "x": 60,
+        "y": 160,
+        "w": 265,
+        "h": 102,
+        "fill": "#FFFFFF",
+        "stroke": "#231F20"
+      },
+      {
+        "kind": "text",
+        "x": 69,
+        "y": 166,
+        "w": 247,
+        "h": 90,
+        "text": "CPU側のバス回路\nAを保持",
+        "size": 26,
+        "color": "#231F20",
+        "bold": true,
+        "align": "center"
+      },
+      {
+        "kind": "box",
+        "x": 458,
+        "y": 160,
+        "w": 240,
+        "h": 102,
+        "fill": "#FFFFFF",
+        "stroke": "#231F20"
+      },
+      {
+        "kind": "text",
+        "x": 467,
+        "y": 166,
+        "w": 222,
+        "h": 90,
+        "text": "命令の\n接続回路",
+        "size": 25,
+        "color": "#231F20",
+        "bold": false,
+        "align": "center"
+      },
+      {
+        "kind": "box",
+        "x": 830,
+        "y": 160,
+        "w": 300,
+        "h": 102,
+        "fill": "#FFFFFF",
+        "stroke": "#231F20"
+      },
+      {
+        "kind": "text",
+        "x": 839,
+        "y": 166,
+        "w": 282,
+        "h": 90,
+        "text": "RasterIX\n今は受け取れない",
+        "size": 26,
+        "color": "#231F20",
+        "bold": true,
+        "align": "center"
+      },
+      {
+        "kind": "line",
+        "pts": [
+          [
+            325,
+            200
+          ],
+          [
+            458,
+            200
+          ]
+        ],
+        "color": "#231F20",
+        "arrow": true,
+        "dash": false
+      },
+      {
+        "kind": "line",
+        "pts": [
+          [
+            698,
+            200
+          ],
+          [
+            830,
+            200
+          ]
+        ],
+        "color": "#231F20",
+        "arrow": true,
+        "dash": false
+      },
+      {
+        "kind": "text",
+        "x": 330,
+        "y": 140,
+        "w": 122,
+        "h": 40,
+        "text": "A",
+        "size": 24,
+        "color": "#231F20",
+        "bold": false,
+        "align": "center"
+      },
+      {
+        "kind": "text",
+        "x": 702,
+        "y": 140,
+        "w": 125,
+        "h": 40,
+        "text": "A",
+        "size": 24,
+        "color": "#231F20",
+        "bold": false,
+        "align": "center"
+      },
+      {
+        "kind": "line",
+        "pts": [
+          [
+            830,
+            245
+          ],
+          [
+            760,
+            245
+          ],
+          [
+            760,
+            307
+          ],
+          [
+            382,
+            307
+          ],
+          [
+            382,
+            245
+          ],
+          [
+            325,
+            245
+          ]
+        ],
+        "color": "#1673C3",
+        "arrow": true,
+        "dash": false
+      },
+      {
+        "kind": "text",
+        "x": 425,
+        "y": 275,
+        "w": 340,
+        "h": 34,
+        "text": "READY=0 → PREADY=0",
+        "size": 23,
+        "color": "#1673C3",
+        "bold": true,
+        "align": "center"
+      },
+      {
+        "kind": "text",
+        "x": 55,
+        "y": 328,
+        "w": 1090,
+        "h": 79,
+        "text": "AのAPB書き込みは未完了。CPUの送信処理はBへ進めない。\nAを同じ値のまま保持するので、受取待ちでAが失われることはない。",
+        "size": 25,
+        "color": "#231F20",
+        "bold": false,
+        "align": "center"
+      },
+      {
+        "kind": "box",
+        "x": 20,
+        "y": 451,
+        "w": 1160,
+        "h": 365,
+        "fill": "#FFFFFF",
+        "stroke": "#D8D8D8"
+      },
+      {
+        "kind": "text",
+        "x": 44,
+        "y": 465,
+        "w": 1110,
+        "h": 50,
+        "text": "FIFOあり　空きがあれば CPUから先に預かる",
+        "size": 29,
+        "color": "#231F20",
+        "bold": true,
+        "align": "left"
+      },
+      {
+        "kind": "text",
+        "x": 50,
+        "y": 523,
+        "w": 480,
+        "h": 35,
+        "text": "FIFOへの保存で書き込み完了",
+        "size": 24,
+        "color": "#1673C3",
+        "bold": false,
+        "align": "center"
+      },
+      {
+        "kind": "text",
+        "x": 844,
+        "y": 523,
+        "w": 305,
+        "h": 35,
+        "text": "出口のAは受取待ち",
+        "size": 24,
+        "color": "#1673C3",
+        "bold": false,
+        "align": "center"
+      },
+      {
+        "kind": "box",
+        "x": 48,
+        "y": 579,
+        "w": 210,
+        "h": 98,
+        "fill": "#E5EBF8",
+        "stroke": "#231F20"
+      },
+      {
+        "kind": "text",
+        "x": 57,
+        "y": 585,
+        "w": 192,
+        "h": 86,
+        "text": "CPU側の\nバス回路",
+        "size": 25,
+        "color": "#231F20",
+        "bold": true,
+        "align": "center"
+      },
+      {
+        "kind": "box",
+        "x": 330,
+        "y": 579,
+        "w": 207,
+        "h": 98,
+        "fill": "#E5EBF8",
+        "stroke": "#231F20"
+      },
+      {
+        "kind": "text",
+        "x": 339,
+        "y": 585,
+        "w": 189,
+        "h": 86,
+        "text": "命令の\n接続回路",
+        "size": 23,
+        "color": "#231F20",
+        "bold": false,
+        "align": "center"
+      },
+      {
+        "kind": "box",
+        "x": 600,
+        "y": 565,
+        "w": 226,
+        "h": 126,
+        "fill": "#CCD9F1",
+        "stroke": "#231F20"
+      },
+      {
+        "kind": "text",
+        "x": 609,
+        "y": 571,
+        "w": 208,
+        "h": 114,
+        "text": "FIFO\nA、B、Cを保存\nAから順に渡す",
+        "size": 24,
+        "color": "#231F20",
+        "bold": true,
+        "align": "center"
+      },
+      {
+        "kind": "box",
+        "x": 888,
+        "y": 579,
+        "w": 254,
+        "h": 98,
+        "fill": "#E5EBF8",
+        "stroke": "#231F20"
+      },
+      {
+        "kind": "text",
+        "x": 897,
+        "y": 585,
+        "w": 236,
+        "h": 86,
+        "text": "RasterIX\n今は受け取れない",
+        "size": 24,
+        "color": "#231F20",
+        "bold": true,
+        "align": "center"
+      },
+      {
+        "kind": "line",
+        "pts": [
+          [
+            258,
+            610
+          ],
+          [
+            330,
+            610
+          ]
+        ],
+        "color": "#231F20",
+        "arrow": true,
+        "dash": false
+      },
+      {
+        "kind": "line",
+        "pts": [
+          [
+            330,
+            655
+          ],
+          [
+            258,
+            655
+          ]
+        ],
+        "color": "#1673C3",
+        "arrow": true,
+        "dash": false
+      },
+      {
+        "kind": "line",
+        "pts": [
+          [
+            537,
+            610
+          ],
+          [
+            600,
+            610
+          ]
+        ],
+        "color": "#231F20",
+        "arrow": true,
+        "dash": false
+      },
+      {
+        "kind": "line",
+        "pts": [
+          [
+            600,
+            655
+          ],
+          [
+            537,
+            655
+          ]
+        ],
+        "color": "#1673C3",
+        "arrow": true,
+        "dash": false
+      },
+      {
+        "kind": "line",
+        "pts": [
+          [
+            826,
+            610
+          ],
+          [
+            888,
+            610
+          ]
+        ],
+        "color": "#231F20",
+        "arrow": true,
+        "dash": false
+      },
+      {
+        "kind": "line",
+        "pts": [
+          [
+            888,
+            655
+          ],
+          [
+            826,
+            655
+          ]
+        ],
+        "color": "#1673C3",
+        "arrow": true,
+        "dash": false
+      },
+      {
+        "kind": "text",
+        "x": 50,
+        "y": 712,
+        "w": 1090,
+        "h": 87,
+        "text": "Aを預けたCPUは、B、Cも順に送れる。満杯になったら待つ。\nRasterIXが受け取れるようになった後、A、B、Cを順に渡す。",
+        "size": 25,
+        "color": "#231F20",
+        "bold": false,
+        "align": "center"
+      },
+      {
+        "kind": "text",
+        "x": 30,
+        "y": 834,
+        "w": 1140,
+        "h": 86,
+        "text": "両案とも同じクロックと仮定。下段は三語分の空きがある場合。\n黒矢印はデータ、青矢印は受取可の返事。\n実機で異なるクロックを使う方法は7.4節で説明する。",
+        "size": 23,
+        "color": "#231F20",
+        "bold": false,
+        "align": "center"
+      }
+    ]
+  }
+}

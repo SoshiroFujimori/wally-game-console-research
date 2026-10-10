@@ -1,4 +1,5 @@
 from pathlib import Path
+from functools import lru_cache
 import re,json,shutil,hashlib,sys
 from docx import Document
 from docx.shared import Mm,Pt,RGBColor
@@ -14,6 +15,7 @@ NAME=sys.argv[1]
 R=ROOT/('build-'+NAME);R.mkdir(exist_ok=True)
 OUT=ROOT.parents[1]/'docs/thesis';OUT.mkdir(parents=True,exist_ok=True)
 TITLE='FPGAを用いた二次元ゲーム機の設計と実装' if NAME=='本文' else '二次元ゲーム機の設計を再現するための技術付録'
+@lru_cache(maxsize=2)
 def load_source(name):
  return assemble_technical_appendix(ROOT) if name=='技術付録' else (ROOT/(name+'.md')).read_text(encoding='utf-8')
 text=load_source(NAME)
@@ -36,6 +38,9 @@ while i<len(lines):
   code_number+=1
   section=next((x['text'] for x in reversed(tokens) if x['kind']=='heading'),'')
   title=re.sub(r'^(?:\d+|[A-Z])\.\d+\s+','',section)
+  # This constraint describes an input clock; it does not generate one.
+  if NAME=='本文' and language=='tcl' and code==['create_clock -period 10.000 -name BoardClock [get_ports clk]']:
+   title='入力クロックの周期を解析ツールへ伝える'
   label='実行例' if language=='bash' or section.startswith('14.6 ') else ('表示例' if language=='text' else 'コード例')
   tokens.append(dict(kind='code',text='\n'.join(code),language=language,title=f'{label}{chapter}.{code_number}  {title}',label=label));i+=1;continue
  m=re.match(r'^(#{2,5}) (.+)$',line)
@@ -67,7 +72,8 @@ while i<len(lines):
   table_number+=1
   section=next((x['text'] for x in reversed(tokens) if x['kind']=='heading'),'')
   name=re.sub(r'^(?:\d+|[A-Z])\.\d+\s+','',section)
-  tokens.append(dict(kind='table',rows=rows,text=f'表{chapter}.{table_number}  {name}'));continue
+  number=f'{chapter}.{table_number}' if chapter else f'案内{table_number}'
+  tokens.append(dict(kind='table',rows=rows,text=f'表{number}  {name}'));continue
  group=[line];i+=1
  while i<len(lines) and lines[i].strip() and not lines[i].startswith(('#','|','![','```')):
   group.append(lines[i]);i+=1
@@ -81,6 +87,12 @@ reference=OUT/(NAME+'.docx')
 doc=Document(reference)
 for child in list(doc._element.body):
  if child.tag!=qn('w:sectPr'):doc._element.body.remove(child)
+# The previous document supplies styles, not obsolete body relationships.
+# Retaining these image parts makes each rebuild accumulate hidden copies.
+referenced=set(doc._element.xpath('//@r:embed | //@r:link | //@r:id'))
+for rid,rel in list(doc.part.rels.items()):
+ if rel.reltype in (RT.IMAGE,RT.HYPERLINK) and rid not in referenced:
+  doc.part.drop_rel(rid)
 sec=doc.sections[0]
 sec.page_width=Mm(210);sec.page_height=Mm(297)
 sec.top_margin=Mm(25);sec.bottom_margin=Mm(23);sec.left_margin=Mm(25);sec.right_margin=Mm(25)
@@ -149,7 +161,13 @@ def resolve_ref(label):
  m=re.search(r'第([IVX]+)部',label)
  if m:return '技術付録','part_'+m[1]
  m=re.search(r'付録([A-Z])|第(\d+)章',label)
- if m:return ('技術付録','ch_'+m[1]) if m[1] else ('本文','ch_'+m[2])
+ if m:
+  if m[1]:return '技術付録','ch_'+m[1]
+  chapter=m[2]
+  for destination in ('本文','技術付録'):
+   if re.search(r'^#{2,4} 第'+re.escape(chapter)+r'章(?:\s|$)',load_source(destination),re.M):
+    return destination,'ch_'+chapter
+  return None
  return None
 
 def crosslink(p,label,dest,anchor):
@@ -160,13 +178,17 @@ def crosslink(p,label,dest,anchor):
 REF_PATTERN=r'技術付録\s*第\d+章|技術付録\s*\d+\.\d+節|第[IVX]+部|付録[A-Z](?:\.\d+)?|第\d+章|(?<![\w.図表])[A-Z]\.\d+(?![\d.])|(?<![\w.図表])\d+\.\d+(?=節|[〜～・]\d+\.\d+節)'
 
 def inline(p,s):
- pattern=r'(`[^`]+`|\*\*[^*]+\*\*|\[[A-Za-z][A-Za-z0-9]*\]|https?://[^\s]+|'+REF_PATTERN+r')'
+ pattern=r'(`[^`]+`|\*\*[^*]+\*\*|\[[^\]]+\]\([^)]+\)|\[[A-Za-z][A-Za-z0-9]*\]|https?://[^\s]+|'+REF_PATTERN+r')'
  parts=[];end=0
  for match in re.finditer(pattern,s):
   if match.start()>end:parts.append((False,s[end:match.start()]))
   parts.append((True,match.group(0)));end=match.end()
  if end<len(s):parts.append((False,s[end:]))
  for matched,bit in parts:
+  link=re.fullmatch(r'\[([^\]]+)\]\(([^)]+)\)',bit) if matched else None
+  if link:
+   label,target=link.groups()
+   addlink(p,label,target[1:] if target.startswith('#') else target,target.startswith('#'));continue
   if bit.startswith('[') and bit[1:-1] in reference_keys:
    addlink(p,bit,'ref_'+bit[1:-1],True);continue
   if bit.startswith(('https://','http://')):
@@ -205,9 +227,13 @@ def table(t):
  if rows[0]==['版の呼び方','対応する実験記録','固定したソース']:widths=[29,34,97]
  if rows[0]==['記録','使用した版と構成','評価する項目']:widths=[16,57,87]
  if rows[0]==['機能','受け持つこと','本構成での実装']:widths=[35,60,65]
+ if rows[0]==['ソフトウェア','全体描画','呼び出し統合','変更領域']:widths=[67,31,31,31]
+ if rows[0]==['描き方','APB送信（回/s）','DMA送信（回/s）']:widths=[80,40,40]
+ if rows[0]==['描き方','65,536画素分','131,072画素分']:widths=[46,57,57]
+ if rows[0]==['命令解析','送信','32×32の一致','64×64の一致','256×256の一致']:widths=[43,21,31,31,34]
  for c,w in zip(tab.columns,widths):c.width=Mm(w)
  # Do not chain large tables into a single unsplittable page block.
- small=(len(rows)<=7 and sum(sum(len(c) for c in r) for r in rows)<700) or t['text'].startswith(('表14.2','表Y.4'))
+ small=(len(rows)<=7 and sum(sum(len(c) for c in r) for r in rows)<700) or t['text'].startswith(('表案内','表14.2','表Y.4'))
  for ri,row in enumerate(rows):
   cells=tab.rows[0].cells if ri==0 else tab.add_row().cells
   for ci,(cell,value) in enumerate(zip(cells,row)):
@@ -285,9 +311,9 @@ intro+='\n\n## ジャンプできる目次\n\n'
 intro+='\n'.join('  '*(t['level']-1)+f'- [{t["text"]}](#{t["anchor"]})' for t in alltoc)+'\n\n'
 linked=[];hi=0;fence=False
 def md_inline(line):
- parts=re.split(r'(`[^`]+`|!\[.*?\]\([^\n]+\)|https?://[^\s]+)',line)
+ parts=re.split(r'(`[^`]+`|!?\[.*?\]\([^)]+\)|https?://[^\s]+)',line)
  for i,part in enumerate(parts):
-  if part.startswith(('`','![','https://','http://')):continue
+  if part.startswith(('`','![','https://','http://')) or re.fullmatch(r'\[[^\]]+\]\([^)]+\)',part):continue
   def subref(m):
    label=m[0];ref=resolve_ref(label)
    if not ref:return label
