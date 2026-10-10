@@ -18,10 +18,13 @@ Wallyと公式RasterIXをNexys Video上で結合し、二次元ゲームを動�
 
 | 内容 | 入口 |
 |---|---|
+| 図で仕組みと主な結果を説明する1ページの概要 | [アブスト](docs/abstract/アブスト_主要事項.md) / [Word版](docs/abstract/アブスト_主要事項.docx) |
+| 6分の説明に絞った8枚のスライドと発表原稿 | [スライドと原稿](docs/presentation/中間発表_主要事項.md) / [PowerPoint版](docs/presentation/中間発表_主要事項.pptx) |
 | 目的、仕組み、設計、実験結果 | [論文本文](docs/thesis/本文.md) / [Word版](docs/thesis/本文.docx) |
 | HDL、Wally、Linux、RasterIX、実装の詳細 | [技術付録](docs/thesis/技術付録.md) / [Word版](docs/thesis/技術付録.docx) |
 | 前提から理解する説明、図、数値例、実行できるモデル | [技術詳説・分野別目次](docs/technical/README.md) |
 | FIFO三方式の比較と更新版の検証 | [E6の結果と判断](docs/thesis/再現資料/実験記録/E6/report/結果と判断.md) |
+| 命令DMA、共有メモリ、転送方法の検証 | [E7の結果と適用範囲](experiments/transport-study-20261009/RESULTS.md) |
 | 過去の設計変更、測定コード、実験記録 | [再現資料](docs/thesis/再現資料/README.md) |
 | 論文中の旧ローカルパスとの対応 | [参照先の一覧](docs/references.md) |
 | SDカード接続の切り替えとWindows側の復旧 | [SDWire3の操作](tools/sdwire3/README.md) |
@@ -54,6 +57,8 @@ E1〜E5とE6は使用版が異なります。過去の測定を再現する場�
 
 ```text
 console/                    製品リポジトリの固定版
+docs/abstract/              主要事項を図と短い文章で説明するアブスト
+docs/presentation/          6分の発表スライドと発表原稿
 docs/thesis/                公開用の論文、図、技術付録、実験記録E1〜E6
 docs/technical/             回路・CPU・Linux・描画・検証の詳説とSVG図
 examples/technical-models/  本文の数値と受渡し規則を確かめる説明用モデル
