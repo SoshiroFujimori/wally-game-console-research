@@ -1,0 +1,30 @@
+{
+  "source_files": {
+    "target.cpp": "636d49e3062e63585ab4438aa47b56b96a9d4d97b8d0e358de8afc6d78f489a3",
+    "StudyBus.hpp": "2bfe33a3339f31c33e727cb709e9187b0aa30195ec515b2de78e5c0ea8329430",
+    "game.hpp": "bc4ffee907f65f774b69b0e15f089466b118155882717c42effd34bff52350f2",
+    "damage.hpp": "578f7784a907da89d7d30bc6c3fb98838dc810e4a0ce049990dcb94be7a436fa",
+    "CMakeLists.txt": "d78fa3ab061603fe6fe2efc0677fea5f99a891a54f106e4eb8db11a243039611"
+  },
+  "builds": {
+    "software": {
+      "binary_sha256": "dd764d23145a31b3bb3748aa4b29dfe19c0c0dae0a3b58725096482ab01acbe8",
+      "writeData_symbols": [
+        "000000000001a7cc W StudyBus::writeData(unsigned char, unsigned int, unsigned int)"
+      ]
+    },
+    "software-lto": {
+      "binary_sha256": "699bb270a175ed0d94cef404e3f59b72be9ed4acd7e1fbb73154e6afcf55394f",
+      "writeData_symbols": [
+        "0000000000015246 t StudyBus::writeData(unsigned char, unsigned int, unsigned int)"
+      ]
+    },
+    "software-if17": {
+      "binary_sha256": "9f078f0f76904cac52571f188805ec4ccc218632727a6ba8f370f40e0bf69b21",
+      "writeData_symbols": [
+        "000000000001a5a8 W StudyBus::writeData(unsigned char, unsigned int, unsigned int)"
+      ]
+    }
+  },
+  "compiler": "riscv64-buildroot-linux-gnu-g++.br_real (Buildroot 2024.11.4) 14.2.0\nCopyright (C) 2024 Free Software Foundation, Inc.\nThis is free software; see the source for copying conditions.  There is NO\nwarranty; not even for MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.\n\n"
+}

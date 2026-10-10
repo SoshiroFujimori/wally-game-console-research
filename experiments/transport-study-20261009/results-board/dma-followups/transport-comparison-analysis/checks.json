@@ -1,0 +1,11 @@
+{
+  "bitstream_sha256": "eaf74c5fa011602613ff8181b7a85099881d639aed483fe9486bb91dc27ea5db",
+  "trials": 54,
+  "frames": 9720,
+  "full_pixel_comparisons": 54,
+  "game_states_match": true,
+  "command_volume_matches": true,
+  "selected_images_match": true,
+  "display_completions_consecutive": true,
+  "scope": "Only the caller-qualified fixed FPGA configuration; completed swaps are not optical FPS."
+}

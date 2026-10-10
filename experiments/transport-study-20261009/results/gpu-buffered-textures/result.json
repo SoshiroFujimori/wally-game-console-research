@@ -1,0 +1,344 @@
+{
+  "utc": "2026-10-09T00:37:52.138036+00:00",
+  "binary_sha256": "46e4720c263541c9c8d983f8e680cbe944dc6366868c33b40d39c8f7af8e2b05",
+  "scope": "Functional RTL model with UNITTEST RAM, synthetic DDR stalls and display acknowledgement. No Wally CPU, APB CDC, MIG, HDMI or FPGA timing is modeled. Glyphs in gpu-functional are quads; gpu-texture separately exercises textures.",
+  "cases": [
+    {
+      "case": "apb-s32-g0-r1",
+      "arguments": [
+        "32",
+        "apb",
+        "0",
+        "1"
+      ],
+      "exit": 0,
+      "checks": [
+        "TEXTURE_CHECK size=32 pixels=307200 mismatches=0",
+        "TEXTURE_PROBE_FINISHED failures=0 only=32 keep=1"
+      ]
+    },
+    {
+      "case": "apb-s32-g0-r27",
+      "arguments": [
+        "32",
+        "apb",
+        "0",
+        "27"
+      ],
+      "exit": 0,
+      "checks": [
+        "TEXTURE_CHECK size=32 pixels=307200 mismatches=0",
+        "TEXTURE_PROBE_FINISHED failures=0 only=32 keep=1"
+      ]
+    },
+    {
+      "case": "apb-s32-g16-r1",
+      "arguments": [
+        "32",
+        "apb",
+        "16",
+        "1"
+      ],
+      "exit": 0,
+      "checks": [
+        "TEXTURE_CHECK size=32 pixels=307200 mismatches=0",
+        "TEXTURE_PROBE_FINISHED failures=0 only=32 keep=1"
+      ]
+    },
+    {
+      "case": "apb-s32-g16-r27",
+      "arguments": [
+        "32",
+        "apb",
+        "16",
+        "27"
+      ],
+      "exit": 0,
+      "checks": [
+        "TEXTURE_CHECK size=32 pixels=307200 mismatches=0",
+        "TEXTURE_PROBE_FINISHED failures=0 only=32 keep=1"
+      ]
+    },
+    {
+      "case": "apb-s64-g0-r1",
+      "arguments": [
+        "64",
+        "apb",
+        "0",
+        "1"
+      ],
+      "exit": 0,
+      "checks": [
+        "TEXTURE_CHECK size=64 pixels=307200 mismatches=0",
+        "TEXTURE_PROBE_FINISHED failures=0 only=64 keep=1"
+      ]
+    },
+    {
+      "case": "apb-s64-g0-r27",
+      "arguments": [
+        "64",
+        "apb",
+        "0",
+        "27"
+      ],
+      "exit": 0,
+      "checks": [
+        "TEXTURE_CHECK size=64 pixels=307200 mismatches=0",
+        "TEXTURE_PROBE_FINISHED failures=0 only=64 keep=1"
+      ]
+    },
+    {
+      "case": "apb-s64-g16-r1",
+      "arguments": [
+        "64",
+        "apb",
+        "16",
+        "1"
+      ],
+      "exit": 1,
+      "checks": [
+        "TEXTURE_CHECK size=64 pixels=307200 mismatches=2048",
+        "TEXTURE_PROBE_FINISHED failures=1 only=64 keep=1"
+      ]
+    },
+    {
+      "case": "apb-s64-g16-r27",
+      "arguments": [
+        "64",
+        "apb",
+        "16",
+        "27"
+      ],
+      "exit": 1,
+      "checks": [
+        "TEXTURE_CHECK size=64 pixels=307200 mismatches=2048",
+        "TEXTURE_PROBE_FINISHED failures=1 only=64 keep=1"
+      ]
+    },
+    {
+      "case": "apb-s256-g0-r1",
+      "arguments": [
+        "256",
+        "apb",
+        "0",
+        "1"
+      ],
+      "exit": 0,
+      "checks": [
+        "TEXTURE_CHECK size=256 pixels=307200 mismatches=0",
+        "TEXTURE_PROBE_FINISHED failures=0 only=256 keep=1"
+      ]
+    },
+    {
+      "case": "apb-s256-g0-r27",
+      "arguments": [
+        "256",
+        "apb",
+        "0",
+        "27"
+      ],
+      "exit": 0,
+      "checks": [
+        "TEXTURE_CHECK size=256 pixels=307200 mismatches=0",
+        "TEXTURE_PROBE_FINISHED failures=0 only=256 keep=1"
+      ]
+    },
+    {
+      "case": "apb-s256-g16-r1",
+      "arguments": [
+        "256",
+        "apb",
+        "16",
+        "1"
+      ],
+      "exit": 1,
+      "checks": [
+        "TEXTURE_CHECK size=256 pixels=307200 mismatches=31744",
+        "TEXTURE_PROBE_FINISHED failures=1 only=256 keep=1"
+      ]
+    },
+    {
+      "case": "apb-s256-g16-r27",
+      "arguments": [
+        "256",
+        "apb",
+        "16",
+        "27"
+      ],
+      "exit": 1,
+      "checks": [
+        "TEXTURE_CHECK size=256 pixels=307200 mismatches=31744",
+        "TEXTURE_PROBE_FINISHED failures=1 only=256 keep=1"
+      ]
+    },
+    {
+      "case": "dma-s32-g0-r1",
+      "arguments": [
+        "32",
+        "dma",
+        "0",
+        "1"
+      ],
+      "exit": 0,
+      "checks": [
+        "TEXTURE_CHECK size=32 pixels=307200 mismatches=0",
+        "TEXTURE_PROBE_FINISHED failures=0 only=32 keep=1"
+      ]
+    },
+    {
+      "case": "dma-s32-g0-r27",
+      "arguments": [
+        "32",
+        "dma",
+        "0",
+        "27"
+      ],
+      "exit": 0,
+      "checks": [
+        "TEXTURE_CHECK size=32 pixels=307200 mismatches=0",
+        "TEXTURE_PROBE_FINISHED failures=0 only=32 keep=1"
+      ]
+    },
+    {
+      "case": "dma-s32-g16-r1",
+      "arguments": [
+        "32",
+        "dma",
+        "16",
+        "1"
+      ],
+      "exit": 0,
+      "checks": [
+        "TEXTURE_CHECK size=32 pixels=307200 mismatches=0",
+        "TEXTURE_PROBE_FINISHED failures=0 only=32 keep=1"
+      ]
+    },
+    {
+      "case": "dma-s32-g16-r27",
+      "arguments": [
+        "32",
+        "dma",
+        "16",
+        "27"
+      ],
+      "exit": 0,
+      "checks": [
+        "TEXTURE_CHECK size=32 pixels=307200 mismatches=0",
+        "TEXTURE_PROBE_FINISHED failures=0 only=32 keep=1"
+      ]
+    },
+    {
+      "case": "dma-s64-g0-r1",
+      "arguments": [
+        "64",
+        "dma",
+        "0",
+        "1"
+      ],
+      "exit": 1,
+      "checks": [
+        "TEXTURE_CHECK size=64 pixels=307200 mismatches=1024",
+        "TEXTURE_PROBE_FINISHED failures=1 only=64 keep=1"
+      ]
+    },
+    {
+      "case": "dma-s64-g0-r27",
+      "arguments": [
+        "64",
+        "dma",
+        "0",
+        "27"
+      ],
+      "exit": 1,
+      "checks": [
+        "TEXTURE_CHECK size=64 pixels=307200 mismatches=1024",
+        "TEXTURE_PROBE_FINISHED failures=1 only=64 keep=1"
+      ]
+    },
+    {
+      "case": "dma-s64-g16-r1",
+      "arguments": [
+        "64",
+        "dma",
+        "16",
+        "1"
+      ],
+      "exit": 1,
+      "checks": [
+        "TEXTURE_CHECK size=64 pixels=307200 mismatches=1024",
+        "TEXTURE_PROBE_FINISHED failures=1 only=64 keep=1"
+      ]
+    },
+    {
+      "case": "dma-s64-g16-r27",
+      "arguments": [
+        "64",
+        "dma",
+        "16",
+        "27"
+      ],
+      "exit": 1,
+      "checks": [
+        "TEXTURE_CHECK size=64 pixels=307200 mismatches=1024",
+        "TEXTURE_PROBE_FINISHED failures=1 only=64 keep=1"
+      ]
+    },
+    {
+      "case": "dma-s256-g0-r1",
+      "arguments": [
+        "256",
+        "dma",
+        "0",
+        "1"
+      ],
+      "exit": 1,
+      "checks": [
+        "TEXTURE_CHECK size=256 pixels=307200 mismatches=30720",
+        "TEXTURE_PROBE_FINISHED failures=1 only=256 keep=1"
+      ]
+    },
+    {
+      "case": "dma-s256-g0-r27",
+      "arguments": [
+        "256",
+        "dma",
+        "0",
+        "27"
+      ],
+      "exit": 1,
+      "checks": [
+        "TEXTURE_CHECK size=256 pixels=307200 mismatches=30720",
+        "TEXTURE_PROBE_FINISHED failures=1 only=256 keep=1"
+      ]
+    },
+    {
+      "case": "dma-s256-g16-r1",
+      "arguments": [
+        "256",
+        "dma",
+        "16",
+        "1"
+      ],
+      "exit": 1,
+      "checks": [
+        "TEXTURE_CHECK size=256 pixels=307200 mismatches=30720",
+        "TEXTURE_PROBE_FINISHED failures=1 only=256 keep=1"
+      ]
+    },
+    {
+      "case": "dma-s256-g16-r27",
+      "arguments": [
+        "256",
+        "dma",
+        "16",
+        "27"
+      ],
+      "exit": 1,
+      "checks": [
+        "TEXTURE_CHECK size=256 pixels=307200 mismatches=30720",
+        "TEXTURE_PROBE_FINISHED failures=1 only=256 keep=1"
+      ]
+    }
+  ],
+  "passed": false
+}

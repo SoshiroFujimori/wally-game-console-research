@@ -1,0 +1,11 @@
+/tmp/app --transport apb --frames 30 --warmup 6 --wait spin --profile detailed --csv /tmp/smoke.csv --dump /tmp/smoke.raw; study_status=$?; printf "\nSTUDY_DONE_afff045035ec=%s\n" "$study_status"
+TRANSPORT mode=apb dma_minimum=64
+BEGIN_BREAKOUT frames=30 warmup=6 fixed=0 blocks=40 tiles=1 hud=1 wait=spin replay=0 state_frame=0 profile=detailed pixel_centers=1 clock_call_ns=5513
+HW_COUNTERS unavailable
+RESULT frames=30 elapsed_s=2.123311200 fps=14.128876 logic_ms=1.013685 api_ms=23.245642 swap_ms=42.116218 wait_ms=4.274888 worker_inclusive_ms=41.912962 upload_inclusive_ms=8.673320 write_ms=8.367717 bytes_per_frame=33732.00 p50_ms=66.879100 p95_ms=83.595850 max_ms=83.601350 late_60hz=30 first_count=11 last_count=40 state_hash=30b0ac25 remaining=40 score=0
+RENDER_PATH retained=0 grouped=0 quads=2310 full_frames=30
+FRAME_CHECK count=40 address=9fe00000 fnv1a=63e15fd3 pixels=307200 mismatches=0
+BREAKOUT_PASS
+
+STUDY_DONE_afff045035ec=0
+# 

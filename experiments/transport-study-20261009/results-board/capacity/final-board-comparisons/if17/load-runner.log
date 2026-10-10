@@ -1,0 +1,8 @@
+(set -e; mkdir -p /mnt/transport-card; mount -t ext4 -o ro /dev/mmcblk0p4 /mnt/transport-card; for name in app-if17; do gzip -dc /mnt/transport-card/transport-study-20261009/$name.gz > /tmp/$name; chmod +x /tmp/$name; sha256sum /tmp/$name; done); study_status=$?; printf "\nSTUDY_DONE_a238bbf6dd8b=%s\n" "$study_status"
+[   39.381035] EXT4-fs (mmcblk0p4): mounted filesystem [filesystem-uuid] ro with ordered data mode. Quota mode: disabled.
+[   45.272438] random: crng init done
+c7fd4e2301f937434ca50965cb663ca7f54a601999f2675bb09a9f8c29fd4f32  /tmp/app-if17
+
+STUDY_DONE_a238bbf6dd8b=0
+# 
+{"started_utc": "2026-10-09T03:45:57.081192+00:00", "elapsed_seconds": 119.90620978600055, "bytes_received": 614, "command": "(set -e; mkdir -p /mnt/transport-card; mount -t ext4 -o ro /dev/mmcblk0p4 /mnt/transport-card; for name in app-if17; do gzip -dc /mnt/transport-card/transport-study-20261009/$name.gz > /tmp/$name; chmod +x /tmp/$name; sha256sum /tmp/$name; done)", "command_exit": 0, "login_sent": false}

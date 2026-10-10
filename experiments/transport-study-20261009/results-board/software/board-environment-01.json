@@ -1,0 +1,8 @@
+{
+  "started_utc": "2026-10-09T01:28:15.920662+00:00",
+  "elapsed_seconds": 32.98155079999924,
+  "bytes_received": 1872,
+  "command": "sha256sum /tmp/app /tmp/app-lto /tmp/app-if17 /tmp/texture; uname -a; cat /proc/cpuinfo; cat /proc/iomem; od -An -tu4 /proc/device-tree/cpus/cpu@0/clock-frequency",
+  "command_exit": 127,
+  "login_sent": false
+}

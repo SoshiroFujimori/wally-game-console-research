@@ -1,0 +1,25 @@
+--- a/rtl/RasterIX/CommandParser.v
++++ b/rtl/RasterIX/CommandParser.v
+@@ -289,11 +289,11 @@
+                     end
+                     else
+                     begin
+-                        tvalid <= s_cmd_axis_tvalid;
++                        tvalid <= s_cmd_axis_tvalid && s_cmd_axis_tready;
+                         m_cmd_xxx_axis_tdata <= s_cmd_axis_tdata;
+                     end
+ 
+-                    if (s_cmd_axis_tvalid || tvalidSkid)
++                    if ((s_cmd_axis_tvalid && s_cmd_axis_tready) || tvalidSkid)
+                     begin
+                         streamCounter <= streamCounter - 1;
+                         if (streamCounter == 1)
+@@ -307,7 +307,7 @@
+                 end
+                 else
+                 begin
+-                    if (s_cmd_axis_tvalid && !tvalidSkid)
++                    if (s_cmd_axis_tvalid && s_cmd_axis_tready && !tvalidSkid)
+                     begin
+                         tdataSkid <= s_cmd_axis_tdata;
+                         tvalidSkid <= s_cmd_axis_tvalid;

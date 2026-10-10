@@ -1,0 +1,32 @@
+{
+  "reviewed_utc": "2026-10-09T03:16:19.102543+00:00",
+  "bitstream_sha256": "611d8fe4d809d9841d968eef248536fb547b2ecf59ad25df9e4f69c191f7eea4",
+  "wns_ns": 0.081,
+  "whs_ns": 0.014,
+  "routing_errors": 0,
+  "unconstrained_internal_endpoints": 0,
+  "bus_skew_constraints_met": 19,
+  "cdc_endpoints_identical_to_baseline": true,
+  "cdc_reference_numbering_ignored": true,
+  "exceptions_identical_to_baseline": true,
+  "drc_categories_and_counts_identical_to_baseline": true,
+  "review_notes": [
+    "The enlarged internal image working buffer operates in the existing GPU clock domain.",
+    "Existing CDC-8 warnings are the two MIG reset synchronizers.",
+    "Existing CDC-15 warnings include handshaked display-address and vendor interconnect structures.",
+    "Existing asynchronous external I/O exceptions are unchanged.",
+    "Qualification permits a bounded board experiment; it does not prove functional correctness."
+  ],
+  "reports": {
+    "timing_summary.rpt": "ff8a76ae9d515902adced1fd3010171d9f0c4d11230bcbf64797ed84a6fefba2",
+    "route_status.rpt": "490f5eb8e174f36b060683a7e343e7b89878fa510e04436a5bacf4ecf389e940",
+    "check_timing.rpt": "a8342d71783ffcd98e111bdeda75efb45a76ab8ea97ff66026a5442477a0a442",
+    "cdc.rpt": "9d9303009e87805b646326c986a4f8f82fdc1cbdddaf60f07f916d5a7ff41581",
+    "bus_skew.rpt": "5fa7ee5a6a76fb075831af5ffe7c4a6d49beeb360e371cd3eb88037724a99b9e",
+    "exceptions.rpt": "ea540e7ba0df8d72c49504847f898d6d236f06b2401437085397cb3bc000f777",
+    "clocks.rpt": "4584af4582e685ec1cbc74dfe4c27cc358fea777170b52062a32d604e6baa655",
+    "drc.rpt": "b0e3b0fb05897667620e698c4162f8e98298df41fff1167a6d128c448835dc4f",
+    "utilization.rpt": "50cd7ca5b31f62264929e00eaa6bc91ac7487b1661c9b049f8aa93e282687cc9"
+  },
+  "board_experiment_qualified": true
+}

@@ -1,0 +1,22 @@
+{
+  "app": {
+    "bytes": 1581600,
+    "sha256": "c94535280519a27f3fcf7979ac0bea5bd8081b7ea269abfb3d6701bed7529d57",
+    "gzip_sha256": "e1f32b08355571afcee519ca003370bad56e0c520a88e18d1eff9fb35790c68a"
+  },
+  "app-lto": {
+    "bytes": 1548816,
+    "sha256": "8d7ee9ca0950b4148501a64652c3ac49055e9566c331f286f73b14d3848cda2b",
+    "gzip_sha256": "cda09989fea1e07bc6c24bd0405b4a68215ad0c803df443d2fa67f3ad407b8d1"
+  },
+  "app-if17": {
+    "bytes": 1581600,
+    "sha256": "c7fd4e2301f937434ca50965cb663ca7f54a601999f2675bb09a9f8c29fd4f32",
+    "gzip_sha256": "8ae4dea5c13d699948cd5f2435037527532900f63c488ff13350094e15699bbe"
+  },
+  "texture": {
+    "bytes": 1548792,
+    "sha256": "13bb561d816d87c8ad66ae8d65d8f2f21ae0ab2c5294a0f3b2a65d61e260f28a",
+    "gzip_sha256": "064a90eb55bd481e3114cb33d195e8b21a0f9f66ac6142e2578ed64072eade14"
+  }
+}

@@ -1,0 +1,21 @@
+{
+  "negative_cases": [
+    {
+      "case": "incomplete",
+      "rejected": true
+    },
+    {
+      "case": "game-state",
+      "rejected": true
+    },
+    {
+      "case": "pixel-error",
+      "rejected": true
+    },
+    {
+      "case": "display-counter",
+      "rejected": true
+    }
+  ],
+  "independent_summary_values_match": true
+}

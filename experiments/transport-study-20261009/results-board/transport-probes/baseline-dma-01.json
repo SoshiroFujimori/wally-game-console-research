@@ -1,0 +1,8 @@
+{
+  "started_utc": "2026-10-09T03:15:01.649585+00:00",
+  "elapsed_seconds": 34.68012448000081,
+  "bytes_received": 410,
+  "command": "/tmp/app --transport dma --frames 30 --warmup 6 --wait spin --profile detailed --csv /tmp/dma-frames.csv --dump /tmp/dma-frame.raw && printf \"CSV_BEGIN\\n\" && cat /tmp/dma-frames.csv && printf \"CSV_END\\n\"",
+  "command_exit": 1,
+  "login_sent": false
+}

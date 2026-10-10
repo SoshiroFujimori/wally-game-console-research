@@ -1,0 +1,92 @@
+[
+  {
+    "repeat": 1,
+    "transport": "apb",
+    "sizes": {
+      "32": 0,
+      "64": 0,
+      "256": 0
+    }
+  },
+  {
+    "repeat": 1,
+    "transport": "dma",
+    "sizes": {
+      "32": 0,
+      "64": 0,
+      "256": 0
+    }
+  },
+  {
+    "repeat": 2,
+    "transport": "dma",
+    "sizes": {
+      "32": 0,
+      "64": 0,
+      "256": 0
+    }
+  },
+  {
+    "repeat": 2,
+    "transport": "apb",
+    "sizes": {
+      "32": 0,
+      "64": 0,
+      "256": 0
+    }
+  },
+  {
+    "repeat": 3,
+    "transport": "apb",
+    "sizes": {
+      "32": 0,
+      "64": 0,
+      "256": 0
+    }
+  },
+  {
+    "repeat": 3,
+    "transport": "dma",
+    "sizes": {
+      "32": 0,
+      "64": 0,
+      "256": 0
+    }
+  },
+  {
+    "repeat": 4,
+    "transport": "dma",
+    "sizes": {
+      "32": 0,
+      "64": 0,
+      "256": 0
+    }
+  },
+  {
+    "repeat": 4,
+    "transport": "apb",
+    "sizes": {
+      "32": 0,
+      "64": 0,
+      "256": 0
+    }
+  },
+  {
+    "repeat": 5,
+    "transport": "apb",
+    "sizes": {
+      "32": 0,
+      "64": 0,
+      "256": 0
+    }
+  },
+  {
+    "repeat": 5,
+    "transport": "dma",
+    "sizes": {
+      "32": 0,
+      "64": 0,
+      "256": 0
+    }
+  }
+]

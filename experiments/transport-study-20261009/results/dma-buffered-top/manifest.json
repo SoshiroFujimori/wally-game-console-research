@@ -1,0 +1,6 @@
+{
+  "upstream_sha256": "6c9ee40fea04a5e59bc1474b3acf5f469b47261a6cf14e231ff5d73f7aac1640",
+  "experimental_sha256": "6fde193e575b003529ab39f53f34df4d536c0d9e32244258715bd6e4fbfbc640",
+  "depth": 64,
+  "reserve_full_bursts": 1
+}

@@ -1,0 +1,8 @@
+{
+  "started_utc": "2026-10-09T01:45:10.173160+00:00",
+  "elapsed_seconds": 17.67954716799977,
+  "bytes_received": 23679,
+  "command": "/tmp/app-lto --transport apb --state-frame 0 --frames 180 --warmup 30 --wait spin --profile detailed --csv /tmp/transport-frames.csv --grouped && printf \"CSV_BEGIN\\n\" && cat /tmp/transport-frames.csv && printf \"CSV_END\\n\"",
+  "command_exit": 0,
+  "login_sent": false
+}

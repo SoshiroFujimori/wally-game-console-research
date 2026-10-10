@@ -1,0 +1,12 @@
+/tmp/texture 0 dma; study_status=$?; printf "\nSTUDY_DONE_6eccfec1b659=%s\n" "$study_status"
+TEXTURE_BEGIN size=32
+TEXTURE_CHECK size=32 pixels=307200 mismatches=0
+TEXTURE_BEGIN size=64
+TEXTURE_CHECK size=64 pixels=307200 mismatches=0
+TEXTURE_BEGIN size=256
+TEXTURE_CHECK size=256 pixels=307200 mismatches=0
+TEXTURE_PROBE_FINISHED failures=0 only=0 keep=1
+
+STUDY_DONE_6eccfec1b659=0
+# 
+{"started_utc": "2026-10-09T03:43:33.296890+00:00", "elapsed_seconds": 6.831770998000138, "bytes_received": 395, "command": "/tmp/texture 0 dma", "command_exit": 0, "login_sent": false}

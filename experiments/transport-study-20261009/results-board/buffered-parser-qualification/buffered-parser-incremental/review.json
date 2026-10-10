@@ -1,0 +1,31 @@
+{
+  "reviewed_utc": "2026-10-09T03:08:43.415148+00:00",
+  "bitstream_sha256": "eaf74c5fa011602613ff8181b7a85099881d639aed483fe9486bb91dc27ea5db",
+  "wns_ns": 0.02,
+  "whs_ns": 0.014,
+  "routing_errors": 0,
+  "unconstrained_internal_endpoints": 0,
+  "bus_skew_constraints_met": 19,
+  "cdc_endpoints_identical_to_baseline": true,
+  "exceptions_identical_to_baseline": true,
+  "drc_categories_and_counts_identical_to_baseline": true,
+  "review_notes": [
+    "The inserted read FIFO and parser skid register operate in the existing GPU clock domain.",
+    "Existing CDC-8 warnings are the two MIG reset synchronizers.",
+    "Existing CDC-15 warnings include handshaked display-address and vendor interconnect structures.",
+    "Existing asynchronous external I/O exceptions are unchanged.",
+    "Qualification permits a bounded board experiment; it does not prove functional correctness."
+  ],
+  "reports": {
+    "timing_summary.rpt": "276660e9b9738b4524bd9ebc235cab311049933026449d24e812a831e83f8927",
+    "route_status.rpt": "9aad19e1b1d2b276a3b12841fa0bcb0324c6102a418e4bee388302c2c8262091",
+    "check_timing.rpt": "480f03b8ce0622817a1ee0e497b4674ed5b6049e65d1bafbce047175aabeaecf",
+    "cdc.rpt": "3f195fb9537f1a5b532bf58256fcbfb2602964116739cd38984a036620a60d6f",
+    "bus_skew.rpt": "d9dba05ba37f187d0a09111b7d256b55d791968af2b68e7733a711fe628f0987",
+    "exceptions.rpt": "5187af5fe752fa6afffb5f463409ed12a1ee2731baebfdd4cdf644ba35ed1b28",
+    "clocks.rpt": "f02d92fa1d02711eb1295af0f63757ccbb45f65584d11de0b7141abfc7fb0182",
+    "drc.rpt": "5805da212346b3b2c6157407a64be9ed7ecf74372ac56ff1bdb57f9d59cbe430",
+    "utilization.rpt": "91b82042d673de19875c79af2a0b44a160e2956477e3e1e3d596f61d38646d2e"
+  },
+  "board_experiment_qualified": true
+}

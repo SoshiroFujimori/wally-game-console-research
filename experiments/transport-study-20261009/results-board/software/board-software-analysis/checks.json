@@ -1,0 +1,12 @@
+{
+  "matrix_complete": true,
+  "profile": "detailed",
+  "trials": 120,
+  "frames": 21600,
+  "full_pixel_comparisons": 40,
+  "pixels_per_comparison": 307200,
+  "game_state_sequences_equal": true,
+  "command_volume_sequences_equal_within_mode": true,
+  "compared_final_images_equal": true,
+  "scope": "Completed swap events, not optically measured FPS. Only selected final images have full pixel comparisons."
+}

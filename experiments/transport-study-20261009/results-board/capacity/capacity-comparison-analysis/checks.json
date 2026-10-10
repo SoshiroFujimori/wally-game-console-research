@@ -1,0 +1,43 @@
+{
+  "matrices_complete": true,
+  "paired_trials": 12,
+  "frames_per_capacity": 2160,
+  "reference_checked_images": 4,
+  "candidate_checked_images": 12,
+  "pixels_per_comparison": 307200,
+  "game_state_sequences_equal": true,
+  "checked_final_image_hashes_equal": true,
+  "command_volume_equality_required": false,
+  "reason": "The matched hardware/software capacity changes stripe partitioning and command counts.",
+  "scope": "Completed swaps, not optical FPS; three observed trials are not confidence intervals.",
+  "frame_csv_sha256": {
+    "if16": {
+      "o3-apb-s0-full-r1": "88abf04382f39068bfb304ccf4165938effcc77430bdf9821ba992c8d1468179",
+      "o3-apb-s0-grouped-r1": "04225bb9b0d772e1256c4d3c20661bea92784007d31a7f3d12f5c826c81f2870",
+      "o3-apb-s0-retained-r1": "8f8953f0c24dcfc2f5dd1e35b3fa3aa8a5d75b16a09895a233c5bd350bab2c2a",
+      "o3-apb-s0-replay-r1": "f8b5a1bf2d53896088fe9a8a873fb3c96f9f05a183f64cc7ab70f58ea9bd1a37",
+      "o3-apb-s0-full-r2": "dbb3bce445633d098bcde79c101deac2fb4a1403662935d2736bd9e4ee9201a3",
+      "o3-apb-s0-grouped-r2": "a0af456cf26bfe44a7a2ff732904420fb259f3602feb1ff98b6c6c2bd8da5192",
+      "o3-apb-s0-retained-r2": "bce8e503ec0fbff5a59b7af1ae40b3586dd28d0e539905d185a203b6b063ac72",
+      "o3-apb-s0-replay-r2": "9b19349c748fee943a7d4b38f5e6f0ac05106baa46e086a24f396759ffb508c8",
+      "o3-apb-s0-full-r3": "a91dda3359b0d7d9204f9876d50b99855080968055fa62d294d7abd8a95cdea7",
+      "o3-apb-s0-grouped-r3": "c6817260be3a88718eadfafed79ab9645fae8e4776e3ada53354b5db2c9c92d9",
+      "o3-apb-s0-retained-r3": "6fe720574ce247d6fa611bdbb2e776326c3205a52f0bda51b0948632f84326c9",
+      "o3-apb-s0-replay-r3": "50f1e085cdbcd4175adff8a36356820ba4c59722f16633efcef41e52cd81c7e0"
+    },
+    "if17": {
+      "if17-apb-s0-full-r1": "9da0e5fb206387a95e701464c2b63de2bd266c46ffba00c6f978a2c205794906",
+      "if17-apb-s0-grouped-r1": "a485fccc4be22c73d5d6422ebaf450133868eaf4eae05ae7c17de67e83a9ae70",
+      "if17-apb-s0-retained-r1": "fbcbf59bc0d72046033b0c9f962bf846187da7a5c469de6ff184799181652081",
+      "if17-apb-s0-replay-r1": "ecd1049f2643b39c795e24f88e589978525430aae956cf249ddca2a83929a682",
+      "if17-apb-s0-full-r2": "aae26f2221332650c525945d8a2473fd3839ec9d942b9616f6230a802ade3472",
+      "if17-apb-s0-grouped-r2": "e24d4383fa824a547f981de461731a19a67691b1792650bf75e6bac251ffa675",
+      "if17-apb-s0-retained-r2": "0b7db6cc9f4f74e821608c8afa1a77beb796e3c0d8b5a23ec504108951fcfc9c",
+      "if17-apb-s0-replay-r2": "da4122531f5ead07fd043e48d441a758e154b2f6d218014964995a2005a07528",
+      "if17-apb-s0-full-r3": "75fc485fb5990d0dd59f83d0dab52b917f231196671dc5bb599a231a3e1cd00d",
+      "if17-apb-s0-grouped-r3": "9b52d6f633f3b1da6fd5ee561451475b956b11fbbe6e0548546229086e64c86f",
+      "if17-apb-s0-retained-r3": "c4351773e58430d3b6eb86bb91511d496bfc2f3175698fce5cace119b117605f",
+      "if17-apb-s0-replay-r3": "c804e36d81d4138962cd3bf7d9df6bea80859b97628e4151a9d2920cb4af803a"
+    }
+  }
+}

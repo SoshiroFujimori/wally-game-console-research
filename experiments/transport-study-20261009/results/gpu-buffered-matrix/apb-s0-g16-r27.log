@@ -1,0 +1,21 @@
+Addressing configuration for axi_crossbar_addr instance TOP.RasterIX_IF.mainXBar.axi_crossbar_wr_inst.s_ifaces[0].addr_inst
+ 0 ( 0): 00000000 / 32 -- 00000000-ffffffff
+Addressing configuration for axi_crossbar_addr instance TOP.RasterIX_IF.mainXBar.axi_crossbar_wr_inst.s_ifaces[1].addr_inst
+ 0 ( 0): 00000000 / 32 -- 00000000-ffffffff
+Addressing configuration for axi_crossbar_addr instance TOP.RasterIX_IF.mainXBar.axi_crossbar_wr_inst.s_ifaces[2].addr_inst
+ 0 ( 0): 00000000 / 32 -- 00000000-ffffffff
+Addressing configuration for axi_crossbar_addr instance TOP.RasterIX_IF.mainXBar.axi_crossbar_wr_inst.s_ifaces[3].addr_inst
+ 0 ( 0): 00000000 / 32 -- 00000000-ffffffff
+Addressing configuration for axi_crossbar_addr instance TOP.RasterIX_IF.mainXBar.axi_crossbar_rd_inst.s_ifaces[0].addr_inst
+ 0 ( 0): 00000000 / 32 -- 00000000-ffffffff
+Addressing configuration for axi_crossbar_addr instance TOP.RasterIX_IF.mainXBar.axi_crossbar_rd_inst.s_ifaces[1].addr_inst
+ 0 ( 0): 00000000 / 32 -- 00000000-ffffffff
+Addressing configuration for axi_crossbar_addr instance TOP.RasterIX_IF.mainXBar.axi_crossbar_rd_inst.s_ifaces[2].addr_inst
+ 0 ( 0): 00000000 / 32 -- 00000000-ffffffff
+Addressing configuration for axi_crossbar_addr instance TOP.RasterIX_IF.mainXBar.axi_crossbar_rd_inst.s_ifaces[3].addr_inst
+ 0 ( 0): 00000000 / 32 -- 00000000-ffffffff
+GPU_FRAME mode=apb state=0 gap=16 seed=27 repeat=0 pixels=307200 mismatches=0 hash=16e1fedb cycles=1225985
+GPU_FRAME mode=apb state=0 gap=16 seed=27 repeat=1 pixels=307200 mismatches=0 hash=a2876a5b cycles=2332759
+GPU_FRAME mode=apb state=0 gap=16 seed=27 repeat=2 pixels=307200 mismatches=0 hash=bf7615db cycles=3438782
+GPU_FRAME mode=apb state=0 gap=16 seed=27 repeat=3 pixels=307200 mismatches=0 hash=4edf4f5b cycles=4545251
+GPU_FUNCTIONAL_PASS

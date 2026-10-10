@@ -1,0 +1,10 @@
+{
+  "observed_utc": "2026-10-09T02:15:17.275646+00:00",
+  "method": "OBS WebSocket source screenshot; no desktop input or screen capture",
+  "observation": "Receiver message: Video Format Not Supported",
+  "game_image_received": false,
+  "bitstream_sha256": "16173de97a91e711cd7bc5389acd9739807adebedf192efc29fe78f5b96c0acf",
+  "image_raw_sha256": "59d8a11dfe6f8af625f90d7295cd793eccc462da35506e6ef3db00e3e11b8297",
+  "image_public_sha256": "1f0df1f228d9214c6933443ab19209317c282c0e23b9d43158e5dabbc612f9b6",
+  "public_pixels_unchanged": true
+}

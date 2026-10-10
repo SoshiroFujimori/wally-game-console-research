@@ -1,0 +1,40 @@
+sha256sum /tmp/app /tmp/app-lto /tmp/app-if17 /tmp/texture; uname -a; cat /proc/cpuinfo; cat /proc/iomem; od -An -tu4 /proc/device-tree/cpus/cpu@0/clock-frequency; study_status=$?; printf "\nSTUDY_DONE_446ba3f0788a=%s\n" "$study_status"
+c94535280519a27f3fcf7979ac0bea5bd8081b7ea269abfb3d6701bed7529d57  /tmp/app
+8d7ee9ca0950b4148501a64652c3ac49055e9566c331f286f73b14d3848cda2b  /tmp/app-lto
+c7fd4e2301f937434ca50965cb663ca7f54a601999f2675bb09a9f8c29fd4f32  /tmp/app-if17
+13bb561d816d87c8ad66ae8d65d8f2f21ae0ab2c5294a0f3b2a65d61e260f28a  /tmp/texture
+Linux WallyHostname 6.19.14 #8 Tue Sep  8 13:29:00 JST 2026 riscv64 GNU/Linux for Wally
+processor	: 0
+hart		: 0
+isa		: rv64imafdc_zicbom_zicboz_zicntr_zicond_zicsr_zifencei_zihpm_zaamo_zalrsc_zfa_zfh_zca_zcb_zcd_zba_zbb_zbc_zbkb_zbkc_zbkx_zbs_zknd_zkne_zknh_zkt_sstc_svade_svinval_svnapot_svpbmt
+mmu		: sv48
+mvendorid	: 0x602
+marchid		: 0x24
+mimpid		: 0x100
+hart isa	: rv64imafdc_zicbom_zicboz_zicntr_zicond_zicsr_zifencei_zihpm_zaamo_zalrsc_zfa_zfh_zca_zcb_zcd_zba_zbb_zbc_zbkb_zbkc_zbkx_zbs_zknd_zkne_zknh_zkt_sstc_svade_svinval_svnapot_svpbmt
+
+00013000-00013fff : 13000.spi control
+10000000-100000ff : serial
+10060000-10060fff : 10060000.gpio control
+80000000-8004ffff : Reserved
+80050000-9dffffff : System RAM
+  80200000-80201fff : Reserved
+  80202000-810f0f67 : Kernel image
+    80202000-8050b025 : Kernel code
+    80c00000-80dfffff : Kernel rodata
+    81000000-810b23ff : Kernel data
+    810b3000-810f0f67 : Kernel bss
+  810f0f68-811fffff : Reserved
+  82200000-82200fff : Reserved
+  9d6ab000-9d72cfff : Reserved
+  9d72d000-9d7edfff : Reserved
+  9d7ee000-9d7f5fff : Reserved
+  9d7f7000-9d7f7fff : Reserved
+  9d7f8000-9dff7fff : Reserved
+  9dff8000-9dffafff : Reserved
+  9dffb000-9dffffff : Reserved
+9e000000-9fffffff : Reserved
+-sh: od: not found
+
+STUDY_DONE_446ba3f0788a=127
+# 

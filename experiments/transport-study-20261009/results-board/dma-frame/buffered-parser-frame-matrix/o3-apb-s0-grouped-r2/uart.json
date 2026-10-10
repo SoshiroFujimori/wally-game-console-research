@@ -1,0 +1,8 @@
+{
+  "started_utc": "2026-10-09T03:27:12.229468+00:00",
+  "elapsed_seconds": 24.584241708002082,
+  "bytes_received": 15997,
+  "command": "/tmp/app --transport apb --state-frame 0 --dma-minimum 64 --frames 180 --warmup 30 --wait spin --profile frame --csv /tmp/transport-frames.csv --grouped --dump /tmp/transport-frame.raw && printf \"CSV_BEGIN\\n\" && cat /tmp/transport-frames.csv && printf \"CSV_END\\n\"",
+  "command_exit": 0,
+  "login_sent": false
+}

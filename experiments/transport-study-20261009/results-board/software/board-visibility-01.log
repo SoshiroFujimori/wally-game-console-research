@@ -1,0 +1,12 @@
+/tmp/app --transport dma --visibility-only; study_status=$?; printf "\nSTUDY_DONE_006a811825a5=%s\n" "$study_status"
+TRANSPORT mode=dma dma_minimum=64
+VISIBILITY_PASS offset=0 bytes=65536 salt=12345678
+VISIBILITY_PASS offset=0 bytes=65536 salt=edcba987
+VISIBILITY_PASS offset=4032 bytes=65536 salt=12345678
+VISIBILITY_PASS offset=4032 bytes=65536 salt=edcba987
+VISIBILITY_PASS offset=12517376 bytes=65536 salt=12345678
+VISIBILITY_PASS offset=12517376 bytes=65536 salt=edcba987
+VISIBILITY_ALL_PASS
+
+STUDY_DONE_006a811825a5=0
+# 

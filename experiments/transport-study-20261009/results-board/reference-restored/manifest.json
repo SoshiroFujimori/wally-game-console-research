@@ -1,0 +1,286 @@
+{
+  "description": "Selected privacy-sanitized evidence; raw originals are preserved separately.",
+  "matrices": [],
+  "files": [
+    {
+      "path": "final-board-comparisons/reference-program/boot.json",
+      "text_transformations": [],
+      "raw_sha256": "800318d6c2a3e7972972785cd5ec715a5a4f67077eb1dbaa3c07a1c3f9234d43",
+      "public_sha256": "800318d6c2a3e7972972785cd5ec715a5a4f67077eb1dbaa3c07a1c3f9234d43"
+    },
+    {
+      "path": "final-board-comparisons/reference-program/boot.log",
+      "text_transformations": [
+        {
+          "nul_bytes_rendered_as_escape": 161
+        },
+        {
+          "crlf_sequences_normalized_to_lf": 244
+        }
+      ],
+      "raw_sha256": "192dbb946bbf3607fc49c6f1ec15fb7a7aa3cd6cde4959658bd378941b7b3d2c",
+      "public_sha256": "5579b4ae7919502333e47ca1aa59a5c935a59ea08b1eaeac9bf25693f9d47c7c"
+    },
+    {
+      "path": "final-board-comparisons/reference-program/listener.log",
+      "text_transformations": [
+        {
+          "nul_bytes_rendered_as_escape": 161
+        },
+        {
+          "crlf_sequences_normalized_to_lf": 244
+        }
+      ],
+      "raw_sha256": "f1f2175108600410a5d9f7f6a53c3d620e48382587914218f1d8c1838235b248",
+      "public_sha256": "2e39ad4ba443a0e6721f102b8085d5ef473fd98f9b87c3910a4919c3475ed5c0"
+    },
+    {
+      "path": "final-board-comparisons/reference-program/program.log",
+      "text_transformations": [],
+      "raw_sha256": "9206337d576ccaa2f8e7fd5247ff861ad45b38bddfdf3ef807a05c6b4cecb814",
+      "public_sha256": "1a57fd3d04b87e055b351da25b264bf3fd4b982bfa57bba77014cd7a4c3341c7"
+    },
+    {
+      "path": "final-board-comparisons/reference-program/result.json",
+      "text_transformations": [],
+      "raw_sha256": "ff44e96b35e6ecd76aca2cf98a3f01e8e30353d61360029f42736eae41ffd698",
+      "public_sha256": "9e1702cb57ee3e1ea7bcff35f0d1925419abfb9772d94ec724303c2d563a50d2"
+    },
+    {
+      "path": "final-board-comparisons/reference/apb-quad-runner.log",
+      "text_transformations": [
+        {
+          "crlf_sequences_normalized_to_lf": 43
+        }
+      ],
+      "raw_sha256": "53492ccd5bf4b1e5f65089abc7aa5f273efcfbf88818f6f06ab70506ee2591fb",
+      "public_sha256": "580e9d9d79f1623d0c2d87fed7cf92a9e2c9ef8ca88ca1d284b5e91c7a33427b"
+    },
+    {
+      "path": "final-board-comparisons/reference/apb-quad.json",
+      "text_transformations": [],
+      "raw_sha256": "f8b01bb04c41c35764d732082c6c1cc763d5d8d37cb0138902f0abbc421bb4c9",
+      "public_sha256": "f8b01bb04c41c35764d732082c6c1cc763d5d8d37cb0138902f0abbc421bb4c9"
+    },
+    {
+      "path": "final-board-comparisons/reference/apb-quad.log",
+      "text_transformations": [
+        {
+          "crlf_sequences_normalized_to_lf": 43
+        }
+      ],
+      "raw_sha256": "98a9b78be76e8591ec062567bc104a0982598d2ee153efdbbfe5026eba59ac31",
+      "public_sha256": "dbc964ccc626cd375007359faf868029e76ba8cbaa846b80ca9da5e7b5ad3a7a"
+    },
+    {
+      "path": "final-board-comparisons/reference/apb-quad.txt",
+      "text_transformations": [],
+      "raw_sha256": "9cfe960adbe1e36a765bbb9202686cafcab6567062d5719183acb49dbf0a6984",
+      "public_sha256": "9cfe960adbe1e36a765bbb9202686cafcab6567062d5719183acb49dbf0a6984"
+    },
+    {
+      "path": "final-board-comparisons/reference/apb-texture-r1-runner.log",
+      "text_transformations": [
+        {
+          "crlf_sequences_normalized_to_lf": 10
+        }
+      ],
+      "raw_sha256": "823216a0ea83a5fefc84a0c566d393d3b8a14ccdad3101ad81cb18066e9604ad",
+      "public_sha256": "e31e1a9c22e3c60738fc51c54cf4b530b5b72c8ba7c7d59b1a025a844c2374f0"
+    },
+    {
+      "path": "final-board-comparisons/reference/apb-texture-r1.json",
+      "text_transformations": [],
+      "raw_sha256": "53963d05ad7d54790f42fd55a4bbddd5a6011deadc04b3b0f1959765dd4af7e1",
+      "public_sha256": "53963d05ad7d54790f42fd55a4bbddd5a6011deadc04b3b0f1959765dd4af7e1"
+    },
+    {
+      "path": "final-board-comparisons/reference/apb-texture-r1.log",
+      "text_transformations": [
+        {
+          "crlf_sequences_normalized_to_lf": 10
+        }
+      ],
+      "raw_sha256": "c38ad56e0dcdb3c852d58072c9e7b146286843104d642e136087e8cabeba6fe5",
+      "public_sha256": "92c79ad4ece5a1d63f53b3f03ab99ee51d3a0dd5f47f5fe866eea31ee9487374"
+    },
+    {
+      "path": "final-board-comparisons/reference/apb-texture-r1.txt",
+      "text_transformations": [],
+      "raw_sha256": "d4194192ab08d022c1a66ad4733ce521ad0f2c3b3a322c87f8c7d744c8a6fc5e",
+      "public_sha256": "d4194192ab08d022c1a66ad4733ce521ad0f2c3b3a322c87f8c7d744c8a6fc5e"
+    },
+    {
+      "path": "final-board-comparisons/reference/apb-texture-r2-runner.log",
+      "text_transformations": [
+        {
+          "crlf_sequences_normalized_to_lf": 10
+        }
+      ],
+      "raw_sha256": "8bb840a192afcb7644925556541c63f69f2c9cff609a93b3bb200f52600b787e",
+      "public_sha256": "f6bf66a3802fa6900e821500cfc27a0a0170cbd9e7539ffa7dba2e9e0ece0587"
+    },
+    {
+      "path": "final-board-comparisons/reference/apb-texture-r2.json",
+      "text_transformations": [],
+      "raw_sha256": "51f0603ae0547e52f7202c50556549f6bd5be2d2a65c0cdb40f04ed312aed134",
+      "public_sha256": "51f0603ae0547e52f7202c50556549f6bd5be2d2a65c0cdb40f04ed312aed134"
+    },
+    {
+      "path": "final-board-comparisons/reference/apb-texture-r2.log",
+      "text_transformations": [
+        {
+          "crlf_sequences_normalized_to_lf": 10
+        }
+      ],
+      "raw_sha256": "6ae52bc18e1c4fde49393a33e5e06f1c4a8389897f212f35266404681fc50dea",
+      "public_sha256": "43759d3323ac993da03c0cb58e1d689a1d8ad744b602e8ea587541f0f257f4c5"
+    },
+    {
+      "path": "final-board-comparisons/reference/apb-texture-r2.txt",
+      "text_transformations": [],
+      "raw_sha256": "d4194192ab08d022c1a66ad4733ce521ad0f2c3b3a322c87f8c7d744c8a6fc5e",
+      "public_sha256": "d4194192ab08d022c1a66ad4733ce521ad0f2c3b3a322c87f8c7d744c8a6fc5e"
+    },
+    {
+      "path": "final-board-comparisons/reference/apb-texture-r3-runner.log",
+      "text_transformations": [
+        {
+          "crlf_sequences_normalized_to_lf": 10
+        }
+      ],
+      "raw_sha256": "3e7d58350cb9c1792358e91457d50d08fb1e94787067dbaad5bec6797b99f64d",
+      "public_sha256": "fb3bf14953ae5e7f67522391bb483ddc71d8bdf7012bfe389fa5f6aa7191b579"
+    },
+    {
+      "path": "final-board-comparisons/reference/apb-texture-r3.json",
+      "text_transformations": [],
+      "raw_sha256": "312d68539ad2bba3a2f481b472243f3356af23e5bc3072a713cbbfa41b014a14",
+      "public_sha256": "312d68539ad2bba3a2f481b472243f3356af23e5bc3072a713cbbfa41b014a14"
+    },
+    {
+      "path": "final-board-comparisons/reference/apb-texture-r3.log",
+      "text_transformations": [
+        {
+          "crlf_sequences_normalized_to_lf": 10
+        }
+      ],
+      "raw_sha256": "bd1a8187f0b1c0f3befa9c641432b80fef01f3eec17405283581c108090ee755",
+      "public_sha256": "fbee293068e28760c97a1035d931ee7513d8013f47955409b02f08e5afcab022"
+    },
+    {
+      "path": "final-board-comparisons/reference/apb-texture-r3.txt",
+      "text_transformations": [],
+      "raw_sha256": "d4194192ab08d022c1a66ad4733ce521ad0f2c3b3a322c87f8c7d744c8a6fc5e",
+      "public_sha256": "d4194192ab08d022c1a66ad4733ce521ad0f2c3b3a322c87f8c7d744c8a6fc5e"
+    },
+    {
+      "path": "final-board-comparisons/reference/apb-texture-r4-runner.log",
+      "text_transformations": [
+        {
+          "crlf_sequences_normalized_to_lf": 10
+        }
+      ],
+      "raw_sha256": "a020928f282990deae557abeb64f8da8fa8b4d86d9156c51a4cd4d9f309c8e4c",
+      "public_sha256": "b363e11164c0cb425cab1e1ef90327fe4279b8b38ebd9f64f7ce1b92dab9aa58"
+    },
+    {
+      "path": "final-board-comparisons/reference/apb-texture-r4.json",
+      "text_transformations": [],
+      "raw_sha256": "3e98f115d721c9ec99979df3c0b4dfed4afdf0a8f454ac5f5a5b3a173bbabf56",
+      "public_sha256": "3e98f115d721c9ec99979df3c0b4dfed4afdf0a8f454ac5f5a5b3a173bbabf56"
+    },
+    {
+      "path": "final-board-comparisons/reference/apb-texture-r4.log",
+      "text_transformations": [
+        {
+          "crlf_sequences_normalized_to_lf": 10
+        }
+      ],
+      "raw_sha256": "3d85874fed5da57769957ba849e421468b7d4023e3a1fae2b3f0284bdaeb22fc",
+      "public_sha256": "5fa85851becd7f79370faffc0f61f58b5c83dce2194b33a168d83eb7d8fed0bb"
+    },
+    {
+      "path": "final-board-comparisons/reference/apb-texture-r4.txt",
+      "text_transformations": [],
+      "raw_sha256": "d4194192ab08d022c1a66ad4733ce521ad0f2c3b3a322c87f8c7d744c8a6fc5e",
+      "public_sha256": "d4194192ab08d022c1a66ad4733ce521ad0f2c3b3a322c87f8c7d744c8a6fc5e"
+    },
+    {
+      "path": "final-board-comparisons/reference/apb-texture-r5-runner.log",
+      "text_transformations": [
+        {
+          "crlf_sequences_normalized_to_lf": 10
+        }
+      ],
+      "raw_sha256": "2180b2a47803656932ff21a5dcb19869a300d1385eace97626838c5f54359380",
+      "public_sha256": "a13f56c85f08a5482203737c04fefc05fb3827206767da1068a334bf412186df"
+    },
+    {
+      "path": "final-board-comparisons/reference/apb-texture-r5.json",
+      "text_transformations": [],
+      "raw_sha256": "41d3122836f074c45d120918cd97c9ab0b8fa37a6e68ca2099352cca4a574806",
+      "public_sha256": "41d3122836f074c45d120918cd97c9ab0b8fa37a6e68ca2099352cca4a574806"
+    },
+    {
+      "path": "final-board-comparisons/reference/apb-texture-r5.log",
+      "text_transformations": [
+        {
+          "crlf_sequences_normalized_to_lf": 10
+        }
+      ],
+      "raw_sha256": "347abf5bc15bfa536073d8438d5c2603f1c632f6faad197368361c1c5ac3aea0",
+      "public_sha256": "6648de84a7e3891b9685f315ae938872f7e62da903cb9f21e6a5e57f2bcf028e"
+    },
+    {
+      "path": "final-board-comparisons/reference/apb-texture-r5.txt",
+      "text_transformations": [],
+      "raw_sha256": "d4194192ab08d022c1a66ad4733ce521ad0f2c3b3a322c87f8c7d744c8a6fc5e",
+      "public_sha256": "d4194192ab08d022c1a66ad4733ce521ad0f2c3b3a322c87f8c7d744c8a6fc5e"
+    },
+    {
+      "path": "final-board-comparisons/reference/load-runner.log",
+      "text_transformations": [
+        {
+          "crlf_sequences_normalized_to_lf": 7
+        }
+      ],
+      "raw_sha256": "218a40f972092151962d512fe89569cc47dd7f0cecf23ba909068ee8759b2675",
+      "public_sha256": "cdb4ea18604dc5fc74951f81ce1a5d6ded7f881f4dd87db033938b0d2eb20ecd"
+    },
+    {
+      "path": "final-board-comparisons/reference/load.json",
+      "text_transformations": [],
+      "raw_sha256": "69e52e17763f12eed3d916269daed088df2e49aa7c861f81c38853276f460de9",
+      "public_sha256": "69e52e17763f12eed3d916269daed088df2e49aa7c861f81c38853276f460de9"
+    },
+    {
+      "path": "final-board-comparisons/reference/load.log",
+      "text_transformations": [
+        {
+          "crlf_sequences_normalized_to_lf": 7
+        }
+      ],
+      "raw_sha256": "e016a4638a7c643e8c96bcbae0d4d76ab82894a6fe9d4741ef37ca9cea7ee806",
+      "public_sha256": "41528acd9c8338f95f4aa69fdfd219a4ab98c877ee894ce8ff36429085bdb032"
+    },
+    {
+      "path": "final-board-comparisons/reference/load.txt",
+      "text_transformations": [],
+      "raw_sha256": "aebb43e16195ee1e01429ef83cb0011f8e92de1e748c2c2ea31c7a75d7e509e8",
+      "public_sha256": "aebb43e16195ee1e01429ef83cb0011f8e92de1e748c2c2ea31c7a75d7e509e8"
+    },
+    {
+      "path": "final-board-comparisons/reference/texture-results.json",
+      "text_transformations": [],
+      "raw_sha256": "33a1e9ce0e2d23d3257fb045deba908b97fbfafcb52be759cc9f9162e207a9e3",
+      "public_sha256": "33a1e9ce0e2d23d3257fb045deba908b97fbfafcb52be759cc9f9162e207a9e3"
+    },
+    {
+      "path": "final-board-comparisons/status.json",
+      "text_transformations": [],
+      "raw_sha256": "031a41d90bdb4b48d1624de7cdf2f7650d0f05d22545b2525854f81c43a9e85e",
+      "public_sha256": "031a41d90bdb4b48d1624de7cdf2f7650d0f05d22545b2525854f81c43a9e85e"
+    }
+  ]
+}

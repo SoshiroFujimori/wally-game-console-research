@@ -1,0 +1,8 @@
+{
+  "started_utc": "2026-10-09T04:04:27.448033+00:00",
+  "elapsed_seconds": 6.832071623000957,
+  "bytes_received": 395,
+  "command": "/tmp/texture 0 apb",
+  "command_exit": 0,
+  "login_sent": false
+}

@@ -1,0 +1,65 @@
+{
+  "utc": "2026-10-09T03:42:45.336706+00:00",
+  "status": "complete",
+  "completed": [
+    {
+      "case": "o3-apb-s0-full-r1",
+      "frames": 180,
+      "pixel_check": true
+    },
+    {
+      "case": "o3-dma-s0-full-r1",
+      "frames": 180,
+      "pixel_check": true
+    },
+    {
+      "case": "o3-dma-s0-full-r2",
+      "frames": 180,
+      "pixel_check": true
+    },
+    {
+      "case": "o3-apb-s0-full-r2",
+      "frames": 180,
+      "pixel_check": true
+    },
+    {
+      "case": "o3-apb-s0-full-r3",
+      "frames": 180,
+      "pixel_check": true
+    },
+    {
+      "case": "o3-dma-s0-full-r3",
+      "frames": 180,
+      "pixel_check": true
+    }
+  ],
+  "configuration": {
+    "variants": [
+      [
+        "o3-apb",
+        "/tmp/app",
+        "apb",
+        "64"
+      ],
+      [
+        "o3-dma",
+        "/tmp/app",
+        "dma",
+        "64"
+      ]
+    ],
+    "states": [
+      0
+    ],
+    "modes": [
+      "full"
+    ],
+    "frames": 180,
+    "warmup": 30,
+    "repeats": 3,
+    "profile": "detailed",
+    "pixel_every_repeat": true
+  },
+  "runner_sha256": "e115eb2cd49401eaa3e86fcf7be6f3c6a9d854ef12eea9bd995b25cf90d1fd79",
+  "uart_runner_sha256": "cd65378509e75293760eccb33a99dcfa02cf26b913009c39db5ac1ef176352e9"
+}

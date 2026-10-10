@@ -1,0 +1,798 @@
+{
+  "description": "Selected privacy-sanitized evidence; raw originals are preserved separately.",
+  "matrices": [],
+  "files": [
+    {
+      "path": "final-board-comparisons/buffered-only-program/boot.json",
+      "text_transformations": [],
+      "raw_sha256": "e5a09faeb375d41f8b71d032b787a0f1866915c1d92be3ef855498ca83c0987d",
+      "public_sha256": "e5a09faeb375d41f8b71d032b787a0f1866915c1d92be3ef855498ca83c0987d"
+    },
+    {
+      "path": "final-board-comparisons/buffered-only-program/boot.log",
+      "text_transformations": [
+        {
+          "nul_bytes_rendered_as_escape": 161
+        },
+        {
+          "crlf_sequences_normalized_to_lf": 244
+        }
+      ],
+      "raw_sha256": "f3f6e14b785b9e34b1906bc57a105206fe3b05b9b6b7cb41f0d73c443e1937fe",
+      "public_sha256": "dce1228bdbd4df3ce07696bc06a1c59df04a5ca23b2dbe544b02ba13143b5975"
+    },
+    {
+      "path": "final-board-comparisons/buffered-only-program/listener.log",
+      "text_transformations": [
+        {
+          "nul_bytes_rendered_as_escape": 161
+        },
+        {
+          "crlf_sequences_normalized_to_lf": 244
+        }
+      ],
+      "raw_sha256": "01dc85e18b11b2942783a59f68536d19ebff238d93805d3ee688c9cf527300b0",
+      "public_sha256": "69fbe02734daa58dd99b6af9d6aa88ec2284de9f534261544f44bfc81f9f0b36"
+    },
+    {
+      "path": "final-board-comparisons/buffered-only-program/program.log",
+      "text_transformations": [],
+      "raw_sha256": "59679e3d401bba1cf6ed5e469fb26bd7291472e3638686ab9e93ff940deb61ec",
+      "public_sha256": "c19841891cdfaf86d795523893f85c4def9b584db32c3f5c215b0c378a1753bb"
+    },
+    {
+      "path": "final-board-comparisons/buffered-only-program/result.json",
+      "text_transformations": [],
+      "raw_sha256": "d4b9b6cc29a59f3856a6cb73fb68025599e6d6739156f25d2e269505bca5eb0d",
+      "public_sha256": "373fa8211c1b8854fe1b796ddc927a1866b1176bcbef53fe4ddd40d366803da6"
+    },
+    {
+      "path": "final-board-comparisons/buffered-only/apb-quad-runner.log",
+      "text_transformations": [
+        {
+          "crlf_sequences_normalized_to_lf": 43
+        }
+      ],
+      "raw_sha256": "619f1af43f159414d26525e2b2b62ae44276038cc577228872589d37ba0f4a15",
+      "public_sha256": "886cec45573efa2f810e2b928e022e4ff1535883250ade80f8a45d49be9672d3"
+    },
+    {
+      "path": "final-board-comparisons/buffered-only/apb-quad.json",
+      "text_transformations": [],
+      "raw_sha256": "5829b1f8bb37b8186a6d69f31907f86c57c6c79413263a51a49ecb169d7c8b57",
+      "public_sha256": "5829b1f8bb37b8186a6d69f31907f86c57c6c79413263a51a49ecb169d7c8b57"
+    },
+    {
+      "path": "final-board-comparisons/buffered-only/apb-quad.log",
+      "text_transformations": [
+        {
+          "crlf_sequences_normalized_to_lf": 43
+        }
+      ],
+      "raw_sha256": "209966c01899929116e43e75d8e77c4e0926d7d1fa8130536a7966cf328a3d1e",
+      "public_sha256": "757eeeb67dfeae301038a28e7c32c6a408a221d6d747361c07e4c4fd474cce7d"
+    },
+    {
+      "path": "final-board-comparisons/buffered-only/apb-quad.txt",
+      "text_transformations": [],
+      "raw_sha256": "9cfe960adbe1e36a765bbb9202686cafcab6567062d5719183acb49dbf0a6984",
+      "public_sha256": "9cfe960adbe1e36a765bbb9202686cafcab6567062d5719183acb49dbf0a6984"
+    },
+    {
+      "path": "final-board-comparisons/buffered-only/apb-texture-r1-runner.log",
+      "text_transformations": [
+        {
+          "crlf_sequences_normalized_to_lf": 10
+        }
+      ],
+      "raw_sha256": "8fec035cf18e017a841cd7bf96c73423137fed4e80411d9a80df0e06937a765e",
+      "public_sha256": "3deb7b06e4ec836114ad9c065278b2c9dfcb7cf09ae72abb0b1b8bd5ccf42c40"
+    },
+    {
+      "path": "final-board-comparisons/buffered-only/apb-texture-r1.json",
+      "text_transformations": [],
+      "raw_sha256": "7c05afe06d38f4c0b2f20a0ed01c11376502e8e8ecc566f73906d9ad94c343d8",
+      "public_sha256": "7c05afe06d38f4c0b2f20a0ed01c11376502e8e8ecc566f73906d9ad94c343d8"
+    },
+    {
+      "path": "final-board-comparisons/buffered-only/apb-texture-r1.log",
+      "text_transformations": [
+        {
+          "crlf_sequences_normalized_to_lf": 10
+        }
+      ],
+      "raw_sha256": "db055c884b2090b786a32515630d7227085ccb39e9ad58ec0f3a2d2f7e436e25",
+      "public_sha256": "d792495d0c35650abfa5ee117e665bdb28a757091705d8fe45288df7a4686818"
+    },
+    {
+      "path": "final-board-comparisons/buffered-only/apb-texture-r1.txt",
+      "text_transformations": [],
+      "raw_sha256": "d4194192ab08d022c1a66ad4733ce521ad0f2c3b3a322c87f8c7d744c8a6fc5e",
+      "public_sha256": "d4194192ab08d022c1a66ad4733ce521ad0f2c3b3a322c87f8c7d744c8a6fc5e"
+    },
+    {
+      "path": "final-board-comparisons/buffered-only/apb-texture-r2-runner.log",
+      "text_transformations": [
+        {
+          "crlf_sequences_normalized_to_lf": 10
+        }
+      ],
+      "raw_sha256": "0a5c4e4bc6bade57dd810a9b169bb4ba6e8be1ab00007bf92f9ff3eb968eac2f",
+      "public_sha256": "3d64f410ac75143c0ba13cd271845b252a0e4378ed8c0445d7b5712d6853ea8c"
+    },
+    {
+      "path": "final-board-comparisons/buffered-only/apb-texture-r2.json",
+      "text_transformations": [],
+      "raw_sha256": "77a1c87f86a894dad8135f110b1e847642923d20eaeb84ba4029e552af44865a",
+      "public_sha256": "77a1c87f86a894dad8135f110b1e847642923d20eaeb84ba4029e552af44865a"
+    },
+    {
+      "path": "final-board-comparisons/buffered-only/apb-texture-r2.log",
+      "text_transformations": [
+        {
+          "crlf_sequences_normalized_to_lf": 10
+        }
+      ],
+      "raw_sha256": "c8652c53d0d0eb24e6c0fc3b603af72e360cbc55b3e30185aaf631da579eca8a",
+      "public_sha256": "e4f4c048ac471a59852173ad35de21e44c61bf4fd9daa9d4ebb8c8d3796c1ebc"
+    },
+    {
+      "path": "final-board-comparisons/buffered-only/apb-texture-r2.txt",
+      "text_transformations": [],
+      "raw_sha256": "d4194192ab08d022c1a66ad4733ce521ad0f2c3b3a322c87f8c7d744c8a6fc5e",
+      "public_sha256": "d4194192ab08d022c1a66ad4733ce521ad0f2c3b3a322c87f8c7d744c8a6fc5e"
+    },
+    {
+      "path": "final-board-comparisons/buffered-only/apb-texture-r3-runner.log",
+      "text_transformations": [
+        {
+          "crlf_sequences_normalized_to_lf": 10
+        }
+      ],
+      "raw_sha256": "616c249495692f8e729a9837626e36fad1d490167e07226377d44a51901c602d",
+      "public_sha256": "a62e223d2e606e39c30d2fd59686bd42afa58eeb9e1911523eeebf89dc9f16c5"
+    },
+    {
+      "path": "final-board-comparisons/buffered-only/apb-texture-r3.json",
+      "text_transformations": [],
+      "raw_sha256": "fa59399a0342c618e740962f72b33ccfedeacd5e9a182f2a54aeba413436dd56",
+      "public_sha256": "fa59399a0342c618e740962f72b33ccfedeacd5e9a182f2a54aeba413436dd56"
+    },
+    {
+      "path": "final-board-comparisons/buffered-only/apb-texture-r3.log",
+      "text_transformations": [
+        {
+          "crlf_sequences_normalized_to_lf": 10
+        }
+      ],
+      "raw_sha256": "87391d785e3f51bba4f7386e1724a477af9153fc8593c4479a87ce83842e5289",
+      "public_sha256": "768f70e84a5e3ece1006b72efc8d84268e6aca0e547ebb19348bb96e836e9cd6"
+    },
+    {
+      "path": "final-board-comparisons/buffered-only/apb-texture-r3.txt",
+      "text_transformations": [],
+      "raw_sha256": "d4194192ab08d022c1a66ad4733ce521ad0f2c3b3a322c87f8c7d744c8a6fc5e",
+      "public_sha256": "d4194192ab08d022c1a66ad4733ce521ad0f2c3b3a322c87f8c7d744c8a6fc5e"
+    },
+    {
+      "path": "final-board-comparisons/buffered-only/apb-texture-r4-runner.log",
+      "text_transformations": [
+        {
+          "crlf_sequences_normalized_to_lf": 10
+        }
+      ],
+      "raw_sha256": "4a6347b1c60d162e4703606c4dcb70c545629363f8cba5c236e77d90e54ed51f",
+      "public_sha256": "805404f333a69619928dedddd5a2000d810a28a1c079d3dc1aa377e1fdb6fb8d"
+    },
+    {
+      "path": "final-board-comparisons/buffered-only/apb-texture-r4.json",
+      "text_transformations": [],
+      "raw_sha256": "18f811c368549e75da6b842aa62afbae9936b8894b986061558907b236f390e6",
+      "public_sha256": "18f811c368549e75da6b842aa62afbae9936b8894b986061558907b236f390e6"
+    },
+    {
+      "path": "final-board-comparisons/buffered-only/apb-texture-r4.log",
+      "text_transformations": [
+        {
+          "crlf_sequences_normalized_to_lf": 10
+        }
+      ],
+      "raw_sha256": "19e1c1e5fd9826c53597c6756a203ce5b2485f0882db0daf40c1026cee69c3bf",
+      "public_sha256": "6f92226edefe3d94b4077c9baba49f8898ceab302c92937d3c76606034d6e934"
+    },
+    {
+      "path": "final-board-comparisons/buffered-only/apb-texture-r4.txt",
+      "text_transformations": [],
+      "raw_sha256": "d4194192ab08d022c1a66ad4733ce521ad0f2c3b3a322c87f8c7d744c8a6fc5e",
+      "public_sha256": "d4194192ab08d022c1a66ad4733ce521ad0f2c3b3a322c87f8c7d744c8a6fc5e"
+    },
+    {
+      "path": "final-board-comparisons/buffered-only/apb-texture-r5-runner.log",
+      "text_transformations": [
+        {
+          "crlf_sequences_normalized_to_lf": 10
+        }
+      ],
+      "raw_sha256": "f71c17355401406bbd0b421022f5744481c1df27e20faaa382918513bde6e149",
+      "public_sha256": "ebb9bf60be4290e731e6d3ff746f9b06c374752b3688d278f3bd193dc0ecdd5a"
+    },
+    {
+      "path": "final-board-comparisons/buffered-only/apb-texture-r5.json",
+      "text_transformations": [],
+      "raw_sha256": "3d8471cc466dd713d80527b7432d2473037cc9f1032d7ebaae80cf79d5f0cd3f",
+      "public_sha256": "3d8471cc466dd713d80527b7432d2473037cc9f1032d7ebaae80cf79d5f0cd3f"
+    },
+    {
+      "path": "final-board-comparisons/buffered-only/apb-texture-r5.log",
+      "text_transformations": [
+        {
+          "crlf_sequences_normalized_to_lf": 10
+        }
+      ],
+      "raw_sha256": "32c9542ac2a80b312f4d56b6ac977be2b70818af275ae1443b443d85aa2cd2a0",
+      "public_sha256": "32a5dc9495735809789301f94266e6adff9283cb7aa3162a44d9378e3c4cef2a"
+    },
+    {
+      "path": "final-board-comparisons/buffered-only/apb-texture-r5.txt",
+      "text_transformations": [],
+      "raw_sha256": "d4194192ab08d022c1a66ad4733ce521ad0f2c3b3a322c87f8c7d744c8a6fc5e",
+      "public_sha256": "d4194192ab08d022c1a66ad4733ce521ad0f2c3b3a322c87f8c7d744c8a6fc5e"
+    },
+    {
+      "path": "final-board-comparisons/buffered-only/dma-quad-runner.log",
+      "text_transformations": [
+        {
+          "crlf_sequences_normalized_to_lf": 43
+        }
+      ],
+      "raw_sha256": "9022e827e914898f0b88a3703ede6ff2e3a73cf63b054c076afbb9d3b7eb312e",
+      "public_sha256": "db4a2fa3eb8d670cc4ecb45445ff412d659ce8f254982837d80cae1f8e87be7c"
+    },
+    {
+      "path": "final-board-comparisons/buffered-only/dma-quad.json",
+      "text_transformations": [],
+      "raw_sha256": "d7553af84b689e95c211d866442d1ff7410d901cc0f90f10bb44957d4e8edfd7",
+      "public_sha256": "d7553af84b689e95c211d866442d1ff7410d901cc0f90f10bb44957d4e8edfd7"
+    },
+    {
+      "path": "final-board-comparisons/buffered-only/dma-quad.log",
+      "text_transformations": [
+        {
+          "crlf_sequences_normalized_to_lf": 43
+        }
+      ],
+      "raw_sha256": "7cc897e144cc76bca8b18ab49d982534768c7f5011070b8d066995df4cbb7d13",
+      "public_sha256": "f6452c1578ef6c615b3ce2da22ae7104190887a6fe87ff5378056f9a919aeb30"
+    },
+    {
+      "path": "final-board-comparisons/buffered-only/dma-quad.txt",
+      "text_transformations": [],
+      "raw_sha256": "2b85264280d7a8a8769b70cb5acea63bb757aa07faf73dbea999e74481ff5fac",
+      "public_sha256": "2b85264280d7a8a8769b70cb5acea63bb757aa07faf73dbea999e74481ff5fac"
+    },
+    {
+      "path": "final-board-comparisons/buffered-only/dma-texture-r1-runner.log",
+      "text_transformations": [
+        {
+          "crlf_sequences_normalized_to_lf": 34
+        }
+      ],
+      "raw_sha256": "db5494969235b3f6a1f90a3a2bca40da5f6a838f5a78110970fc5b3555326fc7",
+      "public_sha256": "8aaf39d71e205fba238298b61e273f3310211f3fb5a202a2cba2c23dbddb614d"
+    },
+    {
+      "path": "final-board-comparisons/buffered-only/dma-texture-r1.json",
+      "text_transformations": [],
+      "raw_sha256": "a822afb313056112a9aafcf9a41e2669913659fd4a1c9ddb53377daa0ea7df63",
+      "public_sha256": "a822afb313056112a9aafcf9a41e2669913659fd4a1c9ddb53377daa0ea7df63"
+    },
+    {
+      "path": "final-board-comparisons/buffered-only/dma-texture-r1.log",
+      "text_transformations": [
+        {
+          "crlf_sequences_normalized_to_lf": 34
+        }
+      ],
+      "raw_sha256": "b8e22a1889e5dc7403eb0c0605967e2496d0696f93c5ddebbe761c09ac5ebb49",
+      "public_sha256": "15b91c2bc145d87c0fcef81fe1d2a9694feaaaf4f7e1d03cbbf600cb4d2b8bd3"
+    },
+    {
+      "path": "final-board-comparisons/buffered-only/dma-texture-r1.txt",
+      "text_transformations": [],
+      "raw_sha256": "c8a6896e0283460f804b9651c6697be9a5ddcfee1160d257196e15f655e8f652",
+      "public_sha256": "c8a6896e0283460f804b9651c6697be9a5ddcfee1160d257196e15f655e8f652"
+    },
+    {
+      "path": "final-board-comparisons/buffered-only/dma-texture-r2-runner.log",
+      "text_transformations": [
+        {
+          "crlf_sequences_normalized_to_lf": 34
+        }
+      ],
+      "raw_sha256": "55757cbbec2c8480d41e53cbffe904644e0addd833a6c433dc0e83c6de03ede7",
+      "public_sha256": "f6280f173cc1ff11e3b1c5f6d649a7b567b82b0d6123773e9194398222007132"
+    },
+    {
+      "path": "final-board-comparisons/buffered-only/dma-texture-r2.json",
+      "text_transformations": [],
+      "raw_sha256": "c87942991938de849ed1ce497acd8c474490e6085cf71363cb5d99d4ecb0b8e8",
+      "public_sha256": "c87942991938de849ed1ce497acd8c474490e6085cf71363cb5d99d4ecb0b8e8"
+    },
+    {
+      "path": "final-board-comparisons/buffered-only/dma-texture-r2.log",
+      "text_transformations": [
+        {
+          "crlf_sequences_normalized_to_lf": 34
+        }
+      ],
+      "raw_sha256": "418b8ce679351f9bb1a0e09f48c014877fe2f09ad1929d46ad2a03b6aa82f2d0",
+      "public_sha256": "c87c213c7d831cd3a491337e2363f020f31aa4c34676a08380947abb22c79699"
+    },
+    {
+      "path": "final-board-comparisons/buffered-only/dma-texture-r2.txt",
+      "text_transformations": [],
+      "raw_sha256": "c8a6896e0283460f804b9651c6697be9a5ddcfee1160d257196e15f655e8f652",
+      "public_sha256": "c8a6896e0283460f804b9651c6697be9a5ddcfee1160d257196e15f655e8f652"
+    },
+    {
+      "path": "final-board-comparisons/buffered-only/dma-texture-r3-runner.log",
+      "text_transformations": [
+        {
+          "crlf_sequences_normalized_to_lf": 34
+        }
+      ],
+      "raw_sha256": "c2e228e699ba63024f8a277543e77e80e8e4ef35648924bdf590adedc8d3de76",
+      "public_sha256": "cfdf0089d5005de7dcb3f3b60340f64a31bce59e1c4b3e58c8299a0a04bce956"
+    },
+    {
+      "path": "final-board-comparisons/buffered-only/dma-texture-r3.json",
+      "text_transformations": [],
+      "raw_sha256": "d718912a8a5f6ca0877d23018c67b9530ffbd538da77784d0349a450512e15c2",
+      "public_sha256": "d718912a8a5f6ca0877d23018c67b9530ffbd538da77784d0349a450512e15c2"
+    },
+    {
+      "path": "final-board-comparisons/buffered-only/dma-texture-r3.log",
+      "text_transformations": [
+        {
+          "crlf_sequences_normalized_to_lf": 34
+        }
+      ],
+      "raw_sha256": "82909ae8786a3dbb23c4a2f3fdaa62ad586b0dba9ca9b190a19db29d2e453db3",
+      "public_sha256": "79d40d3fdf1dab45aab55c41553d3ba7cdc20f8f28c83c9ca1bcf3d86aebe5a9"
+    },
+    {
+      "path": "final-board-comparisons/buffered-only/dma-texture-r3.txt",
+      "text_transformations": [],
+      "raw_sha256": "c8a6896e0283460f804b9651c6697be9a5ddcfee1160d257196e15f655e8f652",
+      "public_sha256": "c8a6896e0283460f804b9651c6697be9a5ddcfee1160d257196e15f655e8f652"
+    },
+    {
+      "path": "final-board-comparisons/buffered-only/dma-texture-r4-runner.log",
+      "text_transformations": [
+        {
+          "crlf_sequences_normalized_to_lf": 34
+        }
+      ],
+      "raw_sha256": "c9622362f47b661acd110419aec017d394be4898344167a86f4a8fc45e119ac9",
+      "public_sha256": "f648d1b4844ae9f29a37acb41daa79a61f6316c3b9c4b7f2e6c461003fcc0c59"
+    },
+    {
+      "path": "final-board-comparisons/buffered-only/dma-texture-r4.json",
+      "text_transformations": [],
+      "raw_sha256": "6d38280684d9d242c2bfaf1f1da1fae0bc4f860993c7b64ec9ccd7c662323427",
+      "public_sha256": "6d38280684d9d242c2bfaf1f1da1fae0bc4f860993c7b64ec9ccd7c662323427"
+    },
+    {
+      "path": "final-board-comparisons/buffered-only/dma-texture-r4.log",
+      "text_transformations": [
+        {
+          "crlf_sequences_normalized_to_lf": 34
+        }
+      ],
+      "raw_sha256": "f1403499ad2942351973cd55542a59ad6749b42e327485609a001af72a870a08",
+      "public_sha256": "fe65571412ed93fdc24a34b90354276b28b90a4c35bfd8843f23f690757006e1"
+    },
+    {
+      "path": "final-board-comparisons/buffered-only/dma-texture-r4.txt",
+      "text_transformations": [],
+      "raw_sha256": "c8a6896e0283460f804b9651c6697be9a5ddcfee1160d257196e15f655e8f652",
+      "public_sha256": "c8a6896e0283460f804b9651c6697be9a5ddcfee1160d257196e15f655e8f652"
+    },
+    {
+      "path": "final-board-comparisons/buffered-only/dma-texture-r5-runner.log",
+      "text_transformations": [
+        {
+          "crlf_sequences_normalized_to_lf": 34
+        }
+      ],
+      "raw_sha256": "a50ca6328f321421795de92daa7768ea6a64eee87c5bab0f96ce5d45da2486d4",
+      "public_sha256": "b34188be45176041dbd3e62781f737fcd60d6c3d8377adf68d45e554b5f66559"
+    },
+    {
+      "path": "final-board-comparisons/buffered-only/dma-texture-r5.json",
+      "text_transformations": [],
+      "raw_sha256": "5bb81009173b133b8750387af615430bf2f2bb811917ef968ac9dbe54aa1f518",
+      "public_sha256": "5bb81009173b133b8750387af615430bf2f2bb811917ef968ac9dbe54aa1f518"
+    },
+    {
+      "path": "final-board-comparisons/buffered-only/dma-texture-r5.log",
+      "text_transformations": [
+        {
+          "crlf_sequences_normalized_to_lf": 34
+        }
+      ],
+      "raw_sha256": "08ffb1b7790e04b15debb81b8da0cf9bf9d15835f782fa2d3225bfc270dd0fac",
+      "public_sha256": "185fbdea423c89493a621bd192cf8bb7f8a14c8cb25ba2302c10455b5946baf2"
+    },
+    {
+      "path": "final-board-comparisons/buffered-only/dma-texture-r5.txt",
+      "text_transformations": [],
+      "raw_sha256": "c8a6896e0283460f804b9651c6697be9a5ddcfee1160d257196e15f655e8f652",
+      "public_sha256": "c8a6896e0283460f804b9651c6697be9a5ddcfee1160d257196e15f655e8f652"
+    },
+    {
+      "path": "final-board-comparisons/buffered-only/load-runner.log",
+      "text_transformations": [
+        {
+          "crlf_sequences_normalized_to_lf": 7
+        }
+      ],
+      "raw_sha256": "ffe086ad8db4af84f0039098752de44c55d6bff60b65b5fe35686d61900a8221",
+      "public_sha256": "e8bdf5b497a233517e43edde7acd56c18ad514b7c669995d4c793a13fa066b36"
+    },
+    {
+      "path": "final-board-comparisons/buffered-only/load.json",
+      "text_transformations": [],
+      "raw_sha256": "2fea5d83a13016c090c1ff1c739948bedddea46e37b126ec435e4b6c855bb5fc",
+      "public_sha256": "2fea5d83a13016c090c1ff1c739948bedddea46e37b126ec435e4b6c855bb5fc"
+    },
+    {
+      "path": "final-board-comparisons/buffered-only/load.log",
+      "text_transformations": [
+        {
+          "crlf_sequences_normalized_to_lf": 7
+        }
+      ],
+      "raw_sha256": "4d4487a9f60b2897578f48d06955bdecb3fb1a0586203fb174962f2d5b47c9e3",
+      "public_sha256": "3f1bd39c69ef39766454d59c84cfba4997a8e63531daab6da13cf68e1a7023f8"
+    },
+    {
+      "path": "final-board-comparisons/buffered-only/load.txt",
+      "text_transformations": [],
+      "raw_sha256": "aebb43e16195ee1e01429ef83cb0011f8e92de1e748c2c2ea31c7a75d7e509e8",
+      "public_sha256": "aebb43e16195ee1e01429ef83cb0011f8e92de1e748c2c2ea31c7a75d7e509e8"
+    },
+    {
+      "path": "final-board-comparisons/buffered-only/texture-results.json",
+      "text_transformations": [],
+      "raw_sha256": "ca42792e5ce32bbcb5146a0a22aae384aea054aea2167b3e2d497319b56375f1",
+      "public_sha256": "ca42792e5ce32bbcb5146a0a22aae384aea054aea2167b3e2d497319b56375f1"
+    },
+    {
+      "path": "final-board-comparisons/buffered-parser/apb-texture-r1-runner.log",
+      "text_transformations": [
+        {
+          "crlf_sequences_normalized_to_lf": 10
+        }
+      ],
+      "raw_sha256": "251c6f93f842ed523ba228f3c038a2ef632b94b370921ac4317a10ae68691800",
+      "public_sha256": "ce3c1845d9dd801d3edf8acd2bb0c8a18b153345f236dc44071c9b2c49ba9cbd"
+    },
+    {
+      "path": "final-board-comparisons/buffered-parser/apb-texture-r1.json",
+      "text_transformations": [],
+      "raw_sha256": "d2deb683ccda055bb623dd641c9f77eadb26559fc7acc976d8cadddba1d0ea3e",
+      "public_sha256": "d2deb683ccda055bb623dd641c9f77eadb26559fc7acc976d8cadddba1d0ea3e"
+    },
+    {
+      "path": "final-board-comparisons/buffered-parser/apb-texture-r1.log",
+      "text_transformations": [
+        {
+          "crlf_sequences_normalized_to_lf": 10
+        }
+      ],
+      "raw_sha256": "23f05da97a122fc7200cc8ba6f2d287c398b874c74b582fd43b48d6fee57d0ae",
+      "public_sha256": "10f658222005938af3139006168a3bbd41d8a0171f2010d5e604c4cbdf84f9bd"
+    },
+    {
+      "path": "final-board-comparisons/buffered-parser/apb-texture-r1.txt",
+      "text_transformations": [],
+      "raw_sha256": "d4194192ab08d022c1a66ad4733ce521ad0f2c3b3a322c87f8c7d744c8a6fc5e",
+      "public_sha256": "d4194192ab08d022c1a66ad4733ce521ad0f2c3b3a322c87f8c7d744c8a6fc5e"
+    },
+    {
+      "path": "final-board-comparisons/buffered-parser/apb-texture-r2-runner.log",
+      "text_transformations": [
+        {
+          "crlf_sequences_normalized_to_lf": 10
+        }
+      ],
+      "raw_sha256": "93c127ad9c50872a4f782aae04b1b1929fbd07f1690bd240ce391048645f2a6a",
+      "public_sha256": "365d2fc4d95d18c90b1fb8fa040923fa2c3da6617fafe391836bf3f1156a2b73"
+    },
+    {
+      "path": "final-board-comparisons/buffered-parser/apb-texture-r2.json",
+      "text_transformations": [],
+      "raw_sha256": "5b80bb37dd00da5bb7990b0bcf26c811ad36ed49d801ca5846d4c0ab7bc73d34",
+      "public_sha256": "5b80bb37dd00da5bb7990b0bcf26c811ad36ed49d801ca5846d4c0ab7bc73d34"
+    },
+    {
+      "path": "final-board-comparisons/buffered-parser/apb-texture-r2.log",
+      "text_transformations": [
+        {
+          "crlf_sequences_normalized_to_lf": 10
+        }
+      ],
+      "raw_sha256": "f0dbb5258bdd34c9b8e5ce3ee784ec0dd56d08893546e71ab6259bbf7c44065e",
+      "public_sha256": "390ed6c1f9a98365e8e357bb354129edac3075bec38617379a83b2378b8208dd"
+    },
+    {
+      "path": "final-board-comparisons/buffered-parser/apb-texture-r2.txt",
+      "text_transformations": [],
+      "raw_sha256": "d4194192ab08d022c1a66ad4733ce521ad0f2c3b3a322c87f8c7d744c8a6fc5e",
+      "public_sha256": "d4194192ab08d022c1a66ad4733ce521ad0f2c3b3a322c87f8c7d744c8a6fc5e"
+    },
+    {
+      "path": "final-board-comparisons/buffered-parser/apb-texture-r3-runner.log",
+      "text_transformations": [
+        {
+          "crlf_sequences_normalized_to_lf": 10
+        }
+      ],
+      "raw_sha256": "01ebb5a25658aed44cfe82714c14307b19fafb3e98643a9c32a4849fa11329ef",
+      "public_sha256": "9b2a3459dcbc481c352701aa77b93d1e9a9fc2b7049a14d9f0cf4c30ed89fcd9"
+    },
+    {
+      "path": "final-board-comparisons/buffered-parser/apb-texture-r3.json",
+      "text_transformations": [],
+      "raw_sha256": "d6d5589a0d5d93b62b75a03fd0af896eb23cd9c6336594a73704588313419503",
+      "public_sha256": "d6d5589a0d5d93b62b75a03fd0af896eb23cd9c6336594a73704588313419503"
+    },
+    {
+      "path": "final-board-comparisons/buffered-parser/apb-texture-r3.log",
+      "text_transformations": [
+        {
+          "crlf_sequences_normalized_to_lf": 10
+        }
+      ],
+      "raw_sha256": "988264df0b968a6a2292efcc85a8f82e014b4f64585c3f8edd4563d02547c591",
+      "public_sha256": "761e56aacffbc222b46ac08fa64b7a5c0ac3cef3a7c4238a0c8168d7c24cc7a9"
+    },
+    {
+      "path": "final-board-comparisons/buffered-parser/apb-texture-r3.txt",
+      "text_transformations": [],
+      "raw_sha256": "d4194192ab08d022c1a66ad4733ce521ad0f2c3b3a322c87f8c7d744c8a6fc5e",
+      "public_sha256": "d4194192ab08d022c1a66ad4733ce521ad0f2c3b3a322c87f8c7d744c8a6fc5e"
+    },
+    {
+      "path": "final-board-comparisons/buffered-parser/apb-texture-r4-runner.log",
+      "text_transformations": [
+        {
+          "crlf_sequences_normalized_to_lf": 10
+        }
+      ],
+      "raw_sha256": "19935eb284dad66c61317fa8a4f20846a63db8d5e6705c8b2da593b89f3fdb81",
+      "public_sha256": "a8ed058bc3425688561971e9c05b4f143d8d90f1fc7ec8b5d2a2bf1f27761ed1"
+    },
+    {
+      "path": "final-board-comparisons/buffered-parser/apb-texture-r4.json",
+      "text_transformations": [],
+      "raw_sha256": "dd2f39e3ffaf44e846f1cbf938886ed8b1344b6b7612882a71e11bc116bc41f5",
+      "public_sha256": "dd2f39e3ffaf44e846f1cbf938886ed8b1344b6b7612882a71e11bc116bc41f5"
+    },
+    {
+      "path": "final-board-comparisons/buffered-parser/apb-texture-r4.log",
+      "text_transformations": [
+        {
+          "crlf_sequences_normalized_to_lf": 10
+        }
+      ],
+      "raw_sha256": "b322d5710a83b233212a2797fa7f0097bef57d91bfd6bcf585f70bb00814a52e",
+      "public_sha256": "c062af403cabc69361bab3d8750f8858e92c0f4d757fdc3d0c25183638deb147"
+    },
+    {
+      "path": "final-board-comparisons/buffered-parser/apb-texture-r4.txt",
+      "text_transformations": [],
+      "raw_sha256": "d4194192ab08d022c1a66ad4733ce521ad0f2c3b3a322c87f8c7d744c8a6fc5e",
+      "public_sha256": "d4194192ab08d022c1a66ad4733ce521ad0f2c3b3a322c87f8c7d744c8a6fc5e"
+    },
+    {
+      "path": "final-board-comparisons/buffered-parser/apb-texture-r5-runner.log",
+      "text_transformations": [
+        {
+          "crlf_sequences_normalized_to_lf": 10
+        }
+      ],
+      "raw_sha256": "831bb90026f6d47daf69ee86ceabe4010f5f111573c87dbf781d8637b1abe841",
+      "public_sha256": "18cc1728c5c8a086939ea41515a721eeec489ef2760fbc8b6d45d68c460a0416"
+    },
+    {
+      "path": "final-board-comparisons/buffered-parser/apb-texture-r5.json",
+      "text_transformations": [],
+      "raw_sha256": "c6564df3598416bb3a9bbc87b2b4493eb0a862a737fe4942fbb497fba3ad51c2",
+      "public_sha256": "c6564df3598416bb3a9bbc87b2b4493eb0a862a737fe4942fbb497fba3ad51c2"
+    },
+    {
+      "path": "final-board-comparisons/buffered-parser/apb-texture-r5.log",
+      "text_transformations": [
+        {
+          "crlf_sequences_normalized_to_lf": 10
+        }
+      ],
+      "raw_sha256": "11ca35c4817b8059c0a965ae8673744bd2693f7c4148c7c6edb5c7252775039a",
+      "public_sha256": "200c45472690b890f508645747982e2fc0f55dc7c34d7bd3fe2739d3d8799593"
+    },
+    {
+      "path": "final-board-comparisons/buffered-parser/apb-texture-r5.txt",
+      "text_transformations": [],
+      "raw_sha256": "d4194192ab08d022c1a66ad4733ce521ad0f2c3b3a322c87f8c7d744c8a6fc5e",
+      "public_sha256": "d4194192ab08d022c1a66ad4733ce521ad0f2c3b3a322c87f8c7d744c8a6fc5e"
+    },
+    {
+      "path": "final-board-comparisons/buffered-parser/dma-texture-r1-runner.log",
+      "text_transformations": [
+        {
+          "crlf_sequences_normalized_to_lf": 10
+        }
+      ],
+      "raw_sha256": "d60d0d9a270b92ff2f404db4fa84954ffc95d90bfbbfa9830cfda908fe9bf6b0",
+      "public_sha256": "d5489aa82a790b3193dd860f5fc57661a78523e6408b9732d098750d8558f925"
+    },
+    {
+      "path": "final-board-comparisons/buffered-parser/dma-texture-r1.json",
+      "text_transformations": [],
+      "raw_sha256": "68849a6a5d1287ebe6ace3787df9478965c85d9d871d3c0baf5190e5bf8eadb7",
+      "public_sha256": "68849a6a5d1287ebe6ace3787df9478965c85d9d871d3c0baf5190e5bf8eadb7"
+    },
+    {
+      "path": "final-board-comparisons/buffered-parser/dma-texture-r1.log",
+      "text_transformations": [
+        {
+          "crlf_sequences_normalized_to_lf": 10
+        }
+      ],
+      "raw_sha256": "a9cce00e0ed0994cc6c0796d02be7ad9c701d682b2148ec219c380b51ad34e96",
+      "public_sha256": "69bdbd947eb9c604ae538a0d1fc603627648d31eb93b9e8b15878db26ccf91b6"
+    },
+    {
+      "path": "final-board-comparisons/buffered-parser/dma-texture-r1.txt",
+      "text_transformations": [],
+      "raw_sha256": "c8a6896e0283460f804b9651c6697be9a5ddcfee1160d257196e15f655e8f652",
+      "public_sha256": "c8a6896e0283460f804b9651c6697be9a5ddcfee1160d257196e15f655e8f652"
+    },
+    {
+      "path": "final-board-comparisons/buffered-parser/dma-texture-r2-runner.log",
+      "text_transformations": [
+        {
+          "crlf_sequences_normalized_to_lf": 10
+        }
+      ],
+      "raw_sha256": "df5cf0f88e68caffe2ba5803cdfed645888bdb7e5067fa14b91338d7394da350",
+      "public_sha256": "ec5757be00f35a10c7618d38b8375e65631e630b7aee3d326fc4617d33bd1571"
+    },
+    {
+      "path": "final-board-comparisons/buffered-parser/dma-texture-r2.json",
+      "text_transformations": [],
+      "raw_sha256": "6dd32758e2cbe9c002fe30b89ae7d745a9f14354de5e316ed81d73eee264264a",
+      "public_sha256": "6dd32758e2cbe9c002fe30b89ae7d745a9f14354de5e316ed81d73eee264264a"
+    },
+    {
+      "path": "final-board-comparisons/buffered-parser/dma-texture-r2.log",
+      "text_transformations": [
+        {
+          "crlf_sequences_normalized_to_lf": 10
+        }
+      ],
+      "raw_sha256": "2c5563cff37b7f38f2508b70d4c7af242d494cf6bddab7937577a664ad6cd8a9",
+      "public_sha256": "3331db4fba8e52830b0cdfabcc810cb780f24fc0305d343e8d79eadac6795d1b"
+    },
+    {
+      "path": "final-board-comparisons/buffered-parser/dma-texture-r2.txt",
+      "text_transformations": [],
+      "raw_sha256": "c8a6896e0283460f804b9651c6697be9a5ddcfee1160d257196e15f655e8f652",
+      "public_sha256": "c8a6896e0283460f804b9651c6697be9a5ddcfee1160d257196e15f655e8f652"
+    },
+    {
+      "path": "final-board-comparisons/buffered-parser/dma-texture-r3-runner.log",
+      "text_transformations": [
+        {
+          "crlf_sequences_normalized_to_lf": 10
+        }
+      ],
+      "raw_sha256": "d5ce314d74934fdf5adeedb5e3c4931bd2adbf513553eca702a086c02c4c2635",
+      "public_sha256": "d5237afcedba22f8d882f7e56c32432f82cbdd2cd1956948d1a81e7f587ce443"
+    },
+    {
+      "path": "final-board-comparisons/buffered-parser/dma-texture-r3.json",
+      "text_transformations": [],
+      "raw_sha256": "09623d542081b940217e20d0d4219865271543ab3ebaaaf75e3b5a9269f5def4",
+      "public_sha256": "09623d542081b940217e20d0d4219865271543ab3ebaaaf75e3b5a9269f5def4"
+    },
+    {
+      "path": "final-board-comparisons/buffered-parser/dma-texture-r3.log",
+      "text_transformations": [
+        {
+          "crlf_sequences_normalized_to_lf": 10
+        }
+      ],
+      "raw_sha256": "e681f29bfa8388662fef3390a21104c4bfa0f955f99021659be36df15281478f",
+      "public_sha256": "5687a1001e1be641b75757be2a02f8889378f1c8beb28362dc3d8240ea8d20f6"
+    },
+    {
+      "path": "final-board-comparisons/buffered-parser/dma-texture-r3.txt",
+      "text_transformations": [],
+      "raw_sha256": "c8a6896e0283460f804b9651c6697be9a5ddcfee1160d257196e15f655e8f652",
+      "public_sha256": "c8a6896e0283460f804b9651c6697be9a5ddcfee1160d257196e15f655e8f652"
+    },
+    {
+      "path": "final-board-comparisons/buffered-parser/dma-texture-r4-runner.log",
+      "text_transformations": [
+        {
+          "crlf_sequences_normalized_to_lf": 10
+        }
+      ],
+      "raw_sha256": "ccd98e0c7cf37a65bfc42ec4dc7e666a03234cbfeefa82068f88fda44986eebd",
+      "public_sha256": "2afbe76290e6831848039c84043bd892abe92a66473d84fd94981d539482a4b5"
+    },
+    {
+      "path": "final-board-comparisons/buffered-parser/dma-texture-r4.json",
+      "text_transformations": [],
+      "raw_sha256": "7f1c1afe2434f82393646a3093464a55b6a243c880fb1028b8fe5a69ebed4afe",
+      "public_sha256": "7f1c1afe2434f82393646a3093464a55b6a243c880fb1028b8fe5a69ebed4afe"
+    },
+    {
+      "path": "final-board-comparisons/buffered-parser/dma-texture-r4.log",
+      "text_transformations": [
+        {
+          "crlf_sequences_normalized_to_lf": 10
+        }
+      ],
+      "raw_sha256": "cc13a2fb9bbbb319d49c3897dd0cf4ce6e156367a88f2c1a450e6f4535f3b736",
+      "public_sha256": "ca3ef18022c99622c60ed88e7bbef0e7b76838cc3e362343c2704f83b734c081"
+    },
+    {
+      "path": "final-board-comparisons/buffered-parser/dma-texture-r4.txt",
+      "text_transformations": [],
+      "raw_sha256": "c8a6896e0283460f804b9651c6697be9a5ddcfee1160d257196e15f655e8f652",
+      "public_sha256": "c8a6896e0283460f804b9651c6697be9a5ddcfee1160d257196e15f655e8f652"
+    },
+    {
+      "path": "final-board-comparisons/buffered-parser/dma-texture-r5-runner.log",
+      "text_transformations": [
+        {
+          "crlf_sequences_normalized_to_lf": 10
+        }
+      ],
+      "raw_sha256": "e6c45603492be484fc3914d769b0a4591c0d71c5184843d525318bf4ef9d846c",
+      "public_sha256": "479933be9a713df174e8fc8862ff0b8d01de9296537cec473d73b963a3ad1c43"
+    },
+    {
+      "path": "final-board-comparisons/buffered-parser/dma-texture-r5.json",
+      "text_transformations": [],
+      "raw_sha256": "5b719766b2204dd5e48ae8f3360cb652468edf178ccb3507b4753e47242955dc",
+      "public_sha256": "5b719766b2204dd5e48ae8f3360cb652468edf178ccb3507b4753e47242955dc"
+    },
+    {
+      "path": "final-board-comparisons/buffered-parser/dma-texture-r5.log",
+      "text_transformations": [
+        {
+          "crlf_sequences_normalized_to_lf": 10
+        }
+      ],
+      "raw_sha256": "6233560b3c95aeef405dd63621936160a6c786a1730a2d1057bfad954862429d",
+      "public_sha256": "233862b7f496d306ded7b0e7883140538e8a200b77195d8ac05e931ac2c78e94"
+    },
+    {
+      "path": "final-board-comparisons/buffered-parser/dma-texture-r5.txt",
+      "text_transformations": [],
+      "raw_sha256": "c8a6896e0283460f804b9651c6697be9a5ddcfee1160d257196e15f655e8f652",
+      "public_sha256": "c8a6896e0283460f804b9651c6697be9a5ddcfee1160d257196e15f655e8f652"
+    },
+    {
+      "path": "final-board-comparisons/buffered-parser/texture-results.json",
+      "text_transformations": [],
+      "raw_sha256": "267905260866841d5434afa1594c5e1f88da9b1593a0bcef64614f105bbbe6cd",
+      "public_sha256": "267905260866841d5434afa1594c5e1f88da9b1593a0bcef64614f105bbbe6cd"
+    }
+  ]
+}

@@ -1,0 +1,92 @@
+{
+  "utc": "2026-10-09T03:51:54.967407+00:00",
+  "status": "complete",
+  "completed": [
+    {
+      "case": "if17-apb-s0-full-r1",
+      "frames": 180,
+      "pixel_check": true
+    },
+    {
+      "case": "if17-apb-s0-grouped-r1",
+      "frames": 180,
+      "pixel_check": true
+    },
+    {
+      "case": "if17-apb-s0-retained-r1",
+      "frames": 180,
+      "pixel_check": true
+    },
+    {
+      "case": "if17-apb-s0-replay-r1",
+      "frames": 180,
+      "pixel_check": true
+    },
+    {
+      "case": "if17-apb-s0-full-r2",
+      "frames": 180,
+      "pixel_check": true
+    },
+    {
+      "case": "if17-apb-s0-grouped-r2",
+      "frames": 180,
+      "pixel_check": true
+    },
+    {
+      "case": "if17-apb-s0-retained-r2",
+      "frames": 180,
+      "pixel_check": true
+    },
+    {
+      "case": "if17-apb-s0-replay-r2",
+      "frames": 180,
+      "pixel_check": true
+    },
+    {
+      "case": "if17-apb-s0-full-r3",
+      "frames": 180,
+      "pixel_check": true
+    },
+    {
+      "case": "if17-apb-s0-grouped-r3",
+      "frames": 180,
+      "pixel_check": true
+    },
+    {
+      "case": "if17-apb-s0-retained-r3",
+      "frames": 180,
+      "pixel_check": true
+    },
+    {
+      "case": "if17-apb-s0-replay-r3",
+      "frames": 180,
+      "pixel_check": true
+    }
+  ],
+  "configuration": {
+    "variants": [
+      [
+        "if17-apb",
+        "/tmp/app-if17",
+        "apb",
+        "64"
+      ]
+    ],
+    "states": [
+      0
+    ],
+    "modes": [
+      "full",
+      "grouped",
+      "retained",
+      "replay"
+    ],
+    "frames": 180,
+    "warmup": 30,
+    "repeats": 3,
+    "profile": "frame",
+    "pixel_every_repeat": true
+  },
+  "runner_sha256": "e115eb2cd49401eaa3e86fcf7be6f3c6a9d854ef12eea9bd995b25cf90d1fd79",
+  "uart_runner_sha256": "cd65378509e75293760eccb33a99dcfa02cf26b913009c39db5ac1ef176352e9"
+}

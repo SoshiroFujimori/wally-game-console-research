@@ -1,0 +1,11 @@
+/tmp/texture 0 dma; study_status=$?; printf "\nSTUDY_DONE_dc6736a63812=%s\n" "$study_status"
+TEXTURE_BEGIN size=32
+TEXTURE_CHECK size=32 pixels=307200 mismatches=0
+TEXTURE_BEGIN size=64
+TEXTURE_CHECK size=64 pixels=307200 mismatches=0
+TEXTURE_BEGIN size=256
+TEXTURE_CHECK size=256 pixels=307200 mismatches=0
+TEXTURE_PROBE_FINISHED failures=0 only=0 keep=1
+
+STUDY_DONE_dc6736a63812=0
+# 

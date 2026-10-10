@@ -1,0 +1,1 @@
+(set -e; mkdir -p /mnt/transport-card; mount -t ext4 -o ro /dev/mmcblk0p4 /mnt/transport-card; for name in app-if17; do gzip -dc /mnt/transport-card/transport-study-20261009/$name.gz > /tmp/$name; chmod +x /tmp/$name; sha256sum /tmp/$name; done)

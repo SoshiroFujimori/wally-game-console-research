@@ -1,0 +1,416 @@
+{
+  "utc": "2026-10-09T00:58:38.208691+00:00",
+  "binary_sha256": "f6998796dda4c776502a105459389d7e9e1cdd60cff65a1dcbcbbb4c6b879a34",
+  "scope": "Functional RTL model with UNITTEST RAM, synthetic DDR stalls and display acknowledgement. No Wally CPU, APB CDC, MIG, HDMI or FPGA timing is modeled. Glyphs in gpu-functional are quads; gpu-texture separately exercises textures.",
+  "cases": [
+    {
+      "case": "apb-s0-g0-r1",
+      "arguments": [
+        "apb",
+        "0",
+        "0",
+        "1"
+      ],
+      "exit": 0,
+      "checks": [
+        "GPU_FRAME mode=apb state=0 gap=0 seed=1 repeat=0 pixels=307200 mismatches=0 hash=16e1fedb cycles=572853",
+        "GPU_FRAME mode=apb state=0 gap=0 seed=1 repeat=1 pixels=307200 mismatches=0 hash=a2876a5b cycles=1038253",
+        "GPU_FRAME mode=apb state=0 gap=0 seed=1 repeat=2 pixels=307200 mismatches=0 hash=bf7615db cycles=1503563",
+        "GPU_FRAME mode=apb state=0 gap=0 seed=1 repeat=3 pixels=307200 mismatches=0 hash=4edf4f5b cycles=1968762",
+        "GPU_FUNCTIONAL_PASS"
+      ]
+    },
+    {
+      "case": "apb-s0-g0-r27",
+      "arguments": [
+        "apb",
+        "0",
+        "0",
+        "27"
+      ],
+      "exit": 0,
+      "checks": [
+        "GPU_FRAME mode=apb state=0 gap=0 seed=27 repeat=0 pixels=307200 mismatches=0 hash=16e1fedb cycles=572443",
+        "GPU_FRAME mode=apb state=0 gap=0 seed=27 repeat=1 pixels=307200 mismatches=0 hash=a2876a5b cycles=1037563",
+        "GPU_FRAME mode=apb state=0 gap=0 seed=27 repeat=2 pixels=307200 mismatches=0 hash=bf7615db cycles=1503314",
+        "GPU_FRAME mode=apb state=0 gap=0 seed=27 repeat=3 pixels=307200 mismatches=0 hash=4edf4f5b cycles=1968516",
+        "GPU_FUNCTIONAL_PASS"
+      ]
+    },
+    {
+      "case": "apb-s0-g16-r1",
+      "arguments": [
+        "apb",
+        "0",
+        "16",
+        "1"
+      ],
+      "exit": 0,
+      "checks": [
+        "GPU_FRAME mode=apb state=0 gap=16 seed=1 repeat=0 pixels=307200 mismatches=0 hash=16e1fedb cycles=1226328",
+        "GPU_FRAME mode=apb state=0 gap=16 seed=1 repeat=1 pixels=307200 mismatches=0 hash=a2876a5b cycles=2332534",
+        "GPU_FRAME mode=apb state=0 gap=16 seed=1 repeat=2 pixels=307200 mismatches=0 hash=bf7615db cycles=3438764",
+        "GPU_FRAME mode=apb state=0 gap=16 seed=1 repeat=3 pixels=307200 mismatches=0 hash=4edf4f5b cycles=4544895",
+        "GPU_FUNCTIONAL_PASS"
+      ]
+    },
+    {
+      "case": "apb-s0-g16-r27",
+      "arguments": [
+        "apb",
+        "0",
+        "16",
+        "27"
+      ],
+      "exit": 0,
+      "checks": [
+        "GPU_FRAME mode=apb state=0 gap=16 seed=27 repeat=0 pixels=307200 mismatches=0 hash=16e1fedb cycles=1225985",
+        "GPU_FRAME mode=apb state=0 gap=16 seed=27 repeat=1 pixels=307200 mismatches=0 hash=a2876a5b cycles=2332759",
+        "GPU_FRAME mode=apb state=0 gap=16 seed=27 repeat=2 pixels=307200 mismatches=0 hash=bf7615db cycles=3438782",
+        "GPU_FRAME mode=apb state=0 gap=16 seed=27 repeat=3 pixels=307200 mismatches=0 hash=4edf4f5b cycles=4545251",
+        "GPU_FUNCTIONAL_PASS"
+      ]
+    },
+    {
+      "case": "apb-s1800-g0-r1",
+      "arguments": [
+        "apb",
+        "1800",
+        "0",
+        "1"
+      ],
+      "exit": 0,
+      "checks": [
+        "GPU_FRAME mode=apb state=1800 gap=0 seed=1 repeat=0 pixels=307200 mismatches=0 hash=a25cae93 cycles=528478",
+        "GPU_FRAME mode=apb state=1800 gap=0 seed=1 repeat=1 pixels=307200 mismatches=0 hash=16b58153 cycles=949364",
+        "GPU_FRAME mode=apb state=1800 gap=0 seed=1 repeat=2 pixels=307200 mismatches=0 hash=e3872013 cycles=1369866",
+        "GPU_FRAME mode=apb state=1800 gap=0 seed=1 repeat=3 pixels=307200 mismatches=0 hash=ad53fad3 cycles=1790843",
+        "GPU_FUNCTIONAL_PASS"
+      ]
+    },
+    {
+      "case": "apb-s1800-g0-r27",
+      "arguments": [
+        "apb",
+        "1800",
+        "0",
+        "27"
+      ],
+      "exit": 0,
+      "checks": [
+        "GPU_FRAME mode=apb state=1800 gap=0 seed=27 repeat=0 pixels=307200 mismatches=0 hash=a25cae93 cycles=528428",
+        "GPU_FRAME mode=apb state=1800 gap=0 seed=27 repeat=1 pixels=307200 mismatches=0 hash=16b58153 cycles=949113",
+        "GPU_FRAME mode=apb state=1800 gap=0 seed=27 repeat=2 pixels=307200 mismatches=0 hash=e3872013 cycles=1369846",
+        "GPU_FRAME mode=apb state=1800 gap=0 seed=27 repeat=3 pixels=307200 mismatches=0 hash=ad53fad3 cycles=1790731",
+        "GPU_FUNCTIONAL_PASS"
+      ]
+    },
+    {
+      "case": "apb-s1800-g16-r1",
+      "arguments": [
+        "apb",
+        "1800",
+        "16",
+        "1"
+      ],
+      "exit": 0,
+      "checks": [
+        "GPU_FRAME mode=apb state=1800 gap=16 seed=1 repeat=0 pixels=307200 mismatches=0 hash=a25cae93 cycles=1072379",
+        "GPU_FRAME mode=apb state=1800 gap=16 seed=1 repeat=1 pixels=307200 mismatches=0 hash=16b58153 cycles=2025234",
+        "GPU_FRAME mode=apb state=1800 gap=16 seed=1 repeat=2 pixels=307200 mismatches=0 hash=e3872013 cycles=2976473",
+        "GPU_FRAME mode=apb state=1800 gap=16 seed=1 repeat=3 pixels=307200 mismatches=0 hash=ad53fad3 cycles=3927157",
+        "GPU_FUNCTIONAL_PASS"
+      ]
+    },
+    {
+      "case": "apb-s1800-g16-r27",
+      "arguments": [
+        "apb",
+        "1800",
+        "16",
+        "27"
+      ],
+      "exit": 0,
+      "checks": [
+        "GPU_FRAME mode=apb state=1800 gap=16 seed=27 repeat=0 pixels=307200 mismatches=0 hash=a25cae93 cycles=1072281",
+        "GPU_FRAME mode=apb state=1800 gap=16 seed=27 repeat=1 pixels=307200 mismatches=0 hash=16b58153 cycles=2025099",
+        "GPU_FRAME mode=apb state=1800 gap=16 seed=27 repeat=2 pixels=307200 mismatches=0 hash=e3872013 cycles=2976037",
+        "GPU_FRAME mode=apb state=1800 gap=16 seed=27 repeat=3 pixels=307200 mismatches=0 hash=ad53fad3 cycles=3927138",
+        "GPU_FUNCTIONAL_PASS"
+      ]
+    },
+    {
+      "case": "apb-s3600-g0-r1",
+      "arguments": [
+        "apb",
+        "3600",
+        "0",
+        "1"
+      ],
+      "exit": 0,
+      "checks": [
+        "GPU_FRAME mode=apb state=3600 gap=0 seed=1 repeat=0 pixels=307200 mismatches=0 hash=ff1fa27b cycles=501466",
+        "GPU_FRAME mode=apb state=3600 gap=0 seed=1 repeat=1 pixels=307200 mismatches=0 hash=2962b6fb cycles=895246",
+        "GPU_FRAME mode=apb state=3600 gap=0 seed=1 repeat=2 pixels=307200 mismatches=0 hash=83cba8c3 cycles=1287284",
+        "GPU_FRAME mode=apb state=3600 gap=0 seed=1 repeat=3 pixels=307200 mismatches=0 hash=10136843 cycles=1679140",
+        "GPU_FUNCTIONAL_PASS"
+      ]
+    },
+    {
+      "case": "apb-s3600-g0-r27",
+      "arguments": [
+        "apb",
+        "3600",
+        "0",
+        "27"
+      ],
+      "exit": 0,
+      "checks": [
+        "GPU_FRAME mode=apb state=3600 gap=0 seed=27 repeat=0 pixels=307200 mismatches=0 hash=ff1fa27b cycles=501432",
+        "GPU_FRAME mode=apb state=3600 gap=0 seed=27 repeat=1 pixels=307200 mismatches=0 hash=2962b6fb cycles=894822",
+        "GPU_FRAME mode=apb state=3600 gap=0 seed=27 repeat=2 pixels=307200 mismatches=0 hash=83cba8c3 cycles=1286870",
+        "GPU_FRAME mode=apb state=3600 gap=0 seed=27 repeat=3 pixels=307200 mismatches=0 hash=10136843 cycles=1679256",
+        "GPU_FUNCTIONAL_PASS"
+      ]
+    },
+    {
+      "case": "apb-s3600-g16-r1",
+      "arguments": [
+        "apb",
+        "3600",
+        "16",
+        "1"
+      ],
+      "exit": 0,
+      "checks": [
+        "GPU_FRAME mode=apb state=3600 gap=16 seed=1 repeat=0 pixels=307200 mismatches=0 hash=ff1fa27b cycles=1034977",
+        "GPU_FRAME mode=apb state=3600 gap=16 seed=1 repeat=1 pixels=307200 mismatches=0 hash=2962b6fb cycles=1950178",
+        "GPU_FRAME mode=apb state=3600 gap=16 seed=1 repeat=2 pixels=307200 mismatches=0 hash=83cba8c3 cycles=2861274",
+        "GPU_FRAME mode=apb state=3600 gap=16 seed=1 repeat=3 pixels=307200 mismatches=0 hash=10136843 cycles=3772157",
+        "GPU_FUNCTIONAL_PASS"
+      ]
+    },
+    {
+      "case": "apb-s3600-g16-r27",
+      "arguments": [
+        "apb",
+        "3600",
+        "16",
+        "27"
+      ],
+      "exit": 0,
+      "checks": [
+        "GPU_FRAME mode=apb state=3600 gap=16 seed=27 repeat=0 pixels=307200 mismatches=0 hash=ff1fa27b cycles=1034901",
+        "GPU_FRAME mode=apb state=3600 gap=16 seed=27 repeat=1 pixels=307200 mismatches=0 hash=2962b6fb cycles=1950434",
+        "GPU_FRAME mode=apb state=3600 gap=16 seed=27 repeat=2 pixels=307200 mismatches=0 hash=83cba8c3 cycles=2860719",
+        "GPU_FRAME mode=apb state=3600 gap=16 seed=27 repeat=3 pixels=307200 mismatches=0 hash=10136843 cycles=3770503",
+        "GPU_FUNCTIONAL_PASS"
+      ]
+    },
+    {
+      "case": "dma-s0-g0-r1",
+      "arguments": [
+        "dma",
+        "0",
+        "0",
+        "1"
+      ],
+      "exit": 0,
+      "checks": [
+        "GPU_FRAME mode=dma state=0 gap=0 seed=1 repeat=0 pixels=307200 mismatches=0 hash=16e1fedb cycles=573768",
+        "GPU_FRAME mode=dma state=0 gap=0 seed=1 repeat=1 pixels=307200 mismatches=0 hash=a2876a5b cycles=1039936",
+        "GPU_FRAME mode=dma state=0 gap=0 seed=1 repeat=2 pixels=307200 mismatches=0 hash=bf7615db cycles=1505958",
+        "GPU_FRAME mode=dma state=0 gap=0 seed=1 repeat=3 pixels=307200 mismatches=0 hash=4edf4f5b cycles=1971871",
+        "GPU_FUNCTIONAL_PASS"
+      ]
+    },
+    {
+      "case": "dma-s0-g0-r27",
+      "arguments": [
+        "dma",
+        "0",
+        "0",
+        "27"
+      ],
+      "exit": 0,
+      "checks": [
+        "GPU_FRAME mode=dma state=0 gap=0 seed=27 repeat=0 pixels=307200 mismatches=0 hash=16e1fedb cycles=573681",
+        "GPU_FRAME mode=dma state=0 gap=0 seed=27 repeat=1 pixels=307200 mismatches=0 hash=a2876a5b cycles=1039298",
+        "GPU_FRAME mode=dma state=0 gap=0 seed=27 repeat=2 pixels=307200 mismatches=0 hash=bf7615db cycles=1505308",
+        "GPU_FRAME mode=dma state=0 gap=0 seed=27 repeat=3 pixels=307200 mismatches=0 hash=4edf4f5b cycles=1970925",
+        "GPU_FUNCTIONAL_PASS"
+      ]
+    },
+    {
+      "case": "dma-s0-g16-r1",
+      "arguments": [
+        "dma",
+        "0",
+        "16",
+        "1"
+      ],
+      "exit": 0,
+      "checks": [
+        "GPU_FRAME mode=dma state=0 gap=16 seed=1 repeat=0 pixels=307200 mismatches=0 hash=16e1fedb cycles=574480",
+        "GPU_FRAME mode=dma state=0 gap=16 seed=1 repeat=1 pixels=307200 mismatches=0 hash=a2876a5b cycles=1040929",
+        "GPU_FRAME mode=dma state=0 gap=16 seed=1 repeat=2 pixels=307200 mismatches=0 hash=bf7615db cycles=1507327",
+        "GPU_FRAME mode=dma state=0 gap=16 seed=1 repeat=3 pixels=307200 mismatches=0 hash=4edf4f5b cycles=1973549",
+        "GPU_FUNCTIONAL_PASS"
+      ]
+    },
+    {
+      "case": "dma-s0-g16-r27",
+      "arguments": [
+        "dma",
+        "0",
+        "16",
+        "27"
+      ],
+      "exit": 0,
+      "checks": [
+        "GPU_FRAME mode=dma state=0 gap=16 seed=27 repeat=0 pixels=307200 mismatches=0 hash=16e1fedb cycles=574087",
+        "GPU_FRAME mode=dma state=0 gap=16 seed=27 repeat=1 pixels=307200 mismatches=0 hash=a2876a5b cycles=1040095",
+        "GPU_FRAME mode=dma state=0 gap=16 seed=27 repeat=2 pixels=307200 mismatches=0 hash=bf7615db cycles=1506477",
+        "GPU_FRAME mode=dma state=0 gap=16 seed=27 repeat=3 pixels=307200 mismatches=0 hash=4edf4f5b cycles=1972467",
+        "GPU_FUNCTIONAL_PASS"
+      ]
+    },
+    {
+      "case": "dma-s1800-g0-r1",
+      "arguments": [
+        "dma",
+        "1800",
+        "0",
+        "1"
+      ],
+      "exit": 0,
+      "checks": [
+        "GPU_FRAME mode=dma state=1800 gap=0 seed=1 repeat=0 pixels=307200 mismatches=0 hash=a25cae93 cycles=529597",
+        "GPU_FRAME mode=dma state=1800 gap=0 seed=1 repeat=1 pixels=307200 mismatches=0 hash=16b58153 cycles=950888",
+        "GPU_FRAME mode=dma state=1800 gap=0 seed=1 repeat=2 pixels=307200 mismatches=0 hash=e3872013 cycles=1371937",
+        "GPU_FRAME mode=dma state=1800 gap=0 seed=1 repeat=3 pixels=307200 mismatches=0 hash=ad53fad3 cycles=1792643",
+        "GPU_FUNCTIONAL_PASS"
+      ]
+    },
+    {
+      "case": "dma-s1800-g0-r27",
+      "arguments": [
+        "dma",
+        "1800",
+        "0",
+        "27"
+      ],
+      "exit": 0,
+      "checks": [
+        "GPU_FRAME mode=dma state=1800 gap=0 seed=27 repeat=0 pixels=307200 mismatches=0 hash=a25cae93 cycles=529164",
+        "GPU_FRAME mode=dma state=1800 gap=0 seed=27 repeat=1 pixels=307200 mismatches=0 hash=16b58153 cycles=950672",
+        "GPU_FRAME mode=dma state=1800 gap=0 seed=27 repeat=2 pixels=307200 mismatches=0 hash=e3872013 cycles=1372296",
+        "GPU_FRAME mode=dma state=1800 gap=0 seed=27 repeat=3 pixels=307200 mismatches=0 hash=ad53fad3 cycles=1793469",
+        "GPU_FUNCTIONAL_PASS"
+      ]
+    },
+    {
+      "case": "dma-s1800-g16-r1",
+      "arguments": [
+        "dma",
+        "1800",
+        "16",
+        "1"
+      ],
+      "exit": 0,
+      "checks": [
+        "GPU_FRAME mode=dma state=1800 gap=16 seed=1 repeat=0 pixels=307200 mismatches=0 hash=a25cae93 cycles=530251",
+        "GPU_FRAME mode=dma state=1800 gap=16 seed=1 repeat=1 pixels=307200 mismatches=0 hash=16b58153 cycles=951912",
+        "GPU_FRAME mode=dma state=1800 gap=16 seed=1 repeat=2 pixels=307200 mismatches=0 hash=e3872013 cycles=1373238",
+        "GPU_FRAME mode=dma state=1800 gap=16 seed=1 repeat=3 pixels=307200 mismatches=0 hash=ad53fad3 cycles=1794339",
+        "GPU_FUNCTIONAL_PASS"
+      ]
+    },
+    {
+      "case": "dma-s1800-g16-r27",
+      "arguments": [
+        "dma",
+        "1800",
+        "16",
+        "27"
+      ],
+      "exit": 0,
+      "checks": [
+        "GPU_FRAME mode=dma state=1800 gap=16 seed=27 repeat=0 pixels=307200 mismatches=0 hash=a25cae93 cycles=529849",
+        "GPU_FRAME mode=dma state=1800 gap=16 seed=27 repeat=1 pixels=307200 mismatches=0 hash=16b58153 cycles=951720",
+        "GPU_FRAME mode=dma state=1800 gap=16 seed=27 repeat=2 pixels=307200 mismatches=0 hash=e3872013 cycles=1373617",
+        "GPU_FRAME mode=dma state=1800 gap=16 seed=27 repeat=3 pixels=307200 mismatches=0 hash=ad53fad3 cycles=1795152",
+        "GPU_FUNCTIONAL_PASS"
+      ]
+    },
+    {
+      "case": "dma-s3600-g0-r1",
+      "arguments": [
+        "dma",
+        "3600",
+        "0",
+        "1"
+      ],
+      "exit": 0,
+      "checks": [
+        "GPU_FRAME mode=dma state=3600 gap=0 seed=1 repeat=0 pixels=307200 mismatches=0 hash=ff1fa27b cycles=502366",
+        "GPU_FRAME mode=dma state=3600 gap=0 seed=1 repeat=1 pixels=307200 mismatches=0 hash=2962b6fb cycles=896728",
+        "GPU_FRAME mode=dma state=3600 gap=0 seed=1 repeat=2 pixels=307200 mismatches=0 hash=83cba8c3 cycles=1288956",
+        "GPU_FRAME mode=dma state=3600 gap=0 seed=1 repeat=3 pixels=307200 mismatches=0 hash=10136843 cycles=1681637",
+        "GPU_FUNCTIONAL_PASS"
+      ]
+    },
+    {
+      "case": "dma-s3600-g0-r27",
+      "arguments": [
+        "dma",
+        "3600",
+        "0",
+        "27"
+      ],
+      "exit": 0,
+      "checks": [
+        "GPU_FRAME mode=dma state=3600 gap=0 seed=27 repeat=0 pixels=307200 mismatches=0 hash=ff1fa27b cycles=502439",
+        "GPU_FRAME mode=dma state=3600 gap=0 seed=27 repeat=1 pixels=307200 mismatches=0 hash=2962b6fb cycles=896539",
+        "GPU_FRAME mode=dma state=3600 gap=0 seed=27 repeat=2 pixels=307200 mismatches=0 hash=83cba8c3 cycles=1289574",
+        "GPU_FRAME mode=dma state=3600 gap=0 seed=27 repeat=3 pixels=307200 mismatches=0 hash=10136843 cycles=1681830",
+        "GPU_FUNCTIONAL_PASS"
+      ]
+    },
+    {
+      "case": "dma-s3600-g16-r1",
+      "arguments": [
+        "dma",
+        "3600",
+        "16",
+        "1"
+      ],
+      "exit": 0,
+      "checks": [
+        "GPU_FRAME mode=dma state=3600 gap=16 seed=1 repeat=0 pixels=307200 mismatches=0 hash=ff1fa27b cycles=502933",
+        "GPU_FRAME mode=dma state=3600 gap=16 seed=1 repeat=1 pixels=307200 mismatches=0 hash=2962b6fb cycles=897678",
+        "GPU_FRAME mode=dma state=3600 gap=16 seed=1 repeat=2 pixels=307200 mismatches=0 hash=83cba8c3 cycles=1290166",
+        "GPU_FRAME mode=dma state=3600 gap=16 seed=1 repeat=3 pixels=307200 mismatches=0 hash=10136843 cycles=1683122",
+        "GPU_FUNCTIONAL_PASS"
+      ]
+    },
+    {
+      "case": "dma-s3600-g16-r27",
+      "arguments": [
+        "dma",
+        "3600",
+        "16",
+        "27"
+      ],
+      "exit": 0,
+      "checks": [
+        "GPU_FRAME mode=dma state=3600 gap=16 seed=27 repeat=0 pixels=307200 mismatches=0 hash=ff1fa27b cycles=502872",
+        "GPU_FRAME mode=dma state=3600 gap=16 seed=27 repeat=1 pixels=307200 mismatches=0 hash=2962b6fb cycles=897210",
+        "GPU_FRAME mode=dma state=3600 gap=16 seed=27 repeat=2 pixels=307200 mismatches=0 hash=83cba8c3 cycles=1290475",
+        "GPU_FRAME mode=dma state=3600 gap=16 seed=27 repeat=3 pixels=307200 mismatches=0 hash=10136843 cycles=1683075",
+        "GPU_FUNCTIONAL_PASS"
+      ]
+    }
+  ],
+  "passed": true
+}

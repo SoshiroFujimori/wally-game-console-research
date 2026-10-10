@@ -1,0 +1,1 @@
+/tmp/app-lto --transport apb --state-frame 3600 --frames 180 --warmup 30 --wait spin --profile detailed --csv /tmp/transport-frames.csv && printf "CSV_BEGIN\n" && cat /tmp/transport-frames.csv && printf "CSV_END\n"

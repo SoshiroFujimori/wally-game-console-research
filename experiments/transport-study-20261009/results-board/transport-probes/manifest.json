@@ -1,0 +1,108 @@
+{
+  "description": "Selected privacy-sanitized evidence; raw originals are preserved separately.",
+  "matrices": [],
+  "files": [
+    {
+      "path": "baseline-dma-01.json",
+      "text_transformations": [],
+      "raw_sha256": "18f9fd933fad739f9b369b3fb1b6d68f35937cd880a53ed6c1128695e1e41648",
+      "public_sha256": "18f9fd933fad739f9b369b3fb1b6d68f35937cd880a53ed6c1128695e1e41648"
+    },
+    {
+      "path": "baseline-dma-01.log",
+      "text_transformations": [
+        {
+          "crlf_sequences_normalized_to_lf": 5
+        }
+      ],
+      "raw_sha256": "334c14815dc05fe83ddedb6c762ddb9c1a6b06148ceaf06afd7db36bf15f38a1",
+      "public_sha256": "b86fcd048b42f18d42dd6515abcade72bd9fcf3dc2bbee71829b0e84fe5e6846"
+    },
+    {
+      "path": "baseline-texture-01.json",
+      "text_transformations": [],
+      "raw_sha256": "104b74582cb10516835d8af498e56539f06078a1e560db7ccaf2fb1762fb19b5",
+      "public_sha256": "104b74582cb10516835d8af498e56539f06078a1e560db7ccaf2fb1762fb19b5"
+    },
+    {
+      "path": "baseline-texture-01.log",
+      "text_transformations": [
+        {
+          "crlf_sequences_normalized_to_lf": 10
+        }
+      ],
+      "raw_sha256": "9c77e8ca37e3b842bf8b2ca9d87e4bfe2abd4c86723d76e5f1ab3b83e2804314",
+      "public_sha256": "0cf250a4cee46efa87f515fe08dc6b362bc629415495158d3d1ad5c0f09d0f90"
+    },
+    {
+      "path": "buffered-parser-probes-01/apb-quad.json",
+      "text_transformations": [],
+      "raw_sha256": "5eae3b9b81890ee9ca955b3b12b94e8bd2e5fe858655049d5aac6a92acd81b1a",
+      "public_sha256": "5eae3b9b81890ee9ca955b3b12b94e8bd2e5fe858655049d5aac6a92acd81b1a"
+    },
+    {
+      "path": "buffered-parser-probes-01/apb-quad.log",
+      "text_transformations": [
+        {
+          "crlf_sequences_normalized_to_lf": 43
+        }
+      ],
+      "raw_sha256": "e23bee1b7198ea14ea7a63ca888ddfe749f3caf626f88954417c3e541395233b",
+      "public_sha256": "a8588fee332e1bd5d10229ab6fe1c2eb617e6704ef2815853eb97dba7f66094d"
+    },
+    {
+      "path": "buffered-parser-probes-01/apb-texture.json",
+      "text_transformations": [],
+      "raw_sha256": "1f5f8d66353099335a355e017462c701bb5df0d6b65f63d4f2dcd1f452a42cae",
+      "public_sha256": "1f5f8d66353099335a355e017462c701bb5df0d6b65f63d4f2dcd1f452a42cae"
+    },
+    {
+      "path": "buffered-parser-probes-01/apb-texture.log",
+      "text_transformations": [
+        {
+          "crlf_sequences_normalized_to_lf": 10
+        }
+      ],
+      "raw_sha256": "1c8c94bb1d9a6c1b5bba38d6baf01d831678e65f8a6cd6bcdb8188b883fa53a4",
+      "public_sha256": "6356ef9c248c87d915366d095071f6df36d7437b5e00456c635de127d4bbd8fd"
+    },
+    {
+      "path": "buffered-parser-probes-01/dma-quad.json",
+      "text_transformations": [],
+      "raw_sha256": "67772b28d8e87dc13a62181c481c68ede1be8db1dc1edc428ee6f21c9c4bc24b",
+      "public_sha256": "67772b28d8e87dc13a62181c481c68ede1be8db1dc1edc428ee6f21c9c4bc24b"
+    },
+    {
+      "path": "buffered-parser-probes-01/dma-quad.log",
+      "text_transformations": [
+        {
+          "crlf_sequences_normalized_to_lf": 43
+        }
+      ],
+      "raw_sha256": "b7af8dba275f13c9ed842f68bb39247ab9e8ccc3ba39c65283a5959443df6b66",
+      "public_sha256": "4d6a83d007b3d6d47a71f3370d820795442a1279c33e5307fdf3fded61881be5"
+    },
+    {
+      "path": "buffered-parser-probes-01/dma-texture.json",
+      "text_transformations": [],
+      "raw_sha256": "ebfbc40a1d2c5d380a925df2ed6e6d2782d6dc183e3d3f6741bb4d929e2e22fa",
+      "public_sha256": "ebfbc40a1d2c5d380a925df2ed6e6d2782d6dc183e3d3f6741bb4d929e2e22fa"
+    },
+    {
+      "path": "buffered-parser-probes-01/dma-texture.log",
+      "text_transformations": [
+        {
+          "crlf_sequences_normalized_to_lf": 10
+        }
+      ],
+      "raw_sha256": "2a529810efd80bb2c215b3a08fd3115380f8578a115729589342d0980ec0f465",
+      "public_sha256": "76ab4a4dd6e2c793a21cf205a8ab619a50df8dc2ab6d96ca4adab88b8c66eb6f"
+    },
+    {
+      "path": "buffered-parser-probes-01/status.json",
+      "text_transformations": [],
+      "raw_sha256": "e275e7872ed061bf20911a1e10efebf0d81e0886ae4c6e63e76e17a6c06cddfb",
+      "public_sha256": "e275e7872ed061bf20911a1e10efebf0d81e0886ae4c6e63e76e17a6c06cddfb"
+    }
+  ]
+}

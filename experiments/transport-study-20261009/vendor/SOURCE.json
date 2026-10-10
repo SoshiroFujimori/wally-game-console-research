@@ -1,0 +1,8 @@
+{
+  "repository": "https://github.com/alexforencich/verilog-axi.git",
+  "commit": "516bd5dadc3365b7f9e225d2af8fe0b8d804fe53",
+  "url": "https://raw.githubusercontent.com/alexforencich/verilog-axi/516bd5dadc3365b7f9e225d2af8fe0b8d804fe53/rtl/axi_fifo_rd.v",
+  "sha256": "ecdb21c322732e8e185c6a1408438565d6990f852a8f271b5442e878174a20aa",
+  "license": "MIT; notice retained in source",
+  "retrieved_utc": "2026-10-09T00:35:33.488206+00:00"
+}

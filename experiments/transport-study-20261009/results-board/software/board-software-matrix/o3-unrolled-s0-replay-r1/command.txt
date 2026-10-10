@@ -1,0 +1,1 @@
+/tmp/app --transport unrolled --state-frame 0 --frames 180 --warmup 30 --wait spin --profile detailed --csv /tmp/transport-frames.csv --replay --dump /tmp/transport-frame.raw && printf "CSV_BEGIN\n" && cat /tmp/transport-frames.csv && printf "CSV_END\n"

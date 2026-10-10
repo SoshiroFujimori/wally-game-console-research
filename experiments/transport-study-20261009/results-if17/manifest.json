@@ -1,0 +1,255 @@
+{
+  "description": "Selected, privacy-sanitized copies. Hashes distinguish raw originals from public copies. Public text uses LF line endings so Git does not change the recorded public hashes.",
+  "files": [
+    {
+      "path": "gpu-if17-matrix/result.json",
+      "raw_sha256": "f6ff9a2a2f5392e818d02dbd0f003bd9f2f468c1dad250f09ba1eec04cb643e3",
+      "public_sha256": "f6ff9a2a2f5392e818d02dbd0f003bd9f2f468c1dad250f09ba1eec04cb643e3"
+    },
+    {
+      "path": "gpu-if17-matrix/apb-s0-g0-r1.log",
+      "raw_sha256": "4292269dffd51ff8aa0b941d34c939a59c7d212df392391a3e67066168d9f328",
+      "public_sha256": "4292269dffd51ff8aa0b941d34c939a59c7d212df392391a3e67066168d9f328"
+    },
+    {
+      "path": "gpu-if17-matrix/apb-s0-g0-r27.log",
+      "raw_sha256": "3b60060da92de318e70e58a5ae9a2e67d0f52b0790ab049225498c12e385f042",
+      "public_sha256": "3b60060da92de318e70e58a5ae9a2e67d0f52b0790ab049225498c12e385f042"
+    },
+    {
+      "path": "gpu-if17-matrix/apb-s0-g16-r1.log",
+      "raw_sha256": "92c0d52f0f6fd991c1b5660a83d79c87ac1f2b97eed275a4941579a4ed9def63",
+      "public_sha256": "92c0d52f0f6fd991c1b5660a83d79c87ac1f2b97eed275a4941579a4ed9def63"
+    },
+    {
+      "path": "gpu-if17-matrix/apb-s0-g16-r27.log",
+      "raw_sha256": "050e2c90fdba470b17e4267b13cab8ea17099f952da296c89775eb3939b40e3a",
+      "public_sha256": "050e2c90fdba470b17e4267b13cab8ea17099f952da296c89775eb3939b40e3a"
+    },
+    {
+      "path": "gpu-if17-matrix/apb-s1800-g0-r1.log",
+      "raw_sha256": "a063721f701836d951b4895acdf9f06d6b457610c604f8e2ad42c8f1ecd218fa",
+      "public_sha256": "a063721f701836d951b4895acdf9f06d6b457610c604f8e2ad42c8f1ecd218fa"
+    },
+    {
+      "path": "gpu-if17-matrix/apb-s1800-g0-r27.log",
+      "raw_sha256": "d73dac545c5aa38b85aa64542e6d22a6dabdb25094a6c88470940260b5a2ff6e",
+      "public_sha256": "d73dac545c5aa38b85aa64542e6d22a6dabdb25094a6c88470940260b5a2ff6e"
+    },
+    {
+      "path": "gpu-if17-matrix/apb-s1800-g16-r1.log",
+      "raw_sha256": "8aa9916db0654d30381de48b15d4e8fb90a390c86c75083777b91109f2571c08",
+      "public_sha256": "8aa9916db0654d30381de48b15d4e8fb90a390c86c75083777b91109f2571c08"
+    },
+    {
+      "path": "gpu-if17-matrix/apb-s1800-g16-r27.log",
+      "raw_sha256": "8646ad2d8fe7b0531a879573853d317a82ec03d7b8721854642dc431812c7bf3",
+      "public_sha256": "8646ad2d8fe7b0531a879573853d317a82ec03d7b8721854642dc431812c7bf3"
+    },
+    {
+      "path": "gpu-if17-matrix/apb-s3600-g0-r1.log",
+      "raw_sha256": "d9ee7b9900d882caaed5ecccc3ad7aa233bd34b8e4c97a955815b63840b7361c",
+      "public_sha256": "d9ee7b9900d882caaed5ecccc3ad7aa233bd34b8e4c97a955815b63840b7361c"
+    },
+    {
+      "path": "gpu-if17-matrix/apb-s3600-g0-r27.log",
+      "raw_sha256": "7ec5bddfdccbf86a44d7c6e49d2f916888624de3412e98014ac541095727b2db",
+      "public_sha256": "7ec5bddfdccbf86a44d7c6e49d2f916888624de3412e98014ac541095727b2db"
+    },
+    {
+      "path": "gpu-if17-matrix/apb-s3600-g16-r1.log",
+      "raw_sha256": "05e2aae7d1efc6fd90ce3920baaa3bff1ef3d65680b6974d8ae8f0513c541a79",
+      "public_sha256": "05e2aae7d1efc6fd90ce3920baaa3bff1ef3d65680b6974d8ae8f0513c541a79"
+    },
+    {
+      "path": "gpu-if17-matrix/apb-s3600-g16-r27.log",
+      "raw_sha256": "d779ba1b8db72021121e459979e7800b59413a6d02e46ce9200c39c453ce4985",
+      "public_sha256": "d779ba1b8db72021121e459979e7800b59413a6d02e46ce9200c39c453ce4985"
+    },
+    {
+      "path": "gpu-if17-matrix/dma-s0-g0-r1.log",
+      "raw_sha256": "e0c006309566d921bec4adde5aa2d8400a767ac5aade653cc02a63440d5f5a5f",
+      "public_sha256": "e0c006309566d921bec4adde5aa2d8400a767ac5aade653cc02a63440d5f5a5f"
+    },
+    {
+      "path": "gpu-if17-matrix/dma-s0-g0-r27.log",
+      "raw_sha256": "e0c006309566d921bec4adde5aa2d8400a767ac5aade653cc02a63440d5f5a5f",
+      "public_sha256": "e0c006309566d921bec4adde5aa2d8400a767ac5aade653cc02a63440d5f5a5f"
+    },
+    {
+      "path": "gpu-if17-matrix/dma-s0-g16-r1.log",
+      "raw_sha256": "e0c006309566d921bec4adde5aa2d8400a767ac5aade653cc02a63440d5f5a5f",
+      "public_sha256": "e0c006309566d921bec4adde5aa2d8400a767ac5aade653cc02a63440d5f5a5f"
+    },
+    {
+      "path": "gpu-if17-matrix/dma-s0-g16-r27.log",
+      "raw_sha256": "e0c006309566d921bec4adde5aa2d8400a767ac5aade653cc02a63440d5f5a5f",
+      "public_sha256": "e0c006309566d921bec4adde5aa2d8400a767ac5aade653cc02a63440d5f5a5f"
+    },
+    {
+      "path": "gpu-if17-matrix/dma-s1800-g0-r1.log",
+      "raw_sha256": "5fdc461a22306d894638908f268896343d427e6a6ed9174d09d4eed442487f4d",
+      "public_sha256": "5fdc461a22306d894638908f268896343d427e6a6ed9174d09d4eed442487f4d"
+    },
+    {
+      "path": "gpu-if17-matrix/dma-s1800-g0-r27.log",
+      "raw_sha256": "5fdc461a22306d894638908f268896343d427e6a6ed9174d09d4eed442487f4d",
+      "public_sha256": "5fdc461a22306d894638908f268896343d427e6a6ed9174d09d4eed442487f4d"
+    },
+    {
+      "path": "gpu-if17-matrix/dma-s1800-g16-r1.log",
+      "raw_sha256": "5fdc461a22306d894638908f268896343d427e6a6ed9174d09d4eed442487f4d",
+      "public_sha256": "5fdc461a22306d894638908f268896343d427e6a6ed9174d09d4eed442487f4d"
+    },
+    {
+      "path": "gpu-if17-matrix/dma-s1800-g16-r27.log",
+      "raw_sha256": "5fdc461a22306d894638908f268896343d427e6a6ed9174d09d4eed442487f4d",
+      "public_sha256": "5fdc461a22306d894638908f268896343d427e6a6ed9174d09d4eed442487f4d"
+    },
+    {
+      "path": "gpu-if17-matrix/dma-s3600-g0-r1.log",
+      "raw_sha256": "45b6281036940947492d62535ebb42e0b393db6fda18d57c94f1f59e41c8c308",
+      "public_sha256": "45b6281036940947492d62535ebb42e0b393db6fda18d57c94f1f59e41c8c308"
+    },
+    {
+      "path": "gpu-if17-matrix/dma-s3600-g0-r27.log",
+      "raw_sha256": "45b6281036940947492d62535ebb42e0b393db6fda18d57c94f1f59e41c8c308",
+      "public_sha256": "45b6281036940947492d62535ebb42e0b393db6fda18d57c94f1f59e41c8c308"
+    },
+    {
+      "path": "gpu-if17-matrix/dma-s3600-g16-r1.log",
+      "raw_sha256": "45b6281036940947492d62535ebb42e0b393db6fda18d57c94f1f59e41c8c308",
+      "public_sha256": "45b6281036940947492d62535ebb42e0b393db6fda18d57c94f1f59e41c8c308"
+    },
+    {
+      "path": "gpu-if17-matrix/dma-s3600-g16-r27.log",
+      "raw_sha256": "45b6281036940947492d62535ebb42e0b393db6fda18d57c94f1f59e41c8c308",
+      "public_sha256": "45b6281036940947492d62535ebb42e0b393db6fda18d57c94f1f59e41c8c308"
+    },
+    {
+      "path": "gpu-if17-textures/result.json",
+      "raw_sha256": "f41f5bdcdbe825acf19ea603c9c3063b60c31840fc1afcc45abdd686a3c857f2",
+      "public_sha256": "f41f5bdcdbe825acf19ea603c9c3063b60c31840fc1afcc45abdd686a3c857f2"
+    },
+    {
+      "path": "gpu-if17-textures/apb-s32-g0-r1.log",
+      "raw_sha256": "94f8fd162390adc398c1065f939249391c52ca5821341fe9cc2f7e9cc2a2a9b9",
+      "public_sha256": "94f8fd162390adc398c1065f939249391c52ca5821341fe9cc2f7e9cc2a2a9b9"
+    },
+    {
+      "path": "gpu-if17-textures/apb-s32-g0-r27.log",
+      "raw_sha256": "94f8fd162390adc398c1065f939249391c52ca5821341fe9cc2f7e9cc2a2a9b9",
+      "public_sha256": "94f8fd162390adc398c1065f939249391c52ca5821341fe9cc2f7e9cc2a2a9b9"
+    },
+    {
+      "path": "gpu-if17-textures/apb-s32-g16-r1.log",
+      "raw_sha256": "94f8fd162390adc398c1065f939249391c52ca5821341fe9cc2f7e9cc2a2a9b9",
+      "public_sha256": "94f8fd162390adc398c1065f939249391c52ca5821341fe9cc2f7e9cc2a2a9b9"
+    },
+    {
+      "path": "gpu-if17-textures/apb-s32-g16-r27.log",
+      "raw_sha256": "94f8fd162390adc398c1065f939249391c52ca5821341fe9cc2f7e9cc2a2a9b9",
+      "public_sha256": "94f8fd162390adc398c1065f939249391c52ca5821341fe9cc2f7e9cc2a2a9b9"
+    },
+    {
+      "path": "gpu-if17-textures/apb-s64-g0-r1.log",
+      "raw_sha256": "6f901b38c5eaff90ce8de0b0f5f27d719246e2aad502e34f02d81695adaa95cd",
+      "public_sha256": "6f901b38c5eaff90ce8de0b0f5f27d719246e2aad502e34f02d81695adaa95cd"
+    },
+    {
+      "path": "gpu-if17-textures/apb-s64-g0-r27.log",
+      "raw_sha256": "6f901b38c5eaff90ce8de0b0f5f27d719246e2aad502e34f02d81695adaa95cd",
+      "public_sha256": "6f901b38c5eaff90ce8de0b0f5f27d719246e2aad502e34f02d81695adaa95cd"
+    },
+    {
+      "path": "gpu-if17-textures/apb-s64-g16-r1.log",
+      "raw_sha256": "c8ae0941c66affb9a88862f62c2eb54f821e7b19fbba1f4f900f6ad10fa3fe72",
+      "public_sha256": "c8ae0941c66affb9a88862f62c2eb54f821e7b19fbba1f4f900f6ad10fa3fe72"
+    },
+    {
+      "path": "gpu-if17-textures/apb-s64-g16-r27.log",
+      "raw_sha256": "c8ae0941c66affb9a88862f62c2eb54f821e7b19fbba1f4f900f6ad10fa3fe72",
+      "public_sha256": "c8ae0941c66affb9a88862f62c2eb54f821e7b19fbba1f4f900f6ad10fa3fe72"
+    },
+    {
+      "path": "gpu-if17-textures/apb-s256-g0-r1.log",
+      "raw_sha256": "048dd9db25a14709955e81d9d116f0d3428a4aba619354ca77e002ca32907028",
+      "public_sha256": "048dd9db25a14709955e81d9d116f0d3428a4aba619354ca77e002ca32907028"
+    },
+    {
+      "path": "gpu-if17-textures/apb-s256-g0-r27.log",
+      "raw_sha256": "048dd9db25a14709955e81d9d116f0d3428a4aba619354ca77e002ca32907028",
+      "public_sha256": "048dd9db25a14709955e81d9d116f0d3428a4aba619354ca77e002ca32907028"
+    },
+    {
+      "path": "gpu-if17-textures/apb-s256-g16-r1.log",
+      "raw_sha256": "3c23e62c62a5cd91a166facc2e341a021774288ff8f087aa15eacde201722537",
+      "public_sha256": "3c23e62c62a5cd91a166facc2e341a021774288ff8f087aa15eacde201722537"
+    },
+    {
+      "path": "gpu-if17-textures/apb-s256-g16-r27.log",
+      "raw_sha256": "3c23e62c62a5cd91a166facc2e341a021774288ff8f087aa15eacde201722537",
+      "public_sha256": "3c23e62c62a5cd91a166facc2e341a021774288ff8f087aa15eacde201722537"
+    },
+    {
+      "path": "gpu-if17-textures/dma-s32-g0-r1.log",
+      "raw_sha256": "5e221b7a661c16eeb8117b36f543a4a76e02af71de7c139e0eb6c644b8849be5",
+      "public_sha256": "5e221b7a661c16eeb8117b36f543a4a76e02af71de7c139e0eb6c644b8849be5"
+    },
+    {
+      "path": "gpu-if17-textures/dma-s32-g0-r27.log",
+      "raw_sha256": "5e221b7a661c16eeb8117b36f543a4a76e02af71de7c139e0eb6c644b8849be5",
+      "public_sha256": "5e221b7a661c16eeb8117b36f543a4a76e02af71de7c139e0eb6c644b8849be5"
+    },
+    {
+      "path": "gpu-if17-textures/dma-s32-g16-r1.log",
+      "raw_sha256": "5e221b7a661c16eeb8117b36f543a4a76e02af71de7c139e0eb6c644b8849be5",
+      "public_sha256": "5e221b7a661c16eeb8117b36f543a4a76e02af71de7c139e0eb6c644b8849be5"
+    },
+    {
+      "path": "gpu-if17-textures/dma-s32-g16-r27.log",
+      "raw_sha256": "5e221b7a661c16eeb8117b36f543a4a76e02af71de7c139e0eb6c644b8849be5",
+      "public_sha256": "5e221b7a661c16eeb8117b36f543a4a76e02af71de7c139e0eb6c644b8849be5"
+    },
+    {
+      "path": "gpu-if17-textures/dma-s64-g0-r1.log",
+      "raw_sha256": "83ea6c6abb95307bc1967eb6ea50077cd87fb559e0fdeccad8135c2aaa64d84b",
+      "public_sha256": "83ea6c6abb95307bc1967eb6ea50077cd87fb559e0fdeccad8135c2aaa64d84b"
+    },
+    {
+      "path": "gpu-if17-textures/dma-s64-g0-r27.log",
+      "raw_sha256": "83ea6c6abb95307bc1967eb6ea50077cd87fb559e0fdeccad8135c2aaa64d84b",
+      "public_sha256": "83ea6c6abb95307bc1967eb6ea50077cd87fb559e0fdeccad8135c2aaa64d84b"
+    },
+    {
+      "path": "gpu-if17-textures/dma-s64-g16-r1.log",
+      "raw_sha256": "83ea6c6abb95307bc1967eb6ea50077cd87fb559e0fdeccad8135c2aaa64d84b",
+      "public_sha256": "83ea6c6abb95307bc1967eb6ea50077cd87fb559e0fdeccad8135c2aaa64d84b"
+    },
+    {
+      "path": "gpu-if17-textures/dma-s64-g16-r27.log",
+      "raw_sha256": "83ea6c6abb95307bc1967eb6ea50077cd87fb559e0fdeccad8135c2aaa64d84b",
+      "public_sha256": "83ea6c6abb95307bc1967eb6ea50077cd87fb559e0fdeccad8135c2aaa64d84b"
+    },
+    {
+      "path": "gpu-if17-textures/dma-s256-g0-r1.log",
+      "raw_sha256": "b637d4eb51593ea0f564a2ae1109b877aa3837b4932aa86df72a606ecefad217",
+      "public_sha256": "b637d4eb51593ea0f564a2ae1109b877aa3837b4932aa86df72a606ecefad217"
+    },
+    {
+      "path": "gpu-if17-textures/dma-s256-g0-r27.log",
+      "raw_sha256": "b637d4eb51593ea0f564a2ae1109b877aa3837b4932aa86df72a606ecefad217",
+      "public_sha256": "b637d4eb51593ea0f564a2ae1109b877aa3837b4932aa86df72a606ecefad217"
+    },
+    {
+      "path": "gpu-if17-textures/dma-s256-g16-r1.log",
+      "raw_sha256": "b637d4eb51593ea0f564a2ae1109b877aa3837b4932aa86df72a606ecefad217",
+      "public_sha256": "b637d4eb51593ea0f564a2ae1109b877aa3837b4932aa86df72a606ecefad217"
+    },
+    {
+      "path": "gpu-if17-textures/dma-s256-g16-r27.log",
+      "raw_sha256": "b637d4eb51593ea0f564a2ae1109b877aa3837b4932aa86df72a606ecefad217",
+      "public_sha256": "b637d4eb51593ea0f564a2ae1109b877aa3837b4932aa86df72a606ecefad217"
+    }
+  ]
+}

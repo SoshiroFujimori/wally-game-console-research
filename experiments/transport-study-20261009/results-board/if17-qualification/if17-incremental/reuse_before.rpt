@@ -1,0 +1,165 @@
+Copyright 1986-2022 Xilinx, Inc. All Rights Reserved. Copyright 2022-2025 Advanced Micro Devices, Inc. All Rights Reserved.
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------
+| Tool Version : Vivado v.2025.2 (lin64) Build 6299465 Fri Nov 14 12:34:56 MST 2025
+| Date         : Fri Oct  9 12:01:59 2026
+| Host         : RESEARCH-HOST running 64-bit Ubuntu 24.04.4 LTS
+| Command      : report_incremental_reuse -file /home/researcher/projects/wally-game-console-research/build/transport-study-20261009/if17-incremental/reuse_before.rpt
+| Design       : fpgaTop
+| Device       : xc7a200t
+| Design State : Unknown
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+Incremental Implementation Information
+
+Table of Contents
+-----------------
+1. Incremental Flow Summary
+2. Reuse Summary
+3. Reference Checkpoint Information
+4. Comparison with Reference Run
+5. Optimization Comparison With Reference Run
+5.1 iphys_opt_replay Optimizations
+5.2 QoR Suggestion Optimizations
+6. Command Comparison with Reference Run
+6.1 Reference:
+6.2 Incremental:
+7. Non Reuse Information
+
+1. Incremental Flow Summary
+---------------------------
+
++-----------------------+------------------+
+|    Flow Information   |       Value      |
++-----------------------+------------------+
+| Synthesis Flow        |          Default |
+| Auto Incremental      |               No |
+| Incremental Directive | RuntimeOptimized |
+| Target WNS            |              0.0 |
+| QoR Suggestions       |                0 |
++-----------------------+------------------+
+
+
+2. Reuse Summary
+----------------
+
++-------+----------------------+----------------------------+--------------------+--------+
+|  Type | Matched % (of Total) | Current Reuse % (of Total) | Fixed % (of Total) |  Total |
++-------+----------------------+----------------------------+--------------------+--------+
+| Cells |                99.82 |                      99.81 |               0.14 | 141127 |
+| Nets  |                99.20 |                      98.41 |               0.00 | 113372 |
+| Pins  |                    - |                      97.41 |                  - | 628146 |
+| Ports |               100.00 |                     100.00 |             100.00 |     82 |
++-------+----------------------+----------------------------+--------------------+--------+
+
+
+3. Reference Checkpoint Information
+-----------------------------------
+
++----------------+--------------------------------------------------------------------------------------------------------------------------------------+
+| DCP Location:  | /path/to/research/experiments/fifo-study-20261008/fresh-product/fpga/generator/WallyFPGA.runs/impl_1/fpgaTop_postroute_physopt.dcp |
++----------------+--------------------------------------------------------------------------------------------------------------------------------------+
+
+
++--------------------------------+----------------------------+
+|         DCP Information        |            Value           |
++--------------------------------+----------------------------+
+| Vivado Version                 |                     2025.2 |
+| DCP State                      |                 POST_ROUTE |
+| Recorded WNS                   |                      0.018 |
+| Recorded WHS                   |                      0.014 |
+| Reference Speed File Version   | PRODUCTION 1.23 2018-06-13 |
+| Incremental Speed File Version | PRODUCTION 1.23 2018-06-13 |
++--------------------------------+----------------------------+
+* Recorded WNS/WHS timing numbers are estimated timing numbers. They may vary slightly from sign-off timing numbers.
+
+
+4. Comparison with Reference Run
+--------------------------------
+
++-----------------+---------------------------+---------------------------+---------------------------+
+|                 |          WNS(ns)          |  Runtime(elapsed)(hh:mm)  |    Runtime(cpu)(hh:mm)    |
++-----------------+-------------+-------------+-------------+-------------+-------------+-------------+
+|      Stage      |  Reference  | Incremental |  Reference  | Incremental |  Reference  | Incremental |
++-----------------+-------------+-------------+-------------+-------------+-------------+-------------+
+| synth_design    |             |             |       00:05 |       00:04 |       00:07 |       00:06 |
+| opt_design      |             |             |       00:02 |       00:01 |       00:02 |       00:02 |
+| read_checkpoint |             |             |             |       00:01 |             |       00:01 |
+| place_design    |      -0.456 |             |       00:07 |             |       00:15 |             |
+| phys_opt_design |       0.067 |             |     < 1 min |             |       00:03 |             |
+| route_design    |       0.018 |             |       00:27 |             |       00:57 |             |
+| phys_opt_design |       0.018 |             |     < 1 min |             |     < 1 min |             |
++-----------------+-------------+-------------+-------------+-------------+-------------+-------------+
+
+
+5. Optimization Comparison With Reference Run
+---------------------------------------------
+
+5.1 iphys_opt_replay Optimizations
+----------------------------------
+
++-------------------------+--------+------------+
+| iphys_opt_design replay | Reused | Not Reused |
++-------------------------+--------+------------+
+| hold_fix                |     55 |          0 |
+| fanout_opt              |      3 |          0 |
+| dsp_register_opt        |      2 |          0 |
++-------------------------+--------+------------+
+
+
+5.2 QoR Suggestion Optimizations
+--------------------------------
+
++-------------------------------------+-------+
+|           QoR Suggestions           | Value |
++-------------------------------------+-------+
+| QoR Suggestions (Recommended)       |     0 |
+|   Suggestions Included In Reference |     0 |
+|     Yet to apply                    |     0 |
+|     Applied                         |     0 |
+|     Failed to apply                 |     0 |
+|   New Suggestions (INCR_FRIENDLY=1) |     0 |
+|     Yet to apply                    |     0 |
+|     Applied                         |     0 |
+|     Failed to apply                 |     0 |
+| QoR Suggestions (Not Recommended)   |     0 |
+|   New Suggestions (INCR_FRIENDLY=0) |     0 |
+|     Yet to apply                    |     0 |
+|     Applied                         |     0 |
+|     Failed to apply                 |     0 |
+| Disabled New Suggestions            |     0 |
++-------------------------------------+-------+
+
+
+6. Command Comparison with Reference Run
+----------------------------------------
+
+6.1 Reference:
+--------------
+synth_design-global_retiming on -define default::[not_specified] -verilog_define default::[not_specified] -vhdl_define default::[not_specified] -top  fpgaTop -part  xc7a200tsbg484-1 
+opt_design
+place_design -directive WLDrivenBlockPlacement
+phys_opt_design -directive AggressiveExplore
+route_design -directive Explore
+phys_opt_design -directive AggressiveExplore
+
+6.2 Incremental:
+----------------
+synth_design-global_retiming on -define default::[not_specified] -verilog_define default::[not_specified] -vhdl_define default::[not_specified] -top  fpgaTop -part  xc7a200tsbg484-1 
+opt_design
+read_checkpoint -directive RuntimeOptimized  -incremental /path/to/research/experiments/fifo-study-20261008/fresh-product/fpga/generator/WallyFPGA.runs/impl_1/fpgaTop_postroute_physopt.dcp
+
+7. Non Reuse Information
+------------------------
+
++------------------------------------------------------+------+
+|                         Type                         |   %  |
++------------------------------------------------------+------+
+| Non-Reused Cells                                     | 0.18 |
+|   New                                                | 0.14 |
+|   Discarded illegal placement due to netlist changes | 0.03 |
+| Partially reused nets                                | 0.23 |
+| Non-Reused nets                                      | 1.35 |
+| Non-Reused Ports                                     | 0.00 |
++------------------------------------------------------+------+
+
+

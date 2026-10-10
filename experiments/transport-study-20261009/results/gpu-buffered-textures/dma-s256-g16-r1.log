@@ -1,0 +1,31 @@
+Addressing configuration for axi_crossbar_addr instance TOP.RasterIX_IF.mainXBar.axi_crossbar_wr_inst.s_ifaces[0].addr_inst
+ 0 ( 0): 00000000 / 32 -- 00000000-ffffffff
+Addressing configuration for axi_crossbar_addr instance TOP.RasterIX_IF.mainXBar.axi_crossbar_wr_inst.s_ifaces[1].addr_inst
+ 0 ( 0): 00000000 / 32 -- 00000000-ffffffff
+Addressing configuration for axi_crossbar_addr instance TOP.RasterIX_IF.mainXBar.axi_crossbar_wr_inst.s_ifaces[2].addr_inst
+ 0 ( 0): 00000000 / 32 -- 00000000-ffffffff
+Addressing configuration for axi_crossbar_addr instance TOP.RasterIX_IF.mainXBar.axi_crossbar_wr_inst.s_ifaces[3].addr_inst
+ 0 ( 0): 00000000 / 32 -- 00000000-ffffffff
+Addressing configuration for axi_crossbar_addr instance TOP.RasterIX_IF.mainXBar.axi_crossbar_rd_inst.s_ifaces[0].addr_inst
+ 0 ( 0): 00000000 / 32 -- 00000000-ffffffff
+Addressing configuration for axi_crossbar_addr instance TOP.RasterIX_IF.mainXBar.axi_crossbar_rd_inst.s_ifaces[1].addr_inst
+ 0 ( 0): 00000000 / 32 -- 00000000-ffffffff
+Addressing configuration for axi_crossbar_addr instance TOP.RasterIX_IF.mainXBar.axi_crossbar_rd_inst.s_ifaces[2].addr_inst
+ 0 ( 0): 00000000 / 32 -- 00000000-ffffffff
+Addressing configuration for axi_crossbar_addr instance TOP.RasterIX_IF.mainXBar.axi_crossbar_rd_inst.s_ifaces[3].addr_inst
+ 0 ( 0): 00000000 / 32 -- 00000000-ffffffff
+TEXTURE_BEGIN size=256
+TEXTURE_DIFF x=192 y=128 actual=ffe0 expected=ffff
+TEXTURE_DIFF x=193 y=128 actual=ffe0 expected=ffff
+TEXTURE_DIFF x=194 y=128 actual=ffe0 expected=ffff
+TEXTURE_DIFF x=195 y=128 actual=ffe0 expected=ffff
+TEXTURE_DIFF x=196 y=128 actual=ffe0 expected=ffff
+TEXTURE_DIFF x=197 y=128 actual=ffe0 expected=ffff
+TEXTURE_DIFF x=198 y=128 actual=ffe0 expected=ffff
+TEXTURE_DIFF x=199 y=128 actual=ffe0 expected=ffff
+TEXTURE_DIFF x=200 y=128 actual=f81f expected=0000
+TEXTURE_DIFF x=201 y=128 actual=f81f expected=0000
+TEXTURE_DIFF x=202 y=128 actual=f81f expected=0000
+TEXTURE_DIFF x=203 y=128 actual=f81f expected=0000
+TEXTURE_CHECK size=256 pixels=307200 mismatches=30720
+TEXTURE_PROBE_FINISHED failures=1 only=256 keep=1

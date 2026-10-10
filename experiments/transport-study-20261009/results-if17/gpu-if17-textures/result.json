@@ -1,0 +1,344 @@
+{
+  "utc": "2026-10-09T02:04:30.291408+00:00",
+  "binary_sha256": "50b157657207db5b722d763dcbc509c43ccbcbb91df58dbcf0601bf901011141",
+  "scope": "Functional RTL model with UNITTEST RAM, synthetic DDR stalls and display acknowledgement. No Wally CPU, APB CDC, MIG, HDMI or FPGA timing is modeled. Glyphs in gpu-functional are quads; gpu-texture separately exercises textures.",
+  "cases": [
+    {
+      "case": "apb-s32-g0-r1",
+      "arguments": [
+        "32",
+        "apb",
+        "0",
+        "1"
+      ],
+      "exit": 0,
+      "checks": [
+        "TEXTURE_CHECK size=32 pixels=307200 mismatches=0",
+        "TEXTURE_PROBE_FINISHED failures=0 only=32 keep=1"
+      ]
+    },
+    {
+      "case": "apb-s32-g0-r27",
+      "arguments": [
+        "32",
+        "apb",
+        "0",
+        "27"
+      ],
+      "exit": 0,
+      "checks": [
+        "TEXTURE_CHECK size=32 pixels=307200 mismatches=0",
+        "TEXTURE_PROBE_FINISHED failures=0 only=32 keep=1"
+      ]
+    },
+    {
+      "case": "apb-s32-g16-r1",
+      "arguments": [
+        "32",
+        "apb",
+        "16",
+        "1"
+      ],
+      "exit": 0,
+      "checks": [
+        "TEXTURE_CHECK size=32 pixels=307200 mismatches=0",
+        "TEXTURE_PROBE_FINISHED failures=0 only=32 keep=1"
+      ]
+    },
+    {
+      "case": "apb-s32-g16-r27",
+      "arguments": [
+        "32",
+        "apb",
+        "16",
+        "27"
+      ],
+      "exit": 0,
+      "checks": [
+        "TEXTURE_CHECK size=32 pixels=307200 mismatches=0",
+        "TEXTURE_PROBE_FINISHED failures=0 only=32 keep=1"
+      ]
+    },
+    {
+      "case": "apb-s64-g0-r1",
+      "arguments": [
+        "64",
+        "apb",
+        "0",
+        "1"
+      ],
+      "exit": 0,
+      "checks": [
+        "TEXTURE_CHECK size=64 pixels=307200 mismatches=0",
+        "TEXTURE_PROBE_FINISHED failures=0 only=64 keep=1"
+      ]
+    },
+    {
+      "case": "apb-s64-g0-r27",
+      "arguments": [
+        "64",
+        "apb",
+        "0",
+        "27"
+      ],
+      "exit": 0,
+      "checks": [
+        "TEXTURE_CHECK size=64 pixels=307200 mismatches=0",
+        "TEXTURE_PROBE_FINISHED failures=0 only=64 keep=1"
+      ]
+    },
+    {
+      "case": "apb-s64-g16-r1",
+      "arguments": [
+        "64",
+        "apb",
+        "16",
+        "1"
+      ],
+      "exit": 1,
+      "checks": [
+        "TEXTURE_CHECK size=64 pixels=307200 mismatches=2048",
+        "TEXTURE_PROBE_FINISHED failures=1 only=64 keep=1"
+      ]
+    },
+    {
+      "case": "apb-s64-g16-r27",
+      "arguments": [
+        "64",
+        "apb",
+        "16",
+        "27"
+      ],
+      "exit": 1,
+      "checks": [
+        "TEXTURE_CHECK size=64 pixels=307200 mismatches=2048",
+        "TEXTURE_PROBE_FINISHED failures=1 only=64 keep=1"
+      ]
+    },
+    {
+      "case": "apb-s256-g0-r1",
+      "arguments": [
+        "256",
+        "apb",
+        "0",
+        "1"
+      ],
+      "exit": 0,
+      "checks": [
+        "TEXTURE_CHECK size=256 pixels=307200 mismatches=0",
+        "TEXTURE_PROBE_FINISHED failures=0 only=256 keep=1"
+      ]
+    },
+    {
+      "case": "apb-s256-g0-r27",
+      "arguments": [
+        "256",
+        "apb",
+        "0",
+        "27"
+      ],
+      "exit": 0,
+      "checks": [
+        "TEXTURE_CHECK size=256 pixels=307200 mismatches=0",
+        "TEXTURE_PROBE_FINISHED failures=0 only=256 keep=1"
+      ]
+    },
+    {
+      "case": "apb-s256-g16-r1",
+      "arguments": [
+        "256",
+        "apb",
+        "16",
+        "1"
+      ],
+      "exit": 1,
+      "checks": [
+        "TEXTURE_CHECK size=256 pixels=307200 mismatches=31744",
+        "TEXTURE_PROBE_FINISHED failures=1 only=256 keep=1"
+      ]
+    },
+    {
+      "case": "apb-s256-g16-r27",
+      "arguments": [
+        "256",
+        "apb",
+        "16",
+        "27"
+      ],
+      "exit": 1,
+      "checks": [
+        "TEXTURE_CHECK size=256 pixels=307200 mismatches=31744",
+        "TEXTURE_PROBE_FINISHED failures=1 only=256 keep=1"
+      ]
+    },
+    {
+      "case": "dma-s32-g0-r1",
+      "arguments": [
+        "32",
+        "dma",
+        "0",
+        "1"
+      ],
+      "exit": 1,
+      "checks": [
+        "INTERNAL dma_state=5 remaining=41 parser_state=0 words=531",
+        "COMMAND_TIMEOUT word=50000004 frame=0 address=00000000 read_beats=319 write_beats=77056 reads=4 writes=0 responses=0 rvalid=1 bvalid=0 swap=0 perf=1 stall=0 arvalid=0 awvalid=0 wvalid=0"
+      ]
+    },
+    {
+      "case": "dma-s32-g0-r27",
+      "arguments": [
+        "32",
+        "dma",
+        "0",
+        "27"
+      ],
+      "exit": 1,
+      "checks": [
+        "INTERNAL dma_state=5 remaining=41 parser_state=0 words=531",
+        "COMMAND_TIMEOUT word=50000004 frame=0 address=00000000 read_beats=319 write_beats=77056 reads=4 writes=0 responses=0 rvalid=1 bvalid=0 swap=0 perf=1 stall=0 arvalid=0 awvalid=0 wvalid=0"
+      ]
+    },
+    {
+      "case": "dma-s32-g16-r1",
+      "arguments": [
+        "32",
+        "dma",
+        "16",
+        "1"
+      ],
+      "exit": 1,
+      "checks": [
+        "INTERNAL dma_state=5 remaining=41 parser_state=0 words=531",
+        "COMMAND_TIMEOUT word=50000004 frame=0 address=00000000 read_beats=319 write_beats=77056 reads=4 writes=0 responses=0 rvalid=1 bvalid=0 swap=0 perf=1 stall=0 arvalid=0 awvalid=0 wvalid=0"
+      ]
+    },
+    {
+      "case": "dma-s32-g16-r27",
+      "arguments": [
+        "32",
+        "dma",
+        "16",
+        "27"
+      ],
+      "exit": 1,
+      "checks": [
+        "INTERNAL dma_state=5 remaining=41 parser_state=0 words=531",
+        "COMMAND_TIMEOUT word=50000004 frame=0 address=00000000 read_beats=319 write_beats=77056 reads=4 writes=0 responses=0 rvalid=1 bvalid=0 swap=0 perf=1 stall=0 arvalid=0 awvalid=0 wvalid=0"
+      ]
+    },
+    {
+      "case": "dma-s64-g0-r1",
+      "arguments": [
+        "64",
+        "dma",
+        "0",
+        "1"
+      ],
+      "exit": 1,
+      "checks": [
+        "INTERNAL dma_state=5 remaining=41 parser_state=0 words=2073",
+        "COMMAND_TIMEOUT word=50000004 frame=0 address=00000000 read_beats=319 write_beats=77824 reads=4 writes=0 responses=0 rvalid=1 bvalid=0 swap=0 perf=1 stall=0 arvalid=0 awvalid=0 wvalid=0"
+      ]
+    },
+    {
+      "case": "dma-s64-g0-r27",
+      "arguments": [
+        "64",
+        "dma",
+        "0",
+        "27"
+      ],
+      "exit": 1,
+      "checks": [
+        "INTERNAL dma_state=5 remaining=41 parser_state=0 words=2073",
+        "COMMAND_TIMEOUT word=50000004 frame=0 address=00000000 read_beats=319 write_beats=77824 reads=4 writes=0 responses=0 rvalid=1 bvalid=0 swap=0 perf=1 stall=0 arvalid=0 awvalid=0 wvalid=0"
+      ]
+    },
+    {
+      "case": "dma-s64-g16-r1",
+      "arguments": [
+        "64",
+        "dma",
+        "16",
+        "1"
+      ],
+      "exit": 1,
+      "checks": [
+        "INTERNAL dma_state=5 remaining=41 parser_state=0 words=2073",
+        "COMMAND_TIMEOUT word=50000004 frame=0 address=00000000 read_beats=319 write_beats=77824 reads=4 writes=0 responses=0 rvalid=1 bvalid=0 swap=0 perf=1 stall=0 arvalid=0 awvalid=0 wvalid=0"
+      ]
+    },
+    {
+      "case": "dma-s64-g16-r27",
+      "arguments": [
+        "64",
+        "dma",
+        "16",
+        "27"
+      ],
+      "exit": 1,
+      "checks": [
+        "INTERNAL dma_state=5 remaining=41 parser_state=0 words=2073",
+        "COMMAND_TIMEOUT word=50000004 frame=0 address=00000000 read_beats=319 write_beats=77824 reads=4 writes=0 responses=0 rvalid=1 bvalid=0 swap=0 perf=1 stall=0 arvalid=0 awvalid=0 wvalid=0"
+      ]
+    },
+    {
+      "case": "dma-s256-g0-r1",
+      "arguments": [
+        "256",
+        "dma",
+        "0",
+        "1"
+      ],
+      "exit": 1,
+      "checks": [
+        "INTERNAL dma_state=5 remaining=185 parser_state=0 words=32913",
+        "COMMAND_TIMEOUT word=50000004 frame=0 address=00000000 read_beats=319 write_beats=93184 reads=4 writes=0 responses=0 rvalid=1 bvalid=0 swap=0 perf=1 stall=0 arvalid=0 awvalid=0 wvalid=0"
+      ]
+    },
+    {
+      "case": "dma-s256-g0-r27",
+      "arguments": [
+        "256",
+        "dma",
+        "0",
+        "27"
+      ],
+      "exit": 1,
+      "checks": [
+        "INTERNAL dma_state=5 remaining=185 parser_state=0 words=32913",
+        "COMMAND_TIMEOUT word=50000004 frame=0 address=00000000 read_beats=319 write_beats=93184 reads=4 writes=0 responses=0 rvalid=1 bvalid=0 swap=0 perf=1 stall=0 arvalid=0 awvalid=0 wvalid=0"
+      ]
+    },
+    {
+      "case": "dma-s256-g16-r1",
+      "arguments": [
+        "256",
+        "dma",
+        "16",
+        "1"
+      ],
+      "exit": 1,
+      "checks": [
+        "INTERNAL dma_state=5 remaining=185 parser_state=0 words=32913",
+        "COMMAND_TIMEOUT word=50000004 frame=0 address=00000000 read_beats=319 write_beats=93184 reads=4 writes=0 responses=0 rvalid=1 bvalid=0 swap=0 perf=1 stall=0 arvalid=0 awvalid=0 wvalid=0"
+      ]
+    },
+    {
+      "case": "dma-s256-g16-r27",
+      "arguments": [
+        "256",
+        "dma",
+        "16",
+        "27"
+      ],
+      "exit": 1,
+      "checks": [
+        "INTERNAL dma_state=5 remaining=185 parser_state=0 words=32913",
+        "COMMAND_TIMEOUT word=50000004 frame=0 address=00000000 read_beats=319 write_beats=93184 reads=4 writes=0 responses=0 rvalid=1 bvalid=0 swap=0 perf=1 stall=0 arvalid=0 awvalid=0 wvalid=0"
+      ]
+    }
+  ],
+  "passed": false
+}

@@ -1,0 +1,112 @@
+--- a/rtl/RasterIX/RasterIX_IF.v
++++ b/rtl/RasterIX/RasterIX_IF.v
+@@ -451,6 +451,22 @@
+     wire                             cmd_axis_tlast;
+     wire [CMD_STREAM_WIDTH - 1 : 0]  cmd_axis_tdata;
+ 
++    wire [ID_WIDTH_LOC - 1 : 0] buffered_dma_arid;
++    wire [ADDR_WIDTH - 1 : 0] buffered_dma_araddr;
++    wire [7 : 0] buffered_dma_arlen;
++    wire [2 : 0] buffered_dma_arsize;
++    wire [1 : 0] buffered_dma_arburst;
++    wire buffered_dma_arlock;
++    wire [3 : 0] buffered_dma_arcache;
++    wire [2 : 0] buffered_dma_arprot;
++    wire buffered_dma_arvalid;
++    wire buffered_dma_arready;
++    wire [ID_WIDTH_LOC - 1 : 0] buffered_dma_rid;
++    wire [CMD_STREAM_WIDTH - 1 : 0] buffered_dma_rdata;
++    wire [1 : 0] buffered_dma_rresp;
++    wire buffered_dma_rlast;
++    wire buffered_dma_rvalid;
++    wire buffered_dma_rready;
+     FrameStreamingCore #(
+         .STREAM_WIDTH(CMD_STREAM_WIDTH),
+         .ADDR_WIDTH(ADDR_WIDTH),
+@@ -501,25 +517,69 @@
+         .m_mem_axi_bvalid(common_axi_bvalid),
+         .m_mem_axi_bready(common_axi_bready),
+ 
+-        .m_mem_axi_arid(common_axi_arid),
+-        .m_mem_axi_araddr(common_axi_araddr),
+-        .m_mem_axi_arlen(common_axi_arlen),
+-        .m_mem_axi_arsize(common_axi_arsize),
+-        .m_mem_axi_arburst(common_axi_arburst),
+-        .m_mem_axi_arlock(common_axi_arlock),
+-        .m_mem_axi_arcache(common_axi_arcache),
+-        .m_mem_axi_arprot(common_axi_arprot),
+-        .m_mem_axi_arvalid(common_axi_arvalid),
+-        .m_mem_axi_arready(common_axi_arready),
+-
+-        .m_mem_axi_rid(common_axi_rid),
+-        .m_mem_axi_rdata(common_axi_rdata),
+-        .m_mem_axi_rresp(common_axi_rresp),
+-        .m_mem_axi_rlast(common_axi_rlast),
+-        .m_mem_axi_rvalid(common_axi_rvalid),
+-        .m_mem_axi_rready(common_axi_rready)
++        .m_mem_axi_arid(buffered_dma_arid),
++        .m_mem_axi_araddr(buffered_dma_araddr),
++        .m_mem_axi_arlen(buffered_dma_arlen),
++        .m_mem_axi_arsize(buffered_dma_arsize),
++        .m_mem_axi_arburst(buffered_dma_arburst),
++        .m_mem_axi_arlock(buffered_dma_arlock),
++        .m_mem_axi_arcache(buffered_dma_arcache),
++        .m_mem_axi_arprot(buffered_dma_arprot),
++        .m_mem_axi_arvalid(buffered_dma_arvalid),
++        .m_mem_axi_arready(buffered_dma_arready),
++
++        .m_mem_axi_rid(buffered_dma_rid),
++        .m_mem_axi_rdata(buffered_dma_rdata),
++        .m_mem_axi_rresp(buffered_dma_rresp),
++        .m_mem_axi_rlast(buffered_dma_rlast),
++        .m_mem_axi_rvalid(buffered_dma_rvalid),
++        .m_mem_axi_rready(buffered_dma_rready)
+     );
+ 
++    axi_fifo_rd #(.DATA_WIDTH(CMD_STREAM_WIDTH), .ADDR_WIDTH(ADDR_WIDTH), .ID_WIDTH(ID_WIDTH_LOC), .FIFO_DEPTH(64), .FIFO_DELAY(1)) experimentalDmaReadBuffer (
++        .clk(aclk),
++        .rst(!resetn),
++        .s_axi_arid(buffered_dma_arid),
++        .s_axi_araddr(buffered_dma_araddr),
++        .s_axi_arlen(buffered_dma_arlen),
++        .s_axi_arsize(buffered_dma_arsize),
++        .s_axi_arburst(buffered_dma_arburst),
++        .s_axi_arlock(buffered_dma_arlock),
++        .s_axi_arcache(buffered_dma_arcache),
++        .s_axi_arprot(buffered_dma_arprot),
++        .s_axi_arvalid(buffered_dma_arvalid),
++        .s_axi_arready(buffered_dma_arready),
++        .s_axi_rid(buffered_dma_rid),
++        .s_axi_rdata(buffered_dma_rdata),
++        .s_axi_rresp(buffered_dma_rresp),
++        .s_axi_rlast(buffered_dma_rlast),
++        .s_axi_rvalid(buffered_dma_rvalid),
++        .s_axi_rready(buffered_dma_rready),
++        .s_axi_arqos(0),
++        .s_axi_arregion(0),
++        .s_axi_aruser(0),
++        .s_axi_ruser(),
++        .m_axi_arid(common_axi_arid),
++        .m_axi_araddr(common_axi_araddr),
++        .m_axi_arlen(common_axi_arlen),
++        .m_axi_arsize(common_axi_arsize),
++        .m_axi_arburst(common_axi_arburst),
++        .m_axi_arlock(common_axi_arlock),
++        .m_axi_arcache(common_axi_arcache),
++        .m_axi_arprot(common_axi_arprot),
++        .m_axi_arvalid(common_axi_arvalid),
++        .m_axi_arready(common_axi_arready),
++        .m_axi_rid(common_axi_rid),
++        .m_axi_rdata(common_axi_rdata),
++        .m_axi_rresp(common_axi_rresp),
++        .m_axi_rlast(common_axi_rlast),
++        .m_axi_rvalid(common_axi_rvalid),
++        .m_axi_rready(common_axi_rready),
++        .m_axi_arqos(),
++        .m_axi_arregion(),
++        .m_axi_aruser(),
++        .m_axi_ruser(0)
++    );
+     wire commit_fb;
+     wire fb_committed;
+ 

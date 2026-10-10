@@ -1,0 +1,9 @@
+{
+  "started_utc": "2026-10-09T03:44:35.076914+00:00",
+  "bit": "/home/researcher/projects/wally-game-console-research/build/transport-study-20261009/if17-incremental/fpgaTop.bit",
+  "sha256": "611d8fe4d809d9841d968eef248536fb547b2ecf59ad25df9e4f69c191f7eea4",
+  "target": "localhost:3121/xilinx_tcf/Digilent/210276BE7FCBB",
+  "program_exit": 0,
+  "listener_exit": 0,
+  "finished_utc": "2026-10-09T03:45:57.054835+00:00"
+}

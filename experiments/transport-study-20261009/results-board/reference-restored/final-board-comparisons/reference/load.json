@@ -1,0 +1,8 @@
+{
+  "started_utc": "2026-10-09T04:00:09.191392+00:00",
+  "elapsed_seconds": 231.07968120799706,
+  "bytes_received": 692,
+  "command": "(set -e; mkdir -p /mnt/transport-card; mount -t ext4 -o ro /dev/mmcblk0p4 /mnt/transport-card; for name in app texture; do gzip -dc /mnt/transport-card/transport-study-20261009/$name.gz > /tmp/$name; chmod +x /tmp/$name; sha256sum /tmp/$name; done)",
+  "command_exit": 0,
+  "login_sent": false
+}

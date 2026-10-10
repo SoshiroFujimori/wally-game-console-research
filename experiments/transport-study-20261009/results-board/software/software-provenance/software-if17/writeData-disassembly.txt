@@ -1,0 +1,369 @@
+000000000001a5a8 <StudyBus::writeData(unsigned char, unsigned int, unsigned int)>:
+   1a5a8:	7159                	addi	sp,sp,-112
+   1a5aa:	eca6                	sd	s1,88(sp)
+   1a5ac:	e4ce                	sd	s3,72(sp)
+   1a5ae:	e0d2                	sd	s4,64(sp)
+   1a5b0:	fc56                	sd	s5,56(sp)
+   1a5b2:	f486                	sd	ra,104(sp)
+   1a5b4:	f0a2                	sd	s0,96(sp)
+   1a5b6:	f45e                	sd	s7,40(sp)
+   1a5b8:	8a2e                	mv	s4,a1
+   1a5ba:	84b2                	mv	s1,a2
+   1a5bc:	89b6                	mv	s3,a3
+   1a5be:	8aaa                	mv	s5,a0
+   1a5c0:	df5fe0ef          	jal	193b4 <StudyBus::finish()>
+   1a5c4:	4799                	li	a5,6
+   1a5c6:	1f47e863          	bltu	a5,s4,1a7b6 <StudyBus::writeData(unsigned char, unsigned int, unsigned int)+0x20e>
+   1a5ca:	001a1793          	slli	a5,s4,0x1
+   1a5ce:	97d2                	add	a5,a5,s4
+   1a5d0:	078e                	slli	a5,a5,0x3
+   1a5d2:	97d6                	add	a5,a5,s5
+   1a5d4:	0187bb83          	ld	s7,24(a5) # 10080018 <__BSS_END__+0xfea97b0>
+   1a5d8:	739c                	ld	a5,32(a5)
+   1a5da:	417787b3          	sub	a5,a5,s7
+   1a5de:	0134e433          	or	s0,s1,s3
+   1a5e2:	880d                	andi	s0,s0,3
+   1a5e4:	3a041c63          	bnez	s0,1a99c <StudyBus::writeData(unsigned char, unsigned int, unsigned int)+0x3f4>
+   1a5e8:	3a048a63          	beqz	s1,1a99c <StudyBus::writeData(unsigned char, unsigned int, unsigned int)+0x3f4>
+   1a5ec:	e8ca                	sd	s2,80(sp)
+   1a5ee:	02099913          	slli	s2,s3,0x20
+   1a5f2:	02095913          	srli	s2,s2,0x20
+   1a5f6:	3b27e263          	bltu	a5,s2,1a99a <StudyBus::writeData(unsigned char, unsigned int, unsigned int)+0x3f2>
+   1a5fa:	f062                	sd	s8,32(sp)
+   1a5fc:	02049c13          	slli	s8,s1,0x20
+   1a600:	020c5c13          	srli	s8,s8,0x20
+   1a604:	412787b3          	sub	a5,a5,s2
+   1a608:	3d87ee63          	bltu	a5,s8,1a9e4 <StudyBus::writeData(unsigned char, unsigned int, unsigned int)+0x43c>
+   1a60c:	f85a                	sd	s6,48(sp)
+   1a60e:	479d                	li	a5,7
+   1a610:	012b8b33          	add	s6,s7,s2
+   1a614:	1297fd63          	bgeu	a5,s1,1a74e <StudyBus::writeData(unsigned char, unsigned int, unsigned int)+0x1a6>
+   1a618:	000b2703          	lw	a4,0(s6)
+   1a61c:	f00007b7          	lui	a5,0xf0000
+   1a620:	900006b7          	lui	a3,0x90000
+   1a624:	8ff9                	and	a5,a5,a4
+   1a626:	18d78b63          	beq	a5,a3,1a7bc <StudyBus::writeData(unsigned char, unsigned int, unsigned int)+0x214>
+   1a62a:	0011b5b7          	lui	a1,0x11b
+   1a62e:	7b858593          	addi	a1,a1,1976 # 11b7b8 <__rseq_flags+0xb48>
+   1a632:	0d0a8513          	addi	a0,s5,208
+   1a636:	f29ff0ef          	jal	1a55e <bool std::operator==<char, std::char_traits<char>, std::allocator<char> >(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, char const*)>
+   1a63a:	12050463          	beqz	a0,1a762 <StudyBus::writeData(unsigned char, unsigned int, unsigned int)+0x1ba>
+   1a63e:	0024d59b          	srliw	a1,s1,0x2
+   1a642:	46a1                	li	a3,8
+   1a644:	0c0ab703          	ld	a4,192(s5)
+   1a648:	84ae                	mv	s1,a1
+   1a64a:	2eb6fd63          	bgeu	a3,a1,1a944 <StudyBus::writeData(unsigned char, unsigned int, unsigned int)+0x39c>
+   1a64e:	87da                	mv	a5,s6
+   1a650:	4390                	lw	a2,0(a5)
+   1a652:	8436                	mv	s0,a3
+   1a654:	26a1                	addiw	a3,a3,8 # ffffffff90000008 <__BSS_END__+0xffffffff8fe297a0>
+   1a656:	c310                	sw	a2,0(a4)
+   1a658:	43d0                	lw	a2,4(a5)
+   1a65a:	02078793          	addi	a5,a5,32 # fffffffff0000020 <__BSS_END__+0xffffffffefe297b8>
+   1a65e:	c310                	sw	a2,0(a4)
+   1a660:	fe87a603          	lw	a2,-24(a5)
+   1a664:	c310                	sw	a2,0(a4)
+   1a666:	fec7a603          	lw	a2,-20(a5)
+   1a66a:	c310                	sw	a2,0(a4)
+   1a66c:	ff07a603          	lw	a2,-16(a5)
+   1a670:	c310                	sw	a2,0(a4)
+   1a672:	ff47a603          	lw	a2,-12(a5)
+   1a676:	c310                	sw	a2,0(a4)
+   1a678:	ff87a603          	lw	a2,-8(a5)
+   1a67c:	c310                	sw	a2,0(a4)
+   1a67e:	ffc7a603          	lw	a2,-4(a5)
+   1a682:	c310                	sw	a2,0(a4)
+   1a684:	fcb6e6e3          	bltu	a3,a1,1a650 <StudyBus::writeData(unsigned char, unsigned int, unsigned int)+0xa8>
+   1a688:	0014079b          	addiw	a5,s0,1
+   1a68c:	08b7fa63          	bgeu	a5,a1,1a720 <StudyBus::writeData(unsigned char, unsigned int, unsigned int)+0x178>
+   1a690:	02041693          	slli	a3,s0,0x20
+   1a694:	01e6d413          	srli	s0,a3,0x1e
+   1a698:	945a                	add	s0,s0,s6
+   1a69a:	4010                	lw	a2,0(s0)
+   1a69c:	0017869b          	addiw	a3,a5,1
+   1a6a0:	c310                	sw	a2,0(a4)
+   1a6a2:	06b6ff63          	bgeu	a3,a1,1a720 <StudyBus::writeData(unsigned char, unsigned int, unsigned int)+0x178>
+   1a6a6:	02079513          	slli	a0,a5,0x20
+   1a6aa:	01e55613          	srli	a2,a0,0x1e
+   1a6ae:	965a                	add	a2,a2,s6
+   1a6b0:	4208                	lw	a0,0(a2)
+   1a6b2:	0027861b          	addiw	a2,a5,2
+   1a6b6:	c308                	sw	a0,0(a4)
+   1a6b8:	06b67463          	bgeu	a2,a1,1a720 <StudyBus::writeData(unsigned char, unsigned int, unsigned int)+0x178>
+   1a6bc:	02069513          	slli	a0,a3,0x20
+   1a6c0:	01e55693          	srli	a3,a0,0x1e
+   1a6c4:	96da                	add	a3,a3,s6
+   1a6c6:	4288                	lw	a0,0(a3)
+   1a6c8:	0037869b          	addiw	a3,a5,3
+   1a6cc:	c308                	sw	a0,0(a4)
+   1a6ce:	04b6f963          	bgeu	a3,a1,1a720 <StudyBus::writeData(unsigned char, unsigned int, unsigned int)+0x178>
+   1a6d2:	02061513          	slli	a0,a2,0x20
+   1a6d6:	01e55613          	srli	a2,a0,0x1e
+   1a6da:	965a                	add	a2,a2,s6
+   1a6dc:	4208                	lw	a0,0(a2)
+   1a6de:	0047861b          	addiw	a2,a5,4
+   1a6e2:	c308                	sw	a0,0(a4)
+   1a6e4:	02b67e63          	bgeu	a2,a1,1a720 <StudyBus::writeData(unsigned char, unsigned int, unsigned int)+0x178>
+   1a6e8:	02069513          	slli	a0,a3,0x20
+   1a6ec:	01e55693          	srli	a3,a0,0x1e
+   1a6f0:	96da                	add	a3,a3,s6
+   1a6f2:	4288                	lw	a0,0(a3)
+   1a6f4:	0057869b          	addiw	a3,a5,5
+   1a6f8:	c308                	sw	a0,0(a4)
+   1a6fa:	02b6f363          	bgeu	a3,a1,1a720 <StudyBus::writeData(unsigned char, unsigned int, unsigned int)+0x178>
+   1a6fe:	02061513          	slli	a0,a2,0x20
+   1a702:	01e55613          	srli	a2,a0,0x1e
+   1a706:	965a                	add	a2,a2,s6
+   1a708:	4210                	lw	a2,0(a2)
+   1a70a:	2799                	addiw	a5,a5,6
+   1a70c:	c310                	sw	a2,0(a4)
+   1a70e:	00b7f963          	bgeu	a5,a1,1a720 <StudyBus::writeData(unsigned char, unsigned int, unsigned int)+0x178>
+   1a712:	02069793          	slli	a5,a3,0x20
+   1a716:	01e7d693          	srli	a3,a5,0x1e
+   1a71a:	96da                	add	a3,a3,s6
+   1a71c:	429c                	lw	a5,0(a3)
+   1a71e:	c31c                	sw	a5,0(a4)
+   1a720:	fff4879b          	addiw	a5,s1,-1
+   1a724:	02079693          	slli	a3,a5,0x20
+   1a728:	01e6d793          	srli	a5,a3,0x1e
+   1a72c:	97da                	add	a5,a5,s6
+   1a72e:	439c                	lw	a5,0(a5)
+   1a730:	c35c                	sw	a5,4(a4)
+   1a732:	0ff0000f          	fence
+   1a736:	70a6                	ld	ra,104(sp)
+   1a738:	7406                	ld	s0,96(sp)
+   1a73a:	6946                	ld	s2,80(sp)
+   1a73c:	7b42                	ld	s6,48(sp)
+   1a73e:	7c02                	ld	s8,32(sp)
+   1a740:	64e6                	ld	s1,88(sp)
+   1a742:	69a6                	ld	s3,72(sp)
+   1a744:	6a06                	ld	s4,64(sp)
+   1a746:	7ae2                	ld	s5,56(sp)
+   1a748:	7ba2                	ld	s7,40(sp)
+   1a74a:	6165                	addi	sp,sp,112
+   1a74c:	8082                	ret
+   1a74e:	0011b5b7          	lui	a1,0x11b
+   1a752:	7b858593          	addi	a1,a1,1976 # 11b7b8 <__rseq_flags+0xb48>
+   1a756:	0d0a8513          	addi	a0,s5,208
+   1a75a:	e05ff0ef          	jal	1a55e <bool std::operator==<char, std::char_traits<char>, std::allocator<char> >(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, char const*)>
+   1a75e:	1a051363          	bnez	a0,1a904 <StudyBus::writeData(unsigned char, unsigned int, unsigned int)+0x35c>
+   1a762:	4799                	li	a5,6
+   1a764:	2547ec63          	bltu	a5,s4,1a9bc <StudyBus::writeData(unsigned char, unsigned int, unsigned int)+0x414>
+   1a768:	001a1713          	slli	a4,s4,0x1
+   1a76c:	9752                	add	a4,a4,s4
+   1a76e:	070e                	slli	a4,a4,0x3
+   1a770:	9756                	add	a4,a4,s5
+   1a772:	6f1c                	ld	a5,24(a4)
+   1a774:	7318                	ld	a4,32(a4)
+   1a776:	8f1d                	sub	a4,a4,a5
+   1a778:	25276263          	bltu	a4,s2,1a9bc <StudyBus::writeData(unsigned char, unsigned int, unsigned int)+0x414>
+   1a77c:	41270733          	sub	a4,a4,s2
+   1a780:	23876e63          	bltu	a4,s8,1a9bc <StudyBus::writeData(unsigned char, unsigned int, unsigned int)+0x414>
+   1a784:	0024d49b          	srliw	s1,s1,0x2
+   1a788:	0029d99b          	srliw	s3,s3,0x2
+   1a78c:	c095                	beqz	s1,1a7b0 <StudyBus::writeData(unsigned char, unsigned int, unsigned int)+0x208>
+   1a78e:	010ab603          	ld	a2,16(s5)
+   1a792:	098a                	slli	s3,s3,0x2
+   1a794:	013786b3          	add	a3,a5,s3
+   1a798:	2405                	addiw	s0,s0,1
+   1a79a:	408487b3          	sub	a5,s1,s0
+   1a79e:	4298                	lw	a4,0(a3)
+   1a7a0:	0017b793          	seqz	a5,a5
+   1a7a4:	078a                	slli	a5,a5,0x2
+   1a7a6:	97b2                	add	a5,a5,a2
+   1a7a8:	c398                	sw	a4,0(a5)
+   1a7aa:	0691                	addi	a3,a3,4
+   1a7ac:	fe8496e3          	bne	s1,s0,1a798 <StudyBus::writeData(unsigned char, unsigned int, unsigned int)+0x1f0>
+   1a7b0:	0ff0000f          	fence
+   1a7b4:	b749                	j	1a736 <StudyBus::writeData(unsigned char, unsigned int, unsigned int)+0x18e>
+   1a7b6:	4781                	li	a5,0
+   1a7b8:	4b81                	li	s7,0
+   1a7ba:	b515                	j	1a5de <StudyBus::writeData(unsigned char, unsigned int, unsigned int)+0x36>
+   1a7bc:	0d8ab683          	ld	a3,216(s5)
+   1a7c0:	478d                	li	a5,3
+   1a7c2:	e6f694e3          	bne	a3,a5,1a62a <StudyBus::writeData(unsigned char, unsigned int, unsigned int)+0x82>
+   1a7c6:	0d0ab783          	ld	a5,208(s5)
+   1a7ca:	06400693          	li	a3,100
+   1a7ce:	0007c603          	lbu	a2,0(a5)
+   1a7d2:	e4d61ce3          	bne	a2,a3,1a62a <StudyBus::writeData(unsigned char, unsigned int, unsigned int)+0x82>
+   1a7d6:	0017c603          	lbu	a2,1(a5)
+   1a7da:	06d00693          	li	a3,109
+   1a7de:	e4d616e3          	bne	a2,a3,1a62a <StudyBus::writeData(unsigned char, unsigned int, unsigned int)+0x82>
+   1a7e2:	0027c683          	lbu	a3,2(a5)
+   1a7e6:	06100793          	li	a5,97
+   1a7ea:	e4f690e3          	bne	a3,a5,1a62a <StudyBus::writeData(unsigned char, unsigned int, unsigned int)+0x82>
+   1a7ee:	0f0aa683          	lw	a3,240(s5)
+   1a7f2:	ec66                	sd	s9,24(sp)
+   1a7f4:	e86a                	sd	s10,16(sp)
+   1a7f6:	ff84879b          	addiw	a5,s1,-8
+   1a7fa:	10d7ea63          	bltu	a5,a3,1a90e <StudyBus::writeData(unsigned char, unsigned int, unsigned int)+0x366>
+   1a7fe:	1712                	slli	a4,a4,0x24
+   1a800:	02475c13          	srli	s8,a4,0x24
+   1a804:	17879763          	bne	a5,s8,1a972 <StudyBus::writeData(unsigned char, unsigned int, unsigned int)+0x3ca>
+   1a808:	16078563          	beqz	a5,1a972 <StudyBus::writeData(unsigned char, unsigned int, unsigned int)+0x3ca>
+   1a80c:	03f78b1b          	addiw	s6,a5,63
+   1a810:	fc0b7b13          	andi	s6,s6,-64
+   1a814:	001007b7          	lui	a5,0x100
+   1a818:	1367e863          	bltu	a5,s6,1a948 <StudyBus::writeData(unsigned char, unsigned int, unsigned int)+0x3a0>
+   1a81c:	0f4ac783          	lbu	a5,244(s5)
+   1a820:	4981                	li	s3,0
+   1a822:	ebed                	bnez	a5,1a914 <StudyBus::writeData(unsigned char, unsigned int, unsigned int)+0x36c>
+   1a824:	0c8abc83          	ld	s9,200(s5)
+   1a828:	014a1d13          	slli	s10,s4,0x14
+   1a82c:	000c049b          	sext.w	s1,s8
+   1a830:	018b7463          	bgeu	s6,s8,1a838 <StudyBus::writeData(unsigned char, unsigned int, unsigned int)+0x290>
+   1a834:	000b049b          	sext.w	s1,s6
+   1a838:	0921                	addi	s2,s2,8
+   1a83a:	995e                	add	s2,s2,s7
+   1a83c:	4ba1                	li	s7,8
+   1a83e:	408c07bb          	subw	a5,s8,s0
+   1a842:	e402                	sd	zero,8(sp)
+   1a844:	863e                	mv	a2,a5
+   1a846:	00fbf363          	bgeu	s7,a5,1a84c <StudyBus::writeData(unsigned char, unsigned int, unsigned int)+0x2a4>
+   1a84a:	4621                	li	a2,8
+   1a84c:	1602                	slli	a2,a2,0x20
+   1a84e:	85ca                	mv	a1,s2
+   1a850:	9201                	srli	a2,a2,0x20
+   1a852:	0028                	addi	a0,sp,8
+   1a854:	ffff6097          	auipc	ra,0xffff6
+   1a858:	9ac080e7          	jalr	-1620(ra) # 10200 <__rela_iplt_end>
+   1a85c:	0034579b          	srliw	a5,s0,0x3
+   1a860:	6722                	ld	a4,8(sp)
+   1a862:	078e                	slli	a5,a5,0x3
+   1a864:	97ea                	add	a5,a5,s10
+   1a866:	97e6                	add	a5,a5,s9
+   1a868:	2421                	addiw	s0,s0,8
+   1a86a:	e398                	sd	a4,0(a5)
+   1a86c:	0921                	addi	s2,s2,8
+   1a86e:	fc9468e3          	bltu	s0,s1,1a83e <StudyBus::writeData(unsigned char, unsigned int, unsigned int)+0x296>
+   1a872:	fff4871b          	addiw	a4,s1,-1
+   1a876:	9b61                	andi	a4,a4,-8
+   1a878:	2721                	addiw	a4,a4,8
+   1a87a:	01677c63          	bgeu	a4,s6,1a892 <StudyBus::writeData(unsigned char, unsigned int, unsigned int)+0x2ea>
+   1a87e:	0037579b          	srliw	a5,a4,0x3
+   1a882:	078e                	slli	a5,a5,0x3
+   1a884:	97ea                	add	a5,a5,s10
+   1a886:	97e6                	add	a5,a5,s9
+   1a888:	0007b023          	sd	zero,0(a5) # 100000 <__iswdigit_l+0x50>
+   1a88c:	2721                	addiw	a4,a4,8
+   1a88e:	ff6768e3          	bltu	a4,s6,1a87e <StudyBus::writeData(unsigned char, unsigned int, unsigned int)+0x2d6>
+   1a892:	0ff0000f          	fence
+   1a896:	0f4ac783          	lbu	a5,244(s5)
+   1a89a:	4401                	li	s0,0
+   1a89c:	e3c5                	bnez	a5,1a93c <StudyBus::writeData(unsigned char, unsigned int, unsigned int)+0x394>
+   1a89e:	0c0ab703          	ld	a4,192(s5)
+   1a8a2:	6785                	lui	a5,0x1
+   1a8a4:	9e878793          	addi	a5,a5,-1560 # 9e8 <__libc_dlerror_result+0x938>
+   1a8a8:	b00006b7          	lui	a3,0xb0000
+   1a8ac:	00db66b3          	or	a3,s6,a3
+   1a8b0:	97d2                	add	a5,a5,s4
+   1a8b2:	c314                	sw	a3,0(a4)
+   1a8b4:	0147979b          	slliw	a5,a5,0x14
+   1a8b8:	500006b7          	lui	a3,0x50000
+   1a8bc:	c35c                	sw	a5,4(a4)
+   1a8be:	00468793          	addi	a5,a3,4 # 50000004 <__BSS_END__+0x4fe2979c>
+   1a8c2:	c31c                	sw	a5,0(a4)
+   1a8c4:	00072023          	sw	zero,0(a4)
+   1a8c8:	0f8aa783          	lw	a5,248(s5)
+   1a8cc:	2785                	addiw	a5,a5,1
+   1a8ce:	0efaac23          	sw	a5,248(s5)
+   1a8d2:	c35c                	sw	a5,4(a4)
+   1a8d4:	0ff0000f          	fence
+   1a8d8:	0f4ac783          	lbu	a5,244(s5)
+   1a8dc:	4705                	li	a4,1
+   1a8de:	0eea8aa3          	sb	a4,245(s5)
+   1a8e2:	ef8d                	bnez	a5,1a91c <StudyBus::writeData(unsigned char, unsigned int, unsigned int)+0x374>
+   1a8e4:	118ab703          	ld	a4,280(s5)
+   1a8e8:	120ab783          	ld	a5,288(s5)
+   1a8ec:	1b02                	slli	s6,s6,0x20
+   1a8ee:	020b5b13          	srli	s6,s6,0x20
+   1a8f2:	975a                	add	a4,a4,s6
+   1a8f4:	0785                	addi	a5,a5,1
+   1a8f6:	6ce2                	ld	s9,24(sp)
+   1a8f8:	6d42                	ld	s10,16(sp)
+   1a8fa:	10eabc23          	sd	a4,280(s5)
+   1a8fe:	12fab023          	sd	a5,288(s5)
+   1a902:	bd15                	j	1a736 <StudyBus::writeData(unsigned char, unsigned int, unsigned int)+0x18e>
+   1a904:	0c0ab703          	ld	a4,192(s5)
+   1a908:	0024d49b          	srliw	s1,s1,0x2
+   1a90c:	bd11                	j	1a720 <StudyBus::writeData(unsigned char, unsigned int, unsigned int)+0x178>
+   1a90e:	6ce2                	ld	s9,24(sp)
+   1a910:	6d42                	ld	s10,16(sp)
+   1a912:	bb21                	j	1a62a <StudyBus::writeData(unsigned char, unsigned int, unsigned int)+0x82>
+   1a914:	a3bfe0ef          	jal	1934e <StudyBus::clockNs()>
+   1a918:	89aa                	mv	s3,a0
+   1a91a:	b729                	j	1a824 <StudyBus::writeData(unsigned char, unsigned int, unsigned int)+0x27c>
+   1a91c:	100ab783          	ld	a5,256(s5)
+   1a920:	413787b3          	sub	a5,a5,s3
+   1a924:	97a2                	add	a5,a5,s0
+   1a926:	10fab023          	sd	a5,256(s5)
+   1a92a:	a25fe0ef          	jal	1934e <StudyBus::clockNs()>
+   1a92e:	108ab783          	ld	a5,264(s5)
+   1a932:	8f81                	sub	a5,a5,s0
+   1a934:	97aa                	add	a5,a5,a0
+   1a936:	10fab423          	sd	a5,264(s5)
+   1a93a:	b76d                	j	1a8e4 <StudyBus::writeData(unsigned char, unsigned int, unsigned int)+0x33c>
+   1a93c:	a13fe0ef          	jal	1934e <StudyBus::clockNs()>
+   1a940:	842a                	mv	s0,a0
+   1a942:	bfb1                	j	1a89e <StudyBus::writeData(unsigned char, unsigned int, unsigned int)+0x2f6>
+   1a944:	4785                	li	a5,1
+   1a946:	b3a9                	j	1a690 <StudyBus::writeData(unsigned char, unsigned int, unsigned int)+0xe8>
+   1a948:	4541                	li	a0,16
+   1a94a:	597300ef          	jal	4b6e0 <__cxa_allocate_exception>
+   1a94e:	0011b5b7          	lui	a1,0x11b
+   1a952:	7e858593          	addi	a1,a1,2024 # 11b7e8 <__rseq_flags+0xb78>
+   1a956:	842a                	mv	s0,a0
+   1a958:	19b380ef          	jal	532f2 <std::runtime_error::runtime_error(char const*)>
+   1a95c:	0004f637          	lui	a2,0x4f
+   1a960:	001875b7          	lui	a1,0x187
+   1a964:	8522                	mv	a0,s0
+   1a966:	9aa60613          	addi	a2,a2,-1622 # 4e9aa <std::runtime_error::~runtime_error()>
+   1a96a:	3a058593          	addi	a1,a1,928 # 1873a0 <typeinfo for std::runtime_error>
+   1a96e:	23f310ef          	jal	4c3ac <__cxa_throw>
+   1a972:	4541                	li	a0,16
+   1a974:	56d300ef          	jal	4b6e0 <__cxa_allocate_exception>
+   1a978:	0011b5b7          	lui	a1,0x11b
+   1a97c:	7c858593          	addi	a1,a1,1992 # 11b7c8 <__rseq_flags+0xb58>
+   1a980:	842a                	mv	s0,a0
+   1a982:	171380ef          	jal	532f2 <std::runtime_error::runtime_error(char const*)>
+   1a986:	bfd9                	j	1a95c <StudyBus::writeData(unsigned char, unsigned int, unsigned int)+0x3b4>
+   1a988:	87aa                	mv	a5,a0
+   1a98a:	8522                	mv	a0,s0
+   1a98c:	843e                	mv	s0,a5
+   1a98e:	58d300ef          	jal	4b71a <__cxa_free_exception>
+   1a992:	8522                	mv	a0,s0
+   1a994:	095a90ef          	jal	c4228 <_Unwind_Resume>
+   1a998:	bfc5                	j	1a988 <StudyBus::writeData(unsigned char, unsigned int, unsigned int)+0x3e0>
+   1a99a:	6946                	ld	s2,80(sp)
+   1a99c:	4541                	li	a0,16
+   1a99e:	543300ef          	jal	4b6e0 <__cxa_allocate_exception>
+   1a9a2:	0011b5b7          	lui	a1,0x11b
+   1a9a6:	7a058593          	addi	a1,a1,1952 # 11b7a0 <__rseq_flags+0xb30>
+   1a9aa:	842a                	mv	s0,a0
+   1a9ac:	147380ef          	jal	532f2 <std::runtime_error::runtime_error(char const*)>
+   1a9b0:	e8ca                	sd	s2,80(sp)
+   1a9b2:	f85a                	sd	s6,48(sp)
+   1a9b4:	f062                	sd	s8,32(sp)
+   1a9b6:	ec66                	sd	s9,24(sp)
+   1a9b8:	e86a                	sd	s10,16(sp)
+   1a9ba:	b74d                	j	1a95c <StudyBus::writeData(unsigned char, unsigned int, unsigned int)+0x3b4>
+   1a9bc:	4541                	li	a0,16
+   1a9be:	523300ef          	jal	4b6e0 <__cxa_allocate_exception>
+   1a9c2:	0011b5b7          	lui	a1,0x11b
+   1a9c6:	c7858593          	addi	a1,a1,-904 # 11ac78 <__rseq_flags+0x8>
+   1a9ca:	842a                	mv	s0,a0
+   1a9cc:	127380ef          	jal	532f2 <std::runtime_error::runtime_error(char const*)>
+   1a9d0:	ec66                	sd	s9,24(sp)
+   1a9d2:	e86a                	sd	s10,16(sp)
+   1a9d4:	b761                	j	1a95c <StudyBus::writeData(unsigned char, unsigned int, unsigned int)+0x3b4>
+   1a9d6:	e8ca                	sd	s2,80(sp)
+   1a9d8:	f85a                	sd	s6,48(sp)
+   1a9da:	f062                	sd	s8,32(sp)
+   1a9dc:	ec66                	sd	s9,24(sp)
+   1a9de:	e86a                	sd	s10,16(sp)
+   1a9e0:	b765                	j	1a988 <StudyBus::writeData(unsigned char, unsigned int, unsigned int)+0x3e0>
+   1a9e2:	bfed                	j	1a9dc <StudyBus::writeData(unsigned char, unsigned int, unsigned int)+0x434>
+   1a9e4:	6946                	ld	s2,80(sp)
+   1a9e6:	7c02                	ld	s8,32(sp)
+   1a9e8:	bf55                	j	1a99c <StudyBus::writeData(unsigned char, unsigned int, unsigned int)+0x3f4>
+

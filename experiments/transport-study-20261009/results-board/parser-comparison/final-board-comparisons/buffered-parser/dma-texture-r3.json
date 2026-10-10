@@ -1,0 +1,8 @@
+{
+  "started_utc": "2026-10-09T03:44:00.644002+00:00",
+  "elapsed_seconds": 6.831923551999353,
+  "bytes_received": 395,
+  "command": "/tmp/texture 0 dma",
+  "command_exit": 0,
+  "login_sent": false
+}

@@ -1,0 +1,785 @@
+{
+  "description": "Selected, privacy-sanitized copies. Hashes distinguish raw originals from public copies. Public text uses LF line endings so Git does not change the recorded public hashes.",
+  "files": [
+    {
+      "path": "gpu-matrix/result.json",
+      "raw_sha256": "c87e12b8a04313d28d4d9e01e22cbcb6fe958379b4b6512072e2d03fdf6433e8",
+      "public_sha256": "c87e12b8a04313d28d4d9e01e22cbcb6fe958379b4b6512072e2d03fdf6433e8"
+    },
+    {
+      "path": "gpu-matrix/apb-s0-g0-r1.log",
+      "raw_sha256": "3138cb2799ecc6376662d7909f84db0bc1ce0a931ddc54edba8a32a9574ce2e0",
+      "public_sha256": "3138cb2799ecc6376662d7909f84db0bc1ce0a931ddc54edba8a32a9574ce2e0"
+    },
+    {
+      "path": "gpu-matrix/apb-s0-g0-r27.log",
+      "raw_sha256": "058d3eb6c20eb1d91951c547487ad5304b99e69a04500f058ebae9b6c9083e11",
+      "public_sha256": "058d3eb6c20eb1d91951c547487ad5304b99e69a04500f058ebae9b6c9083e11"
+    },
+    {
+      "path": "gpu-matrix/apb-s0-g16-r1.log",
+      "raw_sha256": "5c4c14ea63f6cb4f6d80f177dbda860a223acd52d19464e5e141022fde4b2130",
+      "public_sha256": "5c4c14ea63f6cb4f6d80f177dbda860a223acd52d19464e5e141022fde4b2130"
+    },
+    {
+      "path": "gpu-matrix/apb-s0-g16-r27.log",
+      "raw_sha256": "ec32c95dd8083ca2efb99e9cff9e769706b0520b99af87bfb5c6f5fdbeb29016",
+      "public_sha256": "ec32c95dd8083ca2efb99e9cff9e769706b0520b99af87bfb5c6f5fdbeb29016"
+    },
+    {
+      "path": "gpu-matrix/apb-s1800-g0-r1.log",
+      "raw_sha256": "a53c05e12280e961d043ec0bda555ca05bdeea8ce1bf7811602109b7728a6721",
+      "public_sha256": "a53c05e12280e961d043ec0bda555ca05bdeea8ce1bf7811602109b7728a6721"
+    },
+    {
+      "path": "gpu-matrix/apb-s1800-g0-r27.log",
+      "raw_sha256": "2fa0d701f5aa299c238750df46d6d1b462e7219677038c1e3694a7d3504de9f6",
+      "public_sha256": "2fa0d701f5aa299c238750df46d6d1b462e7219677038c1e3694a7d3504de9f6"
+    },
+    {
+      "path": "gpu-matrix/apb-s1800-g16-r1.log",
+      "raw_sha256": "ca0c54060192979cb281c19a1c9ec2bd24cd0edbfc0206c51397d14e14032e8c",
+      "public_sha256": "ca0c54060192979cb281c19a1c9ec2bd24cd0edbfc0206c51397d14e14032e8c"
+    },
+    {
+      "path": "gpu-matrix/apb-s1800-g16-r27.log",
+      "raw_sha256": "e6cde0f3e16e680e0ead6822b74dc7e41c426d0b80a0f3903d518d39eae856aa",
+      "public_sha256": "e6cde0f3e16e680e0ead6822b74dc7e41c426d0b80a0f3903d518d39eae856aa"
+    },
+    {
+      "path": "gpu-matrix/apb-s3600-g0-r1.log",
+      "raw_sha256": "a98f37980f088b8b1306c2ccadb020737fcfbeba7274267ed0d59fc693ccc490",
+      "public_sha256": "a98f37980f088b8b1306c2ccadb020737fcfbeba7274267ed0d59fc693ccc490"
+    },
+    {
+      "path": "gpu-matrix/apb-s3600-g0-r27.log",
+      "raw_sha256": "56624f6201ede2f9f00c7a6953e5b7fd796e28ece7d8a1f302a6fdab9dece31b",
+      "public_sha256": "56624f6201ede2f9f00c7a6953e5b7fd796e28ece7d8a1f302a6fdab9dece31b"
+    },
+    {
+      "path": "gpu-matrix/apb-s3600-g16-r1.log",
+      "raw_sha256": "dabb757ac86475867d125513542fb1385a019a9b6bac706bcd421f662e0e588f",
+      "public_sha256": "dabb757ac86475867d125513542fb1385a019a9b6bac706bcd421f662e0e588f"
+    },
+    {
+      "path": "gpu-matrix/apb-s3600-g16-r27.log",
+      "raw_sha256": "b9d4c120430c7860c9a89a462fd412fd8cc379e4642373b198d8160b23882829",
+      "public_sha256": "b9d4c120430c7860c9a89a462fd412fd8cc379e4642373b198d8160b23882829"
+    },
+    {
+      "path": "gpu-matrix/dma-s0-g0-r1.log",
+      "raw_sha256": "479ba504cf07b738506607e54ca6d00ca0009010dc8b5dcd9aeb556ecc1b18ad",
+      "public_sha256": "479ba504cf07b738506607e54ca6d00ca0009010dc8b5dcd9aeb556ecc1b18ad"
+    },
+    {
+      "path": "gpu-matrix/dma-s0-g0-r27.log",
+      "raw_sha256": "479ba504cf07b738506607e54ca6d00ca0009010dc8b5dcd9aeb556ecc1b18ad",
+      "public_sha256": "479ba504cf07b738506607e54ca6d00ca0009010dc8b5dcd9aeb556ecc1b18ad"
+    },
+    {
+      "path": "gpu-matrix/dma-s0-g16-r1.log",
+      "raw_sha256": "479ba504cf07b738506607e54ca6d00ca0009010dc8b5dcd9aeb556ecc1b18ad",
+      "public_sha256": "479ba504cf07b738506607e54ca6d00ca0009010dc8b5dcd9aeb556ecc1b18ad"
+    },
+    {
+      "path": "gpu-matrix/dma-s0-g16-r27.log",
+      "raw_sha256": "479ba504cf07b738506607e54ca6d00ca0009010dc8b5dcd9aeb556ecc1b18ad",
+      "public_sha256": "479ba504cf07b738506607e54ca6d00ca0009010dc8b5dcd9aeb556ecc1b18ad"
+    },
+    {
+      "path": "gpu-matrix/dma-s1800-g0-r1.log",
+      "raw_sha256": "80107c3563bdf8cbf98a71f6bea6e4e876f0496f505f073dbe3b57b4bc5b3f40",
+      "public_sha256": "80107c3563bdf8cbf98a71f6bea6e4e876f0496f505f073dbe3b57b4bc5b3f40"
+    },
+    {
+      "path": "gpu-matrix/dma-s1800-g0-r27.log",
+      "raw_sha256": "80107c3563bdf8cbf98a71f6bea6e4e876f0496f505f073dbe3b57b4bc5b3f40",
+      "public_sha256": "80107c3563bdf8cbf98a71f6bea6e4e876f0496f505f073dbe3b57b4bc5b3f40"
+    },
+    {
+      "path": "gpu-matrix/dma-s1800-g16-r1.log",
+      "raw_sha256": "80107c3563bdf8cbf98a71f6bea6e4e876f0496f505f073dbe3b57b4bc5b3f40",
+      "public_sha256": "80107c3563bdf8cbf98a71f6bea6e4e876f0496f505f073dbe3b57b4bc5b3f40"
+    },
+    {
+      "path": "gpu-matrix/dma-s1800-g16-r27.log",
+      "raw_sha256": "80107c3563bdf8cbf98a71f6bea6e4e876f0496f505f073dbe3b57b4bc5b3f40",
+      "public_sha256": "80107c3563bdf8cbf98a71f6bea6e4e876f0496f505f073dbe3b57b4bc5b3f40"
+    },
+    {
+      "path": "gpu-matrix/dma-s3600-g0-r1.log",
+      "raw_sha256": "957281193f089c9ac8877a318b222412bf11e2a2e587485d9cef0156a6b3c5e5",
+      "public_sha256": "957281193f089c9ac8877a318b222412bf11e2a2e587485d9cef0156a6b3c5e5"
+    },
+    {
+      "path": "gpu-matrix/dma-s3600-g0-r27.log",
+      "raw_sha256": "957281193f089c9ac8877a318b222412bf11e2a2e587485d9cef0156a6b3c5e5",
+      "public_sha256": "957281193f089c9ac8877a318b222412bf11e2a2e587485d9cef0156a6b3c5e5"
+    },
+    {
+      "path": "gpu-matrix/dma-s3600-g16-r1.log",
+      "raw_sha256": "957281193f089c9ac8877a318b222412bf11e2a2e587485d9cef0156a6b3c5e5",
+      "public_sha256": "957281193f089c9ac8877a318b222412bf11e2a2e587485d9cef0156a6b3c5e5"
+    },
+    {
+      "path": "gpu-matrix/dma-s3600-g16-r27.log",
+      "raw_sha256": "957281193f089c9ac8877a318b222412bf11e2a2e587485d9cef0156a6b3c5e5",
+      "public_sha256": "957281193f089c9ac8877a318b222412bf11e2a2e587485d9cef0156a6b3c5e5"
+    },
+    {
+      "path": "gpu-textures/result.json",
+      "raw_sha256": "da2766c874c98e947bac4fef4eae1615dcb1a876058bae1ed72da0f6c811070a",
+      "public_sha256": "da2766c874c98e947bac4fef4eae1615dcb1a876058bae1ed72da0f6c811070a"
+    },
+    {
+      "path": "gpu-textures/apb-s32-g0-r1.log",
+      "raw_sha256": "94f8fd162390adc398c1065f939249391c52ca5821341fe9cc2f7e9cc2a2a9b9",
+      "public_sha256": "94f8fd162390adc398c1065f939249391c52ca5821341fe9cc2f7e9cc2a2a9b9"
+    },
+    {
+      "path": "gpu-textures/apb-s32-g0-r27.log",
+      "raw_sha256": "94f8fd162390adc398c1065f939249391c52ca5821341fe9cc2f7e9cc2a2a9b9",
+      "public_sha256": "94f8fd162390adc398c1065f939249391c52ca5821341fe9cc2f7e9cc2a2a9b9"
+    },
+    {
+      "path": "gpu-textures/apb-s32-g16-r1.log",
+      "raw_sha256": "94f8fd162390adc398c1065f939249391c52ca5821341fe9cc2f7e9cc2a2a9b9",
+      "public_sha256": "94f8fd162390adc398c1065f939249391c52ca5821341fe9cc2f7e9cc2a2a9b9"
+    },
+    {
+      "path": "gpu-textures/apb-s32-g16-r27.log",
+      "raw_sha256": "94f8fd162390adc398c1065f939249391c52ca5821341fe9cc2f7e9cc2a2a9b9",
+      "public_sha256": "94f8fd162390adc398c1065f939249391c52ca5821341fe9cc2f7e9cc2a2a9b9"
+    },
+    {
+      "path": "gpu-textures/apb-s64-g0-r1.log",
+      "raw_sha256": "6f901b38c5eaff90ce8de0b0f5f27d719246e2aad502e34f02d81695adaa95cd",
+      "public_sha256": "6f901b38c5eaff90ce8de0b0f5f27d719246e2aad502e34f02d81695adaa95cd"
+    },
+    {
+      "path": "gpu-textures/apb-s64-g0-r27.log",
+      "raw_sha256": "6f901b38c5eaff90ce8de0b0f5f27d719246e2aad502e34f02d81695adaa95cd",
+      "public_sha256": "6f901b38c5eaff90ce8de0b0f5f27d719246e2aad502e34f02d81695adaa95cd"
+    },
+    {
+      "path": "gpu-textures/apb-s64-g16-r1.log",
+      "raw_sha256": "c8ae0941c66affb9a88862f62c2eb54f821e7b19fbba1f4f900f6ad10fa3fe72",
+      "public_sha256": "c8ae0941c66affb9a88862f62c2eb54f821e7b19fbba1f4f900f6ad10fa3fe72"
+    },
+    {
+      "path": "gpu-textures/apb-s64-g16-r27.log",
+      "raw_sha256": "c8ae0941c66affb9a88862f62c2eb54f821e7b19fbba1f4f900f6ad10fa3fe72",
+      "public_sha256": "c8ae0941c66affb9a88862f62c2eb54f821e7b19fbba1f4f900f6ad10fa3fe72"
+    },
+    {
+      "path": "gpu-textures/apb-s256-g0-r1.log",
+      "raw_sha256": "048dd9db25a14709955e81d9d116f0d3428a4aba619354ca77e002ca32907028",
+      "public_sha256": "048dd9db25a14709955e81d9d116f0d3428a4aba619354ca77e002ca32907028"
+    },
+    {
+      "path": "gpu-textures/apb-s256-g0-r27.log",
+      "raw_sha256": "048dd9db25a14709955e81d9d116f0d3428a4aba619354ca77e002ca32907028",
+      "public_sha256": "048dd9db25a14709955e81d9d116f0d3428a4aba619354ca77e002ca32907028"
+    },
+    {
+      "path": "gpu-textures/apb-s256-g16-r1.log",
+      "raw_sha256": "3c23e62c62a5cd91a166facc2e341a021774288ff8f087aa15eacde201722537",
+      "public_sha256": "3c23e62c62a5cd91a166facc2e341a021774288ff8f087aa15eacde201722537"
+    },
+    {
+      "path": "gpu-textures/apb-s256-g16-r27.log",
+      "raw_sha256": "3c23e62c62a5cd91a166facc2e341a021774288ff8f087aa15eacde201722537",
+      "public_sha256": "3c23e62c62a5cd91a166facc2e341a021774288ff8f087aa15eacde201722537"
+    },
+    {
+      "path": "gpu-textures/dma-s32-g0-r1.log",
+      "raw_sha256": "89df2dec4d38d79f841c538a621177b755a4005e999e8616676d4d187f55fbe3",
+      "public_sha256": "89df2dec4d38d79f841c538a621177b755a4005e999e8616676d4d187f55fbe3"
+    },
+    {
+      "path": "gpu-textures/dma-s32-g0-r27.log",
+      "raw_sha256": "89df2dec4d38d79f841c538a621177b755a4005e999e8616676d4d187f55fbe3",
+      "public_sha256": "89df2dec4d38d79f841c538a621177b755a4005e999e8616676d4d187f55fbe3"
+    },
+    {
+      "path": "gpu-textures/dma-s32-g16-r1.log",
+      "raw_sha256": "89df2dec4d38d79f841c538a621177b755a4005e999e8616676d4d187f55fbe3",
+      "public_sha256": "89df2dec4d38d79f841c538a621177b755a4005e999e8616676d4d187f55fbe3"
+    },
+    {
+      "path": "gpu-textures/dma-s32-g16-r27.log",
+      "raw_sha256": "89df2dec4d38d79f841c538a621177b755a4005e999e8616676d4d187f55fbe3",
+      "public_sha256": "89df2dec4d38d79f841c538a621177b755a4005e999e8616676d4d187f55fbe3"
+    },
+    {
+      "path": "gpu-textures/dma-s64-g0-r1.log",
+      "raw_sha256": "20b90f71de5b0a107ae884d91242f1cf34622fc0ea9fc43990d6528b5c630193",
+      "public_sha256": "20b90f71de5b0a107ae884d91242f1cf34622fc0ea9fc43990d6528b5c630193"
+    },
+    {
+      "path": "gpu-textures/dma-s64-g0-r27.log",
+      "raw_sha256": "20b90f71de5b0a107ae884d91242f1cf34622fc0ea9fc43990d6528b5c630193",
+      "public_sha256": "20b90f71de5b0a107ae884d91242f1cf34622fc0ea9fc43990d6528b5c630193"
+    },
+    {
+      "path": "gpu-textures/dma-s64-g16-r1.log",
+      "raw_sha256": "20b90f71de5b0a107ae884d91242f1cf34622fc0ea9fc43990d6528b5c630193",
+      "public_sha256": "20b90f71de5b0a107ae884d91242f1cf34622fc0ea9fc43990d6528b5c630193"
+    },
+    {
+      "path": "gpu-textures/dma-s64-g16-r27.log",
+      "raw_sha256": "20b90f71de5b0a107ae884d91242f1cf34622fc0ea9fc43990d6528b5c630193",
+      "public_sha256": "20b90f71de5b0a107ae884d91242f1cf34622fc0ea9fc43990d6528b5c630193"
+    },
+    {
+      "path": "gpu-textures/dma-s256-g0-r1.log",
+      "raw_sha256": "e3d6577990ca896d18bf0428d6ef7ffdca750fa5a7cb15fae2110e32b80af8e5",
+      "public_sha256": "e3d6577990ca896d18bf0428d6ef7ffdca750fa5a7cb15fae2110e32b80af8e5"
+    },
+    {
+      "path": "gpu-textures/dma-s256-g0-r27.log",
+      "raw_sha256": "e3d6577990ca896d18bf0428d6ef7ffdca750fa5a7cb15fae2110e32b80af8e5",
+      "public_sha256": "e3d6577990ca896d18bf0428d6ef7ffdca750fa5a7cb15fae2110e32b80af8e5"
+    },
+    {
+      "path": "gpu-textures/dma-s256-g16-r1.log",
+      "raw_sha256": "e3d6577990ca896d18bf0428d6ef7ffdca750fa5a7cb15fae2110e32b80af8e5",
+      "public_sha256": "e3d6577990ca896d18bf0428d6ef7ffdca750fa5a7cb15fae2110e32b80af8e5"
+    },
+    {
+      "path": "gpu-textures/dma-s256-g16-r27.log",
+      "raw_sha256": "e3d6577990ca896d18bf0428d6ef7ffdca750fa5a7cb15fae2110e32b80af8e5",
+      "public_sha256": "e3d6577990ca896d18bf0428d6ef7ffdca750fa5a7cb15fae2110e32b80af8e5"
+    },
+    {
+      "path": "gpu-buffered-matrix/result.json",
+      "raw_sha256": "56ae0c608e96aaf7c8c30fbf69fee2c34d9ea1361c2be3616f71941c32815f3e",
+      "public_sha256": "56ae0c608e96aaf7c8c30fbf69fee2c34d9ea1361c2be3616f71941c32815f3e"
+    },
+    {
+      "path": "gpu-buffered-matrix/apb-s0-g0-r1.log",
+      "raw_sha256": "3138cb2799ecc6376662d7909f84db0bc1ce0a931ddc54edba8a32a9574ce2e0",
+      "public_sha256": "3138cb2799ecc6376662d7909f84db0bc1ce0a931ddc54edba8a32a9574ce2e0"
+    },
+    {
+      "path": "gpu-buffered-matrix/apb-s0-g0-r27.log",
+      "raw_sha256": "058d3eb6c20eb1d91951c547487ad5304b99e69a04500f058ebae9b6c9083e11",
+      "public_sha256": "058d3eb6c20eb1d91951c547487ad5304b99e69a04500f058ebae9b6c9083e11"
+    },
+    {
+      "path": "gpu-buffered-matrix/apb-s0-g16-r1.log",
+      "raw_sha256": "5c4c14ea63f6cb4f6d80f177dbda860a223acd52d19464e5e141022fde4b2130",
+      "public_sha256": "5c4c14ea63f6cb4f6d80f177dbda860a223acd52d19464e5e141022fde4b2130"
+    },
+    {
+      "path": "gpu-buffered-matrix/apb-s0-g16-r27.log",
+      "raw_sha256": "ec32c95dd8083ca2efb99e9cff9e769706b0520b99af87bfb5c6f5fdbeb29016",
+      "public_sha256": "ec32c95dd8083ca2efb99e9cff9e769706b0520b99af87bfb5c6f5fdbeb29016"
+    },
+    {
+      "path": "gpu-buffered-matrix/apb-s1800-g0-r1.log",
+      "raw_sha256": "a53c05e12280e961d043ec0bda555ca05bdeea8ce1bf7811602109b7728a6721",
+      "public_sha256": "a53c05e12280e961d043ec0bda555ca05bdeea8ce1bf7811602109b7728a6721"
+    },
+    {
+      "path": "gpu-buffered-matrix/apb-s1800-g0-r27.log",
+      "raw_sha256": "2fa0d701f5aa299c238750df46d6d1b462e7219677038c1e3694a7d3504de9f6",
+      "public_sha256": "2fa0d701f5aa299c238750df46d6d1b462e7219677038c1e3694a7d3504de9f6"
+    },
+    {
+      "path": "gpu-buffered-matrix/apb-s1800-g16-r1.log",
+      "raw_sha256": "ca0c54060192979cb281c19a1c9ec2bd24cd0edbfc0206c51397d14e14032e8c",
+      "public_sha256": "ca0c54060192979cb281c19a1c9ec2bd24cd0edbfc0206c51397d14e14032e8c"
+    },
+    {
+      "path": "gpu-buffered-matrix/apb-s1800-g16-r27.log",
+      "raw_sha256": "e6cde0f3e16e680e0ead6822b74dc7e41c426d0b80a0f3903d518d39eae856aa",
+      "public_sha256": "e6cde0f3e16e680e0ead6822b74dc7e41c426d0b80a0f3903d518d39eae856aa"
+    },
+    {
+      "path": "gpu-buffered-matrix/apb-s3600-g0-r1.log",
+      "raw_sha256": "a98f37980f088b8b1306c2ccadb020737fcfbeba7274267ed0d59fc693ccc490",
+      "public_sha256": "a98f37980f088b8b1306c2ccadb020737fcfbeba7274267ed0d59fc693ccc490"
+    },
+    {
+      "path": "gpu-buffered-matrix/apb-s3600-g0-r27.log",
+      "raw_sha256": "56624f6201ede2f9f00c7a6953e5b7fd796e28ece7d8a1f302a6fdab9dece31b",
+      "public_sha256": "56624f6201ede2f9f00c7a6953e5b7fd796e28ece7d8a1f302a6fdab9dece31b"
+    },
+    {
+      "path": "gpu-buffered-matrix/apb-s3600-g16-r1.log",
+      "raw_sha256": "dabb757ac86475867d125513542fb1385a019a9b6bac706bcd421f662e0e588f",
+      "public_sha256": "dabb757ac86475867d125513542fb1385a019a9b6bac706bcd421f662e0e588f"
+    },
+    {
+      "path": "gpu-buffered-matrix/apb-s3600-g16-r27.log",
+      "raw_sha256": "b9d4c120430c7860c9a89a462fd412fd8cc379e4642373b198d8160b23882829",
+      "public_sha256": "b9d4c120430c7860c9a89a462fd412fd8cc379e4642373b198d8160b23882829"
+    },
+    {
+      "path": "gpu-buffered-matrix/dma-s0-g0-r1.log",
+      "raw_sha256": "e79ab649572907e76043bc329c672e39b8a147922dd5ea798f8416e034056365",
+      "public_sha256": "e79ab649572907e76043bc329c672e39b8a147922dd5ea798f8416e034056365"
+    },
+    {
+      "path": "gpu-buffered-matrix/dma-s0-g0-r27.log",
+      "raw_sha256": "c2a8c5ca898157b749c5e98e4727ac33f3a8326e91fa5e3078f53bef75ce9b24",
+      "public_sha256": "c2a8c5ca898157b749c5e98e4727ac33f3a8326e91fa5e3078f53bef75ce9b24"
+    },
+    {
+      "path": "gpu-buffered-matrix/dma-s0-g16-r1.log",
+      "raw_sha256": "090f941353a9152106e8b12a88737bfd8d0facbb718ebb4227c85a83df7f597b",
+      "public_sha256": "090f941353a9152106e8b12a88737bfd8d0facbb718ebb4227c85a83df7f597b"
+    },
+    {
+      "path": "gpu-buffered-matrix/dma-s0-g16-r27.log",
+      "raw_sha256": "24005664ccfe688aeadb19a1850a479e5dd2c621e6ae49aaf2fe14c51d41dd4c",
+      "public_sha256": "24005664ccfe688aeadb19a1850a479e5dd2c621e6ae49aaf2fe14c51d41dd4c"
+    },
+    {
+      "path": "gpu-buffered-matrix/dma-s1800-g0-r1.log",
+      "raw_sha256": "f39d5bd9b3be30cdd383354b3a832e4fc3521d9bca54bd0be0b7d893acb3aaff",
+      "public_sha256": "f39d5bd9b3be30cdd383354b3a832e4fc3521d9bca54bd0be0b7d893acb3aaff"
+    },
+    {
+      "path": "gpu-buffered-matrix/dma-s1800-g0-r27.log",
+      "raw_sha256": "f979e37c1df24a35bb81ec68d21ba984ab814a5b6346a2325d12553decdf843d",
+      "public_sha256": "f979e37c1df24a35bb81ec68d21ba984ab814a5b6346a2325d12553decdf843d"
+    },
+    {
+      "path": "gpu-buffered-matrix/dma-s1800-g16-r1.log",
+      "raw_sha256": "1461d2b2708b36ff11dd4b8ea61a55b63df602e70967465fc86079a538622f84",
+      "public_sha256": "1461d2b2708b36ff11dd4b8ea61a55b63df602e70967465fc86079a538622f84"
+    },
+    {
+      "path": "gpu-buffered-matrix/dma-s1800-g16-r27.log",
+      "raw_sha256": "de31ba049007de443347db298bd0828721db9bdec2ddf11620e0fe232eb5bc83",
+      "public_sha256": "de31ba049007de443347db298bd0828721db9bdec2ddf11620e0fe232eb5bc83"
+    },
+    {
+      "path": "gpu-buffered-matrix/dma-s3600-g0-r1.log",
+      "raw_sha256": "3db023e66d726553af209cd08c43845d5100eafc8cfb912903bad133befe924c",
+      "public_sha256": "3db023e66d726553af209cd08c43845d5100eafc8cfb912903bad133befe924c"
+    },
+    {
+      "path": "gpu-buffered-matrix/dma-s3600-g0-r27.log",
+      "raw_sha256": "49f5507b7729e77b06d230b102c7d0ad7fd5fec723a1772eb8abb9c108fa83bd",
+      "public_sha256": "49f5507b7729e77b06d230b102c7d0ad7fd5fec723a1772eb8abb9c108fa83bd"
+    },
+    {
+      "path": "gpu-buffered-matrix/dma-s3600-g16-r1.log",
+      "raw_sha256": "2bcae2cd6d1ab2b4cc619f56547910560ef1c3b80d6f0f9c6ce9112f4c16dd41",
+      "public_sha256": "2bcae2cd6d1ab2b4cc619f56547910560ef1c3b80d6f0f9c6ce9112f4c16dd41"
+    },
+    {
+      "path": "gpu-buffered-matrix/dma-s3600-g16-r27.log",
+      "raw_sha256": "26452e3dad52ecebe92e985602edb7d592eb584267d603208532398d5b693345",
+      "public_sha256": "26452e3dad52ecebe92e985602edb7d592eb584267d603208532398d5b693345"
+    },
+    {
+      "path": "gpu-buffered-textures/result.json",
+      "raw_sha256": "8f601d50b6649dd0e6203f2687a185db97c870e09743916522604827bc52f0e0",
+      "public_sha256": "8f601d50b6649dd0e6203f2687a185db97c870e09743916522604827bc52f0e0"
+    },
+    {
+      "path": "gpu-buffered-textures/apb-s32-g0-r1.log",
+      "raw_sha256": "94f8fd162390adc398c1065f939249391c52ca5821341fe9cc2f7e9cc2a2a9b9",
+      "public_sha256": "94f8fd162390adc398c1065f939249391c52ca5821341fe9cc2f7e9cc2a2a9b9"
+    },
+    {
+      "path": "gpu-buffered-textures/apb-s32-g0-r27.log",
+      "raw_sha256": "94f8fd162390adc398c1065f939249391c52ca5821341fe9cc2f7e9cc2a2a9b9",
+      "public_sha256": "94f8fd162390adc398c1065f939249391c52ca5821341fe9cc2f7e9cc2a2a9b9"
+    },
+    {
+      "path": "gpu-buffered-textures/apb-s32-g16-r1.log",
+      "raw_sha256": "94f8fd162390adc398c1065f939249391c52ca5821341fe9cc2f7e9cc2a2a9b9",
+      "public_sha256": "94f8fd162390adc398c1065f939249391c52ca5821341fe9cc2f7e9cc2a2a9b9"
+    },
+    {
+      "path": "gpu-buffered-textures/apb-s32-g16-r27.log",
+      "raw_sha256": "94f8fd162390adc398c1065f939249391c52ca5821341fe9cc2f7e9cc2a2a9b9",
+      "public_sha256": "94f8fd162390adc398c1065f939249391c52ca5821341fe9cc2f7e9cc2a2a9b9"
+    },
+    {
+      "path": "gpu-buffered-textures/apb-s64-g0-r1.log",
+      "raw_sha256": "6f901b38c5eaff90ce8de0b0f5f27d719246e2aad502e34f02d81695adaa95cd",
+      "public_sha256": "6f901b38c5eaff90ce8de0b0f5f27d719246e2aad502e34f02d81695adaa95cd"
+    },
+    {
+      "path": "gpu-buffered-textures/apb-s64-g0-r27.log",
+      "raw_sha256": "6f901b38c5eaff90ce8de0b0f5f27d719246e2aad502e34f02d81695adaa95cd",
+      "public_sha256": "6f901b38c5eaff90ce8de0b0f5f27d719246e2aad502e34f02d81695adaa95cd"
+    },
+    {
+      "path": "gpu-buffered-textures/apb-s64-g16-r1.log",
+      "raw_sha256": "c8ae0941c66affb9a88862f62c2eb54f821e7b19fbba1f4f900f6ad10fa3fe72",
+      "public_sha256": "c8ae0941c66affb9a88862f62c2eb54f821e7b19fbba1f4f900f6ad10fa3fe72"
+    },
+    {
+      "path": "gpu-buffered-textures/apb-s64-g16-r27.log",
+      "raw_sha256": "c8ae0941c66affb9a88862f62c2eb54f821e7b19fbba1f4f900f6ad10fa3fe72",
+      "public_sha256": "c8ae0941c66affb9a88862f62c2eb54f821e7b19fbba1f4f900f6ad10fa3fe72"
+    },
+    {
+      "path": "gpu-buffered-textures/apb-s256-g0-r1.log",
+      "raw_sha256": "048dd9db25a14709955e81d9d116f0d3428a4aba619354ca77e002ca32907028",
+      "public_sha256": "048dd9db25a14709955e81d9d116f0d3428a4aba619354ca77e002ca32907028"
+    },
+    {
+      "path": "gpu-buffered-textures/apb-s256-g0-r27.log",
+      "raw_sha256": "048dd9db25a14709955e81d9d116f0d3428a4aba619354ca77e002ca32907028",
+      "public_sha256": "048dd9db25a14709955e81d9d116f0d3428a4aba619354ca77e002ca32907028"
+    },
+    {
+      "path": "gpu-buffered-textures/apb-s256-g16-r1.log",
+      "raw_sha256": "3c23e62c62a5cd91a166facc2e341a021774288ff8f087aa15eacde201722537",
+      "public_sha256": "3c23e62c62a5cd91a166facc2e341a021774288ff8f087aa15eacde201722537"
+    },
+    {
+      "path": "gpu-buffered-textures/apb-s256-g16-r27.log",
+      "raw_sha256": "3c23e62c62a5cd91a166facc2e341a021774288ff8f087aa15eacde201722537",
+      "public_sha256": "3c23e62c62a5cd91a166facc2e341a021774288ff8f087aa15eacde201722537"
+    },
+    {
+      "path": "gpu-buffered-textures/dma-s32-g0-r1.log",
+      "raw_sha256": "94f8fd162390adc398c1065f939249391c52ca5821341fe9cc2f7e9cc2a2a9b9",
+      "public_sha256": "94f8fd162390adc398c1065f939249391c52ca5821341fe9cc2f7e9cc2a2a9b9"
+    },
+    {
+      "path": "gpu-buffered-textures/dma-s32-g0-r27.log",
+      "raw_sha256": "94f8fd162390adc398c1065f939249391c52ca5821341fe9cc2f7e9cc2a2a9b9",
+      "public_sha256": "94f8fd162390adc398c1065f939249391c52ca5821341fe9cc2f7e9cc2a2a9b9"
+    },
+    {
+      "path": "gpu-buffered-textures/dma-s32-g16-r1.log",
+      "raw_sha256": "94f8fd162390adc398c1065f939249391c52ca5821341fe9cc2f7e9cc2a2a9b9",
+      "public_sha256": "94f8fd162390adc398c1065f939249391c52ca5821341fe9cc2f7e9cc2a2a9b9"
+    },
+    {
+      "path": "gpu-buffered-textures/dma-s32-g16-r27.log",
+      "raw_sha256": "94f8fd162390adc398c1065f939249391c52ca5821341fe9cc2f7e9cc2a2a9b9",
+      "public_sha256": "94f8fd162390adc398c1065f939249391c52ca5821341fe9cc2f7e9cc2a2a9b9"
+    },
+    {
+      "path": "gpu-buffered-textures/dma-s64-g0-r1.log",
+      "raw_sha256": "3722277e49dc2c3781e16e88a265eb5f1426b953c2fc59ee7079f48119095a33",
+      "public_sha256": "3722277e49dc2c3781e16e88a265eb5f1426b953c2fc59ee7079f48119095a33"
+    },
+    {
+      "path": "gpu-buffered-textures/dma-s64-g0-r27.log",
+      "raw_sha256": "3722277e49dc2c3781e16e88a265eb5f1426b953c2fc59ee7079f48119095a33",
+      "public_sha256": "3722277e49dc2c3781e16e88a265eb5f1426b953c2fc59ee7079f48119095a33"
+    },
+    {
+      "path": "gpu-buffered-textures/dma-s64-g16-r1.log",
+      "raw_sha256": "3722277e49dc2c3781e16e88a265eb5f1426b953c2fc59ee7079f48119095a33",
+      "public_sha256": "3722277e49dc2c3781e16e88a265eb5f1426b953c2fc59ee7079f48119095a33"
+    },
+    {
+      "path": "gpu-buffered-textures/dma-s64-g16-r27.log",
+      "raw_sha256": "3722277e49dc2c3781e16e88a265eb5f1426b953c2fc59ee7079f48119095a33",
+      "public_sha256": "3722277e49dc2c3781e16e88a265eb5f1426b953c2fc59ee7079f48119095a33"
+    },
+    {
+      "path": "gpu-buffered-textures/dma-s256-g0-r1.log",
+      "raw_sha256": "ebf62b2e395a3bf5997219fa0cc81a23da814fd44b83cd8e52a0a1b25977058b",
+      "public_sha256": "ebf62b2e395a3bf5997219fa0cc81a23da814fd44b83cd8e52a0a1b25977058b"
+    },
+    {
+      "path": "gpu-buffered-textures/dma-s256-g0-r27.log",
+      "raw_sha256": "ebf62b2e395a3bf5997219fa0cc81a23da814fd44b83cd8e52a0a1b25977058b",
+      "public_sha256": "ebf62b2e395a3bf5997219fa0cc81a23da814fd44b83cd8e52a0a1b25977058b"
+    },
+    {
+      "path": "gpu-buffered-textures/dma-s256-g16-r1.log",
+      "raw_sha256": "ebf62b2e395a3bf5997219fa0cc81a23da814fd44b83cd8e52a0a1b25977058b",
+      "public_sha256": "ebf62b2e395a3bf5997219fa0cc81a23da814fd44b83cd8e52a0a1b25977058b"
+    },
+    {
+      "path": "gpu-buffered-textures/dma-s256-g16-r27.log",
+      "raw_sha256": "ebf62b2e395a3bf5997219fa0cc81a23da814fd44b83cd8e52a0a1b25977058b",
+      "public_sha256": "ebf62b2e395a3bf5997219fa0cc81a23da814fd44b83cd8e52a0a1b25977058b"
+    },
+    {
+      "path": "gpu-buffered-parser-matrix/result.json",
+      "raw_sha256": "b21b61038523d781f8d6911a491ef858b9e07c1f229c3cebb4f5399bf0ae5271",
+      "public_sha256": "b21b61038523d781f8d6911a491ef858b9e07c1f229c3cebb4f5399bf0ae5271"
+    },
+    {
+      "path": "gpu-buffered-parser-matrix/apb-s0-g0-r1.log",
+      "raw_sha256": "3138cb2799ecc6376662d7909f84db0bc1ce0a931ddc54edba8a32a9574ce2e0",
+      "public_sha256": "3138cb2799ecc6376662d7909f84db0bc1ce0a931ddc54edba8a32a9574ce2e0"
+    },
+    {
+      "path": "gpu-buffered-parser-matrix/apb-s0-g0-r27.log",
+      "raw_sha256": "058d3eb6c20eb1d91951c547487ad5304b99e69a04500f058ebae9b6c9083e11",
+      "public_sha256": "058d3eb6c20eb1d91951c547487ad5304b99e69a04500f058ebae9b6c9083e11"
+    },
+    {
+      "path": "gpu-buffered-parser-matrix/apb-s0-g16-r1.log",
+      "raw_sha256": "5c4c14ea63f6cb4f6d80f177dbda860a223acd52d19464e5e141022fde4b2130",
+      "public_sha256": "5c4c14ea63f6cb4f6d80f177dbda860a223acd52d19464e5e141022fde4b2130"
+    },
+    {
+      "path": "gpu-buffered-parser-matrix/apb-s0-g16-r27.log",
+      "raw_sha256": "ec32c95dd8083ca2efb99e9cff9e769706b0520b99af87bfb5c6f5fdbeb29016",
+      "public_sha256": "ec32c95dd8083ca2efb99e9cff9e769706b0520b99af87bfb5c6f5fdbeb29016"
+    },
+    {
+      "path": "gpu-buffered-parser-matrix/apb-s1800-g0-r1.log",
+      "raw_sha256": "a53c05e12280e961d043ec0bda555ca05bdeea8ce1bf7811602109b7728a6721",
+      "public_sha256": "a53c05e12280e961d043ec0bda555ca05bdeea8ce1bf7811602109b7728a6721"
+    },
+    {
+      "path": "gpu-buffered-parser-matrix/apb-s1800-g0-r27.log",
+      "raw_sha256": "2fa0d701f5aa299c238750df46d6d1b462e7219677038c1e3694a7d3504de9f6",
+      "public_sha256": "2fa0d701f5aa299c238750df46d6d1b462e7219677038c1e3694a7d3504de9f6"
+    },
+    {
+      "path": "gpu-buffered-parser-matrix/apb-s1800-g16-r1.log",
+      "raw_sha256": "ca0c54060192979cb281c19a1c9ec2bd24cd0edbfc0206c51397d14e14032e8c",
+      "public_sha256": "ca0c54060192979cb281c19a1c9ec2bd24cd0edbfc0206c51397d14e14032e8c"
+    },
+    {
+      "path": "gpu-buffered-parser-matrix/apb-s1800-g16-r27.log",
+      "raw_sha256": "e6cde0f3e16e680e0ead6822b74dc7e41c426d0b80a0f3903d518d39eae856aa",
+      "public_sha256": "e6cde0f3e16e680e0ead6822b74dc7e41c426d0b80a0f3903d518d39eae856aa"
+    },
+    {
+      "path": "gpu-buffered-parser-matrix/apb-s3600-g0-r1.log",
+      "raw_sha256": "a98f37980f088b8b1306c2ccadb020737fcfbeba7274267ed0d59fc693ccc490",
+      "public_sha256": "a98f37980f088b8b1306c2ccadb020737fcfbeba7274267ed0d59fc693ccc490"
+    },
+    {
+      "path": "gpu-buffered-parser-matrix/apb-s3600-g0-r27.log",
+      "raw_sha256": "56624f6201ede2f9f00c7a6953e5b7fd796e28ece7d8a1f302a6fdab9dece31b",
+      "public_sha256": "56624f6201ede2f9f00c7a6953e5b7fd796e28ece7d8a1f302a6fdab9dece31b"
+    },
+    {
+      "path": "gpu-buffered-parser-matrix/apb-s3600-g16-r1.log",
+      "raw_sha256": "dabb757ac86475867d125513542fb1385a019a9b6bac706bcd421f662e0e588f",
+      "public_sha256": "dabb757ac86475867d125513542fb1385a019a9b6bac706bcd421f662e0e588f"
+    },
+    {
+      "path": "gpu-buffered-parser-matrix/apb-s3600-g16-r27.log",
+      "raw_sha256": "b9d4c120430c7860c9a89a462fd412fd8cc379e4642373b198d8160b23882829",
+      "public_sha256": "b9d4c120430c7860c9a89a462fd412fd8cc379e4642373b198d8160b23882829"
+    },
+    {
+      "path": "gpu-buffered-parser-matrix/dma-s0-g0-r1.log",
+      "raw_sha256": "e79ab649572907e76043bc329c672e39b8a147922dd5ea798f8416e034056365",
+      "public_sha256": "e79ab649572907e76043bc329c672e39b8a147922dd5ea798f8416e034056365"
+    },
+    {
+      "path": "gpu-buffered-parser-matrix/dma-s0-g0-r27.log",
+      "raw_sha256": "c2a8c5ca898157b749c5e98e4727ac33f3a8326e91fa5e3078f53bef75ce9b24",
+      "public_sha256": "c2a8c5ca898157b749c5e98e4727ac33f3a8326e91fa5e3078f53bef75ce9b24"
+    },
+    {
+      "path": "gpu-buffered-parser-matrix/dma-s0-g16-r1.log",
+      "raw_sha256": "090f941353a9152106e8b12a88737bfd8d0facbb718ebb4227c85a83df7f597b",
+      "public_sha256": "090f941353a9152106e8b12a88737bfd8d0facbb718ebb4227c85a83df7f597b"
+    },
+    {
+      "path": "gpu-buffered-parser-matrix/dma-s0-g16-r27.log",
+      "raw_sha256": "24005664ccfe688aeadb19a1850a479e5dd2c621e6ae49aaf2fe14c51d41dd4c",
+      "public_sha256": "24005664ccfe688aeadb19a1850a479e5dd2c621e6ae49aaf2fe14c51d41dd4c"
+    },
+    {
+      "path": "gpu-buffered-parser-matrix/dma-s1800-g0-r1.log",
+      "raw_sha256": "f39d5bd9b3be30cdd383354b3a832e4fc3521d9bca54bd0be0b7d893acb3aaff",
+      "public_sha256": "f39d5bd9b3be30cdd383354b3a832e4fc3521d9bca54bd0be0b7d893acb3aaff"
+    },
+    {
+      "path": "gpu-buffered-parser-matrix/dma-s1800-g0-r27.log",
+      "raw_sha256": "f979e37c1df24a35bb81ec68d21ba984ab814a5b6346a2325d12553decdf843d",
+      "public_sha256": "f979e37c1df24a35bb81ec68d21ba984ab814a5b6346a2325d12553decdf843d"
+    },
+    {
+      "path": "gpu-buffered-parser-matrix/dma-s1800-g16-r1.log",
+      "raw_sha256": "1461d2b2708b36ff11dd4b8ea61a55b63df602e70967465fc86079a538622f84",
+      "public_sha256": "1461d2b2708b36ff11dd4b8ea61a55b63df602e70967465fc86079a538622f84"
+    },
+    {
+      "path": "gpu-buffered-parser-matrix/dma-s1800-g16-r27.log",
+      "raw_sha256": "de31ba049007de443347db298bd0828721db9bdec2ddf11620e0fe232eb5bc83",
+      "public_sha256": "de31ba049007de443347db298bd0828721db9bdec2ddf11620e0fe232eb5bc83"
+    },
+    {
+      "path": "gpu-buffered-parser-matrix/dma-s3600-g0-r1.log",
+      "raw_sha256": "3db023e66d726553af209cd08c43845d5100eafc8cfb912903bad133befe924c",
+      "public_sha256": "3db023e66d726553af209cd08c43845d5100eafc8cfb912903bad133befe924c"
+    },
+    {
+      "path": "gpu-buffered-parser-matrix/dma-s3600-g0-r27.log",
+      "raw_sha256": "49f5507b7729e77b06d230b102c7d0ad7fd5fec723a1772eb8abb9c108fa83bd",
+      "public_sha256": "49f5507b7729e77b06d230b102c7d0ad7fd5fec723a1772eb8abb9c108fa83bd"
+    },
+    {
+      "path": "gpu-buffered-parser-matrix/dma-s3600-g16-r1.log",
+      "raw_sha256": "2bcae2cd6d1ab2b4cc619f56547910560ef1c3b80d6f0f9c6ce9112f4c16dd41",
+      "public_sha256": "2bcae2cd6d1ab2b4cc619f56547910560ef1c3b80d6f0f9c6ce9112f4c16dd41"
+    },
+    {
+      "path": "gpu-buffered-parser-matrix/dma-s3600-g16-r27.log",
+      "raw_sha256": "26452e3dad52ecebe92e985602edb7d592eb584267d603208532398d5b693345",
+      "public_sha256": "26452e3dad52ecebe92e985602edb7d592eb584267d603208532398d5b693345"
+    },
+    {
+      "path": "gpu-buffered-parser-textures/result.json",
+      "raw_sha256": "a5a451c97b670090a87ef4c91b8c78883f599381e06d799d7136d41aec57edf5",
+      "public_sha256": "a5a451c97b670090a87ef4c91b8c78883f599381e06d799d7136d41aec57edf5"
+    },
+    {
+      "path": "gpu-buffered-parser-textures/apb-s32-g0-r1.log",
+      "raw_sha256": "94f8fd162390adc398c1065f939249391c52ca5821341fe9cc2f7e9cc2a2a9b9",
+      "public_sha256": "94f8fd162390adc398c1065f939249391c52ca5821341fe9cc2f7e9cc2a2a9b9"
+    },
+    {
+      "path": "gpu-buffered-parser-textures/apb-s32-g0-r27.log",
+      "raw_sha256": "94f8fd162390adc398c1065f939249391c52ca5821341fe9cc2f7e9cc2a2a9b9",
+      "public_sha256": "94f8fd162390adc398c1065f939249391c52ca5821341fe9cc2f7e9cc2a2a9b9"
+    },
+    {
+      "path": "gpu-buffered-parser-textures/apb-s32-g16-r1.log",
+      "raw_sha256": "94f8fd162390adc398c1065f939249391c52ca5821341fe9cc2f7e9cc2a2a9b9",
+      "public_sha256": "94f8fd162390adc398c1065f939249391c52ca5821341fe9cc2f7e9cc2a2a9b9"
+    },
+    {
+      "path": "gpu-buffered-parser-textures/apb-s32-g16-r27.log",
+      "raw_sha256": "94f8fd162390adc398c1065f939249391c52ca5821341fe9cc2f7e9cc2a2a9b9",
+      "public_sha256": "94f8fd162390adc398c1065f939249391c52ca5821341fe9cc2f7e9cc2a2a9b9"
+    },
+    {
+      "path": "gpu-buffered-parser-textures/apb-s64-g0-r1.log",
+      "raw_sha256": "6f901b38c5eaff90ce8de0b0f5f27d719246e2aad502e34f02d81695adaa95cd",
+      "public_sha256": "6f901b38c5eaff90ce8de0b0f5f27d719246e2aad502e34f02d81695adaa95cd"
+    },
+    {
+      "path": "gpu-buffered-parser-textures/apb-s64-g0-r27.log",
+      "raw_sha256": "6f901b38c5eaff90ce8de0b0f5f27d719246e2aad502e34f02d81695adaa95cd",
+      "public_sha256": "6f901b38c5eaff90ce8de0b0f5f27d719246e2aad502e34f02d81695adaa95cd"
+    },
+    {
+      "path": "gpu-buffered-parser-textures/apb-s64-g16-r1.log",
+      "raw_sha256": "6f901b38c5eaff90ce8de0b0f5f27d719246e2aad502e34f02d81695adaa95cd",
+      "public_sha256": "6f901b38c5eaff90ce8de0b0f5f27d719246e2aad502e34f02d81695adaa95cd"
+    },
+    {
+      "path": "gpu-buffered-parser-textures/apb-s64-g16-r27.log",
+      "raw_sha256": "6f901b38c5eaff90ce8de0b0f5f27d719246e2aad502e34f02d81695adaa95cd",
+      "public_sha256": "6f901b38c5eaff90ce8de0b0f5f27d719246e2aad502e34f02d81695adaa95cd"
+    },
+    {
+      "path": "gpu-buffered-parser-textures/apb-s256-g0-r1.log",
+      "raw_sha256": "048dd9db25a14709955e81d9d116f0d3428a4aba619354ca77e002ca32907028",
+      "public_sha256": "048dd9db25a14709955e81d9d116f0d3428a4aba619354ca77e002ca32907028"
+    },
+    {
+      "path": "gpu-buffered-parser-textures/apb-s256-g0-r27.log",
+      "raw_sha256": "048dd9db25a14709955e81d9d116f0d3428a4aba619354ca77e002ca32907028",
+      "public_sha256": "048dd9db25a14709955e81d9d116f0d3428a4aba619354ca77e002ca32907028"
+    },
+    {
+      "path": "gpu-buffered-parser-textures/apb-s256-g16-r1.log",
+      "raw_sha256": "048dd9db25a14709955e81d9d116f0d3428a4aba619354ca77e002ca32907028",
+      "public_sha256": "048dd9db25a14709955e81d9d116f0d3428a4aba619354ca77e002ca32907028"
+    },
+    {
+      "path": "gpu-buffered-parser-textures/apb-s256-g16-r27.log",
+      "raw_sha256": "048dd9db25a14709955e81d9d116f0d3428a4aba619354ca77e002ca32907028",
+      "public_sha256": "048dd9db25a14709955e81d9d116f0d3428a4aba619354ca77e002ca32907028"
+    },
+    {
+      "path": "gpu-buffered-parser-textures/dma-s32-g0-r1.log",
+      "raw_sha256": "94f8fd162390adc398c1065f939249391c52ca5821341fe9cc2f7e9cc2a2a9b9",
+      "public_sha256": "94f8fd162390adc398c1065f939249391c52ca5821341fe9cc2f7e9cc2a2a9b9"
+    },
+    {
+      "path": "gpu-buffered-parser-textures/dma-s32-g0-r27.log",
+      "raw_sha256": "94f8fd162390adc398c1065f939249391c52ca5821341fe9cc2f7e9cc2a2a9b9",
+      "public_sha256": "94f8fd162390adc398c1065f939249391c52ca5821341fe9cc2f7e9cc2a2a9b9"
+    },
+    {
+      "path": "gpu-buffered-parser-textures/dma-s32-g16-r1.log",
+      "raw_sha256": "94f8fd162390adc398c1065f939249391c52ca5821341fe9cc2f7e9cc2a2a9b9",
+      "public_sha256": "94f8fd162390adc398c1065f939249391c52ca5821341fe9cc2f7e9cc2a2a9b9"
+    },
+    {
+      "path": "gpu-buffered-parser-textures/dma-s32-g16-r27.log",
+      "raw_sha256": "94f8fd162390adc398c1065f939249391c52ca5821341fe9cc2f7e9cc2a2a9b9",
+      "public_sha256": "94f8fd162390adc398c1065f939249391c52ca5821341fe9cc2f7e9cc2a2a9b9"
+    },
+    {
+      "path": "gpu-buffered-parser-textures/dma-s64-g0-r1.log",
+      "raw_sha256": "6f901b38c5eaff90ce8de0b0f5f27d719246e2aad502e34f02d81695adaa95cd",
+      "public_sha256": "6f901b38c5eaff90ce8de0b0f5f27d719246e2aad502e34f02d81695adaa95cd"
+    },
+    {
+      "path": "gpu-buffered-parser-textures/dma-s64-g0-r27.log",
+      "raw_sha256": "6f901b38c5eaff90ce8de0b0f5f27d719246e2aad502e34f02d81695adaa95cd",
+      "public_sha256": "6f901b38c5eaff90ce8de0b0f5f27d719246e2aad502e34f02d81695adaa95cd"
+    },
+    {
+      "path": "gpu-buffered-parser-textures/dma-s64-g16-r1.log",
+      "raw_sha256": "6f901b38c5eaff90ce8de0b0f5f27d719246e2aad502e34f02d81695adaa95cd",
+      "public_sha256": "6f901b38c5eaff90ce8de0b0f5f27d719246e2aad502e34f02d81695adaa95cd"
+    },
+    {
+      "path": "gpu-buffered-parser-textures/dma-s64-g16-r27.log",
+      "raw_sha256": "6f901b38c5eaff90ce8de0b0f5f27d719246e2aad502e34f02d81695adaa95cd",
+      "public_sha256": "6f901b38c5eaff90ce8de0b0f5f27d719246e2aad502e34f02d81695adaa95cd"
+    },
+    {
+      "path": "gpu-buffered-parser-textures/dma-s256-g0-r1.log",
+      "raw_sha256": "048dd9db25a14709955e81d9d116f0d3428a4aba619354ca77e002ca32907028",
+      "public_sha256": "048dd9db25a14709955e81d9d116f0d3428a4aba619354ca77e002ca32907028"
+    },
+    {
+      "path": "gpu-buffered-parser-textures/dma-s256-g0-r27.log",
+      "raw_sha256": "048dd9db25a14709955e81d9d116f0d3428a4aba619354ca77e002ca32907028",
+      "public_sha256": "048dd9db25a14709955e81d9d116f0d3428a4aba619354ca77e002ca32907028"
+    },
+    {
+      "path": "gpu-buffered-parser-textures/dma-s256-g16-r1.log",
+      "raw_sha256": "048dd9db25a14709955e81d9d116f0d3428a4aba619354ca77e002ca32907028",
+      "public_sha256": "048dd9db25a14709955e81d9d116f0d3428a4aba619354ca77e002ca32907028"
+    },
+    {
+      "path": "gpu-buffered-parser-textures/dma-s256-g16-r27.log",
+      "raw_sha256": "048dd9db25a14709955e81d9d116f0d3428a4aba619354ca77e002ca32907028",
+      "public_sha256": "048dd9db25a14709955e81d9d116f0d3428a4aba619354ca77e002ca32907028"
+    },
+    {
+      "path": "dma-sim.csv",
+      "raw_sha256": "5e4c968113be8eb081ccdb158969538eb61e270ff6ad9511777b0907ad553356",
+      "public_sha256": "5e4c968113be8eb081ccdb158969538eb61e270ff6ad9511777b0907ad553356"
+    },
+    {
+      "path": "dma-sim-result.log",
+      "raw_sha256": "65b5dd9dc08ef04e181c7b41b0f1d8da70d6a7641a590ab566092b05f55f74ad",
+      "public_sha256": "65b5dd9dc08ef04e181c7b41b0f1d8da70d6a7641a590ab566092b05f55f74ad"
+    },
+    {
+      "path": "dma-buffered-top/dma-read-buffer.patch",
+      "raw_sha256": "1fdce4093fb98d44fee1043b0ad88fdbc8a3e63c547c53668e7b32e38f2e7fd3",
+      "public_sha256": "1fdce4093fb98d44fee1043b0ad88fdbc8a3e63c547c53668e7b32e38f2e7fd3"
+    },
+    {
+      "path": "dma-buffered-top/manifest.json",
+      "raw_sha256": "8ccf3331b02c6041a3c90f8ad0052bab1c7ecf38bca26daccd4ff8e79c0b7fca",
+      "public_sha256": "8ccf3331b02c6041a3c90f8ad0052bab1c7ecf38bca26daccd4ff8e79c0b7fca"
+    },
+    {
+      "path": "dma-buffered-parser-top/parser-handshake.patch",
+      "raw_sha256": "059541ac2a75f23391b5f618e31915d700efd97cb4d6995253582b2208853be0",
+      "public_sha256": "059541ac2a75f23391b5f618e31915d700efd97cb4d6995253582b2208853be0"
+    },
+    {
+      "path": "dma-buffered-parser-top/manifest.json",
+      "raw_sha256": "8ccf3331b02c6041a3c90f8ad0052bab1c7ecf38bca26daccd4ff8e79c0b7fca",
+      "public_sha256": "8ccf3331b02c6041a3c90f8ad0052bab1c7ecf38bca26daccd4ff8e79c0b7fca"
+    }
+  ]
+}

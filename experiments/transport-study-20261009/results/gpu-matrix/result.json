@@ -1,0 +1,392 @@
+{
+  "utc": "2026-10-09T00:27:00.432339+00:00",
+  "binary_sha256": "d55d60bd768c90da7f19ae49efe1974c124ded6e04be79bc02dc184bc96dddcc",
+  "scope": "Functional RTL model with UNITTEST RAM, synthetic DDR stalls and display acknowledgement. No Wally CPU, APB CDC, MIG, HDMI or FPGA timing is modeled. Glyphs in gpu-functional are quads; gpu-texture separately exercises textures.",
+  "cases": [
+    {
+      "case": "apb-s0-g0-r1",
+      "arguments": [
+        "apb",
+        "0",
+        "0",
+        "1"
+      ],
+      "exit": 0,
+      "checks": [
+        "GPU_FRAME mode=apb state=0 gap=0 seed=1 repeat=0 pixels=307200 mismatches=0 hash=16e1fedb cycles=572853",
+        "GPU_FRAME mode=apb state=0 gap=0 seed=1 repeat=1 pixels=307200 mismatches=0 hash=a2876a5b cycles=1038253",
+        "GPU_FRAME mode=apb state=0 gap=0 seed=1 repeat=2 pixels=307200 mismatches=0 hash=bf7615db cycles=1503563",
+        "GPU_FRAME mode=apb state=0 gap=0 seed=1 repeat=3 pixels=307200 mismatches=0 hash=4edf4f5b cycles=1968762",
+        "GPU_FUNCTIONAL_PASS"
+      ]
+    },
+    {
+      "case": "apb-s0-g0-r27",
+      "arguments": [
+        "apb",
+        "0",
+        "0",
+        "27"
+      ],
+      "exit": 0,
+      "checks": [
+        "GPU_FRAME mode=apb state=0 gap=0 seed=27 repeat=0 pixels=307200 mismatches=0 hash=16e1fedb cycles=572443",
+        "GPU_FRAME mode=apb state=0 gap=0 seed=27 repeat=1 pixels=307200 mismatches=0 hash=a2876a5b cycles=1037563",
+        "GPU_FRAME mode=apb state=0 gap=0 seed=27 repeat=2 pixels=307200 mismatches=0 hash=bf7615db cycles=1503314",
+        "GPU_FRAME mode=apb state=0 gap=0 seed=27 repeat=3 pixels=307200 mismatches=0 hash=4edf4f5b cycles=1968516",
+        "GPU_FUNCTIONAL_PASS"
+      ]
+    },
+    {
+      "case": "apb-s0-g16-r1",
+      "arguments": [
+        "apb",
+        "0",
+        "16",
+        "1"
+      ],
+      "exit": 0,
+      "checks": [
+        "GPU_FRAME mode=apb state=0 gap=16 seed=1 repeat=0 pixels=307200 mismatches=0 hash=16e1fedb cycles=1226328",
+        "GPU_FRAME mode=apb state=0 gap=16 seed=1 repeat=1 pixels=307200 mismatches=0 hash=a2876a5b cycles=2332534",
+        "GPU_FRAME mode=apb state=0 gap=16 seed=1 repeat=2 pixels=307200 mismatches=0 hash=bf7615db cycles=3438764",
+        "GPU_FRAME mode=apb state=0 gap=16 seed=1 repeat=3 pixels=307200 mismatches=0 hash=4edf4f5b cycles=4544895",
+        "GPU_FUNCTIONAL_PASS"
+      ]
+    },
+    {
+      "case": "apb-s0-g16-r27",
+      "arguments": [
+        "apb",
+        "0",
+        "16",
+        "27"
+      ],
+      "exit": 0,
+      "checks": [
+        "GPU_FRAME mode=apb state=0 gap=16 seed=27 repeat=0 pixels=307200 mismatches=0 hash=16e1fedb cycles=1225985",
+        "GPU_FRAME mode=apb state=0 gap=16 seed=27 repeat=1 pixels=307200 mismatches=0 hash=a2876a5b cycles=2332759",
+        "GPU_FRAME mode=apb state=0 gap=16 seed=27 repeat=2 pixels=307200 mismatches=0 hash=bf7615db cycles=3438782",
+        "GPU_FRAME mode=apb state=0 gap=16 seed=27 repeat=3 pixels=307200 mismatches=0 hash=4edf4f5b cycles=4545251",
+        "GPU_FUNCTIONAL_PASS"
+      ]
+    },
+    {
+      "case": "apb-s1800-g0-r1",
+      "arguments": [
+        "apb",
+        "1800",
+        "0",
+        "1"
+      ],
+      "exit": 0,
+      "checks": [
+        "GPU_FRAME mode=apb state=1800 gap=0 seed=1 repeat=0 pixels=307200 mismatches=0 hash=a25cae93 cycles=528478",
+        "GPU_FRAME mode=apb state=1800 gap=0 seed=1 repeat=1 pixels=307200 mismatches=0 hash=16b58153 cycles=949364",
+        "GPU_FRAME mode=apb state=1800 gap=0 seed=1 repeat=2 pixels=307200 mismatches=0 hash=e3872013 cycles=1369866",
+        "GPU_FRAME mode=apb state=1800 gap=0 seed=1 repeat=3 pixels=307200 mismatches=0 hash=ad53fad3 cycles=1790843",
+        "GPU_FUNCTIONAL_PASS"
+      ]
+    },
+    {
+      "case": "apb-s1800-g0-r27",
+      "arguments": [
+        "apb",
+        "1800",
+        "0",
+        "27"
+      ],
+      "exit": 0,
+      "checks": [
+        "GPU_FRAME mode=apb state=1800 gap=0 seed=27 repeat=0 pixels=307200 mismatches=0 hash=a25cae93 cycles=528428",
+        "GPU_FRAME mode=apb state=1800 gap=0 seed=27 repeat=1 pixels=307200 mismatches=0 hash=16b58153 cycles=949113",
+        "GPU_FRAME mode=apb state=1800 gap=0 seed=27 repeat=2 pixels=307200 mismatches=0 hash=e3872013 cycles=1369846",
+        "GPU_FRAME mode=apb state=1800 gap=0 seed=27 repeat=3 pixels=307200 mismatches=0 hash=ad53fad3 cycles=1790731",
+        "GPU_FUNCTIONAL_PASS"
+      ]
+    },
+    {
+      "case": "apb-s1800-g16-r1",
+      "arguments": [
+        "apb",
+        "1800",
+        "16",
+        "1"
+      ],
+      "exit": 0,
+      "checks": [
+        "GPU_FRAME mode=apb state=1800 gap=16 seed=1 repeat=0 pixels=307200 mismatches=0 hash=a25cae93 cycles=1072379",
+        "GPU_FRAME mode=apb state=1800 gap=16 seed=1 repeat=1 pixels=307200 mismatches=0 hash=16b58153 cycles=2025234",
+        "GPU_FRAME mode=apb state=1800 gap=16 seed=1 repeat=2 pixels=307200 mismatches=0 hash=e3872013 cycles=2976473",
+        "GPU_FRAME mode=apb state=1800 gap=16 seed=1 repeat=3 pixels=307200 mismatches=0 hash=ad53fad3 cycles=3927157",
+        "GPU_FUNCTIONAL_PASS"
+      ]
+    },
+    {
+      "case": "apb-s1800-g16-r27",
+      "arguments": [
+        "apb",
+        "1800",
+        "16",
+        "27"
+      ],
+      "exit": 0,
+      "checks": [
+        "GPU_FRAME mode=apb state=1800 gap=16 seed=27 repeat=0 pixels=307200 mismatches=0 hash=a25cae93 cycles=1072281",
+        "GPU_FRAME mode=apb state=1800 gap=16 seed=27 repeat=1 pixels=307200 mismatches=0 hash=16b58153 cycles=2025099",
+        "GPU_FRAME mode=apb state=1800 gap=16 seed=27 repeat=2 pixels=307200 mismatches=0 hash=e3872013 cycles=2976037",
+        "GPU_FRAME mode=apb state=1800 gap=16 seed=27 repeat=3 pixels=307200 mismatches=0 hash=ad53fad3 cycles=3927138",
+        "GPU_FUNCTIONAL_PASS"
+      ]
+    },
+    {
+      "case": "apb-s3600-g0-r1",
+      "arguments": [
+        "apb",
+        "3600",
+        "0",
+        "1"
+      ],
+      "exit": 0,
+      "checks": [
+        "GPU_FRAME mode=apb state=3600 gap=0 seed=1 repeat=0 pixels=307200 mismatches=0 hash=ff1fa27b cycles=501466",
+        "GPU_FRAME mode=apb state=3600 gap=0 seed=1 repeat=1 pixels=307200 mismatches=0 hash=2962b6fb cycles=895246",
+        "GPU_FRAME mode=apb state=3600 gap=0 seed=1 repeat=2 pixels=307200 mismatches=0 hash=83cba8c3 cycles=1287284",
+        "GPU_FRAME mode=apb state=3600 gap=0 seed=1 repeat=3 pixels=307200 mismatches=0 hash=10136843 cycles=1679140",
+        "GPU_FUNCTIONAL_PASS"
+      ]
+    },
+    {
+      "case": "apb-s3600-g0-r27",
+      "arguments": [
+        "apb",
+        "3600",
+        "0",
+        "27"
+      ],
+      "exit": 0,
+      "checks": [
+        "GPU_FRAME mode=apb state=3600 gap=0 seed=27 repeat=0 pixels=307200 mismatches=0 hash=ff1fa27b cycles=501432",
+        "GPU_FRAME mode=apb state=3600 gap=0 seed=27 repeat=1 pixels=307200 mismatches=0 hash=2962b6fb cycles=894822",
+        "GPU_FRAME mode=apb state=3600 gap=0 seed=27 repeat=2 pixels=307200 mismatches=0 hash=83cba8c3 cycles=1286870",
+        "GPU_FRAME mode=apb state=3600 gap=0 seed=27 repeat=3 pixels=307200 mismatches=0 hash=10136843 cycles=1679256",
+        "GPU_FUNCTIONAL_PASS"
+      ]
+    },
+    {
+      "case": "apb-s3600-g16-r1",
+      "arguments": [
+        "apb",
+        "3600",
+        "16",
+        "1"
+      ],
+      "exit": 0,
+      "checks": [
+        "GPU_FRAME mode=apb state=3600 gap=16 seed=1 repeat=0 pixels=307200 mismatches=0 hash=ff1fa27b cycles=1034977",
+        "GPU_FRAME mode=apb state=3600 gap=16 seed=1 repeat=1 pixels=307200 mismatches=0 hash=2962b6fb cycles=1950178",
+        "GPU_FRAME mode=apb state=3600 gap=16 seed=1 repeat=2 pixels=307200 mismatches=0 hash=83cba8c3 cycles=2861274",
+        "GPU_FRAME mode=apb state=3600 gap=16 seed=1 repeat=3 pixels=307200 mismatches=0 hash=10136843 cycles=3772157",
+        "GPU_FUNCTIONAL_PASS"
+      ]
+    },
+    {
+      "case": "apb-s3600-g16-r27",
+      "arguments": [
+        "apb",
+        "3600",
+        "16",
+        "27"
+      ],
+      "exit": 0,
+      "checks": [
+        "GPU_FRAME mode=apb state=3600 gap=16 seed=27 repeat=0 pixels=307200 mismatches=0 hash=ff1fa27b cycles=1034901",
+        "GPU_FRAME mode=apb state=3600 gap=16 seed=27 repeat=1 pixels=307200 mismatches=0 hash=2962b6fb cycles=1950434",
+        "GPU_FRAME mode=apb state=3600 gap=16 seed=27 repeat=2 pixels=307200 mismatches=0 hash=83cba8c3 cycles=2860719",
+        "GPU_FRAME mode=apb state=3600 gap=16 seed=27 repeat=3 pixels=307200 mismatches=0 hash=10136843 cycles=3770503",
+        "GPU_FUNCTIONAL_PASS"
+      ]
+    },
+    {
+      "case": "dma-s0-g0-r1",
+      "arguments": [
+        "dma",
+        "0",
+        "0",
+        "1"
+      ],
+      "exit": 1,
+      "checks": [
+        "INTERNAL dma_state=5 remaining=15465 parser_state=0 words=27",
+        "COMMAND_TIMEOUT word=50000004 frame=0 address=00000000 read_beats=495 write_beats=76800 reads=4 writes=0 responses=0 rvalid=1 bvalid=0 swap=0 perf=1 stall=0 arvalid=0 awvalid=0 wvalid=0",
+        "GPU_FUNCTIONAL_FAIL command timeout"
+      ]
+    },
+    {
+      "case": "dma-s0-g0-r27",
+      "arguments": [
+        "dma",
+        "0",
+        "0",
+        "27"
+      ],
+      "exit": 1,
+      "checks": [
+        "INTERNAL dma_state=5 remaining=15465 parser_state=0 words=27",
+        "COMMAND_TIMEOUT word=50000004 frame=0 address=00000000 read_beats=495 write_beats=76800 reads=4 writes=0 responses=0 rvalid=1 bvalid=0 swap=0 perf=1 stall=0 arvalid=0 awvalid=0 wvalid=0",
+        "GPU_FUNCTIONAL_FAIL command timeout"
+      ]
+    },
+    {
+      "case": "dma-s0-g16-r1",
+      "arguments": [
+        "dma",
+        "0",
+        "16",
+        "1"
+      ],
+      "exit": 1,
+      "checks": [
+        "INTERNAL dma_state=5 remaining=15465 parser_state=0 words=27",
+        "COMMAND_TIMEOUT word=50000004 frame=0 address=00000000 read_beats=495 write_beats=76800 reads=4 writes=0 responses=0 rvalid=1 bvalid=0 swap=0 perf=1 stall=0 arvalid=0 awvalid=0 wvalid=0",
+        "GPU_FUNCTIONAL_FAIL command timeout"
+      ]
+    },
+    {
+      "case": "dma-s0-g16-r27",
+      "arguments": [
+        "dma",
+        "0",
+        "16",
+        "27"
+      ],
+      "exit": 1,
+      "checks": [
+        "INTERNAL dma_state=5 remaining=15465 parser_state=0 words=27",
+        "COMMAND_TIMEOUT word=50000004 frame=0 address=00000000 read_beats=495 write_beats=76800 reads=4 writes=0 responses=0 rvalid=1 bvalid=0 swap=0 perf=1 stall=0 arvalid=0 awvalid=0 wvalid=0",
+        "GPU_FUNCTIONAL_FAIL command timeout"
+      ]
+    },
+    {
+      "case": "dma-s1800-g0-r1",
+      "arguments": [
+        "dma",
+        "1800",
+        "0",
+        "1"
+      ],
+      "exit": 1,
+      "checks": [
+        "INTERNAL dma_state=5 remaining=17065 parser_state=0 words=27",
+        "COMMAND_TIMEOUT word=50000004 frame=0 address=00000000 read_beats=495 write_beats=76800 reads=4 writes=0 responses=0 rvalid=1 bvalid=0 swap=0 perf=1 stall=0 arvalid=0 awvalid=0 wvalid=0",
+        "GPU_FUNCTIONAL_FAIL command timeout"
+      ]
+    },
+    {
+      "case": "dma-s1800-g0-r27",
+      "arguments": [
+        "dma",
+        "1800",
+        "0",
+        "27"
+      ],
+      "exit": 1,
+      "checks": [
+        "INTERNAL dma_state=5 remaining=17065 parser_state=0 words=27",
+        "COMMAND_TIMEOUT word=50000004 frame=0 address=00000000 read_beats=495 write_beats=76800 reads=4 writes=0 responses=0 rvalid=1 bvalid=0 swap=0 perf=1 stall=0 arvalid=0 awvalid=0 wvalid=0",
+        "GPU_FUNCTIONAL_FAIL command timeout"
+      ]
+    },
+    {
+      "case": "dma-s1800-g16-r1",
+      "arguments": [
+        "dma",
+        "1800",
+        "16",
+        "1"
+      ],
+      "exit": 1,
+      "checks": [
+        "INTERNAL dma_state=5 remaining=17065 parser_state=0 words=27",
+        "COMMAND_TIMEOUT word=50000004 frame=0 address=00000000 read_beats=495 write_beats=76800 reads=4 writes=0 responses=0 rvalid=1 bvalid=0 swap=0 perf=1 stall=0 arvalid=0 awvalid=0 wvalid=0",
+        "GPU_FUNCTIONAL_FAIL command timeout"
+      ]
+    },
+    {
+      "case": "dma-s1800-g16-r27",
+      "arguments": [
+        "dma",
+        "1800",
+        "16",
+        "27"
+      ],
+      "exit": 1,
+      "checks": [
+        "INTERNAL dma_state=5 remaining=17065 parser_state=0 words=27",
+        "COMMAND_TIMEOUT word=50000004 frame=0 address=00000000 read_beats=495 write_beats=76800 reads=4 writes=0 responses=0 rvalid=1 bvalid=0 swap=0 perf=1 stall=0 arvalid=0 awvalid=0 wvalid=0",
+        "GPU_FUNCTIONAL_FAIL command timeout"
+      ]
+    },
+    {
+      "case": "dma-s3600-g0-r1",
+      "arguments": [
+        "dma",
+        "3600",
+        "0",
+        "1"
+      ],
+      "exit": 1,
+      "checks": [
+        "INTERNAL dma_state=5 remaining=17385 parser_state=0 words=27",
+        "COMMAND_TIMEOUT word=50000004 frame=0 address=00000000 read_beats=495 write_beats=76800 reads=4 writes=0 responses=0 rvalid=1 bvalid=0 swap=0 perf=1 stall=0 arvalid=0 awvalid=0 wvalid=0",
+        "GPU_FUNCTIONAL_FAIL command timeout"
+      ]
+    },
+    {
+      "case": "dma-s3600-g0-r27",
+      "arguments": [
+        "dma",
+        "3600",
+        "0",
+        "27"
+      ],
+      "exit": 1,
+      "checks": [
+        "INTERNAL dma_state=5 remaining=17385 parser_state=0 words=27",
+        "COMMAND_TIMEOUT word=50000004 frame=0 address=00000000 read_beats=495 write_beats=76800 reads=4 writes=0 responses=0 rvalid=1 bvalid=0 swap=0 perf=1 stall=0 arvalid=0 awvalid=0 wvalid=0",
+        "GPU_FUNCTIONAL_FAIL command timeout"
+      ]
+    },
+    {
+      "case": "dma-s3600-g16-r1",
+      "arguments": [
+        "dma",
+        "3600",
+        "16",
+        "1"
+      ],
+      "exit": 1,
+      "checks": [
+        "INTERNAL dma_state=5 remaining=17385 parser_state=0 words=27",
+        "COMMAND_TIMEOUT word=50000004 frame=0 address=00000000 read_beats=495 write_beats=76800 reads=4 writes=0 responses=0 rvalid=1 bvalid=0 swap=0 perf=1 stall=0 arvalid=0 awvalid=0 wvalid=0",
+        "GPU_FUNCTIONAL_FAIL command timeout"
+      ]
+    },
+    {
+      "case": "dma-s3600-g16-r27",
+      "arguments": [
+        "dma",
+        "3600",
+        "16",
+        "27"
+      ],
+      "exit": 1,
+      "checks": [
+        "INTERNAL dma_state=5 remaining=17385 parser_state=0 words=27",
+        "COMMAND_TIMEOUT word=50000004 frame=0 address=00000000 read_beats=495 write_beats=76800 reads=4 writes=0 responses=0 rvalid=1 bvalid=0 swap=0 perf=1 stall=0 arvalid=0 awvalid=0 wvalid=0",
+        "GPU_FUNCTIONAL_FAIL command timeout"
+      ]
+    }
+  ],
+  "passed": false
+}

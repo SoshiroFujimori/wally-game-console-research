@@ -1,0 +1,6 @@
+/tmp/app --transport dma --frames 30 --warmup 6 --wait spin --profile detailed --csv /tmp/dma-frames.csv --dump /tmp/dma-frame.raw && printf "CSV_BEGIN\n" && cat /tmp/dma-frames.csv && printf "CSV_END\n"; study_status=$?; printf "\nSTUDY_DONE_b5c528c76885=%s\n" "$study_status"
+TRANSPORT mode=dma dma_minimum=64
+BREAKOUT_FAIL: DMA completion timeout; reconfigure before reuse
+
+STUDY_DONE_b5c528c76885=1
+# 

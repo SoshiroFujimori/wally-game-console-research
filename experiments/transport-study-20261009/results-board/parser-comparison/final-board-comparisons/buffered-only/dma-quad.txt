@@ -1,0 +1,1 @@
+/tmp/app --transport dma --frames 30 --warmup 6 --wait spin --profile detailed --csv /tmp/check.csv --dump /tmp/check.raw && printf "CSV_BEGIN\n" && cat /tmp/check.csv && printf "CSV_END\n"
