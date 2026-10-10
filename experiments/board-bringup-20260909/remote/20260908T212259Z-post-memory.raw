@@ -104,7 +104,7 @@ INFO_PASS
 [   12.069445] mmc0: new SDHC card on SPI
 [   12.179620] mmcblk0: mmc0:0000 SA32G 29.1 GiB
 [   20.407553]  mmcblk0: p1 p2 p3 p4
-[   77.119836] EXT4-fs (mmcblk0p4): mounted filesystem 4cd26447-2ac1-4501-b5e0-4a23309fb661 ro with ordered data mode. Quota mode: disabled.
+[   77.119836] EXT4-fs (mmcblk0p4): mounted filesystem [filesystem-uuid] ro with ordered data mode. Quota mode: disabled.
 [   82.047288] random: crng init done
   PID USER       VSZ STAT COMMAND
     1 root      2160 S    init

@@ -1,5 +1,5 @@
 cd / && umount /mnt/nexys-test && sync && cat /proc/mounts && echo BOARD_LEFT_RUNNING_SD_UNMOUNTED; nv_status=$?; printf "\nNV_DONE_0fcced4319dc=%s\n" "$nv_status"
-[  139.086761] EXT4-fs (mmcblk0p4): unmounting filesystem 4cd26447-2ac1-4501-b5e0-4a23309fb661.
+[  139.086761] EXT4-fs (mmcblk0p4): unmounting filesystem [filesystem-uuid].
 rootfs / rootfs rw,size=249012k,nr_inodes=62253 0 0
 devtmpfs /dev devtmpfs rw,relatime,size=249012k,nr_inodes=62253,mode=755 0 0
 proc /proc proc rw,relatime 0 0

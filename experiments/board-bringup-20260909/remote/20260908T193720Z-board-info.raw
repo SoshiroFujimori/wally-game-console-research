@@ -1,5 +1,5 @@
 mkdir -p /mnt/nexys-test && mount -t ext4 -o ro /dev/mmcblk0p4 /mnt/nexys-test && sh /mnt/nexys-test/nexys-video-tests/board-tests.sh info; nv_status=$?; printf "\nNV_DONE_19974ddc861a=%s\n" "$nv_status"
-[   77.119836] EXT4-fs (mmcblk0p4): mounted filesystem 4cd26447-2ac1-4501-b5e0-4a23309fb661 ro with ordered data mode. Quota mode: disabled.
+[   77.119836] EXT4-fs (mmcblk0p4): mounted filesystem [filesystem-uuid] ro with ordered data mode. Quota mode: disabled.
 [   82.047288] random: crng init done
 memtester: OK
 board-tests.sh: OK

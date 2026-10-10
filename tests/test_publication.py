@@ -50,6 +50,44 @@ class PublicationTests(unittest.TestCase):
         sanitize.replace_runs(nodes,CONFIG)
         self.assertEqual(''.join(n.text or '' for n in nodes),'Contributor then Contributor')
 
+    def test_pptx_slide_notes_and_private_parts(self):
+        mem=io.BytesIO()
+        body=('<a:p xmlns:a="'+sanitize.A+'"><a:r><a:t>Example </a:t></a:r>'
+              '<a:r><a:t>Private Person</a:t></a:r></a:p>')
+        with zipfile.ZipFile(mem,'w') as z:
+            z.writestr('ppt/slides/slide1.xml',body)
+            z.writestr('ppt/notesSlides/notesSlide1.xml',body)
+            z.writestr('ppt/comments/comment1.xml','<comment>Example Private Person</comment>')
+            z.writestr('ppt/commentAuthors.xml','<author>Example Private Person</author>')
+            z.writestr('docProps/core.xml','<properties><creator>Example Private Person</creator></properties>')
+            z.writestr('docProps/thumbnail.jpeg',b'private thumbnail')
+        check.check_file(mem.getvalue(),'sample.pptx',CONFIG,set(),set())
+        self.assertTrue(check.ERRORS)
+        clean=sanitize.sanitize_bytes(mem.getvalue(),'sample.pptx',CONFIG)
+        with zipfile.ZipFile(io.BytesIO(clean)) as z:
+            self.assertFalse(any('comment' in n or 'thumbnail' in n for n in z.namelist()))
+            for n in ('ppt/slides/slide1.xml','ppt/notesSlides/notesSlide1.xml'):
+                self.assertEqual(''.join(E.fromstring(z.read(n)).itertext()),'Contributor')
+        check.ERRORS.clear()
+        check.check_file(clean,'sample.pptx',CONFIG,set(),set())
+        self.assertFalse(check.ERRORS)
+
+    def test_pptx_split_run_privacy_audit(self):
+        mem=io.BytesIO()
+        with zipfile.ZipFile(mem,'w') as z:
+            z.writestr('ppt/notesSlides/notesSlide1.xml',
+                '<a:p xmlns:a="'+sanitize.A+'"><a:r><a:t>Example </a:t></a:r>'
+                '<a:r><a:t>Private Person</a:t></a:r></a:p>')
+        check.check_file(mem.getvalue(),'sample.pptx',CONFIG,set(),set())
+        self.assertTrue(check.ERRORS)
+
+    def test_pptx_embedded_object_rejected(self):
+        mem=io.BytesIO()
+        with zipfile.ZipFile(mem,'w') as z:
+            z.writestr('ppt/embeddings/object.bin',b'private data')
+        with self.assertRaises(ValueError):
+            sanitize.sanitize_bytes(mem.getvalue(),'sample.pptx',CONFIG)
+
     def test_nested_archive(self):
         inner=io.BytesIO()
         with zipfile.ZipFile(inner,'w') as z:z.writestr('notes.md','Example Private Person')
@@ -119,6 +157,14 @@ class SDWireTests(unittest.TestCase):
     def test_mounted_child_rejected(self):
         state={'blockdevices':[{'path':'/dev/example','type':'disk','tran':'usb','mountpoints':[None], 'children':[{'mountpoints':['/media/card']}]}]}
         with self.assertRaises(ValueError):switch.unmounted_usb_disk('/dev/example',state)
+
+    def test_host_exit_queries_children_before_switching(self):
+        state={'blockdevices':[{'path':'/dev/example','type':'disk','tran':'usb','mountpoints':[None], 'children':[{'mountpoints':['/media/card']}]}]}
+        with patch.object(switch.subprocess,'check_output',return_value=json.dumps(state)) as listing, patch.object(switch.subprocess,'run') as action:
+            with self.assertRaises(ValueError):
+                switch.main(['target','--serial','EXAMPLE_SERIAL','--reader-device','/dev/example','--target-quiesced','--execute'])
+            self.assertIn('--tree',listing.call_args.args[0])
+            action.assert_not_called()
 
     def test_non_usb_rejected(self):
         state={'blockdevices':[{'path':'/dev/example','type':'disk','tran':'nvme','mountpoints':[None]}]}

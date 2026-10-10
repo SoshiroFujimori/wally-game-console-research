@@ -43,7 +43,7 @@ def check_binary(data,path,reviewed):
 def check_file(data,path,config,allowed_emails,reviewed,depth=0):
     if depth>5:fail(path,'archive recursion limit');return
     suffix=Path(path).suffix.lower()
-    if suffix in ('.zip','.docx'):
+    if suffix in ('.zip','.docx','.pptx'):
         try:
             with zipfile.ZipFile(io.BytesIO(data)) as z:
                 if sum(i.file_size for i in z.infolist())>200_000_000:raise ValueError('archive too large')
@@ -51,14 +51,16 @@ def check_file(data,path,config,allowed_emails,reviewed,depth=0):
                     if item.is_dir():continue
                     member=item.filename;p=path+'!'+member
                     if '..' in Path(member).parts or member.startswith(('/','\\')):fail(p,'unsafe archive member');continue
-                    if suffix=='.docx':
-                        if member.startswith(('customXml/','word/embeddings/','docProps/thumbnail')) or re.match(r'word/(comments|people)',member) or member=='docProps/custom.xml':
+                    if suffix in ('.docx','.pptx'):
+                        if member.startswith(('customXml/','word/embeddings/','ppt/embeddings/','word/activeX/','ppt/activeX/','docProps/thumbnail')) or re.match(r'(word|ppt)/(comments|people|commentAuthors|authors)',member) or member=='docProps/custom.xml' or 'vbaProject' in member:
                             fail(p,'private document part remains')
                         body=z.read(item)
                         if member.endswith(('.xml','.rels')):
                             root=ET.fromstring(body)
                             check_text(body.decode('utf-8'),p,config,allowed_emails)
                             for para in root.iter('{http://schemas.openxmlformats.org/wordprocessingml/2006/main}p'):
+                                check_text(''.join(para.itertext()),p,config,allowed_emails)
+                            for para in root.iter('{http://schemas.openxmlformats.org/drawingml/2006/main}p'):
                                 check_text(''.join(para.itertext()),p,config,allowed_emails)
                             for node in root.iter():
                                 if node.tag.rsplit('}',1)[-1] in ('creator','lastModifiedBy','Company','Manager') and node.text:

@@ -1,5 +1,5 @@
 cd / && mkdir -p /mnt/nexys-test && mount -t ext4 -o ro /dev/mmcblk0p4 /mnt/nexys-test && sh /mnt/nexys-test/nexys-video-tests/board-tests.sh info && case $(sha256sum /mnt/nexys-test/nexys-video-tests/sd-roundtrip-20260909-1.bin) in 42cbe69b28b1929235af054b20b61282f54e6f105c5f93807bcfd19778775943*) echo SD_PERSISTENCE_PASS;; *) echo SD_PERSISTENCE_FAIL; false;; esac; nv_status=$?; printf "\nNV_DONE_8c14bae3fd01=%s\n" "$nv_status"
-[   88.468602] EXT4-fs (mmcblk0p4): mounted filesystem 4cd26447-2ac1-4501-b5e0-4a23309fb661 ro with ordered data mode. Quota mode: disabled.
+[   88.468602] EXT4-fs (mmcblk0p4): mounted filesystem [filesystem-uuid] ro with ordered data mode. Quota mode: disabled.
 [   92.483927] random: crng init done
 memtester: OK
 board-tests.sh: OK

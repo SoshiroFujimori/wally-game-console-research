@@ -1,5 +1,5 @@
 cd / && umount /mnt/nexys-test && sync; nv_status=$?; printf "\nNV_DONE_e44f9b51e1e4=%s\n" "$nv_status"
-[   77.574903] EXT4-fs (mmcblk0p4): unmounting filesystem 4cd26447-2ac1-4501-b5e0-4a23309fb661.
+[   77.574903] EXT4-fs (mmcblk0p4): unmounting filesystem [filesystem-uuid].
 
 NV_DONE_e44f9b51e1e4=0
 # 

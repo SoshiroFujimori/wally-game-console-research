@@ -1,0 +1,86 @@
+{
+  "scope": "Selected existing public log copies; private originals are preserved.",
+  "change": "Replace a filesystem identifier with a generic placeholder. Numerical measurements are unchanged. Public text uses LF line endings.",
+  "files": [
+    {
+      "path": "docs/thesis/再現資料/実験記録/E6/board-fresh-product/load.log",
+      "prior_public_sha256": "f5be27d7081345104f4e87dda4b9d2564ec903db3a2b96fbd2b3686493a8d709",
+      "current_public_sha256": "0e6a3adcda854956d26afd5d61df507079552ba15cb84c725a7510332bf4109d"
+    },
+    {
+      "path": "docs/thesis/再現資料/実験記録/E6/board-v2/fifo512/load.log",
+      "prior_public_sha256": "39aa927894e52aead5339b66d912be801ff6352d895d4a3c663bf16970efd0c5",
+      "current_public_sha256": "b3a6fabf6ba9b0f92f210392ba1253c3391f04b91458a8f36c3c561f0affbac8"
+    },
+    {
+      "path": "docs/thesis/再現資料/実験記録/E6/board-v2/fifo16/load.log",
+      "prior_public_sha256": "de4ac7bdc451af37568a5db51affc4ff045ee0cc27475b9c7e8e56c0a15988d3",
+      "current_public_sha256": "088adac8af8cef8dd105c3bfc0240f22ae237fce4817e0a8a8cc0990d06354fe"
+    },
+    {
+      "path": "docs/thesis/再現資料/実験記録/E6/board-v2/mailbox/load.log",
+      "prior_public_sha256": "44bc47f3f81abd457659049e54d4a7e17b16fc62ce6bfa556650503e537e100e",
+      "current_public_sha256": "6092334fff0c98299b2ee05a2c6b3becf69eb7871d929cc03be15f15f800f9ed"
+    },
+    {
+      "path": "docs/thesis/再現資料/実験記録/E6/board-reconfiguration/fifo512/load.log",
+      "prior_public_sha256": "f5d33c1780059469f4df0a1f239333255369cf90d507bb1c618ed8d920d2a17a",
+      "current_public_sha256": "48735f3fbe3a9d03deb71dd8c3b87d48a5352f661383fab75292cf639010ef3f"
+    },
+    {
+      "path": "docs/thesis/再現資料/実験記録/E6/board-reconfiguration/fifo16/load.log",
+      "prior_public_sha256": "7212f6406aee48543defdcaa82f0712896ac0d24269f9409e6fe8ccf842503db",
+      "current_public_sha256": "8601530aa9d5e8c0f756a2054078e33571dade13db0d97f705f449479b2c56e5"
+    },
+    {
+      "path": "docs/thesis/再現資料/実験記録/E6/board-reconfiguration/mailbox/load.log",
+      "prior_public_sha256": "bba71fcfd2a7d46f5534b2c1507ae16260eac091fff377c5506fd9b29f26be1b",
+      "current_public_sha256": "30cfd227a3dcbb6fbdd1596b4c47fd08400d9e8a49727d0c573831ff0b909fa8"
+    },
+    {
+      "path": "experiments/board-bringup-20260909/remote/20260908T213228Z-info-repeat-3.raw",
+      "prior_public_sha256": "07abd42890b6b9ded3b7cec7eea4f023b823015f53aa0aa08f9d128056e966c2",
+      "current_public_sha256": "509a26aea494b4056dc756c5cc118d3219da08c533179b17d9043aa223e9cf48"
+    },
+    {
+      "path": "experiments/board-bringup-20260909/remote/20260908T213323Z-final-board-state.raw",
+      "prior_public_sha256": "92a34708726931b3bc345eaafdf587eb2fa4db2ef4659334c0d41156948332b2",
+      "current_public_sha256": "7387f301fedf2c0ef2028f2f00391de606901edecd13ba1eebb444d8079a4aa4"
+    },
+    {
+      "path": "experiments/board-bringup-20260909/remote/20260908T212534Z-before-repeat-2.raw",
+      "prior_public_sha256": "c2b2c731399cc8936de991632fecde57f33d087bedc6e7ce24c1befb50ae24f2",
+      "current_public_sha256": "c3ca75c70e6b727d657d4d7441c61d2d2121f2f3fb08f19fdb6d3c3cca5fec60"
+    },
+    {
+      "path": "experiments/board-bringup-20260909/remote/20260908T212835Z-before-repeat-3.raw",
+      "prior_public_sha256": "213979d86bdf0ee39b7a4bdc90e1a849030ef1639198918f9c0031444ac134cf",
+      "current_public_sha256": "5e4712fd1ecf769b0a52dc6bce4d67aaee802a01b3efc57e993c1516875d58ba"
+    },
+    {
+      "path": "experiments/board-bringup-20260909/remote/20260908T193720Z-board-info.raw",
+      "prior_public_sha256": "4dc1b9e9b92e1cbe470640286a846bfa39ccaf380deb60964dfa8f09b0f4a3de",
+      "current_public_sha256": "8d5ed8908dbc32cd2bed9ad6adec4c63e24cf9dbedfb825e485c8f7af02245a5"
+    },
+    {
+      "path": "experiments/board-bringup-20260909/remote/20260908T212807Z-info-repeat-2.raw",
+      "prior_public_sha256": "7d514f7cb15738378da94d0719446980ea7859b8c587fc832362851e6533314b",
+      "current_public_sha256": "5a5b7bd40bc3e20ce689ce91bd261640fa29c9b06739f576356a42500e30d857"
+    },
+    {
+      "path": "experiments/board-bringup-20260909/remote/20260908T212259Z-post-memory.raw",
+      "prior_public_sha256": "ec19ada45ea2ff1453203673c6ab8ee6c4c615cc719cd8d917133ec5d0ec5af1",
+      "current_public_sha256": "635a18a138092c2e08ec4668438f521ab09bb9c2df27b3e8156d7f30c98205fa"
+    },
+    {
+      "path": "experiments/board-bringup-20260909/remote/20260908T212449Z-sd-write-read-finish.raw",
+      "prior_public_sha256": "e88f7c6b424e92a490165339314b9ad5914de20739a9dc42a2971ad517fc9fac",
+      "current_public_sha256": "9e2120dd683e6ba48a0d432501b462a9324f5f32b350801299f430e61138e303"
+    },
+    {
+      "path": "experiments/board-bringup-20260909/remote/20260908T212345Z-sd-write-read.raw",
+      "prior_public_sha256": "f95ddeddfd419ae0fded38acab45756dc49c15f18112a37b20b0763e7a53034b",
+      "current_public_sha256": "881b8e907229794d6a68af169474c7960f83a72bdc9006de963c6d37ac938c96"
+    }
+  ]
+}

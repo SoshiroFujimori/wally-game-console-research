@@ -28,7 +28,7 @@ def main(argv=None):
         if not a.target_quiesced:p.error('Confirm the FPGA no longer accesses the SD card with --target-quiesced.')
         if a.action in ('target','off') and not a.reader_device:p.error('Specify --reader-device so mounted filesystems can be checked.')
         if a.reader_device:
-            state=json.loads(subprocess.check_output(['lsblk','--json','--paths','--output','PATH,TYPE,TRAN,MOUNTPOINTS'],text=True))
+            state=json.loads(subprocess.check_output(['lsblk','--tree','--json','--paths','--output','PATH,TYPE,TRAN,MOUNTPOINTS'],text=True))
             unmounted_usb_disk(a.reader_device,state)
         os.sync()
     return subprocess.run(cmd,check=False).returncode

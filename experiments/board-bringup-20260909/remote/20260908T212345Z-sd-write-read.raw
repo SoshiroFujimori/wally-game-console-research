@@ -1,5 +1,5 @@
 mount -o remount,rw /mnt/nexys-test && test ! -e /mnt/nexys-test/nexys-video-tests/sd-roundtrip-20260909-1.bin && cp /mnt/nexys-test/nexys-video-tests/coremark.exe /mnt/nexys-test/nexys-video-tests/sd-roundtrip-20260909-1.bin && sync && umount /mnt/nexys-test && mount -t ext4 -o ro /dev/mmcblk0p4 /mnt/nexys-test && case $(sha256sum /mnt/nexys-test/nexys-video-tests/sd-roundtrip-20260909-1.bin) in 42cbe69b28b1929235af054b20b61282f54e6f105c5f93807bcfd19778775943*) echo SD_WRITE_READ_PASS;; *) echo SD_WRITE_READ_FAIL; false;; esac; nv_status=$?; printf "\nNV_DONE_375971657052=%s\n" "$nv_status"
-[ 6460.489999] EXT4-fs (mmcblk0p4): re-mounted 4cd26447-2ac1-4501-b5e0-4a23309fb661 r/w.
+[ 6460.489999] EXT4-fs (mmcblk0p4): re-mounted [filesystem-uuid] r/w.
 umount: can't unmount /mnt/nexys-test: Device or resource busy
 
 NV_DONE_375971657052=1

@@ -17,11 +17,12 @@ import zipfile
 TEXT_SUFFIXES = {'.md','.txt','.json','.csv','.log','.raw','.rpt','.xml','.rels',
     '.svg','.py','.sh','.ps1','.tcl','.v','.sv','.vh','.h','.hpp','.c','.cpp',
     '.dts','.xdc','.s','.prj','.diff','.patch','.pl','.x','.yml','.yaml','.toml',
-    '.cmake','.ini','.cfg','.rst','.css','.html','.js','.cjs','.gitmodules',
+    '.cmake','.ini','.cfg','.rst','.css','.html','.js','.mjs','.cjs','.gitmodules',
     '.gitignore','.gitattributes',''}
 W = 'http://schemas.openxmlformats.org/wordprocessingml/2006/main'
 R = 'http://schemas.openxmlformats.org/package/2006/relationships'
 NS = {'w': W}
+A = 'http://schemas.openxmlformats.org/drawingml/2006/main'
 
 def load_config(path):
     p = Path(path)
@@ -72,19 +73,26 @@ def replace_runs(nodes, config):
     assert ''.join(parts)==new
     for node,part in zip(nodes,parts):node.text=part
 
-def sanitize_docx(data, config):
+def sanitize_ooxml(data, config, kind):
+    """Scrub Word or PowerPoint, including notes and text split across runs."""
+    if kind not in ('word', 'ppt'):
+        raise ValueError('Unsupported document family')
     from lxml import etree as E
     result=io.BytesIO()
     with zipfile.ZipFile(io.BytesIO(data)) as src, zipfile.ZipFile(result,'w',zipfile.ZIP_DEFLATED) as dst:
         names=src.namelist()
-        forbidden=[n for n in names if n.startswith('word/embeddings/') or 'vbaProject' in n]
+        if sum(i.file_size for i in src.infolist()) > 200_000_000:
+            raise ValueError('Document too large')
+        if any('..' in Path(n).parts or n.startswith(('/', '\\')) for n in names):
+            raise ValueError('Unsafe document path')
+        forbidden=[n for n in names if n.startswith((kind+'/embeddings/', kind+'/activeX/')) or 'vbaProject' in n]
         if forbidden:raise ValueError('Embedded objects or macros require manual review.')
         removed={n for n in names if n.startswith('customXml/') or n.startswith('docProps/thumbnail')
-                 or n=='docProps/custom.xml' or re.match(r'word/(comments|people)',n)}
+                 or n=='docProps/custom.xml' or re.match(r'(word|ppt)/(comments|people|commentAuthors|authors)',n)}
         for name in names:
             if name in removed or name.endswith('/'):continue
             value=src.read(name)
-            if name.startswith('word/media/'):
+            if name.startswith(kind+'/media/'):
                 if name.lower().endswith('.png'):value=clean_png(value)
                 else:raise ValueError('Non-PNG embedded image requires manual review.')
             elif name.endswith(('.xml','.rels')):
@@ -97,9 +105,9 @@ def sanitize_docx(data, config):
                     if name.endswith('.rels') and local=='Relationship':
                         target=node.get('Target','')
                         typ=node.get('Type','')
-                        if any(x in typ.lower() for x in ('customxml','comments','people','thumbnail','custom-properties','attachedtemplate')):
+                        if any(x in typ.lower() for x in ('customxml','comment','people','person','thumbnail','custom-properties','attachedtemplate')):
                             node.getparent().remove(node);continue
-                        if target.startswith('file:'):
+                        if target.startswith(('file:', '\\\\')):
                             raise ValueError('Unmapped local file relationship in document.')
                     if local=='Override' and node.get('PartName','').lstrip('/') in removed:
                         node.getparent().remove(node);continue
@@ -110,6 +118,8 @@ def sanitize_docx(data, config):
                         else:node.attrib[key]=sanitize_text(node.attrib[key],config)
                 for para in root.findall('.//w:p',NS):
                     replace_runs(para.findall('.//w:t',NS),config)
+                for para in root.iter('{'+A+'}p'):
+                    replace_runs(list(para.iter('{'+A+'}t')),config)
                 for node in root.iter():
                     if node.text:node.text=sanitize_text(node.text,config)
                     if node.tail:node.tail=sanitize_text(node.tail,config)
@@ -122,10 +132,16 @@ def sanitize_docx(data, config):
                         if E.QName(n).localname in ('Company','Manager','Template'):n.text=''
                 value=E.tostring(root,encoding='UTF-8',xml_declaration=True,standalone=True)
             else:
-                raise ValueError(f'Unexpected DOCX part {name}')
+                raise ValueError(f'Unexpected document part {name}')
             info=zipfile.ZipInfo(name,date_time=(2026,1,1,0,0,0));info.compress_type=zipfile.ZIP_DEFLATED
             dst.writestr(info,value)
     return result.getvalue()
+
+def sanitize_docx(data, config):
+    return sanitize_ooxml(data, config, 'word')
+
+def sanitize_pptx(data, config):
+    return sanitize_ooxml(data, config, 'ppt')
 
 def sanitize_pdf(data,config):
     from pypdf import PdfReader,PdfWriter
@@ -143,6 +159,7 @@ def sanitize_bytes(data,path,config,depth=0):
     if depth>5:raise ValueError('Nested archive limit exceeded')
     suffix=Path(path).suffix.lower()
     if suffix=='.docx':return sanitize_docx(data,config)
+    if suffix=='.pptx':return sanitize_pptx(data,config)
     if suffix=='.png':return clean_png(data)
     if suffix=='.pdf':return sanitize_pdf(data,config)
     if suffix=='.zip':

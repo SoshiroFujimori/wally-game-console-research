@@ -1,9 +1,9 @@
 (mkdir -p /mnt/fifo-study && mount -t ext4 -o ro /dev/mmcblk0p4 /mnt/fifo-study && gzip -dc /mnt/fifo-study/fifo-study-20261008-v2/bench.gz > /tmp/fifo-bench && gzip -dc /mnt/fifo-study/fifo-study-20261008-v2/game.gz > /tmp/fifo-game && chmod +x /tmp/fifo-bench /tmp/fifo-game && sha256sum /tmp/fifo-bench /tmp/fifo-game && umount /mnt/fifo-study); nv_status=$?; printf "\nNV_DONE_ae94dd0a3fd0=%s\n" "$nv_status"
-[   39.727909] EXT4-fs (mmcblk0p4): mounted filesystem 4cd26447-2ac1-4501-b5e0-4a23309fb661 ro with ordered data mode. Quota mode: disabled.
+[   39.727909] EXT4-fs (mmcblk0p4): mounted filesystem [filesystem-uuid] ro with ordered data mode. Quota mode: disabled.
 [   45.676021] random: crng init done
 65bd34eda88f108465f17bb33f31a28da89d4744d86fbe65bdd7a863912e577b  /tmp/fifo-bench
 e8fa6130aa47bf6131b1077ebbd03f26e90055a8dcc9c11c8c814322ab71b1ae  /tmp/fifo-game
-[  219.390673] EXT4-fs (mmcblk0p4): unmounting filesystem 4cd26447-2ac1-4501-b5e0-4a23309fb661.
+[  219.390673] EXT4-fs (mmcblk0p4): unmounting filesystem [filesystem-uuid].
 
 NV_DONE_ae94dd0a3fd0=0
 # 
