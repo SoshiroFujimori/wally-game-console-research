@@ -1,0 +1,34 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="680" viewBox="0 0 1200 680" role="img" aria-labelledby="title desc">
+<title id="title">画像AとBには、別々の古い場面が残る</title><desc id="desc">Aに位置100、Bに103を描いた後、Aを106へ更新するときはAに残る100を消す必要がある。</desc>
+<defs><marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z" fill="#1673C3"/></marker></defs>
+<rect width="1200" height="100%" fill="white"/>
+<g font-family="Noto Sans CJK JP,Noto Sans JP,Meiryo,Yu Gothic,sans-serif" fill="#231F20">
+<text x="40" y="48" font-size="29" text-anchor="start" font-weight="bold">画像AとBには、別々の古い場面が残る</text>
+<text x="65" y="125" font-size="24" text-anchor="start" font-weight="normal">更新する順</text>
+<text x="385" y="125" font-size="24" text-anchor="middle" font-weight="normal">画像A</text>
+<text x="830" y="125" font-size="24" text-anchor="middle" font-weight="normal">画像B</text>
+<text x="125" y="218" font-size="29" text-anchor="middle" font-weight="normal">1</text>
+<rect x="210" y="160" width="350" height="105" fill="#CCD9F1" stroke="#231F20" stroke-width="2" stroke-dasharray=""/>
+<text x="385.0" y="204.7" font-size="22" text-anchor="middle" font-weight="normal">今回：x=100</text>
+<text x="385.0" y="235.7" font-size="22" text-anchor="middle" font-weight="normal">Aを描いて表示へ</text>
+<rect x="650" y="160" width="360" height="105" fill="white" stroke="#231F20" stroke-width="2" stroke-dasharray=""/>
+<text x="830.0" y="204.7" font-size="22" text-anchor="middle" font-weight="normal">以前の内容</text>
+<text x="830.0" y="235.7" font-size="22" text-anchor="middle" font-weight="normal">この回は更新しない</text>
+<text x="125" y="348" font-size="29" text-anchor="middle" font-weight="normal">2</text>
+<rect x="210" y="290" width="350" height="105" fill="white" stroke="#231F20" stroke-width="2" stroke-dasharray=""/>
+<text x="385.0" y="334.7" font-size="22" text-anchor="middle" font-weight="normal">残っている：x=100</text>
+<text x="385.0" y="365.7" font-size="22" text-anchor="middle" font-weight="normal">この回は更新しない</text>
+<rect x="650" y="290" width="360" height="105" fill="#CCD9F1" stroke="#231F20" stroke-width="2" stroke-dasharray=""/>
+<text x="830.0" y="334.7" font-size="22" text-anchor="middle" font-weight="normal">今回：x=103</text>
+<text x="830.0" y="365.7" font-size="22" text-anchor="middle" font-weight="normal">Bを描いて表示へ</text>
+<text x="125" y="478" font-size="29" text-anchor="middle" font-weight="normal">3</text>
+<rect x="210" y="420" width="350" height="105" fill="#CCD9F1" stroke="#231F20" stroke-width="2" stroke-dasharray=""/>
+<text x="385.0" y="464.7" font-size="22" text-anchor="middle" font-weight="normal">100を消し、106を描く</text>
+<text x="385.0" y="495.7" font-size="22" text-anchor="middle" font-weight="normal">Aを再利用</text>
+<rect x="650" y="420" width="360" height="105" fill="white" stroke="#231F20" stroke-width="2" stroke-dasharray=""/>
+<text x="830.0" y="464.7" font-size="22" text-anchor="middle" font-weight="normal">残っている：x=103</text>
+<text x="830.0" y="495.7" font-size="22" text-anchor="middle" font-weight="normal">この回は更新しない</text>
+<text x="60" y="590" font-size="24" text-anchor="start" font-weight="normal">直前の103だけ覚えていても、再利用するAに残る100は分からない。</text>
+<text x="40" y="656" font-size="19" text-anchor="start" font-weight="normal">部分描画の履歴の説明例。実際の初期表示と切替え順はRendererの実装を参照。</text>
+</g>
+</svg>

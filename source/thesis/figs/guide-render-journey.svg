@@ -1,0 +1,37 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="760" viewBox="0 0 1200 760" role="img" aria-labelledby="title desc">
+<title id="title">図形の指定から画素の色まで</title><desc id="desc">CPUの処理で命令を作り、接続回路を介してRasterIXへ送る。RasterIXの内部処理で画素の色を作る。</desc>
+<defs><marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z" fill="#1673C3"/></marker></defs>
+<rect width="1200" height="100%" fill="white"/>
+<g font-family="Noto Sans CJK JP,Noto Sans JP,Meiryo,Yu Gothic,sans-serif" fill="#231F20">
+<text x="40" y="48" font-size="29" text-anchor="start" font-weight="bold">図形の指定から画素の色まで</text>
+<rect x="30" y="105" width="1140" height="215" fill="white" stroke="#1673C3" stroke-width="2" stroke-dasharray=""/>
+<text x="50" y="138" font-size="23" text-anchor="start" font-weight="bold">CPU上のソフトウェア</text>
+<rect x="60" y="165" width="300" height="115" fill="#E5EBF8" stroke="#231F20" stroke-width="2" stroke-dasharray=""/>
+<text x="210.0" y="214.55" font-size="23" text-anchor="middle" font-weight="normal">ゲームの図形</text>
+<text x="210.0" y="246.55" font-size="23" text-anchor="middle" font-weight="normal">位置・色・模様</text>
+<polyline points="360,222 450,222" fill="none" stroke="#1673C3" stroke-width="3" stroke-dasharray="" marker-end="url(#arrow)"/>
+<rect x="450" y="165" width="300" height="115" fill="#E5EBF8" stroke="#231F20" stroke-width="2" stroke-dasharray=""/>
+<text x="600.0" y="214.55" font-size="23" text-anchor="middle" font-weight="normal">ライブラリの準備</text>
+<text x="600.0" y="246.55" font-size="23" text-anchor="middle" font-weight="normal">図形・設定を処理</text>
+<polyline points="750,222 840,222" fill="none" stroke="#1673C3" stroke-width="3" stroke-dasharray="" marker-end="url(#arrow)"/>
+<rect x="840" y="165" width="300" height="115" fill="#E5EBF8" stroke="#231F20" stroke-width="2" stroke-dasharray=""/>
+<text x="990.0" y="214.55" font-size="23" text-anchor="middle" font-weight="normal">メモリの命令列</text>
+<text x="990.0" y="246.55" font-size="23" text-anchor="middle" font-weight="normal">回路へ送る数値</text>
+<polyline points="990,280 990,365 210,365 210,445" fill="none" stroke="#1673C3" stroke-width="3" stroke-dasharray="" marker-end="url(#arrow)"/>
+<text x="575" y="350" font-size="22" text-anchor="middle" font-weight="normal">CPUによる転送 → APB → クロック間接続</text>
+<rect x="30" y="405" width="1140" height="235" fill="none" stroke="#1673C3" stroke-width="2" stroke-dasharray=""/>
+<rect x="60" y="445" width="300" height="115" fill="#E5EBF8" stroke="#231F20" stroke-width="2" stroke-dasharray=""/>
+<text x="210.0" y="494.55" font-size="23" text-anchor="middle" font-weight="normal">命令の解析</text>
+<text x="210.0" y="526.55" font-size="23" text-anchor="middle" font-weight="normal">何をするか決める</text>
+<polyline points="360,502 450,502" fill="none" stroke="#1673C3" stroke-width="3" stroke-dasharray="" marker-end="url(#arrow)"/>
+<rect x="450" y="445" width="300" height="115" fill="#E5EBF8" stroke="#231F20" stroke-width="2" stroke-dasharray=""/>
+<text x="600.0" y="494.55" font-size="23" text-anchor="middle" font-weight="normal">画素候補を計算</text>
+<text x="600.0" y="526.55" font-size="23" text-anchor="middle" font-weight="normal">図形の内側を調べる</text>
+<polyline points="750,502 840,502" fill="none" stroke="#1673C3" stroke-width="3" stroke-dasharray="" marker-end="url(#arrow)"/>
+<rect x="840" y="445" width="300" height="115" fill="#E5EBF8" stroke="#231F20" stroke-width="2" stroke-dasharray=""/>
+<text x="990.0" y="494.55" font-size="23" text-anchor="middle" font-weight="normal">色・各種の判定</text>
+<text x="990.0" y="526.55" font-size="23" text-anchor="middle" font-weight="normal">作業領域へ書く</text>
+<text x="50" y="615" font-size="23" text-anchor="start" font-weight="normal">RasterIXの回路　　この後、画像を保存し、表示側へ渡す。</text>
+<text x="40" y="736" font-size="19" text-anchor="start" font-weight="normal">処理の役割を分けた概念図。個々の回路の並列動作や所要時間は表していない。</text>
+</g>
+</svg>

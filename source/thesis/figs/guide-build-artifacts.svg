@@ -1,0 +1,37 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="640" viewBox="0 0 1200 640" role="img" aria-labelledby="title desc">
+<title id="title">回路の設定ファイルとゲームの実行ファイルを分ける</title><desc id="desc">HDLは合成配置配線してFPGAへ、C++はクロスコンパイルしてSD経由でWallyへ渡す。</desc>
+<defs><marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z" fill="#1673C3"/></marker></defs>
+<rect width="1200" height="100%" fill="white"/>
+<g font-family="Noto Sans CJK JP,Noto Sans JP,Meiryo,Yu Gothic,sans-serif" fill="#231F20">
+<text x="40" y="48" font-size="29" text-anchor="start" font-weight="bold">回路の設定ファイルとゲームの実行ファイルを分ける</text>
+<rect x="35" y="155" width="190" height="120" fill="#E5EBF8" stroke="#231F20" stroke-width="2" stroke-dasharray=""/>
+<text x="130.0" y="207.05" font-size="23" text-anchor="middle" font-weight="normal">SystemVerilog</text>
+<text x="130.0" y="239.05" font-size="23" text-anchor="middle" font-weight="normal">ソース</text>
+<rect x="295" y="155" width="245" height="120" fill="#E5EBF8" stroke="#231F20" stroke-width="2" stroke-dasharray=""/>
+<text x="417.5" y="223.05" font-size="23" text-anchor="middle" font-weight="normal">合成・配置配線</text>
+<rect x="610" y="155" width="235" height="120" fill="#E5EBF8" stroke="#231F20" stroke-width="2" stroke-dasharray=""/>
+<text x="727.5" y="207.05" font-size="23" text-anchor="middle" font-weight="normal">bitstream</text>
+<text x="727.5" y="239.05" font-size="23" text-anchor="middle" font-weight="normal">回路の設定データ</text>
+<rect x="915" y="155" width="250" height="120" fill="#E5EBF8" stroke="#231F20" stroke-width="2" stroke-dasharray=""/>
+<text x="1040.0" y="207.05" font-size="23" text-anchor="middle" font-weight="normal">FPGAへ設定</text>
+<text x="1040.0" y="239.05" font-size="23" text-anchor="middle" font-weight="normal">回路が出来る</text>
+<polyline points="225,215 295,215" fill="none" stroke="#1673C3" stroke-width="3" stroke-dasharray="" marker-end="url(#arrow)"/>
+<polyline points="540,215 610,215" fill="none" stroke="#1673C3" stroke-width="3" stroke-dasharray="" marker-end="url(#arrow)"/>
+<polyline points="845,215 915,215" fill="none" stroke="#1673C3" stroke-width="3" stroke-dasharray="" marker-end="url(#arrow)"/>
+<rect x="35" y="370" width="190" height="120" fill="#E5EBF8" stroke="#231F20" stroke-width="2" stroke-dasharray=""/>
+<text x="130.0" y="422.05" font-size="23" text-anchor="middle" font-weight="normal">C++</text>
+<text x="130.0" y="454.05" font-size="23" text-anchor="middle" font-weight="normal">ソース</text>
+<rect x="295" y="370" width="245" height="120" fill="#E5EBF8" stroke="#231F20" stroke-width="2" stroke-dasharray=""/>
+<text x="417.5" y="438.05" font-size="23" text-anchor="middle" font-weight="normal">コンパイル・リンク</text>
+<rect x="610" y="370" width="235" height="120" fill="#E5EBF8" stroke="#231F20" stroke-width="2" stroke-dasharray=""/>
+<text x="727.5" y="422.05" font-size="23" text-anchor="middle" font-weight="normal">実行ファイル</text>
+<text x="727.5" y="454.05" font-size="23" text-anchor="middle" font-weight="normal">CPUの命令とデータ</text>
+<rect x="915" y="370" width="250" height="120" fill="#E5EBF8" stroke="#231F20" stroke-width="2" stroke-dasharray=""/>
+<text x="1040.0" y="422.05" font-size="23" text-anchor="middle" font-weight="normal">SDから読込む</text>
+<text x="1040.0" y="454.05" font-size="23" text-anchor="middle" font-weight="normal">Wallyが実行</text>
+<polyline points="225,430 295,430" fill="none" stroke="#1673C3" stroke-width="3" stroke-dasharray="" marker-end="url(#arrow)"/>
+<polyline points="540,430 610,430" fill="none" stroke="#1673C3" stroke-width="3" stroke-dasharray="" marker-end="url(#arrow)"/>
+<polyline points="845,430 915,430" fill="none" stroke="#1673C3" stroke-width="3" stroke-dasharray="" marker-end="url(#arrow)"/>
+<text x="40" y="616" font-size="19" text-anchor="start" font-weight="normal">一方を置き換えても、もう一方のファイルや回路は自動では更新されない。</text>
+</g>
+</svg>

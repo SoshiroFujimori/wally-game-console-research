@@ -13,42 +13,13 @@ PART_DIRECTORIES = {
     'I': '01-hdl-fpga', 'II': '02-wally', 'III': '03-linux',
     'IV': '04-rasterix', 'V': '05-integration',
 }
-# Supplementary explanations share the appendix topic indexes. Their existing
-# file paths stay stable for citations, figures, and executable examples.
-COMMON_GUIDES = (
-    ('README.md', '付録の読み方と全体像'),
-    ('walkthrough.md', '白い四角形を一つ表示するまで'),
-    ('glossary.md', '用語を理解の入口にする'),
-    ('sources.md', '対象版・出典・説明の根拠'),
-)
-TOPIC_GUIDES = {
-    'I': (
-        ('logic-rtl.md', '論理ゲートから値を覚える回路とRTLへ'),
-        ('timing-fpga.md', 'クロックとリセットからFPGAの実装結果を読む'),
-        ('cdc-protocols.md', 'APBとストリームとクロック間接続を一語ずつ追う'),
-    ),
-    'II': (
-        ('cpu.md', 'Wallyが一つのプログラムを実行する過程'),
-        ('memory-bus.md', '番地とメモリとバスを混同せずに追う'),
-    ),
-    'III': (
-        ('linux.md', 'Linuxの起動から描画回路への書込みまで'),
-        ('peripherals.md', '入力機器を追加するときに設計する境界'),
-    ),
-    'IV': (
-        ('commands.md', '図形の指定がメモリ上の描画命令になるまで'),
-        ('rasterization.md', '三角形から画素と色を求める計算'),
-        ('framebuffer-display.md', '画像を保存して連続した映像として送り出す'),
-    ),
-    'V': (
-        ('board-reproduction.md', 'Nexys Video対応とRasterIX接続をファイルから再現する'),
-        ('measurement.md', '測定した時間から性能と設計の判断へ進む'),
-        ('verification.md', '正しさの条件から試験と不具合の切り分けを作る'),
-    ),
-}
-REF_PATTERN = (r'技術付録\s*第\d+章|技術付録\s*\d+\.\d+節|第[IVX]+部|'
-               r'付録[A-Z](?:\.\d+)?|第\d+章|(?<![\w.図表])[A-Z]\.\d+(?![\d.])|'
-               r'(?<![\w.図表])\d+\.\d+(?=節|[〜～・]\d+\.\d+節)')
+from appendix_assembly import appendix_anchor
+
+REF_PATTERN = (r'(?:技術付録|論文本文|本文)\s*第\d+(?:[〜～]\d+)?章|'
+               r'(?:技術付録|論文本文|本文)\s*\d+\.\d+(?:[〜～・、]\d+\.\d+)*節|'
+               r'第[IVX]+部|付録[A-Z](?:\.\d+)?|第\d+章|'
+               r'(?<![\w.図表])[A-Z]\.\d+(?![\d.])|'
+               r'(?<![A-Za-z0-9_.図表])\d+\.\d+(?:[〜～・、]\d+\.\d+)*節')
 ANCHOR = re.compile(r'<a id="([^"]+)"></a>')
 HEADING = re.compile(r'^<a id="([^"]+)"></a>\n(#{2,5}) (.+)$', re.M)
 LINK_OR_CODE = re.compile(r'`+[^`\n]*`+|!?\[[^\]\n]*\]\((?P<target>[^)\n]+)\)')
@@ -58,15 +29,19 @@ def resolve_reference(label, load_source, name):
     match = re.search(r'([A-Z]|\d+)\.(\d+)', label)
     if match:
         ident = match[1] + '.' + match[2]
-        dest = '技術付録' if match[1].isalpha() or '技術付録' in label else '本文'
-        candidates = (dest, '技術付録') if name == '技術付録' and dest == '本文' else (dest,)
+        dest = ('技術付録' if match[1].isalpha() or '技術付録' in label else
+                '本文' if '本文' in label else name)
+        candidates = (dest,)
         for candidate in candidates:
             if re.search(r'^#{3,4} ' + re.escape(ident) + r' ', load_source(candidate), re.M):
-                return candidate, 's_' + ident.replace('.', '_')
+                return candidate, (appendix_anchor(match[1], match[2]) if candidate == '技術付録' and match[1].isdigit() else 's_' + ident.replace('.', '_'))
         return None
     match = re.search(r'技術付録\s*第(\d+)章', label)
     if match:
-        return '技術付録', 'ch_' + match[1]
+        return '技術付録', appendix_anchor(match[1])
+    match = re.search(r'(?:論文本文|本文)\s*第(\d+)章', label)
+    if match:
+        return '本文', 'ch_' + match[1]
     match = re.search(r'第([IVX]+)部', label)
     if match:
         return '技術付録', 'part_' + match[1]
@@ -74,9 +49,9 @@ def resolve_reference(label, load_source, name):
     if match:
         if match[1]:
             return '技術付録', 'ch_' + match[1]
-        for dest in ('本文', '技術付録'):
+        for dest in ((name,) if name == '技術付録' else ('本文', '技術付録')):
             if re.search(r'^#{2,4} 第' + re.escape(match[2]) + r'章(?:\s|$)', load_source(dest), re.M):
-                return dest, 'ch_' + match[2]
+                return dest, (appendix_anchor(match[2]) if dest == '技術付録' else 'ch_' + match[2])
     return None
 
 
@@ -86,8 +61,6 @@ def render_markdown(name, title, source, tokens, load_source):
     references = {t['key'] for t in tokens if t['kind'] == 'reference'}
     other = '技術付録' if name == '本文' else '本文'
     intro = f'# {title}\n\n[資料全体の入口](README.md) ｜ [{other}を開く]({other}.md)'
-    if name == '技術付録':
-        intro += ' ｜ [付録の読み方と全体像](../technical/README.md)'
     intro += '\n\n## ジャンプできる目次\n\n'
     intro += '\n'.join('  ' * (t['level'] - 1) + f'- [{t["text"]}](#{t["anchor"]})'
                        for t in headings) + '\n\n'
@@ -152,7 +125,8 @@ def outside_fences(text, transform, fenced=lambda line: line):
 
 def rewrite_links(text, source, destination, appendix, routes):
     """Relocate URLs only; preserve labels and literal code."""
-    normalized_routes = {anchor.lower(): path.resolve() for anchor, path in routes.items()}
+    absolute = lambda path: Path(os.path.abspath(os.path.normpath(path)))
+    normalized_routes = {anchor.lower(): absolute(path) for anchor, path in routes.items()}
     appendix_pages = set(normalized_routes.values())
 
     def replace(match):
@@ -163,16 +137,16 @@ def rewrite_links(text, source, destination, appendix, routes):
         url = urlsplit(raw[1:-1] if bracketed else raw)
         if url.scheme or url.netloc:
             return match[0]
-        target = (source.parent / unquote(url.path)).resolve() if url.path else source.resolve()
+        target = absolute(source.parent / unquote(url.path)) if url.path else absolute(source)
         fragment = unquote(url.fragment)
-        if target == appendix.resolve() and fragment:
+        if target == absolute(appendix) and fragment:
             if fragment.lower() not in normalized_routes:
                 raise ValueError(f'Unknown appendix anchor: {fragment}')
             target = normalized_routes[fragment.lower()]
         # GitHub normalizes custom IDs to lowercase when rendering Markdown.
         if target in appendix_pages and fragment:
             fragment = fragment.lower()
-        path = '' if target == destination.resolve() and url.fragment else Path(os.path.relpath(target, destination.parent)).as_posix()
+        path = '' if target == absolute(destination) and url.fragment else Path(os.path.relpath(target, destination.parent)).as_posix()
         value = urlunsplit(('', '', path, url.query, fragment))
         if bracketed:
             value = '<' + value + '>'
@@ -200,7 +174,7 @@ class Piece:
     kind: str = 'chapter'
 
 
-def split_pieces(markdown):
+def split_pieces(markdown, chapter_paths=None):
     toc_end = markdown.index('\n\n', markdown.index('## ジャンプできる目次')) + 2
     for line in markdown[toc_end:].splitlines(keepends=True):
         if line.strip() and not re.match(r'^ *- \[', line):
@@ -225,7 +199,8 @@ def split_pieces(markdown):
         elif anchor.startswith('ch_'):
             label = anchor.removeprefix('ch_')
             filename = f'chapter-{int(label):02d}.md' if label.isdigit() else f'appendix-{label.lower()}.md'
-            path = Path('appendix') / PART_DIRECTORIES[part] / filename
+            mapped = (chapter_paths or {}).get(anchor.lower())
+            path = Path(mapped) if mapped else Path('appendix') / PART_DIRECTORIES[part] / filename
             kind = 'chapter'
         else:
             path = Path('appendix/references.md')
@@ -242,8 +217,8 @@ def content_block(text):
     return '<!-- appendix-content:start -->\n' + text.rstrip() + '\n<!-- appendix-content:end -->\n'
 
 
-def split_markdown(markdown, output):
-    pieces = split_pieces(markdown)
+def split_markdown(markdown, output, chapter_paths=None):
+    pieces = split_pieces(markdown, chapter_paths)
     routes = {}
     for piece in pieces:
         for anchor in ANCHOR.findall(mask_code(piece.body)):
@@ -254,10 +229,6 @@ def split_markdown(markdown, output):
     def link(source, target, title, fragment=''):
         path = Path(os.path.relpath(target, source.parent)).as_posix()
         return f'[{title}]({path}{"#" + fragment if fragment else ""})'
-
-    def guide_list(destination, guides):
-        return ''.join('- ' + link(destination, output.parent / 'technical' / filename, title) + '\n'
-                       for filename, title in guides)
 
     rendered = {}
     reading_order = [p for p in pieces if p.kind in ('chapter', 'references')]
@@ -270,16 +241,14 @@ def split_markdown(markdown, output):
                  link(destination, output / 'appendix/references.md', '参考文献')]
         if piece.kind == 'index':
             header = markdown.splitlines()[0] + '\n\n'
-            header += '[資料全体の入口](README.md) ｜ [論文本文](本文.md) ｜ [Word版（56章）](技術付録.docx)\n\n'
+            header += '[資料全体の入口](README.md) ｜ [論文本文](本文.md) ｜ [同じ内容のWord版](技術付録.docx)\n\n'
             header += 'GitHubでは章ごとにページを分けている。説明・図・表・コードは省略していない。'
             header += '読みたい分野から章を選び、各ページの目次で節へ移動できる。\n\n'
             header += '基礎知識を図と数値例で確かめる説明も、実装の詳細や再現手順も、この技術付録にまとめている。'
             header += '各分野の目次から必要な説明を選べる。\n\n'
-            header += '**読み方・全体像・用語**\n\n' + guide_list(destination, COMMON_GUIDES) + '\n'
             page = header + content_block(body) + '\n## 章別目次\n\n'
             for part in (p for p in pieces if p.kind == 'part'):
                 page += f'<a id="part_{part.part.lower()}"></a>\n### ' + link(destination, output / part.path, part.title) + '\n\n'
-                page += guide_list(destination, TOPIC_GUIDES[part.part])
                 for chapter in (p for p in pieces if p.kind == 'chapter' and p.part == part.part):
                     # Old section bookmarks still land on the relevant chapter entry.
                     aliases = ''.join(f'<a id="{anchor.lower()}"></a>' for anchor in ANCHOR.findall(mask_code(chapter.body)))
@@ -293,7 +262,6 @@ def split_markdown(markdown, output):
             page = content_block(head) + '\n' + ' ｜ '.join(links) + '\n\n'
             if piece.kind == 'part':
                 page += content_block(remainder) + '\n## この分野の章\n\n'
-                page += guide_list(destination, TOPIC_GUIDES[piece.part])
                 for chapter in (p for p in pieces if p.kind == 'chapter' and p.part == piece.part):
                     page += '- ' + link(destination, output / chapter.path, chapter.title) + '\n'
             else:
@@ -332,10 +300,10 @@ def published_routes(output):
     return routes
 
 
-def publish_markdown(name, markdown, output, check=False):
+def publish_markdown(name, markdown, output, check=False, chapter_paths=None):
     output = Path(output).resolve()
     if name == '技術付録':
-        files, routes, _ = split_markdown(markdown, output)
+        files, routes, _ = split_markdown(markdown, output, chapter_paths)
     else:
         destination = output / (name + '.md')
         files = {destination: rewrite_links(markdown, destination, destination, output / APPENDIX, published_routes(output))}

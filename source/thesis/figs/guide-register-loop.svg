@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="650" viewBox="0 0 1200 650" role="img" aria-labelledby="title desc">
+<title id="title">保存された現在値から、次に保存する値を作る</title><desc id="desc">9ビットの位置レジスタの出力100を加算器へ送り、3を加えた103を次の立ち上がりで保存する。</desc>
+<defs><marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z" fill="#1673C3"/></marker></defs>
+<rect width="1200" height="100%" fill="white"/>
+<g font-family="Noto Sans CJK JP,Noto Sans JP,Meiryo,Yu Gothic,sans-serif" fill="#231F20">
+<text x="40" y="48" font-size="29" text-anchor="start" font-weight="bold">保存された現在値から、次に保存する値を作る</text>
+<rect x="80" y="150" width="270" height="140" fill="#E5EBF8" stroke="#231F20" stroke-width="2" stroke-dasharray=""/>
+<text x="215.0" y="211.9" font-size="24" text-anchor="middle" font-weight="normal">位置レジスタ</text>
+<text x="215.0" y="244.9" font-size="24" text-anchor="middle" font-weight="normal">現在値 x = 100</text>
+<rect x="500" y="150" width="200" height="140" fill="#E5EBF8" stroke="#231F20" stroke-width="2" stroke-dasharray=""/>
+<text x="600.0" y="211.9" font-size="24" text-anchor="middle" font-weight="normal">加算器</text>
+<text x="600.0" y="244.9" font-size="24" text-anchor="middle" font-weight="normal">x + 3</text>
+<rect x="840" y="150" width="280" height="140" fill="#E5EBF8" stroke="#231F20" stroke-width="2" stroke-dasharray=""/>
+<text x="980.0" y="211.9" font-size="24" text-anchor="middle" font-weight="normal">次の値 = 103</text>
+<text x="980.0" y="244.9" font-size="24" text-anchor="middle" font-weight="normal">まだ保存前</text>
+<polyline points="350,220 500,220" fill="none" stroke="#1673C3" stroke-width="3" stroke-dasharray="" marker-end="url(#arrow)"/>
+<polyline points="700,220 840,220" fill="none" stroke="#1673C3" stroke-width="3" stroke-dasharray="" marker-end="url(#arrow)"/>
+<polyline points="980,290 980,390 215,390 215,290" fill="none" stroke="#1673C3" stroke-width="3" stroke-dasharray="" marker-end="url(#arrow)"/>
+<text x="600" y="370" font-size="24" text-anchor="middle" font-weight="normal">次のクロックの立ち上がりで保存</text>
+<text x="70" y="465" font-size="24" text-anchor="start" font-weight="normal">保存前：x は100のまま。加算器の出力は103になる。</text>
+<text x="70" y="498" font-size="24" text-anchor="start" font-weight="normal">保存後：x が103になり、加算器は次の106を計算する。</text>
+<text x="70" y="531" font-size="24" text-anchor="start" font-weight="normal">100 → 103 → 106 は、異なる保存時点の値。</text>
+<text x="40" y="626" font-size="19" text-anchor="start" font-weight="normal">説明用の加算回路。enable・resetと実際の配線遅延は図から省略。</text>
+</g>
+</svg>

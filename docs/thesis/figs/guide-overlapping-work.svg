@@ -1,0 +1,36 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="580" viewBox="0 0 1200 580" role="img" aria-labelledby="title desc">
+<title id="title">同時に働く時間を二回足さない</title><desc id="desc">CPU送信0から5ms、回路処理2から8ms。3msが重なり、開始から完了までは8ms。</desc>
+<defs><marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z" fill="#1673C3"/></marker></defs>
+<rect width="1200" height="100%" fill="white"/>
+<g font-family="Noto Sans CJK JP,Noto Sans JP,Meiryo,Yu Gothic,sans-serif" fill="#231F20">
+<text x="40" y="48" font-size="29" text-anchor="start" font-weight="bold">同時に働く時間を二回足さない</text>
+<polyline points="235,150 235,405" fill="none" stroke="#CCD9F1" stroke-width="2" stroke-dasharray="5 5"/>
+<text x="235" y="130" font-size="22" text-anchor="middle" font-weight="normal">0</text>
+<polyline points="340,150 340,405" fill="none" stroke="#CCD9F1" stroke-width="2" stroke-dasharray="5 5"/>
+<text x="340" y="130" font-size="22" text-anchor="middle" font-weight="normal">1</text>
+<polyline points="445,150 445,405" fill="none" stroke="#CCD9F1" stroke-width="2" stroke-dasharray="5 5"/>
+<text x="445" y="130" font-size="22" text-anchor="middle" font-weight="normal">2</text>
+<polyline points="550,150 550,405" fill="none" stroke="#CCD9F1" stroke-width="2" stroke-dasharray="5 5"/>
+<text x="550" y="130" font-size="22" text-anchor="middle" font-weight="normal">3</text>
+<polyline points="655,150 655,405" fill="none" stroke="#CCD9F1" stroke-width="2" stroke-dasharray="5 5"/>
+<text x="655" y="130" font-size="22" text-anchor="middle" font-weight="normal">4</text>
+<polyline points="760,150 760,405" fill="none" stroke="#CCD9F1" stroke-width="2" stroke-dasharray="5 5"/>
+<text x="760" y="130" font-size="22" text-anchor="middle" font-weight="normal">5</text>
+<polyline points="865,150 865,405" fill="none" stroke="#CCD9F1" stroke-width="2" stroke-dasharray="5 5"/>
+<text x="865" y="130" font-size="22" text-anchor="middle" font-weight="normal">6</text>
+<polyline points="970,150 970,405" fill="none" stroke="#CCD9F1" stroke-width="2" stroke-dasharray="5 5"/>
+<text x="970" y="130" font-size="22" text-anchor="middle" font-weight="normal">7</text>
+<polyline points="1075,150 1075,405" fill="none" stroke="#CCD9F1" stroke-width="2" stroke-dasharray="5 5"/>
+<text x="1075" y="130" font-size="22" text-anchor="middle" font-weight="normal">8</text>
+<text x="1120" y="130" font-size="22" text-anchor="start" font-weight="normal">ms</text>
+<text x="40" y="220" font-size="26" text-anchor="start" font-weight="normal">CPU送信</text>
+<rect x="235" y="175" width="525" height="80" fill="#E5EBF8" stroke="#231F20" stroke-width="2" stroke-dasharray=""/>
+<text x="497.5" y="224.45" font-size="27" text-anchor="middle" font-weight="normal">5 ms</text>
+<text x="40" y="350" font-size="26" text-anchor="start" font-weight="normal">描画回路</text>
+<rect x="445" y="305" width="630" height="80" fill="#CCD9F1" stroke="#231F20" stroke-width="2" stroke-dasharray=""/>
+<text x="760.0" y="354.45" font-size="27" text-anchor="middle" font-weight="normal">6 ms</text>
+<polyline points="235,445 1075,445" fill="none" stroke="#1673C3" stroke-width="3" stroke-dasharray="" marker-end="url(#arrow)"/>
+<text x="655" y="490" font-size="24" text-anchor="middle" font-weight="normal">全体は8 ms。2〜5 msの3 msは両方に含まれる。</text>
+<text x="40" y="556" font-size="19" text-anchor="start" font-weight="normal">時間区間を説明するための仮定の数値。実機の測定結果ではない。</text>
+</g>
+</svg>

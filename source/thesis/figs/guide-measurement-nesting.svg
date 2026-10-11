@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="650" viewBox="0 0 1200 650" role="img" aria-labelledby="title desc">
+<title id="title">APB待ちは、転送関数の時間に含まれる</title><desc id="desc">転送関数の時間の中に、値の読み出し、APBの待ち、ループ等がある。待ち時間を外側の時間へ加算しない。</desc>
+<defs><marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z" fill="#1673C3"/></marker></defs>
+<rect width="1200" height="100%" fill="white"/>
+<g font-family="Noto Sans CJK JP,Noto Sans JP,Meiryo,Yu Gothic,sans-serif" fill="#231F20">
+<text x="40" y="48" font-size="29" text-anchor="start" font-weight="bold">APB待ちは、転送関数の時間に含まれる</text>
+<rect x="60" y="155" width="1080" height="220" fill="white" stroke="#1673C3" stroke-width="2" stroke-dasharray=""/>
+<text x="90" y="195" font-size="26" text-anchor="start" font-weight="bold">転送関数の開始から終了まで</text>
+<rect x="90" y="240" width="210" height="85" fill="#E5EBF8" stroke="#231F20" stroke-width="2" stroke-dasharray=""/>
+<text x="195.0" y="289.85" font-size="21" text-anchor="middle" font-weight="normal">読出し等</text>
+<rect x="300" y="240" width="110" height="85" fill="#CCD9F1" stroke="#231F20" stroke-width="2" stroke-dasharray=""/>
+<text x="355.0" y="289.85" font-size="21" text-anchor="middle" font-weight="normal">待ち</text>
+<rect x="410" y="240" width="270" height="85" fill="#E5EBF8" stroke="#231F20" stroke-width="2" stroke-dasharray=""/>
+<text x="545.0" y="289.85" font-size="21" text-anchor="middle" font-weight="normal">ループ・転送等</text>
+<rect x="680" y="240" width="110" height="85" fill="#CCD9F1" stroke="#231F20" stroke-width="2" stroke-dasharray=""/>
+<text x="735.0" y="289.85" font-size="21" text-anchor="middle" font-weight="normal">待ち</text>
+<rect x="790" y="240" width="320" height="85" fill="#E5EBF8" stroke="#231F20" stroke-width="2" stroke-dasharray=""/>
+<text x="950.0" y="289.85" font-size="21" text-anchor="middle" font-weight="normal">その他の関数内処理</text>
+<text x="65" y="455" font-size="23" text-anchor="start" font-weight="normal">E6のある条件の中央値：外側7.481 ms/frame、APB待ち0.465 ms/frame</text>
+<text x="65" y="487" font-size="23" text-anchor="start" font-weight="normal">7.481 + 0.465 と足すと、待ちを二度数えてしまう。</text>
+<text x="65" y="519" font-size="23" text-anchor="start" font-weight="normal">差を取っても、純粋なCPU計算だけの測定値になるとは限らない。</text>
+<text x="40" y="626" font-size="19" text-anchor="start" font-weight="normal">区間の包含関係を示す概念図。箱の幅と個数は実測の波形・割合を表していない。</text>
+</g>
+</svg>

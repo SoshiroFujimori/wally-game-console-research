@@ -1,0 +1,37 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="650" viewBox="0 0 1200 650" role="img" aria-labelledby="title desc">
+<title id="title">次の保存時点までに信号が間に合うか</title><desc id="desc">出力遅延2ns、論理と配線11ns、セットアップ2nsの合計15nsを説明する。</desc>
+<defs><marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z" fill="#1673C3"/></marker></defs>
+<rect width="1200" height="100%" fill="white"/>
+<g font-family="Noto Sans CJK JP,Noto Sans JP,Meiryo,Yu Gothic,sans-serif" fill="#231F20">
+<text x="40" y="48" font-size="29" text-anchor="start" font-weight="bold">次の保存時点までに信号が間に合うか</text>
+<rect x="130" y="160" width="90" height="130" fill="#E5EBF8" stroke="#231F20" stroke-width="2" stroke-dasharray=""/>
+<text x="175.0" y="217.35" font-size="21" text-anchor="middle" font-weight="normal">出力</text>
+<text x="175.0" y="247.35" font-size="21" text-anchor="middle" font-weight="normal">2 ns</text>
+<rect x="220" y="160" width="495" height="130" fill="#CCD9F1" stroke="#231F20" stroke-width="2" stroke-dasharray=""/>
+<text x="467.5" y="217.35" font-size="21" text-anchor="middle" font-weight="normal">論理と配線</text>
+<text x="467.5" y="247.35" font-size="21" text-anchor="middle" font-weight="normal">11 ns</text>
+<rect x="715" y="160" width="90" height="130" fill="#E5EBF8" stroke="#231F20" stroke-width="2" stroke-dasharray=""/>
+<text x="760.0" y="217.35" font-size="21" text-anchor="middle" font-weight="normal">準備</text>
+<text x="760.0" y="247.35" font-size="21" text-anchor="middle" font-weight="normal">2 ns</text>
+<polyline points="130,330 1030,330" fill="none" stroke="#1673C3" stroke-width="3" stroke-dasharray="" marker-end="url(#arrow)"/>
+<polyline points="130,320 130,345" fill="none" stroke="#231F20" stroke-width="2" stroke-dasharray=""/>
+<text x="130" y="378" font-size="21" text-anchor="middle" font-weight="normal">0</text>
+<polyline points="220,320 220,345" fill="none" stroke="#231F20" stroke-width="2" stroke-dasharray=""/>
+<text x="220" y="378" font-size="21" text-anchor="middle" font-weight="normal">2</text>
+<polyline points="580,320 580,345" fill="none" stroke="#231F20" stroke-width="2" stroke-dasharray=""/>
+<text x="580" y="378" font-size="21" text-anchor="middle" font-weight="normal">10</text>
+<polyline points="715,320 715,345" fill="none" stroke="#231F20" stroke-width="2" stroke-dasharray=""/>
+<text x="715" y="378" font-size="21" text-anchor="middle" font-weight="normal">13</text>
+<polyline points="805,320 805,345" fill="none" stroke="#231F20" stroke-width="2" stroke-dasharray=""/>
+<text x="805" y="378" font-size="21" text-anchor="middle" font-weight="normal">15</text>
+<polyline points="1030,320 1030,345" fill="none" stroke="#231F20" stroke-width="2" stroke-dasharray=""/>
+<text x="1030" y="378" font-size="21" text-anchor="middle" font-weight="normal">20</text>
+<text x="1060" y="338" font-size="22" text-anchor="start" font-weight="normal">ns</text>
+<polyline points="580,125 580,312" fill="none" stroke="#1673C3" stroke-width="3" stroke-dasharray="8 6"/>
+<text x="580" y="103" font-size="23" text-anchor="middle" font-weight="normal">100 MHzでは次の立ち上がりが10 ns後</text>
+<text x="70" y="445" font-size="24" text-anchor="start" font-weight="normal">合計15 ns：10 ns周期には収まらない。</text>
+<text x="70" y="478" font-size="24" text-anchor="start" font-weight="normal">20 MHzなら50 ns周期なので、この例の15 nsは収まる。</text>
+<text x="70" y="511" font-size="24" text-anchor="start" font-weight="normal">実際はクロックの到着差・不確かさ・ホールド条件も調べる。</text>
+<text x="40" y="626" font-size="19" text-anchor="start" font-weight="normal">数値は説明用。特定のWally経路を測定した図ではない。</text>
+</g>
+</svg>

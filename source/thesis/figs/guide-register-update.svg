@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="640" viewBox="0 0 1200 640" role="img" aria-labelledby="title desc">
+<title id="title">同じ立ち上がりでは、どちらも保存前の値を使う</title><desc id="desc">xへの次の値はx+3、yへの次の値は現在のx。二つのレジスタは同時に更新する。</desc>
+<defs><marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z" fill="#1673C3"/></marker></defs>
+<rect width="1200" height="100%" fill="white"/>
+<g font-family="Noto Sans CJK JP,Noto Sans JP,Meiryo,Yu Gothic,sans-serif" fill="#231F20">
+<text x="40" y="48" font-size="29" text-anchor="start" font-weight="bold">同じ立ち上がりでは、どちらも保存前の値を使う</text>
+<rect x="50" y="155" width="250" height="125" fill="#E5EBF8" stroke="#231F20" stroke-width="2" stroke-dasharray=""/>
+<text x="175.0" y="209.4" font-size="24" text-anchor="middle" font-weight="normal">xのレジスタ</text>
+<text x="175.0" y="242.4" font-size="24" text-anchor="middle" font-weight="normal">現在値 100</text>
+<rect x="430" y="120" width="260" height="115" fill="#E5EBF8" stroke="#231F20" stroke-width="2" stroke-dasharray=""/>
+<text x="560.0" y="169.4" font-size="24" text-anchor="middle" font-weight="normal">加算器</text>
+<text x="560.0" y="202.4" font-size="24" text-anchor="middle" font-weight="normal">100 + 3 = 103</text>
+<rect x="430" y="330" width="260" height="115" fill="#E5EBF8" stroke="#231F20" stroke-width="2" stroke-dasharray=""/>
+<text x="560.0" y="379.4" font-size="24" text-anchor="middle" font-weight="normal">yのレジスタ</text>
+<text x="560.0" y="412.4" font-size="24" text-anchor="middle" font-weight="normal">次に100を保存</text>
+<polyline points="300,205 360,205 360,175 430,175" fill="none" stroke="#1673C3" stroke-width="3" stroke-dasharray="" marker-end="url(#arrow)"/>
+<polyline points="360,205 360,380 430,380" fill="none" stroke="#1673C3" stroke-width="3" stroke-dasharray="" marker-end="url(#arrow)"/>
+<polyline points="690,175 760,175 760,80 175,80 175,155" fill="none" stroke="#1673C3" stroke-width="3" stroke-dasharray="" marker-end="url(#arrow)"/>
+<text x="820" y="170" font-size="26" text-anchor="start" font-weight="normal">立ち上がり後</text>
+<text x="820" y="205" font-size="26" text-anchor="start" font-weight="normal">x = 103</text>
+<text x="820" y="240" font-size="26" text-anchor="start" font-weight="normal">y = 100</text>
+<text x="55" y="520" font-size="25" text-anchor="start" font-weight="normal">上の代入行が先に実行される、という回路ではない。</text>
+<text x="55" y="554" font-size="25" text-anchor="start" font-weight="normal">二つの保存場所が、それぞれの入力を同じ時点で保存する。</text>
+<text x="40" y="616" font-size="19" text-anchor="start" font-weight="normal">説明用の回路。リセット、ビット幅、実際の配線遅延は省略。</text>
+</g>
+</svg>

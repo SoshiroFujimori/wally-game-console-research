@@ -7,25 +7,7 @@ import re
 from urllib.parse import unquote, urlsplit
 
 ROOT = Path(__file__).resolve().parents[2]
-GUIDE = ROOT / 'docs' / 'technical'
-START = '<!-- technical-toc:start -->'
-END = '<!-- technical-toc:end -->'
-
-
-def with_toc(source):
-    source = re.sub(re.escape(START) + r'.*?' + re.escape(END) + r'\n*', '', source, flags=re.S)
-    source = re.sub(r'<a id="sec-[0-9]+"></a>\n', '', source)
-    titles = re.findall(r'^## (.+)$', source, flags=re.M)
-    if not titles:
-        return source
-    entries = [f'- [{title}](#sec-{i})' for i, title in enumerate(titles, 1)]
-    toc = START + '\n**このページの目次**\n\n' + '\n'.join(entries) + '\n' + END + '\n\n'
-    counter = iter(range(1, len(titles) + 1))
-    source = re.sub(r'^## ', lambda _: f'<a id="sec-{next(counter)}"></a>\n## ', source, flags=re.M)
-    first = source.index('<a id="sec-1">')
-    return source[:first] + toc + source[first:]
-
-
+GUIDE = ROOT / 'docs' / 'thesis' / 'appendix'
 def validate_links(path):
     errors = []
     # These authored guides intentionally use simple inline Markdown links.
@@ -48,36 +30,26 @@ def validate_links(path):
 
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument('--write', action='store_true', help='Regenerate per-page tables of contents')
+    parser.add_argument('--write', action='store_true', help='Retained flag: generated pages are rebuilt by the thesis exporter')
     args = parser.parse_args()
     errors = []
-    files = sorted(GUIDE.glob('*.md'))
-    for path in files:
-        source = path.read_text(encoding='utf-8')
-        rendered = with_toc(source)
-        if args.write:
-            path.write_text(rendered, encoding='utf-8', newline='\n')
-        elif rendered != source:
-            errors.append(f'{path.relative_to(ROOT)}: regenerate with --write')
-    for path in files:
-        errors.extend(validate_links(path))
     thesis = ROOT / 'docs' / 'thesis'
-    appendix_pages = sorted((thesis / 'appendix').rglob('*.md'))
-    # Explanatory pages belong to the shared appendix, not an orphan companion.
-    index_text = (thesis / '技術付録.md').read_text(encoding='utf-8')
-    indexed = set()
-    for raw in re.findall(r'\[[^\]\n]*\]\(([^)\n]+)\)', index_text):
-        url = urlsplit(raw)
-        if not url.scheme and not url.netloc and url.path:
-            indexed.add((thesis / unquote(url.path)).resolve())
+    files = sorted(GUIDE.rglob('*.md')) + [thesis / '技術付録.md', thesis / '本文.md']
+    if args.write:
+        raise SystemExit('Pages are generated; run source/thesis/build.py NAME --markdown-only')
     for path in files:
-        if path.resolve() not in indexed:
-            errors.append(f'{path.relative_to(ROOT)}: missing from the shared appendix index')
-    for path in appendix_pages + [thesis / '技術付録.md', thesis / '本文.md']:
         errors.extend(validate_links(path))
+    if (ROOT / 'docs/technical').exists():
+        errors.append('Separate technical guides must not be reintroduced')
+    index = (thesis / '技術付録.md').read_text(encoding='utf-8')
+    for path in GUIDE.rglob('*.md'):
+        if path.name not in ('README.md', 'references.md'):
+            rel = path.relative_to(thesis).as_posix()
+            if '(' + rel + ')' not in index:
+                errors.append(f'{rel}: missing from the common appendix index')
     if errors:
         raise SystemExit('\n'.join(errors))
-    print(f'Checked navigation and local fragment links in {len(files) + len(appendix_pages) + 2} document pages.')
+    print(f'Checked navigation and local fragment links in {len(files)} document pages.')
 
 
 if __name__ == '__main__':

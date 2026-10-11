@@ -64,7 +64,7 @@ console/                    製品リポジトリの固定版
 docs/abstract/              主要事項を図と短い文章で説明するアブスト
 docs/presentation/          6分の発表スライドと発表原稿
 docs/thesis/                公開用の論文、図、技術付録、実験記録E1〜E6
-docs/technical/             技術付録に含める基礎・数値例の原稿とSVG図
+source/thesis/appendix/     技術付録72章の原稿と構成表
 examples/technical-models/  本文の数値と受渡し規則を確かめる説明用モデル
 source/thesis/              論文の章別原稿と生成プログラム
 experiments/                補足試験、数学・RTL検証、当時の実験スクリプト

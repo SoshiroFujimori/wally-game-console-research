@@ -1,0 +1,35 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="650" viewBox="0 0 1200 650" role="img" aria-labelledby="title desc">
+<title id="title">同じ経路の前半はAPB、後半はAXI4-Stream</title><desc id="desc">CPUの番地付き書込みがAPB変換回路とCDCを通り、値と区切りのストリームとしてRasterIXへ届く。</desc>
+<defs><marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z" fill="#1673C3"/></marker></defs>
+<rect width="1200" height="100%" fill="white"/>
+<g font-family="Noto Sans CJK JP,Noto Sans JP,Meiryo,Yu Gothic,sans-serif" fill="#231F20">
+<text x="40" y="48" font-size="29" text-anchor="start" font-weight="bold">同じ経路の前半はAPB、後半はAXI4-Stream</text>
+<rect x="40" y="200" width="200" height="130" fill="#E5EBF8" stroke="#231F20" stroke-width="2" stroke-dasharray=""/>
+<text x="140.0" y="257.2" font-size="22" text-anchor="middle" font-weight="normal">CPU / バス</text>
+<text x="140.0" y="288.2" font-size="22" text-anchor="middle" font-weight="normal">番地へ書く</text>
+<rect x="330" y="200" width="235" height="130" fill="#E5EBF8" stroke="#231F20" stroke-width="2" stroke-dasharray=""/>
+<text x="447.5" y="257.2" font-size="22" text-anchor="middle" font-weight="normal">APB変換</text>
+<text x="447.5" y="288.2" font-size="22" text-anchor="middle" font-weight="normal">番地から区切りへ</text>
+<rect x="655" y="200" width="205" height="130" fill="#E5EBF8" stroke="#231F20" stroke-width="2" stroke-dasharray=""/>
+<text x="757.5" y="257.2" font-size="22" text-anchor="middle" font-weight="normal">クロック境界</text>
+<text x="757.5" y="288.2" font-size="22" text-anchor="middle" font-weight="normal">FIFO等</text>
+<rect x="950" y="200" width="210" height="130" fill="#E5EBF8" stroke="#231F20" stroke-width="2" stroke-dasharray=""/>
+<text x="1055.0" y="257.2" font-size="22" text-anchor="middle" font-weight="normal">RasterIX</text>
+<text x="1055.0" y="288.2" font-size="22" text-anchor="middle" font-weight="normal">命令を受理</text>
+<polyline points="240,248 330,248" fill="none" stroke="#1673C3" stroke-width="3" stroke-dasharray="" marker-end="url(#arrow)"/>
+<text x="285.0" y="177" font-size="20" text-anchor="middle" font-weight="normal">APB</text>
+<polyline points="330,300 240,300" fill="none" stroke="#1673C3" stroke-width="3" stroke-dasharray="" marker-end="url(#arrow)"/>
+<polyline points="565,248 655,248" fill="none" stroke="#1673C3" stroke-width="3" stroke-dasharray="" marker-end="url(#arrow)"/>
+<text x="610.0" y="177" font-size="20" text-anchor="middle" font-weight="normal">Stream</text>
+<polyline points="655,300 565,300" fill="none" stroke="#1673C3" stroke-width="3" stroke-dasharray="" marker-end="url(#arrow)"/>
+<polyline points="860,248 950,248" fill="none" stroke="#1673C3" stroke-width="3" stroke-dasharray="" marker-end="url(#arrow)"/>
+<text x="905.0" y="177" font-size="20" text-anchor="middle" font-weight="normal">Stream</text>
+<polyline points="950,300 860,300" fill="none" stroke="#1673C3" stroke-width="3" stroke-dasharray="" marker-end="url(#arrow)"/>
+<text x="310" y="380" font-size="23" text-anchor="middle" font-weight="normal">CPU側クロック：20 MHz</text>
+<text x="960" y="380" font-size="23" text-anchor="middle" font-weight="normal">描画側：100 MHz</text>
+<text x="60" y="450" font-size="24" text-anchor="start" font-weight="normal">右向きの矢印：値を渡す方向</text>
+<text x="60" y="483" font-size="24" text-anchor="start" font-weight="normal">左向きの矢印：受取り可能かを返す方向</text>
+<text x="60" y="516" font-size="24" text-anchor="start" font-weight="normal">FIFOが満杯なら、入口のreadyを通じてAPBも待つ。</text>
+<text x="40" y="626" font-size="19" text-anchor="start" font-weight="normal">概念図。幅・番地・リセットを含む実装はrasterix_apb.svと生成IPを参照。</text>
+</g>
+</svg>

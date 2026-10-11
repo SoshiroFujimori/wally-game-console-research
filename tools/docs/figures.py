@@ -1,12 +1,12 @@
 #!/usr/bin/env python3
-"""Generate editable SVG figures for the technical companion (stdlib only)."""
+"""Generate editable SVG figures for the unified technical appendix."""
 
 from html import escape
 from pathlib import Path
 import argparse
 
 ROOT = Path(__file__).resolve().parents[2]
-OUT = ROOT / 'docs' / 'technical' / 'figs'
+OUT = ROOT / 'source' / 'thesis' / 'figs'
 INK = '#231F20'
 BLUE = '#1673C3'
 LIGHT = '#E5EBF8'
@@ -58,13 +58,13 @@ class Figure:
     def save(self, name, footnote):
         self.text(40, self.height - 24, footnote, 19)
         self.parts.extend(['</g>', '</svg>'])
-        target = OUT / name
+        target = OUT / ('guide-' + name)
         rendered = '\n'.join(self.parts) + '\n'
         if CHECK:
             if not target.exists() or target.read_text(encoding='utf-8') != rendered:
                 raise SystemExit(f'Stale figure: {name}; run tools/docs/figures.py')
         else:
-            target.write_text(rendered, encoding='utf-8')
+            target.write_text(rendered, encoding='utf-8', newline='\n')
 
 
 def generate():

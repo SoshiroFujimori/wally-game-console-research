@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="600" viewBox="0 0 1200 600" role="img" aria-labelledby="title desc">
+<title id="title">配列を読む番地は進み、命令口の番地は同じ</title><desc id="desc">CPUがRAMの要素を順に読み、APBの同じCMD番地へ一語ずつ書く。</desc>
+<defs><marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z" fill="#1673C3"/></marker></defs>
+<rect width="1200" height="100%" fill="white"/>
+<g font-family="Noto Sans CJK JP,Noto Sans JP,Meiryo,Yu Gothic,sans-serif" fill="#231F20">
+<text x="40" y="48" font-size="29" text-anchor="start" font-weight="bold">配列を読む番地は進み、命令口の番地は同じ</text>
+<text x="55" y="125" font-size="25" text-anchor="start" font-weight="normal">CPU側の命令配列</text>
+<rect x="55" y="160" width="220" height="75" fill="#E5EBF8" stroke="#231F20" stroke-width="2" stroke-dasharray=""/>
+<text x="165.0" y="206.6" font-size="26" text-anchor="middle" font-weight="normal">要素0：A</text>
+<rect x="55" y="260" width="220" height="75" fill="#E5EBF8" stroke="#231F20" stroke-width="2" stroke-dasharray=""/>
+<text x="165.0" y="306.6" font-size="26" text-anchor="middle" font-weight="normal">要素1：B</text>
+<rect x="55" y="360" width="220" height="75" fill="#E5EBF8" stroke="#231F20" stroke-width="2" stroke-dasharray=""/>
+<text x="165.0" y="406.6" font-size="26" text-anchor="middle" font-weight="normal">要素2：C</text>
+<text x="55" y="505" font-size="23" text-anchor="start" font-weight="normal">読み出す順：0 → 1 → 2</text>
+<rect x="430" y="240" width="240" height="130" fill="#E5EBF8" stroke="#231F20" stroke-width="2" stroke-dasharray=""/>
+<text x="550.0" y="296.9" font-size="24" text-anchor="middle" font-weight="normal">CPUの転送処理</text>
+<text x="550.0" y="329.9" font-size="24" text-anchor="middle" font-weight="normal">配列から一語読む</text>
+<rect x="840" y="240" width="285" height="130" fill="#CCD9F1" stroke="#231F20" stroke-width="2" stroke-dasharray=""/>
+<text x="982.5" y="296.9" font-size="24" text-anchor="middle" font-weight="normal">同じCMD番地へ書く</text>
+<text x="982.5" y="329.9" font-size="24" text-anchor="middle" font-weight="normal">A → B → C</text>
+<polyline points="275,198 350,198 350,305 430,305" fill="none" stroke="#1673C3" stroke-width="3" stroke-dasharray="" marker-end="url(#arrow)"/>
+<polyline points="275,298 350,298 350,305 430,305" fill="none" stroke="#1673C3" stroke-width="3" stroke-dasharray="" marker-end="url(#arrow)"/>
+<polyline points="275,398 350,398 350,305 430,305" fill="none" stroke="#1673C3" stroke-width="3" stroke-dasharray="" marker-end="url(#arrow)"/>
+<polyline points="670,305 840,305" fill="none" stroke="#1673C3" stroke-width="3" stroke-dasharray="" marker-end="url(#arrow)"/>
+<text x="40" y="576" font-size="19" text-anchor="start" font-weight="normal">APB方式の説明。実際の命令長や値は命令の種類により異なる。</text>
+</g>
+</svg>

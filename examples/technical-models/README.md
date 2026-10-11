@@ -14,11 +14,11 @@ python3 examples/technical-models/explain.py all
 
 | 名前 | 出力で見るところ | 対応する詳説 |
 |---|---|---|
-| `timing` | 20 MHzは50 ns、360,000周期は18 ms、180フレームで割ると0.1 ms/frame | [時間条件](../../docs/technical/timing-fpga.md) |
-| `handshake` | 停止中に出力の語が変わらず、A、B、C、Dが一回ずつ渡る。最後の印はDだけ | [APBとFIFO](../../docs/technical/cdc-protocols.md) |
-| `pixels` | 四角形に含まれる12画素、三角形の辺の値、補間の重み | [画素を作る](../../docs/technical/rasterization.md) |
-| `memory` | 色とビット列、画像内の番地、キャッシュの衝突、五本の帯 | [メモリ](../../docs/technical/memory-bus.md)、[画像](../../docs/technical/framebuffer-display.md) |
-| `measurement` | 中央値、APB待ちの減少率、一部だけ高速化したときの全体の上限 | [計測](../../docs/technical/measurement.md) |
+| `timing` | 20 MHzは50 ns、360,000周期は18 ms、180フレームで割ると0.1 ms/frame | [時間条件](../../docs/thesis/appendix/01-hdl-fpga/timing-fpga.md) |
+| `handshake` | 停止中に出力の語が変わらず、A、B、C、Dが一回ずつ渡る。最後の印はDだけ | [APBとFIFO](../../docs/thesis/appendix/01-hdl-fpga/cdc-protocols.md) |
+| `pixels` | 四角形に含まれる12画素、三角形の辺の値、補間の重み | [画素を作る](../../docs/thesis/appendix/04-rasterix/rasterization.md) |
+| `memory` | 色とビット列、画像内の番地、キャッシュの衝突、五本の帯 | [メモリ](../../docs/thesis/appendix/02-wally/memory-bus.md)、[画像](../../docs/thesis/appendix/04-rasterix/framebuffer-display.md) |
+| `measurement` | 中央値、APB待ちの減少率、一部だけ高速化したときの全体の上限 | [計測](../../docs/thesis/appendix/05-integration/measurement.md) |
 
 ## 待機の表の読み方
 

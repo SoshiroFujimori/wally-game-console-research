@@ -1,6 +1,7 @@
 from pathlib import Path
 from functools import lru_cache
 import re,json,shutil,hashlib,sys
+from urllib.parse import urlsplit,unquote
 from docx import Document
 from docx.shared import Mm,Pt,RGBColor
 from docx.enum.text import WD_ALIGN_PARAGRAPH,WD_TAB_ALIGNMENT
@@ -8,7 +9,7 @@ from docx.enum.table import WD_TABLE_ALIGNMENT,WD_CELL_VERTICAL_ALIGNMENT
 from docx.opc.constants import RELATIONSHIP_TYPE as RT
 from docx.oxml import OxmlElement
 from docx.oxml.ns import qn
-from appendix_assembly import assemble_technical_appendix
+from appendix_assembly import assemble_technical_appendix, heading_anchor, catalog
 from markdown_export import REF_PATTERN, publish_markdown, render_markdown, resolve_reference
 
 ROOT=Path(__file__).resolve().parent;B=ROOT.parent
@@ -58,6 +59,7 @@ while i<len(lines):
   anchor=('s_'+sm[1].replace('.','_') if sm else
           'ch_'+(cm[1] or cm[2]) if cm else
           'part_'+pm[1] if pm else f'h{len(tokens):04d}')
+  if NAME=='技術付録':anchor=heading_anchor(name) or anchor
   tokens.append(dict(kind='heading',text=name,level=level,anchor=anchor))
   i+=1;continue
  m=re.match(r'!\[(.+)\]\((.+)\)',line)
@@ -85,7 +87,7 @@ while i<len(lines):
 heading_anchors=[t['anchor'] for t in tokens if t['kind']=='heading']
 assert len(heading_anchors)==len(set(heading_anchors)), 'Duplicate chapter or section bookmark'
 if '--markdown-only' in sys.argv:
- print(publish_markdown(NAME, render_markdown(NAME, TITLE, text, tokens, load_source), OUT, check='--check' in sys.argv))
+ print(publish_markdown(NAME, render_markdown(NAME, TITLE, text, tokens, load_source), OUT, check='--check' in sys.argv, chapter_paths={r['anchor'].lower():r['path'] for r in catalog()}))
  sys.exit(0)
 reference=OUT/(NAME+'.docx')
 doc=Document(reference)
@@ -118,7 +120,7 @@ for name in ['Caption']:
 footer=sec.footer.paragraphs[0];footer.clear();footer.alignment=WD_ALIGN_PARAGRAPH.CENTER;footer.paragraph_format.first_line_indent=Pt(0)
 field=OxmlElement('w:fldSimple');field.set(qn('w:instr'),'PAGE');footer._p.append(field)
 doc.core_properties.title=TITLE;doc.core_properties.author='';doc.core_properties.subject='Wallyと公式RasterIXを用いたFPGAゲーム機の設計と検証'
-for t,style in [('2026年度 卒業研究論文' if NAME=='本文' else '卒業研究論文 技術付録','Subtitle'),(TITLE.replace('ための技術付録','ための\n技術付録'),'Title'),('所属・学籍情報 非公開\n研究者（非公開）','Subtitle'),('指導教員 非公開','Subtitle'),('2026年10月11日 改訂' if NAME=='本文' else '2026年10月9日 改訂','Subtitle')]:
+for t,style in [('2026年度 卒業研究論文' if NAME=='本文' else '卒業研究論文 技術付録','Subtitle'),(TITLE.replace('ための技術付録','ための\n技術付録'),'Title'),('所属・学籍情報 非公開\n研究者（非公開）','Subtitle'),('指導教員 非公開','Subtitle'),('2026年10月11日 改訂','Subtitle')]:
  p=doc.add_paragraph(t,style);p.alignment=WD_ALIGN_PARAGRAPH.CENTER;p.paragraph_format.first_line_indent=Pt(0);p.paragraph_format.space_before=Pt(30);p.paragraph_format.space_after=Pt(24)
 
 if NAME=='本文' and tokens and tokens[0]['kind']=='para' and tokens[0]['text'].startswith('公開用資料では'):
@@ -170,6 +172,15 @@ def inline(p,s):
   link=re.fullmatch(r'\[([^\]]+)\]\(([^)]+)\)',bit) if matched else None
   if link:
    label,target=link.groups()
+   url=urlsplit(target)
+   if not url.scheme and url.path.startswith('appendix/'):
+    record=next((r for r in catalog() if r['path']==unquote(url.path)),None)
+    if record:
+     anchor=unquote(url.fragment) if url.fragment else record['anchor']
+     # Word bookmarks retain case, whereas GitHub fragment IDs are lowercase.
+     known=[record['anchor'],*record['sections'].values(),*record.get('headings',{}).values()]
+     anchor=next((a for a in known if a.lower()==anchor.lower()),anchor)
+     crosslink(p,label,'技術付録',anchor);continue
    addlink(p,label,target[1:] if target.startswith('#') else target,target.startswith('#'));continue
   if bit.startswith('[') and bit[1:-1] in reference_keys:
    addlink(p,bit,'ref_'+bit[1:-1],True);continue
@@ -193,7 +204,7 @@ def cap(s,center=False):
 def table(t):
  rows=t['rows'];n=len(rows[0]);p=cap(t['text']);p.paragraph_format.keep_with_next=True
  tab=doc.add_table(rows=1,cols=n);tab.alignment=WD_TABLE_ALIGNMENT.CENTER;tab.autofit=False
- compact_y9=t['text'].startswith('表Y.9 ')
+ compact_y9=NAME=='技術付録' and t['text'].startswith('表57.9 ')
  widths={2:[54,106],3:[47,58,55],4:[43,39,39,39],5:[56,26,26,26,26]}.get(n,[160/n]*n)
  if t['text'].startswith('表案内') and n==3:widths=[55,34,71]
  if rows[0]==['立ち上がり','データ','有効','受取可','この瞬間に渡る語']:widths=[30,28,24,27,51]
@@ -215,7 +226,7 @@ def table(t):
  if rows[0]==['命令解析','送信','32×32の一致','64×64の一致','256×256の一致']:widths=[43,21,31,31,34]
  for c,w in zip(tab.columns,widths):c.width=Mm(w)
  # Do not chain large tables into a single unsplittable page block.
- small=(len(rows)<=7 and sum(sum(len(c) for c in r) for r in rows)<700) or t['text'].startswith(('表案内','表14.2','表Y.4'))
+ small=(len(rows)<=7 and sum(sum(len(c) for c in r) for r in rows)<700) or t['text'].startswith(('表案内','表57.4')) or (NAME=='本文' and t['text'].startswith('表14.2'))
  for ri,row in enumerate(rows):
   cells=tab.rows[0].cells if ri==0 else tab.add_row().cells
   for ci,(cell,value) in enumerate(zip(cells,row)):
@@ -248,18 +259,18 @@ for ti,t in enumerate(tokens):
   if new_part or new_chapter:p.paragraph_format.page_break_before=True
   # Keep the last explanatory unit of these chapters together instead of
   # stranding its closing paragraph on a nearly empty page.
-  if t['text'].startswith(('7.11 ','8.8 ')):p.paragraph_format.page_break_before=True
+  if NAME=='本文' and t['text'].startswith(('7.11 ','8.8 ')):p.paragraph_format.page_break_before=True
  elif kind=='para':
   p=inline(doc.add_paragraph(),t['text'])
-  if section.startswith('3.6 ') and ti+1<len(tokens) and tokens[ti+1]['kind']!='heading':p.paragraph_format.keep_with_next=True
-  if section.startswith('8.9 ') and ti+1<len(tokens) and tokens[ti+1]['kind']=='para':p.paragraph_format.keep_with_next=True
+  if NAME=='本文' and section.startswith('3.6 ') and ti+1<len(tokens) and tokens[ti+1]['kind']!='heading':p.paragraph_format.keep_with_next=True
+  if NAME=='本文' and section.startswith('8.9 ') and ti+1<len(tokens) and tokens[ti+1]['kind']=='para':p.paragraph_format.keep_with_next=True
   if t['text'].startswith('['):
    p.paragraph_format.first_line_indent=Pt(0);p.paragraph_format.keep_together=True;p.paragraph_format.line_spacing=Pt(16.5)
    for r in p.runs:r.font.size=Pt(10.5)
  elif kind=='image':
   p=doc.add_paragraph();pf=p.paragraph_format;pf.first_line_indent=Pt(0);pf.line_spacing=1;pf.space_after=Pt(0);pf.keep_with_next=True;p.alignment=WD_ALIGN_PARAGRAPH.CENTER
   p.add_run().add_picture(str(OUT/t['path']),width=Mm(158));p._p.xpath('.//wp:docPr')[0].set('descr',t['text']);c=cap(t['text'],True)
-  if section.startswith('3.6 '):c.paragraph_format.keep_with_next=True
+  if NAME=='本文' and section.startswith('3.6 '):c.paragraph_format.keep_with_next=True
  elif kind=='table':table(t)
  elif kind=='code':
   heading=cap(t['title']);heading.paragraph_format.keep_with_next=True;heading.paragraph_format.space_after=Pt(4)
@@ -283,7 +294,7 @@ from sanitize import sanitize_docx,load_config
 config=load_config(ROOT.parents[1]/'.private/redactions.json')
 dest.write_bytes(sanitize_docx(dest.read_bytes(),config))
 
-print(publish_markdown(NAME, render_markdown(NAME, TITLE, text, tokens, load_source), OUT))
+print(publish_markdown(NAME, render_markdown(NAME, TITLE, text, tokens, load_source), OUT, chapter_paths={r['anchor'].lower():r['path'] for r in catalog()}))
 (R/'tokens.json').write_text(json.dumps(tokens,ensure_ascii=False,indent=2),encoding='utf-8')
 (R/'toc-entries.json').write_text(json.dumps(toc,ensure_ascii=False,indent=2),encoding='utf-8')
 stats={'body_characters':len(text),'figures':sum(t['kind']=='image' for t in tokens),'tables':sum(t['kind']=='table' for t in tokens),'code_examples':sum(t['kind']=='code' for t in tokens),'references':len(reference_keys),'toc_entries':len(toc),'all_headings':len(heading_anchors)}

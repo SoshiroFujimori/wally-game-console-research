@@ -10,6 +10,7 @@ sys.path.insert(0, str(Path(__file__).resolve().parents[1] / 'source/thesis'))
 from markdown_export import (APPENDIX, MAX_PAGE_BYTES, mask_code, normalize_anchors,
                              publish_markdown, published_routes, rewrite_links,
                              split_markdown, split_pieces)
+from markdown_export import resolve_reference
 
 
 DOCUMENT = '''# Technical appendix
@@ -144,6 +145,23 @@ class AppendixMarkdownTests(unittest.TestCase):
         oversized = DOCUMENT.replace('Part introduction.', 'x' * MAX_PAGE_BYTES)
         with self.assertRaisesRegex(ValueError, 'exceeds'):
             split_markdown(oversized, self.output)
+
+    def test_named_chapters_keep_bookmarks_while_paths_change(self):
+        paths = {'ch_1': 'appendix/01-hdl-fpga/signals.md',
+                 'ch_2': 'appendix/04-rasterix/pixels.md'}
+        files, routes, pieces = split_markdown(DOCUMENT, self.output, paths)
+        self.assertIn(self.output / paths['ch_1'], files)
+        self.assertIn('(../04-rasterix/pixels.md#s_2_1)', files[self.output / paths['ch_1']])
+        self.assertEqual(routes['s_2_1'], self.output / paths['ch_2'])
+        self.assertEqual(''.join(p.body for p in pieces), DOCUMENT[DOCUMENT.index('Introduction preserved'):])
+
+    def test_same_section_number_in_two_books_is_not_ambiguous(self):
+        load = lambda name: '### 12.5 Example\n### 7.3 Other\n'
+        self.assertEqual(resolve_reference('論文本文12.5節', load, '技術付録'), ('本文', 's_12_5'))
+        self.assertEqual(resolve_reference('技術付録12.5節', load, '本文'), ('技術付録', 's_K_5'))
+        self.assertEqual(resolve_reference('12.5節', load, '技術付録'), ('技術付録', 's_K_5'))
+        self.assertEqual(resolve_reference('論文本文7.3〜7.4節', load, '技術付録'), ('本文', 's_7_3'))
+        self.assertEqual(resolve_reference('付録K', load, '本文'), ('技術付録', 'ch_K'))
 
 
 if __name__ == '__main__':

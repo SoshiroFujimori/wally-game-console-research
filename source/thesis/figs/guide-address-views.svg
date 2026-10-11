@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="650" viewBox="0 0 1200 650" role="img" aria-labelledby="title desc">
+<title id="title">同じ操作を、二種類の番地で見る</title><desc id="desc">仮想番地はプロセスの見方であり、MMIOの物理番地へ変換する。オフセット12はIDレジスタを選ぶ。</desc>
+<defs><marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z" fill="#1673C3"/></marker></defs>
+<rect width="1200" height="100%" fill="white"/>
+<g font-family="Noto Sans CJK JP,Noto Sans JP,Meiryo,Yu Gothic,sans-serif" fill="#231F20">
+<text x="40" y="48" font-size="29" text-anchor="start" font-weight="bold">同じ操作を、二種類の番地で見る</text>
+<rect x="50" y="145" width="300" height="140" fill="#E5EBF8" stroke="#231F20" stroke-width="2" stroke-dasharray=""/>
+<text x="200.0" y="207.05" font-size="23" text-anchor="middle" font-weight="normal">プログラムの仮想番地</text>
+<text x="200.0" y="239.05" font-size="23" text-anchor="middle" font-weight="normal">mmapで得た先頭 + 12</text>
+<rect x="445" y="145" width="240" height="140" fill="#E5EBF8" stroke="#231F20" stroke-width="2" stroke-dasharray=""/>
+<text x="565.0" y="207.05" font-size="23" text-anchor="middle" font-weight="normal">MMUとページ表</text>
+<text x="565.0" y="239.05" font-size="23" text-anchor="middle" font-weight="normal">対応を変換</text>
+<rect x="785" y="145" width="355" height="140" fill="#E5EBF8" stroke="#231F20" stroke-width="2" stroke-dasharray=""/>
+<text x="962.5" y="207.05" font-size="23" text-anchor="middle" font-weight="normal">機器の物理番地</text>
+<text x="962.5" y="239.05" font-size="23" text-anchor="middle" font-weight="normal">0x10080000 + 0x0C</text>
+<polyline points="350,215 445,215" fill="none" stroke="#1673C3" stroke-width="3" stroke-dasharray="" marker-end="url(#arrow)"/>
+<polyline points="685,215 785,215" fill="none" stroke="#1673C3" stroke-width="3" stroke-dasharray="" marker-end="url(#arrow)"/>
+<polyline points="960,285 960,355" fill="none" stroke="#1673C3" stroke-width="3" stroke-dasharray="" marker-end="url(#arrow)"/>
+<rect x="785" y="355" width="355" height="105" fill="#E5EBF8" stroke="#231F20" stroke-width="2" stroke-dasharray=""/>
+<text x="962.5" y="399.55" font-size="23" text-anchor="middle" font-weight="normal">IDレジスタ</text>
+<text x="962.5" y="431.55" font-size="23" text-anchor="middle" font-weight="normal">値：0x52495831</text>
+<text x="55" y="370" font-size="24" text-anchor="start" font-weight="normal">uint32_t配列の添字3は</text>
+<text x="55" y="403" font-size="24" text-anchor="start" font-weight="normal">4 byte × 3 = 12 byte先。</text>
+<text x="55" y="436" font-size="24" text-anchor="start" font-weight="normal">仮想番地の数値そのものは</text>
+<text x="55" y="469" font-size="24" text-anchor="start" font-weight="normal">実行環境によって変わる。</text>
+<text x="55" y="550" font-size="24" text-anchor="start" font-weight="normal">RAMのデータを読む番地と、機器を操作する番地を区別する。</text>
+<text x="40" y="626" font-size="19" text-anchor="start" font-weight="normal">実装の固定MMIO番地を示す。仮想番地の具体値は固定していない。</text>
+</g>
+</svg>

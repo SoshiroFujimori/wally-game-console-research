@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="690" viewBox="0 0 1200 690" role="img" aria-labelledby="title desc">
+<title id="title">画像Bの帯を読み戻し、変更して、Bへ戻す</title><desc id="desc">表示中のAは維持し、Bの過去画像を内部作業領域へ読み込んで変更した帯をBへ戻す。</desc>
+<defs><marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z" fill="#1673C3"/></marker></defs>
+<rect width="1200" height="100%" fill="white"/>
+<g font-family="Noto Sans CJK JP,Noto Sans JP,Meiryo,Yu Gothic,sans-serif" fill="#231F20">
+<text x="40" y="48" font-size="29" text-anchor="start" font-weight="bold">画像Bの帯を読み戻し、変更して、Bへ戻す</text>
+<rect x="50" y="155" width="245" height="125" fill="#E5EBF8" stroke="#231F20" stroke-width="2" stroke-dasharray=""/>
+<text x="172.5" y="209.4" font-size="24" text-anchor="middle" font-weight="normal">DDR3の画像A</text>
+<text x="172.5" y="242.4" font-size="24" text-anchor="middle" font-weight="normal">現在表示している</text>
+<rect x="50" y="360" width="245" height="155" fill="#E5EBF8" stroke="#231F20" stroke-width="2" stroke-dasharray=""/>
+<text x="172.5" y="412.9" font-size="24" text-anchor="middle" font-weight="normal">DDR3の画像B</text>
+<text x="172.5" y="445.9" font-size="24" text-anchor="middle" font-weight="normal">次の描画先</text>
+<text x="172.5" y="478.9" font-size="24" text-anchor="middle" font-weight="normal">Bの過去画像が残る</text>
+<rect x="470" y="300" width="350" height="205" fill="#E5EBF8" stroke="#231F20" stroke-width="2" stroke-dasharray=""/>
+<text x="645.0" y="361.4" font-size="24" text-anchor="middle" font-weight="normal">FPGA内の作業領域</text>
+<text x="645.0" y="394.4" font-size="24" text-anchor="middle" font-weight="normal">① Bの同じ帯を読込む</text>
+<text x="645.0" y="427.4" font-size="24" text-anchor="middle" font-weight="normal">② 古い位置を消す</text>
+<text x="645.0" y="460.4" font-size="24" text-anchor="middle" font-weight="normal">③ 今回の図形を描く</text>
+<rect x="915" y="155" width="240" height="125" fill="#E5EBF8" stroke="#231F20" stroke-width="2" stroke-dasharray=""/>
+<text x="1035.0" y="209.4" font-size="24" text-anchor="middle" font-weight="normal">表示回路</text>
+<text x="1035.0" y="242.4" font-size="24" text-anchor="middle" font-weight="normal">Aを読み続ける</text>
+<polyline points="295,215 915,215" fill="none" stroke="#1673C3" stroke-width="3" stroke-dasharray="" marker-end="url(#arrow)"/>
+<polyline points="295,395 470,395" fill="none" stroke="#1673C3" stroke-width="3" stroke-dasharray="" marker-end="url(#arrow)"/>
+<text x="380" y="370" font-size="23" text-anchor="middle" font-weight="normal">読戻し</text>
+<polyline points="640,505 640,565 175,565 175,515" fill="none" stroke="#1673C3" stroke-width="3" stroke-dasharray="" marker-end="url(#arrow)"/>
+<text x="435" y="603" font-size="24" text-anchor="middle" font-weight="normal">④ 処理した帯をBへ書戻す</text>
+<text x="40" y="666" font-size="19" text-anchor="start" font-weight="normal">全帯の処理後に表示先を切り替える。変更領域だけのDDR転送を示す図ではない。</text>
+</g>
+</svg>

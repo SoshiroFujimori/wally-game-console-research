@@ -6,20 +6,20 @@
 [付録の総目次](../../技術付録.md) ｜ [論文本文](../../本文.md) ｜ [参考文献](../references.md)
 
 <!-- appendix-content:start -->
-RISC-Vのsoftware-visibleな仕様から、Wallyの構成parameter、五段pipeline、hazard、cache、MMU、privileged unit、uncore、bus、検証へ降りる。Wallyへ機能を追加するときに、変更場所と影響範囲を判断できることを目標とする。
+プログラムの一つの命令を出発点に、Wally内部の計算、メモリへのアクセス、周辺回路への通信を追う。設定値や回路を変更したとき、どの処理へ影響するかを調べる。
 <!-- appendix-content:end -->
 
 ## この分野の章
 
-- [Wallyが一つのプログラムを実行する過程](../../../technical/cpu.md)
-- [番地とメモリとバスを混同せずに追う](../../../technical/memory-bus.md)
-- [第9章 Wallyの階層と構成を読む](chapter-09.md)
-- [第10章 命令pipelineとarchitectural state](chapter-10.md)
-- [第11章 Memory systemとon-chip bus](chapter-11.md)
-- [第12章 Wallyを変更する実践課題](chapter-12.md)
-- [第13章 Wallyの構成値が回路になるまで](chapter-13.md)
-- [第14章 IFUと命令取得を深く読む](chapter-14.md)
-- [第15章 IEUとpipeline hazardを深く読む](chapter-15.md)
-- [第16章 LSUとmemory hierarchyを深く読む](chapter-16.md)
-- [第17章 特権機構、trap、interruptを深く読む](chapter-17.md)
-- [第18章 EBU、uncore、周辺回路拡張を深く読む](chapter-18.md)
+- [第13章 Wallyが一つのプログラムを実行する過程](cpu.md)
+- [第14章 Wallyの階層と構成を読む](wally-hierarchy.md)
+- [第15章 命令の流れとプログラムから見えるCPUの状態](instruction-state.md)
+- [第16章 番地とメモリとバスを混同せずに追う](memory-bus.md)
+- [第17章 メモリシステムとチップ内バス](memory-system.md)
+- [第18章 Wallyの構成値が回路になるまで](configuration.md)
+- [第19章 IFUによる命令の取得](instruction-fetch.md)
+- [第20章 IEUの命令実行と依存関係による停止](execution-hazards.md)
+- [第21章 LSUの読書きとキャッシュと番地変換](load-store-cache.md)
+- [第22章 権限の切替えと例外と割込み](privilege-traps.md)
+- [第23章 CPUから周辺回路までの接続](uncore-peripherals.md)
+- [第24章 Wallyを変更する実践課題](wally-design-exercises.md)

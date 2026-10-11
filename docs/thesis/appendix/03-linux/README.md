@@ -6,20 +6,20 @@
 [付録の総目次](../../技術付録.md) ｜ [論文本文](../../本文.md) ｜ [参考文献](../references.md)
 
 <!-- appendix-content:start -->
-開発用PCでのcross buildから、ZSBL、OpenSBI、Linux kernel、BusyBox、device tree、仮想memory、MMIO、C++ゲームプログラムまでを追う。hardwareの存在をsoftwareへ伝え、user processから安全に操作し、問題を層ごとに診断する。
+開発用PCで作ったプログラムが、SDカードから起動したLinux上で動き、回路を操作するまでを扱う。コンパイラ、起動処理、番地の変換、MMIO、ゲームの処理をつなぐ。
 <!-- appendix-content:end -->
 
 ## この分野の章
 
-- [Linuxの起動から描画回路への書込みまで](../../../technical/linux.md)
-- [入力機器を追加するときに設計する境界](../../../technical/peripherals.md)
-- [第19章 開発用PCからFPGA上のprocessまでを分ける](chapter-19.md)
-- [第20章 cross compile、ELF、ABIを深く理解する](chapter-20.md)
-- [第21章 SDカードからLinuxが起動するまで](chapter-21.md)
-- [第22章 Linuxのprocess、仮想memory、system call](chapter-22.md)
-- [第23章 device treeをhardwareとLinuxの契約として読む](chapter-23.md)
-- [第24章 MMIO、`mmap`、`volatile`、fenceを深く理解する](chapter-24.md)
-- [第25章 RasterIXのsoftware stackを深く追う](chapter-25.md)
-- [第26章 game loop、入力、時間、描画を深く理解する](chapter-26.md)
-- [第27章 softwareとhardwareを層ごとに診断する](chapter-27.md)
-- [第28章 hardware software協調で性能を測る](chapter-28.md)
+- [第25章 Linuxの起動から描画回路への書込みまで](linux.md)
+- [第26章 開発用PCとFPGA上の実行環境](host-and-target.md)
+- [第27章 クロスコンパイルと実行ファイルと呼出し規約](compiler-elf-abi.md)
+- [第28章 SDカードからLinuxが起動するまで](boot-chain.md)
+- [第29章 Linuxのプロセスと仮想メモリとシステムコール](processes-virtual-memory.md)
+- [第30章 デバイスツリーで回路の情報をLinuxへ伝える](device-tree.md)
+- [第31章 MMIOの番地対応とアクセス順序](mmio-ordering.md)
+- [第32章 RasterIXの描画ソフトウェアの処理経路](graphics-software-stack.md)
+- [第33章 ゲームの繰返し処理と入力と時間と描画](game-loop.md)
+- [第34章 入力機器を追加するときに設計する境界](peripherals.md)
+- [第35章 ソフトウェアとハードウェアの不具合を切り分ける](system-diagnosis.md)
+- [第36章 ソフトウェアと回路の仕事を対応付けて測る](hardware-software-measurement.md)
