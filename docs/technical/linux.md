@@ -59,7 +59,7 @@ readelf -l game
 
 OpenSBIは、RISC-Vの上位のソフトウェアが低い層の機能を利用する境界を扱う。Linuxはメモリ、プロセス、ファイル、デバイスなどを管理する。BusyBoxなどのユーザー空間の道具が、シェルや基本コマンドを提供する。ゲームプログラムはその上で起動される。
 
-Linuxへ渡すレジスタやメモリ状態には約束があり、「バイナリの先頭へジャンプすればよい」だけではない。[RISC-V Linux boot requirements](https://docs.kernel.org/arch/riscv/boot.html)は、その引渡し条件を調べる一次資料である。本研究の具体的なファイルと順序は[技術付録第III部](../thesis/技術付録.md#part_III)に対応付けている。
+Linuxへ渡すレジスタやメモリ状態には約束があり、「バイナリの先頭へジャンプすればよい」だけではない。[RISC-V Linux boot requirements](https://docs.kernel.org/arch/riscv/boot.html)は、その引渡し条件を調べる一次資料である。本研究の具体的なファイルと順序は[技術付録第III部](../thesis/appendix/03-linux/README.md#part_iii)に対応付けている。
 
 <a id="sec-5"></a>
 ## 5 device treeは回路を生成しない

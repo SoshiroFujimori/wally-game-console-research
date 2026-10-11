@@ -9,6 +9,7 @@ from docx.opc.constants import RELATIONSHIP_TYPE as RT
 from docx.oxml import OxmlElement
 from docx.oxml.ns import qn
 from appendix_assembly import assemble_technical_appendix
+from markdown_export import REF_PATTERN, publish_markdown, render_markdown, resolve_reference
 
 ROOT=Path(__file__).resolve().parent;B=ROOT.parent
 NAME=sys.argv[1]
@@ -23,7 +24,7 @@ assert not re.search(r'図@|追加図|FIGTOKEN|REFNUM',text)
 for rel in sorted(set(re.findall(r'!\[[^\]]+\]\((figs/[^)]+)\)',text))):
  src=ROOT/rel;dst=OUT/rel
  dst.parent.mkdir(parents=True,exist_ok=True)
- if src.exists():shutil.copy2(src,dst)
+ if src.exists() and "--markdown-only" not in sys.argv:shutil.copy2(src,dst)
  assert dst.exists(),rel
 
 # Parse before creating TOCs so that comments in code are not headings.
@@ -83,6 +84,9 @@ while i<len(lines):
 
 heading_anchors=[t['anchor'] for t in tokens if t['kind']=='heading']
 assert len(heading_anchors)==len(set(heading_anchors)), 'Duplicate chapter or section bookmark'
+if '--markdown-only' in sys.argv:
+ print(publish_markdown(NAME, render_markdown(NAME, TITLE, text, tokens, load_source), OUT, check='--check' in sys.argv))
+ sys.exit(0)
 reference=OUT/(NAME+'.docx')
 doc=Document(reference)
 for child in list(doc._element.body):
@@ -147,35 +151,13 @@ def addlink(p,label,target,internal=False):
  r=OxmlElement('w:r');pr=OxmlElement('w:rPr');co=OxmlElement('w:color');co.set(qn('w:val'),'1673C3');pr.append(co);r.append(pr)
  v=OxmlElement('w:t');v.text=label;r.append(v);h.append(r);p._p.append(h)
 def resolve_ref(label):
- m=re.search(r'([A-Z]|\d+)\.(\d+)',label)
- if m:
-  ident=m[1]+'.'+m[2];dest='技術付録' if m[1].isalpha() or '技術付録' in label else '本文'
-  raw=load_source(dest)
-  if not re.search(r'^#{3,4} '+re.escape(ident)+r' ',raw,re.M):
-   if NAME=='技術付録' and dest=='本文':
-    dest='技術付録';raw=load_source(dest)
-   if not re.search(r'^#{3,4} '+re.escape(ident)+r' ',raw,re.M):return None
-  return dest,'s_'+ident.replace('.','_')
- m=re.search(r'技術付録\s*第(\d+)章',label)
- if m:return '技術付録','ch_'+m[1]
- m=re.search(r'第([IVX]+)部',label)
- if m:return '技術付録','part_'+m[1]
- m=re.search(r'付録([A-Z])|第(\d+)章',label)
- if m:
-  if m[1]:return '技術付録','ch_'+m[1]
-  chapter=m[2]
-  for destination in ('本文','技術付録'):
-   if re.search(r'^#{2,4} 第'+re.escape(chapter)+r'章(?:\s|$)',load_source(destination),re.M):
-    return destination,'ch_'+chapter
-  return None
- return None
+ return resolve_reference(label, load_source, NAME)
 
 def crosslink(p,label,dest,anchor):
  if dest==NAME:addlink(p,label,anchor,True);return
  h=OxmlElement('w:hyperlink');h.set(qn('r:id'),doc.part.relate_to(dest+'.docx',RT.HYPERLINK,is_external=True));h.set(qn('w:anchor'),anchor)
  r=OxmlElement('w:r');pr=OxmlElement('w:rPr');co=OxmlElement('w:color');co.set(qn('w:val'),'1673C3');pr.append(co);r.append(pr);v=OxmlElement('w:t');v.text=label;r.append(v);h.append(r);p._p.append(h)
 
-REF_PATTERN=r'技術付録\s*第\d+章|技術付録\s*\d+\.\d+節|第[IVX]+部|付録[A-Z](?:\.\d+)?|第\d+章|(?<![\w.図表])[A-Z]\.\d+(?![\d.])|(?<![\w.図表])\d+\.\d+(?=節|[〜～・]\d+\.\d+節)'
 
 def inline(p,s):
  pattern=r'(`[^`]+`|\*\*[^*]+\*\*|\[[^\]]+\]\([^)]+\)|\[[A-Za-z][A-Za-z0-9]*\]|https?://[^\s]+|'+REF_PATTERN+r')'
@@ -301,41 +283,9 @@ from sanitize import sanitize_docx,load_config
 config=load_config(ROOT.parents[1]/'.private/redactions.json')
 dest.write_bytes(sanitize_docx(dest.read_bytes(),config))
 
-alltoc=[t for t in tokens if t['kind']=='heading']
-intro='# '+TITLE+'\n\n'
-other='技術付録' if NAME=='本文' else '本文'
-intro+=f'[資料全体の入口](README.md) ｜ [{other}を開く]({other}.md)'
-if NAME == '技術付録':
-    intro+=' ｜ [図と数値例で読む技術詳説](../technical/README.md)'
-intro+='\n\n## ジャンプできる目次\n\n'
-intro+='\n'.join('  '*(t['level']-1)+f'- [{t["text"]}](#{t["anchor"]})' for t in alltoc)+'\n\n'
-linked=[];hi=0;fence=False
-def md_inline(line):
- parts=re.split(r'(`[^`]+`|!?\[.*?\]\([^)]+\)|https?://[^\s]+)',line)
- for i,part in enumerate(parts):
-  if part.startswith(('`','![','https://','http://')) or re.fullmatch(r'\[[^\]]+\]\([^)]+\)',part):continue
-  def subref(m):
-   label=m[0];ref=resolve_ref(label)
-   if not ref:return label
-   dest,anchor=ref
-   target=('#'+anchor) if dest==NAME else dest+'.md#'+anchor
-   return '['+label+']('+target+')'
-  part=re.sub(REF_PATTERN,subref,part)
-  part=re.sub(r'\[([A-Za-z][A-Za-z0-9]*)\](?!\()',lambda m:f'[{m[1]}](#ref_{m[1]})' if m[1] in reference_keys else m[0],part)
-  parts[i]=part
- return ''.join(parts)
-for line in text.splitlines()[1:]:
- if line.startswith('```'):fence=not fence
- if not fence and re.match(r'^#{2,5} ',line):
-  linked.append(f'<a id="{alltoc[hi]["anchor"]}"></a>');hi+=1
- elif not fence:
-  m=re.match(r'^\[([A-Za-z][A-Za-z0-9]*)\] ',line)
-  if m and m[1] in reference_keys:linked.append(f'<a id="ref_{m[1]}"></a>')
-  else:line=md_inline(line)
- linked.append(line)
-(OUT/(NAME+'.md')).write_text(intro+'\n'.join(linked)+'\n',encoding='utf-8')
+print(publish_markdown(NAME, render_markdown(NAME, TITLE, text, tokens, load_source), OUT))
 (R/'tokens.json').write_text(json.dumps(tokens,ensure_ascii=False,indent=2),encoding='utf-8')
 (R/'toc-entries.json').write_text(json.dumps(toc,ensure_ascii=False,indent=2),encoding='utf-8')
-stats={'body_characters':len(text),'figures':sum(t['kind']=='image' for t in tokens),'tables':sum(t['kind']=='table' for t in tokens),'code_examples':sum(t['kind']=='code' for t in tokens),'references':len(reference_keys),'toc_entries':len(toc),'all_headings':len(alltoc)}
+stats={'body_characters':len(text),'figures':sum(t['kind']=='image' for t in tokens),'tables':sum(t['kind']=='table' for t in tokens),'code_examples':sum(t['kind']=='code' for t in tokens),'references':len(reference_keys),'toc_entries':len(toc),'all_headings':len(heading_anchors)}
 (R/'document-stats.json').write_text(json.dumps(stats,indent=2),encoding='utf-8')
 print(json.dumps(stats));print(dest)

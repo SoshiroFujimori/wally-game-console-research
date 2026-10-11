@@ -8,7 +8,30 @@
 .venv/bin/python source/thesis/build.py 技術付録
 ```
 
-生成には `requirements-publication.txt` と非公開の匿名化設定が必要です。
+## Chapter-sized Markdown
+
+The print sources remain complete. The Markdown exporter writes a compact
+`docs/thesis/技術付録.md` index, five topic indexes, 56 chapter pages, and a
+reference page under `docs/thesis/appendix/`. It retains the original content
+and explicit section IDs, rebases images and references, and adds local
+contents and previous/next links. Old fragment URLs on the main index lead to
+the relevant chapter entry; current document links open the chapter directly.
+
+Regenerate Markdown without changing Word files or images:
+
+```bash
+.venv/bin/python source/thesis/build.py 技術付録 --markdown-only
+.venv/bin/python source/thesis/build.py 本文 --markdown-only
+.venv/bin/python tools/docs/navigation.py
+```
+
+Add `--check` to either Markdown command to verify that published pages match
+the sources. CI checks both exports and their local section links. The exporter
+rejects a page over 64 KiB so that future additions require a deliberate split
+instead of silently restoring an oversized page. Do not edit generated pages
+directly; edit the topic sources above and regenerate.
+
+Wordの生成には `requirements-publication.txt` と非公開の匿名化設定が必要です。
 既存の公開Word文書から書式を引き継ぎ、図は `docs/thesis/figs` を利用します。
 章の内部リンクは安定した番号を使っています。Wordの目次のページ番号は
 レンダリングした結果との照合が必要です。`build-*/toc-pages.json` はその中間データで、

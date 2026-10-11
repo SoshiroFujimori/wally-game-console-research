@@ -61,9 +61,13 @@ def main():
             errors.append(f'{path.relative_to(ROOT)}: regenerate with --write')
     for path in files:
         errors.extend(validate_links(path))
+    thesis = ROOT / 'docs' / 'thesis'
+    appendix_pages = sorted((thesis / 'appendix').rglob('*.md'))
+    for path in appendix_pages + [thesis / '技術付録.md', thesis / '本文.md']:
+        errors.extend(validate_links(path))
     if errors:
         raise SystemExit('\n'.join(errors))
-    print(f'Checked navigation and local fragment links in {len(files)} technical pages.')
+    print(f'Checked navigation and local fragment links in {len(files) + len(appendix_pages) + 2} document pages.')
 
 
 if __name__ == '__main__':

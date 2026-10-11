@@ -24,39 +24,39 @@ CPUがボールの位置を変えてから、画面に新しいボールが映�
 
 | 調べたいこと | 詳説 | 実装をさらに追う場所 |
 |---|---|---|
-| `always_ff`や`assign`はどんな回路になるか。なぜ値が残るのか | [論理ゲートからRTLへ](logic-rtl.md) | [技術付録第I部](../thesis/技術付録.md#part_I) |
-| クロック周波数、遅延、タイミング余裕、資源使用率は何を表すか | [時間条件とFPGA実装](timing-fpga.md) | [技術付録第I部](../thesis/技術付録.md#part_I) |
-| APBで待てるのにFIFOを入れるのはなぜか。異なるクロックで何が問題か | [APB・Stream・CDC・FIFO](cdc-protocols.md) | [付録I](../thesis/技術付録.md#ch_I)、[第29章の比較実験](../thesis/技術付録.md#ch_29) |
+| `always_ff`や`assign`はどんな回路になるか。なぜ値が残るのか | [論理ゲートからRTLへ](logic-rtl.md) | [技術付録第I部](../thesis/appendix/01-hdl-fpga/README.md#part_i) |
+| クロック周波数、遅延、タイミング余裕、資源使用率は何を表すか | [時間条件とFPGA実装](timing-fpga.md) | [技術付録第I部](../thesis/appendix/01-hdl-fpga/README.md#part_i) |
+| APBで待てるのにFIFOを入れるのはなぜか。異なるクロックで何が問題か | [APB・Stream・CDC・FIFO](cdc-protocols.md) | [付録I](../thesis/appendix/04-rasterix/appendix-i.md#ch_i)、[第29章の比較実験](../thesis/appendix/05-integration/chapter-29.md#ch_29) |
 
 ### II　Wally・CPU・メモリ・バス
 
 | 調べたいこと | 詳説 | 実装をさらに追う場所 |
 |---|---|---|
-| C++の計算をCPUがどう実行するか。パイプラインは何を重ねるか | [CPUの命令実行](cpu.md) | [技術付録第II部](../thesis/技術付録.md#part_II) |
-| 番地、MMIO、仮想記憶、キャッシュ、DMA、DDRはどう違うか | [メモリとバス](memory-bus.md) | [技術付録第II部](../thesis/技術付録.md#part_II) |
+| C++の計算をCPUがどう実行するか。パイプラインは何を重ねるか | [CPUの命令実行](cpu.md) | [技術付録第II部](../thesis/appendix/02-wally/README.md#part_ii) |
+| 番地、MMIO、仮想記憶、キャッシュ、DMA、DDRはどう違うか | [メモリとバス](memory-bus.md) | [技術付録第II部](../thesis/appendix/02-wally/README.md#part_ii) |
 
 ### III　Linux・プログラム・外部入力
 
 | 調べたいこと | 詳説 | 実装をさらに追う場所 |
 |---|---|---|
-| FPGAの回路とLinuxのプログラムをどう用意するか。`mmap`した先には何があるか | [Linuxから回路を使う](linux.md) | [技術付録第III部](../thesis/技術付録.md#part_III) |
+| FPGAの回路とLinuxのプログラムをどう用意するか。`mmap`した先には何があるか | [Linuxから回路を使う](linux.md) | [技術付録第III部](../thesis/appendix/03-linux/README.md#part_iii) |
 | コントローラを追加するとき、配線以外に何を設計するか | [周辺機器を追加する設計の考え方](peripherals.md) | 将来の設計を考えるための一般説明。Wiiコントローラの実装済み手順ではない |
 
 ### IV　RasterIX・画素・画像メモリ・表示
 
 | 調べたいこと | 詳説 | 実装をさらに追う場所 |
 |---|---|---|
-| 色や頂点を渡すと何が保存されるか。描画命令とは何か | [関数呼出しから描画命令へ](commands.md) | [技術付録第IV部](../thesis/技術付録.md#part_IV) |
-| どの画素が図形の内側か。補間、テクスチャ、文字、色の計算は何をするか | [図形から画素を作る](rasterization.md) | [技術付録第IV部](../thesis/技術付録.md#part_IV) |
-| 内部作業領域、前後の画像、変更領域、HDMIまでをどうつなぐか | [画像の保存から表示へ](framebuffer-display.md) | [付録V](../thesis/技術付録.md#ch_V)、[本文第10章](../thesis/本文.md#ch_10) |
+| 色や頂点を渡すと何が保存されるか。描画命令とは何か | [関数呼出しから描画命令へ](commands.md) | [技術付録第IV部](../thesis/appendix/04-rasterix/README.md#part_iv) |
+| どの画素が図形の内側か。補間、テクスチャ、文字、色の計算は何をするか | [図形から画素を作る](rasterization.md) | [技術付録第IV部](../thesis/appendix/04-rasterix/README.md#part_iv) |
+| 内部作業領域、前後の画像、変更領域、HDMIまでをどうつなぐか | [画像の保存から表示へ](framebuffer-display.md) | [付録V](../thesis/appendix/04-rasterix/appendix-v.md#ch_v)、[本文第10章](../thesis/本文.md#ch_10) |
 
 ### V　ボード対応・測定・検証
 
 | 調べたいこと | 詳説 | 実装をさらに追う場所 |
 |---|---|---|
-| Nexys Videoへの対応とRasterIXの接続をどのファイルで行ったか | [設計変更を再現する](board-reproduction.md) | [付録E](../thesis/技術付録.md#ch_E)、[付録G](../thesis/技術付録.md#ch_G)、[付録M](../thesis/技術付録.md#ch_M) |
+| Nexys Videoへの対応とRasterIXの接続をどのファイルで行ったか | [設計変更を再現する](board-reproduction.md) | [付録E](../thesis/appendix/05-integration/appendix-e.md#ch_e)、[付録G](../thesis/appendix/04-rasterix/appendix-g.md#ch_g)、[付録M](../thesis/appendix/05-integration/appendix-m.md#ch_m) |
 | ms/frameやFPSは何を測った値か。比較から何を結論にできるか | [計測値を設計判断へつなぐ](measurement.md) | [E6の結果](../thesis/再現資料/実験記録/E6/report/結果と判断.md) |
-| 動いたことと正しいことをどう確かめるか。シミュレーションで何が分かるか | [検証と不具合の切り分け](verification.md) | [技術付録第29章](../thesis/技術付録.md#ch_29)、[実験記録](../thesis/再現資料/README.md) |
+| 動いたことと正しいことをどう確かめるか。シミュレーションで何が分かるか | [検証と不具合の切り分け](verification.md) | [技術付録第29章](../thesis/appendix/05-integration/chapter-29.md#ch_29)、[実験記録](../thesis/再現資料/README.md) |
 
 <a id="sec-2"></a>
 ## 一つの操作を全体に結び付ける
