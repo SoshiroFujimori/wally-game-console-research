@@ -509,6 +509,14 @@
       "bytes": 4164,
       "sha256": "8c7d2f10988aadd52d9347ee712ee243c0f47ba9c291e989d2072c1942fb08aa"
     },
+    "docs/thesis/figs/apb-dma-command-paths.png": {
+      "bytes": 225745,
+      "sha256": "04cbe72cf4af444c81cdd30cc1a85d9401205354cae07850054d47f249ca2bc4"
+    },
+    "docs/thesis/figs/apb-dma-command-paths.svg": {
+      "bytes": 5910,
+      "sha256": "2c86dec52cafaa5d754e26ad03b1968ab5d5a3b5b992a18cf5a323abd3d0f370"
+    },
     "docs/thesis/figs/apb-wait.png": {
       "bytes": 204698,
       "sha256": "abc0ee367b6cb58d19d5ddc6514c24986bf591e470cb75cda20691a11b07816c"
@@ -724,6 +732,14 @@
     "docs/thesis/figs/controlled-comparison.svg": {
       "bytes": 3493,
       "sha256": "a32ca19868017b087685c839ded9beb5748ff65bd982ea0fae108cf60a54992d"
+    },
+    "docs/thesis/figs/cpu-gpu-timing-overlap.png": {
+      "bytes": 146200,
+      "sha256": "591b8977a206d454185cad46c1ffa88cb1cacaca7127a8155fe25be6ccc87569"
+    },
+    "docs/thesis/figs/cpu-gpu-timing-overlap.svg": {
+      "bytes": 3357,
+      "sha256": "0c9f2e0427350bce6f2ac2644e42f0f51983c9fb710ac2e568665f29b7a95004"
     },
     "docs/thesis/figs/damage-closure.png": {
       "bytes": 117663,
@@ -1218,12 +1234,20 @@
       "sha256": "840e082e87531bc194278d8813844a8e14ca2b3d7838f7607fa891c32adaa626"
     },
     "docs/thesis/figs/response-read-consumes.png": {
-      "bytes": 293710,
-      "sha256": "df4c6c09b3a8ec8ce1a9a43d2abb8a38d65822d66a0644ede4cbc1022b88031f"
+      "bytes": 180002,
+      "sha256": "0a29b08d82c63297fac963e16e976fb90bfdd0b3c1c5c8fc2c623264665bf43a"
     },
     "docs/thesis/figs/response-read-consumes.svg": {
-      "bytes": 4871,
-      "sha256": "c7e005f1315e65564c35bc1d40885db15c1c6ddf56c491d62e411b390529f217"
+      "bytes": 4578,
+      "sha256": "93fa070367c705ad375ecbf4f30d59c6583ae03cc4a53c263371a6aab6fcaa72"
+    },
+    "docs/thesis/figs/retained-strip-roundtrip.png": {
+      "bytes": 261246,
+      "sha256": "d76c219ed63b64c9cb1da49695dccc9e3356da134f9597668903ab11f84eb7cf"
+    },
+    "docs/thesis/figs/retained-strip-roundtrip.svg": {
+      "bytes": 5090,
+      "sha256": "cdb854d160e2c812998364a44e25e40543e777c684b61ccdf18848864ad80c88"
     },
     "docs/thesis/figs/reuse-after-replies.png": {
       "bytes": 320850,
@@ -4946,12 +4970,12 @@
       "sha256": "7b44436dcd482a8c2a069adb8a7375b45a2de99c7aac286d47ec26e743c571b9"
     },
     "docs/thesis/本文.docx": {
-      "bytes": 18268970,
-      "sha256": "eda797caa396ff7c749c7fb5288b4f58914f8f6b37e4b64e9fdeca39af080927"
+      "bytes": 18968474,
+      "sha256": "569ed06a92b94c9bb820aceeacde9bded3e2dbd646093fe6ca8168efea901cd5"
     },
     "docs/thesis/本文.md": {
-      "bytes": 298545,
-      "sha256": "f22ad38f9583fa7f5fc36bae120be2468576d09bd69792b713e5a9980ca6cb88"
+      "bytes": 325574,
+      "sha256": "4cef9b2b085c28eaa0ba11bbe348508a1901a9d446a97006c645aa321393d79c"
     },
     "examples/technical-models/README.md": {
       "bytes": 3066,
@@ -11534,8 +11558,8 @@
       "sha256": "edd21b65bc0d6109fbbdd1c5b29c6eb730e800e218d4d6362ccdd952732a8ca1"
     },
     "publication/media-review.json": {
-      "bytes": 28420,
-      "sha256": "82aac360ba8ec76ccc4c977f8f07d86bdb550f18ba7a16d6f5b39667f483c635"
+      "bytes": 29639,
+      "sha256": "3e2ba8083664becb1b31c82d06f45a10c41d59424b9c01359554867fb9a27d33"
     },
     "publication/policy.json": {
       "bytes": 635,
@@ -11574,8 +11598,8 @@
       "sha256": "3516401bcabaab4939c5f3eb8e9f479e8b3d7471715ac0b23c8e5a634cd4a892"
     },
     "source/thesis/build.py": {
-      "bytes": 19381,
-      "sha256": "76f58dde1496a77f443a6c06bde89f4ab05f75975fbd9d87db5e6e8efda20458"
+      "bytes": 19431,
+      "sha256": "70e35e8ebbb27e4a84c05ed27d803c89285f3705b5e843a2d17996b283bf814c"
     },
     "source/thesis/fifo-experiment-guide.md": {
       "bytes": 33020,
@@ -11585,6 +11609,22 @@
       "bytes": 3411,
       "sha256": "e2c913c9947f5cb700f61e98d4d30dd3d027ee6f414223196a0cd759864f7b30"
     },
+    "source/thesis/figs/apb-dma-command-paths.png": {
+      "bytes": 225745,
+      "sha256": "04cbe72cf4af444c81cdd30cc1a85d9401205354cae07850054d47f249ca2bc4"
+    },
+    "source/thesis/figs/apb-dma-command-paths.svg": {
+      "bytes": 5910,
+      "sha256": "2c86dec52cafaa5d754e26ad03b1968ab5d5a3b5b992a18cf5a323abd3d0f370"
+    },
+    "source/thesis/figs/cpu-gpu-timing-overlap.png": {
+      "bytes": 146200,
+      "sha256": "591b8977a206d454185cad46c1ffa88cb1cacaca7127a8155fe25be6ccc87569"
+    },
+    "source/thesis/figs/cpu-gpu-timing-overlap.svg": {
+      "bytes": 3357,
+      "sha256": "0c9f2e0427350bce6f2ac2644e42f0f51983c9fb710ac2e568665f29b7a95004"
+    },
     "source/thesis/figs/fifo-choice.png": {
       "bytes": 803456,
       "sha256": "2842c584a6d56d6d67af3f2ee0ca4cda7ba868f656b1f4905075a3e9f2c3ed03"
@@ -11592,6 +11632,22 @@
     "source/thesis/figs/fifo-choice.svg": {
       "bytes": 8010,
       "sha256": "104bb9cad206cac91e62c564e8fad0a51d7a2f737daa057d89b1bc77befe1d01"
+    },
+    "source/thesis/figs/response-read-consumes.png": {
+      "bytes": 180002,
+      "sha256": "0a29b08d82c63297fac963e16e976fb90bfdd0b3c1c5c8fc2c623264665bf43a"
+    },
+    "source/thesis/figs/response-read-consumes.svg": {
+      "bytes": 4578,
+      "sha256": "93fa070367c705ad375ecbf4f30d59c6583ae03cc4a53c263371a6aab6fcaa72"
+    },
+    "source/thesis/figs/retained-strip-roundtrip.png": {
+      "bytes": 261246,
+      "sha256": "d76c219ed63b64c9cb1da49695dccc9e3356da134f9597668903ab11f84eb7cf"
+    },
+    "source/thesis/figs/retained-strip-roundtrip.svg": {
+      "bytes": 5090,
+      "sha256": "cdb854d160e2c812998364a44e25e40543e777c684b61ccdf18848864ad80c88"
     },
     "source/thesis/figs/transport-dependency.png": {
       "bytes": 91852,
@@ -11614,8 +11670,8 @@
       "sha256": "8cdddefbebe32e19b352d25cf583f111b1a8c2964ae0e0078a5e8f9111377bfe"
     },
     "source/thesis/figures.py": {
-      "bytes": 8442,
-      "sha256": "23ca59d3994d74edb955b89e6d2a8f5d23ad27650f1e2e6d375f3b391c89813a"
+      "bytes": 8384,
+      "sha256": "ab90f2f0cdc92df0ce11f87f150eda5554c5e202a133183098f700bc2c547cb8"
     },
     "source/thesis/figures_fifo_choice.py": {
       "bytes": 2590,
@@ -11624,6 +11680,10 @@
     "source/thesis/figures_fifo_main.py": {
       "bytes": 8016,
       "sha256": "c46c0603cc484179543a7ee9fcc97d9995efc5dadc8bff03062b52615c35325c"
+    },
+    "source/thesis/figures_main_comprehension.py": {
+      "bytes": 4310,
+      "sha256": "c0978080a76c9232c4737e7d4f52c0b5c5d3b62babac18d94c22d8b5b607dceb"
     },
     "source/thesis/figures_rasterix.py": {
       "bytes": 28727,
@@ -11674,8 +11734,8 @@
       "sha256": "af365f2b30802569224a31ac6281bbe7574c015aff046c21fbf3013919b7ac03"
     },
     "source/thesis/本文.md": {
-      "bytes": 279421,
-      "sha256": "c0edeb628e8ff037ae69cf26998d1faccd2ed791301bb6b9177c0ffdd2a13400"
+      "bytes": 305942,
+      "sha256": "d7780144201ca9de97cb75f7a8c03ac4b7bb763a6a3dcdde07f315df0d46f1f0"
     },
     "tests/test_appendix_markdown.py": {
       "bytes": 5465,
