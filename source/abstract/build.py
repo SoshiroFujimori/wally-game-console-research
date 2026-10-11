@@ -36,8 +36,8 @@ for paragraph in doc.paragraphs:
     if paragraph.style.name == 'Title':
         replace(paragraph, content['title'])
     elif paragraph.style.name == 'Subtitle':
-        # Public documents intentionally omit the private identity block.
-        paragraph.clear()
+        # Remove the private identity block without retaining empty author lines.
+        paragraph._p.getparent().remove(paragraph._p)
     elif paragraph.style.name == 'Heading 1':
         current = paragraph.text
         blocks[current] = []
@@ -51,6 +51,14 @@ for heading, paragraphs in content['sections'].items():
 assert len(blocks['参考文献']) == len(content['references'])
 for old, new in zip(blocks['参考文献'], content['references']):
     replace(old, new)
+# Drop empty identity and spacer lines while retaining section and column
+# breaks, figures, and the template's typography.
+for paragraph in list(doc.paragraphs):
+    if not paragraph.text.strip():
+        meaningful = any(paragraph._p.find('.//' + qn(tag)) is not None
+                         for tag in ['w:sectPr', 'w:drawing', 'w:pict', 'w:br'])
+        if not meaningful:
+            paragraph._p.getparent().remove(paragraph._p)
 stream = io.BytesIO()
 doc.save(stream)
 public = sanitize_docx(stream.getvalue(), config)
@@ -73,6 +81,6 @@ for heading, paragraphs in content['sections'].items():
         md.extend(figure_links)
 md.append('## 参考文献')
 md.extend(content['references'])
-md.append('測定条件と詳しい結果は[論文本文](../thesis/本文.md#1310-命令接続方式の比較方法)に示す．')
+md.append('設計と測定条件は[論文本文](../thesis/本文.md#ch_6)，命令転送などの比較結果は[13.17節以降](../thesis/本文.md#s_13_17)に示す．')
 (a.output / 'アブスト_主要事項.md').write_text('\n\n'.join(md) + '\n', encoding='utf-8')
 print(json.dumps({'sections': len(content['sections']), 'figures': len(figure_links)}))

@@ -1,9 +1,9 @@
 {
   "version": 1,
-  "reviewed_on": "2026-10-09",
+  "reviewed_on": "2026-10-11",
   "reviewer": "Codex",
   "method": {
-    "png": "Reviewed diagrams and gameplay images, including embedded DOCX/PPTX media. Reviewed all eight presentation previews and both new transport diagrams; metadata stripped. Visually reviewed the capture receiver error image; sanitized copy has identical decoded pixels. Revised FIFO comparison reviewed: A/B/C words, APB completion, same-clock premise, arrows and all labels checked.",
+    "png": "Reviewed diagrams and gameplay images, including embedded DOCX/PPTX media. Reviewed all eight presentation previews and both new transport diagrams; metadata stripped. Visually reviewed the capture receiver error image; sanitized copy has identical decoded pixels. Revised FIFO comparison reviewed: A/B/C words, APB completion, same-clock premise, arrows and all labels checked. Reviewed all eight slides rendered from the final updated PPTX; checked unchanged design, added findings, and the controller plan for the final presentation. Reviewed both retained abstract figures on the final one-page render.",
     "pdf": "Rendered and reviewed all three chart PDFs; checked extracted text and metadata.",
     "mp4": "Reviewed gameplay frames sampled across the recording; removed audio and identifying metadata. All 1801 decoded video frames match the saved source."
   },
@@ -56,6 +56,7 @@
     "1327f86a497f7655d48dc6cc0ca3fd7968737bcdec3f08b2abb26521b5d572c5",
     "14ed7f389b6d00339a234da293f2dc543e6760439dd606401b78f36ea78e0f12",
     "15153c9cd792ba7ef1e7f3be44bd722b8a60689a9a3c639a6cdd3bce6ce17b24",
+    "174f22f03d38b5e97c6333e706057931cc424eaa5b4250c64c16369e7492df66",
     "17addc57801f8ddf6bd8091d30d6fceee52b2c5ba8a12e6215a394187e79660d",
     "19eae87f0197d63d43d8777f3f400291c5dda932ae3d9774971593e324e003cf",
     "1a70e3f610eae9099a880b76a06ceaa6da7444bdbabacbbb9c1511142b441a46",
@@ -216,6 +217,7 @@
     "8077c3ac79862018501f518a6cf5aceaf28bb362464a234a5893eb62affb0a6d",
     "82833d8a8ea84070e45a50da30fc9e1946badee4d9eea8c0a5769e8b42a06832",
     "8337f0e814f11de1db48fb128a868dc0a1ccfbc8c2f98db1fc9696a962d38b10",
+    "833ce02ad23c3d4f966e72e8557f4bdd347cc77ba5f98f932dc70bdeb7063482",
     "839c351be101e2d063894f0fd07c38e27a793faa59bda4bddf626cffc5d70073",
     "85e6ff7d0520e126c00bbb27b94c4fb56de6891b43b123c170a83eb6db25e184",
     "85fd2393db8c4974f5315672eaefc28e3f8f397cf6f5a6f28f62718350561d2d",
@@ -250,6 +252,7 @@
     "a296621691c72b15599bcf1788d991c641c260a732792de0abe5e73ccdd3ff0a",
     "a4f517180bdf9dcb7eef3176564941a81d22d5b16950ab009d71d0dab36de05b",
     "a58f0e765c4b38b6d05f78e885cd2f9eb1b715deff7c34956459ce81ea27631f",
+    "a5e6d457a407ad3e3072f805f08428b6d4f210cd18be6351d9fbabf717b06fd7",
     "a6d86ff16de79d2546c3f30620be92ddb5083b3cad8f571d4df64f8b4374a258",
     "a84044dc700d94a7f6e28d91b00f3a19fcd7e0c865b0c26d3ff86cc0a7772bf5",
     "a8c5e6816a3d4de224493d9484d3d17cd834c57e2ccae500ec4d55f467129a35",
