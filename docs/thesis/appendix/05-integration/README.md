@@ -11,6 +11,9 @@ Nexys Video対応、WallyとRasterIXの結合、Linux image、SDカード、実�
 
 ## この分野の章
 
+- [Nexys Video対応とRasterIX接続をファイルから再現する](../../../technical/board-reproduction.md)
+- [測定した時間から性能と設計の判断へ進む](../../../technical/measurement.md)
+- [正しさの条件から試験と不具合の切り分けを作る](../../../technical/verification.md)
 - [付録A 変更を自分で再現するための案内](appendix-a.md)
 - [付録C 試験を再実行し、記録を読み直す](appendix-c.md)
 - [付録D 用語を図の中の役割で覚える](appendix-d.md)

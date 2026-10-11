@@ -63,6 +63,16 @@ def main():
         errors.extend(validate_links(path))
     thesis = ROOT / 'docs' / 'thesis'
     appendix_pages = sorted((thesis / 'appendix').rglob('*.md'))
+    # Explanatory pages belong to the shared appendix, not an orphan companion.
+    index_text = (thesis / '技術付録.md').read_text(encoding='utf-8')
+    indexed = set()
+    for raw in re.findall(r'\[[^\]\n]*\]\(([^)\n]+)\)', index_text):
+        url = urlsplit(raw)
+        if not url.scheme and not url.netloc and url.path:
+            indexed.add((thesis / unquote(url.path)).resolve())
+    for path in files:
+        if path.resolve() not in indexed:
+            errors.append(f'{path.relative_to(ROOT)}: missing from the shared appendix index')
     for path in appendix_pages + [thesis / '技術付録.md', thesis / '本文.md']:
         errors.extend(validate_links(path))
     if errors:

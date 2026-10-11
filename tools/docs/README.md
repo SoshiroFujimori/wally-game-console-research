@@ -1,9 +1,17 @@
-# Technical companion maintenance
+# Appendix explanations and navigation
 
-The Japanese Markdown source lives directly in `docs/technical/`. It complements
-the existing thesis appendix; it is not automatically included in the Word
-edition. Preserve source-revision and experimental-scope qualifications when
-editing either set of documents.
+The directly authored Japanese explanations live in `docs/technical/`. They
+belong to the same online technical appendix as the generated chapter pages.
+The common entry point is `docs/thesis/技術付録.md`; the five topic indexes include
+both the explanatory examples and the implementation chapters. Existing paths
+remain stable for citations and figures. The Word edition currently contains
+the original 56 chapters. Preserve source-revision and experimental-scope
+qualifications in every explanation.
+
+Register a new explanatory page in `COMMON_GUIDES` or `TOPIC_GUIDES` in
+`source/thesis/markdown_export.py`, then regenerate the appendix Markdown with
+`python3 source/thesis/build.py 技術付録 --markdown-only`. Keep the page's links
+to the shared appendix index and its topic index.
 
 Run these commands from the repository root with Python 3.10 or newer:
 

@@ -13,6 +13,39 @@ PART_DIRECTORIES = {
     'I': '01-hdl-fpga', 'II': '02-wally', 'III': '03-linux',
     'IV': '04-rasterix', 'V': '05-integration',
 }
+# Supplementary explanations share the appendix topic indexes. Their existing
+# file paths stay stable for citations, figures, and executable examples.
+COMMON_GUIDES = (
+    ('README.md', '付録の読み方と全体像'),
+    ('walkthrough.md', '白い四角形を一つ表示するまで'),
+    ('glossary.md', '用語を理解の入口にする'),
+    ('sources.md', '対象版・出典・説明の根拠'),
+)
+TOPIC_GUIDES = {
+    'I': (
+        ('logic-rtl.md', '論理ゲートから値を覚える回路とRTLへ'),
+        ('timing-fpga.md', 'クロックとリセットからFPGAの実装結果を読む'),
+        ('cdc-protocols.md', 'APBとストリームとクロック間接続を一語ずつ追う'),
+    ),
+    'II': (
+        ('cpu.md', 'Wallyが一つのプログラムを実行する過程'),
+        ('memory-bus.md', '番地とメモリとバスを混同せずに追う'),
+    ),
+    'III': (
+        ('linux.md', 'Linuxの起動から描画回路への書込みまで'),
+        ('peripherals.md', '入力機器を追加するときに設計する境界'),
+    ),
+    'IV': (
+        ('commands.md', '図形の指定がメモリ上の描画命令になるまで'),
+        ('rasterization.md', '三角形から画素と色を求める計算'),
+        ('framebuffer-display.md', '画像を保存して連続した映像として送り出す'),
+    ),
+    'V': (
+        ('board-reproduction.md', 'Nexys Video対応とRasterIX接続をファイルから再現する'),
+        ('measurement.md', '測定した時間から性能と設計の判断へ進む'),
+        ('verification.md', '正しさの条件から試験と不具合の切り分けを作る'),
+    ),
+}
 REF_PATTERN = (r'技術付録\s*第\d+章|技術付録\s*\d+\.\d+節|第[IVX]+部|'
                r'付録[A-Z](?:\.\d+)?|第\d+章|(?<![\w.図表])[A-Z]\.\d+(?![\d.])|'
                r'(?<![\w.図表])\d+\.\d+(?=節|[〜～・]\d+\.\d+節)')
@@ -54,7 +87,7 @@ def render_markdown(name, title, source, tokens, load_source):
     other = '技術付録' if name == '本文' else '本文'
     intro = f'# {title}\n\n[資料全体の入口](README.md) ｜ [{other}を開く]({other}.md)'
     if name == '技術付録':
-        intro += ' ｜ [図と数値例で読む技術詳説](../technical/README.md)'
+        intro += ' ｜ [付録の読み方と全体像](../technical/README.md)'
     intro += '\n\n## ジャンプできる目次\n\n'
     intro += '\n'.join('  ' * (t['level'] - 1) + f'- [{t["text"]}](#{t["anchor"]})'
                        for t in headings) + '\n\n'
@@ -222,6 +255,10 @@ def split_markdown(markdown, output):
         path = Path(os.path.relpath(target, source.parent)).as_posix()
         return f'[{title}]({path}{"#" + fragment if fragment else ""})'
 
+    def guide_list(destination, guides):
+        return ''.join('- ' + link(destination, output.parent / 'technical' / filename, title) + '\n'
+                       for filename, title in guides)
+
     rendered = {}
     reading_order = [p for p in pieces if p.kind in ('chapter', 'references')]
     for piece in pieces:
@@ -233,12 +270,16 @@ def split_markdown(markdown, output):
                  link(destination, output / 'appendix/references.md', '参考文献')]
         if piece.kind == 'index':
             header = markdown.splitlines()[0] + '\n\n'
-            header += '[資料全体の入口](README.md) ｜ [論文本文](本文.md) ｜ [Word版（全体）](技術付録.docx)\n\n'
+            header += '[資料全体の入口](README.md) ｜ [論文本文](本文.md) ｜ [Word版（56章）](技術付録.docx)\n\n'
             header += 'GitHubでは章ごとにページを分けている。説明・図・表・コードは省略していない。'
             header += '読みたい分野から章を選び、各ページの目次で節へ移動できる。\n\n'
+            header += '基礎知識を図と数値例で確かめる説明も、実装の詳細や再現手順も、この技術付録にまとめている。'
+            header += '各分野の目次から必要な説明を選べる。\n\n'
+            header += '**読み方・全体像・用語**\n\n' + guide_list(destination, COMMON_GUIDES) + '\n'
             page = header + content_block(body) + '\n## 章別目次\n\n'
             for part in (p for p in pieces if p.kind == 'part'):
                 page += f'<a id="part_{part.part.lower()}"></a>\n### ' + link(destination, output / part.path, part.title) + '\n\n'
+                page += guide_list(destination, TOPIC_GUIDES[part.part])
                 for chapter in (p for p in pieces if p.kind == 'chapter' and p.part == part.part):
                     # Old section bookmarks still land on the relevant chapter entry.
                     aliases = ''.join(f'<a id="{anchor.lower()}"></a>' for anchor in ANCHOR.findall(mask_code(chapter.body)))
@@ -252,6 +293,7 @@ def split_markdown(markdown, output):
             page = content_block(head) + '\n' + ' ｜ '.join(links) + '\n\n'
             if piece.kind == 'part':
                 page += content_block(remainder) + '\n## この分野の章\n\n'
+                page += guide_list(destination, TOPIC_GUIDES[piece.part])
                 for chapter in (p for p in pieces if p.kind == 'chapter' and p.part == piece.part):
                     page += '- ' + link(destination, output / chapter.path, chapter.title) + '\n'
             else:

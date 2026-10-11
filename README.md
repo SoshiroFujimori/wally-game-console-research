@@ -11,19 +11,19 @@ Wallyと公式RasterIXをNexys Video上で結合し、二次元ゲームを動�
 
 論文本文、技術付録、実験報告はMarkdownでも公開しています。以下のリンクを開くと、
 図・表・コード・ジャンプできる目次をGitHub上で読めます。Wordのダウンロードやcloneは不要です。
-技術付録は分量を減らさず、5分野・56章の本文を章別ページに分けています。
+技術付録では、基礎知識・図・数値例と、56章の実装・再現の説明を、5分野の目次にまとめています。
+GitHubの表示を軽くするため、内容を省略せず、章ごとのページに分けています。
 読みたい分野から探す場合は、[資料の読み方と分野別の入口](docs/thesis/README.md)を使ってください。
 
-用語の前提や処理の途中から詳しく理解したい場合は、[図と数値例で読む技術詳説](docs/technical/README.md)
-を使ってください。回路、CPU、Linux、描画、実験に分かれており、既存の技術付録と実装へ進めます。
+用語の前提や処理の途中から詳しく理解したい場合も、[技術付録の総目次](docs/thesis/技術付録.md)
+から、回路、CPU、Linux、描画、実験の説明へ進めます。
 
 | 内容 | 入口 |
 |---|---|
 | 図で仕組みと主な結果を説明する1ページの概要 | [アブスト](docs/abstract/アブスト_主要事項.md) / [Word版](docs/abstract/アブスト_主要事項.docx) |
 | 6分の説明に絞った8枚のスライドと発表原稿 | [スライドと原稿](docs/presentation/中間発表_主要事項.md) / [PowerPoint版](docs/presentation/中間発表_主要事項.pptx) |
 | 目的、仕組み、設計、実験結果 | [論文本文](docs/thesis/本文.md) / [Word版](docs/thesis/本文.docx) |
-| HDL、Wally、Linux、RasterIX、実装の詳細 | [技術付録](docs/thesis/技術付録.md) / [Word版](docs/thesis/技術付録.docx) |
-| 前提から理解する説明、図、数値例、実行できるモデル | [技術詳説・分野別目次](docs/technical/README.md) |
+| 基礎知識、図・数値例、HDL、Wally、Linux、RasterIX、実装・再現 | [技術付録・総目次](docs/thesis/技術付録.md) / [Word版（56章）](docs/thesis/技術付録.docx) |
 | FIFO三方式の比較と更新版の検証 | [E6の結果と判断](docs/thesis/再現資料/実験記録/E6/report/結果と判断.md) |
 | 命令DMA、共有メモリ、転送方法の検証 | [E7の結果と適用範囲](experiments/transport-study-20261009/RESULTS.md) |
 | 過去の設計変更、測定コード、実験記録 | [再現資料](docs/thesis/再現資料/README.md) |
@@ -35,6 +35,9 @@ Wallyと公式RasterIXをNexys Video上で結合し、二次元ゲームを動�
 本文の結果には適用範囲があります。E6ではブロック崩しの比較を行いましたが、
 大きいテクスチャの転送には未解決の条件があります。自動プレイの記録を、
 Wiiコントローラの実機検証済みという意味では扱っていません。
+
+技術付録のWord版は56章を収録しています。図・数値例を補うMarkdownのページを含む
+全体の入口は、GitHub版の総目次です。
 
 ## 取得と版の固定
 
@@ -61,13 +64,13 @@ console/                    製品リポジトリの固定版
 docs/abstract/              主要事項を図と短い文章で説明するアブスト
 docs/presentation/          6分の発表スライドと発表原稿
 docs/thesis/                公開用の論文、図、技術付録、実験記録E1〜E6
-docs/technical/             回路・CPU・Linux・描画・検証の詳説とSVG図
+docs/technical/             技術付録に含める基礎・数値例の原稿とSVG図
 examples/technical-models/  本文の数値と受渡し規則を確かめる説明用モデル
 source/thesis/              論文の章別原稿と生成プログラム
 experiments/                補足試験、数学・RTL検証、当時の実験スクリプト
 tools/sdwire3/              設定を引数で渡す機器操作ツール
 tools/publication/          匿名化、公開前の検査、ファイル参照の確認
-tools/docs/                 技術詳説の図と目次の生成・検査
+tools/docs/                 技術付録の図と目次の生成・検査
 publication/               公開版のファイル検証情報と確認済みメディア
 LICENSES/                  コピーした上流ソースのライセンス
 ```

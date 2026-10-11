@@ -11,6 +11,9 @@ OpenGL風APIから命令列、転送protocol、RTL pipeline、rasterization、te
 
 ## この分野の章
 
+- [図形の指定がメモリ上の描画命令になるまで](../../../technical/commands.md)
+- [三角形から画素と色を求める計算](../../../technical/rasterization.md)
+- [画像を保存して連続した映像として送り出す](../../../technical/framebuffer-display.md)
 - [付録B 信号とコードを数値で追う](appendix-b.md)
 - [付録G RasterIXとの接続を自分で組み立てる](appendix-g.md)
 - [付録H 設定を変えるための計算と設計判断](appendix-h.md)

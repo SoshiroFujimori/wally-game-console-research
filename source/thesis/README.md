@@ -31,6 +31,13 @@ rejects a page over 64 KiB so that future additions require a deliberate split
 instead of silently restoring an oversized page. Do not edit generated pages
 directly; edit the topic sources above and regenerate.
 
+The online appendix also includes the directly authored explanations under
+`docs/technical/`. `COMMON_GUIDES` and `TOPIC_GUIDES` in `markdown_export.py`
+place those pages in the same main and topic indexes as the generated chapters.
+Their paths remain stable; readers use one appendix navigation. This navigation
+integration does not automatically add the Markdown explanations to the Word
+edition, which currently contains the 56 original chapters.
+
 Wordの生成には `requirements-publication.txt` と非公開の匿名化設定が必要です。
 既存の公開Word文書から書式を引き継ぎ、図は `docs/thesis/figs` を利用します。
 章の内部リンクは安定した番号を使っています。Wordの目次のページ番号は

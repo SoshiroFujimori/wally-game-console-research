@@ -11,6 +11,8 @@
 
 ## この分野の章
 
+- [Linuxの起動から描画回路への書込みまで](../../../technical/linux.md)
+- [入力機器を追加するときに設計する境界](../../../technical/peripherals.md)
 - [第19章 開発用PCからFPGA上のprocessまでを分ける](chapter-19.md)
 - [第20章 cross compile、ELF、ABIを深く理解する](chapter-20.md)
 - [第21章 SDカードからLinuxが起動するまで](chapter-21.md)

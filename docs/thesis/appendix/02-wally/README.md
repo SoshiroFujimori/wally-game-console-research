@@ -11,6 +11,8 @@ RISC-Vのsoftware-visibleな仕様から、Wallyの構成parameter、五段pipel
 
 ## この分野の章
 
+- [Wallyが一つのプログラムを実行する過程](../../../technical/cpu.md)
+- [番地とメモリとバスを混同せずに追う](../../../technical/memory-bus.md)
 - [第9章 Wallyの階層と構成を読む](chapter-09.md)
 - [第10章 命令pipelineとarchitectural state](chapter-10.md)
 - [第11章 Memory systemとon-chip bus](chapter-11.md)

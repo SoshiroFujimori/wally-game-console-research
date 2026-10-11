@@ -1,6 +1,6 @@
 # 入力機器を追加するときに設計する境界
 
-[分野別の入口](README.md) · [用語を調べる](glossary.md)
+[技術付録の総目次](../thesis/技術付録.md) · [Linux・ソフトウェアの目次](../thesis/appendix/03-linux/README.md) · [用語を調べる](glossary.md)
 
 この章は、新しいコントローラなどを追加するときの一般的な設計方法である。Wii Classic Controller Proの接続を実装・実機検証済みとする章ではない。現在の公開記録の自動プレイと、将来の実入力を区別する。
 

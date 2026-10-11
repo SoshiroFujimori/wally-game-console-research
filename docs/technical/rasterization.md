@@ -1,6 +1,6 @@
 # 三角形から画素と色を求める計算
 
-[分野別の入口](README.md) · [用語を調べる](glossary.md)
+[技術付録の総目次](../thesis/技術付録.md) · [RasterIXと描画の目次](../thesis/appendix/04-rasterix/README.md) · [用語を調べる](glossary.md)
 
 この章は、図形が画素になる途中を省略しないための数値例である。2Dの三角形を使い、内外の判定、色の補間、模様、混色を順に計算する。最初の例は原理を理解するためのもので、固定版RTLの丸め方まで完全に同一とするものではない。実装固有の数式は[付録X〜Z](../thesis/appendix/04-rasterix/appendix-x.md#ch_x)へつなぐ。
 
