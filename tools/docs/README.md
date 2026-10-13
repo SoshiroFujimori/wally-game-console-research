@@ -7,6 +7,7 @@ the same source. Chapter numbers identify locations, not study priorities.
 ```bash
 python tools/docs/figures.py --check
 python tools/docs/appendix_figures.py --check
+python tools/docs/thesis_figures.py --check
 python source/thesis/build.py 技術付録 --markdown-only --check
 python source/thesis/build.py 本文 --markdown-only --check
 python tools/docs/navigation.py
@@ -15,6 +16,7 @@ python examples/technical-models/explain.py all
 
 `figures.py` maintains twelve existing explanatory SVGs; `appendix_figures.py`
 maintains eight worked-example SVGs. Both write `source/thesis/figs/guide-*.svg`.
+`thesis_figures.py` maintains four worked-example diagrams in the main thesis.
 Rasterize edited drawings to PNG, visually review them, and copy SVG and PNG
 assets into `docs/thesis/figs/`. Match the established blue, pale blue and black
 diagram style. Register reviewed binary hashes only after inspecting pixels.

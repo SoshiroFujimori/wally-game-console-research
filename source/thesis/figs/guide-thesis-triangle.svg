@@ -1,0 +1,50 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="650" viewBox="0 0 1200 650" role="img" aria-labelledby="title desc">
+<title id="title">三本の辺の内側を、位置の数値から選ぶ</title><desc id="desc">xとyが0以上でx+yが4以下になる三角形。Pは内側、Qは外側。</desc>
+<defs><marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z" fill="#1673C3"/></marker></defs>
+<rect width="1200" height="100%" fill="white"/>
+<g font-family="Noto Sans CJK JP,Noto Sans JP,Meiryo,Yu Gothic,sans-serif" fill="#231F20">
+<text x="40" y="48" font-size="29" text-anchor="start" font-weight="bold">三本の辺の内側を、位置の数値から選ぶ</text>
+<polygon points="100,125 444,125 100,469" fill="#E5EBF8"/>
+<polyline points="100,125 100,555" fill="none" stroke="#CCD9F1" stroke-width="2" stroke-dasharray=""/>
+<polyline points="100,125 530,125" fill="none" stroke="#CCD9F1" stroke-width="2" stroke-dasharray=""/>
+<text x="100" y="103" font-size="22" text-anchor="middle" font-weight="normal">0</text>
+<text x="75" y="132" font-size="22" text-anchor="middle" font-weight="normal">0</text>
+<polyline points="186,125 186,555" fill="none" stroke="#CCD9F1" stroke-width="2" stroke-dasharray=""/>
+<polyline points="100,211 530,211" fill="none" stroke="#CCD9F1" stroke-width="2" stroke-dasharray=""/>
+<text x="186" y="103" font-size="22" text-anchor="middle" font-weight="normal">1</text>
+<text x="75" y="218" font-size="22" text-anchor="middle" font-weight="normal">1</text>
+<polyline points="272,125 272,555" fill="none" stroke="#CCD9F1" stroke-width="2" stroke-dasharray=""/>
+<polyline points="100,297 530,297" fill="none" stroke="#CCD9F1" stroke-width="2" stroke-dasharray=""/>
+<text x="272" y="103" font-size="22" text-anchor="middle" font-weight="normal">2</text>
+<text x="75" y="304" font-size="22" text-anchor="middle" font-weight="normal">2</text>
+<polyline points="358,125 358,555" fill="none" stroke="#CCD9F1" stroke-width="2" stroke-dasharray=""/>
+<polyline points="100,383 530,383" fill="none" stroke="#CCD9F1" stroke-width="2" stroke-dasharray=""/>
+<text x="358" y="103" font-size="22" text-anchor="middle" font-weight="normal">3</text>
+<text x="75" y="390" font-size="22" text-anchor="middle" font-weight="normal">3</text>
+<polyline points="444,125 444,555" fill="none" stroke="#CCD9F1" stroke-width="2" stroke-dasharray=""/>
+<polyline points="100,469 530,469" fill="none" stroke="#CCD9F1" stroke-width="2" stroke-dasharray=""/>
+<text x="444" y="103" font-size="22" text-anchor="middle" font-weight="normal">4</text>
+<text x="75" y="476" font-size="22" text-anchor="middle" font-weight="normal">4</text>
+<polyline points="530,125 530,555" fill="none" stroke="#CCD9F1" stroke-width="2" stroke-dasharray=""/>
+<polyline points="100,555 530,555" fill="none" stroke="#CCD9F1" stroke-width="2" stroke-dasharray=""/>
+<text x="530" y="103" font-size="22" text-anchor="middle" font-weight="normal">5</text>
+<text x="75" y="562" font-size="22" text-anchor="middle" font-weight="normal">5</text>
+<polyline points="100,125 444,125 100,469 100,125" fill="none" stroke="#1673C3" stroke-width="3" stroke-dasharray=""/>
+<text x="555" y="106" font-size="23" text-anchor="start" font-weight="normal">x →</text>
+<text x="32" y="125" font-size="23" text-anchor="start" font-weight="normal">y</text>
+<polyline points="44,150 44,550" fill="none" stroke="#1673C3" stroke-width="3" stroke-dasharray="" marker-end="url(#arrow)"/>
+<circle cx="229.0" cy="254.0" r="7" fill="#1673C3"/>
+<text x="243.0" y="242.0" font-size="26" text-anchor="start" font-weight="bold">P</text>
+<circle cx="401.0" cy="254.0" r="7" fill="#231F20"/>
+<text x="415.0" y="242.0" font-size="26" text-anchor="start" font-weight="bold">Q</text>
+<text x="630" y="160" font-size="27" text-anchor="start" font-weight="normal">P = (1.5, 1.5)</text>
+<text x="630" y="196" font-size="27" text-anchor="start" font-weight="normal">1.5 + 1.5 = 3</text>
+<text x="630" y="232" font-size="27" text-anchor="start" font-weight="normal">4より小さい → 内側</text>
+<text x="630" y="320" font-size="27" text-anchor="start" font-weight="normal">Q = (3.5, 1.5)</text>
+<text x="630" y="356" font-size="27" text-anchor="start" font-weight="normal">3.5 + 1.5 = 5</text>
+<text x="630" y="392" font-size="27" text-anchor="start" font-weight="normal">4より大きい → 外側</text>
+<text x="630" y="485" font-size="24" text-anchor="start" font-weight="normal">斜めの辺では x + y = 4。</text>
+<text x="630" y="518" font-size="24" text-anchor="start" font-weight="normal">辺のどちら側かを判定する。</text>
+<text x="40" y="626" font-size="19" text-anchor="start" font-weight="normal">三角形の内外を調べる説明例。画素のどこを判定位置に使うかは、次の節で説明する。</text>
+</g>
+</svg>

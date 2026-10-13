@@ -81,6 +81,6 @@ for heading, paragraphs in content['sections'].items():
         md.extend(figure_links)
 md.append('## 参考文献')
 md.extend(content['references'])
-md.append('設計と測定条件は[論文本文](../thesis/本文.md#ch_6)，命令転送などの比較結果は[13.17節以降](../thesis/本文.md#s_13_17)に示す．')
+md.append('設計と測定条件は[論文本文](../thesis/本文.md#ch_6)，命令転送などの比較結果は[12.12節以降](../thesis/本文.md#s_12_12)に示す．')
 (a.output / 'アブスト_主要事項.md').write_text('\n\n'.join(md) + '\n', encoding='utf-8')
 print(json.dumps({'sections': len(content['sections']), 'figures': len(figure_links)}))

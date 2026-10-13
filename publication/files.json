@@ -46,8 +46,8 @@
       "sha256": "9a610ed291f447c9c9f5d4f3966a3a9fb01bafc394d8d43fcfc48d74e12e2942"
     },
     "README.md": {
-      "bytes": 6933,
-      "sha256": "ee58c67e42e65e895c3a3a04e9eacd8970a1da365099c85f2ef8853f583dd15a"
+      "bytes": 6963,
+      "sha256": "2397f3035927d418476ce87a6c80493193628838535e28ea665b1eb975ed1ca7"
     },
     "docs/abstract/figs/figure-1.png": {
       "bytes": 182980,
@@ -58,12 +58,12 @@
       "sha256": "f86585e57d5f405254addc19f7f8c29c6736785fc1e544509934752026cd6799"
     },
     "docs/abstract/アブスト_主要事項.docx": {
-      "bytes": 389383,
-      "sha256": "abaa0be5611e99be5d5974a217ad8a752358286b5f07377d15f5cd30279043c4"
+      "bytes": 389334,
+      "sha256": "ae237f9b288fa5a196629adc812ffb64c7b4fc9a7d1ad274ea29e694b7742443"
     },
     "docs/abstract/アブスト_主要事項.md": {
-      "bytes": 3170,
-      "sha256": "4b833f9a824f98ebb1ab75f2a85f6d8d8180e2f6fa1fefd94f762b9afb66d29c"
+      "bytes": 3079,
+      "sha256": "8d0bd4694a188cf1c9f772014ca60a3d7a30442a15f430a76f9f7f07bb461ea0"
     },
     "docs/presentation/slides/slide-01.png": {
       "bytes": 60036,
@@ -74,12 +74,12 @@
       "sha256": "d7f575071698b39a6091491a15fe19459f11c09b152e280f7f060fb651e497c2"
     },
     "docs/presentation/slides/slide-03.png": {
-      "bytes": 57351,
-      "sha256": "0c1908c697c56af5add15c006ff834d84657f9b74265f9e109c82868b5b3c63b"
+      "bytes": 57612,
+      "sha256": "d169e40ec0bb6f4575447e5d509b537fc4cf9dd9eba8fc7827a4fc44c9cc0f1c"
     },
     "docs/presentation/slides/slide-04.png": {
-      "bytes": 63546,
-      "sha256": "174f22f03d38b5e97c6333e706057931cc424eaa5b4250c64c16369e7492df66"
+      "bytes": 61449,
+      "sha256": "6baec9b5c9d90809416b4cca6ffbd89249664f182cd283b81b5af74c4d15d315"
     },
     "docs/presentation/slides/slide-05.png": {
       "bytes": 65356,
@@ -90,20 +90,20 @@
       "sha256": "5a31e9ac49ddc64f56f8fd29da0ff8ae26faba7c7414545b92036b3e2ac1ae8d"
     },
     "docs/presentation/slides/slide-07.png": {
-      "bytes": 64677,
-      "sha256": "a5e6d457a407ad3e3072f805f08428b6d4f210cd18be6351d9fbabf717b06fd7"
+      "bytes": 64639,
+      "sha256": "e9319505c3c877e5577c8ff42027128f83bb131bf663493886bfbed66a0074d6"
     },
     "docs/presentation/slides/slide-08.png": {
-      "bytes": 77390,
-      "sha256": "833ce02ad23c3d4f966e72e8557f4bdd347cc77ba5f98f932dc70bdeb7063482"
+      "bytes": 76911,
+      "sha256": "5bc08f4a3e1fd0a8f221c06d7a179fc9da7b07efa42e51e1aa43a856e25da019"
     },
     "docs/presentation/中間発表_主要事項.md": {
-      "bytes": 8418,
-      "sha256": "e9d93bcc74468f55b0382d14c3495373eb0fc866418b2b1506b8f785c998df2c"
+      "bytes": 8568,
+      "sha256": "fe2f452c1d019ec22fc84c9fdc9931a9564c17bcd210bf233fe2d59af1774981"
     },
     "docs/presentation/中間発表_主要事項.pptx": {
-      "bytes": 70633,
-      "sha256": "d8e84979c76bb8fc6ad6d26ae72d85f27880fbcabfccf410492b051bf4b94fc1"
+      "bytes": 70704,
+      "sha256": "9505d24a63009aac8cd1aa04dbdcd378ee2f57c7ad3869e39f2c24544a6f65a1"
     },
     "docs/privacy.md": {
       "bytes": 5063,
@@ -118,8 +118,8 @@
       "sha256": "c9996c92b9cbff196c3336c64dda6c0a44e248184e82e0775b66a47fece0808b"
     },
     "docs/thesis/README.md": {
-      "bytes": 5584,
-      "sha256": "5a3cb55465ad0aed8176c9500583d5f09011b58f66dcd7b52da406703b75d42d"
+      "bytes": 6265,
+      "sha256": "3e311370fdb20db6b90770b4539743f2055837575e43f5bd7761b5270553b782"
     },
     "docs/thesis/appendix/01-hdl-fpga/README.md": {
       "bytes": 1488,
@@ -146,8 +146,8 @@
       "sha256": "fd42fca5400e8e2c24f67d443f43b3af6bce4078bd92c0878881f5b9c7c9449c"
     },
     "docs/thesis/appendix/01-hdl-fpga/fpga-circuit-fundamentals.md": {
-      "bytes": 16850,
-      "sha256": "8dce5c20c09a79912d13e36b6cbad3327bcd5577980dbbc31ae1d01d7abf1b32"
+      "bytes": 16848,
+      "sha256": "5c59de0bdd2aef66cde6f040032d6c6c0c9eb136671c33d1eb7e4295a0d9550b"
     },
     "docs/thesis/appendix/01-hdl-fpga/logic-rtl.md": {
       "bytes": 16798,
@@ -242,8 +242,8 @@
       "sha256": "f5e4b7536e28872c968abafb47b2502f312da39236b9b09d00ba38b78a2ad2a4"
     },
     "docs/thesis/appendix/03-linux/game-loop.md": {
-      "bytes": 6089,
-      "sha256": "ce52241e9f240fa755dfc7c2b6ab73a4ffd2cab7fbf8ea8449bc4f508cef0b3a"
+      "bytes": 22475,
+      "sha256": "f6f0c14ccc46f73912d22abf774d30d4b7c6d3dda9b1496617308b5eac22f57c"
     },
     "docs/thesis/appendix/03-linux/graphics-software-stack.md": {
       "bytes": 6615,
@@ -286,24 +286,24 @@
       "sha256": "b1e25e7e09bced340f974ebfe77193e1f19264f4fb1b254a5ed3cf5a3d67eaaf"
     },
     "docs/thesis/appendix/04-rasterix/command-clock-boundary.md": {
-      "bytes": 32680,
-      "sha256": "3ced38ee2b833cb971769d219fbd41d0b3e683a29504be4cb63561e17369ab03"
+      "bytes": 32707,
+      "sha256": "a8c26d6d13e76a54f94b58b3ebd4f1ab727404a4e28d7c47148d7f542cf111be"
     },
     "docs/thesis/appendix/04-rasterix/commands.md": {
       "bytes": 14355,
       "sha256": "22022d8a048f47ff75dbc5a0cf77a1d2653ee5d70845b654731a7033f85bff92"
     },
     "docs/thesis/appendix/04-rasterix/configuration-calculations.md": {
-      "bytes": 12169,
-      "sha256": "4f7729eef53b16eba48f0c921a0247a58bc11aa5031984cb676a01ac4a21c8f5"
+      "bytes": 12465,
+      "sha256": "35178470ad2f86ba8cf470fca88a093d467dbd98af2b80afc7fe984c9d3511a8"
     },
     "docs/thesis/appendix/04-rasterix/coordinates-edge-equations.md": {
       "bytes": 20457,
       "sha256": "5af860f0db46925478ea9712fe815c59b9f993faa13aeba7dc443de1d92bb08e"
     },
     "docs/thesis/appendix/04-rasterix/design-change-reasoning.md": {
-      "bytes": 22953,
-      "sha256": "ce69fd46499b9d0d7a6709b5cb7bb0771c13b978b9da91f2ce057005ecdec18c"
+      "bytes": 23105,
+      "sha256": "5781b634619e1d34e611d221e5234f36bdecc061f6fd7cd05c3a14eab4487836"
     },
     "docs/thesis/appendix/04-rasterix/fixed-point-color-math.md": {
       "bytes": 23160,
@@ -314,8 +314,8 @@
       "sha256": "f143f973e36e03d8c66077f1e209783f644b127e7d1b00df6dfcfadc9bb4752d"
     },
     "docs/thesis/appendix/04-rasterix/framebuffer-display.md": {
-      "bytes": 14692,
-      "sha256": "f14429599e50a20feb438fce84263fb3a983f455727f2f9859b351095b720618"
+      "bytes": 17846,
+      "sha256": "4139628f652755a71b08e74b6ed8fad4eecf701d60a162391a9cb7041dccf830"
     },
     "docs/thesis/appendix/04-rasterix/framebuffer-memory-display.md": {
       "bytes": 12068,
@@ -330,8 +330,8 @@
       "sha256": "3a05d20e7703083b15cc2f62dcaa4702e1a25b798142dcfb9ce9545177ae4e9c"
     },
     "docs/thesis/appendix/04-rasterix/rasterix-integration.md": {
-      "bytes": 20526,
-      "sha256": "698287a873a9681c7dbd72fe6922f37f36297e9918620fc450f40689f7306877"
+      "bytes": 20519,
+      "sha256": "580e67dff0ab8ab1dd33f03896b3a7194ad00d5ffaa4169c7a64e3d0b20b038e"
     },
     "docs/thesis/appendix/04-rasterix/rasterix-source-map.md": {
       "bytes": 13707,
@@ -354,8 +354,8 @@
       "sha256": "e166ed301aa94090cda5587adbfefa3727e5ca83ab0da89c6e846417b6b23edd"
     },
     "docs/thesis/appendix/04-rasterix/signals-and-numbers.md": {
-      "bytes": 6946,
-      "sha256": "18929e578aa4d39bd54efd0ce762f2a1ef341dd6a65c24a8a98a5b4bedd80917"
+      "bytes": 6943,
+      "sha256": "2a61ff22243dd6e34d58150cbc0822896fbf06f9a99677067a3f8bb9278b52ab"
     },
     "docs/thesis/appendix/04-rasterix/textures-pixel-pipeline.md": {
       "bytes": 11483,
@@ -363,7 +363,7 @@
     },
     "docs/thesis/appendix/04-rasterix/triangle-descriptors.md": {
       "bytes": 18813,
-      "sha256": "28d7f927bf837de1e16c273cc81bc4b2641523a6f1fde45d0f4e686380cc7d9b"
+      "sha256": "e6ff8646424a275264caef1523c789f86cec700bf7e8167c7603ec141e1deaae"
     },
     "docs/thesis/appendix/04-rasterix/walkthrough.md": {
       "bytes": 11346,
@@ -374,48 +374,48 @@
       "sha256": "42789903601951a01b5682e12115fad9d8c3cd64b0105890e4352da64a223bc6"
     },
     "docs/thesis/appendix/05-integration/board-reproduction.md": {
-      "bytes": 14064,
-      "sha256": "134eb337b0dad86281c761e27c9e915f9bf7b93707d66649054c7e7c13fe89af"
+      "bytes": 38574,
+      "sha256": "b7e2fd0e93dc4680996bf082c67146d27cffe33ba23e7934e5a90d1ca91ecd0e"
     },
     "docs/thesis/appendix/05-integration/change-history.md": {
-      "bytes": 8660,
-      "sha256": "cfb3739e5e6dd6d545478e1a16172ca0ddc6f32d5002357b2837f7bff3418652"
+      "bytes": 8738,
+      "sha256": "be267a612977b9c507e858b15ae8090fcf42db0aa9247dde0ef4be6c2369131c"
     },
     "docs/thesis/appendix/05-integration/command-dma-comparison.md": {
       "bytes": 45711,
-      "sha256": "84a9a14cf39b8f98c1d32537876a2fbcfe83647af1fdc479b52120f6d492306f"
+      "sha256": "20b39af7e1fc75bd970dee06a9cac848808a39c7b6f2af20e0a9afdb57418555"
     },
     "docs/thesis/appendix/05-integration/console-reproduction.md": {
-      "bytes": 27820,
-      "sha256": "1764f5f8c3253e9b2493463fc9b9f225ad73ed7e3ad045c1f31b4fa7f1935e2f"
+      "bytes": 27866,
+      "sha256": "90cd30ebb755d029b55e597cc3316beaa98b1f0aa806ec83d2d1744e5639ce69"
     },
     "docs/thesis/appendix/05-integration/design-files-workflow.md": {
-      "bytes": 15120,
-      "sha256": "609d57420e543306429cafe91c300a2b05d7d7baaa0726396d4c99f51ba7e9cc"
+      "bytes": 15245,
+      "sha256": "36339e90bd8fadad205ad5683fca64053246302eb4efb13e97e002eef5c01ad8"
     },
     "docs/thesis/appendix/05-integration/design-questions.md": {
-      "bytes": 6762,
-      "sha256": "22cdc3ee62cba8c29ad3e14eae7bdce20d76fef9f17c9264a673bc21342a4dc1"
+      "bytes": 6828,
+      "sha256": "0acadf25aefb995aaaa4349dd6f2a8c23c7418358c55ba9f5cdee664893f3bd5"
     },
     "docs/thesis/appendix/05-integration/fifo-comparison.md": {
-      "bytes": 35362,
-      "sha256": "ff4e2f5306c19f8a27ac5df98a040be3907547ccce08c0a65eb86b15b3f5d7f6"
+      "bytes": 35360,
+      "sha256": "fadabf0966f549b595856659d598c401d5774935644be787255ee7ef2d9c407a"
     },
     "docs/thesis/appendix/05-integration/glossary.md": {
       "bytes": 12638,
       "sha256": "e0fb52e9c86e0a41bb6a1cc5be26290cea5e4352f00eb0dc8328339c74e10fb5"
     },
     "docs/thesis/appendix/05-integration/measurement.md": {
-      "bytes": 12897,
-      "sha256": "084b4742fe1550d3284bedf1f65374e6812ecf9da301121c960896fe3c0e60f8"
+      "bytes": 28971,
+      "sha256": "5d8e6922b1976754641dda1d9b514cf2043d8b468db11f80976f30e83f7c09aa"
     },
     "docs/thesis/appendix/05-integration/nexys-video-files.md": {
-      "bytes": 20350,
-      "sha256": "2e4612eeef555b494cec2db4eab460b4dd12efd2b5c6cab2341ec8dabac42e8f"
+      "bytes": 20360,
+      "sha256": "6f48de8e064668d0bec14973de80e03fc0d5443ba57ae0b641443a54a342c293"
     },
     "docs/thesis/appendix/05-integration/repeating-experiments.md": {
       "bytes": 6420,
-      "sha256": "3a2dfdfa6338802f55f1f8f57aa316a134bcc253ec724b42a01188e3bbc221b6"
+      "sha256": "290db7297a7e4aebdb55598e30b36b1e50b70a6bcf1fb566dae372abf9d049a1"
     },
     "docs/thesis/appendix/05-integration/sources.md": {
       "bytes": 9124,
@@ -431,7 +431,7 @@
     },
     "docs/thesis/appendix/references.md": {
       "bytes": 8463,
-      "sha256": "c59631e3b8f245bf01b1e78731ceb7cf11952f55bde18d4a0602fbf1fb124b1a"
+      "sha256": "27c6e6799179e0f0ab774158c07fd24582122b907fabbcf77318e114303b94a4"
     },
     "docs/thesis/figs/accept-one-word.png": {
       "bytes": 177064,
@@ -1060,6 +1060,38 @@
     "docs/thesis/figs/guide-strip-read-modify-write.svg": {
       "bytes": 3339,
       "sha256": "173a418e8efa010020fcc0b0c070197647c4ef529ef09b0a0c4ea54ea80cb619"
+    },
+    "docs/thesis/figs/guide-thesis-display-opportunity.png": {
+      "bytes": 133006,
+      "sha256": "9c5ca2aa83b803e3b1563c377ebd2a14625b6e3a70f06a4cae2f20eeb26d9dad"
+    },
+    "docs/thesis/figs/guide-thesis-display-opportunity.svg": {
+      "bytes": 4323,
+      "sha256": "c11d83a1f9317dcb5219a2bde90afbd53d01dda8c0db2a6dc7ce922c6cbea875"
+    },
+    "docs/thesis/figs/guide-thesis-dma-wait.png": {
+      "bytes": 270508,
+      "sha256": "8d727c41a6bd5d7e376985ca8c9ebc51cd792590ff74f7c0a938476920689f3e"
+    },
+    "docs/thesis/figs/guide-thesis-dma-wait.svg": {
+      "bytes": 4692,
+      "sha256": "506117a10300f70ca749d82422f8feba6f297adc4cb1878b084b29a246c9ad42"
+    },
+    "docs/thesis/figs/guide-thesis-transfer-time.png": {
+      "bytes": 151166,
+      "sha256": "cf29c8f67b35a9aaab0efd64fb80832965d1cbbe2ad3772adafbe6f2a41ed3b1"
+    },
+    "docs/thesis/figs/guide-thesis-transfer-time.svg": {
+      "bytes": 2937,
+      "sha256": "9d06069ee63ad2e74013e51fdaf3ff660ce7451b9593bd3b2428e3b1d05db5e6"
+    },
+    "docs/thesis/figs/guide-thesis-triangle.png": {
+      "bytes": 149663,
+      "sha256": "4c07d2398b820738688c7a13cb0eb83b1bbaf6e68f65cad9992fd641c0505c61"
+    },
+    "docs/thesis/figs/guide-thesis-triangle.svg": {
+      "bytes": 4907,
+      "sha256": "43902456964e5376d6e25dd9ac85b2842831b6aa1521f5857287e15bfe4a9d6c"
     },
     "docs/thesis/figs/guide-timing-budget.png": {
       "bytes": 146166,
@@ -5070,20 +5102,20 @@
       "sha256": "ffe0493880dd0f7ca48d3d71dfa08833a3856b55d217a37d9c93202461dea026"
     },
     "docs/thesis/技術付録.docx": {
-      "bytes": 25474640,
-      "sha256": "19b133759010ba64e29abd036718ec708a6156be5e6ae31a4e7ed90892dd467e"
+      "bytes": 29506576,
+      "sha256": "72ccb72e94ddc233a7b0c5795c17658d5144b3690ee20280a3a24c19eb3f8577"
     },
     "docs/thesis/技術付録.md": {
-      "bytes": 35864,
-      "sha256": "efbc14df7e6bc37cab6ce0a97218a86da1d5bd35d3b24149ab280f05263b1072"
+      "bytes": 36464,
+      "sha256": "4442ce02d5b8080cccea9bca301610e978c8dc73723ca22003afb2cd3d99485d"
     },
     "docs/thesis/本文.docx": {
-      "bytes": 18930364,
-      "sha256": "9dd7434b332b7c31de0cda6b830e971413595ea1ea37ba34f870a5ecc0dcb397"
+      "bytes": 15713284,
+      "sha256": "e295cf69cbc38fa2b7618b877482078fe358ec3694489ba4d5c48382b3efff70"
     },
     "docs/thesis/本文.md": {
-      "bytes": 326550,
-      "sha256": "65f4912957243884992d3fe63c7b58901389387bdfbf17d2ce2c2ca4f3802cf9"
+      "bytes": 304269,
+      "sha256": "f781120868b39c24769bb96e6f8a227b9aa7bac28486eb50941ed1efe8bcf646"
     },
     "examples/technical-models/README.md": {
       "bytes": 3174,
@@ -11670,8 +11702,8 @@
       "sha256": "edd21b65bc0d6109fbbdd1c5b29c6eb730e800e218d4d6362ccdd952732a8ca1"
     },
     "publication/media-review.json": {
-      "bytes": 32892,
-      "sha256": "db9048c20748ccd1081cea97afb8150075139e01679fc376b282f267f0b95646"
+      "bytes": 34367,
+      "sha256": "a58e43d3971dba380cdd0a1006e86882d7938e06cd19b86cec1146832d0d1b39"
     },
     "publication/policy.json": {
       "bytes": 635,
@@ -11691,15 +11723,15 @@
     },
     "source/abstract/build.py": {
       "bytes": 3704,
-      "sha256": "b23507a759c5888265ddc29bef3312cdaa2ae7160aad45140caea69ff8ab93c1"
+      "sha256": "8cd7d011aacb872343e9f1f1c7bf4b98778068cb32c6e51c05ef7497f05bda10"
     },
     "source/abstract/content.json": {
-      "bytes": 3405,
-      "sha256": "8d05e094b41701eb510b5ba91c616ad4b0b69ff7146d27b6caeb7b4f02cfaf5f"
+      "bytes": 3336,
+      "sha256": "2e6fb319799c2ea4cc668d6a6841ec1797061480a8385ebb66351842a35712ef"
     },
     "source/presentation/build.mjs": {
-      "bytes": 17202,
-      "sha256": "37b4116a268764eb9a8597708376d544b78329c0f4f1351b61a739ae4023cf90"
+      "bytes": 17355,
+      "sha256": "d115121e96925cda0ff21c019e9a56ecb508f0273ed303f7a0a2555d0dcf1dee"
     },
     "source/thesis/README.md": {
       "bytes": 2008,
@@ -11726,8 +11758,8 @@
       "sha256": "0cf94551b2a99e3f25552969b0aad93a01331321cfb2a86b997949fa2e0fd95c"
     },
     "source/thesis/appendix/01-hdl-fpga/fpga-circuit-fundamentals.md": {
-      "bytes": 15218,
-      "sha256": "9b3f722e1bd443bddb05970bf515633da1b3c0c781bcc0031dbb23544e509f5d"
+      "bytes": 15216,
+      "sha256": "031c51a2bac588548aa0b9393eef8ac980424d801bea7c9a1b63e7d15dd43ad1"
     },
     "source/thesis/appendix/01-hdl-fpga/logic-rtl.md": {
       "bytes": 14957,
@@ -11814,8 +11846,8 @@
       "sha256": "7d7cd32c0d48db22f9e885c880cfb361e9514633ddad4035b1d00930ecac9043"
     },
     "source/thesis/appendix/03-linux/game-loop.md": {
-      "bytes": 4951,
-      "sha256": "a2512226d73a1a8030c42ca38fa31895fa4038ded426b093a7fcd04cac4070cf"
+      "bytes": 20023,
+      "sha256": "68792adaf63b383c91ffe14e40df1a5a18eb8ea3d039bfce71215aa3a69cad39"
     },
     "source/thesis/appendix/03-linux/graphics-software-stack.md": {
       "bytes": 5372,
@@ -11854,24 +11886,24 @@
       "sha256": "eb0c68b38486e8532884810b3078e74ca4431624be3e5e9f6d70456bf4569d8f"
     },
     "source/thesis/appendix/04-rasterix/command-clock-boundary.md": {
-      "bytes": 30094,
-      "sha256": "531faab92364cd3aa3b12465ce37762fae11b62621bd44672ddcbdf51ebdd743"
+      "bytes": 30097,
+      "sha256": "353fb4e683a4952c2250726741df53338ff9e2d51010a59d8e9872cbc94d508a"
     },
     "source/thesis/appendix/04-rasterix/commands.md": {
       "bytes": 12296,
       "sha256": "aec9f42323dea6908d4218fcdd6c18a1da9df7291209202332ac908b199122aa"
     },
     "source/thesis/appendix/04-rasterix/configuration-calculations.md": {
-      "bytes": 10823,
-      "sha256": "cfdf6e6179d0fb7c201cb930f04a12c7bf9cae68a64d34985c3a2b34bf5fa673"
+      "bytes": 10850,
+      "sha256": "c306c204473414b19da329f21032a7d70bdfd967528ef9cc5276e72f3a32ac97"
     },
     "source/thesis/appendix/04-rasterix/coordinates-edge-equations.md": {
       "bytes": 18454,
       "sha256": "1675071ae4cc543e7c41738db5532d61aa5b837851f340daebc90123143d89ea"
     },
     "source/thesis/appendix/04-rasterix/design-change-reasoning.md": {
-      "bytes": 20776,
-      "sha256": "48df0285a9453a7c0aec16eba79e24d0895c1216bf78b328ac22ed46d3e50d50"
+      "bytes": 20834,
+      "sha256": "6a04c9f03eef9299cc43d2ea9c84c46ed6949c07b153421ea93e6640e3e008f1"
     },
     "source/thesis/appendix/04-rasterix/fixed-point-color-math.md": {
       "bytes": 20976,
@@ -11882,8 +11914,8 @@
       "sha256": "5f83a6ebfc0e9932f26479f3977f13c9db5dfc069c00693c53466aca5c849ea4"
     },
     "source/thesis/appendix/04-rasterix/framebuffer-display.md": {
-      "bytes": 12204,
-      "sha256": "a797f46ef040973a29141329eaa0f4fbabfdf8256857c63318f5ceae1fb812ed"
+      "bytes": 15230,
+      "sha256": "605877491d4397292f34701bbfc4c6f4344999a83c5863ea0252033aac45ace3"
     },
     "source/thesis/appendix/04-rasterix/framebuffer-memory-display.md": {
       "bytes": 10328,
@@ -11898,8 +11930,8 @@
       "sha256": "2fb9eaa6b192872b3df1742da44b6475304a3282c670f5d9f2bfa91643c250be"
     },
     "source/thesis/appendix/04-rasterix/rasterix-integration.md": {
-      "bytes": 18555,
-      "sha256": "806082f341da0f2a697e8bad3f537076ed350dfd8373fcdc090e60db234bb7cc"
+      "bytes": 18549,
+      "sha256": "fe8f69918ab25d7f1fc8dfd9e7405f7b659ba0273310252ea069a510542155dc"
     },
     "source/thesis/appendix/04-rasterix/rasterix-source-map.md": {
       "bytes": 11667,
@@ -11922,8 +11954,8 @@
       "sha256": "6de3833e731bfab67fafdd78ba1e9f5f943751f442b427b2a27cdbc220ea8b3a"
     },
     "source/thesis/appendix/04-rasterix/signals-and-numbers.md": {
-      "bytes": 5824,
-      "sha256": "0bf25933c6ac99bddd830c05ca0e6156c1f572485da9a0abe46e500e9c8919a0"
+      "bytes": 5822,
+      "sha256": "93aaeaeea8934e6b38a29c2b92d8d8257173fa1fe745fa804ee0d5c74551b2b1"
     },
     "source/thesis/appendix/04-rasterix/textures-pixel-pipeline.md": {
       "bytes": 9878,
@@ -11931,55 +11963,55 @@
     },
     "source/thesis/appendix/04-rasterix/triangle-descriptors.md": {
       "bytes": 16780,
-      "sha256": "6c47a3f270101f72dbb26dc601b0cd952254e3697950f368802872f94bc76350"
+      "sha256": "156421d982d4c83c5961bc852d546eec4b7e5d8d77a7f5c14761ae14111601a6"
     },
     "source/thesis/appendix/04-rasterix/walkthrough.md": {
       "bytes": 9676,
       "sha256": "f7a33799c0b22dfa1362df55f2017f04d1ed3d224752dcbdf914eb828018673c"
     },
     "source/thesis/appendix/05-integration/board-reproduction.md": {
-      "bytes": 11849,
-      "sha256": "826fe62319bd228c514985b3bfd6210d4d62f1093d70265917eadacda5730d66"
+      "bytes": 35152,
+      "sha256": "5154021e5e332f986e88a96146a39db201adbc0665a2164864649fec4db73421"
     },
     "source/thesis/appendix/05-integration/change-history.md": {
-      "bytes": 7247,
-      "sha256": "9279d005338d09a64a6ea0589d4aa024b5625184f51942a35329bf09b68ad1da"
+      "bytes": 7236,
+      "sha256": "f6a6462f924d8a82c48e3f5dc2aa2c80ee6503063dc98f41a5c084023180a847"
     },
     "source/thesis/appendix/05-integration/command-dma-comparison.md": {
       "bytes": 43428,
-      "sha256": "78cb49ed8e5aa953724ac30d75850c55869851eaccaa34b2222d346e03478f56"
+      "sha256": "d05d8e522ecff1d26155c9cf397553e03b2ced1577e6b603e6f61a703f564ee3"
     },
     "source/thesis/appendix/05-integration/console-reproduction.md": {
-      "bytes": 25209,
-      "sha256": "4e9d59418823940e5541a19fa871218136e178223ae86a8469c4b2041d65ae1f"
+      "bytes": 25194,
+      "sha256": "7dce18f9d63b63373a19432975922c4cc221df37a1a728d7a09911a73edc73dd"
     },
     "source/thesis/appendix/05-integration/design-files-workflow.md": {
-      "bytes": 13484,
-      "sha256": "aff993ab5a868358b92f6ca237e0c2a3d5c536c9f9dfc55c1cb64e15fe8aa378"
+      "bytes": 13576,
+      "sha256": "0b5d64adcad07e182a59d74575a587c3b2704b7a18c86831bd03a774f2871adc"
     },
     "source/thesis/appendix/05-integration/design-questions.md": {
-      "bytes": 5430,
-      "sha256": "a5aa1d659b3fa9e95d4651a06e0a13daf2699f6c009853592299f76c9274ec34"
+      "bytes": 5487,
+      "sha256": "b2fb4e5647ba5bb4a582edb2727410b428dec11bb1649f56d1a7e4a86226eb29"
     },
     "source/thesis/appendix/05-integration/fifo-comparison.md": {
-      "bytes": 33045,
-      "sha256": "7f31b51390b07533a441c6e85d70f60e3d809e66c70204b246229993207c3f75"
+      "bytes": 33044,
+      "sha256": "67e863d816d5fea829e1910d9eff3f7c12495133d0e9d16044750bec22699b9b"
     },
     "source/thesis/appendix/05-integration/glossary.md": {
       "bytes": 11660,
       "sha256": "75589fad09eda6ef131783156a2d4f839446de88e2b3af7556841a98834fc123"
     },
     "source/thesis/appendix/05-integration/measurement.md": {
-      "bytes": 10663,
-      "sha256": "75c305d540bab167b082246f807c38e215750f01d7f1a89d77a36a3f1b8c9265"
+      "bytes": 25754,
+      "sha256": "98b5497f73ec28532886bb65b6303224f9812b6fd0ab005c88c1ea2d102523cb"
     },
     "source/thesis/appendix/05-integration/nexys-video-files.md": {
-      "bytes": 18632,
-      "sha256": "8bdb97d1df9620fb86565274e60b180dcd6cf74c1b39a02dedd4563e770c66c7"
+      "bytes": 18618,
+      "sha256": "b2f170284ca0d6c73bef2790793a63d8d5a9c4986b208b2061afc6ad17412a92"
     },
     "source/thesis/appendix/05-integration/repeating-experiments.md": {
       "bytes": 5302,
-      "sha256": "7caf8bf4f4e089ab81a0861b5780a507904ac86d7906918754fe90859d62a04a"
+      "sha256": "85256c70f02768500c50644b3079b02fcb57bc16d8801d9f3cced0172ff8f2cd"
     },
     "source/thesis/appendix/05-integration/sources.md": {
       "bytes": 8022,
@@ -11994,8 +12026,8 @@
       "sha256": "69a8c26b83d11eb4e5a638e8ad3d4ee00ea585080f63285752962a12369db67f"
     },
     "source/thesis/appendix/chapters.json": {
-      "bytes": 81105,
-      "sha256": "385b767eec43615d4f1795d976fa25c4da0c2b4eaee70d8037c963c607c7b7c6"
+      "bytes": 80991,
+      "sha256": "41e344470dec3ac3d0e3cf2855a65ae168515fb4e81c1fa839b451245d9c1c0c"
     },
     "source/thesis/appendix/references.md": {
       "bytes": 7141,
@@ -12006,8 +12038,8 @@
       "sha256": "2665d871bc20f7c98204c15a21704ef06eccf8b0825a4b1e6f49a40334eb0ecc"
     },
     "source/thesis/build.py": {
-      "bytes": 20342,
-      "sha256": "bcb753a495a8314368934eb0a97baae91b80a54a93483856eac9dc8698f40e37"
+      "bytes": 20456,
+      "sha256": "cd779d33352b23c94c7b3bbbb6e204c9f326206e14ceb2992a399ca631831bc0"
     },
     "source/thesis/figlib.py": {
       "bytes": 3411,
@@ -12189,6 +12221,38 @@
       "bytes": 3339,
       "sha256": "173a418e8efa010020fcc0b0c070197647c4ef529ef09b0a0c4ea54ea80cb619"
     },
+    "source/thesis/figs/guide-thesis-display-opportunity.png": {
+      "bytes": 133006,
+      "sha256": "9c5ca2aa83b803e3b1563c377ebd2a14625b6e3a70f06a4cae2f20eeb26d9dad"
+    },
+    "source/thesis/figs/guide-thesis-display-opportunity.svg": {
+      "bytes": 4323,
+      "sha256": "c11d83a1f9317dcb5219a2bde90afbd53d01dda8c0db2a6dc7ce922c6cbea875"
+    },
+    "source/thesis/figs/guide-thesis-dma-wait.png": {
+      "bytes": 270508,
+      "sha256": "8d727c41a6bd5d7e376985ca8c9ebc51cd792590ff74f7c0a938476920689f3e"
+    },
+    "source/thesis/figs/guide-thesis-dma-wait.svg": {
+      "bytes": 4692,
+      "sha256": "506117a10300f70ca749d82422f8feba6f297adc4cb1878b084b29a246c9ad42"
+    },
+    "source/thesis/figs/guide-thesis-transfer-time.png": {
+      "bytes": 151166,
+      "sha256": "cf29c8f67b35a9aaab0efd64fb80832965d1cbbe2ad3772adafbe6f2a41ed3b1"
+    },
+    "source/thesis/figs/guide-thesis-transfer-time.svg": {
+      "bytes": 2937,
+      "sha256": "9d06069ee63ad2e74013e51fdaf3ff660ce7451b9593bd3b2428e3b1d05db5e6"
+    },
+    "source/thesis/figs/guide-thesis-triangle.png": {
+      "bytes": 149663,
+      "sha256": "4c07d2398b820738688c7a13cb0eb83b1bbaf6e68f65cad9992fd641c0505c61"
+    },
+    "source/thesis/figs/guide-thesis-triangle.svg": {
+      "bytes": 4907,
+      "sha256": "43902456964e5376d6e25dd9ac85b2842831b6aa1521f5857287e15bfe4a9d6c"
+    },
     "source/thesis/figs/guide-timing-budget.png": {
       "bytes": 146166,
       "sha256": "185868f4e4c9da6e476846b9616f35ff1d64f8cfab1ad9f664e695799386156e"
@@ -12282,8 +12346,8 @@
       "sha256": "29971cf2b9a05b37918370d0b7f52c10212db49c43992964cfc0ea1065df1d58"
     },
     "source/thesis/本文.md": {
-      "bytes": 306413,
-      "sha256": "ae4abfabcecec4badfee1648f5b84b2ac3eb6c45f1afcf5d4b2863f80f996078"
+      "bytes": 285230,
+      "sha256": "f9230dc6eb5b9be139417f751ffae57b3c4edca790b4a1ee60ebe61b1c7706c8"
     },
     "tests/test_appendix_markdown.py": {
       "bytes": 6783,
@@ -12294,8 +12358,8 @@
       "sha256": "fc983f07180f667079694a2bacd5ab659314b65cfae75a29bbffb156d0ffab50"
     },
     "tools/docs/README.md": {
-      "bytes": 1470,
-      "sha256": "911277c96aa4c9f4098fb811ef107eab1338fdf8816fb2c7a14262e854d4e6fe"
+      "bytes": 1593,
+      "sha256": "f6f8bdce90e64ccb44d3219c685ddb2347e42ec77cf4db42c85b928b2a73e215"
     },
     "tools/docs/appendix_figures.py": {
       "bytes": 7939,
@@ -12308,6 +12372,10 @@
     "tools/docs/navigation.py": {
       "bytes": 2449,
       "sha256": "2ee6ef9d0dd69887f5556a349615679c641689134124f45ca35c13520ca427b6"
+    },
+    "tools/docs/thesis_figures.py": {
+      "bytes": 6023,
+      "sha256": "07e899178dc0b0496c8c81f55b4003303fbca1d0e7e76c04a37762c80d4cb85a"
     },
     "tools/publication/check.py": {
       "bytes": 8522,

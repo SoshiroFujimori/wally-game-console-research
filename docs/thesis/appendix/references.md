@@ -1,5 +1,5 @@
 <!-- appendix-content:start -->
-<a id="h3417"></a>
+<a id="h3610"></a>
 # 参考文献と実験記録
 <!-- appendix-content:end -->
 
@@ -9,13 +9,13 @@
 
 ## このページの目次
 
-- [外部資料と公開ソース](#h3419)
-- [本研究で保存した実験記録](#h3441)
+- [外部資料と公開ソース](#h3612)
+- [本研究で保存した実験記録](#h3634)
 
 <!-- appendix-content:start -->
 本文では、著者名や資料の略称と年などからなる参照記号を角括弧で示す。例えば[Harris26](#ref_harris26)はHarrisらの2026年の書籍を指す。刊行年を確認できない継続更新の資料では、年を推測して記号へ付けず、資料名と版の識別情報を示した。ソースの版は記載したコミットを基準とし、Webページの将来の更新とは区別する。
 
-<a id="h3419"></a>
+<a id="h3612"></a>
 ## 外部資料と公開ソース
 
 <a id="ref_console26"></a>
@@ -81,7 +81,7 @@
 <a id="ref_armaxi20"></a>
 [ArmAXI20] Arm, AMBA AXI and ACE Protocol Specification, ARM IHI 0022H, 2020, A3.2.1, A3.3, A6.1. https://developer.arm.com/-/media/Arm%20Developer%20Community/PDF/IHI0022H_amba_axi_protocol_spec.pdf
 
-<a id="h3441"></a>
+<a id="h3634"></a>
 ## 本研究で保存した実験記録
 
 E1〜E7は本研究の測定資料を区別する識別子であり、外部文献の著者・年を表す記号ではない。日付、条件、ログを併記し、本文の結果と対応させる。

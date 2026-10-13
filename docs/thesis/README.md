@@ -27,17 +27,26 @@ Word版とGitHub版は同じ72章を収録しています。最初から全体�
 | RasterIXと描画 | [第IV部](appendix/04-rasterix/README.md#part_iv) | 描画API、命令、FIFO、画素の生成、テクスチャ、画像メモリ、表示 |
 | ボード対応と実験の再現 | [第V部](appendix/05-integration/README.md#part_v) | Nexys Video対応、接続の実装、SD起動、実験条件、実機確認 |
 
+## 実装の詳しいトピックを読む
+
+| 知りたい内容 | 技術付録の入口 |
+|---|---|
+| 描画の呼び出し統合、変更領域の描画、二枚の画像の履歴 | [第33章 ゲームの処理](appendix/03-linux/game-loop.md) |
+| 描画方式と完了待ちを変えた実験の条件、結果、解釈 | [第66章 性能の測定](appendix/05-integration/measurement.md) |
+| Nexys Videoの端子、クロック、リセット、DDR3への対応 | [第59章 設計の再現](appendix/05-integration/board-reproduction.md)・[第61章 ファイルごとの実装](appendix/05-integration/nexys-video-files.md) |
+| HDMI端子から送るDVI映像と、取り込み時の縦横比 | [第40章 画像の保存と表示](appendix/04-rasterix/framebuffer-display.md) |
+
 ## 目的に合わせて読む
 
 仕組みを理解したい場合は、まず[本文第2章](本文.md#ch_2)を読んでください。横位置100の白いボールを103へ動かす例で、位置の変数、画像の色、表示される場所が、どの順に変わるかを図で追います。
 
 次に[第3章](本文.md#ch_3)で、計算する回路と値を覚える回路を組み合わせ、FPGAへ実装する意味を確認します。[第4章](本文.md#ch_4)では、回路を作る作業と、CPUでゲームを実行する作業を分けています。
 
-APB、FIFO、非同期FIFOが分からない場合は、[本文7.1節](本文.md#s_7_1)から順に読みます。番地を指定して値を書くことから始め、三語分の小さなFIFO、二つのクロックをまたぐ問題へ進みます。[技術付録第44章](appendix/04-rasterix/command-clock-boundary.md#ch_i)は、その後に内部の管理方法や実装の設定を詳しく確認するために使います。
+APB、FIFO、非同期FIFOが分からない場合は、[本文6.1節](本文.md#s_6_1)から順に読みます。番地を指定して値を書くことから始め、三語分の小さなFIFO、二つのクロックをまたぐ問題へ進みます。[技術付録第44章](appendix/04-rasterix/command-clock-boundary.md#ch_i)は、その後に内部の管理方法や実装の設定を詳しく確認するために使います。
 
-設計を作り直す場合は、[第14章](本文.md#ch_14)を入口として、[技術付録第61章](appendix/05-integration/nexys-video-files.md#ch_e)のボード対応、[技術付録第42章](appendix/04-rasterix/rasterix-integration.md#ch_g)のRasterIX接続、[技術付録第63章](appendix/05-integration/console-reproduction.md#ch_m)の実行手順を使います。
+設計を作り直す場合は、[第13章](本文.md#ch_13)を入口として、[技術付録第61章](appendix/05-integration/nexys-video-files.md#ch_e)のボード対応、[技術付録第42章](appendix/04-rasterix/rasterix-integration.md#ch_g)のRasterIX接続、[技術付録第63章](appendix/05-integration/console-reproduction.md#ch_m)の実行手順を使います。
 
-2026年10月8日の改訂では、FIFO比較実験と公式更新後の検証を反映しました。[本文13.10節](本文.md#s_13_10)から、1語方式・16語FIFO・512語FIFOの違い、待ち時間、資源、採用判断を読めます。回路や計測を詳しく追う場合は[技術付録第71章](appendix/05-integration/fifo-comparison.md#ch_29)へ進んでください。
+[本文12.5節](本文.md#s_12_5)から、1語方式・16語FIFO・512語FIFOの違い、待ち時間、資源、採用判断を読めます。回路や計測を詳しく追う場合は[技術付録第71章](appendix/05-integration/fifo-comparison.md#ch_29)へ進んでください。
 
 従来の実験E1〜E5とその固定版はそのまま保持し、新しい記録を[実験E6](再現資料/実験記録/E6/README.md)へ追加しました。[目的と方法](再現資料/実験記録/E6/report/実験の目的と方法.md)、[結果と判断](再現資料/実験記録/E6/report/結果と判断.md)もMarkdownで読めます。E6の通常版は製品の公開コミット`261832d48832dd6e26c4971ab8893ce61200688b`から取得できます。技術付録71.17節に取得手順を示し、実験時の親コミットと差分も履歴として保存しています。大きいテクスチャの描画問題と、映像認識の不安定さも未解決として記載しています。説明用の数値・回路例と実測値を区別しています。
 

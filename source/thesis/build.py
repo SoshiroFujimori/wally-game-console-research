@@ -120,7 +120,8 @@ for name in ['Caption']:
 footer=sec.footer.paragraphs[0];footer.clear();footer.alignment=WD_ALIGN_PARAGRAPH.CENTER;footer.paragraph_format.first_line_indent=Pt(0)
 field=OxmlElement('w:fldSimple');field.set(qn('w:instr'),'PAGE');footer._p.append(field)
 doc.core_properties.title=TITLE;doc.core_properties.author='';doc.core_properties.subject='Wallyと公式RasterIXを用いたFPGAゲーム機の設計と検証'
-for t,style in [('2026年度 卒業研究論文' if NAME=='本文' else '卒業研究論文 技術付録','Subtitle'),(TITLE.replace('ための技術付録','ための\n技術付録'),'Title'),('所属・学籍情報 非公開\n研究者（非公開）','Subtitle'),('指導教員 非公開','Subtitle'),('2026年10月11日 改訂','Subtitle')]:
+revision_date='2026年10月13日'
+for t,style in [('2026年度 卒業研究論文' if NAME=='本文' else '卒業研究論文 技術付録','Subtitle'),(TITLE.replace('ための技術付録','ための\n技術付録'),'Title'),('所属・学籍情報 非公開\n研究者（非公開）','Subtitle'),('指導教員 非公開','Subtitle'),(revision_date+' 改訂','Subtitle')]:
  p=doc.add_paragraph(t,style);p.alignment=WD_ALIGN_PARAGRAPH.CENTER;p.paragraph_format.first_line_indent=Pt(0);p.paragraph_format.space_before=Pt(30);p.paragraph_format.space_after=Pt(24)
 
 if NAME=='本文' and tokens and tokens[0]['kind']=='para' and tokens[0]['text'].startswith('公開用資料では'):
@@ -139,7 +140,7 @@ for entry in toc:
  size=OxmlElement('w:sz');size.set(qn('w:val'),'21' if entry['level']==1 else '19');pr.append(size)
  if entry['level']==1:pr.append(OxmlElement('w:b'))
  r.append(pr);tt=OxmlElement('w:t');tt.text=entry['text'];r.append(tt);h.append(r);p._p.append(h)
- p.add_run('\t'+str(pages.get(entry['text'],''))).font.size=Pt(9.5)
+ p.add_run('\t'+str(pages.get(entry['anchor'],pages.get(entry['text'],'')))).font.size=Pt(9.5)
 
 bid=1
 def bookmark(p,name):
@@ -232,7 +233,7 @@ def table(t):
   for ci,(cell,value) in enumerate(zip(cells,row)):
    cell.width=Mm(widths[ci]);cell.vertical_alignment=WD_CELL_VERTICAL_ALIGNMENT.CENTER
    p=cell.paragraphs[0];pf=p.paragraph_format;pf.first_line_indent=Pt(0);pf.space_before=Pt(1 if compact_y9 else 3);pf.space_after=Pt(1 if compact_y9 else 3);pf.line_spacing=Pt(12.5 if compact_y9 else 13.5)
-   pf.keep_with_next=(ri==0 or (small and ri<len(rows)-1))
+   pf.keep_with_next=(ri==0 or (small and ri<len(rows)-1) or (NAME=='本文' and t['text'].startswith('表5.2 ')))
    inline(p,value)
    for r in p.runs:
     r.font.size=Pt(9.5);r.bold=(ri==0)

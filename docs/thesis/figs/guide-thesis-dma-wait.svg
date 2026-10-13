@@ -1,0 +1,38 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="845" viewBox="0 0 1200 845" role="img" aria-labelledby="title desc">
+<title id="title">命令データが画像データの返却をふさぐ場合</title><desc id="desc">上は待ちの依存関係。下はDMA応答をFIFOへ引き取り共有の経路を空ける考え方。</desc>
+<defs><marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z" fill="#1673C3"/></marker></defs>
+<rect width="1200" height="100%" fill="white"/>
+<g font-family="Noto Sans CJK JP,Noto Sans JP,Meiryo,Yu Gothic,sans-serif" fill="#231F20">
+<text x="40" y="48" font-size="29" text-anchor="start" font-weight="bold">命令データが画像データの返却をふさぐ場合</text>
+<text x="45" y="105" font-size="24" text-anchor="start" font-weight="bold">① 停止する条件：矢印の先が進むのを待っている</text>
+<rect x="45" y="160" width="310" height="125" fill="#E5EBF8" stroke="#231F20" stroke-width="2" stroke-dasharray=""/>
+<text x="200.0" y="214.4" font-size="24" text-anchor="middle" font-weight="normal">描画側</text>
+<text x="200.0" y="247.4" font-size="24" text-anchor="middle" font-weight="normal">画像データが必要</text>
+<rect x="445" y="160" width="310" height="125" fill="#E5EBF8" stroke="#231F20" stroke-width="2" stroke-dasharray=""/>
+<text x="600.0" y="214.4" font-size="24" text-anchor="middle" font-weight="normal">共有の応答経路</text>
+<text x="600.0" y="247.4" font-size="24" text-anchor="middle" font-weight="normal">命令データが残る</text>
+<rect x="845" y="160" width="310" height="125" fill="#E5EBF8" stroke="#231F20" stroke-width="2" stroke-dasharray=""/>
+<text x="1000.0" y="214.4" font-size="24" text-anchor="middle" font-weight="normal">命令DMA</text>
+<text x="1000.0" y="247.4" font-size="24" text-anchor="middle" font-weight="normal">次の命令を渡せない</text>
+<polyline points="355,205 445,205" fill="none" stroke="#1673C3" stroke-width="3" stroke-dasharray="" marker-end="url(#arrow)"/>
+<polyline points="755,205 845,205" fill="none" stroke="#1673C3" stroke-width="3" stroke-dasharray="" marker-end="url(#arrow)"/>
+<polyline points="1000,285 1000,345 200,345 200,285" fill="none" stroke="#1673C3" stroke-width="3" stroke-dasharray="" marker-end="url(#arrow)"/>
+<text x="600" y="385" font-size="24" text-anchor="middle" font-weight="normal">描画側が進めないため、命令を受け取る側も進めない。</text>
+<text x="45" y="465" font-size="24" text-anchor="start" font-weight="bold">② 実験用の変更：命令の返却データを先に引き取る</text>
+<rect x="45" y="515" width="300" height="130" fill="#E5EBF8" stroke="#231F20" stroke-width="2" stroke-dasharray=""/>
+<text x="195.0" y="571.9" font-size="24" text-anchor="middle" font-weight="normal">共有の応答経路</text>
+<text x="195.0" y="604.9" font-size="24" text-anchor="middle" font-weight="normal">命令の返却データ</text>
+<rect x="450" y="505" width="310" height="150" fill="#CCD9F1" stroke="#231F20" stroke-width="2" stroke-dasharray=""/>
+<text x="605.0" y="556.05" font-size="23" text-anchor="middle" font-weight="normal">応答用FIFO</text>
+<text x="605.0" y="588.05" font-size="23" text-anchor="middle" font-weight="normal">要求するまとまりを</text>
+<text x="605.0" y="620.05" font-size="23" text-anchor="middle" font-weight="normal">全部保存できる空き</text>
+<rect x="875" y="515" width="280" height="130" fill="#E5EBF8" stroke="#231F20" stroke-width="2" stroke-dasharray=""/>
+<text x="1015.0" y="572.2" font-size="22" text-anchor="middle" font-weight="normal">命令の受け取り側</text>
+<text x="1015.0" y="603.2" font-size="22" text-anchor="middle" font-weight="normal">まだ待っていてもよい</text>
+<polyline points="345,575 450,575" fill="none" stroke="#1673C3" stroke-width="3" stroke-dasharray="" marker-end="url(#arrow)"/>
+<polyline points="760,575 875,575" fill="none" stroke="#1673C3" stroke-width="3" stroke-dasharray="6 5" marker-end="url(#arrow)"/>
+<text x="600" y="714" font-size="24" text-anchor="middle" font-weight="normal">命令の返却データを経路から退かし、画像データを返せるようにする。</text>
+<text x="600" y="754" font-size="23" text-anchor="middle" font-weight="normal">下段の矢印はデータの移動。破線は受け取り再開後の転送。</text>
+<text x="40" y="821" font-size="19" text-anchor="start" font-weight="normal">機能シミュレーションで確認した待ちの関係。実機が停止した原因まで特定する図ではない。</text>
+</g>
+</svg>

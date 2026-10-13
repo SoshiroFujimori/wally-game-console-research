@@ -217,7 +217,7 @@ RasterIX_IFは、画面の一部の帯だけを内部Framebufferへ描く。三�
 
 Threaded構成では、CPU側が次のdisplay listを作る間に、前のdisplay listを転送・実行できるよう、各帯について二組のbufferを使う。これは画面のfront bufferとback bufferとは別である。display list bufferは命令列を保存し、color bufferは完成画素を保存する。
 
-一組目と二組目の意味は、同じ帯の命令列を交互に作るためであり、帯が十本あるという意味ではない。五帯×二組に転送用領域を加えた構成は[技術付録第43章](configuration-calculations.md#ch_h)と[本文第9章](../../本文.md#ch_9)で説明した。
+一組目と二組目の意味は、同じ帯の命令列を交互に作るためであり、帯が十本あるという意味ではない。五帯×二組に転送用領域を加えた構成は[技術付録第43章](configuration-calculations.md#ch_h)と[本文第8章](../../本文.md#ch_8)で説明した。
 
 <a id="s_q_16"></a>
 ## 49.16 CPU側で異常を切り分ける方法
