@@ -45,6 +45,6 @@
 <text x="630" y="392" font-size="27" text-anchor="start" font-weight="normal">4より大きい → 外側</text>
 <text x="630" y="485" font-size="24" text-anchor="start" font-weight="normal">斜めの辺では x + y = 4。</text>
 <text x="630" y="518" font-size="24" text-anchor="start" font-weight="normal">辺のどちら側かを判定する。</text>
-<text x="40" y="626" font-size="19" text-anchor="start" font-weight="normal">三角形の内外を調べる説明例。画素のどこを判定位置に使うかは、次の節で説明する。</text>
+<text x="40" y="626" font-size="19" text-anchor="start" font-weight="normal">三角形の内外を調べる説明例。画素の判定位置と境界の規則は、39.14節で説明する。</text>
 </g>
 </svg>

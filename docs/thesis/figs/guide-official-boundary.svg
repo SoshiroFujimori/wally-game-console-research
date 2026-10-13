@@ -1,0 +1,32 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="650" viewBox="0 0 1200 650" role="img" aria-labelledby="title desc">
+<title id="title">公式RasterIXを変えず、接続部分をWallyに合わせる</title><desc id="desc">上段はCPUが実行するソフトウェア、下段はFPGA内の回路。矢印は描画命令の流れ。</desc>
+<defs><marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z" fill="#1673C3"/></marker></defs>
+<rect width="1200" height="100%" fill="white"/>
+<g font-family="Noto Sans CJK JP,Noto Sans JP,Meiryo,Yu Gothic,sans-serif" fill="#231F20">
+<text x="40" y="48" font-size="29" text-anchor="start" font-weight="bold">公式RasterIXを変えず、接続部分をWallyに合わせる</text>
+<text x="40" y="112" font-size="26" text-anchor="start" font-weight="bold">CPUが実行するソフトウェア</text>
+<rect x="40" y="155" width="370" height="100" fill="#E5EBF8" stroke="#231F20" stroke-width="2" stroke-dasharray=""/>
+<text x="225.0" y="196.45" font-size="27" text-anchor="middle" font-weight="normal">公式RasterIX</text>
+<text x="225.0" y="232.45" font-size="27" text-anchor="middle" font-weight="normal">描画ライブラリ</text>
+<rect x="600" y="155" width="370" height="100" fill="#CCD9F1" stroke="#231F20" stroke-width="2" stroke-dasharray=""/>
+<text x="785.0" y="196.6" font-size="26" text-anchor="middle" font-weight="normal">WallyBusConnector</text>
+<text x="785.0" y="231.6" font-size="26" text-anchor="middle" font-weight="normal">Wally側の接続処理</text>
+<polyline points="410,205 600,205" fill="none" stroke="#1673C3" stroke-width="3" stroke-dasharray="" marker-end="url(#arrow)"/>
+<text x="505" y="180" font-size="22" text-anchor="middle" font-weight="normal">送信を依頼</text>
+<polyline points="970,205 1120,205 1120,425 970,425" fill="none" stroke="#1673C3" stroke-width="3" stroke-dasharray="" marker-end="url(#arrow)"/>
+<text x="1045" y="310" font-size="23" text-anchor="middle" font-weight="normal">MMIOの</text>
+<text x="1045" y="342" font-size="23" text-anchor="middle" font-weight="normal">書き込み</text>
+<text x="40" y="338" font-size="26" text-anchor="start" font-weight="bold">FPGA内で働く回路</text>
+<rect x="600" y="375" width="370" height="100" fill="#CCD9F1" stroke="#231F20" stroke-width="2" stroke-dasharray=""/>
+<text x="785.0" y="416.6" font-size="26" text-anchor="middle" font-weight="normal">rasterix_apb と FIFO</text>
+<text x="785.0" y="451.6" font-size="26" text-anchor="middle" font-weight="normal">受け取り方をつなぐ</text>
+<rect x="40" y="375" width="370" height="100" fill="#E5EBF8" stroke="#231F20" stroke-width="2" stroke-dasharray=""/>
+<text x="225.0" y="416.6" font-size="26" text-anchor="middle" font-weight="normal">公式RasterIX_IF</text>
+<text x="225.0" y="451.6" font-size="26" text-anchor="middle" font-weight="normal">命令を受け取って描画</text>
+<polyline points="600,425 410,425" fill="none" stroke="#1673C3" stroke-width="3" stroke-dasharray="" marker-end="url(#arrow)"/>
+<text x="505" y="399" font-size="22" text-anchor="middle" font-weight="normal">命令を渡す</text>
+<text x="600" y="544" font-size="25" text-anchor="middle" font-weight="normal">薄い青：既存の公式設計　濃い青：本研究で用意した接続</text>
+<text x="600" y="587" font-size="24" text-anchor="middle" font-weight="normal">矢印は描画命令の流れ。画像メモリと表示は別の経路で扱う。</text>
+<text x="40" y="626" font-size="19" text-anchor="start" font-weight="normal">図形から作る命令の内容と、装置へ運ぶ方法を分担する。</text>
+</g>
+</svg>

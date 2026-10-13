@@ -62,3 +62,9 @@ MMIO mapping失敗、ID不一致、response timeout、display timeoutはC++ exce
 8. CommandParser、Rasterizer、PerFragmentPipeline。
 
 各段階でinput型、output型、所有するstate、完了条件を書く。関数名だけを矢印で結ばず、一つの四角形について実際の頂点値とword数を追う。
+
+### 32.10 描画準備を実行するCPUとスレッド
+
+`breakout.cpp`は、帯ごとの命令を管理する`ThreadedVertexTransformer`に、実行方法として`NoThreadRunner`を渡す。この組み合わせでは、描画準備を別のOSスレッドへ任せず、ゲームからの呼び出しと同じ実行の流れの中で処理する。[RasterIX][Console26]
+
+この構成により、複数の帯へ命令を配る公式の処理を利用しながら、一つのCPUでゲームと描画準備を進める。図形の準備と命令生成に使う時間は、そのCPUの処理時間に含まれる。第66章では、この時間を転送や表示切り替え待ちと分けて測定する。

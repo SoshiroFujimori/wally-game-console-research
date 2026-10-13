@@ -23,7 +23,7 @@
 <a id="s_b_1"></a>
 ## 41.1 命令の書き込みを一行ずつ読む
 
-次は`rasterix_apb.sv`の抜粋であり、単独で完結するモジュールではない。接続全体は[論文本文6.2〜6.8節](../../本文.md#s_6_2)で説明した。
+次は`rasterix_apb.sv`の抜粋であり、単独で完結するモジュールではない。接続全体は[論文本文第6章](../../本文.md#ch_6)と本書[第8章](../01-hdl-fpga/cdc-protocols.md#ch_g_cdc_protocols)で説明した。
 
 ```systemverilog
 assign CmdValid = CommandWrite;
@@ -53,7 +53,7 @@ assign WriteData = PADDR[2] ? PWDATA[63:32] : PWDATA[31:0];
 
 ![図41.1 64 bitの書き込みデータから32 bitを選ぶ位置](../../figs/data-lanes.png)
 
-PSTRBは各byteが有効かを示す。選ぶ32 bitの4 byteすべてが有効であることも、[論文本文6.7節](../../本文.md#s_6_7)のWordWriteの式で確かめる。ソフトウェアの32 bit単位・4 byte境界という約束と、この回路の選択を対応させる。
+PSTRBは各byteが有効かを示す。選ぶ32 bitの4 byteすべてが有効であることも、[31.9節](../03-linux/mmio-ordering.md#s_app_31_9)のWordWriteの式で確かめる。ソフトウェアの32 bit単位・4 byte境界という約束と、この回路の選択を対応させる。
 
 <a id="s_b_3"></a>
 ## 41.3 三つの命令データを送る具体例

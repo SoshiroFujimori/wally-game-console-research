@@ -1,11 +1,29 @@
 #!/usr/bin/env python3
-"""Generate worked-example figures for the main thesis."""
+"""Generate worked-example figures for the thesis and technical appendix."""
 import argparse
 import figures
 from figures import Figure, BLUE, INK, LIGHT, MID
 
 
 def generate():
+    f = Figure('公式RasterIXを変えず、接続部分をWallyに合わせる',
+               '上段はCPUが実行するソフトウェア、下段はFPGA内の回路。矢印は描画命令の流れ。', 650)
+    f.text(40, 112, 'CPUが実行するソフトウェア', 26, weight='bold')
+    f.box(40, 155, 370, 100, ['公式RasterIX', '描画ライブラリ'], size=27)
+    f.box(600, 155, 370, 100, ['WallyBusConnector', 'Wally側の接続処理'], MID, size=26)
+    f.line([(410, 205), (600, 205)], True)
+    f.text(505, 180, '送信を依頼', 22, 'middle')
+    f.line([(970, 205), (1120, 205), (1120, 425), (970, 425)], True)
+    f.text(1045, 310, ['MMIOの', '書き込み'], 23, 'middle')
+    f.text(40, 338, 'FPGA内で働く回路', 26, weight='bold')
+    f.box(600, 375, 370, 100, ['rasterix_apb と FIFO', '受け取り方をつなぐ'], MID, size=26)
+    f.box(40, 375, 370, 100, ['公式RasterIX_IF', '命令を受け取って描画'], size=26)
+    f.line([(600, 425), (410, 425)], True)
+    f.text(505, 399, '命令を渡す', 22, 'middle')
+    f.text(600, 544, '薄い青：既存の公式設計　濃い青：本研究で用意した接続', 25, 'middle')
+    f.text(600, 587, '矢印は描画命令の流れ。画像メモリと表示は別の経路で扱う。', 24, 'middle')
+    f.save('official-boundary.svg', '図形から作る命令の内容と、装置へ運ぶ方法を分担する。')
+
     f = Figure('三本の辺の内側を、位置の数値から選ぶ',
                'xとyが0以上でx+yが4以下になる三角形。Pは内側、Qは外側。', 650)
     x0, y0, step = 100, 125, 86
@@ -28,7 +46,7 @@ def generate():
     f.text(630, 160, ['P = (1.5, 1.5)', '1.5 + 1.5 = 3', '4より小さい → 内側'], 27)
     f.text(630, 320, ['Q = (3.5, 1.5)', '3.5 + 1.5 = 5', '4より大きい → 外側'], 27)
     f.text(630, 485, ['斜めの辺では x + y = 4。', '辺のどちら側かを判定する。'], 24)
-    f.save('thesis-triangle.svg', '三角形の内外を調べる説明例。画素のどこを判定位置に使うかは、次の節で説明する。')
+    f.save('thesis-triangle.svg', '三角形の内外を調べる説明例。画素の判定位置と境界の規則は、39.14節で説明する。')
 
     f = Figure('送信時間の一部が、APBで完了を待つ時間',
                'CPUが送信処理を実行する全区間と、そこに含まれるAPB待ち周期を分ける。', 595)
@@ -90,4 +108,4 @@ if __name__ == '__main__':
     parser.add_argument('--check', action='store_true')
     figures.CHECK = parser.parse_args().check
     generate()
-    print(('Checked' if figures.CHECK else 'Generated') + ' four main-thesis SVG figures.')
+    print(('Checked' if figures.CHECK else 'Generated') + ' five thesis and appendix SVG figures.')

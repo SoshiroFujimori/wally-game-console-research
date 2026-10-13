@@ -20,6 +20,7 @@
 - [32.7 `RIXGL` instanceと初期化](#s_25_7)
 - [32.8 errorの伝わり方](#s_25_8)
 - [32.9 sourceを追う具体的な入口](#s_25_9)
+- [32.10 描画準備を実行するCPUとスレッド](#s_app_32_10)
 
 <!-- appendix-content:start -->
 描画関数を呼んだ後には、CPU上のライブラリが頂点や色を整理し、回路が読める数値列を用意する処理が続く。この章は、その途中で何が保存され、どの関数が次の処理へ渡すかをコードの層ごとに説明する。
@@ -93,6 +94,13 @@ MMIO mapping失敗、ID不一致、response timeout、display timeoutはC++ exce
 8. CommandParser、Rasterizer、PerFragmentPipeline。
 
 各段階でinput型、output型、所有するstate、完了条件を書く。関数名だけを矢印で結ばず、一つの四角形について実際の頂点値とword数を追う。
+
+<a id="s_app_32_10"></a>
+## 32.10 描画準備を実行するCPUとスレッド
+
+`breakout.cpp`は、帯ごとの命令を管理する`ThreadedVertexTransformer`に、実行方法として`NoThreadRunner`を渡す。この組み合わせでは、描画準備を別のOSスレッドへ任せず、ゲームからの呼び出しと同じ実行の流れの中で処理する。[RasterIX](../references.md#ref_rasterix)[Console26](../references.md#ref_console26)
+
+この構成により、複数の帯へ命令を配る公式の処理を利用しながら、一つのCPUでゲームと描画準備を進める。図形の準備と命令生成に使う時間は、そのCPUの処理時間に含まれる。[第66章](../05-integration/measurement.md#ch_g_measurement)では、この時間を転送や表示切り替え待ちと分けて測定する。
 <!-- appendix-content:end -->
 
 ---
