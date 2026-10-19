@@ -21,7 +21,7 @@ GitHubの表示を軽くするため、内容を省略せず、章ごとのペ�
 | 内容 | 入口 |
 |---|---|
 | 図で仕組みと主な結果を説明する1ページの概要 | [アブスト](docs/abstract/アブスト_主要事項.md) / [Word版](docs/abstract/アブスト_主要事項.docx) |
-| 6分の説明に絞った8枚のスライドと発表原稿 | [スライドと原稿](docs/presentation/中間発表_主要事項.md) / [PowerPoint版](docs/presentation/中間発表_主要事項.pptx) |
+| CPUの読み書きからゲーム機への拡張を説明する12枚のスライドと発表原稿 | [スライドと原稿](docs/presentation/中間発表_主要事項.md) / [PowerPoint版](docs/presentation/中間発表_主要事項.pptx) |
 | 目的、仕組み、設計、実験結果 | [論文本文](docs/thesis/本文.md) / [Word版](docs/thesis/本文.docx) |
 | 基礎知識、図・数値例、HDL、Wally、Linux、RasterIX、実装・再現 | [技術付録・総目次](docs/thesis/技術付録.md) / [Word版（72章）](docs/thesis/技術付録.docx) |
 | FIFO三方式の比較と更新版の検証 | [E6の結果と判断](docs/thesis/再現資料/実験記録/E6/report/結果と判断.md) |

@@ -1,126 +1,442 @@
 import fs from 'node:fs/promises';
 import path from 'node:path';
-import {pathToFileURL} from 'node:url';
-import {spawnSync} from 'node:child_process';
-const [root,workspace] = process.argv.slice(2);
-if(!root || !workspace) throw Error('Use: build.mjs RESEARCH_ROOT PRIVATE_BUILD_DIRECTORY');
-const {Presentation,PresentationFile}=await import(pathToFileURL(path.join(process.env.RUNTIME_NODE_MODULES,'@oai/artifact-tool/dist/artifact_tool.mjs')).href);
-const {finalizePresentation}=await import(pathToFileURL(path.join(process.env.PRESENTATION_SKILL,'container_tools/artifact_tool_utils.mjs')).href);
-await fs.mkdir(workspace,{recursive:true});
-await fs.mkdir(path.join(workspace,'final'),{recursive:true});
-const P=Presentation.create({slideSize:{width:1280,height:720}});
-const C={ink:'#231F20',blue:'#1673C3',light:'#E5EBF8',mid:'#CCD9F1',block:'#77A3DC',white:'#FFFFFF',gray:'#D8D8D8'};
-const font='Meiryo';
-let serial=0;
-function text(s,v,x,y,w,h,size=28,bold=false,color=C.ink,align='left'){
- const o=s.shapes.add({geometry:'textbox',name:'text-'+(++serial),position:{left:x,top:y,width:w,height:h},fill:'none',line:{fill:'none',width:0}});
- o.text=v;o.text.style={typeface:font,fontSize:size,bold,color,alignment:align,verticalAlignment:'middle',wrap:'square'};o.text.insets=0;return o;
-}
-function box(s,v,x,y,w,h,fill=C.light,size=28){
- const o=s.shapes.add({geometry:'rect',name:'circuit-'+(++serial),position:{left:x,top:y,width:w,height:h},fill,line:{fill:C.ink,width:2}});
- if(v)text(s,v,x+12,y+6,w-24,h-12,size,false,C.ink,'center');return o;
-}
-function line(s,x1,y1,x2,y2,color=C.ink,arrow=false){
- const left=Math.min(x1,x2),top=Math.min(y1,y2),w=Math.max(1,Math.abs(x2-x1)),h=Math.max(1,Math.abs(y2-y1));
- s.shapes.add({geometry:'custom',name:'wire-'+(++serial),position:{left,top,width:w,height:h},fill:'none',line:{fill:color,width:2.2},customPaths:[{width:w,height:h,commands:[{moveTo:{x:x1-left,y:y1-top}},{lineTo:{x:x2-left,y:y2-top}}]}]});
- if(arrow){const dx=(x2-x1)/Math.hypot(x2-x1,y2-y1),dy=(y2-y1)/Math.hypot(x2-x1,y2-y1);const pts=[[x2,y2],[x2-12*dx+5*dy,y2-12*dy-5*dx],[x2-12*dx-5*dy,y2-12*dy+5*dx]];poly(s,pts,color,color);}
-}
-function poly(s,pts,fill=C.white,stroke=C.ink){const xs=pts.map(p=>p[0]),ys=pts.map(p=>p[1]);const l=Math.min(...xs),t=Math.min(...ys),w=Math.max(...xs)-l,h=Math.max(...ys)-t;return s.shapes.add({geometry:'custom',name:'logic-'+(++serial),position:{left:l,top:t,width:w,height:h},fill,line:{fill:stroke,width:2},customPaths:[{width:w,height:h,commands:[{moveTo:{x:pts[0][0]-l,y:pts[0][1]-t}},...pts.slice(1).map(p=>({lineTo:{x:p[0]-l,y:p[1]-t}})),{close:{}}]}]});}
-function and(s,x,y){s.shapes.add({geometry:'custom',name:'and-gate-'+(++serial),position:{left:x,top:y,width:66,height:64},fill:C.white,line:{fill:C.ink,width:2},customPaths:[{width:66,height:64,commands:[{moveTo:{x:0,y:0}},{lineTo:{x:32,y:0}},{cubicBezTo:{x1:76,y1:0,x2:76,y2:64,x:32,y:64}},{lineTo:{x:0,y:64}},{close:{}}]}]});line(s,x-30,y+15,x,y+15);line(s,x-30,y+49,x,y+49);line(s,x+66,y+32,x+100,y+32);}
-const outline=[];
-function slide(title,seconds,notes){const s=P.slides.add();s.background.fill=C.white;text(s,title,64,40,1140,68,40,true);text(s,String(P.slides.items.length),1192,668,28,28,18,false,C.ink,'right');s.speakerNotes.text=`想定時間：${seconds}秒\n\n${notes}`;outline.push({title,seconds,notes});return s;}
-const sources='根拠：docs/thesis/本文.md 第5〜10章、第12章、第15章。実験記録 E1、E6。製品 https://github.com/SoshiroFujimori/wally-game-console/tree/261832d48832dd6e26c4971ab8893ce61200688b 。';
-let s=slide('FPGAを用いた二次元ゲーム機の設計と実装',25,'公開CPUであるWallyに、画面を描く回路を接続し、ブロック崩しを動かすゲーム機を作りました。目的は、Wallyに周辺機能を追加する学習者が、接続方法と確認方法を参照できる例を示すことです。今日は、基板の中に何を作り、どう画面を出し、何を確かめたかを説明します。\n'+sources);
-text(s,'公開CPUに描画機能を追加し、\nブロック崩しを動かす',86,205,1060,155,49,true);
-text(s,'Wallyの学習者が参照できる接続設計と動作例',86,442,1080,90,31);
-text(s,'Wally：CPUの公開設計　　RasterIX：描画回路の公開設計',86,586,1080,48,25);
-s=slide('FPGAボードに回路を実装する',35,'FPGAボードには、FPGAチップのほかにメモリやSDカードスロット、HDMI端子があります。FPGAには、論理ゲートや記憶素子の接続を設定して、目的に合った回路を実装できます。図のゲートはそのイメージです。周辺の部品そのものをFPGAの中に作るのではなく、その部品を操作する回路を中に作ります。\n'+sources);
-box(s,'',92,185,1096,410,C.white);text(s,'Nexys Video ボード',112,552,390,36,24);
-for(const [v,x] of [['SDカード',138],['DDR3メモリ',497],['HDMI端子',856]]){box(s,v,x,206,282,62,C.white,28);line(s,x+141,268,x+141,330);}
-box(s,'',182,330,916,200,C.light);text(s,'FPGAチップ',210,350,260,40,28,true);
-and(s,350,422);and(s,520,422);poly(s,[[752,422],[752,486],[810,454]]);line(s,620,454,752,454);line(s,810,454,914,454);text(s,'設定に応じて論理ゲートなどを接続',325,606,720,48,29,false,C.ink,'center');
-s=slide('CPUと描画回路を一つのチップに接続する',50,'このFPGAの中に、WallyとRasterIXを配置しました。前の図と、部品とチップの位置は同じです。CPUのバスにはSDカード制御回路と、描画命令を渡す接続回路をつなぎます。CPUも描画側も外のDDR3メモリを使うため、メモリへのアクセスをまとめます。RasterIXが作った画像は、表示回路が読み、HDMI端子から出します。既存のCPUと描画回路を利用し、この接続と制御を設計した部分が本研究です。\n'+sources);
-box(s,'',82,154,1116,492,C.white);
-for(const [v,x] of [['SDカード',114],['DDR3メモリ',499],['HDMI端子',884]])box(s,v,x,171,282,62,C.white,28);
-box(s,'',106,271,1068,352,C.light);text(s,'FPGAチップ',126,280,245,33,23,true);
-box(s,'SD制御',137,330,178, sixty(),C.white,27);line(s,255,233,255,330);
-box(s,'メモリ制御',521,330,238,60,C.white,27);line(s,640,233,640,330);
-box(s,'表示回路',962,330,182,60,C.white,27);line(s,1053,330,1053,233,C.ink,true);
-box(s,'CPUのバス',148,439,599,46,C.mid,25);line(s,226,390,226,439);line(s,640,390,640,439);
-box(s,'Wally\nCPU',267,519,310,76,C.white,30);line(s,422,519,422,485);
-box(s,'命令の接続',793,439,190,46,C.white,24);line(s,747,462,793,462,C.ink,true);
-box(s,'RasterIX\n描画回路',793,519,351,76,C.white,28);line(s,889,485,889,519,C.ink,true);
-line(s,759,357,785,357);line(s,785,357,785,550);line(s,785,550,793,550);
-line(s,759,348,962,348,C.ink,true);
-text(s,'画像の読出し',779,312,176,31,20);
-line(s,1091,519,1091,390,C.blue,true);
-text(s,'表示先の\n指定',988,398,98, sixty(),20,false,C.blue,'center');
-text(s,'CPUと描画側がDDR3を共有する',430,663,650,30,23,false,C.ink,'center');
-function sixty(){return 60;}
-s=slide('ゲームの状態を画像に変える',50,'CPUはSDカードから読み込んだゲームを実行します。一回の処理でボールの位置を更新します。位置や色をRasterIX付属のOpenGL互換ライブラリへ渡すと、ライブラリが描画命令をメモリへ用意します。接続回路から命令を受けたRasterIXが画像を作り、表示回路が読み出します。これを繰り返すと動いて見えます。位置の数値、描画命令、画素の色は別々のデータです。命令を送る接続と、できた画像を表示する接続を、それぞれ用意しました。\n'+sources);
-const xs=[64,369,674,979],ws=[246,246,246,237];
-for(let i=0;i<4;i++)box(s,['CPUで位置を更新','描画命令を用意','RasterIXで描画','画面へ表示'][i],xs[i],194,ws[i], seventy(),C.light,26);
-for(let i=0;i<3;i++)line(s,xs[i]+ws[i]+6,229,xs[i+1]-8,229,C.ink,true);
-text(s,'ボールの位置\n(x, y)',74,330,226,90,29,false,C.ink,'center');
-text(s,'OpenGL互換\nライブラリが命令を\nメモリに用意',379,322,226,120,25,false,C.ink,'center');
-text(s,'画素の色を\nメモリへ保存',684,330,226,90,28,false,C.ink,'center');
-box(s,'',1003,326,179,130,C.white);box(s,'',1061,374,35,35,C.blue);line(s,1093,456,1093,479);line(s,1068,479,1118,479);
-text(s,'一画面分の処理を繰り返す',315,510,690, fifty(),32,true,C.ink,'center');
-text(s,'CPUは位置を計算し、描画回路は画素の色を作る',80,590,1120,55,30,false,C.ink,'center');
-function seventy(){return 70;}
-s=slide('CPUから描画回路へ命令を渡す',45,'CPUは番地を指定して数値を書きます。RasterIXは順番に並ぶ命令を受け取ります。この二つの渡し方をつなぐ回路を設計しました。途中のFIFOは、先に入れた値から渡す保存場所です。また、CPU側は20 MHz、描画側は100 MHzなので、それぞれの時計で受け渡しを管理する既存の非同期FIFOを使いました。空きがなければCPUの書き込みを待たせます。本研究で作ったのは、既存FIFOの内部ではなく、その前後の接続です。\n'+sources);
-box(s,'Wally\n20 MHz',86,176,250,110,C.white,29);box(s,'接続回路とFIFO\n命令を順番に保存',451,176,370,110,C.light,28);box(s,'RasterIX\n100 MHz',936,176,250,110,C.white,29);line(s,336,230,451,230,C.ink,true);line(s,821,230,936,230,C.ink,true);
-text(s,'CPUは番地を指定して書く',87,319,490,50,28);
-text(s,'RasterIXは命令を順に受け取る',688,319,500,50,28);
-text(s,'接続回路が、両側の受け渡しをつなぐ',87,432,1100,58,34,true,C.ink,'center');
-text(s,'別々のクロックでも、値と順番を保つ',120,526,1060,50,30,false,C.ink,'center');
-text(s,'保存できない間は、CPUの書き込みを待たせる',120,600,1060,50,29,false,C.ink,'center');
-function fifty(){return 50;}function forty(){return 40;}
-s=slide('表示中の画像を途中で書き換えない',40,'もう一つの接続設計が、表示する画像の切り替えです。表示回路は画像を読み続けます。その同じ画像を途中で描き換えると、新旧の画面が混ざるおそれがあります。そこで画像を二枚分用意し、一方を表示している間に、もう一方に描きます。完成後、表示の区切りで役割を交代します。また、古い画像の読み出しが残っている間は、そこへの描き直しを始めないよう、切り替え完了を確認します。\n'+sources);
-text(s,'切り替え前',123,162,370, fifty(),32,true,C.ink,'center');
-text(s,'切り替え後',800,162,370, fifty(),32,true,C.ink,'center');
-box(s,'画像A：表示中',123,247,370, ninety(),C.light,31);
-box(s,'画像B：描画中',123,409,370, ninety(),C.white,31);
-box(s,'画像A：次の描画先',800,247,370, ninety(),C.white,30);
-box(s,'画像B：表示中',800,409,370, ninety(),C.light,31);
-line(s,524,374,770,374,C.blue,true);
-text(s,'画像Bの完成後\n表示の区切りで',515,251,266,96,26,false,C.ink,'center');
-text(s,'読む先と描く先を\n入れ替える',515,410,266, ninety(),26,false,C.ink,'center');
-text(s,'切り替え完了後に、古い表示画像Aを描き直せる',72,589,1140, fifty(),30,true,C.ink,'center');
-function ninety(){return 90;}
-s=slide('実機でブロック崩しの動作を確認した',40,'640×480画素のブロック崩しで、画像確認用プログラムの三条件と再起動後の一条件の画像が、すべての画素で期待画像と一致しました。また、5分間の自動プレイの実行記録と、別の実行で記録した30秒間の映像を確認しました。動作確認には、描画処理を軽くする実装を含む完成版を使っています。映像を受信できない場合もあり、その条件の解明は課題です。\n根拠：E6、論文12.4〜12.6節。通常構成の画像4条件と継続実行、映像は別の試験。画像確認の開始状態・描画方法はqualification.jsonのwhole_frame_checksに記録。動画の記録枚数はゲームのFPSを示さない。画像：docs/thesis/figs/fifo-study-game.png。');
-const game=await fs.readFile(path.join(root,'docs/thesis/figs/fifo-study-game.png'));
-s.images.add({blob:game,contentType:'image/png',alt:'実機から記録したブロック崩しの画面',fit:'contain',position:{left:64,top:169,width:650,height:396}});
-text(s,'640 × 480 画素\n4条件で全画素が\n期待画像と一致',751,184,465,138,30,true);
-text(s,'5分間の自動プレイ\n別に30秒間の映像を確認',751,350,465,112,30);
-text(s,'動作確認には描画処理を\n軽くした完成版を使用',751,511,465,80,25);
-text(s,'課題：映像を受信できない場合の条件を調べる',72,631,1140,40,25);
-s=slide('Wallyを拡張するための設計例',45,'Wallyに描画と表示の機能を追加し、ブロック崩しを動かす構成を実機で確認しました。既存のCPUと描画回路を利用し、命令の接続、画像を置くメモリの設定、表示画像の切り替えを実装しました。接続設計と試験条件を公開することで、Wallyに周辺機能を追加する人が参照できる例とします。学習効果を測った結果ではありません。最終発表では専用コントローラーを接続し、ボタンによる操作を検証します。\n'+sources);
-text(s,'Wallyに描画・表示機能を加え、\nブロック崩しの動作を実機で確認した',90,160,1090,127,41,true);
-text(s,'命令の接続・画像用メモリ・表示の切り替えを実装',90,337,1100,60,29);
-text(s,'接続設計と試験条件を公開し、\nWallyを拡張する人が参照できる形にまとめた',90,428,1090,100,30);
-text(s,'最終発表：専用コントローラーによる操作を検証',90,583,1100,60,30,true);
-await fs.writeFile(path.join(workspace,'outline.json'),JSON.stringify(outline,null,2));
-const totalSeconds=outline.reduce((sum,item)=>sum+item.seconds,0);
-if(totalSeconds!==330) throw Error('The eight-slide talk must leave 30 seconds within six minutes.');
-const markdown=['# 中間発表のスライドと発表原稿',
- '発表時間は6分を想定し、8枚の説明を5分30秒で行う。残り30秒は図を指す時間と間に充てる。ゲーム機の全体構成、命令と画像の接続、実機で確認した動作を説明する。専用コントローラーの接続と入力の検証は最終発表で扱う。',
- '[PowerPoint版](中間発表_主要事項.pptx) / [アブスト](../abstract/アブスト_主要事項.md) / [論文本文](../thesis/本文.md)',
- '## 目次',outline.map((item,i)=>`- [${i+1}. ${item.title}](#slide-${i+1})`).join('\n')];
-for(const [i,item] of outline.entries()) markdown.push(
- `<a id="slide-${i+1}"></a>\n## ${i+1}. ${item.title}`,
- `説明時間の目安：${item.seconds}秒`,
- `![${item.title}](slides/slide-${String(i+1).padStart(2,'0')}.png)`,
- '### 発表原稿',item.notes);
-markdown.push('## 動作確認の条件と詳しい実装',
- '動作確認の構成・画像・実行記録・映像は[論文第12章](../thesis/本文.md#ch_12)に示す。完成版に含まれる描画処理の工夫、接続方式の比較、ファイルごとの実装手順は[技術付録](../thesis/技術付録.md)から参照できる。これらの性能比較を今回の発表の結論とはしない。');
-await fs.writeFile(path.join(workspace,'中間発表_主要事項.md'),markdown.join('\n\n').trimEnd()+'\n');
+import { pathToFileURL } from 'node:url';
+import { spawnSync } from 'node:child_process';
 
-for(const [i,s] of P.slides.items.entries()){
- const b=await P.export({slide:s,format:'png',scale:1});await fs.writeFile(path.join(workspace,`slide-${String(i+1).padStart(2,'0')}.png`),new Uint8Array(await b.arrayBuffer()));
+const [root, workspace] = process.argv.slice(2);
+if (!root || !workspace) throw new Error('Usage: build.mjs RESEARCH_ROOT PRIVATE_BUILD_DIRECTORY');
+const { Presentation, PresentationFile, FileBlob } = await import(pathToFileURL(path.join(process.env.RUNTIME_NODE_MODULES, '@oai/artifact-tool/dist/artifact_tool.mjs')).href);
+const { finalizePresentation } = await import(pathToFileURL(path.join(process.env.PRESENTATION_SKILL, 'container_tools/artifact_tool_utils.mjs')).href);
+await fs.mkdir(path.join(workspace, 'final'), { recursive: true });
+await fs.mkdir(path.join(workspace, 'slides'), { recursive: true });
+const P = Presentation.create({ slideSize: { width: 1280, height: 720 } });
+const C = { ink:'#231F20', blue:'#1572C3', pale:'#E5EBF8', chip:'#CCD9F1', ip:'#77A3DC', old:'#777777', heading:'#0078BA', white:'#FFFFFF' };
+const font='Yu Gothic', latinFont='Arial'; let serial=0; const outline=[];
+function text(s,value,x,y,w,h,size=28,bold=false,color=C.ink,align='left') {
+  const sh=s.shapes.add({geometry:'textbox',name:'text-'+(++serial),position:{left:x,top:y,width:w,height:h},fill:'none',line:{fill:'none',width:0}});
+  sh.text=value; sh.text.style={typeface:/^[\x00-\x7f\s]+$/.test(value)?latinFont:font,fontSize:size,bold,color,alignment:align,verticalAlignment:'middle',wrap:'square'}; sh.text.insets=0; return sh;
 }
-const raw=path.join(workspace,'raw-candidate.pptx');
-const candidate=path.join(workspace,'candidate.pptx');await(await PresentationFile.exportPptx(P)).save(raw);
+function box(s,label,x,y,w,h,fill=C.white,size=27,stroke=C.ink,thick=1.7) {
+  const sh=s.shapes.add({geometry:'rect',name:'block-'+(++serial),position:{left:x,top:y,width:w,height:h},fill,line:{fill:stroke,width:thick}});
+  if(label) text(s,label,x+8,y+6,w-16,h-12,size,true,stroke,'center'); return sh;
+}
+function polygon(s,pts,fill=C.white,stroke=C.ink,width=1.7) {
+  const xs=pts.map(p=>p[0]),ys=pts.map(p=>p[1]),l=Math.min(...xs),t=Math.min(...ys),w=Math.max(1,Math.max(...xs)-l),h=Math.max(1,Math.max(...ys)-t);
+  return s.shapes.add({geometry:'custom',name:'circuit-'+(++serial),position:{left:l,top:t,width:w,height:h},fill,line:{fill:stroke,width},customPaths:[{width:w,height:h,commands:[{moveTo:{x:pts[0][0]-l,y:pts[0][1]-t}},...pts.slice(1).map(p=>({lineTo:{x:p[0]-l,y:p[1]-t}})),{close:{}}]}]});
+}
+function wire(s,x1,y1,x2,y2,color=C.ink,arrow=false,width=2.4) {
+  const l=Math.min(x1,x2),t=Math.min(y1,y2),w=Math.max(1,Math.abs(x2-x1)),h=Math.max(1,Math.abs(y2-y1));
+  s.shapes.add({geometry:'custom',name:'wire-'+(++serial),position:{left:l,top:t,width:w,height:h},fill:'none',line:{fill:color,width},customPaths:[{width:w,height:h,commands:[{moveTo:{x:x1-l,y:y1-t}},{lineTo:{x:x2-l,y:y2-t}}]}]});
+  if(arrow) {const len=Math.hypot(x2-x1,y2-y1),dx=(x2-x1)/len,dy=(y2-y1)/len;polygon(s,[[x2,y2],[x2-10*dx+4*dy,y2-10*dy-4*dx],[x2-10*dx-4*dy,y2-10*dy+4*dx]],color,color,1);}
+}
+function route(s,pts,color=C.ink,arrow=true,width=2.4) {pts.slice(1).forEach((p,i)=>wire(s,...pts[i],...p,color,arrow&&i===pts.length-2,width));}
+function foot(s,value) {
+  const n=P.slides.items.length;
+  if(n===1||n===12){text(s,value,64,665,1110,30,16,false,C.old);return;}
+  const captionY=n===9?187:665;
+  text(s,(n===9?'表 ':'図 ')+n,64,captionY,63,30,17,true,C.heading);
+  text(s,value,131,captionY,1028,30,16,false,C.ink);
+}
+function slide(title,seconds,narration,source,detail) {
+  const s=P.slides.add();s.background.fill=C.white;
+  const n=P.slides.items.length;
+  if(n===1){
+    text(s,title,64,40,1038,78,38,true);
+    text(s,'1',1109,20,106,118,106,true,C.heading,'right');
+  }else{
+    text(s,String(n),64,33,59,82,38,true,C.ink);
+    text(s,title,132,33,1084,82,38,true,C.heading);
+  }
+  text(s,String(P.slides.items.length),1184,665,32,30,18,false,C.old,'right');
+  s.speakerNotes.text=`説明時間の目安：${seconds}秒\n\n${narration}\n\n出典：${source}\n\n補足説明：${detail}`;
+  outline.push({title,seconds,narration,source,detail});return s;
+}
+function table(s,values,x,y,widths,rowHeights,size=27) {
+  const t=s.tables.add({rows:values.length,columns:widths.length,left:x,top:y,width:widths.reduce((a,b)=>a+b,0),height:rowHeights.reduce((a,b)=>a+b,0),columnWidths:widths,values});
+  t.styleOptions={headerRow:false,bandedRows:false};t.borders.assign({style:'solid',fill:'none',width:0});
+  values.forEach((row,r)=>{t.rows[r].height=rowHeights[r];row.forEach((v,c)=>{const cell=t.getCell(r,c);cell.fill=r===0?C.heading:r%2===0?C.pale:C.white;cell.text.style={typeface:font,fontSize:r===0?size-1:size,bold:r===0,color:r===0?C.white:C.ink,verticalAlignment:'middle',alignment:c===0?'center':'left',wrap:'square'};});});
+  const right=x+widths.reduce((a,b)=>a+b,0);
+  let ruleY=y;wire(s,x,ruleY,right,ruleY,C.ink,false,1.8);
+  rowHeights.forEach((height)=>{ruleY+=height;wire(s,x,ruleY,right,ruleY,C.ink,false,1.2);});
+  wire(s,x+widths[0],y,x+widths[0],ruleY,C.ink,false,1.8);
+  return t;
+}
+
+// Keep register, ALU and data-port positions fixed on slides 2 through 5.
+function datapath(s, mode) {
+  const load=mode==='load', bus=mode==='bus'||mode==='peripherals', peripherals=mode==='peripherals';
+  const active=C.blue, inactive='#B9BEC6';
+  box(s,'',128,298,176,234,C.white);
+  text(s,'Register\nFile',175,364,114,45,20,true,C.ink,'center');
+  [['A1',138,330],['A2',138,404],['A3',138,450],['WD3',138,494],['RD1',252,330],['RD2',252,404],['WE3',202,300]].forEach(([v,x,y])=>text(s,v,x,y,48,27,18,false,(v==='A2'||v==='RD2')&&load?inactive:(!load&&(v==='A3'||v==='WD3'||v==='WE3'))?inactive:C.ink));
+  text(s,'レジスタ',128,207,176,34,25,true,C.ink,'center');
+  text(s,'RegWrite = '+(load?'1':'0'),128,241,205,28,21,false,load?active:inactive);
+  wire(s,224,272,224,298,load?active:inactive,true,1);
+  const input=(port,y,value,on=true)=>{wire(s,103,y,128,y,on?C.ink:inactive,true,1.6);text(s,value,58,y-17,43,34,23,false,on?C.ink:inactive,'center');};
+  input('A1',344,bus?'2':'0');input('A2',418,load?'—':'1',!load);input('A3',464,load?'1':'—',load);
+  wire(s,304,344,390,344,C.ink,true);text(s,bus?'B':'0',322,310,47,31,23,true,active,'center');
+  polygon(s,[[390,320],[480,343],[480,418],[390,440],[390,397],[418,381],[390,365]],C.white);
+  text(s,'＋',425,350,48,56,37,false,C.ink,'center');
+  text(s,'ALU（加算）',349,273,166,35,23,true,C.ink,'center');
+  box(s,load?'0':bus?'0':'4',380,520,120,52,C.white,28);
+  text(s,'即値',380,482,120,32,23,false,C.ink,'center');
+  route(s,[[380,546],[350,546],[350,418],[390,418]],C.ink,true);
+  text(s,'命令の指定',376,574,132,26,18,false,C.old,'center');
+  wire(s,480,380,580,380,C.ink,true);
+  text(s,bus?'番地':'番地 '+(load?'0':'4'),484,342,92,34,21,true,active,'center');
+  if(load){wire(s,304,418,328,418,inactive);wire(s,553,470,580,470,inactive);}
+  else{
+    route(s,[[304,418],[326,418],[326,602],[550,602],[550,470],[580,470]],active,true);
+    text(s,bus?'書く値 D':'書く値 3',352,608,178,32,24,true,active,'center');
+  }
+  if(!bus){
+    box(s,'',580,298,174,234,C.white);
+    text(s,'データ\nメモリ',607,325,127,65,25,true,C.ink,'center');
+    text(s,'A',590,365,30,29,20);text(s,'WD',590,454,42,31,20,false,load?inactive:C.ink);text(s,'RD',711,423,39,29,20,false,load?C.ink:inactive);text(s,'WE',663,300,39,27,18);
+    text(s,'MemWrite = '+(load?'0':'1'),580,241,230,28,21,false,load?inactive:active);
+    wire(s,679,272,679,298,load?inactive:active,true,1);
+    route(s,[[754,438],[786,438],[786,646],[74,646],[74,508],[128,508]],load?active:inactive,true);
+    text(s,load?'読んだ値 3':'この命令では保存しない',load?324:365,load?607:646,load?235:380,load?33:20,load?24:17,false,load?active:inactive,'center');
+  }else{
+    box(s,'',580,298,174,234,C.pale);
+    text(s,'データ側の\nバス接続',598,308,140,60,24,true,C.ink,'center');
+    text(s,'番地',590,369,55,30,20);text(s,'値',590,457,40,30,20);text(s,'完了',701,493,49,28,18,false,active);
+    text(s,'書込みを指定',580,241,190,28,21);wire(s,679,272,679,298,C.ink,true,1);
+    wire(s,103,508,128,508,inactive);wire(s,754,438,773,438,inactive);
+
+    if(!peripherals){
+      [[344,'番地 A（HADDR）'],[418,'書く値 D（HWDATA）'],[470,'書込み（HWRITE）']].forEach(([y,v])=>{
+        wire(s,754,y,1015,y,C.ink,true,y===470?1:y===344?1.6:2.4);text(s,v,761,y-36,247,30,22,false,C.ink,'center');
+      });
+      wire(s,1015,508,754,508,active,true,1);
+      box(s,'',1015,298,200,234,C.white);
+      text(s,'DDR3\nコントローラ\n＋メモリ',1032,327,167,136,25,true,C.ink,'center');
+      text(s,'完了 HREADY',1019,490,192,34,21,false,active,'center');
+      text(s,'相手から完了が返るまで待つ',782,567,434,58,27,true);
+    }else{
+      text(s,'番地に応じて接続先を選ぶ',786,190,430,41,26,true);
+      box(s,'AXI変換\nDDR3制御',805,256,180,73,C.white,25);
+      box(s,'DDR3',1041,266,175,53,C.white,28);
+      bundle(s,[[754,344],[782,344],[782,293],[805,293]]);
+      bundle(s,[[985,293],[1041,293]]);
+      text(s,'実行中の命令・データ',804,345,412,37,23,false,C.ink,'center');
+      box(s,'APB変換\nSPI制御',805,416,180,73,C.pale,25);
+      box(s,'SDカード',1041,426,175,53,C.white,25);
+      bundle(s,[[754,418],[782,418],[782,453],[805,453]],active);
+      bundle(s,[[985,453],[1041,453]],active);
+      text(s,'保存してあるプログラム',804,506,412,37,23,false,C.ink,'center');
+      text(s,'SDからDDR3へ読み込み、実行する',617,565,599,48,26,true);
+    }
+  }
+}
+
+// Source-derived functional diagram. Native slide objects stay editable.
+function dot(s,x,y,color=C.ink) {
+  s.shapes.add({geometry:'ellipse',name:'junction-'+(++serial),position:{left:x-2.8,top:y-2.8,width:5.6,height:5.6},fill:color,line:{fill:color,width:0}});
+}
+function bundle(s,pts,color=C.ink) {
+  route(s,pts,color,true);
+  wire(s,...pts[1],...pts[0],color,true);
+}
+function mux(s,x,y,w,h,label='',color=C.ink) {
+  polygon(s,[[x,y],[x+w,y+6],[x+w,y+h-6],[x,y+h]],C.white,color,1.5);
+  if(label)text(s,label,x-14,y+h+3,w+28,22,14,false,color,'center');
+}
+function wallyboard(s,expanded=false) {
+  const gray=C.ink, blue=C.blue;
+  box(s,'',40,139,1200,505,C.pale,22,C.ink,1.7);
+  box(s,'',48,218,1184,419,C.chip,22,C.ink,1.7);
+  box(s,'',68,324,861,285,C.pale,22,C.ink,0);
+  text(s,'FPGAチップ：内部の論理回路と配線を設定する',65,223,700,27,21,true);
+  box(s,'DDR3',960,154,120,50,C.white,25);
+  box(s,'SDカード',1095,154,120,50,C.white,23);
+  text(s,'Nexys Video：基板上の機器',65,155,650,38,25,true);
+  box(s,'保持・取消し制御\nStall / Flush',70,256,190,46,C.white,17);
+  text(s,'CSR・割込み・乗除算・FPU\n（内部と配線を省略）',284,255,296,48,17,false,C.old);
+  box(s,'EBU\n要求選択',600,256,100,46,C.white,17);
+  box(s,'番地で\n選択',715,256,95,46,C.white,17);
+  box(s,'AXI変換\nクロック接続',825,256,120,46,C.ip,17);
+  box(s,'DDR3制御\n共有接続',960,256,120,46,C.ip,17);
+  box(s,'SPI制御',1095,225,120,36,C.white,18);
+  box(s,'AHB → APB',1095,275,120,32,C.white,17);
+  bundle(s,[[700,279],[715,279]]);bundle(s,[[810,279],[825,279]]);bundle(s,[[945,279],[960,279]]);
+  bundle(s,[[1020,256],[1020,204]]);bundle(s,[[1155,225],[1155,204]]);
+  bundle(s,[[1155,275],[1155,261]]);
+  bundle(s,[[810,287],[817,287],[817,313],[1155,313],[1155,307]]);
+  text(s,'CPU：前の図のレジスタ・ALUを含む経路',264,322,650,24,19,true);
+  const stages=[['命令読出し',85,130],['解読・読出し',248,142],['計算',440,155],['データ読書き',642,140],['結果の保存',814,115]];
+  stages.forEach(([t,x,w])=>text(s,t,x,346,w,27,17,true,C.ink,'center'));
+  [220,405,620,790].forEach(x=>{box(s,'',x,385,10,208,C.white,16,C.ink,1.7);wire(s,x+5,378,x+5,385,C.ink,true,1);});
+  route(s,[[85,302],[85,327],[69,327],[69,378],[795,378]],C.ink,false,1);
+  text(s,'縦長の白い箱：途中の値を保存するレジスタ',280,610,610,24,17,false,blue,'center');
+
+  // Fetch: address and instruction paths, with other front-end logic grouped.
+  box(s,'PC',85,414,42,52,C.white,17);
+  box(s,'iMMU',145,402,63,30,C.white,16);
+  box(s,'I$',145,450,63,30,C.white,18);
+  route(s,[[127,440],[136,440],[136,417],[145,417]]);
+  wire(s,176,432,176,450,C.ink,true);
+  route(s,[[208,465],[230,465],[240,465],[240,432],[255,432]]);
+  dot(s,240,459);route(s,[[240,459],[255,459]]);
+  route(s,[[240,465],[240,549],[255,549]]);
+  box(s,'次PC選択\n＋2/4・分岐',85,527,120,47,C.white,16);
+  route(s,[[127,440],[133,440],[133,516],[145,516],[145,527]],gray,true);
+  route(s,[[85,551],[76,551],[76,440],[85,440]],gray,true);
+  bundle(s,[[208,465],[214,465],[214,310],[626,310],[626,302]],C.ink);
+
+  // Decode: the same two source reads and one writeback port as the teaching view.
+  box(s,'',255,391,120,111,C.white);
+  text(s,'レジスタ',262,391,106,26,20,true,C.ink,'center');
+  [['A1',264,419],['A2',264,446],['WD',264,475],['RD1',335,419],['RD2',335,451]].forEach(([t,x,y])=>text(s,t,x,y,37,24,15));
+  box(s,'命令解読\n即値生成',255,527,120,46,C.white,17);
+  route(s,[[240,445],[247,445],[247,520],[315,520],[315,527]],gray,true);
+  wire(s,375,432,405,432);wire(s,415,432,440,432,C.ink,true);
+  wire(s,375,464,405,464);wire(s,415,464,440,464,C.ink,true);
+  wire(s,375,550,405,550);route(s,[[415,550],[485,550],[485,484],[495,484]]);
+
+  // Execute: forwarding selections, register/immediate selection and address ALU.
+  mux(s,440,414,18,31);mux(s,440,453,18,35);
+  text(s,'転送選択',425,385,83,25,16,false,C.ink,'center');
+  mux(s,495,451,20,54);
+  text(s,'入力選択',494,548,112,25,17,false,C.ink,'center');
+  route(s,[[458,432],[533,432],[533,428],[550,428]]);
+  wire(s,458,467,495,467,C.ink,true);
+  route(s,[[515,479],[535,479],[535,477],[550,477]]);
+  polygon(s,[[550,410],[610,427],[610,481],[550,495],[550,465],[568,454],[550,442]],C.white);
+  text(s,'ALU',559,428,48,46,19,true,C.ink,'center');
+  wire(s,610,450,620,450);
+  route(s,[[630,450],[639,450],[639,415],[650,415]]);
+  route(s,[[458,467],[477,467],[477,513],[620,513]],blue,false);
+  route(s,[[630,513],[638,513],[638,568],[650,568]],blue,true);
+  text(s,'書く値',504,516,102,24,17,false,blue,'center');
+  // Integer-result route crosses M without using the load/store read port.
+  route(s,[[630,450],[636,450],[636,391],[795,391],[830,391],[830,430],[840,430]],gray,true);
+
+  // Memory: address translation, cache path and uncached MMIO path.
+  box(s,'dMMU',650,399,120,32,C.white,18);
+  box(s,'D$',650,456,52,39,C.white,19);
+  box(s,'バス接続',650,547,120,34,C.white,17);
+  route(s,[[710,431],[710,439],[676,439],[676,456]]);
+  route(s,[[710,439],[781,439],[781,552],[770,552]],C.ink,true);
+  text(s,'MMIO',711,443,59,20,14,false,C.old,'center');dot(s,710,439);
+  bundle(s,[[676,495],[676,547]]);
+  mux(s,751,487,19,40);
+  route(s,[[702,475],[734,475],[734,498],[751,498]]);
+  route(s,[[728,547],[728,516],[751,516]]);
+  wire(s,770,506,790,506);wire(s,800,506,840,506,C.ink,true);
+  text(s,'読出値',776,476,61,22,15,false,C.ink,'center');
+  bundle(s,[[770,565],[803,565],[803,318],[674,318],[674,302]],C.ink);
+
+  // Writeback: select a result, retain the load/store path and a feedback example.
+  mux(s,840,418,20,102);
+  text(s,'結果選択',816,529,95,25,16,false,C.ink,'center');
+  route(s,[[860,467],[922,467],[922,601],[247,601],[247,489],[255,489]],blue,true);
+  text(s,'ResultW',826,581,91,22,15,false,blue,'center');
+  route(s,[[431,601],[431,478],[440,478]],blue,true);dot(s,431,601);
+  route(s,[[431,478],[431,441],[440,441]],blue,true);dot(s,431,478);
+
+  if(!expanded){
+    route(s,[[1215,291],[1224,291],[1224,346],[1095,346],[1095,378]],blue,true);
+    text(s,'本研究では\nこのAPB接続へ\n描画回路を追加する',971,385,245,107,24,true,blue,'center');
+    text(s,'回路記述を合成し、\nFPGA内の素子と配線で\nこの回路を構成する',970,522,247,87,20,false,C.ink,'center');
+  }else{
+    text(s,'描画窓口 0x1008_0000',968,314,246,25,18,true,blue,'center');
+    route(s,[[1215,291],[1224,291],[1224,340],[1090,340],[1090,351]],blue,true);
+    box(s,'APB接続回路 → FIFO',970,351,243,46,C.white,20,blue);
+    wire(s,1091,397,1091,424,blue,true);
+    box(s,'RasterIX\n画素を作る',970,424,243,61,C.white,23,blue);
+    box(s,'表示回路\n画素を順に送る',970,522,243,61,C.white,21,blue);
+    bundle(s,[[970,455],[951,455],[951,291],[960,291]],blue);
+    bundle(s,[[970,553],[941,553],[941,309],[971,309],[971,302]],blue);
+    text(s,'DDR3を共有',974,491,236,26,20,true,blue,'center');
+    route(s,[[1092,583],[1092,643],[1160,643],[1160,651]],blue,true);
+    text(s,'HDMI端子へ',1035,649,180,29,21,true,blue,'center');
+  }
+}
+
+const DDCA='Harris, S. L. and Harris, D., Digital Design and Computer Architecture: RISC-V Edition (2021), Chapter 7. Official figure source: https://pages.hmc.edu/harris/ddca/ddcarv.html (DDCArv_Figures.zip).';
+const RVSOC='Harris et al., RISC-V System-on-Chip Design, Chapters 7–13, 20, 22–23. Official figure source: https://pages.hmc.edu/harris/ddca/rvsocd.html (RVSoCD_figs.zip).';
+const PRODUCT='Product revision 261832d48832dd6e26c4971ab8893ce61200688b. console/fpga/src/fpgaTopNexysVideo.sv; console/fpga/src/rasterix.sv; console/fpga/src/rasterix_apb.sv; console/fpga/generator/axiscdc.tcl.';
+const E6='docs/thesis/再現資料/実験記録/E6/fresh-product/qualification/qualification.json; docs/thesis/再現資料/実験記録/E6/report/results/video/validation.json. Photograph: docs/thesis/figs/fifo-study-game.png.';
+
+let s=slide('FPGAを用いた二次元ゲーム機の設計と実装',10,
+  '公開CPUのWallyへ描画回路をつなぎ、ブロック崩しを動かしました。今日はCPUの1回の書込みを追い、描画命令をどう届けるかを説明します。',
+  `${DDCA} ${RVSOC} ${PRODUCT}`,
+  '目的は、Wallyを拡張する学習者が参照できる接続設計と実機の確認例を示すこと。学習効果の実験は行っていない。DDCAからWallyまでのCPUを本研究で新たに設計した、という意味ではない。');
+text(s,'CPUの1回の書込みを、\n描画回路へ届ける',64,155,1140,156,50,true);
+text(s,'Wallyを拡張する学習者に向けた、ゲーム機の設計例',64,345,1152,53,29);
+const labels=['メモリへの書込み','番地で相手を選ぶ','受渡しを変換','実機で画面を確認'];
+labels.forEach((label,i)=>{const x=64+i*299;box(s,label,x,477,248,65,i===3?C.pale:C.white,26);if(i<3)wire(s,x+248,509,x+287,509,C.ink,true);});
+text(s,'既存の教科書・公開設計',64,562,547,44,26,false,C.old,'center');
+text(s,'本研究で接続を設計・検証',662,562,554,44,26,true,C.ink,'center');
+foot(s,'DDCA：Digital Design and Computer Architecture　　RVSOC：RISC-V System-on-Chip Design');
+
+s=slide('lw：メモリの値をレジスタへ読む',30,
+  'まずCPUの読み書きだけを取り出します。x0は常に0を読むレジスタで、データメモリの0番地に3があるとします。ALUが0足す0で番地を作り、メモリから3が返ります。下の青い線で戻し、CPU内のx1へ保存します。次もこの図を使います。',
+  DDCA+' Figure 7.8, redrawn as an editable reduced datapath.',
+  'DDCA図7.8に対応する主要な読み書きのブロックを位置と配線で示す。A1は読出すレジスタ番号0、A3は書込むレジスタ番号1、RD1はx0から読んだ値0、WD3はx1へ保存する値3。Aはデータメモリの番地、RDは読出し値。即値ブロックは命令のフィールドから即値を作り符号拡張する処理をまとめたもの。命令からA1・A3・即値・制御を作る配線、PC、命令メモリ、PC+4、クロック線は省略。MemWrite=0なのでデータメモリは書き換えない。薄い灰色は今回使わないポート。32ビットの値の線を1本で表している。これはDDCAの単一サイクルlwの説明で、Wally全体のRTL配線図ではない。');
+text(s,'lw x1, 0(x0)　：　番地 0 + 0 の値を、x1へ読む',64,136,1152,49,29,true,C.blue);
+datapath(s,'load');
+text(s,'x0：常に0\nx1：CPU内の保存場所',850,227,365,86,25);
+text(s,'① 0 + 0で番地を作る\n\n② 0番地の3を読む\n\n③ x1へ3を保存する',850,340,365,248,26);
+text(s,'初期状態：0番地に3',850,600,365,39,25,true);
+foot(s,'DDCA 図7.8を簡略化して描き直し。A：番地／番号　RD：読出し値　WD：書込み値　WE：書込許可');
+
+s=slide('sw：レジスタの値をメモリへ書く',30,
+  '次は同じ図でswを見ます。x0の0に即値4を足すので、メモリへ渡す番地は4です。一方、x1から読んだ3は新しい青い線を通って、メモリの書込み値へ届きます。MemWriteを1にして保存します。今度はレジスタへ値を戻す必要がないので、RegWriteは0です。',
+  DDCA+' Figure 7.12 and the store datapath in §7.3.2.',
+  'sw x1,4(x0)でrs1=0、rs2=1、S形式の即値=4。Register FileのA1=0、A2=1、RD1=0、RD2=3となる。ALUはRD1+即値で4を作る。RD2はALUへ加える値ではなくデータメモリのWDへ渡す。RegWrite=0でA3とWD3は保存に使われない。swの命令ビット[11:7]はrdではなく即値の一部なので、A3を宛先レジスタ番号として解釈しない。A3は図で未使用を示すダッシュにしている。MemWrite=1でメモリへ書く。クロック立上りで保存する。図は今回必要な経路のみで、バイト許可・取消し等の条件を一般のRAM実装にそのまま置換できるという意味ではない。');
+text(s,'sw x1, 4(x0)　：　番地 0 + 4 へ、x1の3を書く',64,136,1152,49,29,true,C.blue);
+datapath(s,'store');
+text(s,'番地を作る線は同じ\n0 + 4 = 4',850,253,365,89,28,true);
+text(s,'追加する経路\nx1の値 → メモリのWD',850,388,365,89,26,true,C.blue);
+text(s,'メモリへ保存：許可1\nレジスタへ保存：許可0',850,527,365,91,25);
+foot(s,'DDCA 図7.12のsw経路を抜粋。青線が今回書く値の経路。薄い灰色の帰り道は使わない');
+
+s=slide('メモリへの読み書きを、外部バスへ延ばす',30,
+  '左のレジスタとALUを残し、メモリだった位置へバス接続を置きます。番地、書く値、書込みの指定を外へ出せば、外部メモリを操作できます。相手の準備ができていなければ待ち、完了が返ると、この転送を終えます。',
+  'RVSOC Chapter 9, §9.5.1–9.5.4. '+PRODUCT+' console/src/lsu/lsu.sv; console/src/ebu/ebu.sv; console/fpga/src/fpgaTopNexysVideo.sv.',
+  '読み書きの外部接続だけを説明する模式図。命令読出し経路、EBU、段間レジスタ、キャッシュ、MMUは簡略図では省略する。これらは実機に存在し、6枚目の詳細図で主要な位置を示す。sw x1,0(x2)で基準番地B、書く値Dを使う例で、ALUの仮想番地とバス上の物理番地Aは異なり得る。バス側はHADDR、HWDATA、HWRITEおよびHREADYを代表として示すが、これらの信号がすべて同じ相で有効という意味ではない。実機のDDR3経路はAHBからAXIへの変換とクロック領域間の接続も含む。これを右の箱にまとめた。ここでの完了はCPUの転送完了であり、ゲーム画面の生成完了ではない。');
+text(s,'sw x1, 0(x2)　：　基準番地B + 0 へ、値Dを書く',64,136,1152,44,28,true,C.blue);
+datapath(s,'bus');
+foot(s,'読み書きの経路だけを表示。バス上のAは物理番地。キャッシュ・番地変換・仲裁等は省略');
+
+s=slide('DDR3とSDカードを、別の接続先として扱う',35,
+  '同じバスへ、用途の異なる機器をつなぎます。DDR3側は、実行中の命令やデータを読み書きする経路です。SDカード側は、APBからSPI制御回路を操作する経路で、プログラムを保存してあります。Linuxは必要な内容をSDカードからDDR3へ読み込み、CPUが実行します。このAPBへのつなぎ方を、描画回路の追加にも使います。',
+  'RVSOC Chapter 9 and §23.2.1. '+PRODUCT+' console/src/uncore/uncore.sv; console/linux/devicetree/wally-nexysvideo.dts; console/config/derivlist.txt.',
+  '簡略図ではEBUと命令読出しを省く。右の各線は要求、データ、応答などの信号群をまとめた接続であり、一本の電線ではない。範囲比較による接続先の選択は既存uncoreのアドレスデコードとAHB/APBブリッジが行う。DDR3は0x80000000から512 MiB。SDカード制御はspi_apbの2個目のインスタンスで、SDC_BASE=0x00013000。カード自体をRAMのように直接ロード／ストアするのではなく、制御回路のレジスタを操作してSPI転送を進める。デバイスツリーのspi@13000配下にmmc-spi-slotを定義している。FPGA派生設定でSDCを有効にする。ユーザープログラムのコードやデータはOSが必要に応じてDDR3へ読み込む。すべてのファイルを一度にコピーすることや、CPUがSDカードから直接命令フェッチすることを意味しない。SDカードとDDR3はNexys Video基板上でFPGAチップの外にあり、制御回路はFPGA内。');
+text(s,'用途に合った制御回路を、CPUのバスにつなぐ',64,136,1152,44,29,true,C.blue);
+datapath(s,'peripherals');
+foot(s,'SDカードにはSPIで接続。図の線は信号群。DDR3・SD制御回路は既存実装を利用');
+
+s=slide('Wallyの主要回路を、FPGAチップ内に実装する',45,
+  'ここまでは読み書きだけを取り出していました。実際のWallyには、値を途中で保存する縦長のレジスタや、どの値を使うかを選ぶ回路があります。先ほどのレジスタとALUもこの中にあります。この回路記述を合成し、FPGAという、内部の論理回路と配線を設定できるチップへ実装します。DDR3とSDカードはチップの外です。本研究では、この構成のAPB接続へ描画回路を追加します。',
+  'RVSOC Chapters 7–11 and 23; DDCA Chapter 7. '+PRODUCT+' console/src/ieu/datapath.sv; console/src/ifu/ifu.sv; console/src/lsu/lsu.sv; console/src/wally/wallypipelinedcore.sv; console/src/uncore/uncore.sv.',
+  '実際のRTLに対応する主要な機能とデータ経路を描き直した図。全信号・全MUX・全段レジスタを網羅したRTL回路図でも、FPGA内の物理配置図でもない。縦長の白い箱は同じ段境界で値を保持する複数のレジスタをまとめる。保持／取消し線もStall、Flush等の信号群をまとめている。Register Fileはregfile、即値はextend、読出しの段間保存はRD1EReg、RD2EReg、ImmExtEReg、E段の転送MUXはfaemuxとfbemux、即値選択はsrcbmux、演算器はaluに対応する。ALUの番地IEUAdrEはLSUのAddressMRegを通りIEUAdrMとなる。書く値はForwardedSrcBEからWriteDataMRegを通りWriteDataMとなる。計算結果の経路はIEUResultM、IFResultM、IFResultW等を簡略化したもの。W段のresultmuxWは5入力で、図では整数計算とロードの経路を描き、CSR・乗除算・浮動小数点・アトミック等の入力を省く。転送はResultWからの例を描き、IFResultMからの経路を省く。PC相対演算用のsrcamux、分岐比較、例外や予測の内部、幅調整は省略。iMMU/dMMUは番地変換と保護、I$/D$はキャッシュ。MMIOがDキャッシュを通らずバスへ進む経路を明示する。M段ではMMIOの書込データをバス接続へ渡す経路を描き、Dキャッシュへの書込み経路は省く。キャッシュのアクセスや補充・書戻しは図の双方向の接続にまとめ、タグやステートマシンは省略。ReadDataWを作るバイト抽出・符号拡張等も省く。命令側とデータ側がEBUで仲裁され、その後uncoreの番地選択へ進む。DDR3側はAHB/AXI変換、クロック接続、共有AXI接続、DDR3制御を通る。SPI制御はAPB上にあり、SDカードの端子へつながる。描画回路追加前の接続関係を示すためRasterIXは6枚目には描かず、7枚目に加える。Nexys Videoの本体CPUでWallyをソフトウェア実行する意味ではなく、FPGAのLUT、フリップフロップ、BRAM等で回路を構成する。');
+wallyboard(s,false);
+foot(s,'主要な読書き経路。MMU：番地変換　I$/D$：キャッシュ。全信号・内部処理は省略');
+
+s=slide('同じWallyの構成へ、RasterIXを追加する',30,
+  '同じ図の右側へ、描画用の接続回路とRasterIXを加えます。CPUの書込みはAPBを通ってFIFOへ入り、RasterIXが受け取ります。作った画素は共有するDDR3へ保存し、表示回路が読み出して映像を送ります。CPUを作り替えるのでなく、周辺回路とメモリの接続を追加した構成です。',
+  PRODUCT+' console/fpga/src/rasterix_apb.sv; console/fpga/src/rasterix.sv; console/fpga/src/rasterixdisplay.sv; console/fpga/generator/rasterixmem.tcl; console/linux/devicetree/wally-nexysvideo-rasterix.dts.',
+  '6枚目と同じWally主要回路を同じ位置に保ち、APBコマンド接続、非同期FIFO、RasterIX、表示回路とDDR3の共有接続を加える。CPU20 MHz、RasterIX100 MHz。APBのEXT_IO領域0x10080000〜0x100800ffを使用し、通常CMD窓口はオフセット0。CPUにはコマンドを送るソフトウェアも必要である。RasterIX本体は公式サブモジュールを変更せず用いる。FIFOの保存と受渡しの内部は8・9枚目で拡大する。GPUと表示のAXI要求は共有接続で仲裁され、単に複数出力を短絡する配線ではない。図の双方向線は要求・データ・応答を含む信号群を表す。DDR3へ向かうGPU側の命令・テクスチャ経路、IFのフレームバッファ書込み、表示の読出し等のポート詳細はまとめている。実装はRasterIX_IFで、内部の作業領域を経てDDR3へ画像を転送する。表示はHDMI端子からDVI形式の信号を出す。上流コードの変更ではなく外側の接続回路を設計した。CPUコア・基本uncoreは既存設計で、本研究の新規CPU設計と誤解しないよう区別する。');
+wallyboard(s,true);
+foot(s,'右側へ追加した回路と共有メモリ接続を表示。双方向の線は複数の信号をまとめた接続');
+
+s=slide('APBの書込みを、FIFOの入力へ変換する',30,
+  '追加した接続回路の中を見ます。正しい窓口への32ビット書込みかを確認し、書く値DをFIFOのデータ入力へつなぎます。同時に、このデータが有効だと知らせます。FIFOから受取可能の信号が返ってきたら、それをAPBの完了信号へ返します。番地の付いた書込みを、値と受取条件へ変換しています。',
+  PRODUCT+' console/fpga/src/rasterix_apb.sv, assignments to WordWrite, CommandWrite, CmdValid, CmdData and PREADY; console/fpga/src/rasterix.sv, commandfifo.',
+  '図は通常のCMD窓口0x00へのアラインされた32ビット書込みに限定する。この場合、RV64ではCmdData=PWDATA[31:0]、WordWrite=&PSTRB[3:0]。一般式はCommandWrite=PSEL & PENABLE & PWRITE & WordWrite & (PADDR[7:3]==0)、CmdValid=CommandWrite、CmdData=WriteData。CmdLast=PADDR[2]もFIFOへ送るが、この例は0である。コマンド書込み中はPREADY=CmdReadyで、他のレジスタアクセスではPREADYの意味や選び方が異なる。この接続は主に組合せの条件判定と信号接続で、rasterix_apb内に命令語を保存する独立のレジスタを追加したという説明ではない。命令の保存はFIFOが行う。FIFOはAMDのAXI4-Stream Data FIFO IPで、RasterIX本体も既存実装を利用した。CPUが実行するswという命令と、Dというデータとして送る描画命令の1語は別である。');
+text(s,'右側へ加えたAPB接続回路を拡大：窓口0x00への書込み',64,139,1152,48,27);
+box(s,'CPU側\nAPBバス',64,226,204,323,C.white,29);
+box(s,'追加した接続回路\n\n窓口・幅・制御を確認\n有効な書込みなら\nCmdValid = 1',486,226,295,323,C.pale,25);
+box(s,'FIFO\n一時保存',1006,226,210,323,C.white,29);
+wire(s,268,278,486,278,C.ink,true,2);text(s,'書く値 D',290,237,172,34,24,false,C.ink,'center');
+wire(s,781,278,1006,278,C.ink,true,2);text(s,'CmdData = D',795,237,198,34,24,false,C.ink,'center');
+wire(s,268,389,486,389,C.ink,true);text(s,'番地と制御',275,333,204,43,24,false,C.ink,'center');
+wire(s,781,389,1006,389,C.ink,true,1);text(s,'有効 CmdValid',789,340,210,39,23,false,C.ink,'center');
+wire(s,1006,490,781,490,C.blue,true,1);text(s,'受取可 CmdReady',789,500,210,36,21,false,C.blue,'center');
+wire(s,486,490,268,490,C.blue,true,1);text(s,'完了 PREADY',285,500,185,36,24,false,C.blue,'center');
+text(s,'この書込みでは、PREADY = CmdReady',64,595,1152,53,32,true);
+foot(s,'制御の正確な条件と32ビットの選び方はノートに記載。値の保存はFIFOで行う');
+
+s=slide('受け取れるまで、同じ値を保って待つ',30,
+  '受取可能が0の間は、値Dと有効信号を保ちます。この間、FIFOには保存されません。有効と受取可能が両方1になったクロックの立上りで、初めて1語を保存します。同じ立上りでAPBの書込みも完了します。何周期待っても、同じ語を何度も保存する仕組みではありません。',
+  PRODUCT+' console/fpga/src/rasterix_apb.sv; console/src/uncore/ahbapbbridge.sv; console/fpga/src/rasterix.sv; console/fpga/generator/axiscdc.tcl.',
+  '表はCPU側クロックの連続する立上り直前の値を示す説明用の例であり、実測波形ではない。CMD書込みのアクセス相でPSEL=PENABLE=PWRITE=1、対象窓口と32ビットのストローブが正しいことを前提にする。準備相と前後の転送は表に含めない。CmdValidとCmdReadyがともに1の立上りだけ、FIFO入力のハンドシェイクが成立する。この間のPREADYはCmdReadyと等しく、同じ立上りでAPB書込みが完了する。待ちの間はPADDR、PWDATA、制御を安定に保つ。完了後はPENABLEを落とすため、同じAPB転送を次の立上りで再び受け付けない。CmdReadyはFIFO入力が安全に受け取れることを示す信号であり、空き数の単純な組合せ比較と同一とは限らない。100MHz側での読出しやRasterIXによる描画完了は、この20MHz側の受入れより後の別の出来事である。有限の説明例は全実機状況の検証結果ではない。');
+text(s,'CPU側の各クロック立上りで、条件を確認する',64,139,1152,47,30);
+table(s,[
+  ['立上り直前の状態','① 待ち','② 待ち','③ 受入れ'],
+  ['書く値 CmdData','D','D','D'],
+  ['有効 CmdValid','1','1','1'],
+  ['受取可 CmdReady','0','0','1'],
+  ['その立上りで行うこと','保存しない','保存しない','1語を保存']
+],64,222,[420,244,244,244],[54,61,61,61,72],26);
+text(s,'保存する条件：有効 = 1 かつ 受取可 = 1',64,564,1152,48,31,true);
+text(s,'この受入れでAPB書込みが完了する。描画完了は後。',64,618,1152,39,26);
+foot(s,'20 MHz側の受渡しの説明例。実測波形ではない。準備相・前後の転送は省略');
+
+s=slide('受け取った命令列から、画面を作る',20,
+  'FIFOはCPU側で語を保存し、100MHzのRasterIX側へ順に渡します。RasterIXは命令列を処理して画素の色を作り、DDR3へ保存します。表示回路がその画素を読み、HDMI端子へ送ります。FIFOへ1語を渡せたことと、描画が終わったことは別です。',
+  PRODUCT+' console/fpga/src/rasterixdisplay.sv; console/fpga/generator/rasterixmem.tcl; console/linux/devicetree/wally-nexysvideo-rasterix.dts.',
+  '非同期FIFOは、20MHz側と100MHz側がそれぞれのクロックで語を受け渡すための接続。書込みから読出しまでの固定サイクル数はこの図から主張しない。二つのクロックを同じ周波数に変える回路ではない。安全なクロック領域間転送を行う方法はFIFOだけとは限らず、この発表は方式間の性能比較を扱わない。RasterIXにはCPUがソフトウェアで用意した複数語の描画命令列を送る。1語ごとに図形が完成するとは限らない。図は画素データの主な流れを示し、DDR3へのAXI要求・仲裁・戻り値やテクスチャの読出しなどを省く。DDR3には画像2枚を用意し、描画後に表示先を切り替えているが、今回は切替手順の内部を説明対象から外した。画像用領域はLinuxの通常の割当てから予約する。表示回路はRasterIXに含まれるdvi_framebufferを利用し、HDMI端子からDVI形式の映像を出す。');
+box(s,'非同期FIFO',64,166,261,67,C.pale,29);
+wire(s,194,233,194,307,C.ink,true);text(s,'100 MHz側へ\n1語ずつ渡す',228,250,215,48,20,false,C.blue,'center');
+box(s,'RasterIX\n画素を作る',64,307,261,110,C.white,29);
+box(s,'',455,232,356,294,C.pale);
+text(s,'DDR3メモリ',477,247,312,54,33,true,C.ink,'center');
+box(s,'最初の画素の色',488,312,289,48,C.white,25);
+box(s,'次の画素の色',488,370,289,48,C.white,25);
+text(s,'…',488,425,289,34,27,false,C.ink,'center');
+text(s,'画像として保存',478,468,310,44,29,true,C.ink,'center');
+wire(s,325,362,455,362,C.ink,true);text(s,'書く',344,310,96,38,25,false,C.ink,'center');
+box(s,'表示回路\n画素を順に送る',959,307,257,110,C.white,29);
+wire(s,811,362,959,362,C.ink,true);text(s,'読む',838,310,94,38,25,false,C.ink,'center');
+wire(s,1087,417,1087,516,C.ink,true);
+box(s,'HDMI端子',959,516,257,62,C.white,28);
+text(s,'FIFOへ語を渡せたことと、描画が終わったことは別',64,599,1152,52,29,true);
+foot(s,'画素は画面を作る一つひとつの点。命令列の処理・メモリ共有・表示切替の内部は省略');
+
+s=slide('接続した構成で、ブロック崩しを動かした',25,
+  'この構成で640掛ける480画素のブロック崩しが動きました。四つの条件で期待画像との一致を確認しました。さらに5分間の自動プレイを記録し、別の試行では30秒の映像を確認しました。現在は自動操作で、専用コントローラーの接続はこれからです。',
+  `${E6} ${PRODUCT}`,
+  '4条件は3種類の描画条件と再起動後の1条件。これらの条件で全画面を期待画像と比較した。5分の記録は300.011秒の自動プレイで、30秒の取得映像とは別試行。動画のフレーム数をゲームFPSとして用いていない。ゲームには描画負荷を軽減する実装を含むが、この案はその最適化の優劣を主張しない。録画の取得経路は実験環境であり、ゲーム機の公開構成と分けている。映像を受信できない場合の条件の特定は残っており、全ての表示機器での互換性を確認したわけではない。専用コントローラーは将来項目で未検証。資料は既存実験E6の結果を示し、新たな実機計測を行ったという意味ではない。');
+s.images.add({blob:await fs.readFile(path.join(root,'docs/thesis/figs/fifo-study-game.png')),contentType:'image/png',alt:'実機の自動プレイで得たブロック崩しの画面',fit:'contain',position:{left:64,top:151,width:676,height:402}});
+text(s,'640 × 480 画素\n4条件で期待画像と一致',791,161,425,110,28,true);
+text(s,'5分間の自動プレイ\n別に30秒の映像を確認',791,306,425,100,27);
+text(s,'現在は自動操作\n画像・継続実行・映像を確認',791,452,425,90,26);
+text(s,'CPU・描画・メモリ・表示をつなぎ、ゲーム画面を生成',64,568,1152,48,30,true);
+text(s,'残る課題：映像を受信できない場合の条件の特定',64,626,1152,35,24);
+foot(s,'実験記録 E6。継続実行・画像比較・映像取得は別々の記録。現在は自動操作');
+
+
+s=slide('Wallyをゲーム機へ拡張する設計例を示した',15,
+  '既存の読み書きの仕組みに接続回路を加え、描画命令を渡せるようにしました。Wallyを拡張する学習者に向けた設計例です。次は専用コントローラーで操作できることを確認します。',
+  `${PRODUCT} ${E6}`,
+  '学習者向けの拡張例としての利用を想定しているが、教育効果を学習実験で評価したわけではない。CPUやRasterIX本体を新たに設計したという主張ではなく、既存回路間をつなぐアダプタ、メモリ接続、切替制御とソフトウェア側の接続を実装した。専用コントローラーは未実装・未検証であり今後の項目。実機の結果は実験E6に基づく。');
+text(s,'本研究で設計・確認した接続',64,156,1152,54,33,true);
+const summaryItems=[['番地の割当て','番地の比較で\n描画用の窓口を選ぶ'],['受渡しの条件','書込みをFIFOの\nデータ・有効へ変換'],['実機での確認','ゲーム画面の生成と\n継続動作を確認']];
+summaryItems.forEach(([title,body],i)=>{const y=236+i*64;text(s,'▸',70,y,25,40,27,true,C.heading);text(s,title,110,y,275,40,28,true);text(s,body.replaceAll('\n',''),410,y,795,40,26);});
+text(s,'Wallyの拡張を学ぶ人が参照できる、\n接続設計と実機での動作確認の例',64,465,1152,100,33,true);
+text(s,'次の段階：コントローラーを加え、手で操作する',64,595,1152,48,29);
+foot(s,'CPU・RasterIXは既存回路を利用。学習効果そのものを実験したという主張ではない');
+
+const total=outline.reduce((n,s)=>n+s.seconds,0);
+if(outline.length!==12||total!==330)throw new Error(`Unexpected allocation ${outline.length} slides, ${total} seconds`);
+await fs.writeFile(path.join(workspace,'outline.json'),JSON.stringify(outline,null,2)+'\n');
+const md=[
+  '# 中間発表のスライドと発表原稿',
+  'FPGAを用いた二次元ゲーム機の設計と実装を、12枚で説明します。前半6枚ではCPUの読み書きから周辺機器への接続、Wallyの主要回路とFPGAへの実装を扱います。後半6枚ではRasterIXとの接続と、実機で確認した動作を説明します。専用コントローラーによる操作の検証は最終発表で扱います。',
+  '[PowerPoint版](中間発表_主要事項.pptx) / [アブスト](../abstract/アブスト_主要事項.md) / [論文本文](../thesis/本文.md) / [技術付録](../thesis/技術付録.md) / [図の出典・再生成](../../source/presentation/README.md)',
+  '## 図の見方',
+  '簡略図の2〜5枚目では、EBUと命令読出しを省き、値の読み書きだけを追います。6枚目で実際のWallyの主要回路を示し、7枚目で同じ配置にRasterIXを追加します。全信号や物理配置を示した図ではありません。',
+  '配色と回路記号はRVSOCを参考にしています。白い箱は個々の回路、淡い青の背景は回路のまとまり、明るい青は注目する回路や信号です。簡略図の灰色のポートは、その命令で使わない部分です。1ビットの制御線はデータ線より細く描きます。機器間の接続線には複数の信号をまとめたものもあります。',
+  '## 発表時間',
+  '6分のうち、前半6枚に180秒、後半6枚に150秒を配分し、30秒を図示と切替の余裕とします。これは練習による実測ではありません。6・7枚目では全ラベルを説明せず、前の図のレジスタとALU、既存の周辺回路、新しく接続する位置を指して説明します。',
+  '## 目次',
+  outline.map((o,i)=>'- ['+(i+1)+'. '+o.title+'](#slide-'+(i+1)+')').join('\n')
+];
+outline.forEach((o,i)=>md.push('<a id="slide-'+(i+1)+'"></a>\n## '+(i+1)+'. '+o.title,
+  '説明時間の配分：'+o.seconds+'秒',
+  '!['+o.title+'](slides/slide-'+String(i+1).padStart(2,'0')+'.png)',
+  '### 発表原稿',o.narration,
+  '<details>\n<summary>補足説明と出典</summary>\n',o.detail,'出典：'+o.source,'\n</details>'));
+md.push('## 動作確認と詳しい実装',
+  '動作確認は既存のE6によるものです。製品版は261832d48832dd6e26c4971ab8893ce61200688bで、4条件の画像比較、300.011秒の自動プレイ、別試行の30秒映像を区別しています。[実験記録E6](../thesis/再現資料/実験記録/E6/README.md)から条件と結果を参照できます。9枚目は受渡し規則を説明する表で、実測波形ではありません。',
+  'ゲームの描画処理の工夫、接続方式の比較、再現手順は[技術付録](../thesis/技術付録.md)にまとめています。今回の発表では、その最適化の優劣や教育効果を結論として主張しません。',
+  '## 図と書式の出典',
+  '簡略化した読み書きの図はDDCA図7.8・7.12、Wallyの回路とバスはRVSOC第7〜11章、FPGAと外部部品の区別は第23章を参考にしています。詳細図は固定した製品RTLに基づいて描き直したもので、公式図そのものではありません。使用した配色、線幅、書体と、日本語への置換は[デザインと出典](../../source/presentation/README.md)に記載しています。');
+await fs.writeFile(path.join(workspace,'中間発表_主要事項.md'),md.join('\n\n')+'\n');
+
+const raw=path.join(workspace,'raw-candidate.pptx'),candidate=path.join(workspace,'candidate.pptx');
+await(await PresentationFile.exportPptx(P)).save(raw);
 const scrub=spawnSync(process.env.RUNTIME_PYTHON,[path.join(root,'tools/publication/sanitize.py'),raw,candidate,'--config',path.join(root,'.private/redactions.json')],{encoding:'utf8'});
-if(scrub.status!==0)throw Error(scrub.stderr||scrub.stdout||'Privacy sanitization failed');
-await finalizePresentation({workspaceDir:workspace,candidatePath:candidate,finalPath:path.join(workspace,'final','中間発表_主要事項.pptx'),pythonExecutable:process.env.RUNTIME_PYTHON,integrityValidatorPath:path.join(process.env.PRESENTATION_SKILL,'container_tools/inspect_presentation_package_integrity.py'),layoutValidatorPath:path.join(process.env.PRESENTATION_SKILL,'container_tools/inspect_presentation_layout_geometry.py'),layoutArgs:['--expected-slide-size-emu','12192000,6858000','--validate-bullet-geometry','--validate-heading-fit'],explicitTotalSlideCount:8,requiredNativeTableOwnerSlides:[],requiredNativeChartOwnerSlides:[],fontPolicy:{basis:'design',families:[font]},verifyArtifactToolImport:true,receiptPath:path.join(workspace,'validation.json')});
+if(scrub.status!==0)throw new Error(scrub.stderr||scrub.stdout||'Privacy sanitization failed');
+const final=path.join(workspace,'final','中間発表_主要事項.pptx');
+await finalizePresentation({workspaceDir:workspace,candidatePath:candidate,finalPath:final,pythonExecutable:process.env.RUNTIME_PYTHON,integrityValidatorPath:path.join(process.env.PRESENTATION_SKILL,'container_tools/inspect_presentation_package_integrity.py'),layoutValidatorPath:path.join(process.env.PRESENTATION_SKILL,'container_tools/inspect_presentation_layout_geometry.py'),layoutArgs:['--expected-slide-size-emu','12192000,6858000','--validate-bullet-geometry','--validate-heading-fit','--require-native-table-slide','9'],explicitTotalSlideCount:12,requiredNativeTableOwnerSlides:[9],requiredNativeChartOwnerSlides:[],fontPolicy:{basis:'design',families:[font,latinFont]},verifyArtifactToolImport:true,receiptPath:path.join(workspace,'validation.json')});
+const imported=await PresentationFile.importPptx(await FileBlob.load(final));
+for(const[i,s]of imported.slides.items.entries()){
+  const png=await imported.export({slide:s,format:'png',scale:1});
+  await fs.writeFile(path.join(workspace,'slides',`slide-${String(i+1).padStart(2,'0')}.png`),new Uint8Array(await png.arrayBuffer()));
+}
+console.log(JSON.stringify({final,slides:outline.length,seconds:total,narrationCharacters:outline.reduce((n,s)=>n+s.narration.length,0)}));

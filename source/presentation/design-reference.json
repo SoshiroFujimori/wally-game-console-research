@@ -1,0 +1,63 @@
+{
+  "version": 1,
+  "reference": "Harris et al., RISC-V System-on-Chip Design",
+  "official_resources": "https://pages.hmc.edu/harris/ddca/rvsocd.html",
+  "inspection_date": "2026-10-19",
+  "sources": [
+    {
+      "book_relative_path": "sources/RVSoCD_figs/ch7-rvi/7.11-pipelined.vsdx",
+      "sha256": "80203837a333170ffdcbf8f8b4e76f67aa4c79a480236bd65e948bb6bc899de7"
+    },
+    {
+      "book_relative_path": "sources/RVSoCD_figs/ch9-ebu/9.20-wallyuncore.vsdx",
+      "sha256": "45b3768de6d1a10f44f7470e2735ecbcb7362036c70e439d393584ecfe60f334"
+    },
+    {
+      "book_relative_path": "sources/RVSoCD_figs/ch23-FPGA/23.2-FPGABlockDiagram-arty-a7.vsdx",
+      "sha256": "e288cb2a63a38cf51703808309ead781ef105d84d0136016fb42bd24c0af6ac5"
+    },
+    {
+      "book_relative_path": "images/chapter-23/figures/fig-23-02.png",
+      "sha256": "5bbf96b545faf1e43fc5070135d37c26166f0c16a69a4c461fa5a9775d414483"
+    }
+  ],
+  "book_pdf": {
+    "filename": "all.pdf",
+    "sha256": "bcdfbad12e0e1f4fe60e6b2eca297626efd3209e185a38539b78bb9787849ac8",
+    "pages_inspected": [
+      {
+        "physical": 335,
+        "printed": "299"
+      },
+      {
+        "physical": 339,
+        "printed": "303"
+      },
+      {
+        "physical": 421,
+        "printed": "385"
+      }
+    ]
+  },
+  "palette": {
+    "ink": "#231F20",
+    "board_group": "#E5EBF8",
+    "fpga_group": "#CCD9F1",
+    "vendor_ip": "#77A3DC",
+    "heading_and_table_header": "#0078BA",
+    "highlight": "#1572C3"
+  },
+  "font_adaptation": {
+    "english_only_circuit_labels": "Arial",
+    "japanese": "Yu Gothic",
+    "note": "Japanese font is an adaptation; proprietary book fonts are not redistributed."
+  },
+  "wire_widths_css_pixels": {
+    "scalar_control": 1.0,
+    "narrow_address": 1.6,
+    "word_data": 2.4,
+    "note": "Aggregated interface links represent several signals, not one conductor."
+  },
+  "diagram_basis": "Pinned console RTL, redrawn as native editable shapes; simplified views omit EBU and instruction fetch.",
+  "console_revision": "261832d48832dd6e26c4971ab8893ce61200688b"
+}
