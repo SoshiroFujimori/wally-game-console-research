@@ -17,8 +17,15 @@ node source/presentation/build.mjs RESEARCH_ROOT PRIVATE_BUILD_DIRECTORY
 
 The builder sanitizes the package using private redaction settings, validates
 it, re-imports the final PPTX and renders all twelve slides. Slide 9 is a native
-editable table. Circuit shapes, wires and labels are editable. The only
-embedded bitmap is the reviewed game image. Keep build receipts private.
+editable table. Circuit shapes, wires and labels are editable. The embedded
+bitmaps are the reviewed game image and the attributed Digilent board
+photograph. Keep build receipts private.
+
+`build.mjs` calls `wally-circuit.mjs` for the RTL-level drawing on slides 6–7.
+The board photograph is read from `assets/nexys-video.png`; see its
+[attribution](assets/README.md). `PRESENTATION_BOARD_PHOTO` may point to the
+same reviewed asset during a private build. The two detailed slides are
+rendered at twice the slide resolution for reading on GitHub.
 
 Import only the reviewed PPTX, Markdown, slide PNGs and named source files
 through `tools/publication/sanitize.py`. Update the media review record and
@@ -76,6 +83,25 @@ ALU, immediate value and data port in fixed positions while introducing
 external memory and the SD-card controller. Slide 6 shows a more detailed
 functional circuit. Slide 7 retains its layout and adds RasterIX. Both show
 DDR3 and the SD card outside the FPGA chip and their controllers inside it.
+Slide 6 begins by identifying the external APB port where the drawing
+hardware is added. A leader connects the FPGA heat sink in the manufacturer's
+board photograph to the FPGA boundary in the schematic. It is a visual
+correspondence, not an electrical connection. The photograph is not presented
+as a photograph taken during this study.
+
+The detailed view uses the HDL hierarchy `fpgaTop`, `wallypipelinedsoc`,
+`uncore`, `wallypipelinedcore`, `ifu`, `ieu/datapath`, `lsu` and `ebu`.
+MMU and cache internals remain functional blocks. The datapath expands
+registers, selection multiplexers, register-file ports, ALU inputs, forwarding,
+writeback and representative control routes. Blue-filled components identify
+the functions introduced in slides 2–5. This color does not indicate a
+particular instruction's current execution or a clock domain. The right-hand
+graphics blocks on slide 7 use blue outlines.
+
+The hardware description is synthesized and mapped to FPGA logic and routing.
+Neither the schematic coordinates nor the order in the source file describe
+physical placement on the die. The presentation does not claim a complete
+gate-level netlist.
 
 The detailed diagrams were drawn from product revision
 `261832d48832dd6e26c4971ab8893ce61200688b` in [`console/`](../../console/).
@@ -94,8 +120,27 @@ Vertical white boxes group pipeline registers. The diagram draws the W-stage
 forwarding example, not every forwarding path. It shows integer and load
 results while omitting the other result-selector inputs. The store-data
 route in M shows the MMIO path; the cache store-data input is omitted.
+The PCE input represents the instruction-side pipeline address; its long
+route is omitted. The selected ALU-result route represents integer-result
+selection, with the alternative and floating-point result inputs omitted.
 Byte extraction, cache internals, prediction, exception handling and many
-control wires are also omitted. Speaker notes explain these boundaries.
+control wires are also omitted. Stall/flush lines represent the associated
+control signals, not a single wire tied to every register input. Speaker
+notes explain these boundaries.
+
+| Drawn state or selector | RTL correspondence |
+| --- | --- |
+| Source-operand and immediate registers | `RD1EReg`, `RD2EReg`, `ImmExtEReg` in `src/ieu/datapath.sv` |
+| Forwarding and operand selection | `faemux`, `fbemux`, `srcamux`, `srcbmux` in `src/ieu/datapath.sv` |
+| Branch comparison and address calculation | `comp`, `alu`, `IEUAdrE` in `src/ieu/datapath.sv` |
+| Store-data and integer-result state | `WriteDataMReg`, `IEUResultMReg`, `IFResultWReg` in `src/ieu/datapath.sv` |
+| Address state, cache bypass and load result | `AddressMReg`, `UnCachedDataMux`, `ReadDataMWReg` in `src/lsu/lsu.sv` |
+| Writeback selection | `resultmuxW` in `src/ieu/datapath.sv` |
+| Clocked state element | `src/generic/flop/flopenrc.sv`; enable and clear conditions are not expanded in the drawing |
+
+The diagram is a source-derived functional drawing, not an elaboration report
+exported by Vivado. MUX inputs not needed to follow the displayed path are
+omitted; their omission does not remove those functions from the product.
 
 EBU arbitration selects among requesters, whereas address decoding selects
 destinations. DDR3 starts at `0x80000000` and has 512 MiB in this board

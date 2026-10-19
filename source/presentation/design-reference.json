@@ -1,5 +1,5 @@
 {
-  "version": 1,
+  "version": 2,
   "reference": "Harris et al., RISC-V System-on-Chip Design",
   "official_resources": "https://pages.hmc.edu/harris/ddca/rvsocd.html",
   "inspection_date": "2026-10-19",
@@ -59,5 +59,38 @@
     "note": "Aggregated interface links represent several signals, not one conductor."
   },
   "diagram_basis": "Pinned console RTL, redrawn as native editable shapes; simplified views omit EBU and instruction fetch.",
-  "console_revision": "261832d48832dd6e26c4971ab8893ce61200688b"
+  "console_revision": "261832d48832dd6e26c4971ab8893ce61200688b",
+  "detailed_diagram": {
+    "source": "wally-circuit.mjs",
+    "hierarchy": [
+      "fpgaTop",
+      "wallypipelinedsoc",
+      "uncore",
+      "wallypipelinedcore",
+      "ifu",
+      "ieu/datapath",
+      "lsu",
+      "ebu"
+    ],
+    "expanded": "Register-file ports, pipeline state, operand and forwarding MUXes, comparator, ALU, cache bypass, writeback, and representative control paths.",
+    "grouped": "MMU, caches, next-PC selection and vendor memory interfaces.",
+    "highlight": "Blue fill identifies functions introduced in the reduced diagrams; blue outlines identify the added graphics connection.",
+    "limits": "Functional source-derived drawing, not a complete gate-level netlist or a physical placement diagram.",
+    "wire_widths_css_pixels": {
+      "representative_control": 0.64,
+      "representative_data": 1.44,
+      "highlighted_path": 1.68,
+      "arrow_length": 4.0
+    }
+  },
+  "board_photograph": {
+    "file": "assets/nexys-video.png",
+    "attribution": "Digilent",
+    "source_page": "https://digilent.com/shop/nexys-video-amd-artix-7-fpga-trainer-board-for-multimedia-applications/",
+    "download_url": "https://cdn11.bigcommerce.com/s-7gavg/images/stencil/500x659/products/430/5650/16508527298_efc2312db1_o__30845.1602878663.386.513__67600.1749763339.png?c=2",
+    "accessed": "2026-10-19",
+    "download_sha256": "63bbbef68aaf365ab3d0d12df74337be42dffd8e15c06a9f6352ae375b642b16",
+    "encoding_note": "The server supplied WebP despite the PNG URL. Re-encoded as PNG without changing decoded RGBA pixels; publication removes metadata.",
+    "identification_reference": "https://digilent.com/reference/_media/reference/programmable-logic/nexys-video/nexys-video_rm.pdf"
+  }
 }

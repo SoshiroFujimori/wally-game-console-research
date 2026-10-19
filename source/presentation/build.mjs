@@ -2,6 +2,7 @@ import fs from 'node:fs/promises';
 import path from 'node:path';
 import { pathToFileURL } from 'node:url';
 import { spawnSync } from 'node:child_process';
+import { drawWallyCircuit } from './wally-circuit.mjs';
 
 const [root, workspace] = process.argv.slice(2);
 if (!root || !workspace) throw new Error('Usage: build.mjs RESEARCH_ROOT PRIVATE_BUILD_DIRECTORY');
@@ -142,120 +143,23 @@ function mux(s,x,y,w,h,label='',color=C.ink) {
   polygon(s,[[x,y],[x+w,y+6],[x+w,y+h-6],[x,y+h]],C.white,color,1.5);
   if(label)text(s,label,x-14,y+h+3,w+28,22,14,false,color,'center');
 }
-function wallyboard(s,expanded=false) {
-  const gray=C.ink, blue=C.blue;
-  box(s,'',40,139,1200,505,C.pale,22,C.ink,1.7);
-  box(s,'',48,218,1184,419,C.chip,22,C.ink,1.7);
-  box(s,'',68,324,861,285,C.pale,22,C.ink,0);
-  text(s,'FPGAチップ：内部の論理回路と配線を設定する',65,223,700,27,21,true);
-  box(s,'DDR3',960,154,120,50,C.white,25);
-  box(s,'SDカード',1095,154,120,50,C.white,23);
-  text(s,'Nexys Video：基板上の機器',65,155,650,38,25,true);
-  box(s,'保持・取消し制御\nStall / Flush',70,256,190,46,C.white,17);
-  text(s,'CSR・割込み・乗除算・FPU\n（内部と配線を省略）',284,255,296,48,17,false,C.old);
-  box(s,'EBU\n要求選択',600,256,100,46,C.white,17);
-  box(s,'番地で\n選択',715,256,95,46,C.white,17);
-  box(s,'AXI変換\nクロック接続',825,256,120,46,C.ip,17);
-  box(s,'DDR3制御\n共有接続',960,256,120,46,C.ip,17);
-  box(s,'SPI制御',1095,225,120,36,C.white,18);
-  box(s,'AHB → APB',1095,275,120,32,C.white,17);
-  bundle(s,[[700,279],[715,279]]);bundle(s,[[810,279],[825,279]]);bundle(s,[[945,279],[960,279]]);
-  bundle(s,[[1020,256],[1020,204]]);bundle(s,[[1155,225],[1155,204]]);
-  bundle(s,[[1155,275],[1155,261]]);
-  bundle(s,[[810,287],[817,287],[817,313],[1155,313],[1155,307]]);
-  text(s,'CPU：前の図のレジスタ・ALUを含む経路',264,322,650,24,19,true);
-  const stages=[['命令読出し',85,130],['解読・読出し',248,142],['計算',440,155],['データ読書き',642,140],['結果の保存',814,115]];
-  stages.forEach(([t,x,w])=>text(s,t,x,346,w,27,17,true,C.ink,'center'));
-  [220,405,620,790].forEach(x=>{box(s,'',x,385,10,208,C.white,16,C.ink,1.7);wire(s,x+5,378,x+5,385,C.ink,true,1);});
-  route(s,[[85,302],[85,327],[69,327],[69,378],[795,378]],C.ink,false,1);
-  text(s,'縦長の白い箱：途中の値を保存するレジスタ',280,610,610,24,17,false,blue,'center');
-
-  // Fetch: address and instruction paths, with other front-end logic grouped.
-  box(s,'PC',85,414,42,52,C.white,17);
-  box(s,'iMMU',145,402,63,30,C.white,16);
-  box(s,'I$',145,450,63,30,C.white,18);
-  route(s,[[127,440],[136,440],[136,417],[145,417]]);
-  wire(s,176,432,176,450,C.ink,true);
-  route(s,[[208,465],[230,465],[240,465],[240,432],[255,432]]);
-  dot(s,240,459);route(s,[[240,459],[255,459]]);
-  route(s,[[240,465],[240,549],[255,549]]);
-  box(s,'次PC選択\n＋2/4・分岐',85,527,120,47,C.white,16);
-  route(s,[[127,440],[133,440],[133,516],[145,516],[145,527]],gray,true);
-  route(s,[[85,551],[76,551],[76,440],[85,440]],gray,true);
-  bundle(s,[[208,465],[214,465],[214,310],[626,310],[626,302]],C.ink);
-
-  // Decode: the same two source reads and one writeback port as the teaching view.
-  box(s,'',255,391,120,111,C.white);
-  text(s,'レジスタ',262,391,106,26,20,true,C.ink,'center');
-  [['A1',264,419],['A2',264,446],['WD',264,475],['RD1',335,419],['RD2',335,451]].forEach(([t,x,y])=>text(s,t,x,y,37,24,15));
-  box(s,'命令解読\n即値生成',255,527,120,46,C.white,17);
-  route(s,[[240,445],[247,445],[247,520],[315,520],[315,527]],gray,true);
-  wire(s,375,432,405,432);wire(s,415,432,440,432,C.ink,true);
-  wire(s,375,464,405,464);wire(s,415,464,440,464,C.ink,true);
-  wire(s,375,550,405,550);route(s,[[415,550],[485,550],[485,484],[495,484]]);
-
-  // Execute: forwarding selections, register/immediate selection and address ALU.
-  mux(s,440,414,18,31);mux(s,440,453,18,35);
-  text(s,'転送選択',425,385,83,25,16,false,C.ink,'center');
-  mux(s,495,451,20,54);
-  text(s,'入力選択',494,548,112,25,17,false,C.ink,'center');
-  route(s,[[458,432],[533,432],[533,428],[550,428]]);
-  wire(s,458,467,495,467,C.ink,true);
-  route(s,[[515,479],[535,479],[535,477],[550,477]]);
-  polygon(s,[[550,410],[610,427],[610,481],[550,495],[550,465],[568,454],[550,442]],C.white);
-  text(s,'ALU',559,428,48,46,19,true,C.ink,'center');
-  wire(s,610,450,620,450);
-  route(s,[[630,450],[639,450],[639,415],[650,415]]);
-  route(s,[[458,467],[477,467],[477,513],[620,513]],blue,false);
-  route(s,[[630,513],[638,513],[638,568],[650,568]],blue,true);
-  text(s,'書く値',504,516,102,24,17,false,blue,'center');
-  // Integer-result route crosses M without using the load/store read port.
-  route(s,[[630,450],[636,450],[636,391],[795,391],[830,391],[830,430],[840,430]],gray,true);
-
-  // Memory: address translation, cache path and uncached MMIO path.
-  box(s,'dMMU',650,399,120,32,C.white,18);
-  box(s,'D$',650,456,52,39,C.white,19);
-  box(s,'バス接続',650,547,120,34,C.white,17);
-  route(s,[[710,431],[710,439],[676,439],[676,456]]);
-  route(s,[[710,439],[781,439],[781,552],[770,552]],C.ink,true);
-  text(s,'MMIO',711,443,59,20,14,false,C.old,'center');dot(s,710,439);
-  bundle(s,[[676,495],[676,547]]);
-  mux(s,751,487,19,40);
-  route(s,[[702,475],[734,475],[734,498],[751,498]]);
-  route(s,[[728,547],[728,516],[751,516]]);
-  wire(s,770,506,790,506);wire(s,800,506,840,506,C.ink,true);
-  text(s,'読出値',776,476,61,22,15,false,C.ink,'center');
-  bundle(s,[[770,565],[803,565],[803,318],[674,318],[674,302]],C.ink);
-
-  // Writeback: select a result, retain the load/store path and a feedback example.
-  mux(s,840,418,20,102);
-  text(s,'結果選択',816,529,95,25,16,false,C.ink,'center');
-  route(s,[[860,467],[922,467],[922,601],[247,601],[247,489],[255,489]],blue,true);
-  text(s,'ResultW',826,581,91,22,15,false,blue,'center');
-  route(s,[[431,601],[431,478],[440,478]],blue,true);dot(s,431,601);
-  route(s,[[431,478],[431,441],[440,441]],blue,true);dot(s,431,478);
-
-  if(!expanded){
-    route(s,[[1215,291],[1224,291],[1224,346],[1095,346],[1095,378]],blue,true);
-    text(s,'本研究では\nこのAPB接続へ\n描画回路を追加する',971,385,245,107,24,true,blue,'center');
-    text(s,'回路記述を合成し、\nFPGA内の素子と配線で\nこの回路を構成する',970,522,247,87,20,false,C.ink,'center');
-  }else{
-    text(s,'描画窓口 0x1008_0000',968,314,246,25,18,true,blue,'center');
-    route(s,[[1215,291],[1224,291],[1224,340],[1090,340],[1090,351]],blue,true);
-    box(s,'APB接続回路 → FIFO',970,351,243,46,C.white,20,blue);
-    wire(s,1091,397,1091,424,blue,true);
-    box(s,'RasterIX\n画素を作る',970,424,243,61,C.white,23,blue);
-    box(s,'表示回路\n画素を順に送る',970,522,243,61,C.white,21,blue);
-    bundle(s,[[970,455],[951,455],[951,291],[960,291]],blue);
-    bundle(s,[[970,553],[941,553],[941,309],[971,309],[971,302]],blue);
-    text(s,'DDR3を共有',974,491,236,26,20,true,blue,'center');
-    route(s,[[1092,583],[1092,643],[1160,643],[1160,651]],blue,true);
-    text(s,'HDMI端子へ',1035,649,180,29,21,true,blue,'center');
-  }
+async function wallyboard(s,expanded=false) {
+  text(s,expanded?'APBの追加位置に、描画回路を接続する':'本研究では、このAPB接続へ描画回路を追加する',64,126,1152,42,29,true,C.blue);
+  text(s,'Nexys Video',45,193,265,35,25,true,C.ink,'center');
+  const photo=process.env.PRESENTATION_BOARD_PHOTO||path.join(root,'source/presentation/assets/nexys-video.png');
+  s.images.add({blob:await fs.readFile(photo),contentType:'image/png',alt:'Digilent Nexys Video。中央の放熱器の下がFPGA',fit:'contain',position:{left:45,top:231,width:265,height:229}});
+  box(s,'',158,307,46,44,'none',16,C.blue,2);
+  route(s,[[204,329],[294,329],[294,407],[326,407]],C.blue,true,1.7);
+  text(s,'FPGA',45,475,265,34,27,true,C.blue,'center');
+  text(s,'放熱器の下にあるチップ',45,511,265,30,19,false,C.ink,'center');
+  text(s,'HDLで回路を記述し、\n論理素子と配線へ実装',45,563,265,63,23,true,C.ink,'center');
+  text(s,'写真：Digilent',45,641,265,24,15,false,C.old,'center');
+  drawWallyCircuit(s,{text,box,polygon,route,wire,dot,C},expanded);
 }
 
 const DDCA='Harris, S. L. and Harris, D., Digital Design and Computer Architecture: RISC-V Edition (2021), Chapter 7. Official figure source: https://pages.hmc.edu/harris/ddca/ddcarv.html (DDCArv_Figures.zip).';
 const RVSOC='Harris et al., RISC-V System-on-Chip Design, Chapters 7–13, 20, 22–23. Official figure source: https://pages.hmc.edu/harris/ddca/rvsocd.html (RVSoCD_figs.zip).';
+const PHOTO='Digilent, Nexys Video product photograph: https://digilent.com/shop/nexys-video-amd-artix-7-fpga-trainer-board-for-multimedia-applications/ . Board identification: Nexys Video Reference Manual (2020), pp.3-4. Image copyright Digilent.';
 const PRODUCT='Product revision 261832d48832dd6e26c4971ab8893ce61200688b. console/fpga/src/fpgaTopNexysVideo.sv; console/fpga/src/rasterix.sv; console/fpga/src/rasterix_apb.sv; console/fpga/generator/axiscdc.tcl.';
 const E6='docs/thesis/再現資料/実験記録/E6/fresh-product/qualification/qualification.json; docs/thesis/再現資料/実験記録/E6/report/results/video/validation.json. Photograph: docs/thesis/figs/fifo-study-game.png.';
 
@@ -309,18 +213,18 @@ text(s,'用途に合った制御回路を、CPUのバスにつなぐ',64,136,115
 datapath(s,'peripherals');
 foot(s,'SDカードにはSPIで接続。図の線は信号群。DDR3・SD制御回路は既存実装を利用');
 
-s=slide('Wallyの主要回路を、FPGAチップ内に実装する',45,
-  'ここまでは読み書きだけを取り出していました。実際のWallyには、値を途中で保存する縦長のレジスタや、どの値を使うかを選ぶ回路があります。先ほどのレジスタとALUもこの中にあります。この回路記述を合成し、FPGAという、内部の論理回路と配線を設定できるチップへ実装します。DDR3とSDカードはチップの外です。本研究では、この構成のAPB接続へ描画回路を追加します。',
-  'RVSOC Chapters 7–11 and 23; DDCA Chapter 7. '+PRODUCT+' console/src/ieu/datapath.sv; console/src/ifu/ifu.sv; console/src/lsu/lsu.sv; console/src/wally/wallypipelinedcore.sv; console/src/uncore/uncore.sv.',
-  '実際のRTLに対応する主要な機能とデータ経路を描き直した図。全信号・全MUX・全段レジスタを網羅したRTL回路図でも、FPGA内の物理配置図でもない。縦長の白い箱は同じ段境界で値を保持する複数のレジスタをまとめる。保持／取消し線もStall、Flush等の信号群をまとめている。Register Fileはregfile、即値はextend、読出しの段間保存はRD1EReg、RD2EReg、ImmExtEReg、E段の転送MUXはfaemuxとfbemux、即値選択はsrcbmux、演算器はaluに対応する。ALUの番地IEUAdrEはLSUのAddressMRegを通りIEUAdrMとなる。書く値はForwardedSrcBEからWriteDataMRegを通りWriteDataMとなる。計算結果の経路はIEUResultM、IFResultM、IFResultW等を簡略化したもの。W段のresultmuxWは5入力で、図では整数計算とロードの経路を描き、CSR・乗除算・浮動小数点・アトミック等の入力を省く。転送はResultWからの例を描き、IFResultMからの経路を省く。PC相対演算用のsrcamux、分岐比較、例外や予測の内部、幅調整は省略。iMMU/dMMUは番地変換と保護、I$/D$はキャッシュ。MMIOがDキャッシュを通らずバスへ進む経路を明示する。M段ではMMIOの書込データをバス接続へ渡す経路を描き、Dキャッシュへの書込み経路は省く。キャッシュのアクセスや補充・書戻しは図の双方向の接続にまとめ、タグやステートマシンは省略。ReadDataWを作るバイト抽出・符号拡張等も省く。命令側とデータ側がEBUで仲裁され、その後uncoreの番地選択へ進む。DDR3側はAHB/AXI変換、クロック接続、共有AXI接続、DDR3制御を通る。SPI制御はAPB上にあり、SDカードの端子へつながる。描画回路追加前の接続関係を示すためRasterIXは6枚目には描かず、7枚目に加える。Nexys Videoの本体CPUでWallyをソフトウェア実行する意味ではなく、FPGAのLUT、フリップフロップ、BRAM等で回路を構成する。');
-wallyboard(s,false);
-foot(s,'主要な読書き経路。MMU：番地変換　I$/D$：キャッシュ。全信号・内部処理は省略');
+s=slide('FPGA内の回路と、本研究で追加する位置',45,
+  '本研究では、この右側のAPB接続へ描画回路を追加します。ここまでの簡略図を、実際のWallyに対応させた図です。青く塗ったレジスタ、ALU、バス接続が、先ほど説明した部分です。その間には、値を選ぶMUXや、途中の値を保存するレジスタが入ります。MMUやキャッシュもあります。左の写真の放熱器の下がFPGAです。右の回路をHDLというコードで記述し、このチップの論理素子と配線で実現します。DDR3とSDカードはチップの外です。',
+  'RVSOC Chapters 7–11 and 23; DDCA Chapter 7. '+PHOTO+' '+PRODUCT+' console/src/ieu/datapath.sv; console/src/ifu/ifu.sv; console/src/lsu/lsu.sv; console/src/wally/wallypipelinedcore.sv; console/src/uncore/uncore.sv.',
+  '固定した製品RTLに基づく主要経路の回路図。RVSOC図7.11の信号線・MUX・段間レジスタの表現、図9.20のHDL階層、図23.2のFPGAと外部部品の区別を参考にした。全ゲートの回路図でも、配置配線後の物理配置図でもない。外枠fpgaTopはFPGA内に実装する回路を示す。wallypipelinedsocの中をuncoreとwallypipelinedcoreに分け、CPU内にifu、ieu/datapath、lsu、ebuを置く。青く塗ったregfile、extend、alu、ahbcacheinterface、adrdecs、ahbapbbridge、spi_apbとDDR3側の接続は、前の簡略図で説明した機能に対応する。命令の実行状態やクロック領域を表す配色ではない。追加予定のEXT_IOはWallyの外部APBポートであり、既存のuncore内部にRasterIX本体を置く意味ではない。\n\n小さい台形は値を選ぶMUX。細長い白い箱はクロックで値を保存するレジスタ。datapath.svのregfile、extend、RD1EReg、RD2EReg、ImmExtEReg、faemux、fbemux、srcamux、srcbmux、comparator、alu、IEUResultMReg、WriteDataMReg、IFResultWReg、resultmuxWに対応する主要経路を示す。MMUとキャッシュは機能名の箱にまとめ、その内部のTLB・タグ比較・状態機械は展開しない。ALUのIEUAdrEはlsu.svのAddressMRegを通り、MMUで番地変換される。MMIOはD-cacheを通らずahbcacheinterfaceへ進む。図のPCE入力は命令側の段間経路から来るが、その配線は省略。ALU結果の選択、浮動小数点結果との選択、サブワードの抽出、例外・分岐予測、HPTW、全制御線なども省略している。resultmuxWの5入力のうち整数計算とロードの経路を描き、その他は省略記号にまとめた。転送MUXは本来3入力で、IFResultMからの経路を省略した。レジスタの保持・取消しはhazardからの信号群にまとめ、全てのレジスタのen・clearを同じ1本へつないだという意味ではない。\n\nuncoreでは番地をadrdecsで判定し、AHB/APBブリッジと対象の周辺回路を選ぶ。SDカードのSPI制御回路はspi_apbのsdcインスタンス。外部DDR3の制御やAHB/AXI変換・クロック接続はfpgaTop側にある。機器間の双方向線は要求・データ・応答をまとめた接続。前の簡略図で説明した機能と複数のHDLモジュールは、必ずしも一対一に対応しない。\n\n写真はDigilentのNexys Video製品写真。写真の青枠は放熱器の位置で、その下にArtix-7 FPGAがある。写真から右図への線は拡大対象の対応を示し、電気的な配線ではない。メーカー写真を本研究で撮影した実機写真として扱わない。HDLをゲームプログラムとしてCPUで逐次実行するのではなく、合成・配置配線を経てFPGAのLUT・フリップフロップ・BRAM等へ回路を実装する。');
+await wallyboard(s,false);
+foot(s,'青い塗り：前の簡略図に対応する回路。白い細長い箱：レジスタ。内部の物理配置は表さない');
 
 s=slide('同じWallyの構成へ、RasterIXを追加する',30,
   '同じ図の右側へ、描画用の接続回路とRasterIXを加えます。CPUの書込みはAPBを通ってFIFOへ入り、RasterIXが受け取ります。作った画素は共有するDDR3へ保存し、表示回路が読み出して映像を送ります。CPUを作り替えるのでなく、周辺回路とメモリの接続を追加した構成です。',
-  PRODUCT+' console/fpga/src/rasterix_apb.sv; console/fpga/src/rasterix.sv; console/fpga/src/rasterixdisplay.sv; console/fpga/generator/rasterixmem.tcl; console/linux/devicetree/wally-nexysvideo-rasterix.dts.',
+  PHOTO+' '+PRODUCT+' console/fpga/src/rasterix_apb.sv; console/fpga/src/rasterix.sv; console/fpga/src/rasterixdisplay.sv; console/fpga/generator/rasterixmem.tcl; console/linux/devicetree/wally-nexysvideo-rasterix.dts.',
   '6枚目と同じWally主要回路を同じ位置に保ち、APBコマンド接続、非同期FIFO、RasterIX、表示回路とDDR3の共有接続を加える。CPU20 MHz、RasterIX100 MHz。APBのEXT_IO領域0x10080000〜0x100800ffを使用し、通常CMD窓口はオフセット0。CPUにはコマンドを送るソフトウェアも必要である。RasterIX本体は公式サブモジュールを変更せず用いる。FIFOの保存と受渡しの内部は8・9枚目で拡大する。GPUと表示のAXI要求は共有接続で仲裁され、単に複数出力を短絡する配線ではない。図の双方向線は要求・データ・応答を含む信号群を表す。DDR3へ向かうGPU側の命令・テクスチャ経路、IFのフレームバッファ書込み、表示の読出し等のポート詳細はまとめている。実装はRasterIX_IFで、内部の作業領域を経てDDR3へ画像を転送する。表示はHDMI端子からDVI形式の信号を出す。上流コードの変更ではなく外側の接続回路を設計した。CPUコア・基本uncoreは既存設計で、本研究の新規CPU設計と誤解しないよう区別する。');
-wallyboard(s,true);
+await wallyboard(s,true);
 foot(s,'右側へ追加した回路と共有メモリ接続を表示。双方向の線は複数の信号をまとめた接続');
 
 s=slide('APBの書込みを、FIFOの入力へ変換する',30,
@@ -409,8 +313,8 @@ const md=[
   'FPGAを用いた二次元ゲーム機の設計と実装を、12枚で説明します。前半6枚ではCPUの読み書きから周辺機器への接続、Wallyの主要回路とFPGAへの実装を扱います。後半6枚ではRasterIXとの接続と、実機で確認した動作を説明します。専用コントローラーによる操作の検証は最終発表で扱います。',
   '[PowerPoint版](中間発表_主要事項.pptx) / [アブスト](../abstract/アブスト_主要事項.md) / [論文本文](../thesis/本文.md) / [技術付録](../thesis/技術付録.md) / [図の出典・再生成](../../source/presentation/README.md)',
   '## 図の見方',
-  '簡略図の2〜5枚目では、EBUと命令読出しを省き、値の読み書きだけを追います。6枚目で実際のWallyの主要回路を示し、7枚目で同じ配置にRasterIXを追加します。全信号や物理配置を示した図ではありません。',
-  '配色と回路記号はRVSOCを参考にしています。白い箱は個々の回路、淡い青の背景は回路のまとまり、明るい青は注目する回路や信号です。簡略図の灰色のポートは、その命令で使わない部分です。1ビットの制御線はデータ線より細く描きます。機器間の接続線には複数の信号をまとめたものもあります。',
+  '簡略図の2〜5枚目では、EBUと命令読出しを省き、値の読み書きだけを追います。6枚目では、FPGAボードの写真とRTLに対応する回路図を並べ、青い塗りで前の簡略図との対応を示します。7枚目で同じ配置にRasterIXを追加します。全信号や物理配置を示した図ではありません。',
+  '配色と回路記号はRVSOCを参考にしています。白い箱は個々の回路、淡い青の背景は回路のまとまり、明るい青は注目する回路や信号です。簡略図の灰色のポートは、その命令で使わない部分です。6・7枚目の青い塗りは前の簡略図に出た機能、右側の青い枠は追加する描画接続を示します。1ビットの制御線はデータ線より細く描きます。機器間の接続線には複数の信号をまとめたものもあります。',
   '## 発表時間',
   '6分のうち、前半6枚に180秒、後半6枚に150秒を配分し、30秒を図示と切替の余裕とします。これは練習による実測ではありません。6・7枚目では全ラベルを説明せず、前の図のレジスタとALU、既存の周辺回路、新しく接続する位置を指して説明します。',
   '## 目次',
@@ -436,7 +340,7 @@ const final=path.join(workspace,'final','中間発表_主要事項.pptx');
 await finalizePresentation({workspaceDir:workspace,candidatePath:candidate,finalPath:final,pythonExecutable:process.env.RUNTIME_PYTHON,integrityValidatorPath:path.join(process.env.PRESENTATION_SKILL,'container_tools/inspect_presentation_package_integrity.py'),layoutValidatorPath:path.join(process.env.PRESENTATION_SKILL,'container_tools/inspect_presentation_layout_geometry.py'),layoutArgs:['--expected-slide-size-emu','12192000,6858000','--validate-bullet-geometry','--validate-heading-fit','--require-native-table-slide','9'],explicitTotalSlideCount:12,requiredNativeTableOwnerSlides:[9],requiredNativeChartOwnerSlides:[],fontPolicy:{basis:'design',families:[font,latinFont]},verifyArtifactToolImport:true,receiptPath:path.join(workspace,'validation.json')});
 const imported=await PresentationFile.importPptx(await FileBlob.load(final));
 for(const[i,s]of imported.slides.items.entries()){
-  const png=await imported.export({slide:s,format:'png',scale:1});
+  const png=await imported.export({slide:s,format:'png',scale:(i===5||i===6)?2:1});
   await fs.writeFile(path.join(workspace,'slides',`slide-${String(i+1).padStart(2,'0')}.png`),new Uint8Array(await png.arrayBuffer()));
 }
 console.log(JSON.stringify({final,slides:outline.length,seconds:total,narrationCharacters:outline.reduce((n,s)=>n+s.narration.length,0)}));
