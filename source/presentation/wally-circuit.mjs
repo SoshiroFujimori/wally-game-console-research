@@ -1,8 +1,8 @@
 // Editable RTL-level diagram based on the pinned console source.
 // Coordinates describe functional connections, not placement on the FPGA.
-export function drawWallyCircuit(s, api, expanded) {
+export function drawWallyCircuit(s, api, expanded, placement={}) {
   const { text, box, polygon, route, wire, dot, C } = api;
-  const ox=326, oy=164, k=0.8;
+  const {x:ox=326,y:oy=164,scale:k=0.8}=placement;
   const X=x=>ox+k*x, Y=y=>oy+k*y;
   const T=(v,x,y,w,h=22,z=16,b=false,c=C.ink,a='left')=>text(s,v,X(x),Y(y),w*k,h*k,z*k,b,c,a);
   const B=(v,x,y,w,h,fill=C.white,z=16,stroke=C.ink,thick=1.5)=>{
@@ -20,7 +20,7 @@ export function drawWallyCircuit(s, api, expanded) {
   const J=(x,y,c=C.ink)=>s.shapes.add({geometry:'ellipse',position:{left:X(x)-1.5*k,top:Y(y)-1.5*k,width:3*k,height:3*k},fill:c,line:{fill:c,width:0}});
   const blue=C.blue, known=C.ip;
   const M=(x,y,h=44,fill=C.white)=>{P([[x,y],[x+17,y+6],[x+17,y+h-6],[x,y+h]],fill);T('0',x+1,y+3,13,14,11);T('1',x+1,y+h-18,13,14,11);};
-  const F=(x,y,h=42)=>{B('',x,y,12,h);P([[x,y+8],[x+5,y+12],[x,y+16]]);};
+  const F=(x,y,h=42)=>{B('',x,y,12,h);P([[x+2,y],[x+6,y+5],[x+10,y]],'none');W(x+6,y-6,x+6,y,C.ink,false,0.8);};
   const BI=(pts,c=C.ink,w=2)=>{R(pts,c,true,w);R([pts[1],pts[0]],c,true,w);};
 
   // Board components outside the programmable chip.

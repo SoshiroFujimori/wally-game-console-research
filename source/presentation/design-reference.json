@@ -1,5 +1,5 @@
 {
-  "version": 2,
+  "version": 3,
   "reference": "Harris et al., RISC-V System-on-Chip Design",
   "official_resources": "https://pages.hmc.edu/harris/ddca/rvsocd.html",
   "inspection_date": "2026-10-19",
@@ -50,15 +50,16 @@
   "font_adaptation": {
     "english_only_circuit_labels": "Arial",
     "japanese": "Yu Gothic",
-    "note": "Japanese font is an adaptation; proprietary book fonts are not redistributed."
+    "note": "Japanese font is an adaptation; proprietary book fonts are not redistributed.",
+    "code_excerpt": "Consolas"
   },
   "wire_widths_css_pixels": {
-    "scalar_control": 1.0,
-    "narrow_address": 1.6,
-    "word_data": 2.4,
+    "scalar_control": 1.3,
+    "word_data": 3.0,
+    "block_outline": 2.2,
     "note": "Aggregated interface links represent several signals, not one conductor."
   },
-  "diagram_basis": "Pinned console RTL, redrawn as native editable shapes; simplified views omit EBU and instruction fetch.",
+  "diagram_basis": "Pinned console RTL; reduced views include instruction fetch and one shared APB bridge, and omit EBU, MMU and caches until slide 11.",
   "console_revision": "261832d48832dd6e26c4971ab8893ce61200688b",
   "detailed_diagram": {
     "source": "wally-circuit.mjs",
@@ -77,11 +78,12 @@
     "highlight": "Blue fill identifies functions introduced in the reduced diagrams; blue outlines identify the added graphics connection.",
     "limits": "Functional source-derived drawing, not a complete gate-level netlist or a physical placement diagram.",
     "wire_widths_css_pixels": {
-      "representative_control": 0.64,
-      "representative_data": 1.44,
-      "highlighted_path": 1.68,
-      "arrow_length": 4.0
-    }
+      "representative_control": 0.54,
+      "representative_data": 1.21,
+      "highlighted_path": 1.41,
+      "arrow_length": 3.35
+    },
+    "slide": 11
   },
   "board_photograph": {
     "file": "assets/nexys-video.png",
@@ -92,5 +94,29 @@
     "download_sha256": "63bbbef68aaf365ab3d0d12df74337be42dffd8e15c06a9f6352ae375b642b16",
     "encoding_note": "The server supplied WebP despite the PNG URL. Re-encoded as PNG without changing decoded RGBA pixels; publication removes metadata.",
     "identification_reference": "https://digilent.com/reference/_media/reference/programmable-logic/nexys-video/nexys-video_rm.pdf"
+  },
+  "simplified_diagrams": {
+    "source": "simple-circuit.mjs",
+    "instruction_fetch_slide": 2,
+    "load_store_slides": [
+      3,
+      4
+    ],
+    "bus_software_graphics_slides": [
+      5,
+      6,
+      7
+    ],
+    "clock_symbol": "Triangular edge-triggered clock input on a white register symbol",
+    "sd_transfer_arrow": "Logical Linux software loading, not a direct hardware connection or DMA"
+  },
+  "cover": {
+    "fields": [
+      "title",
+      "student",
+      "supervisor"
+    ],
+    "public_identity": "Withheld",
+    "private_input": "External JSON file, never published"
   }
 }

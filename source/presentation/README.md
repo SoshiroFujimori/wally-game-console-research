@@ -1,9 +1,9 @@
 # Intermediate presentation
 
-This directory builds the canonical twelve-slide, six-minute presentation:
+This directory builds the canonical thirteen-slide, six-minute presentation:
 [slides and narration](../../docs/presentation/中間発表_主要事項.md) and
 [PowerPoint](../../docs/presentation/中間発表_主要事項.pptx).
-The earlier eight-slide presentation is preserved in Git history.
+Earlier editions remain in Git history.
 
 ## Build and publication
 
@@ -15,164 +15,136 @@ outside the repository:
 node source/presentation/build.mjs RESEARCH_ROOT PRIVATE_BUILD_DIRECTORY
 ```
 
-The builder sanitizes the package using private redaction settings, validates
-it, re-imports the final PPTX and renders all twelve slides. Slide 9 is a native
-editable table. Circuit shapes, wires and labels are editable. The embedded
-bitmaps are the reviewed game image and the attributed Digilent board
-photograph. Keep build receipts private.
+The default is the public edition. The builder sanitizes the package with the
+private redaction settings, validates it, re-imports the final PPTX and renders
+all thirteen slides. Slide 9 contains a native editable table. Circuit shapes,
+wires, labels and the HDL excerpt are editable. Slide 11 is rendered at twice
+the slide resolution for reading the detailed diagram on GitHub.
 
-`build.mjs` calls `wally-circuit.mjs` for the RTL-level drawing on slides 6–7.
-The board photograph is read from `assets/nexys-video.png`; see its
-[attribution](assets/README.md). `PRESENTATION_BOARD_PHOTO` may point to the
-same reviewed asset during a private build. The two detailed slides are
-rendered at twice the slide resolution for reading on GitHub.
+For a private school copy, explicitly set `PRESENTATION_AUDIENCE=private` and
+`PRESENTATION_PRIVATE_COVER_JSON` to a private JSON file outside this repository.
+That file supplies only the `student` and `supervisor` cover lines. The private
+build keeps those lines and must never be imported or published. Public builds
+do not load the private cover file. The circuit and narration sources are
+shared between editions. Do not put private names into this source tree.
 
-Import only the reviewed PPTX, Markdown, slide PNGs and named source files
-through `tools/publication/sanitize.py`. Update the media review record and
-run the local privacy audit before publication. Review the rendered diagrams
-as well as the package checks. Refresh `publication/files.json` from the
-intended Git index when publishing a new snapshot.
+Import only the public PPTX, Markdown, slide PNGs and named source files through
+`tools/publication/sanitize.py`. Review every image, update the media review
+record, run the local privacy audit and refresh `publication/files.json` from
+the intended Git index. Build receipts and private school examples remain
+outside the public repository.
+
+## Narrative and scope
+
+| Slides | Explanation |
+| --- | --- |
+| 1 | Conventional title and presenter/supervisor fields. Identity is withheld in the public edition. |
+| 2 | PC, instruction memory, instruction decoding and the sequential PC update. |
+| 3–4 | Load and store data paths, with the same register-file and ALU positions. |
+| 5–7 | External memory through a bus, software loaded from SD into DDR3, and an added graphics port on the same APB bridge. |
+| 8–10 | APB-to-stream adaptation, accepted writes, and the path from rendering commands to displayed pixels. |
+| 11 | One detailed Wally circuit, an actual register behavior in HDL, and FPGA configuration. |
+| 12–13 | Existing E6 results, the connection-design contribution and controller work still to do. |
+
+The narration allocation is 330 seconds plus 30 seconds for pointing and
+transitions. This is a plan, not a timed rehearsal. The detailed circuit is a
+visual reference; the oral explanation does not read every label.
+
+The title slide follows the content convention of the supplied school
+presentations: title, student information and supervisor. It does not contain
+a research summary. Private reference decks are not included or identified in
+the public material.
 
 ## RVSOC design reference
 
-The design follows Harris et al., *RISC-V System-on-Chip Design*, rather than
-an unrelated slide template. The reference is the
-[authors' book and figure resources](https://pages.hmc.edu/harris/ddca/rvsocd.html).
-Source filenames and hashes are recorded in [design-reference.json](design-reference.json).
-The official files were inspected as reference material; they are not copied
-into this presentation directory.
+The circuit notation and typography follow Harris et al., *RISC-V
+System-on-Chip Design*, using the
+[authors' figure resources](https://pages.hmc.edu/harris/ddca/rvsocd.html).
+Source filenames and hashes are retained in
+[design-reference.json](design-reference.json). Figures were inspected as
+references, not copied from a private book into this repository.
 
-| Element | Reference | Application |
-| --- | --- | --- |
-| Core notation | Chapter 7, printed p.303, and Fig.7.11 | Bold block labels, ordinary signal labels, white register and logic symbols, blue emphasis, grey inactive ports, and thinner one-bit control lines. |
-| Circuit hierarchy | Fig.9.20 and Fig.23.2 | Pale blue groups, a medium-blue FPGA boundary, darker blue memory-interface IP and white individual circuits. |
-| Heading hierarchy | Chapter 7 opening and section headings | Black numbering, blue headings, white page background and generous margins. |
-| Table | Table 7.2, printed p.303 | Blue header with white text, pale alternating rows, horizontal rules and one separator after the row labels. |
-| Captions and summary | Chapter 7 captions and text | Blue figure/table identifiers and blue triangular text bullets. |
-
-The board palette is sampled from the published Fig.23.2: `#E5EBF8`,
-`#CCD9F1`, `#77A3DC` and `#231F20`. The heading/table blue `#0078BA` is sampled
-from printed p.303, rendered at 1500 pixels on its long side. Highlighted
-paths use `#1572C3`. These are screen RGB values, not a claim about print CMYK.
-
-English-only circuit labels use Arial, found in the official figure/PDF
-resources. Japanese text uses Yu Gothic as a local adaptation. The source
-book is in English and does not prescribe a Japanese font. Some book text
-uses proprietary embedded fonts; this deck does not redistribute those fonts
-or claim an identical typeface for every text element. The 16:9 slide canvas
-and projected text sizes are retained instead of reproducing a portrait page.
-
-Blue denotes emphasis, not a particular clock domain. Group backgrounds
-indicate hierarchy, not additional logic. The grey ports in slides 2–3 are
-unused by the illustrated instruction. Grey explanatory text elsewhere is
-annotation, not a claim that the described hardware is absent. Individual
-control wires are thinner than data wires. Connections grouping multiple
-interfaces use one representative line and do not encode every constituent
-signal's width.
-
-## Diagram and source correspondence
-
-The simplified datapaths refer to Harris and Harris, *Digital Design and
-Computer Architecture: RISC-V Edition* (2021), Figures 7.8 and 7.12:
-[official resources](https://pages.hmc.edu/harris/ddca/ddcarv.html).
-With data[0]=3, `lw x1,0(x0)` reads 3 into x1 and `sw x1,4(x0)` writes it to
-data[4]. These are teaching addresses, not the Linux program's addresses.
-
-Slides 2–5 omit the EBU and instruction fetch. They keep the register file,
-ALU, immediate value and data port in fixed positions while introducing
-external memory and the SD-card controller. Slide 6 shows a more detailed
-functional circuit. Slide 7 retains its layout and adds RasterIX. Both show
-DDR3 and the SD card outside the FPGA chip and their controllers inside it.
-Slide 6 begins by identifying the external APB port where the drawing
-hardware is added. A leader connects the FPGA heat sink in the manufacturer's
-board photograph to the FPGA boundary in the schematic. It is a visual
-correspondence, not an electrical connection. The photograph is not presented
-as a photograph taken during this study.
-
-The detailed view uses the HDL hierarchy `fpgaTop`, `wallypipelinedsoc`,
-`uncore`, `wallypipelinedcore`, `ifu`, `ieu/datapath`, `lsu` and `ebu`.
-MMU and cache internals remain functional blocks. The datapath expands
-registers, selection multiplexers, register-file ports, ALU inputs, forwarding,
-writeback and representative control routes. Blue-filled components identify
-the functions introduced in slides 2–5. This color does not indicate a
-particular instruction's current execution or a clock domain. The right-hand
-graphics blocks on slide 7 use blue outlines.
-
-The hardware description is synthesized and mapped to FPGA logic and routing.
-Neither the schematic coordinates nor the order in the source file describe
-physical placement on the die. The presentation does not claim a complete
-gate-level netlist.
-
-The detailed diagrams were drawn from product revision
-`261832d48832dd6e26c4971ab8893ce61200688b` in [`console/`](../../console/).
-They are not official textbook figures or complete RTL schematics.
-
-| Diagram element | Source relative to console/ |
+| Element | Application |
 | --- | --- |
-| Register file, immediate generation, forwarding, ALU and result selection | `src/ieu/datapath.sv`: `regfile`, `extend`, `faemux`, `fbemux`, `srcbmux`, `alu`, `resultmuxW` |
-| Fetch and decode | `src/ifu/ifu.sv`: PC, instruction memory/cache, MMU and instruction registers |
-| Data cache and uncached MMIO | `src/lsu/lsu.sv`: address register, MMU, cache, `ahbcacheinterface`, `UnCachedDataMux`, read-data register |
-| Request arbitration and destination selection | `src/ebu/ebu.sv`, `src/uncore/uncore.sv`, `src/uncore/ahbapbbridge.sv` |
-| DDR3 and SPI/SD connection | `fpga/src/fpgaTopNexysVideo.sv`, `src/uncore/uncore.sv`, `linux/devicetree/wally-nexysvideo.dts` |
-| Added graphics connection | `fpga/src/rasterix_apb.sv`, `fpga/src/rasterix.sv`, `fpga/src/rasterixdisplay.sv`, `fpga/generator/rasterixmem.tcl` |
+| Register | White rectangle with a triangular clock input, as in Fig.7.11. The register file remains a multiport block, not a single flip-flop. |
+| MUX, ALU, immediate extension | Native trapezoid, notched ALU and wedge symbols. Immediate generation is combinational, not a storage register. |
+| Signals | Approximately 3.0 px for word data, 1.2–1.3 px for scalar control and 2.2 px for block outlines in the simplified drawings. |
+| Hierarchy | Pale blue functional groups, medium blue FPGA boundary, darker blue previously explained functions in the detailed diagram. |
+| Labels | Arial for ASCII circuit labels and Yu Gothic for Japanese. The code excerpt uses Consolas. These are font adaptations, not redistributed book fonts. |
+| Table | Blue header, white header text, pale alternating rows and restrained horizontal rules. |
 
-Vertical white boxes group pipeline registers. The diagram draws the W-stage
-forwarding example, not every forwarding path. It shows integer and load
-results while omitting the other result-selector inputs. The store-data
-route in M shows the MMIO path; the cache store-data input is omitted.
-The PCE input represents the instruction-side pipeline address; its long
-route is omitted. The selected ALU-result route represents integer-result
-selection, with the alternative and floating-point result inputs omitted.
-Byte extraction, cache internals, prediction, exception handling and many
-control wires are also omitted. Stall/flush lines represent the associated
-control signals, not a single wire tied to every register input. Speaker
-notes explain these boundaries.
+Blue marks the currently discussed route or function. The detailed diagram's
+blue fill links back to the simplified functions; blue outlines identify the
+added graphics connection. These colors do not encode clock domains or runtime
+activity. The board photograph and its attribution are in [assets](assets/README.md).
 
-| Drawn state or selector | RTL correspondence |
+## Source-derived diagrams and simplifications
+
+`simple-circuit.mjs` implements the reduced circuits. Slide 2 uses two 32-bit,
+non-branching instructions. Their instruction addresses, 0 and 4, are distinct
+from the data addresses used by the load/store examples. Machine instructions
+are printed as assembly mnemonics for readability. A shared external DDR3 is
+introduced later, without claiming that every access bypasses the cache.
+
+Slides 5–7 retain fixed CPU and peripheral positions. The single APB bridge
+branches to SPI/SD and the added graphics connection. The vertical blue SD-to-
+DDR3 arrow on slide 6 describes software loading under Linux; it is not a wire
+or a new DMA engine. The CPU executes the game and RasterIX software from RAM.
+The RasterIX hardware is configured in the FPGA, as explained on slide 11.
+The graphics command register is at physical address `0x10080000`; the CPU's
+software address can be a mapped virtual address. A drawing command word is
+data written by a CPU `sw`, not the RISC-V instruction itself.
+
+`wally-circuit.mjs` draws slide 11 from the pinned product source. It is a
+functional RTL drawing, not a complete gate netlist, synthesis export or
+physical placement diagram. It keeps the following hierarchy:
+
+```text
+fpgaTop
+  wallypipelinedsoc
+    uncore
+    wallypipelinedcore
+      ifu
+      ieu / datapath
+      lsu
+      ebu
+  memory interfaces
+  graphics connection, RasterIX and display
+```
+
+| Drawing element | Product source |
 | --- | --- |
-| Source-operand and immediate registers | `RD1EReg`, `RD2EReg`, `ImmExtEReg` in `src/ieu/datapath.sv` |
-| Forwarding and operand selection | `faemux`, `fbemux`, `srcamux`, `srcbmux` in `src/ieu/datapath.sv` |
-| Branch comparison and address calculation | `comp`, `alu`, `IEUAdrE` in `src/ieu/datapath.sv` |
-| Store-data and integer-result state | `WriteDataMReg`, `IEUResultMReg`, `IFResultWReg` in `src/ieu/datapath.sv` |
-| Address state, cache bypass and load result | `AddressMReg`, `UnCachedDataMux`, `ReadDataMWReg` in `src/lsu/lsu.sv` |
-| Writeback selection | `resultmuxW` in `src/ieu/datapath.sv` |
-| Clocked state element | `src/generic/flop/flopenrc.sv`; enable and clear conditions are not expanded in the drawing |
+| Register file, immediate generation, operand/forwarding selectors, comparator and ALU | `console/src/ieu/datapath.sv` |
+| RD1EReg, RD2EReg, ImmExtEReg and other pipeline storage | `console/src/ieu/datapath.sv`, `console/src/generic/flop/flopenrc.sv` |
+| Address register, MMU, cache, uncached path and read selection | `console/src/lsu/lsu.sv` |
+| Instruction path and next-PC functions | `console/src/ifu/ifu.sv` |
+| Address decoding and APB bridge | `console/src/uncore/uncore.sv`, `console/src/uncore/ahbapbbridge.sv` |
+| DDR3 and graphics connections | `console/fpga/src/fpgaTopNexysVideo.sv` |
 
-The diagram is a source-derived functional drawing, not an elaboration report
-exported by Vivado. MUX inputs not needed to follow the displayed path are
-omitted; their omission does not remove those functions from the product.
+MMU, cache and vendor interfaces remain functional boxes. Prediction,
+exceptions, HPTW, subword extraction, arithmetic extensions and many control
+paths are omitted. Forwarding selectors have three inputs in the source; the
+IFResultM path is omitted in the drawing. The five-input writeback selection
+shows integer/load paths and aggregates the remaining inputs. PCE originates
+in the instruction pipeline; its long route is omitted. Hazard lines represent
+groups of related enable/clear signals, not one wire tied to every input.
+Top-level bidirectional lines aggregate requests, data and responses.
 
-EBU arbitration selects among requesters, whereas address decoding selects
-destinations. DDR3 starts at `0x80000000` and has 512 MiB in this board
-configuration. The SD-card controller is the second SPI instance, mapped
-at `0x00013000`. Software operates its registers to perform card transfers;
-the card is not directly accessed as RAM. Linux loads required program
-content into DDR3 rather than fetching instructions directly from the card.
+The HDL excerpt on slide 11 is the `always_ff` body of `flopenrc.sv`: reset has
+priority, and clear is effective only when enable is asserted. It illustrates
+the meaning of the pipeline-register symbols. The figure is not claimed to
+have been automatically translated into HDL. Synthesis and place-and-route
+produce the FPGA configuration; the CPU does not execute this HDL as game code.
 
-The physical graphics register region is `0x10080000`–`0x100800ff`.
-For the aligned 32-bit CMD write at offset zero, the adapter passes the
-low 32 data bits and returns `CmdReady` as `PREADY`. This rule does not
-describe every adapter register. The CPU-side base address may differ from
-the bus physical address under Linux address translation. Slide 9 is an
-illustration of acceptance rules, not a measured waveform.
+The HDL excerpt retains the upstream attribution: Copyright (C) 2021–23 Harvey
+Mudd College & Oklahoma State University, SPDX `Apache-2.0 WITH SHL-2.1`.
+See the source file and [Solderpad Hardware License 2.1](https://solderpad.org/licenses/SHL-2.1/).
 
-## Evidence and presentation scope
+## Evidence boundaries
 
-The first six slides explain existing designs. The study adds the external
-graphics connection and verifies the resulting system; it does not claim
-a new CPU or rasterizer. The official RasterIX submodule is unmodified.
-The command path crosses from the 20 MHz CPU domain to the 100 MHz graphics
-domain. The display sends DVI-format video through the HDMI connector.
-
-Results come from E6 at the pinned revision. Four whole-frame comparisons,
-a 300.011-second autoplay run and a separate 30-second recording are distinct
-observations. No new hardware qualification was performed for this revision
-of the presentation. The dedicated controller remains future work, as does
-identifying conditions causing occasional video acquisition failure.
-Educational use is proposed; learning effectiveness was not measured.
-
-The twelve-slide count includes the title. The planned allocation is 180
-seconds for the first half and 150 for the second, leaving 30 seconds for
-pointing and transitions. This is not a timed rehearsal. In slides 6–7,
-trace the familiar register/ALU path and added connection instead of reading
-every label aloud.
+Results remain those of the existing E6 records: image comparison under four
+conditions, 300.011 seconds of autoplay, and a separate 30-second capture.
+No new hardware measurement is implied. Controller support remains future
+work. This presentation does not establish educational effectiveness or
+universal display compatibility. Optimization comparisons and detailed
+reproduction procedures remain in the technical appendix.
