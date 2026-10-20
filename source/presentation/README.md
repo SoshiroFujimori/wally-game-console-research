@@ -95,9 +95,11 @@ The graphics command register is at physical address `0x10080000`; the CPU's
 software address can be a mapped virtual address. A drawing command word is
 data written by a CPU `sw`, not the RISC-V instruction itself.
 
-`wally-circuit.mjs` draws slide 11 from the pinned product source. It is a
-functional RTL drawing, not a complete gate netlist, synthesis export or
-physical placement diagram. It keeps the following hierarchy:
+`wally-circuit.mjs` draws the hierarchy and datapath on slide 11 from the
+pinned product source. `integrated-internals.mjs` adds editable circuit
+symbols and internal connections within those module boundaries. The figure
+is a functional RTL drawing, not a complete gate netlist, synthesis export
+or physical placement diagram. It keeps the following hierarchy:
 
 ```text
 fpgaTop
@@ -121,10 +123,28 @@ fpgaTop
 | Address decoding and APB bridge | `console/src/uncore/uncore.sv`, `console/src/uncore/ahbapbbridge.sv` |
 | DDR3 and graphics connections | `console/fpga/src/fpgaTopNexysVideo.sv` |
 
-MMU, cache and vendor interfaces remain functional boxes. Prediction,
-exceptions, HPTW, subword extraction, arithmetic extensions and many control
-paths are omitted. Forwarding selectors have three inputs in the source; the
-IFResultM path is omitted in the drawing. The five-input writeback selection
+The internal diagrams use RVSOC figures and the corresponding RTL as
+references. Native editable shapes share the surrounding circuit's
+typography, line weights and terminals.
+
+| Internal detail | Reference and scope |
+| --- | --- |
+| ALU and comparator | Figs.7.3 and 7.6; representative arithmetic, shift, logic and comparison functions. The comparator does not assert the book example's bit width for this configuration. |
+| Controller and hazard | Figs.7.7 and 7.19; decoder groups and representative stall/flush equations. |
+| MMU | Fig.11.15; TLB, untranslated-address selection and physical-address checks. |
+| Caches | Figs.10.13 and 10.24; tag/data arrays, comparison, controller and read selection. The instruction-cache view omits the CPU store path. |
+| EBU | Fig.9.25; request registers, arbitration and selection. |
+| AHB/APB bridge | Fig.9.14; address/control storage, write-data forwarding and read-data selection. |
+| UART and GPIO | Figs.20.11 and 20.4; the UART transmit path and GPIO output path, respectively. |
+| Register file | `console/src/ieu/regfile.sv`; storage, write decoding, two read selectors and constant-zero reads of x0. |
+
+These details retain the module boundaries and datapath routes. Internal
+branches can represent signal groups; omitted control inputs must not be
+inferred to be absent from the RTL. Next-PC selection and vendor interfaces
+remain functional boxes. Prediction, exceptions, HPTW, subword extraction,
+arithmetic extensions and many control paths are omitted. Forwarding
+selectors have three inputs in the source; the IFResultM path is omitted in
+the drawing. The five-input writeback selection
 shows integer/load paths and aggregates the remaining inputs. PCE originates
 in the instruction pipeline; its long route is omitted. Hazard lines represent
 groups of related enable/clear signals, not one wire tied to every input.

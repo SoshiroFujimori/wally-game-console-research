@@ -1,13 +1,14 @@
+import { drawIntegratedInternals } from './integrated-internals.mjs';
 // Editable RTL-level diagram based on the pinned console source.
 // Coordinates describe functional connections, not placement on the FPGA.
-export function drawWallyCircuit(s, api, expanded, placement={}) {
+export async function drawWallyCircuit(s, api, expanded, placement={}) {
   const { text, box, polygon, route, wire, dot, C } = api;
   const {x:ox=326,y:oy=164,scale:k=0.8}=placement;
   const X=x=>ox+k*x, Y=y=>oy+k*y;
   const T=(v,x,y,w,h=22,z=16,b=false,c=C.ink,a='left')=>text(s,v,X(x),Y(y),w*k,h*k,z*k,b,c,a);
   const B=(v,x,y,w,h,fill=C.white,z=16,stroke=C.ink,thick=1.5)=>{
     const shape=box(s,'',X(x),Y(y),w*k,h*k,fill,z*k,stroke,thick*k);
-    if(v)T(v,x+3,y+1,w-6,h-2,z,true,stroke,'center');
+    if(v && !['controller','comp','MMU','I-cache','D-cache','ebu','ahbapbbridge','uart_apb','gpio_apb','hazard (Stall / Flush)'].includes(v))T(v,x+3,y+1,w-6,h-2,z,true,stroke,'center');
     return shape;
   };
   const W=(x1,y1,x2,y2,c=C.ink,arrow=true,w=1.8)=>{
@@ -110,9 +111,6 @@ export function drawWallyCircuit(s, api, expanded, placement={}) {
 
   // Familiar register file, immediate generator and ALU are blue-filled.
   B('',204,365,102,94,known,14);
-  T('regfile',237,419,64,21,14,true);
-  [['A1',209,375],['A2',209,396],['A3',209,416],['WD3',209,440],['RD1',268,375],['RD2',268,397]].forEach(([v,x,y])=>T(v,x,y,34,18,11));
-  T('WE3',253,365,39,15,10);
   P([[261,365],[265,370],[269,365]],'none');
   P([[204,488],[306,477],[306,506],[204,506]],known);
   T('extend',232,484,72,19,14,true);
@@ -132,7 +130,7 @@ export function drawWallyCircuit(s, api, expanded, placement={}) {
   T('FlagsE',472,308,67,15,10);
   W(481,326,481,322,C.ink,true,0.8);
   P([[449,375],[511,391],[511,441],[449,456],[449,429],[466,416],[449,403]],known);
-  T('alu',469,401,39,25,18,true);
+  // The native ALU detail supplies its label inside this outline.
   W(422,383,449,390,blue);
   R([[422,444],[435,444],[435,440],[449,440]],blue);
   T('SrcAE',425,366,60,16,11);T('SrcBE',425,456,62,16,11);
@@ -199,4 +197,6 @@ export function drawWallyCircuit(s, api, expanded, placement={}) {
     R([[1021,536],[1021,565],[1102,565]],blue,true,2);
     T('HDMI OUT',939,565,165,23,17,true,blue,'center');
   }
+  // Only the interiors change; all parent boundaries and routes stay fixed.
+  drawIntegratedInternals(s, api, {x:ox,y:oy,scale:k});
 }

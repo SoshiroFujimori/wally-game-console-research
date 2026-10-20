@@ -1,8 +1,8 @@
 {
-  "version": 3,
+  "version": 4,
   "reference": "Harris et al., RISC-V System-on-Chip Design",
   "official_resources": "https://pages.hmc.edu/harris/ddca/rvsocd.html",
-  "inspection_date": "2026-10-19",
+  "inspection_date": "2026-10-20",
   "sources": [
     {
       "book_relative_path": "sources/RVSoCD_figs/ch7-rvi/7.11-pipelined.vsdx",
@@ -19,6 +19,50 @@
     {
       "book_relative_path": "images/chapter-23/figures/fig-23-02.png",
       "sha256": "5bbf96b545faf1e43fc5070135d37c26166f0c16a69a4c461fa5a9775d414483"
+    },
+    {
+      "book_relative_path": "sources/RVSoCD_figs/ch7-rvi/7.3-ALUschematic_withFlags.vsdx",
+      "sha256": "cec6e7cf8f228a58b2bb1f48d77539e4b34c80146421f75978ee54131ea4937d"
+    },
+    {
+      "book_relative_path": "sources/RVSoCD_figs/ch7-rvi/7.6-prefixcomparator.vsdx",
+      "sha256": "28dbfa97b01d2efd3f0c34fb0695567dd247d1e52f5801e38ca47863506cc05f"
+    },
+    {
+      "book_relative_path": "sources/RVSoCD_figs/ch7-rvi/7.7-controller.vsdx",
+      "sha256": "6feabafcd658f12669aa4d1f2b0f0aebed5e4df06fb40fbf6990d2968edc13c9"
+    },
+    {
+      "book_relative_path": "sources/RVSoCD_figs/ch7-rvi/7.19-hazard.vsdx",
+      "sha256": "e5b52009a8a7be56ddbd9115ebdf6ec8c49edbd6fc5e1a9a09affff3083cbb99"
+    },
+    {
+      "book_relative_path": "sources/RVSoCD_figs/ch11-mmu/11.15-mmublock.vsdx",
+      "sha256": "14676f1f9f7dbe4a249885ff36702c68a6f933e8e21be2aca7fe32db2e24f2a1"
+    },
+    {
+      "book_relative_path": "sources/RVSoCD_figs/ch10-cache/10.24-Detailed-Cache.vsdx",
+      "sha256": "2859a46a41521e4c709a900efbceee3bc76132dbb5f39b823c5c2c36a8526bd3"
+    },
+    {
+      "book_relative_path": "sources/RVSoCD_figs/ch9-ebu/9.25-ebu.vsdx",
+      "sha256": "728754040d9c3b97c3a608d6a65710d2080427214f61f8fa830e4788cdeac9e1"
+    },
+    {
+      "book_relative_path": "sources/RVSoCD_figs/ch9-ebu/9.14-ahbapbbridge.vsdx",
+      "sha256": "0f6a35a58ee147f5bfbbf75f9adefa3aa8e11ad0bb9d18950a549b30bf8d3c6e"
+    },
+    {
+      "book_relative_path": "sources/RVSoCD_figs/ch20-peripherals/20.11-pc16550blockdiagram-wally.vsdx",
+      "sha256": "a6d6d9c3837ae69ee29e36b9254cab2ff1113407d279529bb0262313ad5b3ee0"
+    },
+    {
+      "book_relative_path": "sources/RVSoCD_figs/ch20-peripherals/20.4-gpioimplementation.vsdx",
+      "sha256": "614aa48ad4bfc7332421f94fa1a7018b6c763e17f239ccfba6fb960d2903ff1a"
+    },
+    {
+      "book_relative_path": "sources/RVSoCD_figs/ch10-cache/10.13-cacheway.vsdx",
+      "sha256": "7b2f9631f15797f84304144a10ac795cf6866e77a58b5304362ee49ad86d513f"
     }
   ],
   "book_pdf": {
@@ -73,17 +117,19 @@
       "lsu",
       "ebu"
     ],
-    "expanded": "Register-file ports, pipeline state, operand and forwarding MUXes, comparator, ALU, cache bypass, writeback, and representative control paths.",
-    "grouped": "MMU, caches, next-PC selection and vendor memory interfaces.",
+    "expanded": "Pipeline state and selectors; register-file storage/read selection; representative ALU and comparator logic; decoder groups; MMU translation/bypass/checks; cache tag/data/control paths; EBU arbitration; APB bridge; UART transmit and GPIO output paths; stall/flush equations.",
+    "grouped": "Next-PC selection, vendor memory interfaces, omitted control inputs, and aggregated interface signals.",
     "highlight": "Blue fill identifies functions introduced in the reduced diagrams; blue outlines identify the added graphics connection.",
-    "limits": "Functional source-derived drawing, not a complete gate-level netlist or a physical placement diagram.",
+    "limits": "Representative functional source-derived drawing, not a complete HDL signal list, gate-level netlist or physical placement diagram. UART and GPIO details show selected paths only.",
     "wire_widths_css_pixels": {
       "representative_control": 0.54,
       "representative_data": 1.21,
       "highlighted_path": 1.41,
       "arrow_length": 3.35
     },
-    "slide": 11
+    "slide": 11,
+    "internal_source": "integrated-internals.mjs",
+    "internal_geometry": "Editable native shapes and connections within the module boundaries; no embedded book-figure bitmaps."
   },
   "board_photograph": {
     "file": "assets/nexys-video.png",
