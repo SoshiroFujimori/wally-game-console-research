@@ -1,6 +1,6 @@
 # Intermediate presentation
 
-This directory builds the canonical thirteen-slide, six-minute presentation:
+This directory builds the six-minute presentation with ten main slides and one hidden question slide:
 [slides and narration](../../docs/presentation/中間発表_主要事項.md) and
 [PowerPoint](../../docs/presentation/中間発表_主要事項.pptx).
 Earlier editions remain in Git history.
@@ -17,7 +17,7 @@ node source/presentation/build.mjs RESEARCH_ROOT PRIVATE_BUILD_DIRECTORY
 
 The default is the public edition. The builder sanitizes the package with the
 private redaction settings, validates it, re-imports the final PPTX and renders
-all thirteen slides. Slide 9 contains a native editable table. Circuit shapes,
+all eleven slides. Circuit shapes,
 wires, labels and the HDL excerpt are editable. Slide 11 is rendered at twice
 the slide resolution for reading the detailed diagram on GitHub.
 
@@ -39,16 +39,20 @@ outside the public repository.
 | Slides | Explanation |
 | --- | --- |
 | 1 | Conventional title and presenter/supervisor fields. Identity is withheld in the public edition. |
-| 2 | PC, instruction memory, instruction decoding and the sequential PC update. |
-| 3–4 | Load and store data paths, with the same register-file and ALU positions. |
-| 5–7 | External memory through a bus, software loaded from SD into DDR3, and an added graphics port on the same APB bridge. |
-| 8–10 | APB-to-stream adaptation, accepted writes, and the path from rendering commands to displayed pixels. |
-| 11 | One detailed Wally circuit, an actual register behavior in HDL, and FPGA configuration. |
-| 12–13 | Existing E6 results, the connection-design contribution and controller work still to do. |
+| 2 | Complete `lw x1,8(x0)` example: PC, instruction word, register selection, effective address, memory read and writeback. The PC feedback path is not yet shown. |
+| 3 | Add PC+4 and explain `sw x1,12(x0)` on the same datapath. |
+| 4 | Connect both instruction fetch and data access to shared DDR3 through the bus, then trace instruction execution. |
+| 5 | Add SD control and explain the CPU reads and writes that copy the program into DDR3 before execution. |
+| 6 | Add RasterIX and explain a command-word write using `sw x1,0(x2)`. |
+| 7 | Add image writes to DDR3 and display reads leading to HDMI output. |
+| 8 | Reuse the same simplified drawing for HDL and FPGA configuration. |
+| 9–10 | Existing E6 results and the conclusion, with controller support still future work. |
+| 11 | Detailed Wally circuit for questions. Hidden in a normal slide show. |
 
-The narration allocation is 330 seconds plus 30 seconds for pointing and
-transitions. This is a plan, not a timed rehearsal. The detailed circuit is a
-visual reference; the oral explanation does not read every label.
+The narration allocation for the main slides is 335 seconds, leaving 25 seconds
+for pointing and transitions. This is a plan, not a timed rehearsal. The hidden
+slide has no allocation in the main talk. It remains available in PowerPoint's
+slide selector and in the GitHub Markdown for reference.
 
 The title slide follows the content convention of the supplied school
 presentations: title, student information and supervisor. It does not contain
@@ -80,22 +84,54 @@ activity. The board photograph and its attribution are in [assets](assets/README
 
 ## Source-derived diagrams and simplifications
 
-`simple-circuit.mjs` implements the reduced circuits. Slide 2 uses two 32-bit,
-non-branching instructions. Their instruction addresses, 0 and 4, are distinct
-from the data addresses used by the load/store examples. Machine instructions
-are printed as assembly mnemonics for readability. A shared external DDR3 is
-introduced later, without claiming that every access bypasses the cache.
+`simple-circuit.mjs` uses one fixed geometry for slides 2–7. PC,
+instruction memory/read function, register file, ALU and external memory do not
+move. The later stages add bus, SD, graphics and display connections to that
+same diagram. `GEOMETRY` lists the shared coordinates; the corresponding
+native slide objects have `stable-*` names for verification.
 
-Slides 5–7 retain fixed CPU and peripheral positions. The single APB bridge
-branches to SPI/SD and the added graphics connection. The vertical blue SD-to-
-DDR3 arrow on slide 6 describes software loading under Linux; it is not a wire
-or a new DMA engine. The CPU executes the game and RasterIX software from RAM.
-The RasterIX hardware is configured in the FPGA, as explained on slide 11.
-The graphics command register is at physical address `0x10080000`; the CPU's
-software address can be a mapped virtual address. A drawing command word is
-data written by a CPU `sw`, not the RISC-V instruction itself.
+The worked examples distinguish instruction addresses 0 and 4 from data
+addresses 8 and 12. They assume a value of 3 at data address 8. Slide 2 retains
+the real `lw x1,8(x0)` encoding, `0x00802083`, checked with GNU Binutils. Its
+instruction fields are wired to the register selectors and ALU input.
 
-`wally-circuit.mjs` draws the hierarchy and datapath on slide 11 from the
+From slide 3 onward, the row above the datapath shows extracted semantic values,
+not the physical bit arrangement of an instruction. The immediate occupies one
+box in the same location as the load immediate. Bit positions and extraction
+logic are omitted. This avoids presenting a false store encoding while keeping
+the teaching model simple. Width extension and control decoding are omitted.
+On slide 3, PC is already 4 and the PC+4 circuit prepares 8. Only uncompressed,
+non-branching instructions are considered.
+
+On slide 4, the former instruction-memory box becomes an instruction-side
+connection in the same location. Both the request and returned instruction are
+connected to the bus and DDR3. This does not imply that the FPGA build has an
+IROM or DTIM. Caches, arbitration and address translation are abstracted, so
+not every CPU access is asserted to reach DDR3.
+
+Slide 5 explains a CPU-mediated copy: software requests an SD read, reads the
+received data from the controller, and writes the contents into DDR3. Byte
+packing, block transfers, file processing and intermediate copies are omitted.
+No direct SD-to-DDR DMA link is drawn. Startup code begins the loading process;
+the diagram does not imply that execution starts from an empty DDR3.
+
+Slide 6 uses `sw x1,0(x2)`, with command data D in x1 and a mapped register
+address B in x2. Preparing those registers is omitted. D is a graphics command
+word, distinct from the CPU instruction. B is the software-visible address and
+can be mapped. Protocol conversion and command buffering remain inside the
+connection block rather than separate main-talk topics.
+
+Slide 7 combines pixel generation, external image storage and display.
+Memory-controller details are included in the DDR3 connection abstraction.
+CPU code and framebuffer data occupy different regions. Internal working
+buffers, pixel encoding and display-format comparisons remain appendix topics.
+
+Slide 8 uses a uniformly scaled instance of exactly the same simplified drawing.
+Its PC code is an illustrative `always_ff` fragment, not a complete product
+module. The DDR3 chip, SD card and HDMI connector are external to the FPGA.
+The diagram is a functional connection drawing, not a physical layout.
+
+`wally-circuit.mjs` draws the hierarchy and datapath on the hidden question slide 11 from the
 pinned product source. `integrated-internals.mjs` adds editable circuit
 symbols and internal connections within those module boundaries. The figure
 is a functional RTL drawing, not a complete gate netlist, synthesis export
@@ -150,8 +186,9 @@ in the instruction pipeline; its long route is omitted. Hazard lines represent
 groups of related enable/clear signals, not one wire tied to every input.
 Top-level bidirectional lines aggregate requests, data and responses.
 
-The HDL excerpt on slide 11 is the `always_ff` body of `flopenrc.sv`: reset has
-priority, and clear is effective only when enable is asserted. It illustrates
+The compact HDL label on the question slide shows `always_ff @(posedge clk)` from
+`flopenrc.sv`. The full behavior, including reset, enable and clear priority,
+is described in the speaker notes and technical material. It illustrates
 the meaning of the pipeline-register symbols. The figure is not claimed to
 have been automatically translated into HDL. Synthesis and place-and-route
 produce the FPGA configuration; the CPU does not execute this HDL as game code.
