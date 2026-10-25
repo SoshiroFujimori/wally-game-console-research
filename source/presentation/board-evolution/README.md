@@ -92,3 +92,21 @@ counts. See the [course evidence table](../../../docs/presentation/DDCA授業利
 For a private build with prepared, unimported data,
 `PRESENTATION_DDCA_ASSET_DIRECTORY` can point at that data directory.
 The normal build reads `source/presentation/ddca-adoption` in this repository.
+
+## RVSOC design conventions
+
+The palette follows the published Figure 23.2: board background `#E5EBF8`,
+FPGA background `#CCD9F1`, AMD IP `#77A3DC`, and ink `#231F20`.
+The published PDF and the editable Visio source have different RGB values;
+the published figure is the appearance reference. Pipeline symbols and
+stage layout follow Figure 7.11. Blue outlines and paths highlight the
+functions discussed in this presentation; they do not designate AMD IP.
+Dark blue fill is reserved for the vendor memory and interconnect blocks.
+Question slide 12 includes the corresponding legend.
+
+Japanese labels use Yu Gothic, Latin circuit labels Arial, and code Consolas.
+These are explicit presentation adaptations, not claims to reproduce the
+book's exact typefaces. The slide canvas and abstract's required one-page,
+two-column layout are retained rather than copying the book's page layout.
+Native PowerPoint and Word exports supplement the package/layout checks:
+inspect every slide and both public and submission abstract pages after edits.

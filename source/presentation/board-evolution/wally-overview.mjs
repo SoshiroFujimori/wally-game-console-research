@@ -21,10 +21,14 @@ export function drawWallyOverview(s, api) {
   const R=(pts,c=C.ink,arrow=true,w=1.8)=>pts.slice(1).forEach((p,i)=>W(...pts[i],...p,c,arrow&&i===pts.length-2,w));
   const P=(pts,fill=C.white,stroke=C.ink,width=1.5)=>polygon(s,pts.map(([x,y])=>[X(x),Y(y)]),fill,stroke,width*k);
   const J=(x,y,c=C.ink)=>s.shapes.add({geometry:'ellipse',position:{left:X(x)-1.5*k,top:Y(y)-1.5*k,width:3*k,height:3*k},fill:c,line:{fill:c,width:0}});
-  const blue=C.blue, known=C.ip;
+  const blue=C.blue, known=C.white;
   const M=(x,y,h=44,fill=C.white)=>{P([[x,y],[x+17,y+6],[x+17,y+h-6],[x,y+h]],fill);T('0',x+1,y+3,13,14,11);T('1',x+1,y+h-18,13,14,11);};
   const F=(x,y,h=42)=>{B('',x,y,12,h);P([[x+2,y],[x+6,y+5],[x+10,y]],'none');W(x+6,y-6,x+6,y,C.ink,false,0.8);};
   const BI=(pts,c=C.ink,w=2)=>{R(pts,c,true,w);R([pts[1],pts[0]],c,true,w);};
+
+  // Dark fill follows the book's vendor-IP convention; blue outlines
+  // identify the functions explained in the main slides or added here.
+  T('青枠：説明済み・追加機能   濃い青：AMD提供IP',0,7,780,30,16,false,C.ink);
 
   // Board components outside the programmable chip.
   B('DDR3',800,0,144,36,C.white,19);
@@ -38,9 +42,9 @@ export function drawWallyOverview(s, api) {
   T('wallypipelinedsoc',30,94,330,25,21,true);
   B('',28,124,847,104,C.pale,16,C.ink,1.6);
   T('uncore',38,128,95,23,18,true);
-  B('adrdecs',140,135,90,31,known,15);
+  B('adrdecs',140,135,90,31,known,15,blue);
   B('Boot ROM',258,135,98,31,C.white,15);
-  B('ahbapbbridge',426,151,149,45,known,15);
+  B('ahbapbbridge',426,151,149,45,known,15,blue);
   T('AHB',93,195,68,20,16,true,blue);
   T('APB',594,195,70,20,16,true,blue);
   R([[104,184],[426,184]],blue,false,2.4);
@@ -49,7 +53,7 @@ export function drawWallyOverview(s, api) {
   R([[575,175],[871,175],[912,175],[912,315],[951,315]],blue,true,2.4);
   B('uart_apb',593,136,93,29,C.white,14);
   B('gpio_apb',698,136,88,29,C.white,14);
-  B('spi_apb',796,136,69,29,known,14);
+  B('spi_apb',796,136,69,29,known,14,blue);
   [638,741,830].forEach(x=>W(x,165,x,175,C.ink,false,1.4));
   BI([[845,136],[845,119],[903,119],[903,80],[1038,80],[1038,36]],blue,1.7);
   T('SPI',863,81,38,20,13,false,C.ink);
@@ -57,10 +61,10 @@ export function drawWallyOverview(s, api) {
   // Peripheral output and memory response channels are aggregated.
   BI([[359,184],[394,184],[394,106],[906,106],[922,106]],blue,2.2);
 
-  B('ahbaxibridge',922,89,181,34,known,16);
-  B('clkconverter',922,138,181,34,known,16);
-  B(expanded?'AXI shared fabric':'AXI connection',922,188,181,34,expanded?C.pale:known,15);
-  B('DDR controller / MIG',922,238,181,34,known,14);
+  B('ahbaxibridge',922,89,181,34,C.ip,16);
+  B('clkconverter',922,138,181,34,C.ip,16);
+  B(expanded?'AXI shared fabric':'AXI connection',922,188,181,34,C.ip,15);
+  B('DDR controller / MIG',922,238,181,34,C.ip,14);
   BI([[1012,123],[1012,138]],blue);
   BI([[1012,172],[1012,188]],blue);
   BI([[1012,222],[1012,238]],blue);
@@ -126,15 +130,16 @@ export function drawWallyOverview(s, api) {
   R([[306,339],[325,339]],C.ink,false,1.0);
   R([[337,339],[342,339],[342,474],[414,474],[414,468]],C.ink,true,1.0);
 
-  // Familiar register file, immediate generator and ALU are blue-filled.
-  B('',204,365,102,102,known,14);
-  T('regfile',216,392,78,18,17,true,C.ink,'center');
+  // Previously explained datapath functions use blue outlines, not the
+  // dark fill reserved for AMD IP.
+  B('',204,365,102,102,known,14,blue);
+  T('regfile',216,389,78,24,17,true,C.ink,'center');
   T('A1',207,374,27,17,13);T('A2',207,411,27,17,13);
   T('A3',207,430,27,16,13);T('WD3',207,448,41,17,12);
   T('RD1',271,374,34,17,13);T('RD2',271,411,34,17,13);
   T('WE3',234,366,37,14,11);
   P([[261,365],[265,370],[269,365]],'none');
-  P([[204,488],[306,477],[306,506],[204,506]],known);
+  P([[204,488],[306,477],[306,506],[204,506]],known,blue);
   T('extend',232,484,72,19,14,true);
   F(325,310,207);
   T('D / E',305,281,57,21,14,true);
@@ -144,15 +149,15 @@ export function drawWallyOverview(s, api) {
   R([[377,385],[393,385],[393,372],[405,372]],blue);W(377,430,405,430,blue);
   R([[337,495],[391,495],[391,454],[405,454]],blue);
   W(384,395,405,395,C.ink,true,1.2);
-  T('PCE',369,399,36,19,13);
+  T('PCE',378,397,27,13,10.5);
   // A representative branch comparator and its two operand connections.
   B('comp',448,326,66,27,C.white,13);
   R([[387,385],[387,337],[448,337]],C.ink,true,1);
   R([[386,430],[386,348],[448,348]],C.ink,true,1);
   T('FlagsE',472,308,67,15,10);
   W(481,326,481,322,C.ink,true,0.8);
-  P([[449,375],[511,391],[511,441],[449,456],[449,429],[466,416],[449,403]],known);
-  T('ALU',469,397,40,30,19,true,C.ink,'center');
+  P([[449,375],[511,391],[511,441],[449,456],[449,429],[466,416],[449,403]],known,blue);
+  T('ALU',465,397,46,30,17.5,true,C.ink,'center');
   W(422,383,449,390,blue);
   R([[422,444],[435,444],[435,440],[449,440]],blue);
   T('SrcAE',423,357,65,20,13);T('SrcBE',423,458,65,20,13);
@@ -175,7 +180,7 @@ export function drawWallyOverview(s, api) {
 
   // Cache, uncached MMIO path and read-data selection.
   B('D-cache',580,395,83,51,C.white,17);
-  B('ahbcacheinterface',580,475,160,33,known,14);
+  B('ahbcacheinterface',580,475,160,33,known,14,blue);
   R([[660,363],[660,375],[618,375],[618,395]],C.ink,true,1.4);
   R([[660,375],[751,375],[751,484],[740,484]],blue,true,1.7);J(660,375);
   T('MMIO',691,396,62,17,11,false,blue);
@@ -190,7 +195,7 @@ export function drawWallyOverview(s, api) {
   BI([[740,495],[782,495],[782,277],[797,277]],blue,2.1);
 
   // Writeback selector. Other result inputs are explicitly aggregated.
-  M(816,349,103);T('…',819,388,13,18,12);
+  M(816,349,103);T('…',817,388,15,18,11);
   T('resultmuxW',785,465,81,18,12);
   R([[833,400],[858,400],[858,534],[198,534],[198,450],[204,450]],blue,true,2.0);
   T('ResultW',769,513,88,18,12,false,blue);

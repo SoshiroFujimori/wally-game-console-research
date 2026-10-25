@@ -1,22 +1,23 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="930" viewBox="0 0 1200 930" role="img" aria-labelledby="title desc">
-<title id="title">CPUの計算が画面になるまで</title>
-<desc id="desc">CPUの計算、描画回路による画像作成、メモリへの保存、表示回路からの出力を上から順に示す。</desc>
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="975" viewBox="0 0 1200 975" role="img" aria-labelledby="title desc">
+<title id="title">描画命令から映像出力までの処理</title>
+<desc id="desc">CPUから描画回路への命令送信、DDR3への画像保存、表示回路からの映像出力を上から順に示す。矢印は処理の流れであり、DDR3への物理的な直接接続を表さない。</desc>
 <defs><marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0 L10 5 L0 10 Z" fill="#231F20"/></marker></defs>
-<rect width="1200" height="930" fill="white"/>
-<g font-family="Meiryo,Noto Sans CJK JP,sans-serif" fill="#231F20" text-anchor="middle">
+<rect width="1200" height="975" fill="white"/>
+<g font-family="Yu Gothic,Arial,sans-serif" fill="#231F20" text-anchor="middle">
 <rect x="80" y="10" width="1040" height="145" fill="white" stroke="#231F20" stroke-width="3"/>
 <text x="600" y="72" font-size="52">CPU Wally</text><text x="600" y="122" font-size="48">ボールの位置を計算する</text>
 <path d="M600 155 V242" fill="none" stroke="#231F20" stroke-width="3" marker-end="url(#arrow)"/>
-<text x="645" y="207" text-anchor="start" font-size="42">接続回路を通る命令</text>
-<rect x="80" y="245" width="1040" height="145" fill="#7BA2D4" stroke="#231F20" stroke-width="3"/>
+<text x="645" y="207" text-anchor="start" font-size="42">MMIOで描画命令を送る</text>
+<rect x="80" y="245" width="1040" height="145" fill="white" stroke="#1572C3" stroke-width="3"/>
 <text x="600" y="307" font-size="52">描画回路 RasterIX</text><text x="600" y="357" font-size="48">命令に従って画像を作る</text>
 <path d="M600 390 V477" fill="none" stroke="#231F20" stroke-width="3" marker-end="url(#arrow)"/>
 <text x="645" y="442" text-anchor="start" font-size="42">各画素の色を書き込む</text>
-<rect x="80" y="480" width="1040" height="145" fill="#E5EBF8" stroke="#231F20" stroke-width="3"/>
-<text x="600" y="542" font-size="52">メモリ</text><text x="600" y="592" font-size="48">各画素の色を保存する</text>
+<rect x="80" y="480" width="1040" height="145" fill="white" stroke="#231F20" stroke-width="3"/>
+<text x="600" y="542" font-size="52">DDR3（画像用領域）</text><text x="600" y="592" font-size="48">各画素の色を保存する</text>
 <path d="M600 625 V712" fill="none" stroke="#231F20" stroke-width="3" marker-end="url(#arrow)"/>
 <text x="645" y="677" text-anchor="start" font-size="42">画像を読み出す</text>
-<rect x="80" y="715" width="1040" height="145" fill="#7BA2D4" stroke="#231F20" stroke-width="3"/>
+<rect x="80" y="715" width="1040" height="145" fill="white" stroke="#1572C3" stroke-width="3"/>
 <text x="600" y="777" font-size="52">表示回路</text><text x="600" y="827" font-size="48">HDMI端子へ映像を出す</text>
-<text x="600" y="913" font-size="38">青はCPUへ追加した描画・表示の機能</text>
+<text x="600" y="913" font-size="38">画像の読み書きはDDRメモリコントローラー経由</text>
+<text x="600" y="958" font-size="38" fill="#1572C3">青枠は追加した描画・表示の機能</text>
 </g></svg>

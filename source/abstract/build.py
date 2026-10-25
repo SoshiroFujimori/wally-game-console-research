@@ -47,6 +47,12 @@ for paragraph in list(doc.paragraphs):
 sections = {**content["sections"], "参考文献": content["references"]}
 headings = {p.text: p for p in doc.paragraphs if p.style.name == "Heading 1"}
 assert set(sections) == set(headings), "Template section headings must match content.json"
+# Let revised paragraphs flow across columns instead of retaining a manual
+# column break placed for the previous text.
+for heading in headings.values():
+    for br in heading._p.findall(".//" + qn("w:br")):
+        if br.get(qn("w:type")) == "column":
+            br.getparent().remove(br)
 figures = content["figures"]
 for figure in figures:
     assert figure["section"] in content["sections"]
@@ -73,6 +79,7 @@ for heading, paragraphs in sections.items():
         anchor.addnext(node)
         paragraph = Paragraph(node, doc._body)
         replace(paragraph, value)
+        paragraph.paragraph_format.keep_together = True
         anchor = node
         for number, figure in enumerate(figures, 1):
             if figure["section"] != heading or figure["after_paragraph"] != index:
@@ -94,7 +101,7 @@ for heading, paragraphs in sections.items():
             label, title = figure["caption"].split("  ", 1)
             run = caption.add_run(label + "  ")
             run.bold = True
-            run.font.color.rgb = RGBColor.from_string("1673C3")
+            run.font.color.rgb = RGBColor(0, 0, 0)
             run = caption.add_run(title)
             run.bold = True
             run.font.color.rgb = RGBColor(0, 0, 0)

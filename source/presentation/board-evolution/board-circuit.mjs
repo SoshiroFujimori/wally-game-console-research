@@ -76,7 +76,8 @@ export function drawBoard(s,a,stage){
     // The shared bus and vendor memory IP first appear in the bus explanation.
     b('bus','',busFocus?C.pale:white,22,busFocus?blue:gray);
     t('バス',765,442,50,50,20,true,busFocus?blue:gray,'center');
-    b('ddr','DDR\nコントローラー',busFocus?C.pale:white,18.5,memoryColor);
+    b('ddr','',C.ip,18.5,C.ink);
+    t('DDR\nコントローラー',861,426,139,57,18.5,true,C.ink,'center');
     t('AMD提供（MIG）',838,385,188,30,21,true,blue,'center');
     bi([[1004,455],[1051,455]],memoryColor);
     wire(832,stage>=6?336:453,832,stage>=7?526:479,gray,false,2.2);
@@ -107,7 +108,7 @@ export function drawBoard(s,a,stage){
   let fx=359;
   for(const[label,value,width]of fields){
     B(s,'',fx,341,width,28,white,16,C.ink,1.1);
-    t(label,fx,320,width,21,load?12.5:16,false,gray,'center');
+    t(label,fx,320,width,21,load?12.5:16,false,C.ink,'center');
     t(value,fx,341,width,28,load?14.5:17,false,C.ink,'center');
     fx+=width;
   }
@@ -117,7 +118,7 @@ export function drawBoard(s,a,stage){
   poly([[113,438],[122,448],[131,438]],'none');wire(122,423,122,438,C.ink,false,1.2);
   t('clk',102,399,45,23,16);t('PC',100,507,52,29,23,true,C.ink,'center');
   wire(139,468,168,468,blue);
-  t(load?'0':store?'4':'番地',140,477,30,28,load||store?22:14,true,blue,'center');
+  t(load?'0':store?'4':'番地',137,477,36,28,load||store?22:14,true,blue,'center');
   b('fetch');t(internalMemory?'命令メモリ':'命令読出し',174,418,133,29,22,true,C.ink,'center');
   t('A',175,456,25,24,16);t('RD',281,456,30,24,16);
   t(load?'0：lw x1,8(x0)':store?'4：sw x1,12(x0)':'DDR3から\n命令を読む',182,485,116,47,load||store?14:18,true,load||store?blue:C.ink,'center');
@@ -125,7 +126,7 @@ export function drawBoard(s,a,stage){
 
   if(stage>=4){
     poly([[183,357],[227,368],[227,390],[183,401],[183,388],[193,379],[183,367]]);
-    t('+',199,365,25,28,25,true,C.ink,'center');
+    t('+',199,364,25,30,25,true,C.ink,'center');
     r([[149,468],[149,368],[183,368]],C.ink);
     t('4',158,382,20,23,19);wire(178,389,183,389,C.ink);
     r([[227,379],[247,379],[247,346],[96,346],[96,468],[106,468]],C.ink);
@@ -144,13 +145,13 @@ export function drawBoard(s,a,stage){
   }
   b('rf');
   poly([[439,399],[447,408],[455,399]],'none');wire(447,392,447,399,C.ink,false,1.2);
-  t('レジスタ\n群',440,451,80,56,19,true,C.ink,'center');
+  t('レジスタ群',411,448,139,25,17,true,C.ink,'center');
   [['A1',404,427],['A2',404,471],['A3',404,501],['WD3',404,531],['RD1',523,427],['RD2',523,471]].forEach(([v,x,y])=>t(v,x,y,35,22,14,false,(load&&['A2','RD2'].includes(v))||((store||command)&&['A3','WD3'].includes(v))?gray:C.ink));
   t('WE3',521,401,37,22,14,false,store||command?gray:blue);
   wire(563,442,629,442,C.ink,true,2.7);
   t(load||store?'0':command?'B':'値',572,409,28,28,load||store||command?23:20,true,blue,'center');
   poly([[629,427],[697,445],[697,505],[629,525],[629,487],[647,475],[629,454]],white,C.ink,2.3).name='board-stable-alu';
-  t('ALU',638,397,60,27,24,true,C.ink,'center');t('+',657,456,33,38,30,false,C.ink,'center');
+  t('ALU',638,395,60,31,24,true,C.ink,'center');t('+',657,456,33,38,30,false,C.ink,'center');
   t(load?'即値 8':store?'即値 12':command?'即値 0':'即値',592,527,115,28,21,true,blue,'center');
 
   const addrColor=load||store||command||sdFocus?blue:C.ink;
@@ -158,7 +159,7 @@ export function drawBoard(s,a,stage){
   t(load?'8':store?'12':command?'B':'番地',702,431,51,28,load||store||command?23:19,true,blue,'center');
   const writeTurn=internalMemory?829:746, target=internalMemory?857:760;
   r([[563,484],[575,484],[575,565],[writeTurn,565],[writeTurn,527],[target,527]],load?gray:blue,true,2.7);
-  t(store?'3':command?'D':load?'':'値',579,500,24,27,20,true,blue,'center');
+  t(store?'3':command?'D':load?'':'値',576,500,30,27,20,true,blue,'center');
   const readRoute=internalMemory?[[1004,512],[1015,512],[1015,610],[380,610],[380,541],[398,541]]:[[760,558],[749,558],[749,610],[380,610],[380,541],[398,541]];
   r(readRoute,store||command?gray:blue,true,2.7);
   if(load)t('3',351,538,24,26,21,true,blue,'center');
@@ -240,7 +241,7 @@ function drawIntroBoard(s,a,research){
   }
   if(!research){
     R(s,[[534,418],[656,418]],C.blue,true,3);
-    t('回路を\n実装',535,366,102,44,21,true,C.blue,'center');
+    t('回路を\n実装',535,362,102,52,21,true,C.blue,'center');
   }
 }
 

@@ -1,0 +1,10 @@
+{
+  "url": "https://github.com/user-attachments/assets/5828d8d5-2a1d-4f39-900c-06449b90e9ef",
+  "source_path": "docs/thesis/再現資料/実験記録/E6/report/results/video/breakout-latest-30s.mp4",
+  "source_sha256": "40a2891cecb7f7b56fa93cbbae3ccaa1c2c9f9282eed7b247a0a21e8542705ca",
+  "bytes": 22536889,
+  "duration_seconds": 30.016667,
+  "input": "Deterministic autoplay; no physical controller input.",
+  "transcoded": false,
+  "scope": "Copy of the existing public E6 video; not a new hardware test."
+}
