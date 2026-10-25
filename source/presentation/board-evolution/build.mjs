@@ -3,7 +3,8 @@ import path from 'node:path';
 import { pathToFileURL } from 'node:url';
 import { spawnSync } from 'node:child_process';
 import { drawWallyOverview } from './wally-overview.mjs';
-import { drawBoard, drawImplementationFlow } from './board-circuit.mjs';
+import { drawDdcaMap, summarizeDdca } from './ddca-map.mjs';
+import { drawBoard, drawImplementationFlow, drawResearchPurpose } from './board-circuit.mjs';
 
 const [root, workspace] = process.argv.slice(2);
 if (!root || !workspace) throw new Error('Usage: build.mjs RESEARCH_ROOT PRIVATE_BUILD_DIRECTORY');
@@ -34,7 +35,7 @@ function wire(s,x1,y1,x2,y2,color=C.ink,arrow=false,width=3.0) {
 function route(s,pts,color=C.ink,arrow=true,width=3.0) {pts.slice(1).forEach((p,i)=>wire(s,...pts[i],...p,color,arrow&&i===pts.length-2,width));}
 function foot(s,value) {
   const n=P.slides.items.length;
-  if(n===1||n===10){text(s,value,64,665,1110,30,16,false,C.old);return;}
+  if(n===1||n===11){text(s,value,64,665,1110,30,16,false,C.old);return;}
   const captionY=684;
   text(s,'図 '+n,64,captionY,63,30,17,true,C.heading);
   text(s,value,131,captionY,1028,30,16,false,C.ink);
@@ -59,7 +60,6 @@ const cover=audience==='private'?JSON.parse(await fs.readFile(process.env.PRESEN
 
 const DDCA='Harris, S. L. and Harris, D., Digital Design and Computer Architecture: RISC-V Edition (2021), Chapter 7. Official figure source: https://pages.hmc.edu/harris/ddca/ddcarv.html (DDCArv_Figures.zip).';
 const RVSOC='Harris et al., RISC-V System-on-Chip Design, Chapters 7–13, 20, 22–23. Official figure source: https://pages.hmc.edu/harris/ddca/rvsocd.html (RVSoCD_figs.zip).';
-const PHOTO='Digilent, Nexys Video product photograph: https://digilent.com/shop/nexys-video-amd-artix-7-fpga-trainer-board-for-multimedia-applications/ . Board identification: Nexys Video Reference Manual (2020), pp.3-4. Image copyright Digilent.';
 const PRODUCT='Product revision 261832d48832dd6e26c4971ab8893ce61200688b. console/fpga/src/fpgaTopNexysVideo.sv; console/fpga/src/rasterix.sv; console/fpga/src/rasterix_apb.sv; console/fpga/generator/axiscdc.tcl.';
 const VIDEO='docs/thesis/再現資料/実験記録/E6/report/results/video/breakout-latest-30s.mp4';
 const POSTER='docs/thesis/再現資料/実験記録/E6/report/results/video/verified-frame-01.png';
@@ -74,15 +74,23 @@ wire(s,190,371,1090,371,C.heading,false,1.7);
 text(s,cover.student,180,422,920,52,31,false,C.ink,'center');
 text(s,cover.supervisor,180,483,920,52,31,false,C.ink,'center');
 
-s=slide('FPGAボードと研究の目的',35,
-  '写真が、今回使うNexys VideoというFPGAボードです。中央の黒い放熱器の下にFPGAチップがあります。このチップには、目的に応じた論理回路を実装できます。右のAND回路もその例で、下のようなコードで記述します。チップの周囲には、SDカードスロットやDDR3メモリ、HDMI端子が物理的にあります。FPGA内にそれぞれを操作する回路を実装して使います。本研究では、既存の教育用CPUに描画機能を追加し、ゲーム機としての拡張例を示します。',
-  DDCA+' Chapters 2 and 4, combinational logic and HDL. '+RVSOC+' Chapter 23. '+PRODUCT+' '+PHOTO+' Nexys Video Reference Manual (2020), pp.3–4: https://digilent.com/reference/_media/reference/programmable-logic/nexys-video/nexys-video_rm.pdf .',
-  '写真の中央にある黒い部品は放熱器で、その下にFPGAがある。写真上の青枠と引出し線を、右側のFPGAチップの図に対応づける。SDカードスロットは基板の裏面にあり、この角度の写真では見えない。右側の部品配置は内外の関係を示す模式図で、写真の配置をそのまま写したものではない。FPGA内には枠で一括りにした抽象的な箱ではなく、ANDゲートと入出力の線を直接描く。aとbが両方1のときにyが1となり、SystemVerilogのassign y = a & b;がこの組合せ回路を表す。四行のコードは完全な小さなmoduleの例で、ゲーム機全体のコードではない。このAND回路だけでSDカードやDDR3を制御できるという意味ではなく、それぞれの装置に合った制御回路をFPGA内に実装する。チップから周辺部品へ延びる線は、部品間の物理的な接続をまとめた表記である。HDLはCPUがゲームプログラムのように実行するものではない。任意とはFPGAの素子数や配線、動作速度などの制約内で構成できることを指す。次の図ではチップ内を拡大し、CPUとFPGA内のメモリによる命令実行を説明する。学習者向けの拡張例を示すことが目的で、教育効果を学習実験で測定したという主張ではない。写真はDigilentの製品写真。');
-text(s,'既存の教育用CPUに描画機能を追加し、\nゲーム機としての拡張例を示す',64,119,1152,78,29,true,C.blue);
-s.images.add({blob:await fs.readFile(path.join(root,'source/presentation/assets/nexys-video.png')),contentType:'image/png',alt:'Nexys Videoの製品写真。中央の黒い放熱器の下にFPGAがある。写真：Digilent',fit:'contain',position:{left:64,top:275,width:440,height:347}});
+s=slide('FPGAチップで周囲の部品を制御する',20,
+  'FPGAボードには、チップの周囲にSDカードスロットやDDR3メモリ、HDMI端子が実物として付いています。これらを制御する論理回路を、チップの中に実装できます。回路はコードで記述します。左のコードと、右のAND回路が対応する例です。',
+  DDCA+' Chapters 2 and 4, combinational logic and HDL. '+RVSOC+' Chapter 23. Nexys Video Reference Manual (2020), pp.3–4: https://digilent.com/reference/_media/reference/programmable-logic/nexys-video/nexys-video_rm.pdf .',
+  '外側の薄い青の枠はFPGAボード、内側の青い枠はFPGAチップを表す。SDカードスロット、DDR3メモリ、HDMI端子はボード上に実物として取り付けられた部品であり、コードでチップ内に作る回路とは区別する。チップ内に、それらの部品を制御する論理回路を実装できる。模式図の配置は実物の物理配置ではない。左のSystemVerilogコードとチップ内のAND回路は同じ組合せ回路の例であり、aとbが両方1のときにyが1となる。AND回路だけでSDカードやDDR3を制御できるという意味ではない。周辺部品には、それぞれの信号規約に合う制御回路を用意する。回路の構成を書き込むとは、HDLから設計ツールで生成した構成データをFPGAに設定することを指す。CPUがHDLをプログラムとして実行するという意味ではない。設計ツールと構成データの図示は省略する。チップから周辺部品へ延びる線は部品間の物理的な接続をまとめている。');
+text(s,'SDカードスロットなどは、FPGAボード上に実物として存在する\nそれらを制御する回路を、FPGAチップ内に実装できる',64,119,1152,78,29,true,C.blue);
 drawImplementationFlow(s,api);
-text(s,'FPGAに任意の論理回路を実装し、周囲のSDカードやDDR3メモリを操作する',64,646,1152,32,24,true);
-foot(s,'回路図とコードはAND回路の例。写真：Digilent。SDカードスロットは基板の裏面にある');
+text(s,'チップ内に実装する回路を、コードで記述する',64,599,1152,46,28,true);
+foot(s,'AND回路はコードと回路の対応を示す小さな例。部品ごとに必要な制御回路は異なる');
+
+s=slide('教育用CPUに描画機能を追加する',15,
+  '本研究では、既存の教育用CPUに、ゲーム画面を作って出力する機能を追加します。この回路をFPGAチップに実装し、ボードをゲーム機として使います。教育用CPUをゲーム機へ拡張する例を示すことが目的です。',
+  `${RVSOC} ${PRODUCT}`,
+  '前の図と同じFPGAボード、FPGAチップ、SDカードスロット、DDR3メモリ、HDMI端子を、同じ位置と大きさで示す。チップ内部を、説明用のAND回路から研究で使う機能の概要へ置き換える。教育用CPUはWally、描画機能には既存の描画回路と表示回路、それらを利用するための接続を含む。CPUと描画回路本体を新たに設計したという主張ではない。図中のCPUと描画機能の線は機能間の接続をまとめたものであり、実際のバスや制御信号を網羅しない。SDカードやDDR3の制御回路などは、この目的説明の図では省略する。実装にはそれらの回路も含まれる。既存の教育用CPUに描画機能を追加し、ボードをゲーム機として使う拡張例を示すことが研究の目的である。教育効果を学習実験で測定したという主張ではない。');
+text(s,'拡張した回路をFPGAチップに実装し、\nFPGAボードをゲーム機として使う',64,119,1152,78,29,true,C.blue);
+drawResearchPurpose(s,api);
+text(s,'描画機能：ゲーム画面を作り、映像として出力する',64,599,1152,46,28,true);
+foot(s,'既存のCPU・描画回路を利用。チップ内は機能をまとめた図');
 
 
 s=slide('lw：命令を読み、指定した値をレジスタへ入れる',60,
@@ -122,22 +130,22 @@ drawBoard(s,api,6);
 text(s,'コピーした命令を、前の図と同じ経路で読み、実行する',64,645,1120,32,24,true);
 foot(s,'CPUが制御回路を操作して読み書きする。SDカードとDDR3を直接つなぐ線はない');
 
-s=slide('RasterIXを追加し、swで描画命令を渡す',40,
-  'ここへ、本研究で描画用の接続回路とRasterIXを加えました。描画用の窓口にも番地を割り当てるので、先ほどのswで操作できます。例えばx2に窓口の番地B、x1に送りたい数値Dを用意します。sw x1, 0(x2)では、ALUがB足す0で番地Bを作り、x1のDを別の線で送ります。番地Bの相手はDDR3ではなく描画用の窓口なので、DをRasterIXへ渡します。描画用ソフトウェアが用意した数値列をこのように送ります。CPUが実行するsw命令と、データとして送る描画命令は別のものです。',
+s=slide('描画回路を追加し、swで描画命令を渡す',40,
+  'ここへ、本研究で描画用の接続回路と描画回路を加えました。描画用の窓口にも番地を割り当てるので、先ほどのswで操作できます。例えばx2に窓口の番地B、x1に送りたい数値Dを用意します。sw x1, 0(x2)では、ALUがB足す0で番地Bを作り、x1のDを別の線で送ります。番地Bの相手はDDR3ではなく描画用の窓口なので、Dを描画回路へ渡します。描画用ソフトウェアが用意した数値列をこのように送ります。CPUが実行するsw命令と、データとして送る描画命令は別のものです。',
   PRODUCT+' console/examples/rasterix/WallyBusConnector.hpp; console/fpga/src/rasterix_apb.sv.',
-  '既存CPUと公式RasterIXを利用し、その間の接続を設計した。上部には即値0、基準値を読む番号2、書く値を読む番号1を、取り出した内容として並べる。実際の機械語のビット配置は示さない。x2とx1への値の準備は省略し、レジスタ割当ては説明用とする。BはCPUから見た窓口の番地で、物理アドレスと必ず同じ値とは限らない。Dは描画命令の数値列の一語であり、RISC-V命令のswの機械語ではない。OpenGLの1回の呼出しがそのまま1回のswに対応するという意味でもない。接続回路の内部の規約や時刻合わせは一つの箱にまとめる。前の図のCPUとバスの位置を保ち、RasterIXを加える。RasterIXによる画像の保存と表示回路を次の図で加える。描画命令の送信用アダプタはRasterIXの箱にまとめる。');
+  '既存CPUと既存の描画回路を利用し、その間の接続を設計した。上部には即値0、基準値を読む番号2、書く値を読む番号1を、取り出した内容として並べる。実際の機械語のビット配置は示さない。x2とx1への値の準備は省略し、レジスタ割当ては説明用とする。BはCPUから見た窓口の番地で、物理アドレスと必ず同じ値とは限らない。Dは描画命令の数値列の一語であり、RISC-V命令のswの機械語ではない。OpenGLの1回の呼出しがそのまま1回のswに対応するという意味でもない。接続回路の内部の規約や時刻合わせは一つの箱にまとめる。前の図のCPUとバスの位置を保ち、描画回路を加える。描画回路による画像の保存と表示回路を次の図で加える。描画命令の送信用アダプタは描画回路の箱にまとめる。');
 text(s,'sw x1, 0(x2)　：　描画用の番地Bへ、数値Dを書く',64,129,1140,46,28,true,C.blue);
 drawBoard(s,api,7);
 text(s,'x2のB ＋ 即値0 ＝ 番地B　／　x1から送る値はD',64,645,1120,32,24,true);
-foot(s,'CPUのsw命令と送る描画データDは別のもの。送信用の接続回路はRasterIXの箱に含む');
+foot(s,'CPUのsw命令と送る描画データDは別のもの。送信用の接続回路は描画回路の箱に含む');
 
 s=slide('画像をDDR3へ保存し、HDMI端子へ出力する',30,
-  'RasterIXは描画命令に従って、画面の各点の色を求めます。この一つひとつの点が画素です。作った画像は、DDRコントローラーを通して、DDR3の画像用の領域へ保存します。表示回路もこのコントローラーを通して画素の色を順に読み、画面に表示するためのタイミングに合わせてHDMI端子へ出します。CPUはゲームの処理と描画命令の送信、RasterIXは画像の作成、表示回路は画像の出力を担当します。',
+  '描画回路は描画命令に従って、画面の各点の色を求めます。この一つひとつの点が画素です。作った画像は、DDRコントローラーを通して、DDR3の画像用の領域へ保存します。表示回路もこのコントローラーを通して画素の色を順に読み、画面に表示するためのタイミングに合わせてHDMI端子へ出します。CPUはゲームの処理と描画命令の送信、描画回路は画像の作成、表示回路は画像の出力を担当します。',
   PRODUCT+' console/fpga/src/rasterixdisplay.sv; console/fpga/generator/rasterixmem.tcl; console/addins/rasterix/rtl/RasterIX/RasterIX_IF.v.',
-  '同じボード図の中で、RasterIXのメモリへの書込み経路と、表示回路による読出し経路を詳しく示す。RasterIX_IFは内部の作業領域で描画し、結果を外部メモリへ転送する。内部作業領域、テクスチャ読出し、表示画像の切替、メモリ仲裁や映像符号化の内部は省略する。画像用とプログラム用にはDDR3内の別の範囲を確保する。描画回路による書込みと表示回路への読出しの線は、いずれもDDRコントローラーへ接続する。DDR3へ直接つないだ線ではない。実装の共有インターコネクトや仲裁は線にまとめており、別々の出力を電気的に短絡するという意味ではない。表示回路は表示タイミングに従って読み出す。CPUの書込み1回ごとに画面全体を一回表示するものではない。');
-text(s,'RasterIXが画像を作り、表示回路がその画像を出す',64,129,1030,46,28,true,C.blue);
+  '同じボード図の中で、描画回路のメモリへの書込み経路と、表示回路による読出し経路を詳しく示す。描画回路は内部の作業領域で描画し、結果を外部メモリへ転送する。内部作業領域、テクスチャ読出し、表示画像の切替、メモリ仲裁や映像符号化の内部は省略する。画像用とプログラム用にはDDR3内の別の範囲を確保する。描画回路による書込みと表示回路への読出しの線は、いずれもDDRコントローラーへ接続する。DDR3へ直接つないだ線ではない。実装の共有インターコネクトや仲裁は線にまとめており、別々の出力を電気的に短絡するという意味ではない。表示回路は表示タイミングに従って読み出す。CPUの書込み1回ごとに画面全体を一回表示するものではない。');
+text(s,'描画回路が画像を作り、表示回路がその画像を出す',64,129,1030,46,28,true,C.blue);
 drawBoard(s,api,8);
-text(s,'CPU：ゲームの処理　RasterIX：描画　表示回路：映像出力',64,645,1140,32,24,true);
+text(s,'CPU：ゲームの処理　描画回路：描画　表示回路：映像出力',64,645,1140,32,24,true);
 foot(s,'描画と表示のメモリアクセスもDDRコントローラーを通る。画素は画面を作る点');
 
 s=slide('接続した構成で、ブロック崩しを動かした',30,
@@ -154,54 +162,74 @@ text(s,'残る課題：映像を受信できない場合の条件の特定',64,6
 foot(s,'実験記録 E6。継続実行・画像比較・映像取得は別々の記録。現在は自動操作');
 
 
-s=slide('Wallyをゲーム機へ拡張する設計例を示した',10,
-  '既存の読み書きの仕組みに接続回路を加え、描画命令を渡せるようにしました。Wallyを拡張する学習者に向けた設計例です。次は専用コントローラーで操作できることを確認します。',
+s=slide('教育用CPUを拡張し、ブロック崩しを動かした',10,
+  'CPUに描画回路をつなぎ、ブロック崩しを動かしました。CPUを拡張したい人が、つなぎ方と動かし方を参照できる例です。次はコントローラーで操作できるようにします。',
   `${PRODUCT} ${E6}`,
-  '学習者向けの拡張例としての利用を想定しているが、教育効果を学習実験で評価したわけではない。CPUやRasterIX本体を新たに設計したという主張ではなく、既存回路間をつなぐアダプタ、メモリ接続、切替制御とソフトウェア側の接続を実装した。専用コントローラーは未実装・未検証であり今後の項目。実機の結果は実験E6に基づく。');
-text(s,'本研究で設計・確認した接続',64,156,1152,54,33,true);
-const summaryItems=[['番地の割当て','番地の比較で\n描画用の窓口を選ぶ'],['描画への接続','CPUの書込みで\n描画命令を渡す'],['実機での確認','ゲーム画面の生成と\n継続動作を確認']];
-summaryItems.forEach(([title,body],i)=>{const y=236+i*64;text(s,'▸',70,y,25,40,27,true,C.heading);text(s,title,110,y,275,40,28,true);text(s,body.replaceAll('\n',''),410,y,795,40,26);});
-text(s,'Wallyの拡張を学ぶ人が参照できる、\n接続設計と実機での動作確認の例',64,465,1152,100,33,true);
-text(s,'次の段階：コントローラーを加え、手で操作する',64,595,1152,48,29);
-foot(s,'CPU・RasterIXは既存回路を利用。学習効果そのものを実験したという主張ではない');
+  '既存の教育用CPUと描画回路を利用し、それらをつなぐ回路とソフトウェア側の接続を実装した。CPUや描画回路本体を新たに設計したという主張ではない。FPGAボード上でブロック崩しのゲーム画面を生成し、HDMI端子から出力した。現在は自動プレイであり、専用コントローラーの接続は未実装・未検証である。実機の結果は既存の実験E6に基づく。4条件の画像比較、300.011秒の自動プレイ、別試行の30秒映像を確認している。回路をどう接続し、プログラムをどう動かすかを、公開したソースと資料で参照できる拡張例としてまとめた。学習者向けの利用を想定するが、教育効果を学習実験で測定したわけではない。次の段階ではコントローラーを接続し、入力によってゲームを操作できることを確認する。');
+text(s,'今回できたこと',64,151,1152,43,31,true,C.heading);
+text(s,'① 教育用CPUに描画回路をつなぎ、FPGAボードに実装した',64,214,1152,54,31,true);
+text(s,'② ブロック崩しが動き、ゲーム画面を出力できた',64,284,1152,54,31,true);
+text(s,'現在は自動プレイ',110,341,1060,35,25,false,C.ink);
+
+text(s,'CPUを拡張したい人が参考にできる',64,414,1152,43,30,true,C.heading);
+text(s,'回路のつなぎ方と、ゲームを動かす方法を\nソースコードと資料で示した',64,467,1152,88,31,true);
+
+text(s,'今後：コントローラーを接続し、手で操作できるようにする',64,597,1152,46,29);
+foot(s,'既存のCPU・描画回路を利用。専用コントローラーの接続はこれから');
 
 
 s=slide('質問用：詳細な全体のブロック図',0,
   'RVSOCのパイプライン図を基にした全体図です。PC、レジスタ群、ALU、段間レジスタ、書戻しの経路を保ち、実機のメモリ接続と本研究の描画接続を付け加えています。質問に応じて関係する経路をたどります。',
   RVSOC+' Figure 7.11 (pipeline datapath), Figure 9.20 (uncore), Chapters 10–11 and 23. '+PRODUCT+' console/src/wally/wallypipelinedcore.sv; console/src/uncore/uncore.sv; console/src/ieu/datapath.sv; console/src/ifu/ifu.sv; console/src/lsu/lsu.sv.',
-  'RVSOC図7.11の配置と回路記号を基に、PCから命令読出し、レジスタ群、入力選択、ALU、メモリアクセス、書戻しへ進むデータパスを示す。Fetch、Decode、Execute、Memory、Writebackの位置関係、段間レジスタ、転送用MUX、下側を戻る書戻し経路を保つ。読める大きさを優先し、図7.11のすべての制御線や端子名をそのまま描き写してはいない。実機ではIROMとDTIMが無効のため、その箱を残さず、命令側をMMU・I-cache・バスI/F、データ側をMMU・D-cache・非キャッシュアクセス経路へ置き換える。命令側とデータ側の外部要求はebuからAHBへ出る。uncoreとAHB/APB変換を上部に加え、SPI、Boot ROMなどの既存周辺回路を示す。CPU側のDDR接続はAHB/AXI変換とclkconverterを通る。右側には共有AXI、MIG、rasterix_apb、命令用と応答用の非同期FIFO、RasterIX_IF、表示回路を加える。CPU、RasterIX、表示回路は共有AXIを介してDDR3へアクセスする。RasterIXと表示回路の間の線は表示先の通知と切替確認であり、画素そのものはDDR3を介して共有する。回路内部を展開しない箱も、単なる名前の一覧ではなく入力と出力の接続を示す。細長い白い箱はレジスタ、台形はMUX、切欠きのある記号はALUを表す。段間レジスタは複数の状態をまとめた表記であり、一本の線で全制御情報を短絡する意味ではない。図は全RTLと等価な回路図や物理配置図ではない。MMUとキャッシュ内部、ALUの個々の演算回路、CSR、FPU、MDU、予測、例外、全制御線、クロックとリセットの詳細は省略する。各々の内部は別の図で扱う。青い塗りは本編で説明した機能、青い枠は追加した描画接続を表す。');
+  'RVSOC図7.11の配置と回路記号を基に、PCから命令読出し、レジスタ群、入力選択、ALU、メモリアクセス、書戻しへ進むデータパスを示す。Fetch、Decode、Execute、Memory、Writebackの位置関係、段間レジスタ、転送用MUX、下側を戻る書戻し経路を保つ。読める大きさを優先し、図7.11のすべての制御線や端子名をそのまま描き写してはいない。実機ではIROMとDTIMが無効のため、その箱を残さず、命令側をMMU・I-cache・バスI/F、データ側をMMU・D-cache・非キャッシュアクセス経路へ置き換える。命令側とデータ側の外部要求はebuからAHBへ出る。uncoreとAHB/APB変換を上部に加え、SPI、Boot ROMなどの既存周辺回路を示す。CPU側のDDR接続はAHB/AXI変換とclkconverterを通る。右側には共有AXI、MIG、描画接続回路、命令用と応答用の非同期FIFO、描画回路、表示回路を加える。CPU、描画回路、表示回路は共有AXIを介してDDR3へアクセスする。描画回路と表示回路の間の線は表示先の通知と切替確認であり、画素そのものはDDR3を介して共有する。回路内部を展開しない箱も、単なる名前の一覧ではなく入力と出力の接続を示す。細長い白い箱はレジスタ、台形はMUX、切欠きのある記号はALUを表す。段間レジスタは複数の状態をまとめた表記であり、一本の線で全制御情報を短絡する意味ではない。図は全RTLと等価な回路図や物理配置図ではない。MMUとキャッシュ内部、ALUの個々の演算回路、CSR、FPU、MDU、予測、例外、全制御線、クロックとリセットの詳細は省略する。各々の内部は別の図で扱う。青い塗りは本編で説明した機能、青い枠は追加した描画接続を表す。');
 drawWallyOverview(s,api);
 
 s.hidden=true; outline[outline.length-1].backup=true;
 
+const ddcaDataRoot=process.env.PRESENTATION_DDCA_ASSET_DIRECTORY||path.join(root,'source/presentation/ddca-adoption');
+const ddcaData=JSON.parse(await fs.readFile(path.join(ddcaDataRoot,'records.json'),'utf8'));
+const ddcaGeography=JSON.parse(await fs.readFile(path.join(ddcaDataRoot,'prefectures.json'),'utf8'));
+const ddcaSummary=summarizeDdca(ddcaData);
+const ddcaSources=ddcaData.records.map(r=>`${r.id} ${r.institution}、${r.academic_year===null?'年度不明':r.academic_year+'年度'}「${r.course}」、${r.book_role}。${r.source_url}`).join('\n');
+s=slide('質問用：DDCAを教材に挙げる授業の広がり',0,
+  `DDCAは、高専・大学の学部・大学院の授業で、教科書や参考書として挙げられています。過去の指定も含めて、公式の公開資料から${ddcaSummary.institutions}機関・${ddcaSummary.prefectures}都道府県で確認できました。1枚の地図にまとめ、同じ県で複数の区分を確認した場合は、それらの色の縞模様にしています。すべての採用校を調べたものではありません。`,
+  '学校別の出典：docs/presentation/DDCA授業利用の出典.md。確認日：2026-10-26。\n'+ddcaSources+'\n地図：lalamalink, https://github.com/lalamalink/japan-map-svg (CC0 1.0)。',
+  `図は、DDCAを公式シラバス・授業資料の教科書・教材・参考書欄で確認した例を示す。日本語版と英語版、MIPS版・ARM版・RISC-V版などを含む。区分別では${ddcaSummary.categories.map(c=>c.label+c.institutions+'機関').join('、')}である。東京大学と広島大学は学部・大学院の両方に例があるが、全体ではそれぞれ1機関と数える。重複を除いた合計は${ddcaSummary.institutions}機関・${ddcaSummary.prefectures}都道府県である。区分は学校名ではなく授業の対象課程を表す。所在地は授業のキャンパスや開催地を使い、大学本部の住所でまとめない。教科書と参考書は出典一覧で区別する。参考書欄への掲載だけから、授業で毎回使うことや全学生の購入までは分からない。年度が分かる資料は${ddcaSummary.firstYear}〜${ddcaSummary.lastYear}年度である。開志専門職大学と長崎大学は授業年度不明、京都大学は2026年度授業ページからリンクされている資料である。現在も同じ指定が続くことや、同一年度の全国分布を示すものではない。縞模様は同じ県に複数の区分があることを示し、各色の面積は機関数に比例しない。灰色はこの一覧で未確認という意味で、使う学校がないという意味ではない。全国の全校・全年度を網羅していないため、色の面積や県数を採用率・市場シェアとして解釈しない。図書館の蔵書だけや書店の取扱いだけは根拠にしない。高知大学の資料は授業名とシラバス掲載図書を対応づけた公式一覧である。長崎大学は公式学部サイトの個別授業紹介を根拠とする。DDCAの掲載例は、RVSOCの採用実績や本研究の教育効果を直接示さない。授業・年度・版・確認箇所はDDCA授業利用の出典.mdを参照。地図の着色と集計はsource/presentation/ddca-adoption/records.jsonから生成する。地図は都道府県の形を簡略化した比較用の図である。`);
+text(s,'教科書・参考書への掲載例（過去の指定を含む）',64,118,1152,38,26,true,C.ink);
+drawDdcaMap(s,api,ddcaData,ddcaGeography);
+foot(s,'出典：各校の公式資料と出典一覧。地図：lalamalink（CC0 1.0）。確認日：2026-10-26');
+s.hidden=true;outline[outline.length-1].backup=true;
+
 const total=outline.reduce((n,s)=>n+s.seconds,0);
-if(outline.length!==11||total!==355)throw new Error(`Unexpected allocation ${outline.length} slides, ${total} seconds`);
+if(outline.length!==13||total!==355)throw new Error(`Unexpected allocation ${outline.length} slides, ${total} seconds`);
 await fs.writeFile(path.join(workspace,'outline.json'),JSON.stringify(outline,null,2)+'\n');
 const md=[
   '# 中間発表：FPGAを用いた二次元ゲーム機の設計と実装',
-  '本編10枚と質問用1枚です。2枚目は大きなボード写真でFPGAの場所を示し、チップ内に実装する回路を図とコードで対応づけます。3枚目でlw、4枚目でswを、FPGA内のメモリを使って説明します。5枚目では同じ図にバスと外付けDDR3への接続を加えます。その後、SDカード、描画と表示を順に加えます。',
-  '[PowerPoint版](中間発表_主要事項.pptx) / [アブスト](../abstract/アブスト_主要事項.md) / [論文本文](../thesis/本文.md) / [技術付録](../thesis/技術付録.md) / [再生成方法](../../source/presentation/board-evolution/README.md)',
+  '本編11枚と質問用2枚です。2枚目でFPGAの仕組み、3枚目で研究の目的を説明します。4枚目でlw、5枚目でswを、FPGA内のメモリを使って説明します。6枚目では同じ図にバスと外付けDDR3への接続を加えます。その後、SDカード、描画と表示を順に加えます。',
+  '[PowerPoint版](中間発表_主要事項.pptx) / [アブスト](../abstract/アブスト_主要事項.md) / [論文本文](../thesis/本文.md) / [技術付録](../thesis/技術付録.md) / [再生成方法](../../source/presentation/board-evolution/README.md) / [DDCA授業利用の出典](DDCA授業利用の出典.md)',
   '## 図の見方',
-  '2枚目では写真中央の黒い放熱器の下にあるFPGAを示し、隣の模式図のチップと対応づけます。SDカードスロットは基板の裏面にあります。3〜4枚目はFPGAチップの囲いだけを大きく表示し、外側のボードや周辺部品を省きます。5〜8枚目はボード外周、青いFPGAチップの枠、右側の外付け部品を同じ位置に保ちます。模式図の部品配置は、実物の配置をそのまま示すものではありません。',
-  '2枚目ではFPGAチップの上にANDゲートを直接描き、短いHDLコードと対応づけます。これは回路記述の例であり、ANDゲートだけで周辺部品を制御するという意味ではありません。3枚目は命令メモリとデータメモリをFPGA内に置いた構成でlwを説明します。4枚目では同じ大きさと配置の図にPC+4の経路を加え、swによってx1の値3をデータメモリの12番地へ書く流れを追います。5枚目ではその図を縮めてボード全体を示し、バスとAMD提供のDDRコントローラーを加えます。命令とデータの保存先を外付けDDR3へ広げ、「命令メモリ」の箱をバス経由の「命令読出し」の箱へ替えます。swが番地と書く値を渡す仕組みは同じです。',
-  'SD制御回路は6枚目、RasterIXは7枚目、表示回路は8枚目で初めて加えます。説明していない回路を先に薄く描くことはしません。CPU、RasterIX、表示回路のメモリアクセスはDDRコントローラーを通ります。送信用アダプタはRasterIXの箱に含めます。線は機能上の経路をまとめており、電気的に異なる信号を短絡する図ではありません。',
-  '3〜4枚目のFPGA内メモリの構成は命令を説明するためのモデルであり、現在の実機構成を示したものではありません。0・4・8・12などの番地も説明例です。AMD提供のメモリ制御回路は、接続する端子と役割を示し、内部の作り方は展開しません。キャッシュ、番地変換、仲裁などの詳細は技術付録に記載します。',
+  '2〜3枚目の外側の枠はFPGAボード、内側の青い枠はFPGAチップです。SDカードスロット、DDR3メモリ、HDMI端子は、チップの外に実物として取り付けられた部品です。2枚目では左のHDLコードをチップ内のAND回路と対応づけ、回路を記述して実装することを説明します。AND回路だけで周辺部品を制御するという意味ではありません。3枚目では、同じボード図のチップ内を教育用CPUと描画機能に置き換え、本研究で作るゲーム機の概要を示します。',
+  '4〜5枚目はFPGAチップの囲いだけを大きく表示し、外側のボードや周辺部品を省きます。4枚目は命令メモリとデータメモリをFPGA内に置いた構成でlwを説明します。5枚目では同じ大きさと配置の図にPC+4の経路を加え、swによってx1の値3をデータメモリの12番地へ書く流れを追います。6枚目ではその図を縮めてボード全体を示し、バスとAMD提供のDDRコントローラーを加えます。命令とデータの保存先を外付けDDR3へ広げ、「命令メモリ」の箱をバス経由の「命令読出し」の箱へ替えます。swが番地と書く値を渡す仕組みは同じです。',
+  '6〜9枚目はボード外周、青いFPGAチップの枠、右側の外付け部品を同じ位置に保ちます。SD制御回路は7枚目、描画回路は8枚目、表示回路は9枚目で接続を詳しく示します。CPU、描画回路、表示回路のメモリアクセスはDDRコントローラーを通ります。送信用アダプタは描画回路の箱に含めます。線は機能上の経路をまとめており、電気的に異なる信号を短絡する図ではありません。模式図の部品配置は、実物の配置をそのまま示すものではありません。',
+  '4〜5枚目のFPGA内メモリの構成は命令を説明するためのモデルであり、現在の実機構成を示したものではありません。0・4・8・12などの番地も説明例です。AMD提供のメモリ制御回路は、接続する端子と役割を示し、内部の作り方は展開しません。キャッシュ、番地変換、仲裁などの詳細は技術付録に記載します。',
   '## 発表時間と質問用スライド',
-  '本編の配分は動画の再生30秒を含め355秒です。動画を再生しながら結果を説明します。6分まで5秒の余裕を置きます。これは練習を実測した時間ではありません。11枚目は非表示の質問用スライドです。通常のスライドショーでは本編10枚を表示します。',
+  '本編の配分は動画の再生30秒を含め355秒です。2枚目は20秒、3枚目は15秒を割り当てています。動画を再生しながら結果を説明します。6分まで5秒の余裕を置きます。これは練習を実測した時間ではありません。12〜13枚目は非表示の質問用スライドです。13枚目はDDCAの授業利用例を示す日本地図です。通常のスライドショーでは本編11枚を表示します。',
   '## 目次',
   outline.map((o,i)=>'- ['+(i+1)+'. '+o.title.replaceAll('\n','')+'](#slide-'+(i+1)+')'+(o.backup?'（質問用）':'')).join('\n')
 ];
 outline.forEach((o,i)=>md.push('<a id="slide-'+(i+1)+'"></a>\n## '+(i+1)+'. '+o.title.replaceAll('\n',''),
   o.backup?'質問時に参照する資料。本編の発表時間には含めません。':'説明時間の配分：'+o.seconds+'秒',
   '!['+o.title.replaceAll('\n','')+'](slides/slide-'+String(i+1).padStart(2,'0')+'.png)',
-  ...(i===8?['[30秒の実機動画を開く](../thesis/再現資料/実験記録/E6/report/results/video/breakout-latest-30s.mp4)','PowerPointには動画を埋め込んでいます。スライドショー中に動画の領域をクリックして再生します。']:[]),
+  ...(i===12?['[教育機関・授業・年度・指定の種類・出典の一覧](DDCA授業利用の出典.md)',
+    'スライドに示した学校名の例：'+ddcaSummary.categories.map(c=>c.label+'は'+c.examples.join('・')).join('、')+'。']:[]),
+  ...(i===9?['[30秒の実機動画を開く](../thesis/再現資料/実験記録/E6/report/results/video/breakout-latest-30s.mp4)','PowerPointには動画を埋め込んでいます。スライドショー中に動画の領域をクリックして再生します。']:[]),
   o.backup?'### 質問時の使い方':'### 発表原稿',o.narration,
   '<details>\n<summary>補足説明と出典</summary>\n',o.detail,o.source?'出典：'+o.source:'','\n</details>'));
 md.push('## 動作確認と詳しい実装',
-  '実機の結果は既存のE6に基づきます。製品版は261832d48832dd6e26c4971ab8893ce61200688bです。4条件の画像比較、300.011秒の自動プレイ、別試行の30秒映像を区別しています。[実験記録E6](../thesis/再現資料/実験記録/E6/README.md)から条件と結果を参照できます。3〜5・7枚目の命令と値は経路の説明例で、実測波形ではありません。専用コントローラーは今後の項目です。',
+  '実機の結果は既存のE6に基づきます。製品版は261832d48832dd6e26c4971ab8893ce61200688bです。4条件の画像比較、300.011秒の自動プレイ、別試行の30秒映像を区別しています。[実験記録E6](../thesis/再現資料/実験記録/E6/README.md)から条件と結果を参照できます。4〜6・8枚目の命令と値は経路の説明例で、実測波形ではありません。専用コントローラーは今後の項目です。',
   '描画処理の工夫、接続方式の比較、再現手順は[技術付録](../thesis/技術付録.md)にまとめています。本編ではそれらの最適化の優劣や教育効果を結論として主張しません。',
   '## 図と書式の出典',
-  'CPU内部の簡略図はDDCA第7章、回路記号や書式はRVSOC図7.11などを参考にしています。チップ内の拡大図からボード全体へ視野を広げ、5〜8枚目では外付け部品の位置を固定して説明します。質問用はRVSOCと製品RTLを基にした機能単位のブロック図で、個々の論理回路や全HDL信号、物理配置を網羅するものではありません。公開版の表紙では個人情報を伏せています。[デザインと出典](../../source/presentation/board-evolution/README.md)に省略範囲と再生成方法を記載しています。');
+  'CPU内部の簡略図はDDCA第7章、回路記号や書式はRVSOC図7.11などを参考にしています。チップ内の拡大図からボード全体へ視野を広げ、6〜9枚目では外付け部品の位置を固定して説明します。12枚目はRVSOCと製品RTLを基にした機能単位のブロック図で、個々の論理回路や全HDL信号、物理配置を網羅するものではありません。13枚目の地図は各校の公開シラバスなどと、lalamalinkのCC0地図データを基にしています。公開版の表紙では個人情報を伏せています。[デザインと出典](../../source/presentation/board-evolution/README.md)に省略範囲と再生成方法を記載しています。');
 await fs.writeFile(path.join(workspace,'中間発表_主要事項.md'),md.join('\n\n')+'\n');
 const raw=path.join(workspace,'raw-candidate.pptx'),poster=path.join(workspace,'poster-candidate.pptx'),candidate=path.join(workspace,'candidate.pptx');
 await(await PresentationFile.exportPptx(P)).save(raw);
@@ -209,21 +237,21 @@ if(audience==='public'){
   const scrub=spawnSync(process.env.RUNTIME_PYTHON,[path.join(root,'tools/publication/sanitize.py'),raw,poster,'--config',path.join(root,'.private/redactions.json')],{encoding:'utf8'});
   if(scrub.status!==0)throw new Error(scrub.stderr||scrub.stdout||'Privacy sanitization failed');
 }else await fs.copyFile(raw,poster);
-const embedding=spawnSync(process.env.RUNTIME_PYTHON,[path.join(root,'source/presentation/board-evolution/embed_video.py'),poster,candidate,path.join(root,VIDEO),'--review',path.join(root,'publication/media-review.json'),'--slide','9'],{encoding:'utf8'});
+const embedding=spawnSync(process.env.RUNTIME_PYTHON,[path.join(root,'source/presentation/board-evolution/embed_video.py'),poster,candidate,path.join(root,VIDEO),'--review',path.join(root,'publication/media-review.json'),'--slide','10'],{encoding:'utf8'});
 if(embedding.status!==0)throw new Error(embedding.stderr||embedding.stdout||'Video embedding failed');
 await fs.writeFile(path.join(workspace,'video-embedding.json'),embedding.stdout);
 if(process.env.PRESENTATION_PREVIEW_ONLY==='1'){
-  for(const i of [1,2,3,4,5,6,7,8,9,10]){
+  for(const i of P.slides.items.keys()){
     const png=await P.export({slide:P.slides.items[i],format:'png',scale:1});
     await fs.writeFile(path.join(workspace,'slides',`slide-${String(i+1).padStart(2,'0')}.png`),new Uint8Array(await png.arrayBuffer()));
   }
   console.log('Preview complete');process.exit(0);
 }
 const final=path.join(workspace,'final','中間発表_主要事項.pptx');
-await finalizePresentation({workspaceDir:workspace,candidatePath:candidate,finalPath:final,pythonExecutable:process.env.RUNTIME_PYTHON,integrityValidatorPath:path.join(process.env.PRESENTATION_SKILL,'container_tools/inspect_presentation_package_integrity.py'),layoutValidatorPath:path.join(process.env.PRESENTATION_SKILL,'container_tools/inspect_presentation_layout_geometry.py'),layoutArgs:['--expected-slide-size-emu','12192000,6858000','--validate-bullet-geometry','--validate-heading-fit'],explicitTotalSlideCount:11,requiredNativeTableOwnerSlides:[],requiredNativeChartOwnerSlides:[],fontPolicy:{basis:'design',families:[font,latinFont,codeFont]},verifyArtifactToolImport:true,receiptPath:path.join(workspace,'validation.json')});
+await finalizePresentation({workspaceDir:workspace,candidatePath:candidate,finalPath:final,pythonExecutable:process.env.RUNTIME_PYTHON,integrityValidatorPath:path.join(process.env.PRESENTATION_SKILL,'container_tools/inspect_presentation_package_integrity.py'),layoutValidatorPath:path.join(process.env.PRESENTATION_SKILL,'container_tools/inspect_presentation_layout_geometry.py'),layoutArgs:['--expected-slide-size-emu','12192000,6858000','--validate-bullet-geometry','--validate-heading-fit'],explicitTotalSlideCount:13,requiredNativeTableOwnerSlides:[],requiredNativeChartOwnerSlides:[],fontPolicy:{basis:'design',families:[font,latinFont,codeFont]},verifyArtifactToolImport:true,receiptPath:path.join(workspace,'validation.json')});
 const imported=await PresentationFile.importPptx(await FileBlob.load(final));
 for(const[i,s]of imported.slides.items.entries()){
-  const png=await imported.export({slide:s,format:'png',scale:i===10?2:1});
+  const png=await imported.export({slide:s,format:'png',scale:outline[i].backup?2:1});
   await fs.writeFile(path.join(workspace,'slides',`slide-${String(i+1).padStart(2,'0')}.png`),new Uint8Array(await png.arrayBuffer()));
 }
 console.log(JSON.stringify({final,audience,slides:outline.length,seconds:total,narrationCharacters:outline.reduce((n,s)=>n+s.narration.length,0)}));

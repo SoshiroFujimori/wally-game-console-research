@@ -107,6 +107,6 @@ if __name__ == '__main__':
     parser.add_argument('destination', type=Path)
     parser.add_argument('video', type=Path)
     parser.add_argument('--review', required=True, type=Path)
-    parser.add_argument('--slide', type=int, default=9)
+    parser.add_argument('--slide', type=int, default=10)
     args = parser.parse_args()
     embed(args.source, args.destination, args.video, args.review, args.slide)

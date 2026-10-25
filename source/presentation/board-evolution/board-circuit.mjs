@@ -89,7 +89,7 @@ export function drawBoard(s,a,stage){
       if(sdFocus)r([[820,479],[832,479],[832,336],[857,336]],blue,true,3);
     }
     if(stage>=7){
-      b('gpu','RasterIX',command?C.pale:white,21,gpuColor);
+      b('gpu','描画回路',command?C.pale:white,21,gpuColor);
       wire(832,526,857,526,gpuColor);
       if(command)r([[820,479],[832,479],[832,526],[857,526]],blue,true,3);
     }
@@ -183,50 +183,66 @@ export function drawBoard(s,a,stage){
 }
 
 
-// Board overview: a native gate sits directly inside the chip boundary.
-// Its HDL describes the gate example, not the peripheral control circuits.
-export function drawImplementationFlow(s,a){
+// Board overview without a photograph. The code and gate are the same
+// small logic example. The research view retains the board geometry.
+function drawIntroBoard(s,a,research){
   const {text:T,box:B,polygon:P,wire:W,route:R,C}=a;
   const t=(v,x,y,w,h=30,z=23,b=false,c=C.ink,align='left')=>T(s,v,x,y,w,h,z,b,c,align);
   const box=(name,x,y,w,h,fill=C.white,stroke=C.ink)=>{
     const sh=B(s,'',x,y,w,h,fill,23,stroke,2.2);sh.name='implementation-'+name;return sh;
   };
 
-  t('FPGAボード：Nexys Video',64,218,525,36,27,true,C.heading);
-  // The photograph is inserted before this function so these marks stay visible.
-  box('photo-fpga',232,390,64,72,'none',C.blue);
-  R(s,[[296,426],[555,426],[555,327],[646,327]],C.blue,true,2.6);
-  t('黒い放熱器の下に\nFPGAがある',435,444,187,63,23,true,C.blue);
-
-  box('board',630,228,586,255,C.pale);
-  t('チップと周囲の部品',646,236,550,31,23,true);
-  box('chip',646,278,370,186,C.chip,C.blue);
-  t('FPGAチップ',659,284,238,32,25,true,C.blue);
-  const gate=[[736,338],[769,338]];
-  for(let i=1;i<=16;i++){
-    const theta=-Math.PI/2+i*Math.PI/16;
-    gate.push([769+39*Math.cos(theta),377+39*Math.sin(theta)]);
-  }
-  gate.push([736,416]);
-  P(s,gate,C.white,C.ink,2.2).name='implementation-and-gate';
-  W(s,695,358,736,358,C.ink,false,2.4);
-  W(s,695,396,736,396,C.ink,false,2.4);
-  W(s,808,377,941,377,C.ink,true,2.4);
-  t('a',671,341,28,30,25,true);t('b',671,381,28,30,25,true);
-  t('y',948,360,28,30,25,true);
-  t('AND回路の例',697,424,262,30,23,true,C.ink,'center');
-  for(const [name,label,y]of[['card','SDスロット',287],['memory','DDR3メモリ',350],['hdmi','HDMI OUT',413]]){
-    box(name,1041,y,157,47);
-    t(label,1047,y+6,145,35,21,true,C.ink,'center');
-    W(s,1016,y+23.5,1041,y+23.5,C.ink,false,2.3);
+  if(research){
+    t('本研究の目的',64,259,468,40,29,true,C.heading);
+    t('教育用CPUを\nゲーム機へ拡張する\n例を示す',64,326,468,153,36,true);
+  }else{
+    t('回路をコードで記述',64,259,458,40,29,true,C.heading);
+    box('hdl',64,326,468,153,'#F5F7FB');
+    const code=['module example(input logic a, b,', '               output logic y);', '  assign y = a & b;', 'endmodule'];
+    code.forEach((line,i)=>{
+      const sh=t(line,79,341+i*29,438,29,20,false,i===2?C.blue:C.ink);
+      sh.name='implementation-code-'+i;
+      sh.text.style={typeface:'Consolas',fontSize:20,bold:false,color:i===2?C.blue:C.ink,alignment:'left',verticalAlignment:'middle',wrap:'none'};
+    });
+    t('論理回路の記述例',64,493,468,32,23,false,C.ink,'center');
   }
 
-  t('この回路はコードで記述できる',646,490,562,31,25,true,C.heading);
-  box('hdl',646,526,562,107,'#F5F7FB');
-  const code=['module example(input logic a, b,', '               output logic y);', '  assign y = a & b;', 'endmodule'];
-  code.forEach((line,i)=>{
-    const sh=t(line,661,534+i*23,532,23,20,false,i===2?C.blue:C.ink);
-    sh.name='implementation-code-'+i;
-    sh.text.style={typeface:'Consolas',fontSize:20,bold:false,color:i===2?C.blue:C.ink,alignment:'left',verticalAlignment:'middle',wrap:'none'};
-  });
+  box('board',638,242,578,308,C.pale);
+  t('FPGAボード',654,251,546,34,27,true);
+  box('chip',656,293,350,239,C.chip,C.blue);
+  t('FPGAチップ',669,306,320,35,26,true,C.blue);
+  if(research){
+    box('education-cpu',678,375,126,88);
+    t('教育用\nCPU',686,382,110,74,25,true,C.ink,'center');
+    box('graphics-function',851,375,133,88,C.pale,C.blue);
+    t('描画\n機能',859,382,117,74,25,true,C.blue,'center');
+    W(s,804,419,851,419,C.blue,true,2.6);
+    t('描画機能を追加',673,479,316,33,23,true,C.blue,'center');
+  }else{
+    const gate=[[736,375],[769,375]];
+    for(let i=1;i<=16;i++){
+      const theta=-Math.PI/2+i*Math.PI/16;
+      gate.push([769+39*Math.cos(theta),414+39*Math.sin(theta)]);
+    }
+    gate.push([736,453]);
+    P(s,gate,C.white,C.ink,2.2).name='implementation-and-gate';
+    W(s,695,395,736,395,C.ink,false,2.4);
+    W(s,695,433,736,433,C.ink,false,2.4);
+    W(s,808,414,941,414,C.ink,true,2.4);
+    t('a',671,378,28,30,25,true);t('b',671,418,28,30,25,true);
+    t('y',948,397,28,30,25,true);
+    t('回路の例（AND）',672,479,318,33,23,true,C.ink,'center');
+  }
+  for(const [name,label,y]of[['card','SDスロット',304],['memory','DDR3メモリ',388],['hdmi','HDMI OUT',472]]){
+    box(name,1041,y,157,57);
+    t(label,1047,y+10,145,37,21,true,C.ink,'center');
+    W(s,1006,y+28.5,1041,y+28.5,C.ink,false,2.3);
+  }
+  if(!research){
+    R(s,[[534,418],[656,418]],C.blue,true,3);
+    t('回路を\n実装',535,366,102,44,21,true,C.blue,'center');
+  }
 }
+
+export function drawImplementationFlow(s,a){drawIntroBoard(s,a,false);}
+export function drawResearchPurpose(s,a){drawIntroBoard(s,a,true);}

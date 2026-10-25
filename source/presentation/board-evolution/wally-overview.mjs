@@ -209,14 +209,14 @@ export function drawWallyOverview(s, api) {
     T('前の図と同じ\n番地・値の書込み',915,473,196,52,18,false,C.ink,'center');
   } else {
     T('EXT_IO',939,286,155,23,17,true,blue,'center');
-    B('rasterix_apb',939,326,164,38,C.pale,18,blue,2);
+    B('描画接続回路',939,326,164,38,C.pale,18,blue,2);
     W(1008,315,1008,326,blue,true,2);
     B('命令',939,389,76,30,C.pale,16,blue,2);
     B('応答',1027,389,76,30,C.pale,16,blue,2);
     T('非同期FIFO',939,367,164,22,15,true,blue,'center');
     W(975,364,975,389,blue,true,1.7);
     W(1065,389,1065,364,blue,true,1.7);
-    B('RasterIX_IF',939,437,164,40,C.pale,21,blue,2);
+    B('描画回路',939,437,164,40,C.pale,21,blue,2);
     W(975,419,975,437,blue,true,1.7);
     W(1065,437,1065,419,blue,true,1.7);
     B('表示回路',939,515,164,35,C.pale,19,blue,2);
