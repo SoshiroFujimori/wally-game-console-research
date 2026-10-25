@@ -24,11 +24,11 @@ function chipView(a) {
 }
 
 export function drawBoard(s,a,stage){
-  const chipOnly=stage===3;
+  const chipOnly=stage===3||stage===4;
   if(chipOnly)a=chipView(a);
   const {text:T,box:B,polygon:P,wire:W,route:R,C}=a;
   const blue=C.blue, gray='#9FA9B9', white=C.white;
-  const load=stage===3||stage===4, store=stage===5, busFocus=stage===4||stage===5;
+  const load=stage===3, store=stage===4||stage===5, busFocus=stage===5;
   const sdFocus=stage===6, command=stage===7, display=stage>=8;
   const t=(v,x,y,w,h=28,z=20,b=false,c=C.ink,align='left')=>T(s,v,x,y,w,h,z,b,c,align);
   const b=(key,label='',fill=white,z=22,stroke=C.ink)=>{
@@ -46,7 +46,7 @@ export function drawBoard(s,a,stage){
   }
   b('chip','',C.chip,22,blue);
   t('FPGAチップ',80,266,250,29,23,true,blue);
-  const internalMemory = stage === 3;
+  const internalMemory = stage <= 4;
   const sdColor=sdFocus?blue:gray;
   const memoryColor=internalMemory?gray:blue;
   const gpuColor=command||display?blue:gray;
@@ -123,7 +123,7 @@ export function drawBoard(s,a,stage){
   t(load?'0：lw x1,8(x0)':store?'4：sw x1,12(x0)':'DDR3から\n命令を読む',182,485,116,47,load||store?14:18,true,load||store?blue:C.ink,'center');
   r([[313,468],[336,468],[336,355],[359,355]],C.ink,true,2.3);
 
-  if(stage>=5){
+  if(stage>=4){
     poly([[183,357],[227,368],[227,390],[183,401],[183,388],[193,379],[183,367]]);
     t('+',199,365,25,28,25,true,C.ink,'center');
     r([[149,468],[149,368],[183,368]],C.ink);
