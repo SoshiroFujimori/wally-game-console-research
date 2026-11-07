@@ -3,6 +3,7 @@
 export const GEOMETRY = {
   pc:[80,365,42,80], instruction:[160,335,180,150], registers:[440,325,180,225],
   alu:[720,345,90,120], bus:[900,325,90,225], memory:[1110,335,140,160],
+  ddrController:[1090,430,160,65],
   sd:[1110,515,140,60], card:[1110,598,140,44], graphics:[1110,235,140,65],
   display:[1110,150,140,62]
 };
@@ -22,7 +23,7 @@ export function drawProgressive(s,a,stage) {
   const storeOnly=stage===3||command;
   const literal=stage<=3, selected=command?'sw x1, 0(x2)':load?'lw x1, 8(x0)':'sw x1, 12(x0)';
 
-  // Slide 2 retains the real load encoding. Later stages show extracted
+  // Stage 2 retains the real load encoding. Later stages show extracted
   // values in a common layout, without claiming a physical bit arrangement.
   const ix=360, iy=199;
   t(load?'命令の32ビット':'命令から取り出す内容',64,193,286,40,23,true);
@@ -48,7 +49,7 @@ export function drawProgressive(s,a,stage) {
   r([[468,230],[468,260],[687,260],[687,440],[720,440]],blue,true,2.5);
   t(literal||command?'即値 '+(load?'8':command?'0':'12'):'即値',686,469,126,30,23,true,blue);
 
-  // PC and instruction memory stay in place from slide 2 onwards.
+  // PC and instruction memory stay in place across all progressive stages.
   box('pc'); t('D',84,389,15,28,16);t('Q',103,389,15,28,16);
   p([[92,365],[101,376],[110,365]],'none');w(101,341,101,365,C.ink,false,1.2);
   t('clk',77,310,49,27,19,false,C.ink,'center');t('PC',77,452,55,30,26,true,C.ink,'center');
@@ -103,12 +104,15 @@ export function drawProgressive(s,a,stage) {
     box('bus','バス\n接続',stage===4?C.pale:C.white,25);
     t('命令',910,332,70,27,18,false,stage===4?blue:C.ink,'center');
     bi([[990,405],[1055,405]],command?blue:C.ink);
-    w(1055,gpu?265:405,1055,sd?545:455,C.ink,false,3.2);
+    w(1055,gpu?265:405,1055,sd?545:465,C.ink,false,3.2);
     t('バス',995,567,102,33,25,true,C.ink,'center');
-    bi([[1055,405],[1110,405]],stage===4||stage===5?blue:C.ink);
-    box('memory');
-    t('DDR3',1117,345,126,37,25,true,C.ink,'center');
-    t(pixel||display?'命令・データ\n画素の色':stage===5?'コピーした\nプログラム':'命令とデータ',1117,405,126,67,19,false,C.ink,'center');
+    // All memory users terminate at the controller, not at the DDR3 chip.
+    bi([[1055,465],[1090,465]],stage===4||stage===5?blue:C.ink);
+    box('ddrController','DDR\nコントローラー',stage===4?C.pale:C.white,20,stage===4?blue:C.ink);
+    bi([[1180,430],[1180,403]],stage===4||stage===5||pixel?blue:C.ink);
+    B(s,'',1110,335,140,68,C.white,23,C.ink,2.2).name='stable-memory';
+    t('DDR3',1117,337,126,34,25,true,C.ink,'center');
+    t(pixel?'命令・画像':stage===5?'プログラム':'命令・データ',1117,373,126,25,18,false,C.ink,'center');
     r([[900,500],[891,500],[891,603],[405,603],[405,510],[440,510]],stage===5?blue:C.ink,true,2.5);
     t('読んだ値',700,609,176,29,21,false,C.ink,'center');
   }
@@ -129,12 +133,12 @@ export function drawProgressive(s,a,stage) {
     if(command){r([[990,405],[1055,405],[1055,265],[1110,265]],blue,true,3);}
   }
   if(pixel||display){
-    r([[1250,274],[1260,274],[1260,355],[1250,355]],pixel?blue:C.ink,true,3);
+    r([[1250,274],[1260,274],[1260,449],[1250,449]],pixel?blue:C.ink,true,3);
     t('画素の書込み',1110,302,140,28,18,true,pixel?blue:C.ink,'center');
   }
   if(display){
     box('display','表示回路',C.pale,24);
-    r([[1250,465],[1270,465],[1270,181],[1250,181]],blue,true,3);
+    r([[1250,478],[1270,478],[1270,181],[1250,181]],blue,true,3);
     r([[1180,150],[1180,138]],blue,true,2.8);
     t('HDMI OUT',1108,111,148,28,21,true,blue,'center');
   }

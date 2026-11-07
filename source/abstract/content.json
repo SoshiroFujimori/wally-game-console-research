@@ -1,42 +1,44 @@
 {
-  "title": "FPGAを用いた二次元ゲーム機の設計と実装",
+  "title": "FPGAを用いた2Dゲーム機の製作",
   "sections": {
     "1  はじめに": [
-      "FPGAは，ハードウェア記述言語（HDL）で記述した論理回路を実装できる半導体チップである．本研究では，教科書RISC-V System-on-Chip Design[1]で設計を学べるCPUであるWallyに描画・表示機能を追加し，FPGAボード上でブロック崩しを動かした．Wallyの学習者が，既存のCPUをゲーム機へ拡張する際に参照できる設計例を示すことを目的とする．"
+      "FPGAは，コードで記述した論理回路を実装できる半導体チップである．本研究では，教科書RISC-V System-on-Chip Design[1]の教育用CPU「Wally」に描画・表示機能を追加し，ブロック崩しが動くゲーム機を製作した．Wallyの学習者が，CPUをゲーム機へ拡張する際に参照できる設計例を示すことを目的とする．"
     ],
     "2  ゲーム機の設計": [
-      "Nexys VideoのFPGAにWallyと描画回路RasterIX[2]，表示回路を実装した．ボード上には，FPGAチップの外にSDカードスロット，DDR3メモリ，HDMI端子があり，チップ内の制御回路を介して利用する．",
-      "CPUは，バス（回路間の通信経路）につながるSDカード制御回路を操作し，カード上のゲームプログラムをDDR3へ読み込む．DDR3への読み書きには，AMD提供のDDRメモリコントローラーを用いる．CPUは読み込んだプログラムを実行し，ボールの位置や衝突を計算する．",
-      "本研究では，WallyのバスとRasterIXをつなぐ接続回路を設計した．接続回路には専用のアドレスを割り当て，CPUのストア命令（指定アドレスへ値を書く命令）で書いた数値をRasterIXへ渡す．このように周辺回路をメモリと同じ読み書きの仕組みで操作する方式を，MMIO（メモリマップドI/O）という．",
-      "ゲームプログラムは，RasterIX付属のOpenGL互換ライブラリに図形の位置や色を指定する．CPU上で動くライブラリが，図形の描き方を指示する数値列（描画命令）を作り，接続回路を通して送る．RasterIXは描画結果をDDR3の画像用領域へ保存し，表示回路がそれを読み出してHDMI端子へ映像を出力する（図1）．RasterIX本体には変更を加えていない．"
+      "図1にゲーム機の構成を示す．Nexys VideoのFPGAチップ内に，Wally，描画回路RasterIX[2]，表示回路と，それらをつなぐ回路を実装した．SDカードスロット，DDR3メモリ，HDMI端子はチップの外に実物として付いており，チップ内の制御回路を介して使う．",
+      "CPUはロード命令（lw）で指定アドレスの値を読み，ストア命令（sw）で値を書く．バスはアドレスに応じて，要求をメモリや周辺回路へ届ける．本研究では，バスに描画命令を送るための接続回路を追加した．専用のアドレスを割り当て，CPUがそこへ書いた数値をRasterIXへ渡す．周辺回路をメモリと同じ読み書きで操作するこの方式を，MMIO（メモリマップドI/O）という．",
+      "CPUはSDカード制御回路を操作し，カード上のゲームプログラムをDDR3へ読み込む．その後，DDR3から命令を読み出して実行し，ボールの位置や衝突を計算する．DDR3の読み書きには，AMD提供のメモリ制御回路を用いる．",
+      "画面を描く際は，ゲームプログラムからRasterIX付属のOpenGL互換ライブラリへ図形の位置や色を指定する．CPU上で動くこのライブラリが，描き方を指示する数値列（描画命令）を作る．CPUは接続回路へその数値列を書き込み，RasterIXへ送る．",
+      "RasterIXは描画命令に従って画面の各点（画素）の色を求め，画像をDDR3へ保存する．表示回路はその画像を読み出し，HDMI端子から映像を出す．画像の読み書きもAMDのメモリ制御回路を介する．RasterIX本体は変更していない．"
     ],
     "3  動作の確認": [
-      "実機で640×480画素のブロック崩しを動かした．四つの条件で，実機メモリ内のゲーム画像をCPUで別途作成した比較用画像と照合し，各画像の全画素が一致した．",
-      "自動操作による5分間の実行で，ゲームの計算と画面の更新が続くことを確認した．別の試行で記録した30秒間の映像でも，ボールの動きを確認した（図2）．専用コントローラーによる操作は未実装である．"
+      "実機で640×480画素のブロック崩しを実行した．HDMI端子から出た映像を30秒間記録し，ゲーム画面が表示され，ボールが動くことを確認した（図2）．",
+      "また，別の試行で5分間の自動操作を行い，実行記録からゲームの計算と画面の更新処理が続いたことを確認した．現在はプログラムがパドルを動かしており，ゲームコントローラによる操作は未実装である．"
     ],
     "4  おわりに": [
-      "既存のCPUと描画回路を接続し，ゲームプログラムの実行から画面表示までをFPGAボード上で実現した．設計と動作確認の資料を公開し，Wallyをゲーム機へ拡張する例を示した．映像取込環境で受信できない場合の原因調査と，Wii Classic Controller Proによるゲーム操作の実装を今後の課題とする．"
+      "Wallyに描画回路を接続し，ゲームの実行から画面表示までを実現した．回路のつなぎ方とゲームを動かす方法を公開し，Wallyの拡張例を示した．今後は，映像を受信できない場合の原因調査と，ゲームコントローラによる操作の実装を進める．"
     ]
   },
   "references": [
     "[1] D. Harrisほか，RISC-V System-on-Chip Design，Morgan Kaufmann，2026．",
     "[2] ToNi3141，RasterIX，https://github.com/ToNi3141/RasterIX （使用版9269a01c9bd4，参照2026-10-09）．"
   ],
-  "evidence": "Aligned with the current presentation: FPGA implementation, Wally extension, SD-to-DDR program loading, address-based peripheral access (MMIO), drawing commands, framebuffer storage and display, and Breakout demonstration. E6 normal-product qualification: four whole-frame comparisons at 640x480 against a separate CPU-rendered reference (three rendering conditions and one restart condition), a 300.011-second autoplay run, and a separately recorded 30-second video. These existing measurements are unchanged; no new experiment is claimed. Rendering-efficiency changes remain part of the tested game, not a performance claim here. Controller remains planned and intermittent capture acquisition remains unresolved. Figure 2 reuses the reviewed, unchanged frame at 15 seconds in that video.",
+  "evidence": "Follows the presentation's explanation of the FPGA board, educational CPU extension, load/store access through a bus, SD-to-DDR program loading, MMIO command submission, image storage, and display. The new overview diagram distinguishes logic inside the chip from physical components on the board. Shared memory arbitration, detailed bus protocols and return/status paths are simplified; the display and rendering paths use the AMD memory controller. The five-minute execution log and the separately recorded 30-second HDMI video are existing E6 evidence, not new tests or a five-minute video. The paddle is moved by software; controller input remains planned. Capture acquisition failures remain unresolved. The reviewed game image is unchanged.",
   "figures": [
     {
       "section": "2  ゲーム機の設計",
-      "after_paragraph": 3,
+      "after_paragraph": 1,
       "source": "source/abstract/figs/game-flow.png",
-      "caption": "図1  描画命令から映像出力までの処理",
-      "alt": "CPUのWallyが作った描画命令をMMIOの接続回路経由でRasterIXへ渡す。描画回路はDDR3の画像用領域へ各画素の色を保存し、表示回路が読み出してHDMI端子へ出力する。画像の読み書きはDDRメモリコントローラーを通る。線は処理の流れを表す。"
+      "width_mm": 88,
+      "caption": "図1  FPGAボードに実装したゲーム機",
+      "alt": "FPGAボードの中を，論理回路を実装するFPGAチップと，チップ外のSDカードスロット，DDR3，HDMI端子に分けた構成図。CPUのWallyはバスを通じてSDカード制御回路，AMDのDDRコントローラー，描画用の接続回路へアクセスする。描画回路RasterIXは接続回路から描画命令を受け，DDRコントローラーを通じて画像を保存する。表示回路は同じコントローラーを通じて画像を読み，HDMI端子へ出力する。青枠は追加した描画・表示の機能を表す。"
     },
     {
       "section": "3  動作の確認",
       "after_paragraph": 2,
       "source": "docs/thesis/figs/fifo-study-game.png",
       "caption": "図2  実機から記録したブロック崩しの映像",
-      "alt": "実機のHDMI映像から取り出したブロック崩しの画面。色付きのブロック、白いボールとパドルが描かれている。自動操作で確認した。"
+      "alt": "実機のHDMI映像から取り出したブロック崩しの画面。色付きのブロック，白いボールとパドルが描かれている。自動操作で確認した。"
     }
   ]
 }

@@ -47,6 +47,39 @@ It is not an exhaustive or cycle-accurate RTL/netlist drawing. More detailed
 module diagrams remain in `../wally-circuit.mjs` for future question slides.
 Source and omission notes are in the speaker notes.
 
+## Detailed-diagram connectivity
+
+The question diagram uses product revision
+`261832d48832dd6e26c4971ab8893ce61200688b` and the
+`fpganexysvideo_rasterix` configuration. It preserves the pipeline layout
+while using RVSOC Figure 9.28 for decoding and response selection.
+The drawing is a functional projection, not an RTL-equivalent netlist.
+Named `HRDATA` and `FlagsE` ports denote the same nets without long return
+wires. Crossings without a junction dot do not join nets. Bus lines aggregate
+separate channels/signals; the HSEL bundle contains a distinct select for
+each destination.
+
+| Diagram element | RTL correspondence |
+| --- | --- |
+| Address decoding | `uncore.sv` instantiates `adrdecs(HADDR, ..., HSIZE[1:0], HSELRegions)`. It produces selects, not read/write data. |
+| Selected return | `uncore.sv` holds select state and selects `HRDATA`, `HREADY` and `HRESP`. Their exact per-signal expressions remain in the RTL. |
+| EBU | `ebu.sv` arbitrates IFU/LSU requests. `wallypipelinedcore.sv` distributes `HRDATA` directly to IFU and LSU; it does not traverse EBU. |
+| Boot ROM and RAM | `rom_ahb` and `ram_ahb` are enabled in the FPGA configuration. IROM/DTIM are disabled. |
+| SD control | Instance `sdc` uses module `spi_apb` with `PSEL[5]` and the SDC pins. The separate `spi` instance is not connected to the SD slot. |
+| External drawing port | `ahbapbbridge` passes `PSEL[7]` as `PSELEXT` to `rasterix_apb`. |
+| Forwarding | `datapath.sv` uses two mux3 selectors for register data, `ResultW` and `IFResultM`, before its two ALU operand selectors. |
+| Result routing | Execute alternative-result selection is grouped; the Memory-stage FPU integer selection is separate. Result data and `ResultSrcW` control use distinct lines. |
+| Store routing | `lsu.sv` routes store data to D-cache or the uncached bus path. Byte selection, alignment and atomic processing are grouped. |
+| Register-file clock | `regfile.sv` writes on `negedge clk`, shown by an inverted clock input. Pipeline registers use rising edges. |
+| Shared DDR | `rasterixmem.tcl` connects CPU, buffered GPU AXI and read-only display AXI to SmartConnect and MIG. The GPU AXI buffer differs from command/response FIFOs. |
+| Display | `rasterixdisplay.sv` exchanges read requests/responses with memory and swap control with RasterIX. Pixel data do not travel on the swap-control link. |
+
+The `rasterix` wrapper outline, IFU uncached-instruction selection, compressed
+instruction expansion, load/store formatting, prediction, privilege/FPU/MDU
+internals and many control/reset/clock/interrupt nets are omitted. Speaker
+notes describe the aggregation boundaries. AMD IP fill is independent of
+the blue outlines used for functions covered in the main presentation.
+
 ## Embedded demonstration
 
 Slide 10 embeds the reviewed 30-second E6 recording without transcoding:
@@ -99,10 +132,21 @@ The palette follows the published Figure 23.2: board background `#E5EBF8`,
 FPGA background `#CCD9F1`, AMD IP `#77A3DC`, and ink `#231F20`.
 The published PDF and the editable Visio source have different RGB values;
 the published figure is the appearance reference. Pipeline symbols and
-stage layout follow Figure 7.11. Blue outlines and paths highlight the
-functions discussed in this presentation; they do not designate AMD IP.
-Dark blue fill is reserved for the vendor memory and interconnect blocks.
-Question slide 12 includes the corresponding legend.
+stage layout follow Figure 7.11. On question slide 12, blue outlines and
+paths map to functions and data movement introduced in main slides 4-9.
+PC and the +4 operation, register-file access, address calculation,
+instruction/data transfers, address decoding, SD control (`sdc` / `spi_apb`), the DDR
+controller, drawing and display are highlighted. Only +4 is blue in the
++2/+4 label because compressed-instruction stepping was not introduced.
+
+A blue route can pass through a black-outlined detail block. It describes
+the transfer, not an explanation of that block's internal implementation.
+Extension, MMU/cache internals, bus conversion, clock conversion, FIFOs,
+pipeline stages, selectors and control remain unhighlighted. Display
+handoff and completion signals also remain black. Dark blue fill is
+reserved for AMD memory/interconnect IP independently of presentation
+coverage, while pale backgrounds identify hierarchy. The slide legend
+and speaker notes distinguish these meanings.
 
 Japanese labels use Yu Gothic, Latin circuit labels Arial, and code Consolas.
 These are explicit presentation adaptations, not claims to reproduce the

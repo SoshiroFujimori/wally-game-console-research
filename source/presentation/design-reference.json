@@ -1,8 +1,8 @@
 {
-  "version": 4,
+  "version": 6,
   "reference": "Harris et al., RISC-V System-on-Chip Design",
   "official_resources": "https://pages.hmc.edu/harris/ddca/rvsocd.html",
-  "inspection_date": "2026-10-20",
+  "inspection_date": "2026-10-24",
   "sources": [
     {
       "book_relative_path": "sources/RVSoCD_figs/ch7-rvi/7.11-pipelined.vsdx",
@@ -103,10 +103,11 @@
     "block_outline": 2.2,
     "note": "Aggregated interface links represent several signals, not one conductor."
   },
-  "diagram_basis": "Pinned console RTL; reduced views include instruction fetch and one shared APB bridge, and omit EBU, MMU and caches until slide 11.",
+  "diagram_basis": "Pinned console RTL; main slides progressively introduce instruction fetch, load/store operations, the bus, SD, drawing and display. The pipeline, EBU, MMU and caches are shown on hidden question slide 12.",
   "console_revision": "261832d48832dd6e26c4971ab8893ce61200688b",
   "detailed_diagram": {
-    "source": "wally-circuit.mjs",
+    "source": "board-evolution/wally-overview.mjs",
+    "slide": 12,
     "hierarchy": [
       "fpgaTop",
       "wallypipelinedsoc",
@@ -117,19 +118,15 @@
       "lsu",
       "ebu"
     ],
-    "expanded": "Pipeline state and selectors; register-file storage/read selection; representative ALU and comparator logic; decoder groups; MMU translation/bypass/checks; cache tag/data/control paths; EBU arbitration; APB bridge; UART transmit and GPIO output paths; stall/flush equations.",
-    "grouped": "Next-PC selection, vendor memory interfaces, omitted control inputs, and aggregated interface signals.",
-    "highlight": "Blue fill identifies functions introduced in the reduced diagrams; blue outlines identify the added graphics connection.",
-    "limits": "Representative functional source-derived drawing, not a complete HDL signal list, gate-level netlist or physical placement diagram. UART and GPIO details show selected paths only.",
-    "wire_widths_css_pixels": {
-      "representative_control": 0.54,
-      "representative_data": 1.21,
-      "highlighted_path": 1.41,
-      "arrow_length": 3.35
-    },
-    "slide": 11,
-    "internal_source": "integrated-internals.mjs",
-    "internal_geometry": "Editable native shapes and connections within the module boundaries; no embedded book-figure bitmaps."
+    "expanded": "Pipeline state and operand/forwarding selectors; PC and register-file paths; address decoding and selected responses; cache/MMU interfaces; external memory, SD and graphics connections.",
+    "grouped": "ALU internals, cache/MMU internals, prediction, privilege/FPU/MDU logic, instruction expansion, load/store formatting, and most clock/reset/interrupt/control nets.",
+    "highlight": "Blue lines and outlines identify functions and routes introduced in main slides 4-9. AMD IP has a separate dark-blue fill. Internal implementation and display-completion signals remain unhighlighted.",
+    "limits": "A functional projection of the configured source, not an exhaustive RTL-equivalent netlist, cycle-accurate diagram or physical placement. Crossings without junction dots do not connect nets.",
+    "supplementary_module_sources": [
+      "wally-circuit.mjs",
+      "integrated-internals.mjs"
+    ],
+    "supplementary_module_scope": "More detailed module drawings retained as source material; not displayed in the current thirteen-slide deck."
   },
   "board_photograph": {
     "file": "assets/nexys-video.png",
@@ -139,22 +136,26 @@
     "accessed": "2026-10-19",
     "download_sha256": "63bbbef68aaf365ab3d0d12df74337be42dffd8e15c06a9f6352ae375b642b16",
     "encoding_note": "The server supplied WebP despite the PNG URL. Re-encoded as PNG without changing decoded RGBA pixels; publication removes metadata.",
-    "identification_reference": "https://digilent.com/reference/_media/reference/programmable-logic/nexys-video/nexys-video_rm.pdf"
+    "identification_reference": "https://digilent.com/reference/_media/reference/programmable-logic/nexys-video/nexys-video_rm.pdf",
+    "used_in_current_deck": false
   },
   "simplified_diagrams": {
-    "source": "simple-circuit.mjs",
-    "instruction_fetch_slide": 2,
+    "source": "board-evolution/board-circuit.mjs",
+    "instruction_fetch_slide": 4,
     "load_store_slides": [
-      3,
-      4
+      4,
+      5
     ],
     "bus_software_graphics_slides": [
-      5,
       6,
-      7
+      7,
+      8,
+      9
     ],
     "clock_symbol": "Triangular edge-triggered clock input on a white register symbol",
-    "sd_transfer_arrow": "Logical Linux software loading, not a direct hardware connection or DMA"
+    "sd_transfer_arrow": "CPU software requests SD data, reads the receive register and stores data through the DDR controller; no direct SD-to-DDR DMA link",
+    "ddr_controller": "Shown explicitly on slides 6-9. CPU, graphics-write and display-read paths terminate at the controller. The DDR3 chip is separate.",
+    "drawing_stage_numbers": "Main instruction examples use drawBoard stages 3 and 4 on slides 4 and 5; stages 5-8 correspond to slides 6-9. CPU geometry is shared."
   },
   "cover": {
     "fields": [
@@ -164,5 +165,19 @@
     ],
     "public_identity": "Withheld",
     "private_input": "External JSON file, never published"
-  }
+  },
+  "board_overview": {
+    "slide": 2,
+    "research_purpose_slide": 3,
+    "external_components": [
+      "DDR3 memory",
+      "SD card slot",
+      "HDMI OUT connector"
+    ],
+    "internal_circuit_example": "An AND gate corresponding to the SystemVerilog expression assign y = a & b.",
+    "code_scope": "A small combinational-logic example; it is not a complete peripheral controller.",
+    "purpose": "Explain that a described circuit can be implemented inside the FPGA chip to control physical components on the board.",
+    "research_purpose": "Slide 3 replaces the AND example with the existing educational CPU and graphics functionality to introduce the game-console extension."
+  },
+  "presentation_mapping_review_date": "2026-11-08"
 }

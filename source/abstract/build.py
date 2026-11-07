@@ -24,6 +24,7 @@ a = p.parse_args()
 config = load_config(a.config)
 content = json.loads(Path(__file__).with_name("content.json").read_text(encoding="utf-8"))
 doc = Document(io.BytesIO(sanitize_docx(a.template.read_bytes(), config)))
+doc.core_properties.title = content["title"]
 
 
 def replace(paragraph, value):
@@ -91,7 +92,7 @@ for heading, paragraphs in sections.items():
             picture = Paragraph(picture_node, doc._body)
             picture.clear()
             picture.paragraph_format.keep_with_next = True
-            shape = picture.add_run().add_picture(str(source), width=Mm(83))
+            shape = picture.add_run().add_picture(str(source), width=Mm(figure.get("width_mm", 83)))
             shape._inline.docPr.set("descr", figure["alt"])
             caption_node = deepcopy(caption_template)
             picture_node.addnext(caption_node)
@@ -131,6 +132,6 @@ for heading, paragraphs in content["sections"].items():
                 md.append(figure["caption"])
 md.append("## 参考文献")
 md.extend(content["references"])
-md.append("命令の接続設計は[論文第6章](../thesis/本文.md#ch_6)，実機で確認した条件と結果は[第12章](../thesis/本文.md#ch_12)に示す．詳しい実装と比較実験は[技術付録](../thesis/技術付録.md)から参照できる．")
+md.append("命令の接続設計は[論文第6章](../thesis/本文.md#ch_6)，実機で確認した条件と結果は[第12章](../thesis/本文.md#ch_12)に示す．詳しい実装は[技術付録](../thesis/技術付録.md)から参照できる．")
 (a.output / "アブスト_主要事項.md").write_bytes(("\n\n".join(md) + "\n").encode("utf-8"))
 print(json.dumps({"sections": len(content["sections"]), "figures": len(figures)}))

@@ -59,7 +59,7 @@ export async function drawWallyCircuit(s, api, expanded, placement={}) {
   B('ahbaxibridge',922,89,181,34,known,16);
   B('clkconverter',922,138,181,34,known,16);
   B(expanded?'AXI shared fabric':'AXI connection',922,188,181,34,expanded?C.pale:known,15);
-  B('ddr3 / MIG',922,238,181,34,known,16);
+  B('DDR controller / MIG',922,238,181,34,known,14);
   BI([[1012,123],[1012,138]],blue);
   BI([[1012,172],[1012,188]],blue);
   BI([[1012,222],[1012,238]],blue);
