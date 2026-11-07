@@ -17,6 +17,8 @@ python examples/technical-models/explain.py all
 `figures.py` maintains twelve existing explanatory SVGs; `appendix_figures.py`
 maintains eight worked-example SVGs. Both write `source/thesis/figs/guide-*.svg`.
 `thesis_figures.py` maintains five integration and worked-example diagrams in the thesis and technical appendix.
+`source/thesis/figures_verification.py` maintains six circuit diagrams connecting
+display completion, clock-domain transfer, MMIO and the recorded continuous run.
 Rasterize edited drawings to PNG, visually review them, and copy SVG and PNG
 assets into `docs/thesis/figs/`. Match the established blue, pale blue and black
 diagram style. Register reviewed binary hashes only after inspecting pixels.

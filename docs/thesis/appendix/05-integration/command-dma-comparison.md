@@ -479,4 +479,4 @@ E7では、コピーを伴う命令DMA、CPUの送信処理、リンク時最適
 
 ---
 
-[前：第71章 接続方式を取り替えて評価する](fifo-comparison.md) ｜ [次：参考文献と実験記録](../references.md)
+[前：第71章 接続方式を取り替えて評価する](fifo-comparison.md) ｜ [次：第73章 動作確認の記録をゲーム機の回路から読み解く](operation-verification.md)

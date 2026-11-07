@@ -7,7 +7,7 @@
 
 ## Publication
 
-`appendix_assembly.py` assembles the preface, all 72 chapters and references.
+`appendix_assembly.py` assembles the preface, all 73 chapters and references.
 The Word builder and Markdown exporter consume exactly the same assembled
 source. Chapter-sized pages under `docs/thesis/appendix/` retain the full prose,
 figures, tables and examples. There is no separately authored companion tree.

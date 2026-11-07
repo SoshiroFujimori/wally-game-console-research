@@ -29,7 +29,7 @@ def catalog():
 
 @lru_cache(maxsize=1)
 def heading_anchors():
-    result = {}
+    result = dict(json.loads((ROOT / 'appendix/chapters.json').read_text(encoding='utf-8')).get('headings', {}))
     for r in catalog():
         result.update(r.get('headings', {}))
         result[f'第{r["number"]}章 {r["title"]}'] = r['anchor']

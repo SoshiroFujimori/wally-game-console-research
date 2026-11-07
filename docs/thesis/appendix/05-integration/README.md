@@ -25,3 +25,4 @@
 - [第70章 対象版・出典・説明の根拠](sources.md)
 - [第71章 接続方式を取り替えて評価する](fifo-comparison.md)
 - [第72章 メモリから描画命令を読む方式を検証する](command-dma-comparison.md)
+- [第73章 動作確認の記録をゲーム機の回路から読み解く](operation-verification.md)

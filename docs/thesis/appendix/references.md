@@ -110,4 +110,4 @@ E1〜E7は本研究の測定資料を区別する識別子であり、外部文�
 
 ---
 
-[前：第72章 メモリから描画命令を読む方式を検証する](05-integration/command-dma-comparison.md)
+[前：第73章 動作確認の記録をゲーム機の回路から読み解く](05-integration/operation-verification.md)
