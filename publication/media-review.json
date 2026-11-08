@@ -22,7 +22,8 @@
     "abstract_arrowheads_20261109": "Reviewed all 26 arrowheads after shortening each shaft into the broad rear of its filled triangle. Enlarged horizontal, vertical, and bidirectional comparisons confirm that shafts do not protrude through tips. Original endpoint coordinates and bus widths are preserved. The full diagram and one-page public/private Word renders were reviewed; embedded images match the reviewed source pixels. Abstract paragraph text is unchanged.",
     "abstract_address_ranges_20261109": "Reviewed the three assigned address ranges and the two SD register locations against the pinned console configuration and RTL. The diagram preserves all signal routes and 26 corrected arrowheads. Reviewed the one-page public and private Word renders and grayscale legibility. Embedded images match the reviewed pixels; the game image is unchanged.",
     "abstract_external_parts_20261109": "Reviewed the shared scope panel for the three physical board parts and the role descriptions contained in each component outline. DDR3 stores the two labelled content types; no fixed partition sizes are implied. Signal routes and all 26 arrowheads are unchanged. Reviewed the one-page public/private Word renders and grayscale legibility. Embedded images match the reviewed pixels; the game image and abstract paragraphs are unchanged.",
-    "abstract_no_circled_labels_20261109": "Reviewed the circuit figure and both one-page native Word renders after removing the circled numeric cross-references from labels, body text and alternative text. All figure geometry and signal routes are unchanged. Embedded images match reviewed source pixels; the game image is unchanged."
+    "abstract_no_circled_labels_20261109": "Reviewed the circuit figure and both one-page native Word renders after removing the circled numeric cross-references from labels, body text and alternative text. All figure geometry and signal routes are unchanged. Embedded images match reviewed source pixels; the game image is unchanged.",
+    "abstract_diagram_balance_20261109": "Reviewed the balanced internal board margins, inset address-range text and centered readback labels in color and grayscale at column size. All signal paths, block geometry, labels and 26 arrowheads are preserved under a shared horizontal translation. Moved label ink bounds do not overlap labels, wires or arrowheads. Both one-page document editions were rendered and reviewed; document text and gameplay pixels are unchanged. Embedded figure pixels match the reviewed source images."
   },
   "sha256": [
     "00eb0240b0906cb38ef39044d105b2cd8723b71ca90db2e875bee6944ceb6b92",
@@ -498,6 +499,7 @@
     "775f8d3644bce20e443c3129a1c90d266dce736666733faecc1161faf7cdbb97",
     "77af13de5fb2ca586021d7c5dc1d031df2eab197fef9cbea90846432f7595e96",
     "782bedea80e8ba747e1e69166d00b386c5eef8507ab38aeb53784b07d67aab45",
+    "786e94eb54ca26a42d824ef4aafddf265022ebd54a42f4912e158263fd0a62f4",
     "78b1828af1d5db3ed09f8a5b6284a77a765f841ace487ea4d432895017d980e8",
     "78cda1f0d96c7e64fa99d08c75e68b963d9dcbd5897cc94b54b961d08599d537",
     "794b0e5a58f6bcf372d75f78d74bfca2f57069c790cb0dba8754dafb279e8a52",
@@ -645,6 +647,7 @@
     "a0860ec5ddf02a2a8665300fb8aea6eccabde8e4f2524e6e967bc29e17240661",
     "a0950be6730de417804f8b41c1415e3fa44d5e3b9eb68cc1a906964413f635ef",
     "a0ddc2df9afdb318e509a15340a877868495a2be3845085204f874d1c490d85e",
+    "a10b90f54e56ca88d6b415ab4d9fe61935afb8dfa72f4b1340cd468f6536ff83",
     "a11fd623de64d8c654184275743912e5933ff127df469680adbd0674bbcb97c9",
     "a190c9ee66c20a766b872da51f3246f599d6cb05844e439da5a52fe9e742c85d",
     "a1c328a47eca3aee4a2cc17a44464432f54467abd3902eeb857f98ff84c0d9b3",

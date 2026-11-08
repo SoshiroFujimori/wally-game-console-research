@@ -4,6 +4,10 @@
 chip, and white circuit blocks within the chip. Dashed rectangular outlines
 identify the sources of the circuits and IP settings. Gaps around crossing
 signals keep those outlines clear of arrowheads.
+The chip and external-component panel share balanced side margins within the
+board outline. Address ranges are inset from the right boundary, and readback
+labels are centered in the available space above their return paths. The
+underlying connection paths and arrowhead geometry are preserved.
 
 Readback paths run toward the selector below the CPU.
 The selected read data returns to the CPU at the input labelled `RD`. The
