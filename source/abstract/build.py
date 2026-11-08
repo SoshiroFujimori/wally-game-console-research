@@ -5,6 +5,7 @@ from copy import deepcopy
 import io
 import json
 from pathlib import Path
+import re
 import sys
 
 from docx import Document
@@ -50,6 +51,46 @@ def align_within_column(paragraph, alignment):
     indent = paragraph._p.get_or_add_pPr().find(qn("w:ind"))
     for name in ("firstLineChars", "leftChars", "rightChars"):
         indent.set(qn("w:" + name), "0")
+
+
+def add_code_text(paragraph, source):
+    """Add editable C tokens with restrained, print-readable syntax colors."""
+    tokens = re.compile(
+        r'(?P<comment>//[^\n]*|/\*[\s\S]*?\*/)'
+        r'|(?P<string>"(?:\\.|[^"\\])*"|\'(?:\\.|[^\'\\])*\')'
+        r'|(?P<number>\b(?:0[xX][0-9a-fA-F]+|[0-9]+)\b)'
+        r'|(?P<word>\b[A-Za-z_][A-Za-z_0-9]*\b)'
+    )
+    keywords = {'for', 'while', 'if', 'else', 'return', 'int', 'void',
+                'char', 'const', 'unsigned', 'uint8_t', 'uint32_t'}
+    colors = {'comment': '4D5F66', 'string': '6F3B63',
+              'number': '6F3B63', 'keyword': '005A88', 'text': '000000'}
+    spans = []
+
+    def append(value, kind):
+        if not value:
+            return
+        color = colors[kind]
+        if spans and spans[-1][1] == color:
+            spans[-1] = (spans[-1][0] + value, color)
+        else:
+            spans.append((value, color))
+
+    end = 0
+    for match in tokens.finditer(source):
+        append(source[end:match.start()], 'text')
+        kind = match.lastgroup
+        if kind == 'word':
+            kind = 'keyword' if match.group() in keywords else 'text'
+        append(match.group(), kind)
+        end = match.end()
+    append(source[end:], 'text')
+    for value, color in spans:
+        run = paragraph.add_run(value)
+        run.font.name = 'Consolas'
+        run._r.get_or_add_rPr().rFonts.set(qn('w:eastAsia'), 'MS Gothic')
+        run.font.size = Pt(8.5)
+        run.font.color.rgb = RGBColor.from_string(color)
 
 
 # Retain the title, page geometry, columns, figure style, and section styles.
@@ -153,7 +194,7 @@ for heading, paragraphs in sections.items():
             pf.keep_together = True
             pf.keep_with_next = bool(example.get("caption"))
             # RVSOC-style code panel: a pale fill and horizontal rules.
-            # Keep editable text and use black type for monochrome printing.
+            # Dark syntax colors stay legible on monochrome prints.
             properties = code._p.get_or_add_pPr()
             for tag in ("shd", "pBdr"):
                 old = properties.find(qn("w:" + tag))
@@ -170,11 +211,7 @@ for heading, paragraphs in sections.items():
             shade.set(qn("w:val"), "clear")
             shade.set(qn("w:fill"), "EEF0FC")
             properties.append(shade)
-            run = code.add_run("\n".join(example["lines"]))
-            run.font.name = "Consolas"
-            run._r.get_or_add_rPr().rFonts.set(qn("w:eastAsia"), "MS Gothic")
-            run.font.size = Pt(8.5)
-            run.font.color.rgb = RGBColor(0, 0, 0)
+            add_code_text(code, "\n".join(example["lines"]))
             anchor = code_node
             if example.get("caption"):
                 caption_node = deepcopy(caption_template)

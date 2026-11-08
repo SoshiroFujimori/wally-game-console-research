@@ -33,7 +33,12 @@ The abstract uses a separately numbered `コード1` caption below an editable,
 monospaced C fragment. A Japanese comment above each access explains its
 purpose without wrapping beside the code. A pale background, black horizontal
 rules and monospaced code follow
-the visual treatment of RVSOC Code Example 3.1 (printed p. 92). RVSOC puts that
+the visual treatment of RVSOC Code Example 3.1 (printed p. 92). The abstract
+adds restrained syntax highlighting: dark blue for C keywords and types,
+muted purple for numeric literals, and dark gray for comments. Identifiers and
+punctuation remain black. These token colors are an adaptation for this
+abstract, not a claim that the book uses the same C syntax palette. All colors
+remain dark enough for monochrome printing. RVSOC puts that
 caption above its example; this abstract places it below for consistency with
 the figure captions. The label and placement are editorial choices, not a
 universal rule for abstracts. The fragment illustrates physical-address accesses;

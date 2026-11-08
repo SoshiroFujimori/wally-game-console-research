@@ -58,8 +58,8 @@
       "sha256": "99ee1b8079af40111fd49441a140f8fe1db13e8e06210fae63be6dae1c4e1aa3"
     },
     "docs/abstract/アブスト_主要事項.docx": {
-      "bytes": 453519,
-      "sha256": "57c1e60cc7d361f1603a471e944c6f3dc3f94d2ba1192ad04974846517396b62"
+      "bytes": 453714,
+      "sha256": "ff6d71fb792d1ce57ddc1a1da2e9f38c44c4ea23151030699db5e87bd913c04c"
     },
     "docs/abstract/アブスト_主要事項.md": {
       "bytes": 5456,
@@ -12526,12 +12526,12 @@
       "sha256": "b9317436f514a4c0c34075618b473d5b56cb10e93cfd5023655c78d4d9127236"
     },
     "source/abstract/README.md": {
-      "bytes": 7034,
-      "sha256": "c22b3f47dd95679b0afcabe9986d8a6aa26d497c05897056a658c6a968c20492"
+      "bytes": 7394,
+      "sha256": "1a6235a56ed6c60cc3ab11584a90e2619ce773f33b326dbbbc800c031c115cf8"
     },
     "source/abstract/build.py": {
-      "bytes": 11944,
-      "sha256": "6cd4b6892a20cbf397b2b9dfd760d4b232ac6609b5a70be77328523481aecb5d"
+      "bytes": 13240,
+      "sha256": "634a3d6d312bc11b59c8c2ee1c8a885fa99e2bc83b0c089050479f8248ae351c"
     },
     "source/abstract/content.json": {
       "bytes": 7000,
