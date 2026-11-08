@@ -47,6 +47,11 @@ It is not an exhaustive or cycle-accurate RTL/netlist drawing. More detailed
 module diagrams remain in `../wally-circuit.mjs` for future question slides.
 Source and omission notes are in the speaker notes.
 
+Slide 11 presents controller support and home-screen/menu GUI improvements as
+future extension candidates. Either candidate or both may be developed; the final
+presentation should report the implemented and verified scope. The current game
+remains automatic play, with controller input unimplemented.
+
 ## Circuit-line readability
 
 `circuit-wiring.mjs` draws each route once with native editable line segments
