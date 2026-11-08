@@ -8,6 +8,7 @@ from pathlib import Path
 import sys
 
 from docx import Document
+from docx.oxml import OxmlElement
 from docx.oxml.ns import qn
 from docx.shared import Mm, Pt, RGBColor
 from docx.enum.text import WD_ALIGN_PARAGRAPH
@@ -136,38 +137,54 @@ for heading, paragraphs in sections.items():
         for example in code_examples:
             if example["section"] != heading or example["after_paragraph"] != index:
                 continue
-            if example.get("caption"):
-                caption_node = deepcopy(caption_template)
-                anchor.addnext(caption_node)
-                caption = Paragraph(caption_node, doc._body)
-                caption.clear()
-                align_within_column(caption, WD_ALIGN_PARAGRAPH.CENTER)
-                caption.paragraph_format.keep_with_next = True
-                caption.paragraph_format.space_before = Pt(3)
-                caption.paragraph_format.space_after = Pt(0)
-                run = caption.add_run(example["caption"])
-                run.bold = True
-                run.font.color.rgb = RGBColor(0, 0, 0)
-                anchor = caption_node
             code_node = deepcopy(seed)
             anchor.addnext(code_node)
             code = Paragraph(code_node, doc._body)
             code.clear()
             align_within_column(code, WD_ALIGN_PARAGRAPH.LEFT)
             pf = code.paragraph_format
-            pf.first_line_indent = Mm(0)
-            pf.left_indent = Mm(0)
-            pf.right_indent = Mm(0)
             pf.space_before = Pt(3)
             pf.space_after = Pt(3)
             pf.line_spacing = Pt(12)
             pf.keep_together = True
-            pf.keep_with_next = False
+            pf.keep_with_next = bool(example.get("caption"))
+            # RVSOC-style code panel: a pale fill and horizontal rules.
+            # Keep editable text and use black type for monochrome printing.
+            properties = code._p.get_or_add_pPr()
+            for tag in ("shd", "pBdr"):
+                old = properties.find(qn("w:" + tag))
+                if old is not None:
+                    properties.remove(old)
+            borders = OxmlElement("w:pBdr")
+            for edge in ("top", "bottom"):
+                border = OxmlElement("w:" + edge)
+                for key, value in {"val": "single", "sz": "4", "space": "2", "color": "000000"}.items():
+                    border.set(qn("w:" + key), value)
+                borders.append(border)
+            properties.append(borders)
+            shade = OxmlElement("w:shd")
+            shade.set(qn("w:val"), "clear")
+            shade.set(qn("w:fill"), "EEF0FC")
+            properties.append(shade)
             run = code.add_run("\n".join(example["lines"]))
             run.font.name = "Consolas"
-            run.font.size = Pt(9)
+            run._r.get_or_add_rPr().rFonts.set(qn("w:eastAsia"), "MS Gothic")
+            run.font.size = Pt(8.5)
             run.font.color.rgb = RGBColor(0, 0, 0)
             anchor = code_node
+            if example.get("caption"):
+                caption_node = deepcopy(caption_template)
+                anchor.addnext(caption_node)
+                caption = Paragraph(caption_node, doc._body)
+                caption.clear()
+                align_within_column(caption, WD_ALIGN_PARAGRAPH.CENTER)
+                caption.paragraph_format.keep_with_next = False
+                caption.paragraph_format.space_before = Pt(0)
+                caption.paragraph_format.space_after = Pt(3)
+                run = caption.add_run(example["caption"])
+                run.bold = True
+                run.font.color.rgb = RGBColor(0, 0, 0)
+                anchor = caption_node
 
 # Discard obsolete embedded images from the retained template.
 used_images = {b.get(qn("r:embed")) for b in doc.element.findall(".//" + qn("a:blip"))}
@@ -193,10 +210,10 @@ for heading, paragraphs in content["sections"].items():
                 md.append(figure["caption"])
         for example in code_examples:
             if example["section"] == heading and example["after_paragraph"] == index:
-                if example.get("caption"):
-                    md.append(example["caption"])
                 md.append("```" + example.get("language", "text") + "\n" +
                           "\n".join(example["lines"]) + "\n```")
+                if example.get("caption"):
+                    md.append(example["caption"])
 md.append("図2の出典は[実機映像の記録](../../experiments/breakout-title-top-20261108/README.md)であり，[30秒の動画](../../experiments/breakout-title-top-20261108/video/breakout-30s.mp4)も公開している．本文に示した3回の起動・動作確認の条件と結果は，[動作確認記録](../../experiments/basic-operation-20261108/README.md)を参照できる．")
 md.append("標準構成の表示回路は，RasterIXリポジトリに同梱されたultraembeddedの`dvi_framebuffer`を用い，本研究で接続・画面切替の回路を追加したものである．DDRコントローラーはAMD製IPで，本研究で追加したNexys Video用の生成・接続設定をWally側のリポジトリに収めている．回路の入手元と実装箇所は[構成要素の出典](../../source/presentation/board-evolution/README.md)を参照できる．映像記録時の表示部分には，[実験E8のHDMI構成](../../experiments/basic-operation-20261108/hdmi/README.md)を用いた．")
 md.append("## 参考文献")
