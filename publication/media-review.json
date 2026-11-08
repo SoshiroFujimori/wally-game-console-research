@@ -21,7 +21,8 @@
     "abstract_sd_standard_display_20261109": "Reviewed the compact single RasterIX block, both one-page Word editions, and the standard-display game screenshots. The hardware operator reviewed the 30-second video and diagnostic images as recorded in experiments/dvi-recovery-20261109/media-review.json. All published media hashes were verified; embedded Word images match reviewed source pixels. The public title was also verified using PDFium because the Poppler render omitted it.",
     "abstract_arrowheads_20261109": "Reviewed all 26 arrowheads after shortening each shaft into the broad rear of its filled triangle. Enlarged horizontal, vertical, and bidirectional comparisons confirm that shafts do not protrude through tips. Original endpoint coordinates and bus widths are preserved. The full diagram and one-page public/private Word renders were reviewed; embedded images match the reviewed source pixels. Abstract paragraph text is unchanged.",
     "abstract_address_ranges_20261109": "Reviewed the three assigned address ranges and the two SD register locations against the pinned console configuration and RTL. The diagram preserves all signal routes and 26 corrected arrowheads. Reviewed the one-page public and private Word renders and grayscale legibility. Embedded images match the reviewed pixels; the game image is unchanged.",
-    "abstract_external_parts_20261109": "Reviewed the shared scope panel for the three physical board parts and the role descriptions contained in each component outline. DDR3 stores the two labelled content types; no fixed partition sizes are implied. Signal routes and all 26 arrowheads are unchanged. Reviewed the one-page public/private Word renders and grayscale legibility. Embedded images match the reviewed pixels; the game image and abstract paragraphs are unchanged."
+    "abstract_external_parts_20261109": "Reviewed the shared scope panel for the three physical board parts and the role descriptions contained in each component outline. DDR3 stores the two labelled content types; no fixed partition sizes are implied. Signal routes and all 26 arrowheads are unchanged. Reviewed the one-page public/private Word renders and grayscale legibility. Embedded images match the reviewed pixels; the game image and abstract paragraphs are unchanged.",
+    "abstract_no_circled_labels_20261109": "Reviewed the circuit figure and both one-page native Word renders after removing the circled numeric cross-references from labels, body text and alternative text. All figure geometry and signal routes are unchanged. Embedded images match reviewed source pixels; the game image is unchanged."
   },
   "sha256": [
     "00eb0240b0906cb38ef39044d105b2cd8723b71ca90db2e875bee6944ceb6b92",
@@ -134,6 +135,7 @@
     "17eca9b0dfe3125d6ecaacb1ab3bdc9634a471377dc2be2e60018e7cec1565be",
     "1806119f1fc073d71eb57a1854b3aa4e110791f53fe06bf6f00689425fbe8e3b",
     "185868f4e4c9da6e476846b9616f35ff1d64f8cfab1ad9f664e695799386156e",
+    "185adcccc263b3b65ad818bfa99bc2e32d6e2dc9a87d4f3d59f02308701d78bd",
     "192dc9f70286b2a485138537562fb8939b3f775c378b93b94a186c5f7548e6a0",
     "199270a3db8fc85463c8a100a75dbce06f21ab8a1812015ce6146b92500e587c",
     "19eae87f0197d63d43d8777f3f400291c5dda932ae3d9774971593e324e003cf",

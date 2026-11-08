@@ -50,20 +50,20 @@
       "sha256": "97ad5c5e945333020b589efef355b3fb1162e404f06dd766b1f7fc8903a08009"
     },
     "docs/abstract/figs/figure-1.png": {
-      "bytes": 500233,
-      "sha256": "af3da380883610f9c3682353bf5c6aa68a9d59cf3e3813e0a6a2feb8aaaa4e53"
+      "bytes": 495312,
+      "sha256": "185adcccc263b3b65ad818bfa99bc2e32d6e2dc9a87d4f3d59f02308701d78bd"
     },
     "docs/abstract/figs/figure-2.png": {
       "bytes": 43987,
       "sha256": "99ee1b8079af40111fd49441a140f8fe1db13e8e06210fae63be6dae1c4e1aa3"
     },
     "docs/abstract/アブスト_主要事項.docx": {
-      "bytes": 529562,
-      "sha256": "4db7c53d4f9b377100feedc2b95ef9e2363f3cbf63b2d157170354a00ce67ea4"
+      "bytes": 524208,
+      "sha256": "570101a785edf11aa3f6709091d8de22d11417e85cfed3d542457885bae4decc"
     },
     "docs/abstract/アブスト_主要事項.md": {
-      "bytes": 6324,
-      "sha256": "b9ea4b7f6b08141ee5330895bdd36cb8e2eb653a93cd299bce7a0570204896fd"
+      "bytes": 6312,
+      "sha256": "4987c60e6b198ab8bea7754326cfd2b16cac25cb11eb53326dbcaf6c51e0fd42"
     },
     "docs/presentation/DDCA授業利用の出典.md": {
       "bytes": 18811,
@@ -12506,8 +12506,8 @@
       "sha256": "b37af8468ab90cc774380eae7acce80700a22c2cdb02aa7e1d27bf6da8ad7d04"
     },
     "publication/media-review.json": {
-      "bytes": 105061,
-      "sha256": "cf91402687718490cde586925f821244bb9582e1d9950f997f5c6ea4eecf7f6b"
+      "bytes": 105470,
+      "sha256": "379178fc22e21e754f9abb9173624903b08206ec0bb384e0291691990b6e34f6"
     },
     "publication/policy.json": {
       "bytes": 635,
@@ -12534,16 +12534,16 @@
       "sha256": "634a3d6d312bc11b59c8c2ee1c8a885fa99e2bc83b0c089050479f8248ae351c"
     },
     "source/abstract/content.json": {
-      "bytes": 7868,
-      "sha256": "dde6e7162115db05cabdfca4dca87fc228a888b686f963bf09dcdbf577a911a3"
+      "bytes": 7856,
+      "sha256": "87bd09db16cd2a0b10f447f8b2aec3e866270ca3ec55d1869b272a63049a5a51"
     },
     "source/abstract/figs/game-flow.png": {
-      "bytes": 500233,
-      "sha256": "af3da380883610f9c3682353bf5c6aa68a9d59cf3e3813e0a6a2feb8aaaa4e53"
+      "bytes": 495312,
+      "sha256": "185adcccc263b3b65ad818bfa99bc2e32d6e2dc9a87d4f3d59f02308701d78bd"
     },
     "source/abstract/figs/game-flow.svg": {
-      "bytes": 31704,
-      "sha256": "c60e351f7b39bfd253ba17cf8e2986203242e8292b209c2b81b0427413da6f8f"
+      "bytes": 31690,
+      "sha256": "5394c03c8c727095441471eaabb9a762704dfc8c234afb8762e90527ac36e89d"
     },
     "source/presentation/README.md": {
       "bytes": 2638,
