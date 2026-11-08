@@ -24,7 +24,7 @@
   },
   "references": [
     "[1] D. Harrisほか，RISC-V System-on-Chip Design，Morgan Kaufmann，2026．",
-    "[2] ToNi3141，RasterIX，https://github.com/ToNi3141/RasterIX （使用版9269a01c9bd4，参照2026-10-09）．"
+    "[2] ToNi3141， RasterIX， https://github.com/ToNi3141/RasterIX （使用版9269a01c9bd4，参照2026-10-09）．"
   ],
   "evidence": "The unchanged standard DVI bitstream (SHA-256 16173de97a91e711cd7bc5389acd9739807adebedf192efc29fe78f5b96c0acf) displayed the latest title-top executable (SHA-256 5c360babde59c6d9fc72fe58edc5729da2b2b8480c2f3a5208980d2f7d2c558b). A reviewed 30-second physical capture is recorded in experiments/dvi-recovery-20261109. The bundled drawing and display modules are reused; local connection/control wrappers remain integration work. No repeated-boot, rendering-FPS, or universal receiver-compatibility claim is made. Figure 2 is the reviewed, unmodified latest-start.png from that capture.",
   "figures": [
