@@ -1,0 +1,172 @@
+{
+  "bit_sha256": "16173de97a91e711cd7bc5389acd9739807adebedf192efc29fe78f5b96c0acf",
+  "fpga_boots": 6,
+  "application_trials": 8,
+  "trials": [
+    {
+      "fpga_boot": 1,
+      "application_trial": 1,
+      "display_observed": false,
+      "observation": "Receiver format error",
+      "trial": 1,
+      "started_utc": "2026-11-08T03:16:06.023593+00:00",
+      "exit_status": 0,
+      "score": 170,
+      "lives": 3,
+      "frames_reported": 1755,
+      "ticks_reported": 1799,
+      "elapsed_seconds_reported": 30.011,
+      "video_verified": false,
+      "capture_original_sha256": "092563e71b5f5c1299029da0e0164ddd7769eada6cea7f30aecc836a70e6e919"
+    },
+    {
+      "fpga_boot": 1,
+      "application_trial": 2,
+      "display_observed": false,
+      "observation": "Receiver format error",
+      "trial": 2,
+      "started_utc": "2026-11-08T03:17:02.165324+00:00",
+      "exit_status": 0,
+      "score": 170,
+      "lives": 3,
+      "frames_reported": 1756,
+      "ticks_reported": 1799,
+      "elapsed_seconds_reported": 30.011,
+      "video_verified": false,
+      "capture_original_sha256": "c4e398fd46a19f8e0c4904c91e898a8314b2d90b27b0e6919960644a4b6fd510"
+    },
+    {
+      "fpga_boot": 1,
+      "application_trial": 3,
+      "display_observed": false,
+      "observation": "Receiver format error",
+      "trial": 3,
+      "started_utc": "2026-11-08T03:18:04.107476+00:00",
+      "exit_status": 0,
+      "score": 170,
+      "lives": 3,
+      "frames_reported": 1753,
+      "ticks_reported": 1799,
+      "elapsed_seconds_reported": 30.011,
+      "video_verified": false,
+      "capture_original_sha256": "e525d7a17d21ebb8377be452e418dc22a9684b06ce38ae4b3f479ed122fc0edc"
+    },
+    {
+      "fpga_boot": 2,
+      "application_trial": 1,
+      "started_utc": "2026-11-08T03:43:00.117773+00:00",
+      "command": "/tmp/fifo-game --demo --seconds 30",
+      "exit_status": 0,
+      "score": 170,
+      "lives": 3,
+      "frames_reported": 1753,
+      "ticks_reported": 1799,
+      "elapsed_seconds_reported": 30.011,
+      "original_video_sha256": "d8c8061ee960f0f0bdc66cd831bafbb7f65694b512ef8622c53f32068483b074",
+      "display_observed": true,
+      "observation": "Game image observed",
+      "full_frame_verification": false,
+      "records": [
+        {
+          "path": "history/product-boot-02/game.raw",
+          "original_sha256": "707998668d86931c5343b6909f9f5821d3f34c9686ea49386edc4a2afabbcbee",
+          "published_sha256": "9f569a0b4cf8617a78d68c50df5baf185e89081dae355a47060bb18aabf70bce"
+        }
+      ]
+    },
+    {
+      "fpga_boot": 3,
+      "application_trial": 1,
+      "started_utc": "2026-11-08T03:46:59.828315+00:00",
+      "command": "/tmp/fifo-game --demo --seconds 30",
+      "exit_status": 0,
+      "score": 170,
+      "lives": 3,
+      "frames_reported": 1757,
+      "ticks_reported": 1799,
+      "elapsed_seconds_reported": 30.011,
+      "original_video_sha256": "8759fa1b43de8338768fba7669dc4180ad9d0106ab6f34eee096899e8037ff2d",
+      "display_observed": false,
+      "observation": "Receiver format error",
+      "full_frame_verification": false,
+      "records": [
+        {
+          "path": "history/product-boot-03/game.raw",
+          "original_sha256": "664c1b75380a3423597bd372f592dd768747e6db8926ef5d8de8096ebe827ce0",
+          "published_sha256": "9becade34b36cf62cbe6effef9a57f525015e9383e01b86c7f6a24d927b78f57"
+        }
+      ]
+    },
+    {
+      "fpga_boot": 4,
+      "application_trial": 1,
+      "started_utc": "2026-11-08T03:50:34.428943+00:00",
+      "command": "/tmp/fifo-game --demo --seconds 30",
+      "exit_status": 0,
+      "score": 170,
+      "lives": 3,
+      "frames_reported": 1758,
+      "ticks_reported": 1799,
+      "elapsed_seconds_reported": 30.012,
+      "original_video_sha256": "8c1e3c62a1564cee785856f9e727eef8b51a0dd70ccbeddd5d7f26bf21a30b4c",
+      "display_observed": true,
+      "observation": "Game image observed",
+      "full_frame_verification": false,
+      "records": [
+        {
+          "path": "history/product-boot-04/game.raw",
+          "original_sha256": "58e235412662b70eabe3453708b42d95672e42f220c444e469cdb29d2adf3525",
+          "published_sha256": "fca1ee12b2ea83d07e06bff6219d7b0eaa4d98d2b08b769d0b1f4fd027413bf6"
+        }
+      ]
+    },
+    {
+      "fpga_boot": 5,
+      "application_trial": 1,
+      "started_utc": "2026-11-08T03:54:04.422394+00:00",
+      "command": "/tmp/fifo-game --demo --seconds 30",
+      "exit_status": 0,
+      "score": 170,
+      "lives": 3,
+      "frames_reported": 1753,
+      "ticks_reported": 1799,
+      "elapsed_seconds_reported": 30.011,
+      "original_video_sha256": "d48fdde3d8cb3ac49e760031eac9417e36b1aca3081e2851f102eb14925c290a",
+      "display_observed": false,
+      "observation": "Receiver format error",
+      "full_frame_verification": false,
+      "records": [
+        {
+          "path": "history/product-boot-05/game.raw",
+          "original_sha256": "70173043ef6b695876da3c44c567ca51f3f836a311e3696b072d2524d5f37f15",
+          "published_sha256": "acf72644ad8bb27e78da1c6ea6147916c83039c76e99b398c6a12702aeedd9ac"
+        }
+      ]
+    },
+    {
+      "fpga_boot": 6,
+      "application_trial": 1,
+      "started_utc": "2026-11-08T04:01:48.612100+00:00",
+      "command": "/tmp/fifo-game --demo --seconds 30",
+      "exit_status": 0,
+      "score": 170,
+      "lives": 3,
+      "frames_reported": 1755,
+      "ticks_reported": 1799,
+      "elapsed_seconds_reported": 30.011,
+      "original_video_sha256": "679d09254079bd047721fc4af16fc9ea46f09ca4547588176992a6c00b9d63a5",
+      "display_observed": false,
+      "observation": "Black image",
+      "full_frame_verification": false,
+      "records": [
+        {
+          "path": "history/product-boot-06/game.raw",
+          "original_sha256": "70a3dcb0c88b99e477ba3dec7bc504218bcdc81dcf68c74e07b21de9fe53a05a",
+          "published_sha256": "794e83b98124d14ee18a44c289f93c3e3a06b70dff73d6bdfc0316bf863a1e7a"
+        }
+      ]
+    }
+  ],
+  "note": "Diagnostic attempts used different receiver reset and test-pattern procedures; this is a history, not a reliability estimate.",
+  "public_copy_note": "Selected text records are anonymized and normalized to LF, matching Git blobs. Original and published hashes are separate. Original records were not modified."
+}

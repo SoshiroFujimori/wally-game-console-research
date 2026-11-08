@@ -1,0 +1,83 @@
+{
+  "accepted_utc": "2026-11-08T04:35:41.603040+00:00",
+  "bit_sha256": "fb0d8e9e853b51194e885662339cc0c339bdd6ea3bb19f6ca42211c14d9b87f6",
+  "product_revision": "261832d48832dd6e26c4971ab8893ce61200688b",
+  "rasterix_revision": "9269a01c9bd4c3342bfa70ef8e3cdd751c15c6d0",
+  "hdmi_revision": "83b1c9543a91b776671a44e68e130f81cae437b7",
+  "wns_ns": 0.024,
+  "whs_ns": 0.011,
+  "wpws_ns": 0.0,
+  "routed_nets": 120696,
+  "routing_errors": 0,
+  "unconstrained_internal_endpoints": 0,
+  "drc_errors": 0,
+  "drc_warnings": 138,
+  "cdc_summary": {
+    "CDC-3": 29,
+    "CDC-8": 2,
+    "CDC-9": 5,
+    "CDC-15": 164
+  },
+  "review_notes": [
+    "The two CDC-8 warnings are in the generated DDR MIG reset synchronizers. CDC-15 paths include the held-address request handshake and generated AXI/FIFO logic.",
+    "DRC warnings concern generated MIG/FIFO logic, unused loads and DSP pipelining. No timing constraint was relaxed for this build.",
+    "External asynchronous/status and serialized output ports retain their existing false paths. This is not a claim of end-to-end HDMI electrical compliance. Physical video capture is a separate gate."
+  ],
+  "implementation_qualified": true,
+  "physical_validation": "See ../results.json; this implementation check alone does not establish visible operation.",
+  "raw_report_hashes": {
+    "bus_skew.rpt": "afa395ad262147464802fea9d703c28e4d03a28f125d6ed1973a4bfef6b008f1",
+    "cdc.rpt": "3a197764a25eb3738f352193e5b45912d383b88032b6406093ac2caafe0ec070",
+    "check_timing.rpt": "8af8851908815c35ceb179165c530d2bcabc5ce1045b89528feb52246be425da",
+    "clocks.rpt": "dd824d33bfc6f388c264ea505d23b89d7f3af1889dc0cd16bbd216695d953758",
+    "drc.rpt": "ab022cc1f6ad77174b60a44b508c584830632ffa45cb9c87a62b24151e2aa553",
+    "exception_coverage.rpt": "c31d6aa5e5801c189ef6f6e7b641996414c8ee36020bc2faf68e4813fe07561a",
+    "exceptions.rpt": "6738181dec17ee8ab47bc913721cd2329fd66f211a37f177b270b3e2d1d5cd2c",
+    "ignored_exceptions.rpt": "aa5710ac974cb8910881eaa52ff3096deab4b95422a6ba286dc7ec3be2d480e1",
+    "route_status.rpt": "2ad3eaf8d0ba6677bb0079429f268856655f345d9f172d4f1aabeece9bc2a747",
+    "sd_timing.rpt": "67827a9b1470bcc3d1b3b4d09a4872b5cf613b6a5a1f43e16a4b6c2897db936d",
+    "serializer_data.rpt": "cc50a25b6fe3f8a3451a3bcd3616fa6987b03adf77de601548ef394df20b4cbc",
+    "serializer_reset.rpt": "94ab5bae29e2a6b9a831d332343839e5a0a6c11e247cb5213afde81c4cb374f8",
+    "timing_summary.rpt": "3d2b6078cad339230603c5468793416092a63892c799dcc1299c1a4ce891348a",
+    "utilization.rpt": "5d12df99cb16bd8d0b0a36ceeb9298bac8ca0c17735adf55dfc775c1f05615fd"
+  },
+  "published_report_hashes": {
+    "bus_skew.rpt": "a16a75b743ad01bfd1e6c29f20b3077f9e1a826d2fc405c6ae66ecb2fbf70988",
+    "cdc.rpt": "130d19af5c513edec3b7c8febd6407b877260858e44f10ef834da5c3c8c51dcf",
+    "check_timing.rpt": "3491bfddab3b04507beaa28a03a013d984af37f17632204815402d1c540770ca",
+    "clocks.rpt": "eaac4bf756d6f2a2940ebd57bc0da39e74e8b16440edd2b4f604ebeed8d042b7",
+    "drc.rpt": "2cd5360f499e99a7275aab136f974df37ab31f3d55b04fc378387f008db95ac9",
+    "exception_coverage.rpt": "895c89045345ac4d4c78673598e65175f40ab1c974337d0381e8a4db8d6f89e5",
+    "exceptions.rpt": "f2be4934fd259e69f66b7c9247fbbe2cf59fdc5cd4c57937b3f0d262a8b09186",
+    "ignored_exceptions.rpt": "7970b78a2e4635a8d49d357b7e7b4ad18229102eeaf7cb98b51158e5ed7f637d",
+    "route_status.rpt": "2ad3eaf8d0ba6677bb0079429f268856655f345d9f172d4f1aabeece9bc2a747",
+    "sd_timing.rpt": "f656719806f665526de8f9eb54426876f03a033be8a3d6425506909c19f6cd13",
+    "serializer_data.rpt": "ae4c6094e41f836932fadbeb069bd5e1f9e16ccc66769ea17e151d43729f39f9",
+    "serializer_reset.rpt": "b6cecb53fe9816b9cf5f09204711d1c4caa33795ce64dfbf6e6c64a42aba65c7",
+    "timing_summary.rpt": "99d436cacc05cdb53ab17b23d7e138e742e9a311fbf72fcd55d4401353d250ac",
+    "utilization.rpt": "b87c6230cbe4210089eb695c13d2a0cbc36346627be641379458946676624875"
+  },
+  "report_note": "Reports are anonymized copies. Raw and published hashes identify different byte sequences.",
+  "resources": {
+    "Slice LUTs": {
+      "used": 67828,
+      "available": 134600,
+      "percent": 50.39
+    },
+    "Slice Registers": {
+      "used": 51033,
+      "available": 269200,
+      "percent": 18.96
+    },
+    "Block RAM Tile": {
+      "used": 214,
+      "available": 365,
+      "percent": 58.63
+    },
+    "DSPs": {
+      "used": 61,
+      "available": 740,
+      "percent": 8.24
+    }
+  }
+}

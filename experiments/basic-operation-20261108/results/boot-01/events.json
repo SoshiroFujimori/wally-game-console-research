@@ -1,0 +1,81 @@
+{
+  "raw_video_sha256": "29cdb4b74e6dfa81779ea8e6a4b9920e246a8f784734e7cea5b7900366cc3369",
+  "clip_start_seconds": 3.6,
+  "clip_duration_seconds": 30,
+  "poster_raw_seconds": 11.5,
+  "source": "current-hdmi-boot-01",
+  "event_candidates_for_visual_review": [
+    {
+      "kind": "paddle",
+      "raw_seconds": [
+        5.866666666666666,
+        6.066666666666666,
+        6.266666666666667
+      ],
+      "clip_seconds": [
+        2.267,
+        2.467,
+        2.667
+      ]
+    },
+    {
+      "kind": "brick-removal",
+      "raw_seconds": [
+        4.966666666666667,
+        5.166666666666667,
+        5.366666666666667
+      ],
+      "clip_seconds": [
+        1.367,
+        1.567,
+        1.767
+      ]
+    },
+    {
+      "kind": "side-wall",
+      "raw_seconds": [
+        8.266666666666667,
+        8.466666666666667,
+        8.666666666666666
+      ],
+      "clip_seconds": [
+        4.667,
+        4.867,
+        5.067
+      ]
+    }
+  ],
+  "visually_reviewed": true,
+  "review": "Reviewed full poster, logical game image and all three event triplets. The silent clip contains only the FPGA capture source; all 1800 decoded clip frames passed wall and fixed-label checks.",
+  "derived_before_publication_sha256": {
+    "breakout-30s.mp4": "8b3be2e758d88a6bc11f3d36e7a171cd6d02fee43f0e3870fcd3c3c778d6b42f",
+    "brick-removal-1.png": "2c0b6f48bd30a4fbf4930a5538b5755713bf7bcf439c1e786c3d3238d6cbbdcb",
+    "brick-removal-2.png": "1c428476ee48a2246921e6cc9e1126e4eea93ca7a347419967026e4d63f75814",
+    "brick-removal-3.png": "6ba5616d34a26e37cd992aaf4aeb7d7dd58d625afdebd5532dc1535eaa2d6b7c",
+    "event-review.png": "2001a117afea4024ec18355bdbae72656e13cd0816a6cfe3f5e4344d59f2dbc9",
+    "game.png": "1dc23fe9e86901dfcf67fac9fb05e8164e97dd8fc4d05566a5be16462ad1426b",
+    "paddle-1.png": "07eeef1c37be759ab2be287644bbc9a0c9de2de10c93ba6d059dfdd0fb46735a",
+    "paddle-2.png": "8466b480b465daff03410c232d7866f68278fff055f5e748a993bc5c5006a22e",
+    "paddle-3.png": "8ec476e90193357f987ad0e2d79edc312d6c155cafcc5775fd5bdedec5c265ae",
+    "poster.png": "83a42d31548d2329d7b0d22033b259aa0d5b62fd136ab898adbef9c5e2c748aa",
+    "side-wall-1.png": "173148a1d6eece6b30c87c6fbbe6c8d059dbc5dead27d39ce0ff1f54129d2ea2",
+    "side-wall-2.png": "28cec9f4295f5474a9361b78fbf0666e1b0f9a22d84b189071ef3d7667ca50c7",
+    "side-wall-3.png": "05ae98955534490e54d0b1b68f5beecead14e2cc9741e52c5a47be22bfdd1516"
+  },
+  "published_media_sha256": {
+    "breakout-30s.mp4": "8b3be2e758d88a6bc11f3d36e7a171cd6d02fee43f0e3870fcd3c3c778d6b42f",
+    "brick-removal-1.png": "50aab398cacea21d49314c7f61ed89aae49af4a8daece3f8127f6133ce267849",
+    "brick-removal-2.png": "5ab1ca15629dff943bc9b1dd55ee6793f3fd40fa15bbe7ae1d4e16b9b8c40d02",
+    "brick-removal-3.png": "2f4be5946be4d39e4fc2b3a318b2b5d607be8b2dbc66f603a7f8e63a70eba9fb",
+    "event-review.png": "2001a117afea4024ec18355bdbae72656e13cd0816a6cfe3f5e4344d59f2dbc9",
+    "game.png": "1cfa5aa570a84fa910dcb765e55ebabb736aca6d1e12a77acf069e61955664ab",
+    "paddle-1.png": "151e6a8b7af0fa627dcf229ab28d2eaa7afb864946c8375d3a35f8f03706f651",
+    "paddle-2.png": "df52a219b97e8fdb563af810684c7da8054d77c44eee3326f119310ef3c3a5d3",
+    "paddle-3.png": "7aa53da7ee9c58fb573842108087853f3e718fda4dd84bf4ea7792f6df011c77",
+    "poster.png": "7cd7e6efb68a7c522443d372da591502f1b3a5f86bb708d14b1c2f002684abdc",
+    "side-wall-1.png": "99e5a9e0db249d8faa38fbd74c9317bd74cd879eb6a7f063d96e50cf9ced977e",
+    "side-wall-2.png": "7c41af438e8882e43709ae153301bf6b6dc77d75db2e44aaaa074b6070608e62",
+    "side-wall-3.png": "6a4b24d5e6086f01eebfd9308ccf594c8aadb765096abc3b33dc7d4d1154832e"
+  },
+  "hash_note": "Pre-publication hashes identify the extracted private outputs. Public PNGs have metadata removed; the separate published hashes identify files in video/."
+}

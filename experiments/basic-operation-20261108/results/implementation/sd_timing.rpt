@@ -1,0 +1,112 @@
+Copyright 1986-2022 Xilinx, Inc. All Rights Reserved. Copyright 2022-2025 Advanced Micro Devices, Inc. All Rights Reserved.
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+| Tool Version : Vivado v.2025.2 (lin64) Build 6299465 Fri Nov 14 12:34:56 MST 2025
+| Date         : Sun Nov  8 13:34:37 2026
+| Host         : RESEARCH-HOST running 64-bit Ubuntu 24.04.4 LTS
+| Command      : report_timing -to [get_ports {SDCCmd SDCCS SDCCLK}] -max_paths 10 -file /home/researcher/projects/wally-game-console-research/build/basic-operation-20261108/qualified/sd_timing.rpt
+| Design       : fpgaTop
+| Device       : 7a200t-sbg484
+| Speed File   : -1  PRODUCTION 1.23 2018-06-13
+| Design State : Physopt postRoute
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+Timing Report
+
+Slack (MET) :             0.574ns  (required time - arrival time)
+  Source:                 wallypipelinedsoc/uncoregen.uncore/sdc.sdc/controller/FSM_sequential_CurrState_reg[1]/C
+                            (rising edge-triggered cell FDRE clocked by clk_out3_mmcm  {rise@0.000ns fall@25.000ns period=50.000ns})
+  Destination:            SDCCS
+                            (output port clocked by clk_out3_mmcm  {rise@0.000ns fall@25.000ns period=50.000ns})
+  Path Group:             clk_out3_mmcm
+  Path Type:              Max at Slow Process Corner
+  Requirement:            10.000ns  (MaxDelay Path 10.000ns)
+  Data Path Delay:        9.426ns  (logic 4.564ns (48.416%)  route 4.863ns (51.584%))
+  Logic Levels:           2  (LUT6=1 OBUF=1)
+  Output Delay:           0.000ns
+  Timing Exception:       MaxDelay Path 10.000ns -datapath_only
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+    SLICE_X65Y134                                     0.000     0.000 r  wallypipelinedsoc/uncoregen.uncore/sdc.sdc/controller/FSM_sequential_CurrState_reg[1]/C
+    SLICE_X65Y134        FDRE (Prop_fdre_C_Q)         0.456     0.456 r  wallypipelinedsoc/uncoregen.uncore/sdc.sdc/controller/FSM_sequential_CurrState_reg[1]/Q
+                         net (fo=28, routed)          1.088     1.544    wallypipelinedsoc/uncoregen.uncore/sdc.sdc/controller/CurrState[1]
+    SLICE_X67Y132        LUT6 (Prop_lut6_I1_O)        0.124     1.668 r  wallypipelinedsoc/uncoregen.uncore/sdc.sdc/controller/SDCCS_OBUF_inst_i_1/O
+                         net (fo=1, routed)           3.774     5.443    SDCCS_OBUF
+    U18                  OBUF (Prop_obuf_I_O)         3.984     9.426 r  SDCCS_OBUF_inst/O
+                         net (fo=0)                   0.000     9.426    SDCCS
+    U18                                                               r  SDCCS (OUT)
+  -------------------------------------------------------------------    -------------------
+
+                         max delay                   10.000    10.000    
+                         output delay                -0.000    10.000    
+  -------------------------------------------------------------------
+                         required time                         10.000    
+                         arrival time                          -9.426    
+  -------------------------------------------------------------------
+                         slack                                  0.574    
+
+Slack (MET) :             1.659ns  (required time - arrival time)
+  Source:                 wallypipelinedsoc/uncoregen.uncore/sdc.sdc/controller/SPICLK_reg/C
+                            (rising edge-triggered cell FDRE clocked by clk_out3_mmcm  {rise@0.000ns fall@25.000ns period=50.000ns})
+  Destination:            SDCCLK
+                            (output port clocked by clk_out3_mmcm  {rise@0.000ns fall@25.000ns period=50.000ns})
+  Path Group:             clk_out3_mmcm
+  Path Type:              Max at Slow Process Corner
+  Requirement:            10.000ns  (MaxDelay Path 10.000ns)
+  Data Path Delay:        8.341ns  (logic 4.511ns (54.085%)  route 3.830ns (45.915%))
+  Logic Levels:           1  (OBUF=1)
+  Output Delay:           0.000ns
+  Timing Exception:       MaxDelay Path 10.000ns -datapath_only
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+    SLICE_X62Y133                                     0.000     0.000 r  wallypipelinedsoc/uncoregen.uncore/sdc.sdc/controller/SPICLK_reg/C
+    SLICE_X62Y133        FDRE (Prop_fdre_C_Q)         0.518     0.518 r  wallypipelinedsoc/uncoregen.uncore/sdc.sdc/controller/SPICLK_reg/Q
+                         net (fo=4, routed)           3.830     4.348    SDCCLK_OBUF
+    W19                  OBUF (Prop_obuf_I_O)         3.993     8.341 r  SDCCLK_OBUF_inst/O
+                         net (fo=0)                   0.000     8.341    SDCCLK
+    W19                                                               r  SDCCLK (OUT)
+  -------------------------------------------------------------------    -------------------
+
+                         max delay                   10.000    10.000    
+                         output delay                -0.000    10.000    
+  -------------------------------------------------------------------
+                         required time                         10.000    
+                         arrival time                          -8.341    
+  -------------------------------------------------------------------
+                         slack                                  1.659    
+
+Slack (MET) :             1.779ns  (required time - arrival time)
+  Source:                 wallypipelinedsoc/uncoregen.uncore/sdc.sdc/TransmitReg_reg[7]/C
+                            (rising edge-triggered cell FDRE clocked by clk_out3_mmcm  {rise@0.000ns fall@25.000ns period=50.000ns})
+  Destination:            SDCCmd
+                            (output port clocked by clk_out3_mmcm  {rise@0.000ns fall@25.000ns period=50.000ns})
+  Path Group:             clk_out3_mmcm
+  Path Type:              Max at Slow Process Corner
+  Requirement:            10.000ns  (MaxDelay Path 10.000ns)
+  Data Path Delay:        8.221ns  (logic 4.452ns (54.150%)  route 3.769ns (45.850%))
+  Logic Levels:           1  (OBUF=1)
+  Output Delay:           0.000ns
+  Timing Exception:       MaxDelay Path 10.000ns -datapath_only
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+    SLICE_X63Y130                                     0.000     0.000 r  wallypipelinedsoc/uncoregen.uncore/sdc.sdc/TransmitReg_reg[7]/C
+    SLICE_X63Y130        FDRE (Prop_fdre_C_Q)         0.456     0.456 r  wallypipelinedsoc/uncoregen.uncore/sdc.sdc/TransmitReg_reg[7]/Q
+                         net (fo=1, routed)           3.769     4.225    SDCCmd_OBUF
+    W20                  OBUF (Prop_obuf_I_O)         3.996     8.221 r  SDCCmd_OBUF_inst/O
+                         net (fo=0)                   0.000     8.221    SDCCmd
+    W20                                                               r  SDCCmd (OUT)
+  -------------------------------------------------------------------    -------------------
+
+                         max delay                   10.000    10.000    
+                         output delay                -0.000    10.000    
+  -------------------------------------------------------------------
+                         required time                         10.000    
+                         arrival time                          -8.221    
+  -------------------------------------------------------------------
+                         slack                                  1.779    
+
+
+
+

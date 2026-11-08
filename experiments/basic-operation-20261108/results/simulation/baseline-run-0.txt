@@ -1,0 +1,4 @@
+Selected completion lines; not the complete log.
+Raw log SHA-256: 4ef4cd0c19451a05cdc2fdec8d6b80c2c78e4b397491861e699cfb527302442a
+HDMI_PIPELINE_PIXELS=5695311
+PASS 720P_SCANOUT checked=3580272 border=4058174 frames=11 swaps=3 bursts=24880 words=796160

@@ -1,0 +1,24 @@
+Copyright 1986-2022 Xilinx, Inc. All Rights Reserved. Copyright 2022-2025 Advanced Micro Devices, Inc. All Rights Reserved.
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------
+| Tool Version : Vivado v.2025.2 (lin64) Build 6299465 Fri Nov 14 12:34:56 MST 2025
+| Date         : Sun Nov  8 13:34:49 2026
+| Host         : RESEARCH-HOST running 64-bit Ubuntu 24.04.4 LTS
+| Command      : report_exceptions -ignored -file /home/researcher/projects/wally-game-console-research/build/basic-operation-20261108/qualified/ignored_exceptions.rpt
+| Design       : fpgaTop
+| Device       : 7a200t-sbg484
+| Speed File   : -1  PRODUCTION 1.23 2018-06-13
+| Design State : Physopt postRoute
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+Exceptions Report
+
+Position  From                                                                              Through                                                                           To                                  Setup           Hold            Status                            
+--------  --------------------------------------------------------------------------------  --------------------------------------------------------------------------------  ----------------------------------  --------------  --------------  ----------------------------------
+147       *                                                                                 *                                                                                 [get_cells {syncstages_ff_reg[0]}]  false           false           Non-existent path                 
+148       *                                                                                 *                                                                                 [get_cells {syncstages_ff_reg[0]}]  false           false           Totally overridden path by FP 16  
+154       *                                                                                 *                                                                                 [get_cells {syncstages_ff_reg[0]}]  false           false           Non-existent path                 
+167       [filter [all_fanout -from [get_ports -scoped_to_current_instance -no_traverse cl  [get_pins -of_objects [get_cells -hier * -filter {PRIMITIVE_SUBGROUP==LUTRAM ||   *                                   max_dpo=13.468  -               Totally overridden path by DPO 168
+          ka] -flat -endpoints_only] IS_LEAF]                                               PRIMITIVE_SUBGROUP==dram || PRIMITIVE_SUBGROUP==drom}] -filter DIRECTION==OUT]                                                                        
+169       [filter [all_fanout -from [get_ports -scoped_to_current_instance -no_traverse cl  [get_pins -of_objects [get_cells -hier * -filter {PRIMITIVE_SUBGROUP==LUTRAM ||   *                                   max_dpo=10      -               Totally overridden path by DPO 170
+          ka] -flat -endpoints_only] IS_LEAF]                                               PRIMITIVE_SUBGROUP==dram || PRIMITIVE_SUBGROUP==drom}] -filter DIRECTION==OUT]                                                                        
+

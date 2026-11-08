@@ -1,0 +1,11 @@
+{
+  "video_sha256": "2dba780ed536c901093bb9780599b9c579ea3491597b0d7209bfb556845c7e61",
+  "decoded_frames": 2189,
+  "container_reported_frames": 2190,
+  "recording_rate_hz": 60.0,
+  "first_complete_game_seconds": 3.533333,
+  "invalid_frames_after_first_complete": [],
+  "frames_after_first_complete": 1977,
+  "passed_visible_frame_check": true,
+  "scope": "Check captured frames for the game's border and fixed HUD labels.\n\nThis detects lost/blank acquisition and missing labels; it is not a pixel oracle\nor a physics test. The game image is centered in a 1920x1080 OBS recording.\n"
+}

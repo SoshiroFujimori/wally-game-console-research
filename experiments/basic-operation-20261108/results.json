@@ -1,0 +1,334 @@
+{
+  "date": "2026-11-08",
+  "status": "verified_in_recorded_conditions",
+  "configuration": "Current product with the isolated research HDMI display patch in hdmi/output.patch",
+  "product_revision": "261832d48832dd6e26c4971ab8893ce61200688b",
+  "rasterix_revision": "9269a01c9bd4c3342bfa70ef8e3cdd751c15c6d0",
+  "hdmi_revision": "83b1c9543a91b776671a44e68e130f81cae437b7",
+  "bitstream_sha256": "fb0d8e9e853b51194e885662339cc0c339bdd6ea3bb19f6ca42211c14d9b87f6",
+  "executable_sha256": "e8fa6130aa47bf6131b1077ebbd03f26e90055a8dcc9c11c8c814322ab71b1ae",
+  "sd_partition_mounted_read_only": true,
+  "sd_writes": false,
+  "reconfigured_fpga_boots": 3,
+  "current_trials": [
+    {
+      "trial": 1,
+      "started_utc": "2026-11-08T04:38:21.752224+00:00",
+      "boot": 1,
+      "variant": "current-hdmi",
+      "base_revision": "261832d48832dd6e26c4971ab8893ce61200688b",
+      "bit_sha256": "fb0d8e9e853b51194e885662339cc0c339bdd6ea3bb19f6ca42211c14d9b87f6",
+      "seconds": 30,
+      "capture_restarted": false,
+      "boot_completed_utc": "2026-11-08T04:37:08.963113+00:00",
+      "finished_utc": "2026-11-08T04:38:58.848907+00:00",
+      "command": "/tmp/fifo-game --demo --seconds 30",
+      "exit_status": 0,
+      "score": 170,
+      "lives": 3,
+      "frames_reported": 1754,
+      "ticks_reported": 1799,
+      "elapsed_seconds_reported": 30.0,
+      "frame_check": {
+        "video_sha256": "29cdb4b74e6dfa81779ea8e6a4b9920e246a8f784734e7cea5b7900366cc3369",
+        "decoded_frames": 2190,
+        "container_reported_frames": 2190,
+        "recording_rate_hz": 60.0,
+        "first_complete_game_seconds": 3.516667,
+        "invalid_frames_after_first_complete": [],
+        "frames_after_first_complete": 1979,
+        "passed_visible_frame_check": true,
+        "scope": "Check captured frames for the game's border and fixed HUD labels.\n\nThis detects lost/blank acquisition and missing labels; it is not a pixel oracle\nor a physics test. The game image is centered in a 1920x1080 OBS recording.\n"
+      },
+      "events_visually_reviewed": true,
+      "event_record": "results/boot-01/events.json",
+      "records": [
+        {
+          "path": "results/boot-01/program.log",
+          "original_sha256": "36d4180d6c8ff1a7420bf3ec30e4160826efb3667128652d89701b71a8d8fce6",
+          "published_sha256": "b03909bf288b572f72b89938aff3580bafe27d736f474d88004ee7d69b54b84f"
+        },
+        {
+          "path": "results/boot-01/boot.raw",
+          "original_sha256": "5171af244e36f4c2b1e9d1f2a0d133e091dff55f89a754dbeac648257c2200ef",
+          "published_sha256": "244861f5db0d65050570a46c8b6e1ec8637d32509b33c4bfd65d0855710178d3"
+        },
+        {
+          "path": "results/boot-01/sd-load.raw",
+          "original_sha256": "45012ad4007c728b198d64907ed03046ae8835b9d1442b057fb2d4fe7a58a70b",
+          "published_sha256": "9698758f309c98729c5797d02b2e70471b4981ce1f3e189f282d038c59d5eebe"
+        },
+        {
+          "path": "results/boot-01/game.raw",
+          "original_sha256": "f4f8b565f9117ea8d46e41fb68bf2ccebb2de568b5a68682c9912b4a5aa503e3",
+          "published_sha256": "bb2ad18d55f98dd6aad19cdfd53d402dab9bc942e12366872a603ed0e941d33e"
+        },
+        {
+          "path": "results/boot-01/frame-check.json",
+          "original_sha256": "94819cb1651365134e25dec65c1855ee8ded007668fc067fd27668231711a65b",
+          "published_sha256": "4f2419b824391e4b13be43298931154eb241882d3a80494fdb9ed1ae9693a4d5"
+        },
+        {
+          "path": "results/boot-01/events.json",
+          "original_sha256": "b94d55943ca725a7acc3757da4fef8d19422962b661c86f9b6b29944fdc75a98",
+          "published_sha256": "c60f2e8492dcec9195ef9ccf049b1ae6ea7b05ed6fdd62f79b6ef99c6e164a08"
+        }
+      ],
+      "recording": {
+        "path": "video/complete-boot-01.mp4",
+        "original_sha256": "29cdb4b74e6dfa81779ea8e6a4b9920e246a8f784734e7cea5b7900366cc3369",
+        "published_sha256": "4cdb07fe2b1591775ebda60064bdbb027f835ca955debf21ae27fce212adc1a0",
+        "video_packets_identical": true,
+        "video_packets": 2190,
+        "transformation": "Remuxed all original video packets; removed audio and metadata. No trimming, content replacement or video re-encoding."
+      }
+    },
+    {
+      "trial": 2,
+      "started_utc": "2026-11-08T04:43:11.257067+00:00",
+      "boot": 2,
+      "variant": "current-hdmi",
+      "base_revision": "261832d48832dd6e26c4971ab8893ce61200688b",
+      "bit_sha256": "fb0d8e9e853b51194e885662339cc0c339bdd6ea3bb19f6ca42211c14d9b87f6",
+      "seconds": 30,
+      "capture_restarted": false,
+      "boot_completed_utc": "2026-11-08T04:41:58.163139+00:00",
+      "finished_utc": "2026-11-08T04:43:48.164060+00:00",
+      "command": "/tmp/fifo-game --demo --seconds 30",
+      "exit_status": 0,
+      "score": 170,
+      "lives": 3,
+      "frames_reported": 1760,
+      "ticks_reported": 1799,
+      "elapsed_seconds_reported": 30.0,
+      "frame_check": {
+        "video_sha256": "7ef7611f88fb5c4acff7c28c1d1e2eb4f719c0d25d2d2bb9bbda5b1c4963df2a",
+        "decoded_frames": 2190,
+        "container_reported_frames": 2191,
+        "recording_rate_hz": 60.0,
+        "first_complete_game_seconds": 3.516667,
+        "invalid_frames_after_first_complete": [],
+        "frames_after_first_complete": 1979,
+        "passed_visible_frame_check": true,
+        "scope": "Check captured frames for the game's border and fixed HUD labels.\n\nThis detects lost/blank acquisition and missing labels; it is not a pixel oracle\nor a physics test. The game image is centered in a 1920x1080 OBS recording.\n"
+      },
+      "events_visually_reviewed": true,
+      "event_record": "results/boot-02/events.json",
+      "records": [
+        {
+          "path": "results/boot-02/program.log",
+          "original_sha256": "90d907f959587a3765eea48e1b9ec0a267b68b5a008ec5c156d761caeb28bda6",
+          "published_sha256": "342ad73eb2f6bf253d50a0e5e0456b9b5ccefd20c3066a53f7bcdde5c4fd6438"
+        },
+        {
+          "path": "results/boot-02/boot.raw",
+          "original_sha256": "5171af244e36f4c2b1e9d1f2a0d133e091dff55f89a754dbeac648257c2200ef",
+          "published_sha256": "244861f5db0d65050570a46c8b6e1ec8637d32509b33c4bfd65d0855710178d3"
+        },
+        {
+          "path": "results/boot-02/sd-load.raw",
+          "original_sha256": "86db7f37f982eaa2ed1c359787617808e8add7b42a33e9a4a4005db87d4db715",
+          "published_sha256": "5b30c43eb70d296fc8521347b60241a14057449e3c1fc8135d7a04d9d0fbed1e"
+        },
+        {
+          "path": "results/boot-02/game.raw",
+          "original_sha256": "27138adb5cb1bfa30e92867f3c752a873f803f337eda5aa9bfd960e80b6e4300",
+          "published_sha256": "950962a22d8e3caf1dae751ab595f513a5f4ceb9f6456ead6eb5807d8e02f59e"
+        },
+        {
+          "path": "results/boot-02/frame-check.json",
+          "original_sha256": "24922331965e2bc3d09ec3a0896036ff53394976d7d2070f6b29ec260fb38d6c",
+          "published_sha256": "ae9ce625991898a003a8481c109ad6e89074bd33d62d68da818689f891c82dfb"
+        },
+        {
+          "path": "results/boot-02/events.json",
+          "original_sha256": "6277d4422cf542305e68ed4c4ead0ca20068b591bef58042dde0bee0bc9f846a",
+          "published_sha256": "080b2681086d078389e65168363c14d1772bced9ef4933c0ad2e4a5ed696933e"
+        }
+      ],
+      "recording": {
+        "path": "video/complete-boot-02.mp4",
+        "original_sha256": "7ef7611f88fb5c4acff7c28c1d1e2eb4f719c0d25d2d2bb9bbda5b1c4963df2a",
+        "published_sha256": "234d2a6afa2a943f9d08547f69265909cae72df7421a6e6334961544748491ef",
+        "video_packets_identical": true,
+        "video_packets": 2191,
+        "transformation": "Remuxed all original video packets; removed audio and metadata. No trimming, content replacement or video re-encoding."
+      }
+    },
+    {
+      "trial": 3,
+      "started_utc": "2026-11-08T04:49:27.446652+00:00",
+      "boot": 3,
+      "variant": "current-hdmi",
+      "base_revision": "261832d48832dd6e26c4971ab8893ce61200688b",
+      "bit_sha256": "fb0d8e9e853b51194e885662339cc0c339bdd6ea3bb19f6ca42211c14d9b87f6",
+      "seconds": 30,
+      "capture_restarted": false,
+      "boot_completed_utc": "2026-11-08T04:48:14.488949+00:00",
+      "finished_utc": "2026-11-08T04:50:04.551223+00:00",
+      "command": "/tmp/fifo-game --demo --seconds 30",
+      "exit_status": 0,
+      "score": 170,
+      "lives": 3,
+      "frames_reported": 1763,
+      "ticks_reported": 1799,
+      "elapsed_seconds_reported": 30.0,
+      "frame_check": {
+        "video_sha256": "2dba780ed536c901093bb9780599b9c579ea3491597b0d7209bfb556845c7e61",
+        "decoded_frames": 2189,
+        "container_reported_frames": 2190,
+        "recording_rate_hz": 60.0,
+        "first_complete_game_seconds": 3.533333,
+        "invalid_frames_after_first_complete": [],
+        "frames_after_first_complete": 1977,
+        "passed_visible_frame_check": true,
+        "scope": "Check captured frames for the game's border and fixed HUD labels.\n\nThis detects lost/blank acquisition and missing labels; it is not a pixel oracle\nor a physics test. The game image is centered in a 1920x1080 OBS recording.\n"
+      },
+      "events_visually_reviewed": true,
+      "event_record": "results/boot-03/events.json",
+      "records": [
+        {
+          "path": "results/boot-03/program.log",
+          "original_sha256": "70cf59f246e6828f2b5b6574385f1fc6a3eaa4deb30196ec552eaa1cfeadfa98",
+          "published_sha256": "ac9fc3c0bd1b8b8dff61172f3898dc5c06e405668dc943aad4fb4e49846e29e1"
+        },
+        {
+          "path": "results/boot-03/boot.raw",
+          "original_sha256": "d8035a7ca6e20f47d72bde9ac5fc7aaf76d8ca162c4d2e0f2ce6df56d1b56d08",
+          "published_sha256": "3551f542720c623a2ca695fad3b82434cff2d60256226614051b8587e2c2302c"
+        },
+        {
+          "path": "results/boot-03/sd-load.raw",
+          "original_sha256": "73305e54fc41e9a26f321f2b265f778454869e014dba8934711083ebca2163f2",
+          "published_sha256": "3e4f8eb1cacf4087a2f191f11354a827551ce9f1ce53f761bff6162227da6932"
+        },
+        {
+          "path": "results/boot-03/game.raw",
+          "original_sha256": "6f83d09aaf3aa631e222facaf85a096d909e704f2fbff3217930bccc9f80a350",
+          "published_sha256": "7aaf3168b818f4f0fecc1b6531aff09bfb96aca241fa2e734f098cf567d68df2"
+        },
+        {
+          "path": "results/boot-03/frame-check.json",
+          "original_sha256": "f88433937dbe39cbb0f4ab12686c1d4699f7ed78e2721a355100d1890330b945",
+          "published_sha256": "3f0d3e106132e06bb6765ef20a476857ccfe67f50c98f66d1a768bdb7530c77b"
+        },
+        {
+          "path": "results/boot-03/events.json",
+          "original_sha256": "6277d4422cf542305e68ed4c4ead0ca20068b591bef58042dde0bee0bc9f846a",
+          "published_sha256": "080b2681086d078389e65168363c14d1772bced9ef4933c0ad2e4a5ed696933e"
+        }
+      ],
+      "recording": {
+        "path": "video/complete-boot-03.mp4",
+        "original_sha256": "2dba780ed536c901093bb9780599b9c579ea3491597b0d7209bfb556845c7e61",
+        "published_sha256": "67c051a60ee425f74fa7100eafdb10eff841efd926292c624007b5b6a9d70f91",
+        "video_packets_identical": true,
+        "video_packets": 2190,
+        "transformation": "Remuxed all original video packets; removed audio and metadata. No trimming, content replacement or video re-encoding."
+      }
+    }
+  ],
+  "continuous_trial": {
+    "same_fpga_boot_as": 3,
+    "started_utc": "2026-11-08T04:51:32.141807+00:00",
+    "command": "/tmp/fifo-game --demo --seconds 300",
+    "exit_status": 0,
+    "score": 400,
+    "lives": 3,
+    "frames_reported": 17910,
+    "ticks_reported": 17999,
+    "elapsed_seconds_reported": 300.0,
+    "frame_check": {
+      "video_sha256": "83533a55091fcffb54270319411879a5b4f2c98438b2573bf53cf5167a63cb39",
+      "decoded_frames": 18385,
+      "container_reported_frames": 18386,
+      "recording_rate_hz": 60.0,
+      "first_complete_game_seconds": 0.0,
+      "invalid_frames_after_first_complete": [],
+      "frames_after_first_complete": 18385,
+      "passed_visible_frame_check": true,
+      "scope": "Check captured frames for the game's border and fixed HUD labels.\n\nThis detects lost/blank acquisition and missing labels; it is not a pixel oracle\nor a physics test. The game image is centered in a 1920x1080 OBS recording.\n"
+    },
+    "records": [
+      {
+        "path": "results/continuous-300s/game.raw",
+        "original_sha256": "edb8d60a6e955aa661acd1cf64745fe62f9b5c3056e1ccd055fb0021e613fa5b",
+        "published_sha256": "8735ad670ab859570c4e960628c85f83b85b8d90cdb172a729881337cafa55f2"
+      },
+      {
+        "path": "results/continuous-300s/frame-check.json",
+        "original_sha256": "a4e530233e36e32608e6d9d10bfd87964dea5e28a75b1a1620571dff3f0ced79",
+        "published_sha256": "8dc7fafc087992f3fae5dd3963d74206b0d9f4a8c7a050343d7d0ca3c22e5cda"
+      }
+    ],
+    "recording": {
+      "path": "video/complete-300s.mp4",
+      "original_sha256": "83533a55091fcffb54270319411879a5b4f2c98438b2573bf53cf5167a63cb39",
+      "published_sha256": "5c1cec7fa8f1ce8376797d1ac82f6898f7600122bc1ba4828d27569353dfe530",
+      "video_packets_identical": false,
+      "decoded_frames_identical": true,
+      "decoded_frames_compared": 18385,
+      "presentation_timestamps_and_durations_identical": true,
+      "transformation": "Lossless libx264 CRF 0 re-encoding of all decoded video frames; removed audio and metadata. No trimming, replacement, frame dropping or frame duplication.",
+      "lossless_verification": {
+        "path": "video/complete-300s-lossless.json",
+        "published_sha256": "90c565a0c6182a686cb0276f5628a2e403e26c3f240bc3da845267144710deaf"
+      }
+    },
+    "visual_observation": "Selected frames show gameplay followed by the completed CLEAR state. Fixed borders and HUD labels were checked in every decoded frame; this is not a claim of moving gameplay for all 300 seconds."
+  },
+  "video": {
+    "path": "video/breakout-30s.mp4",
+    "sha256": "8b3be2e758d88a6bc11f3d36e7a171cd6d02fee43f0e3870fcd3c3c778d6b42f",
+    "source_trial": 1,
+    "source_sha256": "29cdb4b74e6dfa81779ea8e6a4b9920e246a8f784734e7cea5b7900366cc3369",
+    "raw_start_seconds": 3.6,
+    "duration_seconds": 30,
+    "events": [
+      {
+        "kind": "paddle",
+        "raw_seconds": [
+          5.866666666666666,
+          6.066666666666666,
+          6.266666666666667
+        ],
+        "clip_seconds": [
+          2.267,
+          2.467,
+          2.667
+        ]
+      },
+      {
+        "kind": "brick-removal",
+        "raw_seconds": [
+          4.966666666666667,
+          5.166666666666667,
+          5.366666666666667
+        ],
+        "clip_seconds": [
+          1.367,
+          1.567,
+          1.767
+        ]
+      },
+      {
+        "kind": "side-wall",
+        "raw_seconds": [
+          8.266666666666667,
+          8.466666666666667,
+          8.666666666666666
+        ],
+        "clip_seconds": [
+          4.667,
+          4.867,
+          5.067
+        ]
+      }
+    ]
+  },
+  "history": "history/standard-product-trials.json",
+  "implementation": "results/implementation.json",
+  "simulation": "results/simulation.json",
+  "scope": "Three FPGA reconfigurations and OS boots, each followed by a 30-second game run; one further 300-second run in the third boot. Power was not cycled. Recording rate is not game FPS. Fixed wall/HUD checks detect blank/lost capture; selected visual event triplets establish the reported visible behavior. Controller input, all collisions, cold-power reliability and arbitrary displays are not claimed. The standard product checkout was not modified.",
+  "public_copy_note": "Selected text records are anonymized and normalized to LF, matching Git blobs. Original and published hashes are separate. Original records were not modified."
+}

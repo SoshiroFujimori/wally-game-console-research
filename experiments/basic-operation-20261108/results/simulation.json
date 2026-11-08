@@ -1,0 +1,77 @@
+{
+  "passed": true,
+  "started_utc": "2026-11-08T04:32:24.129982+00:00",
+  "finished_utc": "2026-11-08T04:34:08.201002+00:00",
+  "scope": "Check memory reads, swaps, reset recovery and pixels entering the HDMI core.\n\nThe serializer is excluded here. Physical output requires implementation timing\nchecks and a real receiver. Logs may contain local paths; sanitize before sharing.\nRun after sourcing the installed Vivado settings script.\n",
+  "sources": {
+    "rasterixdisplay.sv": "cbe9277c7b5a052af5e99d6c0b60b68cd1da5ff26591af4070be69aae33d95a1",
+    "tb_baseline.sv": "25a267d4453c9286f72c0a994112433147176ae4a9b425f6319bf8f9d968f3e1",
+    "tb_stress.sv": "e91fe882c97c3607f0006529ecd603b3b458b4df9f39c42b5ee85ee484181890",
+    "audio_clock_regeneration_packet.sv": "a8b7f0c592ce8c871bf31986db293799f64893b18b5a6387e262a81b7ec22954",
+    "audio_info_frame.sv": "dedd552fa988d9e2875bdadc54f3c08d5041d54637da1ff565d46078eeb2ea89",
+    "audio_sample_packet.sv": "0e3a35ccb3e934eecfcd3916c5dac9ef269abea21472d66ebd2660a9d25e6a13",
+    "auxiliary_video_information_info_frame.sv": "c151e2675ad97ef36254044e42657f2d758512d305040137859f9b8806135f64",
+    "hdmi.sv": "82a8a7fb4c37a7d3a9b23338613e3eea91e06b94dedc7d13c8869b04a9d36788",
+    "packet_assembler.sv": "00d143e3b4226cb8ac7418bab35b9ea6f3a963e81fd0f2f7f3109844f4bde2c6",
+    "packet_picker.sv": "6c3e87c8221a5756393bdbff0c48988f03e4917e0f088b7cba5cda8d6e83f3ad",
+    "serializer.sv": "b3142d3240b97306828f5432e989f072c121da8146275c13c9c6087921d6af2f",
+    "source_product_description_info_frame.sv": "893269fdccd2dc147e8570519f35308ac5e5460ad7f54bf673b3c31e9a8259de",
+    "tmds_channel.sv": "1e45e87703e2ab1790c13235822e8889fb016ad4c11cd9e5def0980d26a24637"
+  },
+  "cases": [
+    {
+      "name": "baseline-run-0",
+      "exit": 0,
+      "arguments": [
+        "scanout",
+        "--runall",
+        "--onfinish",
+        "quit"
+      ],
+      "raw_log_sha256": "4ef4cd0c19451a05cdc2fdec8d6b80c2c78e4b397491861e699cfb527302442a",
+      "completion": [
+        "HDMI_PIPELINE_PIXELS=5695311",
+        "PASS 720P_SCANOUT checked=3580272 border=4058174 frames=11 swaps=3 bursts=24880 words=796160"
+      ],
+      "summary": "simulation/baseline-run-0.txt"
+    },
+    {
+      "name": "stress-run-0",
+      "exit": 0,
+      "arguments": [
+        "scanout",
+        "--runall",
+        "--onfinish",
+        "quit",
+        "--testplusarg",
+        "SEED=8abc4817"
+      ],
+      "raw_log_sha256": "31ac362ae1ef62740dd3c75b02b36f5b33365a8f3f6a90e4f9632902681cc737",
+      "completion": [
+        "HDMI_PIPELINE_PIXELS=7706881",
+        "PASS 720P_SCANOUT checked=4397760 border=5932569 frames=18 swaps=4 bursts=30561 words=977920"
+      ],
+      "summary": "simulation/stress-run-0.txt"
+    },
+    {
+      "name": "stress-run-1",
+      "exit": 0,
+      "arguments": [
+        "scanout",
+        "--runall",
+        "--onfinish",
+        "quit",
+        "--testplusarg",
+        "SEED=70a6b538",
+        "--testplusarg",
+        "FAULT"
+      ],
+      "raw_log_sha256": "97944e0b5565aa538b09b47286c9f1fea612d325ca9e5f7802d1cff041db30be",
+      "completion": [
+        "HDMI_PIPELINE_PIXELS=7706880",
+        "PASS 720P_SCANOUT checked=4397760 border=5932587 frames=18 swaps=4 bursts=30571 words=978240"
+      ],
+      "summary": "simulation/stress-run-1.txt"
+    }
+  ]
+}

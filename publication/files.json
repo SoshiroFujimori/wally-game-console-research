@@ -5249,6 +5249,398 @@
       "bytes": 7105,
       "sha256": "bf104d2ca6e9f7d049a4eb6025cbd357815cb7c319e963cf17665901c023d679"
     },
+    "experiments/basic-operation-20261108/README.md": {
+      "bytes": 8924,
+      "sha256": "3e1e79b7088a03691da712696bab2df2a4338aa9e8398be6050690922b1ba9e7"
+    },
+    "experiments/basic-operation-20261108/check_recording.py": {
+      "bytes": 2862,
+      "sha256": "48f6939def97efb2c72d2933094f510268a09dcba8c3f692686688069c72b24d"
+    },
+    "experiments/basic-operation-20261108/hdmi/README.md": {
+      "bytes": 4047,
+      "sha256": "cecabdfa491e199027c79da61a2fd265c688f10ed01cc144f72c6bc677ce123c"
+    },
+    "experiments/basic-operation-20261108/hdmi/output.patch": {
+      "bytes": 15962,
+      "sha256": "055c048357a43371f6a86ebd2e36849b907a0b0873802095b69ea1fa94b4398a"
+    },
+    "experiments/basic-operation-20261108/hdmi/prepare.py": {
+      "bytes": 3232,
+      "sha256": "f39dfc2526788497a74278f70c223bd0617a674498bcbbcc3c4c1edc4c874041"
+    },
+    "experiments/basic-operation-20261108/hdmi/qualify.tcl": {
+      "bytes": 4690,
+      "sha256": "fe8f976bc843799dabed1957e357a176ece17cf6dcf5afa533092841fa7db553"
+    },
+    "experiments/basic-operation-20261108/hdmi/simulate.py": {
+      "bytes": 2712,
+      "sha256": "ca535e1283a6e1250770540998d05fc90c75dcfe44c49cd2d3ffd33d029cf5ba"
+    },
+    "experiments/basic-operation-20261108/hdmi/source-manifest.json": {
+      "bytes": 1012,
+      "sha256": "39aab650e589d70cb44a232d4b5eb1d25eced68a12eece2310f570e9003d95c1"
+    },
+    "experiments/basic-operation-20261108/hdmi/tb_baseline.sv": {
+      "bytes": 5617,
+      "sha256": "25a267d4453c9286f72c0a994112433147176ae4a9b425f6319bf8f9d968f3e1"
+    },
+    "experiments/basic-operation-20261108/hdmi/tb_stress.sv": {
+      "bytes": 6645,
+      "sha256": "e91fe882c97c3607f0006529ecd603b3b458b4df9f39c42b5ee85ee484181890"
+    },
+    "experiments/basic-operation-20261108/history/README.md": {
+      "bytes": 3109,
+      "sha256": "b7724f58e74ba37840d42aa4d16fde308fcf26dba6fcd7704575452318e01ad2"
+    },
+    "experiments/basic-operation-20261108/history/initial-three-application-runs.json": {
+      "bytes": 3281,
+      "sha256": "8ef9e49184735c72f66bfb5138d3f326346dee5b10e5b94b633ffd8c7253e6e1"
+    },
+    "experiments/basic-operation-20261108/history/product-boot-02/game.raw": {
+      "bytes": 365,
+      "sha256": "9f569a0b4cf8617a78d68c50df5baf185e89081dae355a47060bb18aabf70bce"
+    },
+    "experiments/basic-operation-20261108/history/product-boot-03/game.raw": {
+      "bytes": 365,
+      "sha256": "9becade34b36cf62cbe6effef9a57f525015e9383e01b86c7f6a24d927b78f57"
+    },
+    "experiments/basic-operation-20261108/history/product-boot-04/game.raw": {
+      "bytes": 365,
+      "sha256": "fca1ee12b2ea83d07e06bff6219d7b0eaa4d98d2b08b769d0b1f4fd027413bf6"
+    },
+    "experiments/basic-operation-20261108/history/product-boot-05/game.raw": {
+      "bytes": 365,
+      "sha256": "acf72644ad8bb27e78da1c6ea6147916c83039c76e99b398c6a12702aeedd9ac"
+    },
+    "experiments/basic-operation-20261108/history/product-boot-06/game.raw": {
+      "bytes": 365,
+      "sha256": "794e83b98124d14ee18a44c289f93c3e3a06b70dff73d6bdfc0316bf863a1e7a"
+    },
+    "experiments/basic-operation-20261108/history/standard-product-trials.json": {
+      "bytes": 6278,
+      "sha256": "60dfe3d3eb0cc03bd9016220907b6e7db16194ba2b58cf1bc981733401dd3f66"
+    },
+    "experiments/basic-operation-20261108/locate_events.py": {
+      "bytes": 2777,
+      "sha256": "bff0c8ecaa0affc50ee853403a9b2d7dafe6b6dcad0d657d010bdedef9278383"
+    },
+    "experiments/basic-operation-20261108/obs_client.py": {
+      "bytes": 1587,
+      "sha256": "6e9c28880341cc3d7d3211fba0c814481339891f782cdd590da2816d28f12cc3"
+    },
+    "experiments/basic-operation-20261108/record.py": {
+      "bytes": 6142,
+      "sha256": "a2cd883ff91702430efda4d783eea16e051a1153e7f555b84e7b7cb97c7d89ff"
+    },
+    "experiments/basic-operation-20261108/reset_capture.py": {
+      "bytes": 2430,
+      "sha256": "4a71751b5c2cd9eeb47db766551263dd4bfe64a6b5f3a8732b82c23997cfa3d3"
+    },
+    "experiments/basic-operation-20261108/results.json": {
+      "bytes": 15750,
+      "sha256": "d93eae98a9a742ace051460d2fbe62104c56b4e65ec6cc1c2325f6b8dc30ff44"
+    },
+    "experiments/basic-operation-20261108/results/boot-01/boot.raw": {
+      "bytes": 14387,
+      "sha256": "244861f5db0d65050570a46c8b6e1ec8637d32509b33c4bfd65d0855710178d3"
+    },
+    "experiments/basic-operation-20261108/results/boot-01/events.json": {
+      "bytes": 3788,
+      "sha256": "c60f2e8492dcec9195ef9ccf049b1ae6ea7b05ed6fdd62f79b6ef99c6e164a08"
+    },
+    "experiments/basic-operation-20261108/results/boot-01/frame-check.json": {
+      "bytes": 589,
+      "sha256": "4f2419b824391e4b13be43298931154eb241882d3a80494fdb9ed1ae9693a4d5"
+    },
+    "experiments/basic-operation-20261108/results/boot-01/game.raw": {
+      "bytes": 365,
+      "sha256": "bb2ad18d55f98dd6aad19cdfd53d402dab9bc942e12366872a603ed0e941d33e"
+    },
+    "experiments/basic-operation-20261108/results/boot-01/program.log": {
+      "bytes": 2775,
+      "sha256": "b03909bf288b572f72b89938aff3580bafe27d736f474d88004ee7d69b54b84f"
+    },
+    "experiments/basic-operation-20261108/results/boot-01/sd-load.raw": {
+      "bytes": 653,
+      "sha256": "9698758f309c98729c5797d02b2e70471b4981ce1f3e189f282d038c59d5eebe"
+    },
+    "experiments/basic-operation-20261108/results/boot-02/boot.raw": {
+      "bytes": 14387,
+      "sha256": "244861f5db0d65050570a46c8b6e1ec8637d32509b33c4bfd65d0855710178d3"
+    },
+    "experiments/basic-operation-20261108/results/boot-02/events.json": {
+      "bytes": 340,
+      "sha256": "080b2681086d078389e65168363c14d1772bced9ef4933c0ad2e4a5ed696933e"
+    },
+    "experiments/basic-operation-20261108/results/boot-02/frame-check.json": {
+      "bytes": 589,
+      "sha256": "ae9ce625991898a003a8481c109ad6e89074bd33d62d68da818689f891c82dfb"
+    },
+    "experiments/basic-operation-20261108/results/boot-02/game.raw": {
+      "bytes": 365,
+      "sha256": "950962a22d8e3caf1dae751ab595f513a5f4ceb9f6456ead6eb5807d8e02f59e"
+    },
+    "experiments/basic-operation-20261108/results/boot-02/program.log": {
+      "bytes": 2775,
+      "sha256": "342ad73eb2f6bf253d50a0e5e0456b9b5ccefd20c3066a53f7bcdde5c4fd6438"
+    },
+    "experiments/basic-operation-20261108/results/boot-02/sd-load.raw": {
+      "bytes": 653,
+      "sha256": "5b30c43eb70d296fc8521347b60241a14057449e3c1fc8135d7a04d9d0fbed1e"
+    },
+    "experiments/basic-operation-20261108/results/boot-03/boot.raw": {
+      "bytes": 14387,
+      "sha256": "3551f542720c623a2ca695fad3b82434cff2d60256226614051b8587e2c2302c"
+    },
+    "experiments/basic-operation-20261108/results/boot-03/events.json": {
+      "bytes": 340,
+      "sha256": "080b2681086d078389e65168363c14d1772bced9ef4933c0ad2e4a5ed696933e"
+    },
+    "experiments/basic-operation-20261108/results/boot-03/frame-check.json": {
+      "bytes": 589,
+      "sha256": "3f0d3e106132e06bb6765ef20a476857ccfe67f50c98f66d1a768bdb7530c77b"
+    },
+    "experiments/basic-operation-20261108/results/boot-03/game.raw": {
+      "bytes": 365,
+      "sha256": "7aaf3168b818f4f0fecc1b6531aff09bfb96aca241fa2e734f098cf567d68df2"
+    },
+    "experiments/basic-operation-20261108/results/boot-03/program.log": {
+      "bytes": 2775,
+      "sha256": "ac9fc3c0bd1b8b8dff61172f3898dc5c06e405668dc943aad4fb4e49846e29e1"
+    },
+    "experiments/basic-operation-20261108/results/boot-03/sd-load.raw": {
+      "bytes": 653,
+      "sha256": "3e4f8eb1cacf4087a2f191f11354a827551ce9f1ce53f761bff6162227da6932"
+    },
+    "experiments/basic-operation-20261108/results/capture-unavailable.png": {
+      "bytes": 7409,
+      "sha256": "1f0df1f228d9214c6933443ab19209317c282c0e23b9d43158e5dabbc612f9b6"
+    },
+    "experiments/basic-operation-20261108/results/continuous-300s/frame-check.json": {
+      "bytes": 587,
+      "sha256": "8dc7fafc087992f3fae5dd3963d74206b0d9f4a8c7a050343d7d0ca3c22e5cda"
+    },
+    "experiments/basic-operation-20261108/results/continuous-300s/game.raw": {
+      "bytes": 369,
+      "sha256": "8735ad670ab859570c4e960628c85f83b85b8d90cdb172a729881337cafa55f2"
+    },
+    "experiments/basic-operation-20261108/results/e6-frames/brick-1.png": {
+      "bytes": 7995,
+      "sha256": "320bf9c476fdead211fe9da5003bc1d1ce93f9ef72056b71b46780f05c389ac8"
+    },
+    "experiments/basic-operation-20261108/results/e6-frames/brick-2.png": {
+      "bytes": 7728,
+      "sha256": "3a5c45020619b2fa20c329fc80234afda955c6e46cfd02b112602997913903e3"
+    },
+    "experiments/basic-operation-20261108/results/e6-frames/brick-3.png": {
+      "bytes": 7749,
+      "sha256": "093d9ff002823a3b26cf63d89ac958a99449b1cef1e9a5f39c27a74926c28236"
+    },
+    "experiments/basic-operation-20261108/results/e6-frames/paddle-1.png": {
+      "bytes": 8307,
+      "sha256": "b4410621b44d3d0985783b07ae05adcf2ae96c553075aa625c260dd0868c88a8"
+    },
+    "experiments/basic-operation-20261108/results/e6-frames/paddle-2.png": {
+      "bytes": 7867,
+      "sha256": "4f2765ed7c343a04efee2a71b137ea26388e0c34f6b380cbbda2707d71984665"
+    },
+    "experiments/basic-operation-20261108/results/e6-frames/paddle-3.png": {
+      "bytes": 7872,
+      "sha256": "37121b71dedad59499594e60ae27dc0c2b635b410c820b53b80fc20761cdead3"
+    },
+    "experiments/basic-operation-20261108/results/e6-frames/wall-1.png": {
+      "bytes": 6269,
+      "sha256": "9964c64104da11b42461345aae27b930d09ecf9f9f782f5cb3a2e52b3b1cac29"
+    },
+    "experiments/basic-operation-20261108/results/e6-frames/wall-2.png": {
+      "bytes": 6442,
+      "sha256": "5544773779b5ebb28420b1d664188b83c125ff69f309164c50969ac4b96f0067"
+    },
+    "experiments/basic-operation-20261108/results/e6-frames/wall-3.png": {
+      "bytes": 6338,
+      "sha256": "b27dbc63c6cb3d5e9a1319e5c62c972c9d56b69b5e729ca311c6e296d7379b74"
+    },
+    "experiments/basic-operation-20261108/results/implementation.json": {
+      "bytes": 4429,
+      "sha256": "7dbc47f3ec5eb60857c5a3e2d9bcf35ded27d5132d64a969b5ebd037c52ec51b"
+    },
+    "experiments/basic-operation-20261108/results/implementation/bus_skew.rpt": {
+      "bytes": 350415,
+      "sha256": "a16a75b743ad01bfd1e6c29f20b3077f9e1a826d2fc405c6ae66ecb2fbf70988"
+    },
+    "experiments/basic-operation-20261108/results/implementation/cdc.rpt": {
+      "bytes": 121327,
+      "sha256": "130d19af5c513edec3b7c8febd6407b877260858e44f10ef834da5c3c8c51dcf"
+    },
+    "experiments/basic-operation-20261108/results/implementation/check_timing.rpt": {
+      "bytes": 3456,
+      "sha256": "3491bfddab3b04507beaa28a03a013d984af37f17632204815402d1c540770ca"
+    },
+    "experiments/basic-operation-20261108/results/implementation/clocks.rpt": {
+      "bytes": 19426,
+      "sha256": "eaac4bf756d6f2a2940ebd57bc0da39e74e8b16440edd2b4f604ebeed8d042b7"
+    },
+    "experiments/basic-operation-20261108/results/implementation/drc.rpt": {
+      "bytes": 77606,
+      "sha256": "2cd5360f499e99a7275aab136f974df37ab31f3d55b04fc378387f008db95ac9"
+    },
+    "experiments/basic-operation-20261108/results/implementation/exception_coverage.rpt": {
+      "bytes": 17467,
+      "sha256": "895c89045345ac4d4c78673598e65175f40ab1c974337d0381e8a4db8d6f89e5"
+    },
+    "experiments/basic-operation-20261108/results/implementation/exceptions.rpt": {
+      "bytes": 38017,
+      "sha256": "f2be4934fd259e69f66b7c9247fbbe2cf59fdc5cd4c57937b3f0d262a8b09186"
+    },
+    "experiments/basic-operation-20261108/results/implementation/ignored_exceptions.rpt": {
+      "bytes": 3400,
+      "sha256": "7970b78a2e4635a8d49d357b7e7b4ad18229102eeaf7cb98b51158e5ed7f637d"
+    },
+    "experiments/basic-operation-20261108/results/implementation/route_status.rpt": {
+      "bytes": 651,
+      "sha256": "2ad3eaf8d0ba6677bb0079429f268856655f345d9f172d4f1aabeece9bc2a747"
+    },
+    "experiments/basic-operation-20261108/results/implementation/sd_timing.rpt": {
+      "bytes": 8095,
+      "sha256": "f656719806f665526de8f9eb54426876f03a033be8a3d6425506909c19f6cd13"
+    },
+    "experiments/basic-operation-20261108/results/implementation/serializer_data.rpt": {
+      "bytes": 188866,
+      "sha256": "ae4c6094e41f836932fadbeb069bd5e1f9e16ccc66769ea17e151d43729f39f9"
+    },
+    "experiments/basic-operation-20261108/results/implementation/serializer_reset.rpt": {
+      "bytes": 52959,
+      "sha256": "b6cecb53fe9816b9cf5f09204711d1c4caa33795ce64dfbf6e6c64a42aba65c7"
+    },
+    "experiments/basic-operation-20261108/results/implementation/timing_summary.rpt": {
+      "bytes": 640278,
+      "sha256": "99d436cacc05cdb53ab17b23d7e138e742e9a311fbf72fcd55d4401353d250ac"
+    },
+    "experiments/basic-operation-20261108/results/implementation/utilization.rpt": {
+      "bytes": 14668,
+      "sha256": "b87c6230cbe4210089eb695c13d2a0cbc36346627be641379458946676624875"
+    },
+    "experiments/basic-operation-20261108/results/simulation.json": {
+      "bytes": 3323,
+      "sha256": "20583be43152b1b43d83f5bb84a69f4f28840d0fe47e0fe7684305f77a39c191"
+    },
+    "experiments/basic-operation-20261108/results/simulation/baseline-run-0.txt": {
+      "bytes": 253,
+      "sha256": "49917b996af42a9c23927c9dd63f3ba57d418c8f085336a59aaddb78f0105bdf"
+    },
+    "experiments/basic-operation-20261108/results/simulation/stress-run-0.txt": {
+      "bytes": 253,
+      "sha256": "27eca5fd8052576c26c1d0b9b91458ff6d4700242abfe215bc31962eb37065bd"
+    },
+    "experiments/basic-operation-20261108/results/simulation/stress-run-1.txt": {
+      "bytes": 253,
+      "sha256": "f1afe63f5c254673b3ea9d2abdae20e0e277c82a1d66313e9b068a2d348147e7"
+    },
+    "experiments/basic-operation-20261108/results/trial-01.txt": {
+      "bytes": 365,
+      "sha256": "a174db6b2d598361995e59d2ffa11b6a0cc74f729551339c18901db7d5632caa"
+    },
+    "experiments/basic-operation-20261108/results/trial-02.txt": {
+      "bytes": 365,
+      "sha256": "fd832ff026f75bbccdcaabd66f39e15d83a60a7b1c36649fc71a2a47811ee891"
+    },
+    "experiments/basic-operation-20261108/results/trial-03.txt": {
+      "bytes": 365,
+      "sha256": "398847c8fade4c97cfd6cb98959fb9d60aadc245959372934585984e913e459b"
+    },
+    "experiments/basic-operation-20261108/review_events.py": {
+      "bytes": 873,
+      "sha256": "f26fd2ea1ed463936d1f20c136a4a885879e37ae225f5fc96954fd5b80d31c80"
+    },
+    "experiments/basic-operation-20261108/uart.py": {
+      "bytes": 2508,
+      "sha256": "bcd08da7e5e62467d118941d9ad32fbf0cedac83b580d8a7faa4962bb4e27794"
+    },
+    "experiments/basic-operation-20261108/validate_records.py": {
+      "bytes": 3434,
+      "sha256": "600249ada9150aa281247b24b77ad61994bd4b2d05f28a6e1624545ecc8eceb1"
+    },
+    "experiments/basic-operation-20261108/video/breakout-30s.mp4": {
+      "bytes": 372357,
+      "sha256": "8b3be2e758d88a6bc11f3d36e7a171cd6d02fee43f0e3870fcd3c3c778d6b42f"
+    },
+    "experiments/basic-operation-20261108/video/brick-removal-1.png": {
+      "bytes": 15505,
+      "sha256": "50aab398cacea21d49314c7f61ed89aae49af4a8daece3f8127f6133ce267849"
+    },
+    "experiments/basic-operation-20261108/video/brick-removal-2.png": {
+      "bytes": 15619,
+      "sha256": "5ab1ca15629dff943bc9b1dd55ee6793f3fd40fa15bbe7ae1d4e16b9b8c40d02"
+    },
+    "experiments/basic-operation-20261108/video/brick-removal-3.png": {
+      "bytes": 15631,
+      "sha256": "2f4be5946be4d39e4fc2b3a318b2b5d607be8b2dbc66f603a7f8e63a70eba9fb"
+    },
+    "experiments/basic-operation-20261108/video/complete-300s-framehash.txt": {
+      "bytes": 2059339,
+      "sha256": "f8a29565feeb1ad13fa84653991c1a88bdc69aabf4c018f98d59ee7f5176ccac"
+    },
+    "experiments/basic-operation-20261108/video/complete-300s-lossless.json": {
+      "bytes": 2745,
+      "sha256": "90c565a0c6182a686cb0276f5628a2e403e26c3f240bc3da845267144710deaf"
+    },
+    "experiments/basic-operation-20261108/video/complete-300s.mp4": {
+      "bytes": 6566491,
+      "sha256": "5c1cec7fa8f1ce8376797d1ac82f6898f7600122bc1ba4828d27569353dfe530"
+    },
+    "experiments/basic-operation-20261108/video/complete-boot-01.mp4": {
+      "bytes": 27403904,
+      "sha256": "4cdb07fe2b1591775ebda60064bdbb027f835ca955debf21ae27fce212adc1a0"
+    },
+    "experiments/basic-operation-20261108/video/complete-boot-02.mp4": {
+      "bytes": 27416417,
+      "sha256": "234d2a6afa2a943f9d08547f69265909cae72df7421a6e6334961544748491ef"
+    },
+    "experiments/basic-operation-20261108/video/complete-boot-03.mp4": {
+      "bytes": 27403896,
+      "sha256": "67c051a60ee425f74fa7100eafdb10eff841efd926292c624007b5b6a9d70f91"
+    },
+    "experiments/basic-operation-20261108/video/derivation.json": {
+      "bytes": 3788,
+      "sha256": "c60f2e8492dcec9195ef9ccf049b1ae6ea7b05ed6fdd62f79b6ef99c6e164a08"
+    },
+    "experiments/basic-operation-20261108/video/event-review.png": {
+      "bytes": 56280,
+      "sha256": "2001a117afea4024ec18355bdbae72656e13cd0816a6cfe3f5e4344d59f2dbc9"
+    },
+    "experiments/basic-operation-20261108/video/game.png": {
+      "bytes": 15511,
+      "sha256": "1cfa5aa570a84fa910dcb765e55ebabb736aca6d1e12a77acf069e61955664ab"
+    },
+    "experiments/basic-operation-20261108/video/paddle-1.png": {
+      "bytes": 15688,
+      "sha256": "151e6a8b7af0fa627dcf229ab28d2eaa7afb864946c8375d3a35f8f03706f651"
+    },
+    "experiments/basic-operation-20261108/video/paddle-2.png": {
+      "bytes": 15703,
+      "sha256": "df52a219b97e8fdb563af810684c7da8054d77c44eee3326f119310ef3c3a5d3"
+    },
+    "experiments/basic-operation-20261108/video/paddle-3.png": {
+      "bytes": 15675,
+      "sha256": "7aa53da7ee9c58fb573842108087853f3e718fda4dd84bf4ea7792f6df011c77"
+    },
+    "experiments/basic-operation-20261108/video/poster.png": {
+      "bytes": 36269,
+      "sha256": "7cd7e6efb68a7c522443d372da591502f1b3a5f86bb708d14b1c2f002684abdc"
+    },
+    "experiments/basic-operation-20261108/video/side-wall-1.png": {
+      "bytes": 15751,
+      "sha256": "99e5a9e0db249d8faa38fbd74c9317bd74cd879eb6a7f063d96e50cf9ced977e"
+    },
+    "experiments/basic-operation-20261108/video/side-wall-2.png": {
+      "bytes": 15785,
+      "sha256": "7c41af438e8882e43709ae153301bf6b6dc77d75db2e44aaaa074b6070608e62"
+    },
+    "experiments/basic-operation-20261108/video/side-wall-3.png": {
+      "bytes": 15732,
+      "sha256": "6a4b24d5e6086f01eebfd9308ccf594c8aadb765096abc3b33dc7d4d1154832e"
+    },
     "experiments/board-bringup-20260909/README.ja.md": {
       "bytes": 9991,
       "sha256": "380d794812f931de78843fcacf2a3b4c92f2ccec13cd728ce553cf78fe91f329"
@@ -11830,8 +12222,8 @@
       "sha256": "b37af8468ab90cc774380eae7acce80700a22c2cdb02aa7e1d27bf6da8ad7d04"
     },
     "publication/media-review.json": {
-      "bytes": 79482,
-      "sha256": "ac9602b0607464e72bd9720c96be3ca8468f34a74c95429748e7a295bc00b630"
+      "bytes": 83891,
+      "sha256": "d16df1d7dcd5f8e7ccb7fdee52f7709b7364da13b187073d5ad35697c1b3202c"
     },
     "publication/policy.json": {
       "bytes": 635,

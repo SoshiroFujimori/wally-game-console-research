@@ -1,0 +1,96 @@
+{
+  "reviewed_on": "2026-11-08",
+  "product_revision": "261832d48832dd6e26c4971ab8893ce61200688b",
+  "rasterix_revision": "9269a01c9bd4",
+  "bitstream_sha256": "16173de97a91e711cd7bc5389acd9739807adebedf192efc29fe78f5b96c0acf",
+  "executable_sha256": "e8fa6130aa47bf6131b1077ebbd03f26e90055a8dcc9c11c8c814322ab71b1ae",
+  "program_command": "/tmp/fifo-game --demo --seconds 30",
+  "boot": {
+    "fpga_configurations": 1,
+    "os_boots": 1,
+    "sd_program_loads": 1,
+    "sd_partition_mounted_read_only": true,
+    "sd_writes": false
+  },
+  "runs": [
+    {
+      "trial": 1,
+      "started_utc": "2026-11-08T03:16:06.023593+00:00",
+      "exit_status": 0,
+      "score": 170,
+      "lives": 3,
+      "frames_reported": 1755,
+      "ticks_reported": 1799,
+      "elapsed_seconds_reported": 30.011,
+      "video_verified": false,
+      "capture_original_sha256": "092563e71b5f5c1299029da0e0164ddd7769eada6cea7f30aecc836a70e6e919"
+    },
+    {
+      "trial": 2,
+      "started_utc": "2026-11-08T03:17:02.165324+00:00",
+      "exit_status": 0,
+      "score": 170,
+      "lives": 3,
+      "frames_reported": 1756,
+      "ticks_reported": 1799,
+      "elapsed_seconds_reported": 30.011,
+      "video_verified": false,
+      "capture_original_sha256": "c4e398fd46a19f8e0c4904c91e898a8314b2d90b27b0e6919960644a4b6fd510"
+    },
+    {
+      "trial": 3,
+      "started_utc": "2026-11-08T03:18:04.107476+00:00",
+      "exit_status": 0,
+      "score": 170,
+      "lives": 3,
+      "frames_reported": 1753,
+      "ticks_reported": 1799,
+      "elapsed_seconds_reported": 30.011,
+      "video_verified": false,
+      "capture_original_sha256": "e525d7a17d21ebb8377be452e418dc22a9684b06ce38ae4b3f479ed122fc0edc"
+    }
+  ],
+  "visual_evidence": {
+    "origin": "E6 recording acquired 2026-10-08; reviewed 2026-11-08",
+    "video_path": "../../docs/thesis/再現資料/実験記録/E6/report/results/video/breakout-latest-30s.mp4",
+    "sha256": "40a2891cecb7f7b56fa93cbbae3ccaa1c2c9f9282eed7b247a0a21e8542705ca",
+    "events": [
+      {
+        "name": "paddle reflection",
+        "times_seconds": [
+          0.3,
+          0.5,
+          0.7
+        ]
+      },
+      {
+        "name": "brick removal",
+        "times_seconds": [
+          1.65,
+          1.8,
+          1.95
+        ]
+      },
+      {
+        "name": "right wall reflection",
+        "times_seconds": [
+          14.1,
+          14.2667,
+          14.43
+        ]
+      }
+    ],
+    "method": "Read decoded frames and inspect event triplets; full-frame extracts preserve visible pixel content after 4:3 crop and nearest-neighbor reduction to logical 640x480."
+  },
+  "current_video": {
+    "verified": false,
+    "receiver_message": "Video Format Not Supported",
+    "methods": [
+      "Windows DirectShow MJPEG 1280x960 30 Hz",
+      "Windows DirectShow MJPEG 1280x720 60 Hz",
+      "OBS source-only screenshot using existing 1280x720 60 Hz YUY2 configuration"
+    ]
+  },
+  "scope": "Three application runs in one FPGA configuration and one OS boot. Serial completion is not visible display validation. Archived video proves only the events in that recording. No FPS, cold-boot reliability, controller input or universal display compatibility claim.",
+  "historical_relative_path_base": "experiments/basic-operation-20261108"
+}

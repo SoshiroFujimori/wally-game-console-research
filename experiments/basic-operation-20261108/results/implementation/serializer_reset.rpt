@@ -1,0 +1,601 @@
+Copyright 1986-2022 Xilinx, Inc. All Rights Reserved. Copyright 2022-2025 Advanced Micro Devices, Inc. All Rights Reserved.
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+| Tool Version : Vivado v.2025.2 (lin64) Build 6299465 Fri Nov 14 12:34:56 MST 2025
+| Date         : Sun Nov  8 13:34:45 2026
+| Host         : RESEARCH-HOST running 64-bit Ubuntu 24.04.4 LTS
+| Command      : report_timing -to [get_pins -of_objects [get_cells -hier -filter {REF_NAME == OSERDESE2 && NAME =~ rasterixgen.rasterix/display/encoder/serializer/*}] -filter {REF_PIN_NAME == RST}] -max_paths 8 -file /home/researcher/projects/wally-game-console-research/build/basic-operation-20261108/qualified/serializer_reset.rpt
+| Design       : fpgaTop
+| Device       : 7a200t-sbg484
+| Speed File   : -1  PRODUCTION 1.23 2018-06-13
+| Design State : Physopt postRoute
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+Timing Report
+
+Slack (MET) :             8.366ns  (required time - arrival time)
+  Source:                 rasterixgen.rasterix/display/EncoderReset_reg/C
+                            (rising edge-triggered cell FDPE clocked by clk_out1_videoclock  {rise@0.000ns fall@6.734ns period=13.468ns})
+  Destination:            rasterixgen.rasterix/display/encoder/serializer/xilinx_serialize[3].primary/RST
+                            (rising edge-triggered cell OSERDESE2 clocked by clk_out1_videoclock  {rise@0.000ns fall@6.734ns period=13.468ns})
+  Path Group:             clk_out1_videoclock
+  Path Type:              Setup (Max at Slow Process Corner)
+  Requirement:            13.468ns  (clk_out1_videoclock rise@13.468ns - clk_out1_videoclock rise@0.000ns)
+  Data Path Delay:        3.988ns  (logic 0.580ns (14.543%)  route 3.408ns (85.457%))
+  Logic Levels:           1  (LUT2=1)
+  Clock Path Skew:        -0.053ns (DCD - SCD + CPR)
+    Destination Clock Delay (DCD):    -1.600ns = ( 11.868 - 13.468 ) 
+    Source Clock Delay      (SCD):    -0.994ns
+    Clock Pessimism Removal (CPR):    0.554ns
+  Clock Uncertainty:      0.212ns  ((TSJ^2 + DJ^2)^1/2) / 2 + PE
+    Total System Jitter     (TSJ):    0.071ns
+    Discrete Jitter          (DJ):    0.418ns
+    Phase Error              (PE):    0.000ns
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+                         (clock clk_out1_videoclock rise edge)
+                                                      0.000     0.000 r  
+    R4                                                0.000     0.000 r  clk (IN)
+                         net (fo=0)                   0.000     0.000    mmcm/inst/clk_in1
+    R4                   IBUF (Prop_ibuf_I_O)         1.475     1.475 r  mmcm/inst/clkin1_ibufg/O
+                         net (fo=1, routed)           1.233     2.708    mmcm/inst/clk_in1_mmcm
+    MMCME2_ADV_X1Y2      MMCME2_ADV (Prop_mmcme2_adv_CLKIN1_CLKOUT0)
+                                                     -7.432    -4.724 r  mmcm/inst/mmcm_adv_inst/CLKOUT0
+                         net (fo=1, routed)           1.808    -2.915    mmcm/inst/clk_out1_mmcm
+    BUFGCTRL_X0Y3        BUFG (Prop_bufg_I_O)         0.096    -2.819 r  mmcm/inst/clkout1_buf/O
+                         net (fo=2, routed)           2.106    -0.713    rasterixgen.videoclock/inst/clk_in1
+    MMCME2_ADV_X1Y0      MMCME2_ADV (Prop_mmcme2_adv_CLKIN1_CLKOUT0)
+                                                     -4.900    -5.613 r  rasterixgen.videoclock/inst/mmcm_adv_inst/CLKOUT0
+                         net (fo=1, routed)           2.697    -2.915    rasterixgen.videoclock/inst/clk_out1_videoclock
+    BUFGCTRL_X0Y0        BUFG (Prop_bufg_I_O)         0.096    -2.819 r  rasterixgen.videoclock/inst/clkout1_buf/O
+                         net (fo=1006, routed)        1.825    -0.994    rasterixgen.rasterix/display/PixelCLK
+    SLICE_X159Y135       FDPE                                         r  rasterixgen.rasterix/display/EncoderReset_reg/C
+  -------------------------------------------------------------------    -------------------
+    SLICE_X159Y135       FDPE (Prop_fdpe_C_Q)         0.456    -0.538 r  rasterixgen.rasterix/display/EncoderReset_reg/Q
+                         net (fo=73, routed)          1.107     0.569    rasterixgen.rasterix/display/encoder/serializer/xilinx_serialize[3].secondary_0[0]
+    SLICE_X162Y135       LUT2 (Prop_lut2_I1_O)        0.124     0.693 r  rasterixgen.rasterix/display/encoder/serializer/xilinx_serialize[3].primary_i_1/O
+                         net (fo=8, routed)           2.301     2.994    rasterixgen.rasterix/display/encoder/serializer/p_0_out
+    OLOGIC_X1Y148        OSERDESE2                                    r  rasterixgen.rasterix/display/encoder/serializer/xilinx_serialize[3].primary/RST
+  -------------------------------------------------------------------    -------------------
+
+                         (clock clk_out1_videoclock rise edge)
+                                                     13.468    13.468 r  
+    R4                                                0.000    13.468 r  clk (IN)
+                         net (fo=0)                   0.000    13.468    mmcm/inst/clk_in1
+    R4                   IBUF (Prop_ibuf_I_O)         1.405    14.873 r  mmcm/inst/clkin1_ibufg/O
+                         net (fo=1, routed)           1.162    16.035    mmcm/inst/clk_in1_mmcm
+    MMCME2_ADV_X1Y2      MMCME2_ADV (Prop_mmcme2_adv_CLKIN1_CLKOUT0)
+                                                     -7.674     8.361 r  mmcm/inst/mmcm_adv_inst/CLKOUT0
+                         net (fo=1, routed)           1.723    10.084    mmcm/inst/clk_out1_mmcm
+    BUFGCTRL_X0Y3        BUFG (Prop_bufg_I_O)         0.091    10.175 r  mmcm/inst/clkout1_buf/O
+                         net (fo=2, routed)           1.972    12.147    rasterixgen.videoclock/inst/clk_in1
+    MMCME2_ADV_X1Y0      MMCME2_ADV (Prop_mmcme2_adv_CLKIN1_CLKOUT0)
+                                                     -4.637     7.510 r  rasterixgen.videoclock/inst/mmcm_adv_inst/CLKOUT0
+                         net (fo=1, routed)           2.574    10.084    rasterixgen.videoclock/inst/clk_out1_videoclock
+    BUFGCTRL_X0Y0        BUFG (Prop_bufg_I_O)         0.091    10.175 r  rasterixgen.videoclock/inst/clkout1_buf/O
+                         net (fo=1006, routed)        1.693    11.868    rasterixgen.rasterix/display/encoder/serializer/PixelCLK
+    OLOGIC_X1Y148        OSERDESE2                                    r  rasterixgen.rasterix/display/encoder/serializer/xilinx_serialize[3].primary/CLKDIV
+                         clock pessimism              0.554    12.422    
+                         clock uncertainty           -0.212    12.210    
+    OLOGIC_X1Y148        OSERDESE2 (Setup_oserdese2_CLKDIV_RST)
+                                                     -0.849    11.361    rasterixgen.rasterix/display/encoder/serializer/xilinx_serialize[3].primary
+  -------------------------------------------------------------------
+                         required time                         11.361    
+                         arrival time                          -2.994    
+  -------------------------------------------------------------------
+                         slack                                  8.366    
+
+Slack (MET) :             8.657ns  (required time - arrival time)
+  Source:                 rasterixgen.rasterix/display/EncoderReset_reg/C
+                            (rising edge-triggered cell FDPE clocked by clk_out1_videoclock  {rise@0.000ns fall@6.734ns period=13.468ns})
+  Destination:            rasterixgen.rasterix/display/encoder/serializer/xilinx_serialize[3].secondary/RST
+                            (rising edge-triggered cell OSERDESE2 clocked by clk_out1_videoclock  {rise@0.000ns fall@6.734ns period=13.468ns})
+  Path Group:             clk_out1_videoclock
+  Path Type:              Setup (Max at Slow Process Corner)
+  Requirement:            13.468ns  (clk_out1_videoclock rise@13.468ns - clk_out1_videoclock rise@0.000ns)
+  Data Path Delay:        3.698ns  (logic 0.580ns (15.686%)  route 3.118ns (84.314%))
+  Logic Levels:           1  (LUT2=1)
+  Clock Path Skew:        -0.053ns (DCD - SCD + CPR)
+    Destination Clock Delay (DCD):    -1.600ns = ( 11.868 - 13.468 ) 
+    Source Clock Delay      (SCD):    -0.994ns
+    Clock Pessimism Removal (CPR):    0.554ns
+  Clock Uncertainty:      0.212ns  ((TSJ^2 + DJ^2)^1/2) / 2 + PE
+    Total System Jitter     (TSJ):    0.071ns
+    Discrete Jitter          (DJ):    0.418ns
+    Phase Error              (PE):    0.000ns
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+                         (clock clk_out1_videoclock rise edge)
+                                                      0.000     0.000 r  
+    R4                                                0.000     0.000 r  clk (IN)
+                         net (fo=0)                   0.000     0.000    mmcm/inst/clk_in1
+    R4                   IBUF (Prop_ibuf_I_O)         1.475     1.475 r  mmcm/inst/clkin1_ibufg/O
+                         net (fo=1, routed)           1.233     2.708    mmcm/inst/clk_in1_mmcm
+    MMCME2_ADV_X1Y2      MMCME2_ADV (Prop_mmcme2_adv_CLKIN1_CLKOUT0)
+                                                     -7.432    -4.724 r  mmcm/inst/mmcm_adv_inst/CLKOUT0
+                         net (fo=1, routed)           1.808    -2.915    mmcm/inst/clk_out1_mmcm
+    BUFGCTRL_X0Y3        BUFG (Prop_bufg_I_O)         0.096    -2.819 r  mmcm/inst/clkout1_buf/O
+                         net (fo=2, routed)           2.106    -0.713    rasterixgen.videoclock/inst/clk_in1
+    MMCME2_ADV_X1Y0      MMCME2_ADV (Prop_mmcme2_adv_CLKIN1_CLKOUT0)
+                                                     -4.900    -5.613 r  rasterixgen.videoclock/inst/mmcm_adv_inst/CLKOUT0
+                         net (fo=1, routed)           2.697    -2.915    rasterixgen.videoclock/inst/clk_out1_videoclock
+    BUFGCTRL_X0Y0        BUFG (Prop_bufg_I_O)         0.096    -2.819 r  rasterixgen.videoclock/inst/clkout1_buf/O
+                         net (fo=1006, routed)        1.825    -0.994    rasterixgen.rasterix/display/PixelCLK
+    SLICE_X159Y135       FDPE                                         r  rasterixgen.rasterix/display/EncoderReset_reg/C
+  -------------------------------------------------------------------    -------------------
+    SLICE_X159Y135       FDPE (Prop_fdpe_C_Q)         0.456    -0.538 r  rasterixgen.rasterix/display/EncoderReset_reg/Q
+                         net (fo=73, routed)          1.107     0.569    rasterixgen.rasterix/display/encoder/serializer/xilinx_serialize[3].secondary_0[0]
+    SLICE_X162Y135       LUT2 (Prop_lut2_I1_O)        0.124     0.693 r  rasterixgen.rasterix/display/encoder/serializer/xilinx_serialize[3].primary_i_1/O
+                         net (fo=8, routed)           2.011     2.704    rasterixgen.rasterix/display/encoder/serializer/p_0_out
+    OLOGIC_X1Y147        OSERDESE2                                    r  rasterixgen.rasterix/display/encoder/serializer/xilinx_serialize[3].secondary/RST
+  -------------------------------------------------------------------    -------------------
+
+                         (clock clk_out1_videoclock rise edge)
+                                                     13.468    13.468 r  
+    R4                                                0.000    13.468 r  clk (IN)
+                         net (fo=0)                   0.000    13.468    mmcm/inst/clk_in1
+    R4                   IBUF (Prop_ibuf_I_O)         1.405    14.873 r  mmcm/inst/clkin1_ibufg/O
+                         net (fo=1, routed)           1.162    16.035    mmcm/inst/clk_in1_mmcm
+    MMCME2_ADV_X1Y2      MMCME2_ADV (Prop_mmcme2_adv_CLKIN1_CLKOUT0)
+                                                     -7.674     8.361 r  mmcm/inst/mmcm_adv_inst/CLKOUT0
+                         net (fo=1, routed)           1.723    10.084    mmcm/inst/clk_out1_mmcm
+    BUFGCTRL_X0Y3        BUFG (Prop_bufg_I_O)         0.091    10.175 r  mmcm/inst/clkout1_buf/O
+                         net (fo=2, routed)           1.972    12.147    rasterixgen.videoclock/inst/clk_in1
+    MMCME2_ADV_X1Y0      MMCME2_ADV (Prop_mmcme2_adv_CLKIN1_CLKOUT0)
+                                                     -4.637     7.510 r  rasterixgen.videoclock/inst/mmcm_adv_inst/CLKOUT0
+                         net (fo=1, routed)           2.574    10.084    rasterixgen.videoclock/inst/clk_out1_videoclock
+    BUFGCTRL_X0Y0        BUFG (Prop_bufg_I_O)         0.091    10.175 r  rasterixgen.videoclock/inst/clkout1_buf/O
+                         net (fo=1006, routed)        1.693    11.868    rasterixgen.rasterix/display/encoder/serializer/PixelCLK
+    OLOGIC_X1Y147        OSERDESE2                                    r  rasterixgen.rasterix/display/encoder/serializer/xilinx_serialize[3].secondary/CLKDIV
+                         clock pessimism              0.554    12.422    
+                         clock uncertainty           -0.212    12.210    
+    OLOGIC_X1Y147        OSERDESE2 (Setup_oserdese2_CLKDIV_RST)
+                                                     -0.849    11.361    rasterixgen.rasterix/display/encoder/serializer/xilinx_serialize[3].secondary
+  -------------------------------------------------------------------
+                         required time                         11.361    
+                         arrival time                          -2.704    
+  -------------------------------------------------------------------
+                         slack                                  8.657    
+
+Slack (MET) :             9.099ns  (required time - arrival time)
+  Source:                 rasterixgen.rasterix/display/EncoderReset_reg/C
+                            (rising edge-triggered cell FDPE clocked by clk_out1_videoclock  {rise@0.000ns fall@6.734ns period=13.468ns})
+  Destination:            rasterixgen.rasterix/display/encoder/serializer/xilinx_serialize[0].primary/RST
+                            (rising edge-triggered cell OSERDESE2 clocked by clk_out1_videoclock  {rise@0.000ns fall@6.734ns period=13.468ns})
+  Path Group:             clk_out1_videoclock
+  Path Type:              Setup (Max at Slow Process Corner)
+  Requirement:            13.468ns  (clk_out1_videoclock rise@13.468ns - clk_out1_videoclock rise@0.000ns)
+  Data Path Delay:        3.254ns  (logic 0.580ns (17.827%)  route 2.674ns (82.173%))
+  Logic Levels:           1  (LUT2=1)
+  Clock Path Skew:        -0.055ns (DCD - SCD + CPR)
+    Destination Clock Delay (DCD):    -1.602ns = ( 11.866 - 13.468 ) 
+    Source Clock Delay      (SCD):    -0.994ns
+    Clock Pessimism Removal (CPR):    0.554ns
+  Clock Uncertainty:      0.212ns  ((TSJ^2 + DJ^2)^1/2) / 2 + PE
+    Total System Jitter     (TSJ):    0.071ns
+    Discrete Jitter          (DJ):    0.418ns
+    Phase Error              (PE):    0.000ns
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+                         (clock clk_out1_videoclock rise edge)
+                                                      0.000     0.000 r  
+    R4                                                0.000     0.000 r  clk (IN)
+                         net (fo=0)                   0.000     0.000    mmcm/inst/clk_in1
+    R4                   IBUF (Prop_ibuf_I_O)         1.475     1.475 r  mmcm/inst/clkin1_ibufg/O
+                         net (fo=1, routed)           1.233     2.708    mmcm/inst/clk_in1_mmcm
+    MMCME2_ADV_X1Y2      MMCME2_ADV (Prop_mmcme2_adv_CLKIN1_CLKOUT0)
+                                                     -7.432    -4.724 r  mmcm/inst/mmcm_adv_inst/CLKOUT0
+                         net (fo=1, routed)           1.808    -2.915    mmcm/inst/clk_out1_mmcm
+    BUFGCTRL_X0Y3        BUFG (Prop_bufg_I_O)         0.096    -2.819 r  mmcm/inst/clkout1_buf/O
+                         net (fo=2, routed)           2.106    -0.713    rasterixgen.videoclock/inst/clk_in1
+    MMCME2_ADV_X1Y0      MMCME2_ADV (Prop_mmcme2_adv_CLKIN1_CLKOUT0)
+                                                     -4.900    -5.613 r  rasterixgen.videoclock/inst/mmcm_adv_inst/CLKOUT0
+                         net (fo=1, routed)           2.697    -2.915    rasterixgen.videoclock/inst/clk_out1_videoclock
+    BUFGCTRL_X0Y0        BUFG (Prop_bufg_I_O)         0.096    -2.819 r  rasterixgen.videoclock/inst/clkout1_buf/O
+                         net (fo=1006, routed)        1.825    -0.994    rasterixgen.rasterix/display/PixelCLK
+    SLICE_X159Y135       FDPE                                         r  rasterixgen.rasterix/display/EncoderReset_reg/C
+  -------------------------------------------------------------------    -------------------
+    SLICE_X159Y135       FDPE (Prop_fdpe_C_Q)         0.456    -0.538 r  rasterixgen.rasterix/display/EncoderReset_reg/Q
+                         net (fo=73, routed)          1.107     0.569    rasterixgen.rasterix/display/encoder/serializer/xilinx_serialize[3].secondary_0[0]
+    SLICE_X162Y135       LUT2 (Prop_lut2_I1_O)        0.124     0.693 r  rasterixgen.rasterix/display/encoder/serializer/xilinx_serialize[3].primary_i_1/O
+                         net (fo=8, routed)           1.567     2.260    rasterixgen.rasterix/display/encoder/serializer/p_0_out
+    OLOGIC_X1Y140        OSERDESE2                                    r  rasterixgen.rasterix/display/encoder/serializer/xilinx_serialize[0].primary/RST
+  -------------------------------------------------------------------    -------------------
+
+                         (clock clk_out1_videoclock rise edge)
+                                                     13.468    13.468 r  
+    R4                                                0.000    13.468 r  clk (IN)
+                         net (fo=0)                   0.000    13.468    mmcm/inst/clk_in1
+    R4                   IBUF (Prop_ibuf_I_O)         1.405    14.873 r  mmcm/inst/clkin1_ibufg/O
+                         net (fo=1, routed)           1.162    16.035    mmcm/inst/clk_in1_mmcm
+    MMCME2_ADV_X1Y2      MMCME2_ADV (Prop_mmcme2_adv_CLKIN1_CLKOUT0)
+                                                     -7.674     8.361 r  mmcm/inst/mmcm_adv_inst/CLKOUT0
+                         net (fo=1, routed)           1.723    10.084    mmcm/inst/clk_out1_mmcm
+    BUFGCTRL_X0Y3        BUFG (Prop_bufg_I_O)         0.091    10.175 r  mmcm/inst/clkout1_buf/O
+                         net (fo=2, routed)           1.972    12.147    rasterixgen.videoclock/inst/clk_in1
+    MMCME2_ADV_X1Y0      MMCME2_ADV (Prop_mmcme2_adv_CLKIN1_CLKOUT0)
+                                                     -4.637     7.510 r  rasterixgen.videoclock/inst/mmcm_adv_inst/CLKOUT0
+                         net (fo=1, routed)           2.574    10.084    rasterixgen.videoclock/inst/clk_out1_videoclock
+    BUFGCTRL_X0Y0        BUFG (Prop_bufg_I_O)         0.091    10.175 r  rasterixgen.videoclock/inst/clkout1_buf/O
+                         net (fo=1006, routed)        1.691    11.866    rasterixgen.rasterix/display/encoder/serializer/PixelCLK
+    OLOGIC_X1Y140        OSERDESE2                                    r  rasterixgen.rasterix/display/encoder/serializer/xilinx_serialize[0].primary/CLKDIV
+                         clock pessimism              0.554    12.420    
+                         clock uncertainty           -0.212    12.208    
+    OLOGIC_X1Y140        OSERDESE2 (Setup_oserdese2_CLKDIV_RST)
+                                                     -0.849    11.359    rasterixgen.rasterix/display/encoder/serializer/xilinx_serialize[0].primary
+  -------------------------------------------------------------------
+                         required time                         11.359    
+                         arrival time                          -2.260    
+  -------------------------------------------------------------------
+                         slack                                  9.099    
+
+Slack (MET) :             9.250ns  (required time - arrival time)
+  Source:                 rasterixgen.rasterix/display/EncoderReset_reg/C
+                            (rising edge-triggered cell FDPE clocked by clk_out1_videoclock  {rise@0.000ns fall@6.734ns period=13.468ns})
+  Destination:            rasterixgen.rasterix/display/encoder/serializer/xilinx_serialize[0].secondary/RST
+                            (rising edge-triggered cell OSERDESE2 clocked by clk_out1_videoclock  {rise@0.000ns fall@6.734ns period=13.468ns})
+  Path Group:             clk_out1_videoclock
+  Path Type:              Setup (Max at Slow Process Corner)
+  Requirement:            13.468ns  (clk_out1_videoclock rise@13.468ns - clk_out1_videoclock rise@0.000ns)
+  Data Path Delay:        3.103ns  (logic 0.580ns (18.692%)  route 2.523ns (81.308%))
+  Logic Levels:           1  (LUT2=1)
+  Clock Path Skew:        -0.055ns (DCD - SCD + CPR)
+    Destination Clock Delay (DCD):    -1.602ns = ( 11.866 - 13.468 ) 
+    Source Clock Delay      (SCD):    -0.994ns
+    Clock Pessimism Removal (CPR):    0.554ns
+  Clock Uncertainty:      0.212ns  ((TSJ^2 + DJ^2)^1/2) / 2 + PE
+    Total System Jitter     (TSJ):    0.071ns
+    Discrete Jitter          (DJ):    0.418ns
+    Phase Error              (PE):    0.000ns
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+                         (clock clk_out1_videoclock rise edge)
+                                                      0.000     0.000 r  
+    R4                                                0.000     0.000 r  clk (IN)
+                         net (fo=0)                   0.000     0.000    mmcm/inst/clk_in1
+    R4                   IBUF (Prop_ibuf_I_O)         1.475     1.475 r  mmcm/inst/clkin1_ibufg/O
+                         net (fo=1, routed)           1.233     2.708    mmcm/inst/clk_in1_mmcm
+    MMCME2_ADV_X1Y2      MMCME2_ADV (Prop_mmcme2_adv_CLKIN1_CLKOUT0)
+                                                     -7.432    -4.724 r  mmcm/inst/mmcm_adv_inst/CLKOUT0
+                         net (fo=1, routed)           1.808    -2.915    mmcm/inst/clk_out1_mmcm
+    BUFGCTRL_X0Y3        BUFG (Prop_bufg_I_O)         0.096    -2.819 r  mmcm/inst/clkout1_buf/O
+                         net (fo=2, routed)           2.106    -0.713    rasterixgen.videoclock/inst/clk_in1
+    MMCME2_ADV_X1Y0      MMCME2_ADV (Prop_mmcme2_adv_CLKIN1_CLKOUT0)
+                                                     -4.900    -5.613 r  rasterixgen.videoclock/inst/mmcm_adv_inst/CLKOUT0
+                         net (fo=1, routed)           2.697    -2.915    rasterixgen.videoclock/inst/clk_out1_videoclock
+    BUFGCTRL_X0Y0        BUFG (Prop_bufg_I_O)         0.096    -2.819 r  rasterixgen.videoclock/inst/clkout1_buf/O
+                         net (fo=1006, routed)        1.825    -0.994    rasterixgen.rasterix/display/PixelCLK
+    SLICE_X159Y135       FDPE                                         r  rasterixgen.rasterix/display/EncoderReset_reg/C
+  -------------------------------------------------------------------    -------------------
+    SLICE_X159Y135       FDPE (Prop_fdpe_C_Q)         0.456    -0.538 r  rasterixgen.rasterix/display/EncoderReset_reg/Q
+                         net (fo=73, routed)          1.107     0.569    rasterixgen.rasterix/display/encoder/serializer/xilinx_serialize[3].secondary_0[0]
+    SLICE_X162Y135       LUT2 (Prop_lut2_I1_O)        0.124     0.693 r  rasterixgen.rasterix/display/encoder/serializer/xilinx_serialize[3].primary_i_1/O
+                         net (fo=8, routed)           1.416     2.109    rasterixgen.rasterix/display/encoder/serializer/p_0_out
+    OLOGIC_X1Y139        OSERDESE2                                    r  rasterixgen.rasterix/display/encoder/serializer/xilinx_serialize[0].secondary/RST
+  -------------------------------------------------------------------    -------------------
+
+                         (clock clk_out1_videoclock rise edge)
+                                                     13.468    13.468 r  
+    R4                                                0.000    13.468 r  clk (IN)
+                         net (fo=0)                   0.000    13.468    mmcm/inst/clk_in1
+    R4                   IBUF (Prop_ibuf_I_O)         1.405    14.873 r  mmcm/inst/clkin1_ibufg/O
+                         net (fo=1, routed)           1.162    16.035    mmcm/inst/clk_in1_mmcm
+    MMCME2_ADV_X1Y2      MMCME2_ADV (Prop_mmcme2_adv_CLKIN1_CLKOUT0)
+                                                     -7.674     8.361 r  mmcm/inst/mmcm_adv_inst/CLKOUT0
+                         net (fo=1, routed)           1.723    10.084    mmcm/inst/clk_out1_mmcm
+    BUFGCTRL_X0Y3        BUFG (Prop_bufg_I_O)         0.091    10.175 r  mmcm/inst/clkout1_buf/O
+                         net (fo=2, routed)           1.972    12.147    rasterixgen.videoclock/inst/clk_in1
+    MMCME2_ADV_X1Y0      MMCME2_ADV (Prop_mmcme2_adv_CLKIN1_CLKOUT0)
+                                                     -4.637     7.510 r  rasterixgen.videoclock/inst/mmcm_adv_inst/CLKOUT0
+                         net (fo=1, routed)           2.574    10.084    rasterixgen.videoclock/inst/clk_out1_videoclock
+    BUFGCTRL_X0Y0        BUFG (Prop_bufg_I_O)         0.091    10.175 r  rasterixgen.videoclock/inst/clkout1_buf/O
+                         net (fo=1006, routed)        1.691    11.866    rasterixgen.rasterix/display/encoder/serializer/PixelCLK
+    OLOGIC_X1Y139        OSERDESE2                                    r  rasterixgen.rasterix/display/encoder/serializer/xilinx_serialize[0].secondary/CLKDIV
+                         clock pessimism              0.554    12.420    
+                         clock uncertainty           -0.212    12.208    
+    OLOGIC_X1Y139        OSERDESE2 (Setup_oserdese2_CLKDIV_RST)
+                                                     -0.849    11.359    rasterixgen.rasterix/display/encoder/serializer/xilinx_serialize[0].secondary
+  -------------------------------------------------------------------
+                         required time                         11.359    
+                         arrival time                          -2.109    
+  -------------------------------------------------------------------
+                         slack                                  9.250    
+
+Slack (MET) :             9.539ns  (required time - arrival time)
+  Source:                 rasterixgen.rasterix/display/EncoderReset_reg/C
+                            (rising edge-triggered cell FDPE clocked by clk_out1_videoclock  {rise@0.000ns fall@6.734ns period=13.468ns})
+  Destination:            rasterixgen.rasterix/display/encoder/serializer/xilinx_serialize[1].primary/RST
+                            (rising edge-triggered cell OSERDESE2 clocked by clk_out1_videoclock  {rise@0.000ns fall@6.734ns period=13.468ns})
+  Path Group:             clk_out1_videoclock
+  Path Type:              Setup (Max at Slow Process Corner)
+  Requirement:            13.468ns  (clk_out1_videoclock rise@13.468ns - clk_out1_videoclock rise@0.000ns)
+  Data Path Delay:        2.810ns  (logic 0.580ns (20.639%)  route 2.230ns (79.361%))
+  Logic Levels:           1  (LUT2=1)
+  Clock Path Skew:        -0.058ns (DCD - SCD + CPR)
+    Destination Clock Delay (DCD):    -1.605ns = ( 11.863 - 13.468 ) 
+    Source Clock Delay      (SCD):    -0.994ns
+    Clock Pessimism Removal (CPR):    0.554ns
+  Clock Uncertainty:      0.212ns  ((TSJ^2 + DJ^2)^1/2) / 2 + PE
+    Total System Jitter     (TSJ):    0.071ns
+    Discrete Jitter          (DJ):    0.418ns
+    Phase Error              (PE):    0.000ns
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+                         (clock clk_out1_videoclock rise edge)
+                                                      0.000     0.000 r  
+    R4                                                0.000     0.000 r  clk (IN)
+                         net (fo=0)                   0.000     0.000    mmcm/inst/clk_in1
+    R4                   IBUF (Prop_ibuf_I_O)         1.475     1.475 r  mmcm/inst/clkin1_ibufg/O
+                         net (fo=1, routed)           1.233     2.708    mmcm/inst/clk_in1_mmcm
+    MMCME2_ADV_X1Y2      MMCME2_ADV (Prop_mmcme2_adv_CLKIN1_CLKOUT0)
+                                                     -7.432    -4.724 r  mmcm/inst/mmcm_adv_inst/CLKOUT0
+                         net (fo=1, routed)           1.808    -2.915    mmcm/inst/clk_out1_mmcm
+    BUFGCTRL_X0Y3        BUFG (Prop_bufg_I_O)         0.096    -2.819 r  mmcm/inst/clkout1_buf/O
+                         net (fo=2, routed)           2.106    -0.713    rasterixgen.videoclock/inst/clk_in1
+    MMCME2_ADV_X1Y0      MMCME2_ADV (Prop_mmcme2_adv_CLKIN1_CLKOUT0)
+                                                     -4.900    -5.613 r  rasterixgen.videoclock/inst/mmcm_adv_inst/CLKOUT0
+                         net (fo=1, routed)           2.697    -2.915    rasterixgen.videoclock/inst/clk_out1_videoclock
+    BUFGCTRL_X0Y0        BUFG (Prop_bufg_I_O)         0.096    -2.819 r  rasterixgen.videoclock/inst/clkout1_buf/O
+                         net (fo=1006, routed)        1.825    -0.994    rasterixgen.rasterix/display/PixelCLK
+    SLICE_X159Y135       FDPE                                         r  rasterixgen.rasterix/display/EncoderReset_reg/C
+  -------------------------------------------------------------------    -------------------
+    SLICE_X159Y135       FDPE (Prop_fdpe_C_Q)         0.456    -0.538 r  rasterixgen.rasterix/display/EncoderReset_reg/Q
+                         net (fo=73, routed)          1.107     0.569    rasterixgen.rasterix/display/encoder/serializer/xilinx_serialize[3].secondary_0[0]
+    SLICE_X162Y135       LUT2 (Prop_lut2_I1_O)        0.124     0.693 r  rasterixgen.rasterix/display/encoder/serializer/xilinx_serialize[3].primary_i_1/O
+                         net (fo=8, routed)           1.123     1.816    rasterixgen.rasterix/display/encoder/serializer/p_0_out
+    OLOGIC_X1Y136        OSERDESE2                                    r  rasterixgen.rasterix/display/encoder/serializer/xilinx_serialize[1].primary/RST
+  -------------------------------------------------------------------    -------------------
+
+                         (clock clk_out1_videoclock rise edge)
+                                                     13.468    13.468 r  
+    R4                                                0.000    13.468 r  clk (IN)
+                         net (fo=0)                   0.000    13.468    mmcm/inst/clk_in1
+    R4                   IBUF (Prop_ibuf_I_O)         1.405    14.873 r  mmcm/inst/clkin1_ibufg/O
+                         net (fo=1, routed)           1.162    16.035    mmcm/inst/clk_in1_mmcm
+    MMCME2_ADV_X1Y2      MMCME2_ADV (Prop_mmcme2_adv_CLKIN1_CLKOUT0)
+                                                     -7.674     8.361 r  mmcm/inst/mmcm_adv_inst/CLKOUT0
+                         net (fo=1, routed)           1.723    10.084    mmcm/inst/clk_out1_mmcm
+    BUFGCTRL_X0Y3        BUFG (Prop_bufg_I_O)         0.091    10.175 r  mmcm/inst/clkout1_buf/O
+                         net (fo=2, routed)           1.972    12.147    rasterixgen.videoclock/inst/clk_in1
+    MMCME2_ADV_X1Y0      MMCME2_ADV (Prop_mmcme2_adv_CLKIN1_CLKOUT0)
+                                                     -4.637     7.510 r  rasterixgen.videoclock/inst/mmcm_adv_inst/CLKOUT0
+                         net (fo=1, routed)           2.574    10.084    rasterixgen.videoclock/inst/clk_out1_videoclock
+    BUFGCTRL_X0Y0        BUFG (Prop_bufg_I_O)         0.091    10.175 r  rasterixgen.videoclock/inst/clkout1_buf/O
+                         net (fo=1006, routed)        1.688    11.863    rasterixgen.rasterix/display/encoder/serializer/PixelCLK
+    OLOGIC_X1Y136        OSERDESE2                                    r  rasterixgen.rasterix/display/encoder/serializer/xilinx_serialize[1].primary/CLKDIV
+                         clock pessimism              0.554    12.417    
+                         clock uncertainty           -0.212    12.205    
+    OLOGIC_X1Y136        OSERDESE2 (Setup_oserdese2_CLKDIV_RST)
+                                                     -0.849    11.356    rasterixgen.rasterix/display/encoder/serializer/xilinx_serialize[1].primary
+  -------------------------------------------------------------------
+                         required time                         11.356    
+                         arrival time                          -1.816    
+  -------------------------------------------------------------------
+                         slack                                  9.539    
+
+Slack (MET) :             9.577ns  (required time - arrival time)
+  Source:                 rasterixgen.rasterix/display/EncoderReset_reg/C
+                            (rising edge-triggered cell FDPE clocked by clk_out1_videoclock  {rise@0.000ns fall@6.734ns period=13.468ns})
+  Destination:            rasterixgen.rasterix/display/encoder/serializer/xilinx_serialize[2].primary/RST
+                            (rising edge-triggered cell OSERDESE2 clocked by clk_out1_videoclock  {rise@0.000ns fall@6.734ns period=13.468ns})
+  Path Group:             clk_out1_videoclock
+  Path Type:              Setup (Max at Slow Process Corner)
+  Requirement:            13.468ns  (clk_out1_videoclock rise@13.468ns - clk_out1_videoclock rise@0.000ns)
+  Data Path Delay:        2.772ns  (logic 0.580ns (20.926%)  route 2.192ns (79.074%))
+  Logic Levels:           1  (LUT2=1)
+  Clock Path Skew:        -0.059ns (DCD - SCD + CPR)
+    Destination Clock Delay (DCD):    -1.606ns = ( 11.862 - 13.468 ) 
+    Source Clock Delay      (SCD):    -0.994ns
+    Clock Pessimism Removal (CPR):    0.554ns
+  Clock Uncertainty:      0.212ns  ((TSJ^2 + DJ^2)^1/2) / 2 + PE
+    Total System Jitter     (TSJ):    0.071ns
+    Discrete Jitter          (DJ):    0.418ns
+    Phase Error              (PE):    0.000ns
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+                         (clock clk_out1_videoclock rise edge)
+                                                      0.000     0.000 r  
+    R4                                                0.000     0.000 r  clk (IN)
+                         net (fo=0)                   0.000     0.000    mmcm/inst/clk_in1
+    R4                   IBUF (Prop_ibuf_I_O)         1.475     1.475 r  mmcm/inst/clkin1_ibufg/O
+                         net (fo=1, routed)           1.233     2.708    mmcm/inst/clk_in1_mmcm
+    MMCME2_ADV_X1Y2      MMCME2_ADV (Prop_mmcme2_adv_CLKIN1_CLKOUT0)
+                                                     -7.432    -4.724 r  mmcm/inst/mmcm_adv_inst/CLKOUT0
+                         net (fo=1, routed)           1.808    -2.915    mmcm/inst/clk_out1_mmcm
+    BUFGCTRL_X0Y3        BUFG (Prop_bufg_I_O)         0.096    -2.819 r  mmcm/inst/clkout1_buf/O
+                         net (fo=2, routed)           2.106    -0.713    rasterixgen.videoclock/inst/clk_in1
+    MMCME2_ADV_X1Y0      MMCME2_ADV (Prop_mmcme2_adv_CLKIN1_CLKOUT0)
+                                                     -4.900    -5.613 r  rasterixgen.videoclock/inst/mmcm_adv_inst/CLKOUT0
+                         net (fo=1, routed)           2.697    -2.915    rasterixgen.videoclock/inst/clk_out1_videoclock
+    BUFGCTRL_X0Y0        BUFG (Prop_bufg_I_O)         0.096    -2.819 r  rasterixgen.videoclock/inst/clkout1_buf/O
+                         net (fo=1006, routed)        1.825    -0.994    rasterixgen.rasterix/display/PixelCLK
+    SLICE_X159Y135       FDPE                                         r  rasterixgen.rasterix/display/EncoderReset_reg/C
+  -------------------------------------------------------------------    -------------------
+    SLICE_X159Y135       FDPE (Prop_fdpe_C_Q)         0.456    -0.538 r  rasterixgen.rasterix/display/EncoderReset_reg/Q
+                         net (fo=73, routed)          1.107     0.569    rasterixgen.rasterix/display/encoder/serializer/xilinx_serialize[3].secondary_0[0]
+    SLICE_X162Y135       LUT2 (Prop_lut2_I1_O)        0.124     0.693 r  rasterixgen.rasterix/display/encoder/serializer/xilinx_serialize[3].primary_i_1/O
+                         net (fo=8, routed)           1.085     1.778    rasterixgen.rasterix/display/encoder/serializer/p_0_out
+    OLOGIC_X1Y134        OSERDESE2                                    r  rasterixgen.rasterix/display/encoder/serializer/xilinx_serialize[2].primary/RST
+  -------------------------------------------------------------------    -------------------
+
+                         (clock clk_out1_videoclock rise edge)
+                                                     13.468    13.468 r  
+    R4                                                0.000    13.468 r  clk (IN)
+                         net (fo=0)                   0.000    13.468    mmcm/inst/clk_in1
+    R4                   IBUF (Prop_ibuf_I_O)         1.405    14.873 r  mmcm/inst/clkin1_ibufg/O
+                         net (fo=1, routed)           1.162    16.035    mmcm/inst/clk_in1_mmcm
+    MMCME2_ADV_X1Y2      MMCME2_ADV (Prop_mmcme2_adv_CLKIN1_CLKOUT0)
+                                                     -7.674     8.361 r  mmcm/inst/mmcm_adv_inst/CLKOUT0
+                         net (fo=1, routed)           1.723    10.084    mmcm/inst/clk_out1_mmcm
+    BUFGCTRL_X0Y3        BUFG (Prop_bufg_I_O)         0.091    10.175 r  mmcm/inst/clkout1_buf/O
+                         net (fo=2, routed)           1.972    12.147    rasterixgen.videoclock/inst/clk_in1
+    MMCME2_ADV_X1Y0      MMCME2_ADV (Prop_mmcme2_adv_CLKIN1_CLKOUT0)
+                                                     -4.637     7.510 r  rasterixgen.videoclock/inst/mmcm_adv_inst/CLKOUT0
+                         net (fo=1, routed)           2.574    10.084    rasterixgen.videoclock/inst/clk_out1_videoclock
+    BUFGCTRL_X0Y0        BUFG (Prop_bufg_I_O)         0.091    10.175 r  rasterixgen.videoclock/inst/clkout1_buf/O
+                         net (fo=1006, routed)        1.687    11.862    rasterixgen.rasterix/display/encoder/serializer/PixelCLK
+    OLOGIC_X1Y134        OSERDESE2                                    r  rasterixgen.rasterix/display/encoder/serializer/xilinx_serialize[2].primary/CLKDIV
+                         clock pessimism              0.554    12.416    
+                         clock uncertainty           -0.212    12.204    
+    OLOGIC_X1Y134        OSERDESE2 (Setup_oserdese2_CLKDIV_RST)
+                                                     -0.849    11.355    rasterixgen.rasterix/display/encoder/serializer/xilinx_serialize[2].primary
+  -------------------------------------------------------------------
+                         required time                         11.355    
+                         arrival time                          -1.778    
+  -------------------------------------------------------------------
+                         slack                                  9.577    
+
+Slack (MET) :             9.591ns  (required time - arrival time)
+  Source:                 rasterixgen.rasterix/display/EncoderReset_reg/C
+                            (rising edge-triggered cell FDPE clocked by clk_out1_videoclock  {rise@0.000ns fall@6.734ns period=13.468ns})
+  Destination:            rasterixgen.rasterix/display/encoder/serializer/xilinx_serialize[2].secondary/RST
+                            (rising edge-triggered cell OSERDESE2 clocked by clk_out1_videoclock  {rise@0.000ns fall@6.734ns period=13.468ns})
+  Path Group:             clk_out1_videoclock
+  Path Type:              Setup (Max at Slow Process Corner)
+  Requirement:            13.468ns  (clk_out1_videoclock rise@13.468ns - clk_out1_videoclock rise@0.000ns)
+  Data Path Delay:        2.758ns  (logic 0.580ns (21.030%)  route 2.178ns (78.970%))
+  Logic Levels:           1  (LUT2=1)
+  Clock Path Skew:        -0.059ns (DCD - SCD + CPR)
+    Destination Clock Delay (DCD):    -1.606ns = ( 11.862 - 13.468 ) 
+    Source Clock Delay      (SCD):    -0.994ns
+    Clock Pessimism Removal (CPR):    0.554ns
+  Clock Uncertainty:      0.212ns  ((TSJ^2 + DJ^2)^1/2) / 2 + PE
+    Total System Jitter     (TSJ):    0.071ns
+    Discrete Jitter          (DJ):    0.418ns
+    Phase Error              (PE):    0.000ns
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+                         (clock clk_out1_videoclock rise edge)
+                                                      0.000     0.000 r  
+    R4                                                0.000     0.000 r  clk (IN)
+                         net (fo=0)                   0.000     0.000    mmcm/inst/clk_in1
+    R4                   IBUF (Prop_ibuf_I_O)         1.475     1.475 r  mmcm/inst/clkin1_ibufg/O
+                         net (fo=1, routed)           1.233     2.708    mmcm/inst/clk_in1_mmcm
+    MMCME2_ADV_X1Y2      MMCME2_ADV (Prop_mmcme2_adv_CLKIN1_CLKOUT0)
+                                                     -7.432    -4.724 r  mmcm/inst/mmcm_adv_inst/CLKOUT0
+                         net (fo=1, routed)           1.808    -2.915    mmcm/inst/clk_out1_mmcm
+    BUFGCTRL_X0Y3        BUFG (Prop_bufg_I_O)         0.096    -2.819 r  mmcm/inst/clkout1_buf/O
+                         net (fo=2, routed)           2.106    -0.713    rasterixgen.videoclock/inst/clk_in1
+    MMCME2_ADV_X1Y0      MMCME2_ADV (Prop_mmcme2_adv_CLKIN1_CLKOUT0)
+                                                     -4.900    -5.613 r  rasterixgen.videoclock/inst/mmcm_adv_inst/CLKOUT0
+                         net (fo=1, routed)           2.697    -2.915    rasterixgen.videoclock/inst/clk_out1_videoclock
+    BUFGCTRL_X0Y0        BUFG (Prop_bufg_I_O)         0.096    -2.819 r  rasterixgen.videoclock/inst/clkout1_buf/O
+                         net (fo=1006, routed)        1.825    -0.994    rasterixgen.rasterix/display/PixelCLK
+    SLICE_X159Y135       FDPE                                         r  rasterixgen.rasterix/display/EncoderReset_reg/C
+  -------------------------------------------------------------------    -------------------
+    SLICE_X159Y135       FDPE (Prop_fdpe_C_Q)         0.456    -0.538 r  rasterixgen.rasterix/display/EncoderReset_reg/Q
+                         net (fo=73, routed)          1.107     0.569    rasterixgen.rasterix/display/encoder/serializer/xilinx_serialize[3].secondary_0[0]
+    SLICE_X162Y135       LUT2 (Prop_lut2_I1_O)        0.124     0.693 r  rasterixgen.rasterix/display/encoder/serializer/xilinx_serialize[3].primary_i_1/O
+                         net (fo=8, routed)           1.071     1.764    rasterixgen.rasterix/display/encoder/serializer/p_0_out
+    OLOGIC_X1Y133        OSERDESE2                                    r  rasterixgen.rasterix/display/encoder/serializer/xilinx_serialize[2].secondary/RST
+  -------------------------------------------------------------------    -------------------
+
+                         (clock clk_out1_videoclock rise edge)
+                                                     13.468    13.468 r  
+    R4                                                0.000    13.468 r  clk (IN)
+                         net (fo=0)                   0.000    13.468    mmcm/inst/clk_in1
+    R4                   IBUF (Prop_ibuf_I_O)         1.405    14.873 r  mmcm/inst/clkin1_ibufg/O
+                         net (fo=1, routed)           1.162    16.035    mmcm/inst/clk_in1_mmcm
+    MMCME2_ADV_X1Y2      MMCME2_ADV (Prop_mmcme2_adv_CLKIN1_CLKOUT0)
+                                                     -7.674     8.361 r  mmcm/inst/mmcm_adv_inst/CLKOUT0
+                         net (fo=1, routed)           1.723    10.084    mmcm/inst/clk_out1_mmcm
+    BUFGCTRL_X0Y3        BUFG (Prop_bufg_I_O)         0.091    10.175 r  mmcm/inst/clkout1_buf/O
+                         net (fo=2, routed)           1.972    12.147    rasterixgen.videoclock/inst/clk_in1
+    MMCME2_ADV_X1Y0      MMCME2_ADV (Prop_mmcme2_adv_CLKIN1_CLKOUT0)
+                                                     -4.637     7.510 r  rasterixgen.videoclock/inst/mmcm_adv_inst/CLKOUT0
+                         net (fo=1, routed)           2.574    10.084    rasterixgen.videoclock/inst/clk_out1_videoclock
+    BUFGCTRL_X0Y0        BUFG (Prop_bufg_I_O)         0.091    10.175 r  rasterixgen.videoclock/inst/clkout1_buf/O
+                         net (fo=1006, routed)        1.687    11.862    rasterixgen.rasterix/display/encoder/serializer/PixelCLK
+    OLOGIC_X1Y133        OSERDESE2                                    r  rasterixgen.rasterix/display/encoder/serializer/xilinx_serialize[2].secondary/CLKDIV
+                         clock pessimism              0.554    12.416    
+                         clock uncertainty           -0.212    12.204    
+    OLOGIC_X1Y133        OSERDESE2 (Setup_oserdese2_CLKDIV_RST)
+                                                     -0.849    11.355    rasterixgen.rasterix/display/encoder/serializer/xilinx_serialize[2].secondary
+  -------------------------------------------------------------------
+                         required time                         11.355    
+                         arrival time                          -1.764    
+  -------------------------------------------------------------------
+                         slack                                  9.591    
+
+Slack (MET) :             9.725ns  (required time - arrival time)
+  Source:                 rasterixgen.rasterix/display/EncoderReset_reg/C
+                            (rising edge-triggered cell FDPE clocked by clk_out1_videoclock  {rise@0.000ns fall@6.734ns period=13.468ns})
+  Destination:            rasterixgen.rasterix/display/encoder/serializer/xilinx_serialize[1].secondary/RST
+                            (rising edge-triggered cell OSERDESE2 clocked by clk_out1_videoclock  {rise@0.000ns fall@6.734ns period=13.468ns})
+  Path Group:             clk_out1_videoclock
+  Path Type:              Setup (Max at Slow Process Corner)
+  Requirement:            13.468ns  (clk_out1_videoclock rise@13.468ns - clk_out1_videoclock rise@0.000ns)
+  Data Path Delay:        2.624ns  (logic 0.580ns (22.102%)  route 2.044ns (77.898%))
+  Logic Levels:           1  (LUT2=1)
+  Clock Path Skew:        -0.058ns (DCD - SCD + CPR)
+    Destination Clock Delay (DCD):    -1.605ns = ( 11.863 - 13.468 ) 
+    Source Clock Delay      (SCD):    -0.994ns
+    Clock Pessimism Removal (CPR):    0.554ns
+  Clock Uncertainty:      0.212ns  ((TSJ^2 + DJ^2)^1/2) / 2 + PE
+    Total System Jitter     (TSJ):    0.071ns
+    Discrete Jitter          (DJ):    0.418ns
+    Phase Error              (PE):    0.000ns
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+                         (clock clk_out1_videoclock rise edge)
+                                                      0.000     0.000 r  
+    R4                                                0.000     0.000 r  clk (IN)
+                         net (fo=0)                   0.000     0.000    mmcm/inst/clk_in1
+    R4                   IBUF (Prop_ibuf_I_O)         1.475     1.475 r  mmcm/inst/clkin1_ibufg/O
+                         net (fo=1, routed)           1.233     2.708    mmcm/inst/clk_in1_mmcm
+    MMCME2_ADV_X1Y2      MMCME2_ADV (Prop_mmcme2_adv_CLKIN1_CLKOUT0)
+                                                     -7.432    -4.724 r  mmcm/inst/mmcm_adv_inst/CLKOUT0
+                         net (fo=1, routed)           1.808    -2.915    mmcm/inst/clk_out1_mmcm
+    BUFGCTRL_X0Y3        BUFG (Prop_bufg_I_O)         0.096    -2.819 r  mmcm/inst/clkout1_buf/O
+                         net (fo=2, routed)           2.106    -0.713    rasterixgen.videoclock/inst/clk_in1
+    MMCME2_ADV_X1Y0      MMCME2_ADV (Prop_mmcme2_adv_CLKIN1_CLKOUT0)
+                                                     -4.900    -5.613 r  rasterixgen.videoclock/inst/mmcm_adv_inst/CLKOUT0
+                         net (fo=1, routed)           2.697    -2.915    rasterixgen.videoclock/inst/clk_out1_videoclock
+    BUFGCTRL_X0Y0        BUFG (Prop_bufg_I_O)         0.096    -2.819 r  rasterixgen.videoclock/inst/clkout1_buf/O
+                         net (fo=1006, routed)        1.825    -0.994    rasterixgen.rasterix/display/PixelCLK
+    SLICE_X159Y135       FDPE                                         r  rasterixgen.rasterix/display/EncoderReset_reg/C
+  -------------------------------------------------------------------    -------------------
+    SLICE_X159Y135       FDPE (Prop_fdpe_C_Q)         0.456    -0.538 r  rasterixgen.rasterix/display/EncoderReset_reg/Q
+                         net (fo=73, routed)          1.107     0.569    rasterixgen.rasterix/display/encoder/serializer/xilinx_serialize[3].secondary_0[0]
+    SLICE_X162Y135       LUT2 (Prop_lut2_I1_O)        0.124     0.693 r  rasterixgen.rasterix/display/encoder/serializer/xilinx_serialize[3].primary_i_1/O
+                         net (fo=8, routed)           0.938     1.630    rasterixgen.rasterix/display/encoder/serializer/p_0_out
+    OLOGIC_X1Y135        OSERDESE2                                    r  rasterixgen.rasterix/display/encoder/serializer/xilinx_serialize[1].secondary/RST
+  -------------------------------------------------------------------    -------------------
+
+                         (clock clk_out1_videoclock rise edge)
+                                                     13.468    13.468 r  
+    R4                                                0.000    13.468 r  clk (IN)
+                         net (fo=0)                   0.000    13.468    mmcm/inst/clk_in1
+    R4                   IBUF (Prop_ibuf_I_O)         1.405    14.873 r  mmcm/inst/clkin1_ibufg/O
+                         net (fo=1, routed)           1.162    16.035    mmcm/inst/clk_in1_mmcm
+    MMCME2_ADV_X1Y2      MMCME2_ADV (Prop_mmcme2_adv_CLKIN1_CLKOUT0)
+                                                     -7.674     8.361 r  mmcm/inst/mmcm_adv_inst/CLKOUT0
+                         net (fo=1, routed)           1.723    10.084    mmcm/inst/clk_out1_mmcm
+    BUFGCTRL_X0Y3        BUFG (Prop_bufg_I_O)         0.091    10.175 r  mmcm/inst/clkout1_buf/O
+                         net (fo=2, routed)           1.972    12.147    rasterixgen.videoclock/inst/clk_in1
+    MMCME2_ADV_X1Y0      MMCME2_ADV (Prop_mmcme2_adv_CLKIN1_CLKOUT0)
+                                                     -4.637     7.510 r  rasterixgen.videoclock/inst/mmcm_adv_inst/CLKOUT0
+                         net (fo=1, routed)           2.574    10.084    rasterixgen.videoclock/inst/clk_out1_videoclock
+    BUFGCTRL_X0Y0        BUFG (Prop_bufg_I_O)         0.091    10.175 r  rasterixgen.videoclock/inst/clkout1_buf/O
+                         net (fo=1006, routed)        1.688    11.863    rasterixgen.rasterix/display/encoder/serializer/PixelCLK
+    OLOGIC_X1Y135        OSERDESE2                                    r  rasterixgen.rasterix/display/encoder/serializer/xilinx_serialize[1].secondary/CLKDIV
+                         clock pessimism              0.554    12.417    
+                         clock uncertainty           -0.212    12.205    
+    OLOGIC_X1Y135        OSERDESE2 (Setup_oserdese2_CLKDIV_RST)
+                                                     -0.849    11.356    rasterixgen.rasterix/display/encoder/serializer/xilinx_serialize[1].secondary
+  -------------------------------------------------------------------
+                         required time                         11.356    
+                         arrival time                          -1.630    
+  -------------------------------------------------------------------
+                         slack                                  9.725    
+
+
+
+

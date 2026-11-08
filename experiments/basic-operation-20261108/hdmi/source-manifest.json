@@ -1,0 +1,15 @@
+{
+  "product_revision": "261832d48832dd6e26c4971ab8893ce61200688b",
+  "rasterix_revision": "9269a01c9bd4c3342bfa70ef8e3cdd751c15c6d0",
+  "hdmi_revision": "83b1c9543a91b776671a44e68e130f81cae437b7",
+  "hdmi_url": "https://github.com/hdl-util/hdmi.git",
+  "scope": "Research-only output variant. The product and upstream RasterIX checkouts remain unchanged.",
+  "patch_sha256": "055c048357a43371f6a86ebd2e36849b907a0b0873802095b69ea1fa94b4398a",
+  "files_after_patch": {
+    "fpga/src/rasterixdisplay.sv": "cbe9277c7b5a052af5e99d6c0b60b68cd1da5ff26591af4070be69aae33d95a1",
+    "fpga/generator/videoclock.tcl": "88218762d19c3cc5d186faf6455c21e666ffad8a4c52f24899a47dc5fca5bacf",
+    "fpga/constraints/constraints-rasterixdisplay.xdc": "08aa457487ab0c300914bad237ba1a77a62c29c1ae522fe6d06f7c4a4d08181f",
+    "fpga/generator/rasterixmem.tcl": "a2924d689e66637dd6e9f2649246eea73ed6abea33df822ff13aa6755cfcfdf6",
+    "fpga/generator/wally.tcl": "bc3088894aa2bd8b1bbab0d91f1ea4db109650e6bda0f6d6a28658e590a1a1c9"
+  }
+}
