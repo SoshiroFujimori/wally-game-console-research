@@ -7,12 +7,23 @@ CPUをゲーム機へ拡張したい人が、回路のつなぎ方とプログ�
 
 ## 実機のプレイ動画
 
-Nexys Video上で動く、640×480画素のブロック崩しです。実機のHDMI端子から出力した映像を30秒間収録しています。
-**動画は自動プレイです。専用コントローラーによる操作は今後実装する予定です。**
+Nexys Video上で動く、640×480画素のブロック崩しです。画像をクリックすると、2026年11月8日に実機から記録した30秒の動画を開けます。
+**自動プレイであり、プログラムがパドルを動かしています。ゲームコントローラは今後追加します。**
+
+[![実機のブロック崩し](experiments/basic-operation-20261108/video/poster.png)](experiments/basic-operation-20261108/video/breakout-30s.mp4)
+
+[動画を開く（MP4、30秒）](experiments/basic-operation-20261108/video/breakout-30s.mp4) · [映像と試験条件](experiments/basic-operation-20261108/README.md)
+
+この動画は研究用HDMI表示構成で取得しました。[再生成する差分と手順](experiments/basic-operation-20261108/hdmi/README.md)を保存しています。`console/`が参照する製品の標準表示構成とは区別しています。
+
+<details>
+<summary>2026年10月8日の標準構成の動画</summary>
 
 https://github.com/user-attachments/assets/5828d8d5-2a1d-4f39-900c-06449b90e9ef
 
 [元の動画ファイル（MP4）](docs/thesis/再現資料/実験記録/E6/report/results/video/breakout-latest-30s.mp4) · [動画と元の記録の対応](publication/demo-video.json)
+
+</details>
 
 ## 何を作ったのか
 
@@ -30,8 +41,9 @@ FPGAは、記述した論理回路をチップ内に実装できる半導体で�
 DDR3への読み書きには、AMD提供のDDRメモリコントローラーを利用します。
 回路の接続とプログラムの動作は、[図付きのアブスト](docs/abstract/アブスト_主要事項.md)で説明しています。
 
-実機では、4条件でゲーム画像の全画素が比較用画像と一致することと、約5分間の自動プレイで画面更新処理が続き、正常終了することを確認しました。
-上の30秒の動画は、この5分間の記録とは別の試行です。検証条件と残る課題は[動作確認の記録](docs/thesis/再現資料/実験記録/E6/README.md)にまとめています。
+上の保存映像では、ボールの移動、壁やパドルでの反射、当たったブロックの消去を確認できます。[確認する場面と手順](experiments/basic-operation-20261108/README.md)を画像付きでまとめています。
+
+2026年11月8日のHDMI表示構成では、FPGAの設定から起動する手順を3回繰り返し、各30秒の映像で基本動作を確認しました。その後、同じ回路で300秒の実行と録画も確認しました。記録とソースの版は[E8](experiments/basic-operation-20261108/README.md)にまとめています。変更前の試行も[履歴](experiments/basic-operation-20261108/history/README.md)に残しています。過去の画素比較や内部の動作確認は、[E6](docs/thesis/再現資料/実験記録/E6/README.md)と[技術付録第73章](docs/thesis/appendix/05-integration/operation-verification.md)を参照できます。
 
 ## 目的に合う資料から読む
 

@@ -12,18 +12,18 @@
       "RasterIXは描画命令に従って画面の各点（画素）の色を求め，画像をDDR3へ保存する．表示回路はその画像を読み出し，HDMI端子から映像を出す．画像の読み書きもAMDのメモリ制御回路を介する．RasterIX本体は変更していない．"
     ],
     "3  動作の確認": [
-      "実機で640×480画素のブロック崩しを実行した．HDMI端子から出た映像を30秒間記録し，ゲーム画面が表示され，ボールが動くことを確認した（図2）．",
-      "また，別の試行で5分間の自動操作を行い，実行記録からゲームの計算と画面の更新処理が続いたことを確認した．現在はプログラムがパドルを動かしており，ゲームコントローラによる操作は未実装である．"
+      "実機で640×480画素のブロック崩しを実行した．FPGAに回路を設定して起動する手順を3回繰り返し，各30秒の映像をHDMI端子から記録した．3回とも，ボールが動き，壁やパドルで跳ね返り，当たったブロックが消えることを確認した（図2）．",
+      "現在はプログラムがパドルを動かす自動操作であり，ゲームコントローラによる操作は今後実装する．"
     ],
     "4  おわりに": [
-      "Wallyに描画回路を接続し，ゲームの実行から画面表示までを実現した．回路のつなぎ方とゲームを動かす方法を公開し，Wallyの拡張例を示した．今後は，映像を受信できない場合の原因調査と，ゲームコントローラによる操作の実装を進める．"
+      "Wallyに描画回路を接続し，ゲームの実行から画面表示までを実現した．回路のつなぎ方とゲームを動かす方法を公開し，Wallyの拡張例を示した．今後は，ゲームコントローラによる操作の実装を進める．"
     ]
   },
   "references": [
     "[1] D. Harrisほか，RISC-V System-on-Chip Design，Morgan Kaufmann，2026．",
     "[2] ToNi3141，RasterIX，https://github.com/ToNi3141/RasterIX （使用版9269a01c9bd4，参照2026-10-09）．"
   ],
-  "evidence": "Follows the presentation's explanation of the FPGA board, educational CPU extension, load/store access through a bus, SD-to-DDR program loading, MMIO command submission, image storage, and display. The new overview diagram distinguishes logic inside the chip from physical components on the board. Shared memory arbitration, detailed bus protocols and return/status paths are simplified; the display and rendering paths use the AMD memory controller. The five-minute execution log and the separately recorded 30-second HDMI video are existing E6 evidence, not new tests or a five-minute video. The paddle is moved by software; controller input remains planned. Capture acquisition failures remain unresolved. The reviewed game image is unchanged.",
+  "evidence": "E8, acquired 2026-11-08: three FPGA reconfigurations and OS boots, each with a 30-second recorded game run; actual paddle, brick-removal and side-wall event triplets reviewed in all three. The E8 display variant is an isolated research HDMI patch on product 261832d4 and official RasterIX 9269a01, not the unchanged default product output. See experiments/basic-operation-20261108/results.json and hdmi/. A further 300-second recording is supplementary evidence. Earlier receiver failures remain in E8 history. Recording rate is not game FPS; controller input remains planned.",
   "figures": [
     {
       "section": "2  ゲーム機の設計",
@@ -36,7 +36,7 @@
     {
       "section": "3  動作の確認",
       "after_paragraph": 2,
-      "source": "docs/thesis/figs/fifo-study-game.png",
+      "source": "docs/thesis/figs/basic-operation-game.png",
       "caption": "図2  実機から記録したブロック崩しの映像",
       "alt": "実機のHDMI映像から取り出したブロック崩しの画面。色付きのブロック，白いボールとパドルが描かれている。自動操作で確認した。"
     }

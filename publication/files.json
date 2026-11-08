@@ -46,32 +46,32 @@
       "sha256": "9a610ed291f447c9c9f5d4f3966a3a9fb01bafc394d8d43fcfc48d74e12e2942"
     },
     "README.md": {
-      "bytes": 8958,
-      "sha256": "393f0eab68014238b443e2fd48a2776e342b8c6a9f284f2697c7e2f2dd2c16b5"
+      "bytes": 10187,
+      "sha256": "58b37667a255a43a7c249d65c8b3d3d0404289021eda4bc27cc6318c031e644a"
     },
     "docs/abstract/figs/figure-1.png": {
       "bytes": 450614,
       "sha256": "df1c7113b7cbaee5ce29085f6ca5730a719e774505b384a2f4dd92c4e4d8ea63"
     },
     "docs/abstract/figs/figure-2.png": {
-      "bytes": 25003,
-      "sha256": "62ea9032af63894a6ba65082639b8399bde40314cfc4d9693841b1fe693ee12e"
+      "bytes": 15511,
+      "sha256": "1cfa5aa570a84fa910dcb765e55ebabb736aca6d1e12a77acf069e61955664ab"
     },
     "docs/abstract/アブスト_主要事項.docx": {
-      "bytes": 443649,
-      "sha256": "7d8614ca0f51252ae459c514460ef2a5bdc952d465a98f11876d751cb4926559"
+      "bytes": 440074,
+      "sha256": "cbf8afa711c0967527ee259e31b5f942112bb3e421b08630696d18db11cc968e"
     },
     "docs/abstract/アブスト_主要事項.md": {
-      "bytes": 4436,
-      "sha256": "0359bf17fb4dd22ab0a311931e8836e672c543ebc71f7144586276e25919c7d3"
+      "bytes": 4360,
+      "sha256": "77753f5b237783ec3eeee35e719ff507b89dcf69bbfa6b2ff3b594f7ae6c5de7"
     },
     "docs/presentation/DDCA授業利用の出典.md": {
       "bytes": 18811,
       "sha256": "844c4541fab522728715faa188c63f40ad124a73e817ee3a0b21db79998d4eb8"
     },
     "docs/presentation/README.md": {
-      "bytes": 2988,
-      "sha256": "814346913583563d265295db146a5efc9d7d41577dd40d9a74424ffd6878a721"
+      "bytes": 3382,
+      "sha256": "81a6ab5291e04dfb7cf304253e54f4ebca8c8cf66ba42dfe52b9a4a6177f065c"
     },
     "docs/presentation/RVSOC教科書採用の出典.md": {
       "bytes": 4297,
@@ -114,8 +114,8 @@
       "sha256": "6ff37a38548836d0fb898485cc20f445604c1f8bb7f1ee2ba37ce2c1c6dd292f"
     },
     "docs/presentation/slides/slide-10.png": {
-      "bytes": 77498,
-      "sha256": "7c6df65567325189e2c59d52faec2caa07db074181323ef36545051ddc1af83f"
+      "bytes": 108796,
+      "sha256": "6c61ad8c8d11bfb67070569e6df4aa2bd569e29e854029499474b7099f03540b"
     },
     "docs/presentation/slides/slide-11.png": {
       "bytes": 75122,
@@ -134,20 +134,20 @@
       "sha256": "961f7cc540bfbf144c1d37100cc76c5b457dd5caadea1421343e697379cad95f"
     },
     "docs/presentation/slides/slide-15.png": {
-      "bytes": 248649,
-      "sha256": "42997a1a6b10cb50ec11d35dcbae8bd3cf4ebeec5f716a2b148d30046d7ea820"
+      "bytes": 235516,
+      "sha256": "1238ce9a105370577b8de038cb7e15a56755a95db9cf7789451bcb8fb750c555"
     },
     "docs/presentation/slides/slide-16.png": {
       "bytes": 270922,
       "sha256": "bbc35ab7f36afb462b05d024d54b621952ab7164a7490e02eec74209bf11b8a8"
     },
     "docs/presentation/中間発表_主要事項.md": {
-      "bytes": 67396,
-      "sha256": "7c4a99c327fa56522190ae551f7b047c2c165776ed9c547bd8d2270cf94f4739"
+      "bytes": 66456,
+      "sha256": "f0a9425531c715c801983c6b99f7690c88061ee782202f199d6a81fe25ffc47d"
     },
     "docs/presentation/中間発表_主要事項.pptx": {
-      "bytes": 22801332,
-      "sha256": "88e74d6e948faebc5099a1efb09639e42cfc172a9ab44cff26ff1670fe53e650"
+      "bytes": 642540,
+      "sha256": "50c725b769e581e5cdaa71c97d5d25d8b89da7db5d5eef4b654068e4a2d345bb"
     },
     "docs/privacy.md": {
       "bytes": 5063,
@@ -560,6 +560,10 @@
     "docs/thesis/figs/ball-three.svg": {
       "bytes": 12132,
       "sha256": "d1d5356e9faa76bc26a9e5a29257c1b8dc483529aa09613c80c5098595f3b1fe"
+    },
+    "docs/thesis/figs/basic-operation-game.png": {
+      "bytes": 15511,
+      "sha256": "1cfa5aa570a84fa910dcb765e55ebabb736aca6d1e12a77acf069e61955664ab"
     },
     "docs/thesis/figs/batching.png": {
       "bytes": 235914,
@@ -5234,12 +5238,12 @@
       "sha256": "5dd11340611fd94dc8fa70a5e338aee9e68c0cd7548a070b4ef93c4d628f7ebf"
     },
     "docs/thesis/本文.docx": {
-      "bytes": 9217426,
-      "sha256": "8c9693f5abb27699a8bd2e1d02097bfc29528d72cb1a21de47b1a85b40767bf3"
+      "bytes": 9214970,
+      "sha256": "86a90525c53f16476b9a3230f0beac4a3d138c8de2d4ece829053dfb9334ded2"
     },
     "docs/thesis/本文.md": {
-      "bytes": 179471,
-      "sha256": "7a830fb84f899ac20ac689b2742f99848d113ddb54c2a81ba2eac94dd248ef86"
+      "bytes": 181593,
+      "sha256": "5c9564846c6f090527a74229a99b671de4e8010e41ea5d806cdb3a4d76b258c0"
     },
     "examples/technical-models/README.md": {
       "bytes": 3174,
@@ -12246,8 +12250,8 @@
       "sha256": "7df5eacd1c13a3d6b7f49c5bd6da2e129cd280b373715f3a7f42b8cf1eb92610"
     },
     "source/abstract/content.json": {
-      "bytes": 5466,
-      "sha256": "ad2351db0e3acc6b27c9b3d27cde93e71b402d5e6e550498676a11f62438b51b"
+      "bytes": 5225,
+      "sha256": "bd38261ad205e2e8e233011d6ddd88cc6f5f4b952fcf61a5367a3bb6948a1d0d"
     },
     "source/abstract/figs/game-flow.png": {
       "bytes": 450614,
@@ -12270,16 +12274,16 @@
       "sha256": "0e317c3229ff950862fbbc0d3c6fd9ca07f5dcbcb890a497603083751684d187"
     },
     "source/presentation/board-evolution/README.md": {
-      "bytes": 12870,
-      "sha256": "204ddcaa2a12c854483b6bd02bf46b4521031fd6acc3f56b17cf203c60cee56d"
+      "bytes": 13016,
+      "sha256": "b35f9a407ac811aeffb2c9940d73a65e68e150616cae34d193e6dfae0406db34"
     },
     "source/presentation/board-evolution/board-circuit.mjs": {
       "bytes": 12286,
       "sha256": "867fd492b01784b4065b558e597e4aa492041ab51983ed7e11438c122d8c5c7b"
     },
     "source/presentation/board-evolution/build.mjs": {
-      "bytes": 53443,
-      "sha256": "32728c9815076a90b30a455bd32456ddd35df8bb0b265ec901495e8240145d2d"
+      "bytes": 52630,
+      "sha256": "64e0172fdc3d1ed31004895fbf9f2761390d6476dc79b5350e43e739521d0b80"
     },
     "source/presentation/board-evolution/ddca-map.mjs": {
       "bytes": 6202,
@@ -12294,8 +12298,8 @@
       "sha256": "6a50f3f18b7fb480aa4e36ffb559d80b852e6964d3eb6eacfdd41586db3614e8"
     },
     "source/presentation/board-evolution/fpga-utilization.mjs": {
-      "bytes": 7828,
-      "sha256": "966e9d19cc0cd54e3819cd26a6a970787f9fa9173c44d2ace5c7bce0af52885f"
+      "bytes": 7702,
+      "sha256": "26e1d81c7060be3f8fa0055f79f0fce0c665d765f52f9b4347c98788818c00cd"
     },
     "source/presentation/board-evolution/rvsoc-adoption.mjs": {
       "bytes": 5394,
@@ -12672,6 +12676,10 @@
     "source/thesis/figs/apb-dma-command-paths.svg": {
       "bytes": 5910,
       "sha256": "2c86dec52cafaa5d754e26ad03b1968ab5d5a3b5b992a18cf5a323abd3d0f370"
+    },
+    "source/thesis/figs/basic-operation-game.png": {
+      "bytes": 15511,
+      "sha256": "1cfa5aa570a84fa910dcb765e55ebabb736aca6d1e12a77acf069e61955664ab"
     },
     "source/thesis/figs/cpu-gpu-timing-overlap.png": {
       "bytes": 146200,
@@ -13066,8 +13074,8 @@
       "sha256": "d2b447c2d5a9163aa0a6ce9647532e92f560d8cc406660629add50e8e32685ea"
     },
     "source/thesis/本文.md": {
-      "bytes": 166238,
-      "sha256": "c4fb47a9441ce1857f6b9d43aa0b09092c70ba8b6796d7a9f52aa398897409b9"
+      "bytes": 168362,
+      "sha256": "0277b9e7d91738a11a52cdbb5a02143d7f74f168124f4512cb4c1ae6cb541203"
     },
     "tests/test_appendix_markdown.py": {
       "bytes": 6783,

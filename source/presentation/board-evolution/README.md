@@ -82,8 +82,11 @@ the blue outlines used for functions covered in the main presentation.
 
 ## Embedded demonstration
 
-Slide 10 embeds the reviewed 30-second E6 recording without transcoding:
-`docs/thesis/再現資料/実験記録/E6/report/results/video/breakout-latest-30s.mp4`.
+Slide 10 embeds the reviewed 30-second E8 clip without further transcoding:
+`experiments/basic-operation-20261108/video/breakout-30s.mp4`.
+It was recorded on November 8, 2026 using the isolated research HDMI display
+variant documented in the same experiment directory. The default product
+checkout is unchanged. The clip derivation and complete recordings are retained.
 Click the video in a slideshow to play it. It needs no external media file.
 Markdown links to the same recording. This is deterministic autoplay, not
 manual controller input. Recorded video rate is not a game-FPS measurement.
@@ -110,7 +113,7 @@ outputs into `docs/presentation`. Do not import private build records.
 
 There are eleven main slides and five hidden question slides. The main narration
 allocation is 355 seconds including 30 seconds of video; slide 2 receives
-20 seconds and slide 3 receives 15 seconds. This is not a timed rehearsal. Existing E6 results and scope are unchanged. Controller support
+20 seconds and slide 3 receives 15 seconds. This is not a timed rehearsal. Controller support
 remains future work.
 
 Presentation labels and Japanese narration use 描画回路 for the rendering core.
@@ -182,8 +185,8 @@ AMD and Digilent references accompany the notes and Markdown.
 ## FPGA utilization question slide
 
 Hidden slide 15 is an editable table built by `fpga-utilization.mjs` from
-`docs/thesis/再現資料/実験記録/E6/fresh-product/qualification/qualification.json`.
-It uses the October 8, 2026 post-route result for the ordinary product shown
+`experiments/basic-operation-20261108/results/implementation.json`.
+It uses the November 8, 2026 post-route result for the research HDMI variant shown
 in the embedded demonstration. LUTs, slice registers, block-memory tile
 equivalents and DSP blocks are reported for the complete design. Counts and
 percentages are checked against the saved record during generation. The
