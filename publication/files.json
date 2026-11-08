@@ -2,7 +2,7 @@
   "version": 1,
   "scope": "Git index blobs; excludes this manifest and submodule contents",
   "submodules": {
-    "console": "261832d48832dd6e26c4971ab8893ce61200688b"
+    "console": "69a3ca21dc6960011bd8dbeef3a8daeef434dd3c"
   },
   "files": {
     ".gitattributes": {
@@ -46,8 +46,8 @@
       "sha256": "9a610ed291f447c9c9f5d4f3966a3a9fb01bafc394d8d43fcfc48d74e12e2942"
     },
     "README.md": {
-      "bytes": 10187,
-      "sha256": "58b37667a255a43a7c249d65c8b3d3d0404289021eda4bc27cc6318c031e644a"
+      "bytes": 10390,
+      "sha256": "047360972d4be5b63e0eb58634f8137bfcd99b3efec423f2f5a3d5735ec31735"
     },
     "docs/abstract/figs/figure-1.png": {
       "bytes": 450614,
@@ -5956,6 +5956,98 @@
     "experiments/board-bringup-20260909/source/memtester-4.7.1/warn-auto.sh": {
       "bytes": 64,
       "sha256": "023fa01e178cb32d9e46fded30f7cbb7621f39c76aa44471e17656e4cb84be8c"
+    },
+    "experiments/breakout-layout-20261108/README.md": {
+      "bytes": 5665,
+      "sha256": "1f17360e13c3d7d21fa20903c285a994ca028ffd2cc9e24d38a0c4152983636d"
+    },
+    "experiments/breakout-layout-20261108/check_damage.cpp": {
+      "bytes": 2477,
+      "sha256": "3326ef68468b77a53f20d808ba576b5c7a77cdc7e15448aeab33d7475a7a24c9"
+    },
+    "experiments/breakout-layout-20261108/check_recording.py": {
+      "bytes": 5193,
+      "sha256": "dc0b14882c39f041ca1098af31a9acde3e28571bfe882f8b77e484f103d280cb"
+    },
+    "experiments/breakout-layout-20261108/expected-labels.json": {
+      "bytes": 2415,
+      "sha256": "564cd9a264db056ff5e06eaf8ae085f2299d1f6f6622a8b7d325eca572d957a2"
+    },
+    "experiments/breakout-layout-20261108/export_labels.cpp": {
+      "bytes": 1037,
+      "sha256": "fb6b5b15aaa058e1694e743fe950a289302d3c32bfbb107705b5c9b912ae7f4b"
+    },
+    "experiments/breakout-layout-20261108/results.json": {
+      "bytes": 2176,
+      "sha256": "2fedffea1ac3bf8638932368d8fa04247201573a346c364413a458a4b9de2766"
+    },
+    "experiments/breakout-layout-20261108/results/autoplay.raw": {
+      "bytes": 365,
+      "sha256": "d7b2b1fbafa4c99f1e9dedd9411b2135d229b4c1a41298fd0b96b0a2d89798cf"
+    },
+    "experiments/breakout-layout-20261108/results/build.log": {
+      "bytes": 16789,
+      "sha256": "e87c27b335590b96901e75561d1ec28dda49546cd013745373ae016558bec621"
+    },
+    "experiments/breakout-layout-20261108/results/capture-layout.json": {
+      "bytes": 2411,
+      "sha256": "2b8fb687ede67ba2f5a5dc7e88a2de5800a97cb9f338961ada09f3470afd3dbe"
+    },
+    "experiments/breakout-layout-20261108/results/frame-check/frame-observations.csv": {
+      "bytes": 239132,
+      "sha256": "a94873e2ab94cad3479740c4409152316f77fdf05b5828a177d9d2b8c1b1c25a"
+    },
+    "experiments/breakout-layout-20261108/results/frame-check/results.json": {
+      "bytes": 975,
+      "sha256": "cfe776a000cf69f1a91707e09c4b5d01ba5f192a37682c66525a1be5cf2512b5"
+    },
+    "experiments/breakout-layout-20261108/results/host-damage.txt": {
+      "bytes": 57,
+      "sha256": "711eb82475ee494f611e40f8d1996d6597891427f37957c814405f21c4a46e32"
+    },
+    "experiments/breakout-layout-20261108/results/imports.json": {
+      "bytes": 3150,
+      "sha256": "9c6465ff1f6a3fd960e301fba621b57162fbccc696f177b74cbf131f9fd7b9cb"
+    },
+    "experiments/breakout-layout-20261108/results/load.raw": {
+      "bytes": 186,
+      "sha256": "b2f2f7917ddb655c2c2035579cc721c4a2f93e5aeed0bc530dd3c85f29100817"
+    },
+    "experiments/breakout-layout-20261108/results/manual-controls.json": {
+      "bytes": 383,
+      "sha256": "db2c747a679336a5dffffe9223ecb00c9ee84ccf0e87a66c50399d60f86c74ff"
+    },
+    "experiments/breakout-layout-20261108/results/manual.raw": {
+      "bytes": 359,
+      "sha256": "fe8643b5d07a92ac54a1c48bfe00e1f810655d3bc6f182cbabf8fa6d798d41d5"
+    },
+    "experiments/breakout-layout-20261108/video/breakout-30s.mp4": {
+      "bytes": 379536,
+      "sha256": "155e4e1b8f9f09d07306c7484e6f53b99a2528859eb6110fa5d642bdf253dc2d"
+    },
+    "experiments/breakout-layout-20261108/video/clear.png": {
+      "bytes": 6839,
+      "sha256": "15a7c6c9b1ee9ac552f3d62a7dace4068ee85be219a47c93ec649e3c7cdc9318"
+    },
+    "experiments/breakout-layout-20261108/video/complete-90s.mp4": {
+      "bytes": 72701023,
+      "sha256": "d2f7d3ad4612424be591daa4f76e1da3ea51bb6d69219a9c67c5513d185afb49"
+    },
+    "experiments/breakout-layout-20261108/video/derivation.json": {
+      "bytes": 1147,
+      "sha256": "b308ccaf65d5152925f49f01c34e11d3a0e8e686ec25ca23d0e90c5a565eb115"
+    },
+    "experiments/breakout-layout-20261108/video/game-over.png": {
+      "bytes": 7573,
+      "sha256": "78cda1f0d96c7e64fa99d08c75e68b963d9dcbd5897cc94b54b961d08599d537"
+    },
+    "experiments/breakout-layout-20261108/video/playing.png": {
+      "bytes": 6916,
+      "sha256": "1f8e5130dbe5dfc6993e8bbf6a0ab71e11bb44c0ee70d79e1e3f3345730b5ef8"
+    },
+    "experiments/breakout-layout-20261108/video/ready.png": {
+      "bytes": 7289,
+      "sha256": "845d08723870f0d10ff0677319bd0d77686aaf49cf2a259386a8820cf92c0949"
     },
     "experiments/fifo-study-20261008/archive-scripts/add-measurement-counters.py": {
       "bytes": 1912,
@@ -12217,17 +12309,21 @@
       "bytes": 73097,
       "sha256": "06d28f4d15b039440b131642291de9817ff66897519f729695a6ba3d7cd78490"
     },
-    "publication/console-source.json": {
+    "publication/console-source-e6.json": {
       "bytes": 1093,
       "sha256": "edd21b65bc0d6109fbbdd1c5b29c6eb730e800e218d4d6362ccdd952732a8ca1"
+    },
+    "publication/console-source.json": {
+      "bytes": 799,
+      "sha256": "e572728bae72fe95cde32a35d6a1d0e8fd2ca07cfb189cdb9cac69900b1c94f1"
     },
     "publication/demo-video.json": {
       "bytes": 510,
       "sha256": "b37af8468ab90cc774380eae7acce80700a22c2cdb02aa7e1d27bf6da8ad7d04"
     },
     "publication/media-review.json": {
-      "bytes": 83891,
-      "sha256": "d16df1d7dcd5f8e7ccb7fdee52f7709b7364da13b187073d5ad35697c1b3202c"
+      "bytes": 84934,
+      "sha256": "6893ab9674f07360c00e10c22bf9367c624cabe2a5e8704127fb66ceb8a3feee"
     },
     "publication/policy.json": {
       "bytes": 635,

@@ -1,0 +1,1 @@
+PASS: 6000 alternating-buffer scenes equal full redraws.

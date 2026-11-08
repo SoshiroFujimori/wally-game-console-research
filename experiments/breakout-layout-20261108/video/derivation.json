@@ -1,0 +1,16 @@
+{
+  "source_file_sha256": "b68cff914b0763e872d83547b1babd3753c4cbc144ecff91365297ac3b147d64",
+  "complete_file_sha256": "d2f7d3ad4612424be591daa4f76e1da3ea51bb6d69219a9c67c5513d185afb49",
+  "source_video_payload_sha256": "SHA256=eed3ce87eddd1e6caffaa132c0baca2c2acc503608a51222537d3e42b7a10bad",
+  "complete_video_payload_sha256": "SHA256=eed3ce87eddd1e6caffaa132c0baca2c2acc503608a51222537d3e42b7a10bad",
+  "compressed_video_payload_identical": true,
+  "complete_processing": "Stream copy; remove audio, chapters and file metadata.",
+  "viewing_clip": "video/breakout-30s.mp4",
+  "viewing_clip_sha256": "155e4e1b8f9f09d07306c7484e6f53b99a2528859eb6110fa5d642bdf253dc2d",
+  "clip_start_seconds_in_source": 5,
+  "clip_duration_seconds": 30,
+  "clip_processing": "Re-encode the selected original frames with H.264 CRF 18, yuv420p, without audio or metadata; no scene replacement or added graphics.",
+  "source_decoded_frames": 5809,
+  "complete_copy_decoded_frames": 5810,
+  "frame_count_scope": "Compressed video packets are identical. Container remuxing exposes one additional decoded frame; the complete public copy was independently checked."
+}

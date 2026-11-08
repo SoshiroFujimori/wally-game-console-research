@@ -1,0 +1,9 @@
+/tmp/fifo-game --seconds 80; game_status=$?; printf "\nLAYOUT_DONE_5d4fb36f87fd=%s\n" "$game_status"
+Wally Breakout
+A/D: move left/right; S: stop; Space: launch
+R: restart; M: toggle demo; Q: quit
+Movement continues until S or the opposite direction is pressed.
+Game ended: score=50 lives=0 frames=879 ticks=898 elapsed=14.985 s
+
+LAYOUT_DONE_5d4fb36f87fd=0
+# 

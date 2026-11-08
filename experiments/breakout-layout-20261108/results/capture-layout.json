@@ -1,0 +1,137 @@
+{
+  "ready": {
+    "image": "../video/ready.png",
+    "dimensions": [
+      1280,
+      720
+    ],
+    "bounds_xyxy": {
+      "score": [
+        196,
+        23,
+        319,
+        44
+      ],
+      "lives": [
+        961,
+        23,
+        1084,
+        44
+      ],
+      "title": [
+        517,
+        690,
+        764,
+        711
+      ],
+      "message": [
+        574,
+        360,
+        705,
+        392
+      ]
+    },
+    "source_sha256": "7775e064a06779f041cad8d624c835652ea258c2e335adb812c8d72058e54a8b",
+    "public_sha256": "845d08723870f0d10ff0677319bd0d77686aaf49cf2a259386a8820cf92c0949"
+  },
+  "playing": {
+    "image": "../video/playing.png",
+    "dimensions": [
+      1280,
+      720
+    ],
+    "bounds_xyxy": {
+      "score": [
+        196,
+        23,
+        337,
+        44
+      ],
+      "lives": [
+        961,
+        23,
+        1084,
+        44
+      ],
+      "title": [
+        517,
+        690,
+        764,
+        711
+      ],
+      "message": null
+    },
+    "source_sha256": "fa421442211a9266c9bb00a970145bea9e9361a9a164cebaea7c3d245e87dc5b",
+    "public_sha256": "1f8e5130dbe5dfc6993e8bbf6a0ab71e11bb44c0ee70d79e1e3f3345730b5ef8"
+  },
+  "clear": {
+    "image": "../video/clear.png",
+    "dimensions": [
+      1280,
+      720
+    ],
+    "bounds_xyxy": {
+      "score": [
+        196,
+        23,
+        355,
+        44
+      ],
+      "lives": [
+        961,
+        23,
+        1084,
+        44
+      ],
+      "title": [
+        517,
+        690,
+        764,
+        711
+      ],
+      "message": [
+        575,
+        360,
+        704,
+        392
+      ]
+    },
+    "source_sha256": "e7d44df5d0db60b14ddd8329e0377184eeab4ac898c6022a8916907fdac8861e",
+    "public_sha256": "15a7c6c9b1ee9ac552f3d62a7dace4068ee85be219a47c93ec649e3c7cdc9318"
+  },
+  "game_over": {
+    "image": "../video/game-over.png",
+    "dimensions": [
+      1280,
+      720
+    ],
+    "bounds_xyxy": {
+      "score": [
+        196,
+        23,
+        337,
+        44
+      ],
+      "lives": [
+        961,
+        23,
+        1084,
+        44
+      ],
+      "title": [
+        517,
+        690,
+        764,
+        711
+      ],
+      "message": [
+        520,
+        360,
+        759,
+        392
+      ]
+    },
+    "source_sha256": "abb9df0638c7a47eec363dca41e5ba4a75740e5e693a373f0e575646c20073f7",
+    "public_sha256": "78cda1f0d96c7e64fa99d08c75e68b963d9dcbd5897cc94b54b961d08599d537"
+  }
+}

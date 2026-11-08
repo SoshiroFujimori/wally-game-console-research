@@ -1,0 +1,51 @@
+{
+  "date": "2026-11-08",
+  "console_commit": "69a3ca21dc6960011bd8dbeef3a8daeef434dd3c",
+  "previous_console_commit": "261832d48832dd6e26c4971ab8893ce61200688b",
+  "rasterix_commit": "9269a01c9bd4c3342bfa70ef8e3cdd751c15c6d0",
+  "changed_product_files": [
+    "examples/rasterix/Breakout.hpp"
+  ],
+  "source_sha256": {
+    "Breakout.hpp": "4c88c650ceb075e2112cabadabb1d741e5bec66c171ef8dba36a6ec459a457fe",
+    "BreakoutDamage.hpp": "3cf599d5c4f40b4ad7494e71a25a24aa2fa715892a14dead7b6a78429b01dcaa",
+    "BreakoutRenderer.hpp": "5258167cb168585097d72a72858556bded9e0557f84d1180e7db329ac13e6a0c",
+    "WallyBusConnector.hpp": "8375310bab47a755a8e42d0579cf43e16e92eadd9d695758f8b325ed3c6d3ce9",
+    "breakout.cpp": "604679c99f8d705970a60152f8186df0917b41eb2bbb6dc7f0564a6c930dace7",
+    "CMakeLists.txt": "fafa12ee09ade972cdf42510ceabac30ae5ffad9c9a77b829dee18045f45b149"
+  },
+  "executable_sha256": "4189dabf2ca46f79e6973c47eb48701546ba2ae07b47d0ccc6fa8e18c83c8341",
+  "executable_bytes": 5384744,
+  "bitstream_sha256": "fb0d8e9e853b51194e885662339cc0c339bdd6ea3bb19f6ca42211c14d9b87f6",
+  "display_configuration": "Unchanged E8 research HDMI variant; not the product default display circuit.",
+  "display_source": "../basic-operation-20261108/hdmi/README.md",
+  "build": {
+    "cmake_build_type": "Release",
+    "compiler": "riscv64-buildroot-linux-gnu-g++ 14.2.0",
+    "source_directory": "console/examples/rasterix",
+    "static_link": true
+  },
+  "autoplay": {
+    "command": "/tmp/fifo-game --demo --seconds 90",
+    "elapsed_seconds": 90.017,
+    "score": 400,
+    "lives": 3,
+    "frames": 5308,
+    "ticks": 5399,
+    "exit_code": 0,
+    "log": "results/autoplay.raw"
+  },
+  "manual": {
+    "command": "/tmp/fifo-game --seconds 80",
+    "elapsed_seconds": 14.985,
+    "score": 50,
+    "lives": 0,
+    "frames": 879,
+    "ticks": 898,
+    "exit_code": 0,
+    "termination": "Q after observing GAME OVER",
+    "log": "results/manual.raw",
+    "controls": "results/manual-controls.json"
+  },
+  "scope": "Application text layout and retained labels on the recorded hardware configuration. No changes to physics, rendering transport, product RTL, or upstream RasterIX."
+}

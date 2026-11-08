@@ -1,0 +1,22 @@
+{
+  "inputs": [
+    {
+      "elapsed_seconds": 4.0,
+      "bytes": "a "
+    },
+    {
+      "elapsed_seconds": 8.09299999999348,
+      "bytes": "a "
+    },
+    {
+      "elapsed_seconds": 13.03100000001723,
+      "bytes": "a "
+    },
+    {
+      "elapsed_seconds": 18.09299999999348,
+      "bytes": "q"
+    }
+  ],
+  "game_over_elapsed_seconds": 18.09299999999348,
+  "exit_status": 0
+}

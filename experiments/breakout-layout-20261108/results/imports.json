@@ -1,0 +1,65 @@
+{
+  "check_recording.py": {
+    "source_sha256": "90d941941c4f4f2e8096e6dcb188cbe9e52d6f3a44d67df92db05a98dd2a07b6",
+    "public_sha256": "dc0b14882c39f041ca1098af31a9acde3e28571bfe882f8b77e484f103d280cb",
+    "text_line_endings": "LF",
+    "publication_change": "Use LF output on all hosts; glyph checks unchanged."
+  },
+  "export_labels.cpp": {
+    "source_sha256": "dc6029a78156ccf1447bfeb989547778335ee7d8643fcec5470f946b878d713e",
+    "public_sha256": "fb6b5b15aaa058e1694e743fe950a289302d3c32bfbb107705b5c9b912ae7f4b",
+    "publication_change": "Add an SPDX license identifier; program behavior unchanged.",
+    "text_line_endings": "LF"
+  },
+  "expected-labels.json": {
+    "source_sha256": "44711f8ee26f42605920e1b2fccb326820053ed8eaa844eeb077a210452afe73",
+    "public_sha256": "564cd9a264db056ff5e06eaf8ae085f2299d1f6f6622a8b7d325eca572d957a2",
+    "text_line_endings": "LF"
+  },
+  "check_damage.cpp": {
+    "source_sha256": "96b5cb931088b57819a8f76a77eaa6b7fe72f64da1b541a84d7a88524c79055d",
+    "public_sha256": "3326ef68468b77a53f20d808ba576b5c7a77cdc7e15448aeab33d7475a7a24c9",
+    "publication_change": "Add an SPDX license identifier; program behavior unchanged.",
+    "text_line_endings": "LF"
+  },
+  "results/autoplay.raw": {
+    "source_sha256": "fa1a22198d00bdf843a81876e1cee4dcd5d2bde044f2b37334357d6d36735c47",
+    "public_sha256": "d7b2b1fbafa4c99f1e9dedd9411b2135d229b4c1a41298fd0b96b0a2d89798cf",
+    "text_line_endings": "LF"
+  },
+  "results/manual.raw": {
+    "source_sha256": "d128a39363b66e9a1ff6de70bbba84b8d5764f7adb4633006634d7d406b0c436",
+    "public_sha256": "fe8643b5d07a92ac54a1c48bfe00e1f810655d3bc6f182cbabf8fa6d798d41d5",
+    "text_line_endings": "LF"
+  },
+  "results/load.raw": {
+    "source_sha256": "15599af3c5b59c01f72d780a337f0025cd8d70636514bf0766c2dd0efa31496d",
+    "public_sha256": "b2f2f7917ddb655c2c2035579cc721c4a2f93e5aeed0bc530dd3c85f29100817",
+    "text_line_endings": "LF"
+  },
+  "results/build.log": {
+    "source_sha256": "ec1e705439d5d7591386b7e37ebd1ae65a6c782c918434062ec989c23011f386",
+    "public_sha256": "e87c27b335590b96901e75561d1ec28dda49546cd013745373ae016558bec621",
+    "text_line_endings": "LF"
+  },
+  "video/ready.png": {
+    "source_sha256": "7775e064a06779f041cad8d624c835652ea258c2e335adb812c8d72058e54a8b",
+    "public_sha256": "845d08723870f0d10ff0677319bd0d77686aaf49cf2a259386a8820cf92c0949",
+    "decoded_pixels_identical": true
+  },
+  "video/playing.png": {
+    "source_sha256": "fa421442211a9266c9bb00a970145bea9e9361a9a164cebaea7c3d245e87dc5b",
+    "public_sha256": "1f8e5130dbe5dfc6993e8bbf6a0ab71e11bb44c0ee70d79e1e3f3345730b5ef8",
+    "decoded_pixels_identical": true
+  },
+  "video/clear.png": {
+    "source_sha256": "e7d44df5d0db60b14ddd8329e0377184eeab4ac898c6022a8916907fdac8861e",
+    "public_sha256": "15a7c6c9b1ee9ac552f3d62a7dace4068ee85be219a47c93ec649e3c7cdc9318",
+    "decoded_pixels_identical": true
+  },
+  "video/game-over.png": {
+    "source_sha256": "abb9df0638c7a47eec363dca41e5ba4a75740e5e693a373f0e575646c20073f7",
+    "public_sha256": "78cda1f0d96c7e64fa99d08c75e68b963d9dcbd5897cc94b54b961d08599d537",
+    "decoded_pixels_identical": true
+  }
+}
