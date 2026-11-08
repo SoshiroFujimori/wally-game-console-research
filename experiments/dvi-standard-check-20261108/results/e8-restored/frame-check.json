@@ -1,0 +1,37 @@
+{
+  "video_sha256": "d15bcaa3febf9104f36ce7b7106ce06c0c3b8c87abfe5a843edac732aec08d4d",
+  "decoded_frames": 2194,
+  "recording_rate_hz": 60.0,
+  "first_complete_game_seconds": 3.55,
+  "frames_after_first_complete": 1981,
+  "invalid_frames_after_first_complete": [],
+  "font_cell_samples_per_frame": 805,
+  "expected_labels_sha256": "948f6e982e09f608bf3f3c2375c55b913d4d2f827521cf297d04bf3bd35586c0",
+  "maximum_cell_mismatches": {
+    "SCORE": 0,
+    "LIVES": 0,
+    "WALLY BREAKOUT": 0
+  },
+  "logical_text_regions_xyxy": {
+    "score": [
+      24,
+      15,
+      82,
+      29
+    ],
+    "lives": [
+      534,
+      15,
+      592,
+      29
+    ],
+    "title": [
+      237,
+      15,
+      403,
+      29
+    ]
+  },
+  "passed": true,
+  "scope": "Verify fixed label retention and text placement in a captured Breakout video.\n\nThis checks the decoded recording, not a software-rendered replacement.\nIt does not prove every game pixel or measure game-rendering FPS."
+}

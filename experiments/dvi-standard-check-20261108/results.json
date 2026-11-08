@@ -1,0 +1,214 @@
+{
+  "date": "2026-11-08",
+  "scope": "One standard-product boot followed by one E8 restoration boot, same latest executable and deterministic 30-second workload. Not a reliability estimate or a general-monitor compatibility test.",
+  "product_revision": "ed6a1c09b34d597dcde92ec26a4f5a97cbf18a17",
+  "e8_base_revision": "261832d48832dd6e26c4971ab8893ce61200688b",
+  "rasterix_revision": "9269a01c9bd4c3342bfa70ef8e3cdd751c15c6d0",
+  "hdmi_revision": "83b1c9543a91b776671a44e68e130f81cae437b7",
+  "executable_sha256": "5c360babde59c6d9fc72fe58edc5729da2b2b8480c2f3a5208980d2f7d2c558b",
+  "started_utc": "2026-11-08T14:31:34.858851+00:00",
+  "finished_utc": "2026-11-08T14:38:14.384573+00:00",
+  "physical_power_cycle": false,
+  "sd_read_only": true,
+  "sd_writes": false,
+  "sd_switch": false,
+  "receiver_reset": false,
+  "desktop_input": false,
+  "cpu_frequency_changes": false,
+  "capture_method": "Windows OBS internal WebSocket API; FPGA capture input only; no desktop capture.",
+  "trials": {
+    "standard": {
+      "started_utc": "2026-11-08T14:31:34.910740+00:00",
+      "finished_utc": "2026-11-08T14:34:54.381364+00:00",
+      "bitstream_sha256": "16173de97a91e711cd7bc5389acd9739807adebedf192efc29fe78f5b96c0acf",
+      "fpga_crc_error": 0,
+      "fpga_done": 1,
+      "os_booted": true,
+      "target_executable_hash_matched": true,
+      "command": "/tmp/fifo-game --demo --seconds 30",
+      "exit_code": 0,
+      "game": {
+        "score": 170,
+        "lives": 3,
+        "frames": 1751,
+        "ticks": 1799,
+        "elapsed_seconds": 30.011
+      },
+      "original_recording_sha256": "1fe5550f773ad567a1993e06bb97443d8636e563a49dcc3719f3ea62e04835a4",
+      "original_recording_publicly_included": false,
+      "frame_check": {
+        "video_sha256": "1fe5550f773ad567a1993e06bb97443d8636e563a49dcc3719f3ea62e04835a4",
+        "decoded_frames": 2191,
+        "recording_rate_hz": 60.0,
+        "first_complete_game_seconds": null,
+        "frames_after_first_complete": 0,
+        "invalid_frames_after_first_complete": [],
+        "font_cell_samples_per_frame": 805,
+        "expected_labels_sha256": "948f6e982e09f608bf3f3c2375c55b913d4d2f827521cf297d04bf3bd35586c0",
+        "maximum_cell_mismatches": {},
+        "logical_text_regions_xyxy": {
+          "score": [
+            24,
+            15,
+            82,
+            29
+          ],
+          "lives": [
+            534,
+            15,
+            592,
+            29
+          ],
+          "title": [
+            237,
+            15,
+            403,
+            29
+          ]
+        },
+        "passed": false,
+        "scope": "Verify fixed label retention and text placement in a captured Breakout video.\n\nThis checks the decoded recording, not a software-rendered replacement.\nIt does not prove every game pixel or measure game-rendering FPS."
+      },
+      "observed_input": "Video Format Not Supported; no complete-game frame detected",
+      "sampled_input_images_visually_reviewed": true,
+      "recording_transform_restored": true,
+      "recording_directory_restored": true,
+      "mutes_restored": true,
+      "records": [
+        {
+          "path": "results/standard/program.log",
+          "original_sha256": "52f80a0dc7298a035ac952307942727d7490eec0c7ac9d29a62e91c279504293",
+          "published_sha256": "e1ca323f88a7da61278085f65c2160bb8a50edaad5eb08aa51263feaf43af029"
+        },
+        {
+          "path": "results/standard/boot.raw",
+          "original_sha256": "680f13f67a3a55132f14968fcc7af5e03b19b38c364e350014fc6598274f884e",
+          "published_sha256": "5137b3f5932359d938ec9bca5c6afea478a310d047e8b1f99614d11a00461217"
+        },
+        {
+          "path": "results/standard/load.raw",
+          "original_sha256": "1033ef949106bd993c05b30f615100a41bfcfd3c955f7b40a2727517f8c273a0",
+          "published_sha256": "cdc93866807aa5b39787face0b77fbd368ed0094584149604df4c3858cd41839"
+        },
+        {
+          "path": "results/standard/game.raw",
+          "original_sha256": "a813263fcb1d6de835959724cf082e4144bb5ab5e101e7395b6d76ae5ad20906",
+          "published_sha256": "5b6fed4502b058b83be0bc8cae19e2a4a274767e90397ad9dba5708a4a0112b4"
+        },
+        {
+          "path": "results/standard/frame-check.json",
+          "original_sha256": "b5f6ac1ea531580946651322b74ea54bae2256ad3df9240ff95aafa102208249",
+          "published_sha256": "b5f6ac1ea531580946651322b74ea54bae2256ad3df9240ff95aafa102208249"
+        }
+      ]
+    },
+    "e8-restored": {
+      "started_utc": "2026-11-08T14:34:54.476048+00:00",
+      "finished_utc": "2026-11-08T14:38:14.315716+00:00",
+      "bitstream_sha256": "fb0d8e9e853b51194e885662339cc0c339bdd6ea3bb19f6ca42211c14d9b87f6",
+      "fpga_crc_error": 0,
+      "fpga_done": 1,
+      "os_booted": true,
+      "target_executable_hash_matched": true,
+      "command": "/tmp/fifo-game --demo --seconds 30",
+      "exit_code": 0,
+      "game": {
+        "score": 170,
+        "lives": 3,
+        "frames": 1760,
+        "ticks": 1799,
+        "elapsed_seconds": 30.0
+      },
+      "original_recording_sha256": "d15bcaa3febf9104f36ce7b7106ce06c0c3b8c87abfe5a843edac732aec08d4d",
+      "original_recording_publicly_included": false,
+      "frame_check": {
+        "video_sha256": "d15bcaa3febf9104f36ce7b7106ce06c0c3b8c87abfe5a843edac732aec08d4d",
+        "decoded_frames": 2194,
+        "recording_rate_hz": 60.0,
+        "first_complete_game_seconds": 3.55,
+        "frames_after_first_complete": 1981,
+        "invalid_frames_after_first_complete": [],
+        "font_cell_samples_per_frame": 805,
+        "expected_labels_sha256": "948f6e982e09f608bf3f3c2375c55b913d4d2f827521cf297d04bf3bd35586c0",
+        "maximum_cell_mismatches": {
+          "SCORE": 0,
+          "LIVES": 0,
+          "WALLY BREAKOUT": 0
+        },
+        "logical_text_regions_xyxy": {
+          "score": [
+            24,
+            15,
+            82,
+            29
+          ],
+          "lives": [
+            534,
+            15,
+            592,
+            29
+          ],
+          "title": [
+            237,
+            15,
+            403,
+            29
+          ]
+        },
+        "passed": true,
+        "scope": "Verify fixed label retention and text placement in a captured Breakout video.\n\nThis checks the decoded recording, not a software-rendered replacement.\nIt does not prove every game pixel or measure game-rendering FPS."
+      },
+      "observed_input": "Game image acquired; walls and all 805 fixed-font samples pass after first complete frame",
+      "sampled_input_images_visually_reviewed": true,
+      "recording_transform_restored": true,
+      "recording_directory_restored": true,
+      "mutes_restored": true,
+      "records": [
+        {
+          "path": "results/e8-restored/program.log",
+          "original_sha256": "4c9d0231570494665a374ee94dac6bde56e16cd257eed44103bd4752a5cd87a4",
+          "published_sha256": "740a5ed451cbab9e88c73b9292cc21762c7d5f6aad7211234647c990d0ea57b1"
+        },
+        {
+          "path": "results/e8-restored/boot.raw",
+          "original_sha256": "c06575963edfc2c2bd1bcdcf0b0540c6674ba5963418bff399625af67284344e",
+          "published_sha256": "f826c837197d21f3fdd0d943e95b166cccae2371b9ef919eb8ef459074163ba9"
+        },
+        {
+          "path": "results/e8-restored/load.raw",
+          "original_sha256": "89ced4714458a062235faa3d3f8ea8acf1e496f0dd404764420674f9e99b711f",
+          "published_sha256": "a91bc4d16cf65bdce068250d435177d4ea95dac9b94a3038854ca3ce08973fba"
+        },
+        {
+          "path": "results/e8-restored/game.raw",
+          "original_sha256": "807f39f36c8c0124cc721231a32b980ccda83b9a8e64b17a43600f2b40206163",
+          "published_sha256": "caf361651c153dd02d77b3bee9c14d2d7d5f922772734d35cce85610bacc6796"
+        },
+        {
+          "path": "results/e8-restored/frame-check.json",
+          "original_sha256": "d5c2471dc5b641828316d8ecfba4f88beac6b0fad2aa8c5e01f24247f8ba1cb7",
+          "published_sha256": "d5c2471dc5b641828316d8ecfba4f88beac6b0fad2aa8c5e01f24247f8ba1cb7"
+        }
+      ]
+    }
+  },
+  "final_e8_restored": true,
+  "capture_settings_restored": true,
+  "recording_streaming_virtualcam_inactive": true,
+  "historical_e8_record_check": {
+    "hashes": 32,
+    "uart_results": 4,
+    "passed": true,
+    "scope": "Saved-record consistency only"
+  },
+  "historical_standard_boot02_video_sha256": "d8c8061ee960f0f0bdc66cd831bafbb7f65694b512ef8622c53f32068483b074",
+  "historical_standard_boot02_visual_recheck": "Original video hash matches. Extracted 10-second frame visually shows the game, score30, lives3, bottom title. A selected-frame observation is not a new whole-video pass.",
+  "unverified": [
+    "Other monitors or TVs",
+    "Cold power-on reliability",
+    "Electrical DVI/HDMI compliance",
+    "Single root cause of acquisition failure",
+    "All game pixels and all collisions"
+  ],
+  "record_note": "Selected text records are sanitized and normalized to LF. Original videos and unredacted logs are retained privately; their hashes identify those originals. No original recording was replaced."
+}

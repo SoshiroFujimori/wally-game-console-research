@@ -1,0 +1,68 @@
+{
+  "date_utc": "2026-11-08T14:32:53.954382+00:00",
+  "product_head": "ed6a1c09b34d597dcde92ec26a4f5a97cbf18a17",
+  "product_status": "",
+  "e8_base_to_current_names": [
+    "examples/rasterix/Breakout.hpp"
+  ],
+  "frozen_manifest_sha256": "7040bff6b8a5ca4cc4e5dc148ecac7e7545c5305d3bd40e4fea07c05ebc094e4",
+  "frozen_manifest_files": 995,
+  "equal_files": 994,
+  "changed_files": [
+    {
+      "path": "examples/rasterix/Breakout.hpp",
+      "frozen_sha256": "1c57060c119e24ebf7cc7a5e59909248398e2380bf6db785843fa8d56ffb75e4",
+      "current_sha256": "7cdd29dda43c8d4aa9829c3766b78c53a1e234af17ccc58adda21dafbd49bca8"
+    }
+  ],
+  "missing_files": [],
+  "hardware_changed_files": [],
+  "hardware_missing_files": [],
+  "rasterix_revision": "9269a01c9bd4c3342bfa70ef8e3cdd751c15c6d0",
+  "upstream_dvi_files_sha256": {
+    "dvi_framebuffer.v": "fc77eb228ad27cca92c6f839caa4501f7c1ddbf7f7e728c57ec0d1c9765aa648",
+    "dvi.v": "676a3636c22bb211881b39ab68958fc05d09ab9bb1e2a09a216177546d538189",
+    "dvi_resync.v": "d32941b322f4e6e8ca473e0c03a24a59a6caf7ae7813c8d9bc505ac9dff7c4c6",
+    "dvi_tmds_encoder.v": "a8913c08bc6be03a70529489bc7503b44fd02e1e793b0cc9e9bad0c09a2162c6",
+    "dvi_serialiser.v": "ad9483c33a30d1d85bcef46037e17168dc98039445c170498c19015436a31a1e"
+  },
+  "e8_patched_files": {
+    "fpga/src/rasterixdisplay.sv": {
+      "expected": "cbe9277c7b5a052af5e99d6c0b60b68cd1da5ff26591af4070be69aae33d95a1",
+      "actual": "cbe9277c7b5a052af5e99d6c0b60b68cd1da5ff26591af4070be69aae33d95a1"
+    },
+    "fpga/generator/videoclock.tcl": {
+      "expected": "88218762d19c3cc5d186faf6455c21e666ffad8a4c52f24899a47dc5fca5bacf",
+      "actual": "88218762d19c3cc5d186faf6455c21e666ffad8a4c52f24899a47dc5fca5bacf"
+    },
+    "fpga/constraints/constraints-rasterixdisplay.xdc": {
+      "expected": "08aa457487ab0c300914bad237ba1a77a62c29c1ae522fe6d06f7c4a4d08181f",
+      "actual": "08aa457487ab0c300914bad237ba1a77a62c29c1ae522fe6d06f7c4a4d08181f"
+    },
+    "fpga/generator/rasterixmem.tcl": {
+      "expected": "a2924d689e66637dd6e9f2649246eea73ed6abea33df822ff13aa6755cfcfdf6",
+      "actual": "a2924d689e66637dd6e9f2649246eea73ed6abea33df822ff13aa6755cfcfdf6"
+    },
+    "fpga/generator/wally.tcl": {
+      "expected": "bc3088894aa2bd8b1bbab0d91f1ea4db109650e6bda0f6d6a28658e590a1a1c9",
+      "actual": "bc3088894aa2bd8b1bbab0d91f1ea4db109650e6bda0f6d6a28658e590a1a1c9"
+    }
+  },
+  "e8_patch_sha256": "055c048357a43371f6a86ebd2e36849b907a0b0873802095b69ea1fa94b4398a",
+  "static_timing_reading": {
+    "standard_horizontal_positions": 801,
+    "standard_vertical_positions": 526,
+    "sync_pulses": "positive H/V in source, passed unchanged into dvi.v",
+    "requested_pixel_mhz": 25.2,
+    "nominal_hz_from_requested_clock": 59.81116759943607,
+    "scope": "RTL and clock request inspection only, not physical waveform or compliance measurement"
+  },
+  "public_records": {
+    "experiments\\basic-operation-20261108\\results.json": "d93eae98a9a742ace051460d2fbe62104c56b4e65ec6cc1c2325f6b8dc30ff44",
+    "experiments\\basic-operation-20261108\\history\\standard-product-trials.json": "60dfe3d3eb0cc03bd9016220907b6e7db16194ba2b58cf1bc981733401dd3f66",
+    "experiments\\breakout-title-top-20261108\\results.json": "d3e72a27245e5df249ae9130948f0775779dcfed9ecc9cdfcc1958c37ce335ae",
+    "experiments\\breakout-title-top-20261108\\video\\breakout-30s.mp4": "0db81935655216a6b827760b825ea260e41fe5d6e4349b4696321ade96c2fbc6",
+    "docs\\thesis\\\u518d\u73fe\u8cc7\u6599\\\u5b9f\u9a13\u8a18\u9332\\E6\\report\\results\\video\\breakout-latest-30s.mp4": "40a2891cecb7f7b56fa93cbbae3ccaa1c2c9f9282eed7b247a0a21e8542705ca"
+  },
+  "e8_file_hashes_match": true
+}

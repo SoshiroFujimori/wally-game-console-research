@@ -6117,6 +6117,58 @@
       "bytes": 6897,
       "sha256": "7d732a7434b38f0cbbf04d0c75963a4aa178f6a9816d88b49371dc70df586bb4"
     },
+    "experiments/dvi-standard-check-20261108/README.md": {
+      "bytes": 7745,
+      "sha256": "b7b1941d81c5632443753e04d963028b4c23e5b15528d1d11cdd21fd326535eb"
+    },
+    "experiments/dvi-standard-check-20261108/results.json": {
+      "bytes": 9081,
+      "sha256": "77c5737a78bd5a577be1120a3a983980a97e8ba5fa22f153779b7d94952af270"
+    },
+    "experiments/dvi-standard-check-20261108/results/e8-restored/boot.raw": {
+      "bytes": 14387,
+      "sha256": "f826c837197d21f3fdd0d943e95b166cccae2371b9ef919eb8ef459074163ba9"
+    },
+    "experiments/dvi-standard-check-20261108/results/e8-restored/frame-check.json": {
+      "bytes": 969,
+      "sha256": "d5c2471dc5b641828316d8ecfba4f88beac6b0fad2aa8c5e01f24247f8ba1cb7"
+    },
+    "experiments/dvi-standard-check-20261108/results/e8-restored/game.raw": {
+      "bytes": 365,
+      "sha256": "caf361651c153dd02d77b3bee9c14d2d7d5f922772734d35cce85610bacc6796"
+    },
+    "experiments/dvi-standard-check-20261108/results/e8-restored/load.raw": {
+      "bytes": 642,
+      "sha256": "a91bc4d16cf65bdce068250d435177d4ea95dac9b94a3038854ca3ce08973fba"
+    },
+    "experiments/dvi-standard-check-20261108/results/e8-restored/program.log": {
+      "bytes": 2775,
+      "sha256": "740a5ed451cbab9e88c73b9292cc21762c7d5f6aad7211234647c990d0ea57b1"
+    },
+    "experiments/dvi-standard-check-20261108/results/standard/boot.raw": {
+      "bytes": 14387,
+      "sha256": "5137b3f5932359d938ec9bca5c6afea478a310d047e8b1f99614d11a00461217"
+    },
+    "experiments/dvi-standard-check-20261108/results/standard/frame-check.json": {
+      "bytes": 908,
+      "sha256": "b5f6ac1ea531580946651322b74ea54bae2256ad3df9240ff95aafa102208249"
+    },
+    "experiments/dvi-standard-check-20261108/results/standard/game.raw": {
+      "bytes": 365,
+      "sha256": "5b6fed4502b058b83be0bc8cae19e2a4a274767e90397ad9dba5708a4a0112b4"
+    },
+    "experiments/dvi-standard-check-20261108/results/standard/load.raw": {
+      "bytes": 642,
+      "sha256": "cdc93866807aa5b39787face0b77fbd368ed0094584149604df4c3858cd41839"
+    },
+    "experiments/dvi-standard-check-20261108/results/standard/program.log": {
+      "bytes": 2775,
+      "sha256": "e1ca323f88a7da61278085f65c2160bb8a50edaad5eb08aa51263feaf43af029"
+    },
+    "experiments/dvi-standard-check-20261108/source-audit.json": {
+      "bytes": 3659,
+      "sha256": "f88de760ff4fd2924ac078816ea18259befbf451f8387f5e259d96b39269b9bc"
+    },
     "experiments/fifo-study-20261008/archive-scripts/add-measurement-counters.py": {
       "bytes": 1912,
       "sha256": "89466d87774718d8857dbe3ff17f647b0e069ba33e0085090dc7fe1cbf92188e"

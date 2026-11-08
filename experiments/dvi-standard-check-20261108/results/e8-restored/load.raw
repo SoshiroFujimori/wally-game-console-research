@@ -1,0 +1,8 @@
+mkdir -p /mnt/layout && mount -t ext4 -o ro /dev/mmcblk0p4 /mnt/layout && gzip -dc /mnt/layout/breakout-title-top-20261108/game.gz > /tmp/fifo-game && chmod +x /tmp/fifo-game && sha256sum /tmp/fifo-game && umount /mnt/layout; test_status=$?; printf "\nTEST_DONE_dd02c2b16e50=%s\n" "$test_status"
+[   39.893885] EXT4-fs (mmcblk0p4): mounted filesystem [filesystem-uuid] ro with ordered data mode. Quota mode: disabled.
+[   46.207825] random: crng init done
+5c360babde59c6d9fc72fe58edc5729da2b2b8480c2f3a5208980d2f7d2c558b  /tmp/fifo-game
+[  106.546343] EXT4-fs (mmcblk0p4): unmounting filesystem [filesystem-uuid].
+
+TEST_DONE_dd02c2b16e50=0
+# 
