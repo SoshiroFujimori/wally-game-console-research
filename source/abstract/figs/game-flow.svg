@@ -7,9 +7,9 @@
 <marker id="blue-arrow" viewBox="0 0 10 10" refX="10" refY="5" markerWidth="4.5" markerHeight="4.5" orient="auto-start-reverse"><path d="M0 0L10 5L0 10Z" fill="#000000"/></marker>
 </defs><rect width="1420" height="1330" fill="white"/>
 <g font-family="Yu Gothic,Arial,sans-serif" fill="#000000">
-<rect x="3" y="3" width="1414" height="1324" fill="#FFFFFF" stroke="#000000" stroke-width="4.2"/>
+<rect x="3" y="3" width="1414" height="1324" fill="#E5EBF8" stroke="#000000" stroke-width="4.2"/>
 <text x="28" y="56" font-size="44.0" text-anchor="start" fill="#000000" font-weight="bold">FPGAボード / Nexys Video</text>
-<rect x="15" y="90" width="1010" height="1192" fill="#E8E8E8" stroke="#000000" stroke-width="7"/>
+<rect x="15" y="90" width="1010" height="1192" fill="#CCD9F1" stroke="#000000" stroke-width="7"/>
 <text x="35" y="137" font-size="43.0" text-anchor="start" fill="#000000" font-weight="bold">FPGAチップ</text>
 <text x="1235" y="137" font-size="37.0" text-anchor="middle" fill="#000000" font-weight="500">チップ外の部品</text>
 <g transform="translate(0 150)">
@@ -17,92 +17,92 @@
 <text x="38" y="49" font-size="37.0" text-anchor="start" fill="#000000" font-weight="bold">Wallyリポジトリ</text>
 <rect x="25" y="810" width="210" height="190" fill="none" stroke="#000000" stroke-width="3.6" stroke-dasharray="13 9"/>
 <text x="110" y="846" font-size="35" text-anchor="middle" fill="#000000" font-weight="bold">RasterIX</text>
-<path d="M290 255L290 765" fill="none" stroke="#FFFFFF" stroke-width="12" stroke-linejoin="round"/>
-<path d="M290 255L290 765" fill="none" stroke="#E8E8E8" stroke-width="12" stroke-linejoin="round" clip-path="url(#chip-area)"/>
+<path d="M290 255L290 765" fill="none" stroke="#E5EBF8" stroke-width="12" stroke-linejoin="round"/>
+<path d="M290 255L290 765" fill="none" stroke="#CCD9F1" stroke-width="12" stroke-linejoin="round" clip-path="url(#chip-area)"/>
 <path data-net="A" d="M290 255L290 765" fill="none" stroke="#000000" stroke-width="4.2" stroke-linejoin="round"/>
-<path d="M340 287L340 797" fill="none" stroke="#FFFFFF" stroke-width="12" stroke-linejoin="round"/>
-<path d="M340 287L340 797" fill="none" stroke="#E8E8E8" stroke-width="12" stroke-linejoin="round" clip-path="url(#chip-area)"/>
+<path d="M340 287L340 797" fill="none" stroke="#E5EBF8" stroke-width="12" stroke-linejoin="round"/>
+<path d="M340 287L340 797" fill="none" stroke="#CCD9F1" stroke-width="12" stroke-linejoin="round" clip-path="url(#chip-area)"/>
 <path data-net="D" d="M340 287L340 797" fill="none" stroke="#000000" stroke-width="4.2" stroke-linejoin="round"/>
-<path d="M390 319L390 829" fill="none" stroke="#FFFFFF" stroke-width="12" stroke-linejoin="round"/>
-<path d="M390 319L390 829" fill="none" stroke="#E8E8E8" stroke-width="12" stroke-linejoin="round" clip-path="url(#chip-area)"/>
+<path d="M390 319L390 829" fill="none" stroke="#E5EBF8" stroke-width="12" stroke-linejoin="round"/>
+<path d="M390 319L390 829" fill="none" stroke="#CCD9F1" stroke-width="12" stroke-linejoin="round" clip-path="url(#chip-area)"/>
 <path data-net="W" d="M390 319L390 829" fill="none" stroke="#000000" stroke-width="4.2" stroke-linejoin="round"/>
-<path d="M290 255L600 255" fill="none" stroke="#FFFFFF" stroke-width="12" stroke-linejoin="round"/>
-<path d="M290 255L600 255" fill="none" stroke="#E8E8E8" stroke-width="12" stroke-linejoin="round" clip-path="url(#chip-area)"/>
+<path d="M290 255L600 255" fill="none" stroke="#E5EBF8" stroke-width="12" stroke-linejoin="round"/>
+<path d="M290 255L600 255" fill="none" stroke="#CCD9F1" stroke-width="12" stroke-linejoin="round" clip-path="url(#chip-area)"/>
 <path data-net="A" d="M290 255L600 255" fill="none" stroke="#000000" stroke-width="4.2" stroke-linejoin="round" marker-end="url(#arrow)"/>
-<path d="M340 287L600 287" fill="none" stroke="#FFFFFF" stroke-width="12" stroke-linejoin="round"/>
-<path d="M340 287L600 287" fill="none" stroke="#E8E8E8" stroke-width="12" stroke-linejoin="round" clip-path="url(#chip-area)"/>
+<path d="M340 287L600 287" fill="none" stroke="#E5EBF8" stroke-width="12" stroke-linejoin="round"/>
+<path d="M340 287L600 287" fill="none" stroke="#CCD9F1" stroke-width="12" stroke-linejoin="round" clip-path="url(#chip-area)"/>
 <path data-net="D" d="M340 287L600 287" fill="none" stroke="#000000" stroke-width="4.2" stroke-linejoin="round" marker-end="url(#arrow)"/>
-<path d="M390 319L600 319" fill="none" stroke="#FFFFFF" stroke-width="12" stroke-linejoin="round"/>
-<path d="M390 319L600 319" fill="none" stroke="#E8E8E8" stroke-width="12" stroke-linejoin="round" clip-path="url(#chip-area)"/>
+<path d="M390 319L600 319" fill="none" stroke="#E5EBF8" stroke-width="12" stroke-linejoin="round"/>
+<path d="M390 319L600 319" fill="none" stroke="#CCD9F1" stroke-width="12" stroke-linejoin="round" clip-path="url(#chip-area)"/>
 <path data-net="W" d="M390 319L600 319" fill="none" stroke="#000000" stroke-width="4.2" stroke-linejoin="round" marker-end="url(#arrow)"/>
-<path d="M290 510L600 510" fill="none" stroke="#FFFFFF" stroke-width="12" stroke-linejoin="round"/>
-<path d="M290 510L600 510" fill="none" stroke="#E8E8E8" stroke-width="12" stroke-linejoin="round" clip-path="url(#chip-area)"/>
+<path d="M290 510L600 510" fill="none" stroke="#E5EBF8" stroke-width="12" stroke-linejoin="round"/>
+<path d="M290 510L600 510" fill="none" stroke="#CCD9F1" stroke-width="12" stroke-linejoin="round" clip-path="url(#chip-area)"/>
 <path data-net="A" d="M290 510L600 510" fill="none" stroke="#000000" stroke-width="4.2" stroke-linejoin="round" marker-end="url(#arrow)"/>
-<path d="M340 542L600 542" fill="none" stroke="#FFFFFF" stroke-width="12" stroke-linejoin="round"/>
-<path d="M340 542L600 542" fill="none" stroke="#E8E8E8" stroke-width="12" stroke-linejoin="round" clip-path="url(#chip-area)"/>
+<path d="M340 542L600 542" fill="none" stroke="#E5EBF8" stroke-width="12" stroke-linejoin="round"/>
+<path d="M340 542L600 542" fill="none" stroke="#CCD9F1" stroke-width="12" stroke-linejoin="round" clip-path="url(#chip-area)"/>
 <path data-net="D" d="M340 542L600 542" fill="none" stroke="#000000" stroke-width="4.2" stroke-linejoin="round" marker-end="url(#arrow)"/>
-<path d="M390 574L600 574" fill="none" stroke="#FFFFFF" stroke-width="12" stroke-linejoin="round"/>
-<path d="M390 574L600 574" fill="none" stroke="#E8E8E8" stroke-width="12" stroke-linejoin="round" clip-path="url(#chip-area)"/>
+<path d="M390 574L600 574" fill="none" stroke="#E5EBF8" stroke-width="12" stroke-linejoin="round"/>
+<path d="M390 574L600 574" fill="none" stroke="#CCD9F1" stroke-width="12" stroke-linejoin="round" clip-path="url(#chip-area)"/>
 <path data-net="W" d="M390 574L600 574" fill="none" stroke="#000000" stroke-width="4.2" stroke-linejoin="round" marker-end="url(#arrow)"/>
-<path d="M290 765L600 765" fill="none" stroke="#FFFFFF" stroke-width="12" stroke-linejoin="round"/>
-<path d="M290 765L600 765" fill="none" stroke="#E8E8E8" stroke-width="12" stroke-linejoin="round" clip-path="url(#chip-area)"/>
+<path d="M290 765L600 765" fill="none" stroke="#E5EBF8" stroke-width="12" stroke-linejoin="round"/>
+<path d="M290 765L600 765" fill="none" stroke="#CCD9F1" stroke-width="12" stroke-linejoin="round" clip-path="url(#chip-area)"/>
 <path data-net="A" d="M290 765L600 765" fill="none" stroke="#000000" stroke-width="4.2" stroke-linejoin="round" marker-end="url(#blue-arrow)"/>
-<path d="M340 797L600 797" fill="none" stroke="#FFFFFF" stroke-width="12" stroke-linejoin="round"/>
-<path d="M340 797L600 797" fill="none" stroke="#E8E8E8" stroke-width="12" stroke-linejoin="round" clip-path="url(#chip-area)"/>
+<path d="M340 797L600 797" fill="none" stroke="#E5EBF8" stroke-width="12" stroke-linejoin="round"/>
+<path d="M340 797L600 797" fill="none" stroke="#CCD9F1" stroke-width="12" stroke-linejoin="round" clip-path="url(#chip-area)"/>
 <path data-net="D" d="M340 797L600 797" fill="none" stroke="#000000" stroke-width="4.2" stroke-linejoin="round" marker-end="url(#blue-arrow)"/>
-<path d="M390 829L600 829" fill="none" stroke="#FFFFFF" stroke-width="12" stroke-linejoin="round"/>
-<path d="M390 829L600 829" fill="none" stroke="#E8E8E8" stroke-width="12" stroke-linejoin="round" clip-path="url(#chip-area)"/>
+<path d="M390 829L600 829" fill="none" stroke="#E5EBF8" stroke-width="12" stroke-linejoin="round"/>
+<path d="M390 829L600 829" fill="none" stroke="#CCD9F1" stroke-width="12" stroke-linejoin="round" clip-path="url(#chip-area)"/>
 <path data-net="W" d="M390 829L600 829" fill="none" stroke="#000000" stroke-width="4.2" stroke-linejoin="round" marker-end="url(#blue-arrow)"/>
-<path d="M230 510L290 510" fill="none" stroke="#FFFFFF" stroke-width="12" stroke-linejoin="round"/>
-<path d="M230 510L290 510" fill="none" stroke="#E8E8E8" stroke-width="12" stroke-linejoin="round" clip-path="url(#chip-area)"/>
+<path d="M230 510L290 510" fill="none" stroke="#E5EBF8" stroke-width="12" stroke-linejoin="round"/>
+<path d="M230 510L290 510" fill="none" stroke="#CCD9F1" stroke-width="12" stroke-linejoin="round" clip-path="url(#chip-area)"/>
 <path data-net="A" d="M230 510L290 510" fill="none" stroke="#000000" stroke-width="4.2" stroke-linejoin="round"/>
-<path d="M230 565L340 565" fill="none" stroke="#FFFFFF" stroke-width="12" stroke-linejoin="round"/>
-<path d="M230 565L340 565" fill="none" stroke="#E8E8E8" stroke-width="12" stroke-linejoin="round" clip-path="url(#chip-area)"/>
+<path d="M230 565L340 565" fill="none" stroke="#E5EBF8" stroke-width="12" stroke-linejoin="round"/>
+<path d="M230 565L340 565" fill="none" stroke="#CCD9F1" stroke-width="12" stroke-linejoin="round" clip-path="url(#chip-area)"/>
 <path data-net="D" d="M230 565L340 565" fill="none" stroke="#000000" stroke-width="4.2" stroke-linejoin="round"/>
-<path d="M230 620L390 620" fill="none" stroke="#FFFFFF" stroke-width="12" stroke-linejoin="round"/>
-<path d="M230 620L390 620" fill="none" stroke="#E8E8E8" stroke-width="12" stroke-linejoin="round" clip-path="url(#chip-area)"/>
+<path d="M230 620L390 620" fill="none" stroke="#E5EBF8" stroke-width="12" stroke-linejoin="round"/>
+<path d="M230 620L390 620" fill="none" stroke="#CCD9F1" stroke-width="12" stroke-linejoin="round" clip-path="url(#chip-area)"/>
 <path data-net="W" d="M230 620L390 620" fill="none" stroke="#000000" stroke-width="4.2" stroke-linejoin="round"/>
-<path d="M360 255L360 200" fill="none" stroke="#FFFFFF" stroke-width="12" stroke-linejoin="round"/>
-<path d="M360 255L360 200" fill="none" stroke="#E8E8E8" stroke-width="12" stroke-linejoin="round" clip-path="url(#chip-area)"/>
+<path d="M360 255L360 200" fill="none" stroke="#E5EBF8" stroke-width="12" stroke-linejoin="round"/>
+<path d="M360 255L360 200" fill="none" stroke="#CCD9F1" stroke-width="12" stroke-linejoin="round" clip-path="url(#chip-area)"/>
 <path data-net="A" d="M360 255L360 200" fill="none" stroke="#000000" stroke-width="4.2" stroke-linejoin="round" marker-end="url(#arrow)"/>
-<path d="M390 100L450 100L450 351L600 351" fill="none" stroke="#FFFFFF" stroke-width="12" stroke-linejoin="round"/>
-<path d="M390 100L450 100L450 351L600 351" fill="none" stroke="#E8E8E8" stroke-width="12" stroke-linejoin="round" clip-path="url(#chip-area)"/>
+<path d="M390 100L450 100L450 351L600 351" fill="none" stroke="#E5EBF8" stroke-width="12" stroke-linejoin="round"/>
+<path d="M390 100L450 100L450 351L600 351" fill="none" stroke="#CCD9F1" stroke-width="12" stroke-linejoin="round" clip-path="url(#chip-area)"/>
 <path data-net="S0" d="M390 100L450 100L450 351L600 351" fill="none" stroke="#000000" stroke-width="4.2" stroke-linejoin="round" marker-end="url(#arrow)"/>
-<path d="M390 145L500 145L500 606L600 606" fill="none" stroke="#FFFFFF" stroke-width="12" stroke-linejoin="round"/>
-<path d="M390 145L500 145L500 606L600 606" fill="none" stroke="#E8E8E8" stroke-width="12" stroke-linejoin="round" clip-path="url(#chip-area)"/>
+<path d="M390 145L500 145L500 606L600 606" fill="none" stroke="#E5EBF8" stroke-width="12" stroke-linejoin="round"/>
+<path d="M390 145L500 145L500 606L600 606" fill="none" stroke="#CCD9F1" stroke-width="12" stroke-linejoin="round" clip-path="url(#chip-area)"/>
 <path data-net="S1" d="M390 145L500 145L500 606L600 606" fill="none" stroke="#000000" stroke-width="4.2" stroke-linejoin="round" marker-end="url(#arrow)"/>
-<path d="M390 190L550 190L550 861L600 861" fill="none" stroke="#FFFFFF" stroke-width="12" stroke-linejoin="round"/>
-<path d="M390 190L550 190L550 861L600 861" fill="none" stroke="#E8E8E8" stroke-width="12" stroke-linejoin="round" clip-path="url(#chip-area)"/>
+<path d="M390 190L550 190L550 861L600 861" fill="none" stroke="#E5EBF8" stroke-width="12" stroke-linejoin="round"/>
+<path d="M390 190L550 190L550 861L600 861" fill="none" stroke="#CCD9F1" stroke-width="12" stroke-linejoin="round" clip-path="url(#chip-area)"/>
 <path data-net="S2" d="M390 190L550 190L550 861L600 861" fill="none" stroke="#000000" stroke-width="4.2" stroke-linejoin="round" marker-end="url(#blue-arrow)"/>
-<path d="M200 200L200 225L255 225L255 955L480 955L480 979" fill="none" stroke="#FFFFFF" stroke-width="12" stroke-linejoin="round"/>
-<path d="M200 200L200 225L255 225L255 955L480 955L480 979" fill="none" stroke="#E8E8E8" stroke-width="12" stroke-linejoin="round" clip-path="url(#chip-area)"/>
+<path d="M200 200L200 225L255 225L255 955L480 955L480 979" fill="none" stroke="#E5EBF8" stroke-width="12" stroke-linejoin="round"/>
+<path d="M200 200L200 225L255 225L255 955L480 955L480 979" fill="none" stroke="#CCD9F1" stroke-width="12" stroke-linejoin="round" clip-path="url(#chip-area)"/>
 <path data-net="S0,S1,S2" d="M200 200L200 225L255 225L255 955L480 955L480 979" fill="none" stroke="#000000" stroke-width="4.2" stroke-linejoin="round" marker-end="url(#arrow)"/>
-<path d="M900 354L920 354L920 995L550 995" fill="none" stroke="#FFFFFF" stroke-width="12" stroke-linejoin="round"/>
-<path d="M900 354L920 354L920 995L550 995" fill="none" stroke="#E8E8E8" stroke-width="12" stroke-linejoin="round" clip-path="url(#chip-area)"/>
+<path d="M900 354L920 354L920 995L550 995" fill="none" stroke="#E5EBF8" stroke-width="12" stroke-linejoin="round"/>
+<path d="M900 354L920 354L920 995L550 995" fill="none" stroke="#CCD9F1" stroke-width="12" stroke-linejoin="round" clip-path="url(#chip-area)"/>
 <path data-net="ReadSD" d="M900 354L920 354L920 995L550 995" fill="none" stroke="#000000" stroke-width="4.2" stroke-linejoin="round" marker-end="url(#arrow)"/>
-<path d="M900 609L960 609L960 1035L550 1035" fill="none" stroke="#FFFFFF" stroke-width="12" stroke-linejoin="round"/>
-<path d="M900 609L960 609L960 1035L550 1035" fill="none" stroke="#E8E8E8" stroke-width="12" stroke-linejoin="round" clip-path="url(#chip-area)"/>
+<path d="M900 609L960 609L960 1035L550 1035" fill="none" stroke="#E5EBF8" stroke-width="12" stroke-linejoin="round"/>
+<path d="M900 609L960 609L960 1035L550 1035" fill="none" stroke="#CCD9F1" stroke-width="12" stroke-linejoin="round" clip-path="url(#chip-area)"/>
 <path data-net="ReadDDR" d="M900 609L960 609L960 1035L550 1035" fill="none" stroke="#000000" stroke-width="4.2" stroke-linejoin="round" marker-end="url(#arrow)"/>
-<path d="M900 864L1000 864L1000 1075L550 1075" fill="none" stroke="#FFFFFF" stroke-width="12" stroke-linejoin="round"/>
-<path d="M900 864L1000 864L1000 1075L550 1075" fill="none" stroke="#E8E8E8" stroke-width="12" stroke-linejoin="round" clip-path="url(#chip-area)"/>
+<path d="M900 864L1000 864L1000 1075L550 1075" fill="none" stroke="#E5EBF8" stroke-width="12" stroke-linejoin="round"/>
+<path d="M900 864L1000 864L1000 1075L550 1075" fill="none" stroke="#CCD9F1" stroke-width="12" stroke-linejoin="round" clip-path="url(#chip-area)"/>
 <path data-net="ReadGraphicsPort" d="M900 864L1000 864L1000 1075L550 1075" fill="none" stroke="#000000" stroke-width="4.2" stroke-linejoin="round" marker-end="url(#blue-arrow)"/>
-<path d="M390 1035L245 1035L245 690L130 690L130 660" fill="none" stroke="#FFFFFF" stroke-width="12" stroke-linejoin="round"/>
-<path d="M390 1035L245 1035L245 690L130 690L130 660" fill="none" stroke="#E8E8E8" stroke-width="12" stroke-linejoin="round" clip-path="url(#chip-area)"/>
+<path d="M390 1035L245 1035L245 690L130 690L130 660" fill="none" stroke="#E5EBF8" stroke-width="12" stroke-linejoin="round"/>
+<path d="M390 1035L245 1035L245 690L130 690L130 660" fill="none" stroke="#CCD9F1" stroke-width="12" stroke-linejoin="round" clip-path="url(#chip-area)"/>
 <path data-net="ReadData" d="M390 1035L245 1035L245 690L130 690L130 660" fill="none" stroke="#000000" stroke-width="4.2" stroke-linejoin="round" marker-end="url(#arrow)"/>
-<path d="M780 875L780 950L300 950L300 890L220 890" fill="none" stroke="#FFFFFF" stroke-width="12" stroke-linejoin="round"/>
-<path d="M780 875L780 950L300 950L300 890L220 890" fill="none" stroke="#E8E8E8" stroke-width="12" stroke-linejoin="round" clip-path="url(#chip-area)"/>
+<path d="M780 875L780 950L300 950L300 890L220 890" fill="none" stroke="#E5EBF8" stroke-width="12" stroke-linejoin="round"/>
+<path d="M780 875L780 950L300 950L300 890L220 890" fill="none" stroke="#CCD9F1" stroke-width="12" stroke-linejoin="round" clip-path="url(#chip-area)"/>
 <path data-net="DrawingCommands" d="M780 875L780 950L300 950L300 890L220 890" fill="none" stroke="#000000" stroke-width="4.2" stroke-linejoin="round" marker-end="url(#blue-arrow)"/>
-<path d="M205 860L205 705L675 705L675 620" fill="none" stroke="#FFFFFF" stroke-width="12" stroke-linejoin="round"/>
-<path d="M205 860L205 705L675 705L675 620" fill="none" stroke="#E8E8E8" stroke-width="12" stroke-linejoin="round" clip-path="url(#chip-area)"/>
+<path d="M205 860L205 705L675 705L675 620" fill="none" stroke="#E5EBF8" stroke-width="12" stroke-linejoin="round"/>
+<path d="M205 860L205 705L675 705L675 620" fill="none" stroke="#CCD9F1" stroke-width="12" stroke-linejoin="round" clip-path="url(#chip-area)"/>
 <path data-net="ImageMemory" d="M205 860L205 705L675 705L675 620" fill="none" stroke="#000000" stroke-width="4.2" stroke-linejoin="round" marker-end="url(#blue-arrow)" marker-start="url(#blue-arrow)"/>
-<path d="M900 280L1100 280" fill="none" stroke="#FFFFFF" stroke-width="12" stroke-linejoin="round"/>
-<path d="M900 280L1100 280" fill="none" stroke="#E8E8E8" stroke-width="12" stroke-linejoin="round" clip-path="url(#chip-area)"/>
+<path d="M900 280L1100 280" fill="none" stroke="#E5EBF8" stroke-width="12" stroke-linejoin="round"/>
+<path d="M900 280L1100 280" fill="none" stroke="#CCD9F1" stroke-width="12" stroke-linejoin="round" clip-path="url(#chip-area)"/>
 <path data-net="SDPhysical" d="M900 280L1100 280" fill="none" stroke="#000000" stroke-width="4.2" stroke-linejoin="round" marker-end="url(#arrow)" marker-start="url(#arrow)"/>
-<path d="M900 535L1100 535" fill="none" stroke="#FFFFFF" stroke-width="12" stroke-linejoin="round"/>
-<path d="M900 535L1100 535" fill="none" stroke="#E8E8E8" stroke-width="12" stroke-linejoin="round" clip-path="url(#chip-area)"/>
+<path d="M900 535L1100 535" fill="none" stroke="#E5EBF8" stroke-width="12" stroke-linejoin="round"/>
+<path d="M900 535L1100 535" fill="none" stroke="#CCD9F1" stroke-width="12" stroke-linejoin="round" clip-path="url(#chip-area)"/>
 <path data-net="DDRPhysical" d="M900 535L1100 535" fill="none" stroke="#000000" stroke-width="4.2" stroke-linejoin="round" marker-end="url(#arrow)" marker-start="url(#arrow)"/>
-<path d="M130 985L130 1120L1070 1120L1070 915L1100 915" fill="none" stroke="#FFFFFF" stroke-width="12" stroke-linejoin="round"/>
-<path d="M130 985L130 1120L1070 1120L1070 915L1100 915" fill="none" stroke="#E8E8E8" stroke-width="12" stroke-linejoin="round" clip-path="url(#chip-area)"/>
+<path d="M130 985L130 1120L1070 1120L1070 915L1100 915" fill="none" stroke="#E5EBF8" stroke-width="12" stroke-linejoin="round"/>
+<path d="M130 985L130 1120L1070 1120L1070 915L1100 915" fill="none" stroke="#CCD9F1" stroke-width="12" stroke-linejoin="round" clip-path="url(#chip-area)"/>
 <path data-net="Video" d="M130 985L130 1120L1070 1120L1070 915L1100 915" fill="none" stroke="#000000" stroke-width="4.2" stroke-linejoin="round" marker-end="url(#blue-arrow)"/>
 <circle cx="290" cy="255" r="7" fill="#000000"/>
 <circle cx="290" cy="510" r="7" fill="#000000"/>
