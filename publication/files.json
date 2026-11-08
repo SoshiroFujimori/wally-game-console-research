@@ -50,16 +50,16 @@
       "sha256": "97ad5c5e945333020b589efef355b3fb1162e404f06dd766b1f7fc8903a08009"
     },
     "docs/abstract/figs/figure-1.png": {
-      "bytes": 423041,
-      "sha256": "ab51027037dfae9ea3f0fe3a99583f74b2abaab5c0cc25bf8bdb1acbf0c7bfba"
+      "bytes": 423641,
+      "sha256": "211c2b9a4ed6363f32b0cf65d5896e1d507f806a9d2889b7e2c674cde33524fd"
     },
     "docs/abstract/figs/figure-2.png": {
       "bytes": 43987,
       "sha256": "99ee1b8079af40111fd49441a140f8fe1db13e8e06210fae63be6dae1c4e1aa3"
     },
     "docs/abstract/アブスト_主要事項.docx": {
-      "bytes": 452692,
-      "sha256": "9e765f216a059fe1524f13b931676b26685ab11061dde797ef34e497f13ac5dc"
+      "bytes": 453519,
+      "sha256": "57c1e60cc7d361f1603a471e944c6f3dc3f94d2ba1192ad04974846517396b62"
     },
     "docs/abstract/アブスト_主要事項.md": {
       "bytes": 5456,
@@ -12506,8 +12506,8 @@
       "sha256": "b37af8468ab90cc774380eae7acce80700a22c2cdb02aa7e1d27bf6da8ad7d04"
     },
     "publication/media-review.json": {
-      "bytes": 103505,
-      "sha256": "39e1f2bfd555a54374875961b0f0052df9ca4f7d7f8f2c32a85ec33853ce3f78"
+      "bytes": 104047,
+      "sha256": "33dd5148b9b3d41e766d24d46396c14d0143419b478c678c3516815c7fef99ff"
     },
     "publication/policy.json": {
       "bytes": 635,
@@ -12538,12 +12538,12 @@
       "sha256": "7614eeea40113dc0061dfc69debfe717467c4fa28d4ddb8a282275704d7191f2"
     },
     "source/abstract/figs/game-flow.png": {
-      "bytes": 423041,
-      "sha256": "ab51027037dfae9ea3f0fe3a99583f74b2abaab5c0cc25bf8bdb1acbf0c7bfba"
+      "bytes": 423641,
+      "sha256": "211c2b9a4ed6363f32b0cf65d5896e1d507f806a9d2889b7e2c674cde33524fd"
     },
     "source/abstract/figs/game-flow.svg": {
-      "bytes": 27014,
-      "sha256": "c1b7bf81c262b88c6af51a4a445340c2324b1fa6e4e250a3b88dcd32ca9be884"
+      "bytes": 29644,
+      "sha256": "acfb03e5877bf375e48584113ff55077c698f97a28dd8d15c9129631aea0d0f8"
     },
     "source/presentation/README.md": {
       "bytes": 2638,
