@@ -84,7 +84,7 @@ topology and the meaning of the blue emphasis remain unchanged.
 The upstream sources are [Wally/CVW](https://github.com/openhwgroup/cvw) and
 [official RasterIX at the recorded revision](https://github.com/ToNi3141/RasterIX/tree/9269a01c9bd4c3342bfa70ef8e3cdd751c15c6d0).
 Slides 3 and 6-9 label acquisition sources; the detailed diagram marks the
-two reused RasterIX cores with `[R]`. The video slide visibly identifies
+two reused RasterIX cores with `[R]`. The video slide's speaker notes and Markdown identify
 its display replacement so it is not mistaken for a standard-product capture.
 
 ## Detailed-diagram connectivity

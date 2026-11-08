@@ -114,8 +114,8 @@
       "sha256": "3566bb96a3d2d8375b4f3cf8ea694f24aed68dd4d1c5bf590c00fa914fdf5428"
     },
     "docs/presentation/slides/slide-10.png": {
-      "bytes": 106597,
-      "sha256": "5829a0873d25a52f85ee57c6cb7d85c9af65da8bd51a5be7744eef91fce3f46b"
+      "bytes": 84025,
+      "sha256": "4b3c50fd5458605147b5d16f61d59b4ac37ec84ebb46aa8c657f0edc70f1387e"
     },
     "docs/presentation/slides/slide-11.png": {
       "bytes": 75122,
@@ -146,8 +146,8 @@
       "sha256": "2d40e1229977b567945efb65c7972e6c978cd1943019b997deda2fed7a43c2c7"
     },
     "docs/presentation/中間発表_主要事項.pptx": {
-      "bytes": 626800,
-      "sha256": "129c3af07b81147272cdf37c59f1a4fddfc357ec2e5e4c7a803a03622728a192"
+      "bytes": 626200,
+      "sha256": "79fba0a2818a58c79b8ae3d2bf3337c83f7b18bd90440f548762dc7844ea7971"
     },
     "docs/privacy.md": {
       "bytes": 5063,
@@ -12382,8 +12382,8 @@
       "sha256": "b37af8468ab90cc774380eae7acce80700a22c2cdb02aa7e1d27bf6da8ad7d04"
     },
     "publication/media-review.json": {
-      "bytes": 88917,
-      "sha256": "27e769a9c8827d07b7c574ca0240e2a527f8cb3af971381481d4ffad81f00c48"
+      "bytes": 89336,
+      "sha256": "b5601e7c641e55994df536c86dc06797806bcfd6120f2bf5fff1e8a1a7786657"
     },
     "publication/policy.json": {
       "bytes": 635,
@@ -12430,16 +12430,16 @@
       "sha256": "0e317c3229ff950862fbbc0d3c6fd9ca07f5dcbcb890a497603083751684d187"
     },
     "source/presentation/board-evolution/README.md": {
-      "bytes": 16249,
-      "sha256": "604181877be0d499c57bbbff9c66e6db3771f5a70d9dfd10e6fa69d49273d5f6"
+      "bytes": 16268,
+      "sha256": "c9516631e3cce9186af35a55118e81748cae260c6c36956d13e7e6b693a6014e"
     },
     "source/presentation/board-evolution/board-circuit.mjs": {
       "bytes": 13149,
       "sha256": "c056535bf2e5610869cddcb4f5e45d833b7f849126d9a88c33c5f820f4476b43"
     },
     "source/presentation/board-evolution/build.mjs": {
-      "bytes": 55145,
-      "sha256": "58f465576d0ef3521ebebdee7eea9d1215186656ce09a0d3520484e66797bc5d"
+      "bytes": 54916,
+      "sha256": "f6ac025ffd29215f18bf56f207c647c6dd8ce7448646b01eb1c5b91d2f88f7c2"
     },
     "source/presentation/board-evolution/circuit-wiring.mjs": {
       "bytes": 6146,
