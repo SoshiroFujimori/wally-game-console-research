@@ -47,6 +47,27 @@ It is not an exhaustive or cycle-accurate RTL/netlist drawing. More detailed
 module diagrams remain in `../wally-circuit.mjs` for future question slides.
 Source and omission notes are in the speaker notes.
 
+## Component provenance
+
+Repository labels identify where the reused components are obtained; they do
+not imply that one project authored every included component. The diagram
+topology and the meaning of the blue emphasis remain unchanged.
+
+| Diagram component | Acquisition source and implementation |
+| --- | --- |
+| CPU, bus and SD control | Wally/CVW RTL: `console/src/wally/wallypipelinedcore.sv`, `console/src/ebu/ebu.sv`, `console/src/uncore/uncore.sv`, and `console/src/uncore/spi_apb.sv`. |
+| DDR control | Wally's FPGA build integrates AMD MIG IP. `console/fpga/generator/ddr3-nexysvideo.tcl` generates the IP; the Nexys Video settings were added in this work. This is not Wally-authored DDR-controller RTL. |
+| Drawing core | Official RasterIX: `rtl/RasterIX/RasterIX_IF.v`. |
+| Standard display core | The same official RasterIX repository includes `rtl/3rdParty/core_dvi_framebuffer/src_v/dvi_framebuffer.v`, originally from ultraembedded. |
+| Integration logic | This work adds `rasterix_apb.sv`, `rasterix.sv` and the swap/configuration wrapper in `rasterixdisplay.sv` on the Wally side. These wrappers are not labeled as upstream RasterIX components. |
+| Display used in the E8 video | The research variant replaces the standard display core with research scanout logic and `hdl-util/hdmi`. Its exact sources are recorded in [E8](../../../experiments/basic-operation-20261108/hdmi/README.md). |
+
+The upstream sources are [Wally/CVW](https://github.com/openhwgroup/cvw) and
+[official RasterIX at the recorded revision](https://github.com/ToNi3141/RasterIX/tree/9269a01c9bd4c3342bfa70ef8e3cdd751c15c6d0).
+Slides 3 and 6-9 label acquisition sources; the detailed diagram marks the
+two reused RasterIX cores with `[R]`. The E8 video slide visibly identifies
+its display replacement so it is not mistaken for a standard-product capture.
+
 ## Detailed-diagram connectivity
 
 The question diagram uses product revision

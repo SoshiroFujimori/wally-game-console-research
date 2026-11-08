@@ -41,7 +41,7 @@ export function drawWallyOverview(s, api) {
   // does not claim that the intervening black-outlined module was explained.
   // Vendor-IP fill and pale hierarchy backgrounds have independent meanings.
   T('青線・青枠：本編で説明した機能・経路',0,0,780,23,16,false,blue);
-  T('濃い塗り：AMD提供IP（説明範囲とは別）',0,24,780,23,16,false,C.ink);
+  T('濃い塗り：AMD製IP　[R]：RasterIXリポジトリ由来（標準構成）',0,24,780,23,14,false,C.ink);
 
   // Board components outside the programmable chip.
   B('DDR3',800,0,144,36,C.white,19,blue);
@@ -52,7 +52,7 @@ export function drawWallyOverview(s, api) {
 
   // Preserve the HDL hierarchy: RasterIX and memory IP are outside the SoC.
   B('',15,91,875,481,C.white,15,C.ink,1.8);
-  T('wallypipelinedsoc',30,94,330,25,21,true);
+  T('wallypipelinedsoc / Wally',30,94,350,25,20,true);
   B('',28,124,847,110,C.pale,16,C.ink,1.6);
   T('uncore',38,128,95,23,18,true);
   // HADDR fans out to the decoder and AHB endpoints. Decoding produces
@@ -104,7 +104,7 @@ export function drawWallyOverview(s, api) {
   B('clkconverter',922,138,181,34,C.ip,16);
   B(expanded?'SmartConnect':'AXI connection',922,188,181,34,C.ip,15);
   B('',922,238,181,34,C.ip,14,blue,2.2);
-  T('DDR controller / MIG',925,239,175,32,14,true,C.ink,'center');
+  T('DDR / MIG (Wally設定)',925,239,175,32,13.5,true,C.ink,'center');
   BI([[1012,123],[1012,138]],blue);
   BI([[1012,172],[1012,188]],blue);
   BI([[1012,222],[1012,238]],blue);
@@ -289,10 +289,10 @@ export function drawWallyOverview(s, api) {
     T('非同期FIFO',983,368,77,19,13.5,true,C.ink,'center');
     W(975,364,975,389,blue,true,1.7);
     W(1065,389,1065,364,C.ink,true,1.7);
-    B('描画回路',949,437,154,40,C.white,21,blue,2);
+    B('描画回路 [R]',949,437,154,40,C.white,19,blue,2);
     W(975,419,975,437,blue,true,1.7);
     W(1065,437,1065,419,C.ink,true,1.7);
-    B('表示回路',939,515,164,35,C.white,19,blue,2);
+    B('表示回路 [R]',939,515,164,35,C.white,18,blue,2);
     W(958,477,958,515,C.ink,true,1.5);
     W(1094,515,1094,477,C.ink,true,1.5);
     T('表示先・完了',956,482,130,27,14,false,C.ink,'center');

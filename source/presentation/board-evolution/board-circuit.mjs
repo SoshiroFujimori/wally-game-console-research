@@ -40,6 +40,10 @@ export function drawBoard(s,a,stage){
   const poly=(p,fill=white,stroke=C.ink,width=2.2)=>P(s,p,fill,stroke,width);
 
   if(!chipOnly){
+    // Repositories are acquisition sources, not a claim of sole authorship.
+    const wally = stage >= 6 ? 'CPU・バス・SD制御・DDR接続' : 'CPU・バス・DDR接続';
+    t('Wallyリポジトリ：' + wally,64,181,690,29,20,true);
+    if(stage>=7)t('RasterIXリポジトリ：' + (display?'描画・表示':'描画'),765,181,451,29,20,true);
     b('board','',C.pale);
     t('FPGAボード / Nexys Video',62,224,680,31,24,true);
     t('チップ外の部品',1045,259,176,31,20,true,C.ink,'center');
@@ -214,8 +218,10 @@ function drawIntroBoard(s,a,research){
   t('FPGAチップ',669,306,320,35,26,true,C.blue);
   if(research){
     box('education-cpu',678,375,126,88);
+    t('Wally',678,344,126,28,21,true,C.ink,'center');
     t('教育用\nCPU',686,382,110,74,25,true,C.ink,'center');
     box('graphics-function',851,375,133,88,C.pale,C.blue);
+    t('RasterIX',851,344,133,28,21,true,C.ink,'center');
     t('描画\n機能',859,382,117,74,25,true,C.blue,'center');
     W(s,804,419,851,419,C.blue,true,2.6);
     t('描画機能を追加',673,479,316,33,23,true,C.blue,'center');
