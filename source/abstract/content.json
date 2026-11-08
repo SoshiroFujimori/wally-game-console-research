@@ -37,9 +37,9 @@
     {
       "section": "3  動作の確認",
       "after_paragraph": 2,
-      "source": "docs/thesis/figs/current-game.png",
-      "caption": "図2  実機のゲーム画面",
-      "alt": "タイトルWALLY BREAKOUTを上部中央に置いた、実機のHDMI映像から取り出したブロック崩しの画面。色付きのブロック、白いボールとパドルが描かれている。自動操作で確認した。",
+      "source": "source/abstract/figs/game-screen-print.png",
+      "caption": "図2  実機のゲーム画面（白黒表示）",
+      "alt": "実機のHDMI映像から取り出したブロック崩しの画面を白黒印刷用に階調調整した画像。元の画素の位置と画像サイズを保ち、黒い背景上のブロック、白いボールとパドルを示す。WALLY BREAKOUTは上部中央にある。自動操作で確認した。",
       "width_mm": 60
     }
   ],
