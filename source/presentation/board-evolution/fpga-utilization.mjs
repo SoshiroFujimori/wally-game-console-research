@@ -46,7 +46,7 @@ Block RAM Tileは36 Kibit相当を1個として換算した値である。18 Kib
 質問への答え方
 「どのくらい余っていますか」には、今回示した四種類ではブロックメモリが最も高い使用率で約59%、LUTが約50%と答え、回路全体の利用率を一つの数値にまとめない。「描画回路だけで何%ですか」には、この表は全体の集計なので個別の内訳を示すものではないと答える。`;
 
-export function drawFpgaUtilization(slide, api, data) {
+export function drawFpgaUtilization(slide, api, data, pageNumber) {
   const {text, C} = api;
   text(slide, 'Nexys Video：Artix-7 XC7A200T', 64, 125, 1152, 44, 28, true, C.blue);
   text(slide, 'CPU・描画・表示・メモリ制御などを含む、回路全体の使用量', 64, 176, 1152, 35, 25);
@@ -73,6 +73,6 @@ export function drawFpgaUtilization(slide, api, data) {
   }
   text(slide, '使用率は「使った個数の割合」。ゲーム実行中の忙しさとは別', 64, 570, 1152, 38, 25, true);
   text(slide, 'ブロックメモリは36 Kibit相当を1個として換算。外付けDDR3は集計外', 64, 623, 1152, 32, 22);
-  text(slide, '表 15', 64, 684, 63, 30, 17, true, C.heading);
+  text(slide, '表 '+pageNumber, 64, 684, 63, 30, 17, true, C.heading);
   text(slide, '実験E8：動画と同じ回路の記録（2026-11-08、Vivado 2025.2）', 131, 684, 1028, 30, 16);
 }

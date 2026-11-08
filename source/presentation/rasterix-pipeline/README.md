@@ -1,6 +1,6 @@
 # RasterIX FPGA pipeline diagram
 
-The hidden question slide 17 adapts the official RasterIX README figure into
+The hidden question slide 18 adapts the official RasterIX README figure into
 native PowerPoint blocks and wires, using the active deck's RVSOC-inspired
 fonts, line weights and colors.
 

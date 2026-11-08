@@ -1,0 +1,72 @@
+// Native slide navigation. The slide names remain editable text objects.
+export const CONTENTS_SLIDE=12;
+export const CONTENTS_ITEMS=[
+  {number:1,label:'表紙',group:'発表スライド'},
+  {number:2,label:'FPGAチップと周辺部品',group:'発表スライド'},
+  {number:3,label:'研究の目的',group:'発表スライド'},
+  {number:4,label:'lw：メモリから読む',group:'発表スライド'},
+  {number:5,label:'sw：メモリへ書く',group:'発表スライド'},
+  {number:6,label:'バスとDDRコントローラー',group:'発表スライド'},
+  {number:7,label:'SDカードからプログラムを読む',group:'発表スライド'},
+  {number:8,label:'描画回路へ命令を送る',group:'発表スライド'},
+  {number:9,label:'画像を保存し、映像を出力する',group:'発表スライド'},
+  {number:10,label:'ブロック崩しの動作確認',group:'発表スライド'},
+  {number:11,label:'結論と今後の展望',group:'発表スライド'},
+  {number:13,label:'DDCAを教材に挙げる授業',group:'教科書の採用例'},
+  {number:14,label:'RVSOCの教科書採用例',group:'教科書の採用例'},
+  {number:15,label:'FPGAチップの構成要素',group:'FPGA'},
+  {number:16,label:'FPGAの使用量',group:'FPGA'},
+  {number:17,label:'詳細な全体のブロック図',group:'回路の詳細'},
+  {number:18,label:'描画回路のFPGAパイプライン',group:'回路の詳細'},
+];
+
+const destinations=new Map();
+
+export function linkToSlide(shape,number){
+  destinations.set(shape.name,number);
+}
+
+export function drawContents(s,api){
+  const {text,wire,C}=api;
+  text(s,'発表スライド',64,127,544,42,29,true,C.heading);
+  text(s,'質問用スライド',668,127,548,42,29,true,C.heading);
+  wire(s,64,178,608,178,C.ink,false,1.2);
+  wire(s,668,178,1216,178,C.ink,false,1.2);
+  const item=(record,x,y)=>{
+    const number=text(s,String(record.number),x,y,46,34,25,true,C.heading,'right');
+    const label=text(s,record.label,x+63,y,481,34,24,false,C.ink);
+    number.name=`contents-number-${record.number}`;
+    label.name=`contents-label-${record.number}`;
+    linkToSlide(number,record.number);linkToSlide(label,record.number);
+  };
+  CONTENTS_ITEMS.slice(0,11).forEach((r,i)=>item(r,64,193+i*37));
+  ['教科書の採用例','FPGA','回路の詳細'].forEach((group,i)=>{
+    const y=191+i*139;
+    text(s,group,668,y,548,33,24,true,C.heading);
+    CONTENTS_ITEMS.filter(r=>r.group===group).forEach((r,j)=>item(r,668,y+42+j*38));
+  });
+  text(s,'項目をクリックすると、そのスライドへ移動します',64,628,1152,34,24,true,C.ink);
+  text(s,'各スライドの右下の番号をクリックすると、この目次に戻れます',64,670,1100,31,21,false,C.old);
+}
+
+export function contentsMarkdown(){
+  const lines=[];
+  for(const group of ['発表スライド','教科書の採用例','FPGA','回路の詳細']){
+    lines.push('### '+(group==='発表スライド'?group:'質問用：'+group),'');
+    for(const r of CONTENTS_ITEMS.filter(r=>r.group===group))lines.push(`- [${r.number}. ${r.label}](#slide-${r.number})`);
+    lines.push('');
+  }
+  return lines.join('\n');
+}
+
+export function navigationTargets(presentation){
+  const links=[];
+  for(const [i,slide] of presentation.slides.items.entries()){
+    for(const shape of slide.shapes.items){
+      const target=destinations.get(shape.name);
+      if(target!==undefined)links.push({source:i+1,shape:shape.name,target});
+    }
+  }
+  if(links.length!==destinations.size)throw new Error('Navigation shapes are missing');
+  return {links};
+}

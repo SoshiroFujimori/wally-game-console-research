@@ -32,7 +32,7 @@ Thompsonら（2025）の第4節は、2023〜2024年の上級SoC設計の授業�
 質問への答え方
 「1校だけですか」には「公開資料では少なくともこの3校の教科書指定・使用実績を確認しています。原稿版での過去の使用も含みます」と答える。この一覧だけから世界の採用率や、本研究の教育効果を示すことはできない。`;
 
-export function drawRvsocAdoption(slide, api, data) {
+export function drawRvsocAdoption(slide, api, data, pageNumber) {
   const {text, C} = api;
   text(slide, '米国・ドイツの3校で、教科書の指定・使用実績を確認', 64, 123, 1152, 44, 28, true, C.blue);
   text(slide, '対象：RISC-V System-on-Chip Design', 64, 176, 1152, 34, 24);
@@ -63,6 +63,6 @@ export function drawRvsocAdoption(slide, api, data) {
   }
   text(slide, '出版前の原稿を使った過去の授業も含む', 64, 578, 1152, 37, 25, true);
   text(slide, '公開資料で確認できた例。世界の全採用校を網羅した一覧ではない', 64, 628, 1152, 32, 22);
-  text(slide, '表 16', 64, 684, 63, 30, 17, true, C.heading);
+  text(slide, '表 '+pageNumber, 64, 684, 63, 30, 17, true, C.heading);
   text(slide, '[1] HMC授業資料　[2] ASEE 2025 §4　[3] TU Darmstadt授業資料（確認：2026-11-08）', 131, 684, 1028, 30, 16);
 }

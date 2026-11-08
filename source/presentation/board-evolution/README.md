@@ -38,7 +38,7 @@ The MIG generator is `console/fpga/generator/ddr3-nexysvideo.tcl`. Its internals
 are omitted. The sender adapter is grouped into RasterIX in the main slides.
 Cache/MMU internals, framebuffer internals and arbitration are appendix topics.
 
-Hidden question slide 12 extends the RVSOC Figure 7.11 pipeline layout.
+Hidden question slide 17 extends the RVSOC Figure 7.11 pipeline layout.
 `wally-overview.mjs` keeps the PC, register file, ALU, stage boundaries,
 operand selectors and lower writeback/forwarding paths. MMU/cache/bus paths
 replace IROM/DTIM. EBU, uncore, memory IP and graphics extend the datapath.
@@ -145,7 +145,8 @@ the Artifact Tool poster. Public text, notes and image metadata are sanitized
 before adding the reviewed video. The helper rejects a video whose exact hash
 is absent from the media-review record. Publication hooks remain unchanged.
 Static rendering is not a native PowerPoint playback test. The builder
-validates and imports the still-frame edition before embedding the video.
+validates the still-frame edition and imports all content in two batches
+before embedding the video.
 The final video-bearing package receives the same integrity and layout checks
 without re-importing the video into Artifact Tool, whose picture construction
 limit rejects the existing recording. Native PowerPoint rendering and the
@@ -166,7 +167,7 @@ allocation is 355 seconds including 30 seconds of video; slide 2 receives
 remains future work.
 
 Presentation labels and Japanese narration use 描画回路 for the rendering core.
-Actual source paths retain RasterIX identifiers. On question slide 12,
+Actual source paths retain RasterIX identifiers. On question slide 17,
 描画回路 denotes RasterIX_IF and 描画接続回路 denotes rasterix_apb; this wording
 change does not rename or alter the product modules.
 
@@ -189,7 +190,7 @@ The palette follows the published Figure 23.2: board background `#E5EBF8`,
 FPGA background `#CCD9F1`, AMD IP `#77A3DC`, and ink `#231F20`.
 The published PDF and the editable Visio source have different RGB values;
 the published figure is the appearance reference. Pipeline symbols and
-stage layout follow Figure 7.11. On question slide 12, blue outlines and
+stage layout follow Figure 7.11. On question slide 17, blue outlines and
 paths map to functions and data movement introduced in main slides 4-9.
 PC and the +4 operation, register-file access, address calculation,
 instruction/data transfers, address decoding, SD control (`sdc` / `spi_apb`), the DDR
@@ -214,7 +215,7 @@ inspect every slide and both public and submission abstract pages after edits.
 
 ## FPGA resource question slide
 
-Hidden slide 14 uses `fpga-resources.mjs` and follows the hierarchy in
+Hidden slide 15 uses `fpga-resources.mjs` and follows the hierarchy in
 Pong P. Chu (2018), Chapter 2, Sections 2.1.1-2.1.2 and Figure 2.1.
 A generic logic cell contains a lookup table, a D-type flip-flop and
 output selection. A separate group of dedicated macro cells includes
@@ -233,7 +234,7 @@ AMD and Digilent references accompany the notes and Markdown.
 
 ## FPGA utilization question slide
 
-Hidden slide 15 is an editable table built by `fpga-utilization.mjs` from
+Hidden slide 16 is an editable table built by `fpga-utilization.mjs` from
 `experiments/basic-operation-20261108/results/implementation.json`.
 It uses the November 8, 2026 post-route result for the research HDMI variant shown
 in the embedded demonstration. LUTs, slice registers, block-memory tile
@@ -245,7 +246,7 @@ The existing eleven-slide narration remains 355 seconds.
 
 ## RVSOC textbook adoption question slide
 
-Hidden slide 16 summarizes three documented textbook-designation or use
+Hidden slide 14 summarizes three documented textbook-designation or use
 examples, including historical draft use. Its editable table is generated
 by `rvsoc-adoption.mjs` from `source/presentation/rvsoc-adoption/records.json`.
 The sources are official course materials and an instructor-authored ASEE
@@ -256,7 +257,7 @@ exhaustive inventory of current users. The main narration remains 355 seconds.
 
 ## RasterIX pipeline reference slide
 
-Hidden question slide 17 redraws the official RasterIX FPGA pipeline as native
+Hidden question slide 18 redraws the official RasterIX FPGA pipeline as native
 editable circuit blocks. `rasterix-pipeline.mjs` retains all processing nodes
 and directed connections from the pinned upstream figure, including the
 parallel destination-buffer reads and fragment operations. The four phase
@@ -266,3 +267,24 @@ See [source and scope](../rasterix-pipeline/README.md) for the upstream revision
 license and the distinction between this latest conceptual figure and the
 measured console configuration. No product or RasterIX revision is changed by
 adding the reference slide.
+
+## Clickable contents and question-slide order
+
+Slide 12 is a visible navigation slide after the eleven main slides. It links
+both to the main talk and to the six hidden question slides, grouped as:
+
+- 13-14: DDCA and RVSOC textbook-use examples.
+- 15-16: FPGA components and resource use.
+- 17-18: the complete circuit and the RasterIX rendering pipeline.
+
+`navigation.mjs` supplies editable contents entries and return links on the
+bottom-right page numbers, including the cover. `link_slides.py` adds native
+OOXML slide-jump relationships after the privacy and content import checks.
+The complete 18-slide deck exceeds the runtime's default aggregate XML import
+limit. Every slide is imported in one of two contiguous content batches
+(1-11 and 12-18); the complete final package is checked structurally and with
+native PowerPoint rendering and navigation. This limit is not a PowerPoint
+limit and does not require reducing the diagram detail. Targets stay
+inside the PPTX; they do not open a browser or rely on a local file path.
+The question slides remain hidden in ordinary sequential playback and are
+opened from the contents. The main narration allocation remains 355 seconds.

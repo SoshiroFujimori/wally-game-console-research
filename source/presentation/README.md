@@ -3,7 +3,8 @@
 This directory builds the single published presentation:
 [slides and narration](../../docs/presentation/中間発表_主要事項.md) and
 [PowerPoint](../../docs/presentation/中間発表_主要事項.pptx).
-It contains eleven main slides and five hidden question slides. Earlier editions
+It contains eleven main slides, one clickable contents slide, and six hidden
+question slides. Earlier editions
 remain in Git history rather than beside the current output.
 
 ## Build and publication
@@ -17,13 +18,15 @@ node source/presentation/build.mjs RESEARCH_ROOT PRIVATE_BUILD_DIRECTORY
 ```
 
 The entry point delegates to `board-evolution/build.mjs`. Its default is the
-public edition: it sanitizes the package with the private redaction settings,
-validates and imports the still-frame PPTX, then embeds the reviewed video
-and checks the completed package. All sixteen slides are rendered from the
-validated still-frame edition; the native PowerPoint review covers the
-completed deck. The importer has a construction-size limit for video bytes. The question
-slides are rendered at twice the slide resolution for reading on GitHub.
-Diagrams, wires and labels are editable. The gameplay video is embedded.
+public edition: it sanitizes the package with the private redaction settings
+and validates its structure and layout. Content import checks cover all eighteen
+slides in two contiguous batches (1-11 and 12-18), because the complete deck
+exceeds the runtime's default aggregate XML import limit. The builder then adds
+native slide-jump links and the reviewed video, and validates the completed
+package. Native PowerPoint review checks that final deck's rendering and
+navigation. Question previews use twice the slide resolution for reading on
+GitHub. Diagrams, wires, labels and contents entries remain editable; the
+gameplay video is embedded.
 
 For a school copy, set `PRESENTATION_AUDIENCE=private` and
 `PRESENTATION_PRIVATE_COVER_JSON` to a private JSON file outside this repository.
@@ -71,7 +74,7 @@ The [dataset and map provenance](ddca-adoption/README.md) preserve institution,
 course, year, book role and public sources. The map includes historical
 reference-book listings; gray prefectures are unverified, not known non-users.
 
-Hidden slide 14 follows Chu (2018), Chapter 2, Sections 2.1.1-2.1.2,
+Hidden slide 15 follows Chu (2018), Chapter 2, Sections 2.1.1-2.1.2,
 Figure 2.1: generic logic cells, programmable interconnect and dedicated
 macro cells. The lookup table and D-type flip-flop are inside the cell;
 block random access memory is a separate macro-cell resource. Full names
@@ -83,7 +86,7 @@ claimed, and external DDR3 remains distinct from on-chip block memory.
 
 ## FPGA utilization question slide
 
-Hidden slide 15 is an editable table built by `fpga-utilization.mjs` from
+Hidden slide 16 is an editable table built by `fpga-utilization.mjs` from
 `docs/thesis/再現資料/実験記録/E6/fresh-product/qualification/qualification.json`.
 It uses the October 8, 2026 post-route result for the ordinary product shown
 in the embedded demonstration. LUTs, slice registers, block-memory tile
@@ -95,7 +98,7 @@ The existing eleven-slide narration remains 355 seconds.
 
 ## RVSOC textbook adoption question slide
 
-Hidden slide 16 summarizes three documented textbook-designation or use
+Hidden slide 14 summarizes three documented textbook-designation or use
 examples, including historical draft use. Its editable table is generated
 by `rvsoc-adoption.mjs` from `source/presentation/rvsoc-adoption/records.json`.
 The sources are official course materials and an instructor-authored ASEE
