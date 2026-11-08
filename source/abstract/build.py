@@ -36,6 +36,20 @@ def replace(paragraph, value):
         run._r.insert(0, properties)
 
 
+def align_within_column(paragraph, alignment):
+    """Set alignment without retaining character-based template indents."""
+    paragraph.alignment = alignment
+    indent = paragraph._p.get_or_add_pPr().find(qn("w:ind"))
+    if indent is not None:
+        indent.getparent().remove(indent)
+    paragraph.paragraph_format.first_line_indent = Mm(0)
+    paragraph.paragraph_format.left_indent = Mm(0)
+    paragraph.paragraph_format.right_indent = Mm(0)
+    indent = paragraph._p.get_or_add_pPr().find(qn("w:ind"))
+    for name in ("firstLineChars", "leftChars", "rightChars"):
+        indent.set(qn("w:" + name), "0")
+
+
 # Retain the title, page geometry, columns, figure style, and section styles.
 figure_template = deepcopy(next(p._p for p in doc.paragraphs if p._p.findall(".//" + qn("w:drawing"))))
 caption_template = deepcopy(next(p._p for p in doc.paragraphs if p.text.startswith("図1")))
@@ -86,6 +100,10 @@ for heading, paragraphs in sections.items():
         anchor.addnext(node)
         paragraph = Paragraph(node, doc._body)
         replace(paragraph, value)
+        # Retain the one-page, two-column layout with the expanded explanation.
+        for run in paragraph.runs:
+            run.font.size = Pt(10.5)
+        paragraph.paragraph_format.line_spacing = Pt(15)
         paragraph.paragraph_format.keep_together = True
         anchor = node
         for number, figure in enumerate(figures, 1):
@@ -97,6 +115,7 @@ for heading, paragraphs in sections.items():
             anchor.addnext(picture_node)
             picture = Paragraph(picture_node, doc._body)
             picture.clear()
+            align_within_column(picture, WD_ALIGN_PARAGRAPH.CENTER)
             picture.paragraph_format.keep_with_next = True
             shape = picture.add_run().add_picture(str(source), width=Mm(figure.get("width_mm", 83)))
             shape._inline.docPr.set("descr", figure["alt"])
@@ -104,6 +123,7 @@ for heading, paragraphs in sections.items():
             picture_node.addnext(caption_node)
             caption = Paragraph(caption_node, doc._body)
             caption.clear()
+            align_within_column(caption, WD_ALIGN_PARAGRAPH.CENTER)
             caption.paragraph_format.keep_with_next = False
             label, title = figure["caption"].split("  ", 1)
             run = caption.add_run(label + "  ")
@@ -120,10 +140,10 @@ for heading, paragraphs in sections.items():
             anchor.addnext(code_node)
             code = Paragraph(code_node, doc._body)
             code.clear()
-            code.alignment = WD_ALIGN_PARAGRAPH.LEFT
+            align_within_column(code, WD_ALIGN_PARAGRAPH.LEFT)
             pf = code.paragraph_format
             pf.first_line_indent = Mm(0)
-            pf.left_indent = Mm(3)
+            pf.left_indent = Mm(0)
             pf.right_indent = Mm(0)
             pf.space_before = Pt(3)
             pf.space_after = Pt(3)
