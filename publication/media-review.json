@@ -9,7 +9,8 @@
     "basic-operation-20261108": "Reviewed actual event triplets from all three boots, the public poster/game frame and samples of the 300-second recording. Verified wall/HUD presence in every decoded game frame, a sole capture input, and no audio in public videos. The three complete boot videos retain identical compressed video packets after metadata/audio removal. The complete 300-second recording uses lossless H.264 re-encoding: all 18385 decoded frames, presentation timestamps and frame durations match the preserved original; color metadata also matches. A sample of the new copy was visually reviewed. Other trial logs are anonymized text.",
     "archived-e6-event-frames": "Reviewed all nine preserved before/contact/after images from E6. They show game pixels only and remain labeled as the historical recording, separate from current E8 verification.",
     "basic-operation-20261108-documents": "Native PowerPoint renders: slides 10 and 15 visually reviewed; all other slide pixels unchanged from the previous public deck. Private and public body slides match. Both one-page abstracts reviewed, with a preserved private signature and no signature in public. Imported only the public edition and visually identical PNG copies.",
-    "breakout-layout-20261108": "Reviewed real gameplay, Ready, Clear and Game Over captures after the text-layout change. Checked text positions and all 805 source-font cell samples in every complete recorded game frame. All public PNGs have the same RGBA pixels as their reviewed sources; metadata was removed. The complete video has identical compressed video payload to the original recording, with audio and metadata removed. The 30-second viewing clip is re-encoded from the same gameplay without overlays or substituted scenes. No private identity or local paths appear in the reviewed gameplay media."
+    "breakout-layout-20261108": "Reviewed real gameplay, Ready, Clear and Game Over captures after the text-layout change. Checked text positions and all 805 source-font cell samples in every complete recorded game frame. All public PNGs have the same RGBA pixels as their reviewed sources; metadata was removed. The complete video has identical compressed video payload to the original recording, with audio and metadata removed. The 30-second viewing clip is re-encoded from the same gameplay without overlays or substituted scenes. No private identity or local paths appear in the reviewed gameplay media.",
+    "breakout-title-top-20261108": "Reviewed actual recorded gameplay with WALLY BREAKOUT centered between SCORE and LIVES in the header. The sanitized screenshot has identical decoded pixels to the observed source. Reviewed the re-encoded viewing clip; no private identity or paths appear. The complete video retains the original compressed video payload with audio and metadata removed. All 805 fixed-font cell samples match in each complete recorded game frame."
   },
   "sha256": [
     "00eb0240b0906cb38ef39044d105b2cd8723b71ca90db2e875bee6944ceb6b92",
@@ -74,6 +75,7 @@
     "0ced29dccf523e664d2d411030f81afd6b4e398fb8d55fa9d4820b31488ef410",
     "0d581a9073ddc0663d24e4d047a3e322a6f592db7dc1ef82cd043c25cb24a1eb",
     "0d599fbc4e91c8b4a531a015c4648c8de42344dc25ef9cd252384931e6c2c9ab",
+    "0db81935655216a6b827760b825ea260e41fe5d6e4349b4696321ade96c2fbc6",
     "0e317c3229ff950862fbbc0d3c6fd9ca07f5dcbcb890a497603083751684d187",
     "0e35bad3132a95d12d17165e8aaa62ad864176c6edd100a1c2df8396d1457d41",
     "0e4a2e274b93e292650a1ffdbc4b8b695504e50cce7e4bb001ac3fe68a015b31",
@@ -462,6 +464,7 @@
     "7cd7e6efb68a7c522443d372da591502f1b3a5f86bb708d14b1c2f002684abdc",
     "7d3a6807d2211be234fd0fb1c128affd352d59b757c816a9949d2c64fe91cfd5",
     "7d46efbf24ba6e7ecdb3686452d2b52fb616717db203a98823e4e85897dae4e7",
+    "7d732a7434b38f0cbbf04d0c75963a4aa178f6a9816d88b49371dc70df586bb4",
     "7d8d8fdeb7796c17d5702877f069d857f94a056b84444293847c3cc84152de3a",
     "7e44e6b22c65fbad42a3fd5d29a05e21072c00679b702fa3f5fc7390aabe9213",
     "7e45f69efac99b6a627b55e179bfc8a18e031e699df89867e78b9bf7b95015d1",
@@ -469,6 +472,7 @@
     "7eb618510ce1b4ffad31609c6bfef95b2928e8435f72e34a3fc74391f8c9b369",
     "7ec9ae1a6051f84176eb07642e531fb3b0bb7a02877bc42391aa3b8c3026ff61",
     "7f212e0724a6b06b678aa1a0d72495d29aedb15b49a814a98fdc2f1967d11f9d",
+    "8061dae4465a83396c85a805459f0698869f88f2263fa5ef8130e6aebf7553e1",
     "8077c3ac79862018501f518a6cf5aceaf28bb362464a234a5893eb62affb0a6d",
     "80c324f5a4775ba70ea030f34b49f90f63d4055e3160e393443dee2d8975eab7",
     "8254f99ba44c7bc584ea2fda9204700187184b3346001e237061bac1b6cc046e",

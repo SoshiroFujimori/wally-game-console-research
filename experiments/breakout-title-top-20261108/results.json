@@ -1,0 +1,41 @@
+{
+  "date": "2026-11-08",
+  "console_commit": "ed6a1c09b34d597dcde92ec26a4f5a97cbf18a17",
+  "previous_console_commit": "69a3ca21dc6960011bd8dbeef3a8daeef434dd3c",
+  "changed_product_files": [
+    "examples/rasterix/Breakout.hpp"
+  ],
+  "source_sha256": {
+    "examples/rasterix/Breakout.hpp": "7cdd29dda43c8d4aa9829c3766b78c53a1e234af17ccc58adda21dafbd49bca8"
+  },
+  "rasterix_commit": "9269a01c9bd4c3342bfa70ef8e3cdd751c15c6d0",
+  "binary": {
+    "sha256": "5c360babde59c6d9fc72fe58edc5729da2b2b8480c2f3a5208980d2f7d2c558b",
+    "bytes": 856328
+  },
+  "unstripped_build": {
+    "sha256": "ea721b527a96f667d5dd9a97138d2622db7650030aeebe77e96e5f7e8acdc938",
+    "bytes": 5384744
+  },
+  "compiler": "riscv64-buildroot-linux-gnu-g++ 14.2.0",
+  "build_type": "Release; static link; symbol table stripped for SD transfer",
+  "bitstream_sha256": "fb0d8e9e853b51194e885662339cc0c339bdd6ea3bb19f6ca42211c14d9b87f6",
+  "display_configuration": "Unchanged E8 research HDMI variant; not the product default display circuit.",
+  "game": {
+    "command": "/tmp/fifo-game --demo --seconds 30",
+    "elapsed_seconds": 30.0,
+    "score": 170,
+    "lives": 3,
+    "frames": 1759,
+    "ticks": 1799,
+    "exit_code": 0
+  },
+  "title_logical_bounds_xywh": [
+    237,
+    15,
+    166,
+    14
+  ],
+  "scope": "Only the title moves from the footer to the header. Other game elements and all RTL are unchanged.",
+  "recording_check": "results/frame-check/results.json"
+}

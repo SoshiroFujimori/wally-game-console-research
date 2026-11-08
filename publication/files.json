@@ -2,7 +2,7 @@
   "version": 1,
   "scope": "Git index blobs; excludes this manifest and submodule contents",
   "submodules": {
-    "console": "69a3ca21dc6960011bd8dbeef3a8daeef434dd3c"
+    "console": "ed6a1c09b34d597dcde92ec26a4f5a97cbf18a17"
   },
   "files": {
     ".gitattributes": {
@@ -46,8 +46,8 @@
       "sha256": "9a610ed291f447c9c9f5d4f3966a3a9fb01bafc394d8d43fcfc48d74e12e2942"
     },
     "README.md": {
-      "bytes": 10390,
-      "sha256": "047360972d4be5b63e0eb58634f8137bfcd99b3efec423f2f5a3d5735ec31735"
+      "bytes": 10426,
+      "sha256": "97ad5c5e945333020b589efef355b3fb1162e404f06dd766b1f7fc8903a08009"
     },
     "docs/abstract/figs/figure-1.png": {
       "bytes": 450614,
@@ -6048,6 +6048,62 @@
     "experiments/breakout-layout-20261108/video/ready.png": {
       "bytes": 7289,
       "sha256": "845d08723870f0d10ff0677319bd0d77686aaf49cf2a259386a8820cf92c0949"
+    },
+    "experiments/breakout-title-top-20261108/README.md": {
+      "bytes": 2403,
+      "sha256": "407d3562261dbe4a3623fbf78f3ea4ace6a5807b266054287cbad1539e3ac90e"
+    },
+    "experiments/breakout-title-top-20261108/check_recording.py": {
+      "bytes": 5191,
+      "sha256": "a2721c0be1ac7a8d228096bb6a0e5bd8177e78e5f07c20ad86b3e4e3793bcff1"
+    },
+    "experiments/breakout-title-top-20261108/expected-labels.json": {
+      "bytes": 2402,
+      "sha256": "948f6e982e09f608bf3f3c2375c55b913d4d2f827521cf297d04bf3bd35586c0"
+    },
+    "experiments/breakout-title-top-20261108/export_labels.cpp": {
+      "bytes": 1059,
+      "sha256": "e186ea065a1d0ffb1d832e76c74f97071512aa03c921aed08cb0a6369d587f9b"
+    },
+    "experiments/breakout-title-top-20261108/results.json": {
+      "bytes": 1448,
+      "sha256": "d3e72a27245e5df249ae9130948f0775779dcfed9ecc9cdfcc1958c37ce335ae"
+    },
+    "experiments/breakout-title-top-20261108/results/frame-check/frame-observations.csv": {
+      "bytes": 89397,
+      "sha256": "d002ccde91807923e3f07d5d63b7c2a2df62c7adee4210940bad21d624b58c49"
+    },
+    "experiments/breakout-title-top-20261108/results/frame-check/results.json": {
+      "bytes": 973,
+      "sha256": "92b0a0141d9b71283ff5f876af2818c78b26a0dc9ec946a1a354c28be3aa2e5d"
+    },
+    "experiments/breakout-title-top-20261108/results/game.raw": {
+      "bytes": 365,
+      "sha256": "03dfd63de4cefd5a298f3252ec62716640c6c9d9da281c1780d4f52ce371b0cb"
+    },
+    "experiments/breakout-title-top-20261108/results/imports.json": {
+      "bytes": 1247,
+      "sha256": "92edac1951b1b4d5b13edf224adcbf9cb861c8fa46fc38b49d454908f82ed939"
+    },
+    "experiments/breakout-title-top-20261108/results/load.raw": {
+      "bytes": 642,
+      "sha256": "5cfd62130a4b62a40b64b031fa88fc49825c75d2f13193b11968bc11c57ac6b1"
+    },
+    "experiments/breakout-title-top-20261108/video/breakout-30s.mp4": {
+      "bytes": 375960,
+      "sha256": "0db81935655216a6b827760b825ea260e41fe5d6e4349b4696321ade96c2fbc6"
+    },
+    "experiments/breakout-title-top-20261108/video/complete-30s.mp4": {
+      "bytes": 27554034,
+      "sha256": "8061dae4465a83396c85a805459f0698869f88f2263fa5ef8130e6aebf7553e1"
+    },
+    "experiments/breakout-title-top-20261108/video/derivation.json": {
+      "bytes": 798,
+      "sha256": "e8410688252aab8709746f3bb06218cfb6a662cab6d5724adca426c6187eb995"
+    },
+    "experiments/breakout-title-top-20261108/video/playing.png": {
+      "bytes": 6897,
+      "sha256": "7d732a7434b38f0cbbf04d0c75963a4aa178f6a9816d88b49371dc70df586bb4"
     },
     "experiments/fifo-study-20261008/archive-scripts/add-measurement-counters.py": {
       "bytes": 1912,
@@ -12314,16 +12370,16 @@
       "sha256": "edd21b65bc0d6109fbbdd1c5b29c6eb730e800e218d4d6362ccdd952732a8ca1"
     },
     "publication/console-source.json": {
-      "bytes": 799,
-      "sha256": "e572728bae72fe95cde32a35d6a1d0e8fd2ca07cfb189cdb9cac69900b1c94f1"
+      "bytes": 886,
+      "sha256": "eebd049061d173c84b944fbc2d8daf312530eacef54f3455607669880e423b26"
     },
     "publication/demo-video.json": {
       "bytes": 510,
       "sha256": "b37af8468ab90cc774380eae7acce80700a22c2cdb02aa7e1d27bf6da8ad7d04"
     },
     "publication/media-review.json": {
-      "bytes": 84934,
-      "sha256": "6893ab9674f07360c00e10c22bf9367c624cabe2a5e8704127fb66ceb8a3feee"
+      "bytes": 85617,
+      "sha256": "b19c77ec9bf5dc6a32eabc0859b12f524589152c0dcc5d2b955888b2dfc81b55"
     },
     "publication/policy.json": {
       "bytes": 635,

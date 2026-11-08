@@ -1,14 +1,15 @@
 {
   "date": "2026-11-08",
-  "console_commit": "69a3ca21dc6960011bd8dbeef3a8daeef434dd3c",
-  "console_tree": "8c07c333f0f6d8c39d8de40211583b7580bd7fc7",
-  "previous_console_commit": "261832d48832dd6e26c4971ab8893ce61200688b",
+  "console_commit": "ed6a1c09b34d597dcde92ec26a4f5a97cbf18a17",
+  "console_tree": "be969a0f21c812beaf2f06a5689d5ea7e1180ce0",
+  "previous_console_commit": "69a3ca21dc6960011bd8dbeef3a8daeef434dd3c",
   "upstream_wally": "2064ca2bb8a88e3e3ec43753be93d00bef49345b",
   "rasterix": "9269a01c9bd4c3342bfa70ef8e3cdd751c15c6d0",
   "changed_files": [
     "examples/rasterix/Breakout.hpp"
   ],
-  "layout_verification": "experiments/breakout-layout-20261108/results.json",
+  "layout_verification": "experiments/breakout-title-top-20261108/results.json",
   "previous_e6_source_audit": "publication/console-source-e6.json",
-  "verification_scope": "Only Breakout text placement changes relative to the archived E6 product source. New layout checked with the separate E8 research HDMI hardware; E6 and E8 historical results retain their original software versions."
+  "verification_scope": "The current Breakout title is centered in the header. The title move was checked for 30 seconds with the E8 research HDMI configuration. Earlier layout, E6 and E8 records retain their original software versions.",
+  "previous_layout_verification": "experiments/breakout-layout-20261108/results.json"
 }

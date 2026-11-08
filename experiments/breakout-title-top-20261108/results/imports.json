@@ -1,0 +1,26 @@
+{
+  "video/playing.png": {
+    "source_sha256": "a1b8ada544ad5cce6d429f21a83775415dcf65fa5467bcd88e51893143c4f1c2",
+    "public_sha256": "7d732a7434b38f0cbbf04d0c75963a4aa178f6a9816d88b49371dc70df586bb4"
+  },
+  "results/game.raw": {
+    "source_sha256": "debe4ab43cd6d65980096e8eace41a7a1b66cb7543be0c1f0d89aa70186dd7e1",
+    "public_sha256": "03dfd63de4cefd5a298f3252ec62716640c6c9d9da281c1780d4f52ce371b0cb"
+  },
+  "results/load.raw": {
+    "source_sha256": "ad505d768be207e8c6789a0cea6af0c04776bba10cbbe720885a5a3054beaeb3",
+    "public_sha256": "5cfd62130a4b62a40b64b031fa88fc49825c75d2f13193b11968bc11c57ac6b1"
+  },
+  "check_recording.py": {
+    "source_sha256": "a2721c0be1ac7a8d228096bb6a0e5bd8177e78e5f07c20ad86b3e4e3793bcff1",
+    "public_sha256": "a2721c0be1ac7a8d228096bb6a0e5bd8177e78e5f07c20ad86b3e4e3793bcff1"
+  },
+  "export_labels.cpp": {
+    "source_sha256": "e186ea065a1d0ffb1d832e76c74f97071512aa03c921aed08cb0a6369d587f9b",
+    "public_sha256": "e186ea065a1d0ffb1d832e76c74f97071512aa03c921aed08cb0a6369d587f9b"
+  },
+  "expected-labels.json": {
+    "source_sha256": "948f6e982e09f608bf3f3c2375c55b913d4d2f827521cf297d04bf3bd35586c0",
+    "public_sha256": "948f6e982e09f608bf3f3c2375c55b913d4d2f827521cf297d04bf3bd35586c0"
+  }
+}

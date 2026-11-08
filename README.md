@@ -7,12 +7,12 @@ CPUをゲーム機へ拡張したい人が、回路のつなぎ方とプログ�
 
 ## 実機のプレイ動画
 
-Nexys Video上で動く、640×480画素のブロック崩しです。画像をクリックすると、2026年11月8日に文字配置を見直した版の、実機から記録した30秒の動画を開けます。
+Nexys Video上で動く、640×480画素のブロック崩しです。画像をクリックすると、2026年11月8日にタイトルを上部中央へ移した版の、実機から記録した30秒の動画を開けます。
 **自動プレイであり、プログラムがパドルを動かしています。ゲームコントローラは今後追加します。**
 
-[![実機のブロック崩し](experiments/breakout-layout-20261108/video/playing.png)](experiments/breakout-layout-20261108/video/breakout-30s.mp4)
+[![実機のブロック崩し](experiments/breakout-title-top-20261108/video/playing.png)](experiments/breakout-title-top-20261108/video/breakout-30s.mp4)
 
-[動画を開く（MP4、30秒）](experiments/breakout-layout-20261108/video/breakout-30s.mp4) · [文字配置・映像と試験条件](experiments/breakout-layout-20261108/README.md)
+[動画を開く（MP4、30秒）](experiments/breakout-title-top-20261108/video/breakout-30s.mp4) · [文字配置・映像と試験条件](experiments/breakout-title-top-20261108/README.md)
 
 この動画は研究用HDMI表示構成で取得しました。[再生成する差分と手順](experiments/basic-operation-20261108/hdmi/README.md)を保存しています。`console/`が参照する製品の標準表示構成とは区別しています。
 
@@ -41,7 +41,7 @@ FPGAは、記述した論理回路をチップ内に実装できる半導体で�
 DDR3への読み書きには、AMD提供のDDRメモリコントローラーを利用します。
 回路の接続とプログラムの動作は、[図付きのアブスト](docs/abstract/アブスト_主要事項.md)で説明しています。
 
-上の保存映像では、ボールの移動、壁やパドルでの反射、当たったブロックの消去を確認できます。文字配置の変更後に、[90秒の自動プレイと各状態の表示](experiments/breakout-layout-20261108/README.md)も確認しています。[確認する場面と手順](experiments/basic-operation-20261108/README.md)を画像付きでまとめています。
+上の保存映像では、ボールの移動、壁やパドルでの反射、当たったブロックの消去を確認できます。タイトルを上部へ移した現在の版で、[30秒の実行と文字の表示](experiments/breakout-title-top-20261108/README.md)を確認しています。[確認する場面と手順](experiments/basic-operation-20261108/README.md)を画像付きでまとめています。
 
 2026年11月8日のHDMI表示構成では、FPGAの設定から起動する手順を3回繰り返し、各30秒の映像で基本動作を確認しました。その後、同じ回路で300秒の実行と録画も確認しました。記録とソースの版は[E8](experiments/basic-operation-20261108/README.md)にまとめています。変更前の試行も[履歴](experiments/basic-operation-20261108/history/README.md)に残しています。過去の画素比較や内部の動作確認は、[E6](docs/thesis/再現資料/実験記録/E6/README.md)と[技術付録第73章](docs/thesis/appendix/05-integration/operation-verification.md)を参照できます。
 
@@ -82,7 +82,7 @@ git -C console submodule update --init --recursive
 ```
 
 資料だけを読む場合、サブモジュールの取得は不要です。
-`console`は製品の公開コミット`69a3ca21dc6960011bd8dbeef3a8daeef434dd3c`を参照します。
+`console`は製品の公開コミット`ed6a1c09b34d597dcde92ec26a4f5a97cbf18a17`を参照します。
 [使用ソースとの照合記録](publication/console-source.json)と[実験ごとの版の説明](docs/thesis/再現資料/実験記録/E6/README.md)を残しています。
 過去の実験は使用版や条件が異なるため、再現するときは対象の記録を確認してください。
 

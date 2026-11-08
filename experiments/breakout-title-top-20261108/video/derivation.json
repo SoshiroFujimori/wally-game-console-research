@@ -1,0 +1,12 @@
+{
+  "source_file_sha256": "8596937e4fe172764e02cf48d91370e5cb8a8218f6007661f84a44df381086ee",
+  "complete_file_sha256": "8061dae4465a83396c85a805459f0698869f88f2263fa5ef8130e6aebf7553e1",
+  "source_video_payload_sha256": "SHA256=adaea8dbbbca939929f6530c4a4adb499fbcb40f68f35d4b1ca0fb892f0601a0",
+  "complete_video_payload_sha256": "SHA256=adaea8dbbbca939929f6530c4a4adb499fbcb40f68f35d4b1ca0fb892f0601a0",
+  "compressed_video_payload_identical": true,
+  "complete_processing": "Stream copy, removing audio and file metadata.",
+  "clip_start_seconds_in_source": 5,
+  "clip_duration_seconds": 30,
+  "clip_sha256": "0db81935655216a6b827760b825ea260e41fe5d6e4349b4696321ade96c2fbc6",
+  "clip_processing": "Re-encode original gameplay with H.264 CRF18 and yuv420p; no overlays or scene replacements."
+}
