@@ -1,0 +1,150 @@
+{
+  "date_local": "2026-11-09",
+  "timezone": "Asia/Tokyo",
+  "started_utc": "2026-11-08T15:26:18.019181+00:00",
+  "finished_utc": "2026-11-08T15:33:34.325492+00:00",
+  "scope": "One standard-product DVI acquisition with the mandatory latest title-top executable, followed by restoration of E8. Not a boot-reliability or compatibility estimate.",
+  "outcome": "latest_layout_standard_dvi_capture_not_reproduced",
+  "standard_program_attempts": 1,
+  "product_revision": "ed6a1c09b34d597dcde92ec26a4f5a97cbf18a17",
+  "standard_bitstream_frozen_source_revision": "261832d48832dd6e26c4971ab8893ce61200688b",
+  "source_relation": "The E6 frozen standard hardware is unchanged in the current product; only examples/rasterix/Breakout.hpp differs. See the existing source audit.",
+  "source_audit": "experiments/dvi-standard-check-20261108/source-audit.json",
+  "rasterix_revision": "9269a01c9bd4c3342bfa70ef8e3cdd751c15c6d0",
+  "executable_sha256": "5c360babde59c6d9fc72fe58edc5729da2b2b8480c2f3a5208980d2f7d2c558b",
+  "procedure": {
+    "historical_basis": "Boot02 acquired the game after a separate HDMI/DVI720 diagnostic fixture. Boot04 reopened the OBS input for three seconds before standard programming and succeeded; boot05 repeated that procedure and failed. The 2026-11-08 latest-layout trial kept capture active across standard reprogramming and failed.",
+    "hypothesis": "Keep the DirectShow input closed across E8-to-standard reconfiguration and Linux boot; acquire only after the latest game has started. Earlier boot04 reopened before programming; boot05 showed that this alone was not reliable.",
+    "difference": "The selected OBS input remained deactivated across programming, boot and read-only SD loading; it was enabled two seconds after observing the latest game start banner, then allowed to settle for three seconds before recording.",
+    "additional_trial_decision": "No additional repeat: keeping an acquired E8 stream active across standard programming is already represented by the failed 2026-11-08 latest-layout trial. No distinct short recovery procedure was established.",
+    "target_selection": "Exact existing JTAG target and xc7a200t_0 checked by the programmer; one selected UART and one visible FPGA capture input. Private identifiers retained outside the repository.",
+    "resource_check": "No competing board/UART job or hw_server client found; OBS recording, streaming and virtual camera inactive before the trial; UART opened exclusively.",
+    "capture_method": "Existing Windows OBS WebSocket API and selected DirectShow capture input; no foreground UI.",
+    "synthesis": false,
+    "product_or_rasterix_source_changes": false,
+    "clock_or_cpu_changes": false,
+    "physical_actions": false,
+    "hardware_switches": false,
+    "sd_switches": false,
+    "sd_writes": false,
+    "receiver_device_reset": false,
+    "receiver_register_writes": false,
+    "elevation": false
+  },
+  "standard": {
+    "bitstream_sha256": "16173de97a91e711cd7bc5389acd9739807adebedf192efc29fe78f5b96c0acf",
+    "fpga_crc_error": 0,
+    "fpga_done": 1,
+    "os_booted": true,
+    "target_executable_hash_matched": true,
+    "game": {
+      "score": 330,
+      "lives": 3,
+      "frames": 3515,
+      "ticks": 3599,
+      "elapsed_seconds": 60.006,
+      "exit_code": 0
+    },
+    "video": {
+      "original_sha256": "d76b8fa4e055b70cead38c7fa8933803c627677d9ef47e448af82e3c22d3e6ad",
+      "bytes": 22624047,
+      "duration_seconds": 30.083333,
+      "streams": [
+        {
+          "codec_name": "h264",
+          "codec_type": "video",
+          "width": 1920,
+          "height": 1080,
+          "avg_frame_rate": "60/1",
+          "nb_frames": "1805"
+        },
+        {
+          "codec_name": "aac",
+          "codec_type": "audio",
+          "avg_frame_rate": "0/0",
+          "nb_frames": "1410"
+        }
+      ],
+      "publicly_included": false
+    },
+    "frame_check": "standard-frame-check.json",
+    "decoded_frames": 1805,
+    "complete_game_frames": 0,
+    "passed": false,
+    "visual_observation": "Initial selected image black; later selected image shows Video Format Not Supported. No complete-game frame detected in the full recording.",
+    "game_motion_demonstration_obtained": false,
+    "original_records_sha256": {
+      "program.log": "2e162626a9c35ec192ab8fd0f7b01c763d9a221d29298bf13daaaa6d87bb1815",
+      "boot.raw": "0dfbbe6d731bda39a061eeb8e1687d55cf23251b2249ed3cfd2ec6a18bee636f",
+      "load.raw": "d0562ba5a0aa85cad278aebab5569a6c2f9b0a6a1642a48dc54f09bea93b233c",
+      "game.raw": "a49f844de4df3d69b6b6e35609e40466fc6fdd985fa91c970de8b6877034fd71"
+    }
+  },
+  "e8_recovery": {
+    "bitstream_sha256": "fb0d8e9e853b51194e885662339cc0c339bdd6ea3bb19f6ca42211c14d9b87f6",
+    "fpga_crc_error": 0,
+    "fpga_done": 1,
+    "os_booted": true,
+    "target_executable_hash_matched": true,
+    "game": {
+      "score": 170,
+      "lives": 3,
+      "frames": 1761,
+      "ticks": 1799,
+      "elapsed_seconds": 30.0,
+      "exit_code": 0
+    },
+    "video": {
+      "original_sha256": "71acc191f9fb5a7efe23c9b97d218a3c4bf27acd62043250ab06e02b1ee91d56",
+      "bytes": 27474389,
+      "duration_seconds": 36.533333,
+      "streams": [
+        {
+          "codec_name": "h264",
+          "codec_type": "video",
+          "width": 1920,
+          "height": 1080,
+          "avg_frame_rate": "60/1",
+          "nb_frames": "2192"
+        },
+        {
+          "codec_name": "aac",
+          "codec_type": "audio",
+          "avg_frame_rate": "0/0",
+          "nb_frames": "1712"
+        }
+      ],
+      "publicly_included": false
+    },
+    "frame_check": "e8-recovery-frame-check.json",
+    "decoded_frames": 2192,
+    "complete_game_frames": 1979,
+    "fixed_font_samples_per_complete_frame": 805,
+    "passed": true,
+    "visual_observation": "Selected fresh recovery image reviewed: WALLY BREAKOUT at the top, SCORE/LIVES and game field visible. This is E8, not standard DVI.",
+    "original_records_sha256": {
+      "program.log": "f2debe0de25d5efb30a7a4a71f8fd46072d99debeabf1ff17c8e08987f6c7f7f",
+      "boot.raw": "0dfbbe6d731bda39a061eeb8e1687d55cf23251b2249ed3cfd2ec6a18bee636f",
+      "load.raw": "305b42ab0854e9e2017bf24bd894c6e726585f68ad9564e28e9bc1a0d8fc72f0"
+    }
+  },
+  "final_state": {
+    "e8_restored": true,
+    "game_finished": true,
+    "data_sd_unmounted": true,
+    "recording_streaming_virtualcam_inactive": true,
+    "capture_input_settings_unchanged": true,
+    "capture_input_enabled": true,
+    "transform_restored": true,
+    "recording_directory_restored": true,
+    "mutes_restored": true
+  },
+  "limitations": [
+    "Signal-acquisition failure cause remains unisolated; this does not establish that standard DVI can never work.",
+    "The requested latest-layout standard-DVI demonstration was not obtained.",
+    "E6 older-layout footage and E8 HDMI footage are not substitutes for this result.",
+    "Original videos, unredacted logs and local configuration are retained privately; no new media is included here."
+  ],
+  "main_documents_changed": false,
+  "commit_or_push_performed": false
+}
