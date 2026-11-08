@@ -134,8 +134,8 @@
       "sha256": "abf98986750b72a3791728c1b9df89ec45bcbfdc0c20dd6e06804c2399e9e9c7"
     },
     "docs/presentation/slides/slide-15.png": {
-      "bytes": 139459,
-      "sha256": "7c743f057f129c16d5681ae23d1aa34d77dd1e58e141f62215aadadd37f9d977"
+      "bytes": 127062,
+      "sha256": "b36867c4b6722c73b4914babc9ba4735f2652a40da9283d73e5b4d486a121214"
     },
     "docs/presentation/slides/slide-16.png": {
       "bytes": 121950,
@@ -150,12 +150,12 @@
       "sha256": "de1fc17469b8130b6d8b206d5f6b7b24b47f34988d7a35b485b6daf09e0d22e4"
     },
     "docs/presentation/中間発表_主要事項.md": {
-      "bytes": 85298,
-      "sha256": "16e05f790864612bc03c909b24732cb619c85989f6d73c28430e3da0c1df90b5"
+      "bytes": 84893,
+      "sha256": "23ef51e4d1689f87e91a5eeb2e4f9b5de37435191e3a2f7e0d627d11b5e87b56"
     },
     "docs/presentation/中間発表_主要事項.pptx": {
-      "bytes": 643324,
-      "sha256": "3b4f88549269249dcabf9018eb68699193ec71e712b8cd1ea6f49a62d3e298f6"
+      "bytes": 643192,
+      "sha256": "9f9641d8405bf2d7dc9a8fddf15804bd781b04c39909572a876b99ea98ce3e87"
     },
     "docs/privacy.md": {
       "bytes": 5063,
@@ -12402,8 +12402,8 @@
       "sha256": "b37af8468ab90cc774380eae7acce80700a22c2cdb02aa7e1d27bf6da8ad7d04"
     },
     "publication/media-review.json": {
-      "bytes": 93047,
-      "sha256": "763326366e2942030bce7b4872a77108beadeab19c32cfb405b8164cb7b48820"
+      "bytes": 93523,
+      "sha256": "9c449b55c2b22d5225588e7154f618541a65cbb06dcd8c31e3a2dbc03df74f80"
     },
     "publication/policy.json": {
       "bytes": 635,
@@ -12474,8 +12474,8 @@
       "sha256": "41f35d906a1e8ca6e219bf7d318ded6a539dcb41b90cc954263056499e9da807"
     },
     "source/presentation/board-evolution/fpga-resources.mjs": {
-      "bytes": 14732,
-      "sha256": "8e5c249980b453168cea576f724e5a482c94608c8a90aa06d206246362e08638"
+      "bytes": 14204,
+      "sha256": "c06759f52a178733ad20ce3dd26e605430ceebfa325e1de833980cf6b9b1fc99"
     },
     "source/presentation/board-evolution/fpga-utilization.mjs": {
       "bytes": 7035,
