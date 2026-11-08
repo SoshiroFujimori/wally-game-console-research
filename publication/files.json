@@ -58,12 +58,12 @@
       "sha256": "99ee1b8079af40111fd49441a140f8fe1db13e8e06210fae63be6dae1c4e1aa3"
     },
     "docs/abstract/アブスト_主要事項.docx": {
-      "bytes": 524300,
-      "sha256": "f6031794a6ecb60a62c1854a0399b2055bedba5015cc3a9912354793888c6dfc"
+      "bytes": 524305,
+      "sha256": "ea122905ee76ce280c3d3c63dcc2a4d02c7011d8f281c63d3a0ee7b59087d0bd"
     },
     "docs/abstract/アブスト_主要事項.md": {
-      "bytes": 6647,
-      "sha256": "08f186dcae865db38482648786f4ef19250869db6745a1f3e6186c5d82926922"
+      "bytes": 6649,
+      "sha256": "f50834e1559e423e5451fb7cbd50d05a8371a04d0d5b76078d8bf8ab6c6abe50"
     },
     "docs/presentation/DDCA授業利用の出典.md": {
       "bytes": 18811,
@@ -12534,8 +12534,8 @@
       "sha256": "485e2ff2f3b65bb368c916493276b7b88eb8538721d187a7674673ca0fe46b7b"
     },
     "source/abstract/content.json": {
-      "bytes": 8212,
-      "sha256": "ad4fcb4cb9b2e094563ddfa49d27120d690b450bd61ab3228c14b0b4e3d8d37b"
+      "bytes": 8222,
+      "sha256": "ede1eef41dfe5ca678949e768eb58ea57bdccd0003ebfb18842fff69c2647c80"
     },
     "source/abstract/figs/game-flow.png": {
       "bytes": 495312,
