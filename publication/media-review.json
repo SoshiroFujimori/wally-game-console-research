@@ -416,6 +416,7 @@
     "62ea9032af63894a6ba65082639b8399bde40314cfc4d9693841b1fe693ee12e",
     "62f22e759be59e6a55cb85c985c3bbd66d1c4ad5fb53ca5ff45cce3f43be6aae",
     "63273d61c103e074440f161835c5bd217aa68ddedb2e18e99508c2a2abec9415",
+    "639075acde58386dbb56d188b49b5cf16fe01ab27353129429a204f91ae8629f",
     "63d22df76379b4b76fbf62fa4d116820b8deb30995861869ddf3e3c6d94d7794",
     "645cc065b8ebe72cedf9cee42bb63ef96d3999dfb933418ae7658c09ee66fddb",
     "647b36fb536420118178ad5deeae2b85ed034660f211c29f34ed8fdf6f218063",
@@ -477,6 +478,7 @@
     "73fcf28063709aa082f10631151050a7c85cba3c09094898cc4f4722bd9f72b2",
     "740a9cfd15b1947923d95d968477faaf021124ce844eb2eb10fbb4b3a26f5779",
     "7413347e429788ae8bf1bc40092982ebfb7bad83dd23830753389be21d18f68f",
+    "7417a09f1eeca3e12dc1db0ff80782dba491a81f61ca76ee5761339160097124",
     "744de3f3d51e259f5b0f5500ae5be7b059eecfcc304ea2381830d51e9f37e00c",
     "74b3015ce84cf0c89ce29f6986d64fd8d5c95a81c7d93e5ec0ac8c55202b7e3c",
     "74d8f6a1e3eb0531a5711ecb3250c3fe70cdff246510d88c21d922895a4c7091",
@@ -582,6 +584,7 @@
     "939c9f353048cb384d6524a1a97cffdcf028dcf128c2d13af1a48dfa2c70705d",
     "93fa070367c705ad375ecbf4f30d59c6583ae03cc4a53c263371a6aab6fcaa72",
     "940b2b402613daaf0df6ba35d2ac06d4d25b7324e61ff2ef622270beaa9a7441",
+    "943054c10d501cc4b2d8cafda0fcc4b3112192d8b33a6b0b69e37c2ec490dd27",
     "9452b49de79bbce7b7f751057ab246ed561fea358e763d8fdac3020d1fca9a57",
     "94bb3887e9f9e93833126023c84a07c419b23ff7a203118bfcb7fc2634a8e4e0",
     "950e0f57dd4c1b21ad1ad301de3989ccbae635905285bfacbda54a6e7e597958",
@@ -736,6 +739,7 @@
     "bf48e4650ec6d0fc571720c88d1cb3c080388709872a1bad796f8b481f755e4b",
     "bf4a2ad783cffb68f4b6e3f7930f73b24265144c4ca40d3114af5bb83858dfb7",
     "c007589d0910ac6a0f02cd015e3003be04ad640f7070adaa57cd9da5262b8d4f",
+    "c04c37b25145840437927cc4557805ad75a93b565a941322b0edeeeff30b09a1",
     "c0af5d371b960efb4bd27db594ebb8d91e583ba048af6bc4b4b2da61e98744bd",
     "c0b675e9c0e5abf7bd1e69402f810afb1a3beccd224d629f6fd62bb7ada18bb2",
     "c14d4eeb10b59892467ca05321f64acb86dc5a1b6df6735f706cb6b21671eefa",
@@ -879,6 +883,7 @@
     "e94dd1b7f6ed037aed6ea5bb1c8b6534e057c1af341f4f71d3add1818110d7d1",
     "e972091128494db1ef95b76a7d9a915f7b922c9fb75bfdf2306a43521ae2138a",
     "e97bd8cafe23fa1e6a672c9179d34d9e72109e500b0b921f725d1da1ff5dfd4d",
+    "e989df2522c0185395581affb7c37a699c2cdd691abe38a23888e51472840b53",
     "ea24b899056309f24bb68bfe42dc054b3ce21e945cc023b968c375ffec398355",
     "ea4d0998a3f74e2983d3615f862255e9ae49927bd945daaeb4a58669d23db66f",
     "eb49a64c64a39fde0edcf786a11aa797e086ec1e071b58d8452ac4967e2e2a22",
@@ -939,6 +944,7 @@
     "fdf933829d629d600aea9de5bda34e5af17bb7e8a4a24ebc81c2556a41c684b2",
     "fe30f9ed65c90a957df83fe3aad03d04edc7594f7203b0748df1b8aaaa47a839",
     "fe5e2081ddcd24979927de36e7ac97a1c1bac154753ae747023ad4c76a6bca2f",
+    "fe6fc9519ef078657b488e45fb3d9c1f5d5a9cab7238f9c00f17d411ab53fce6",
     "fe9a83a5ddcfbc588b661749b217e0a99282209cc79f709901bfaef10e6e98ee",
     "fececf28bdb48ba496e15d96b4b2bb9a789bfacc2cd3af625faa9435667fae0d",
     "ffd0dbf067db5d99eb66603494ead978dd4f351ddd5dc2256c27016c5fc6d3c7"
@@ -947,6 +953,7 @@
     "abstract-based-presentation-20261108": "Reviewed all 18 native PowerPoint slide renders and the private cover. Main slides use functional circuits and address-access examples; source differences remain in notes and reproduction records. Confirmed 51 internal links, six hidden question slides, original embedded video hash, and cover-only differences between editions. Reviewed the revised abstract diagram, color and monochrome one-page Word renders, code lines and title placement. Public image metadata was cleaned without changing decoded pixels; newly embedded PNGs match visually reviewed sources.",
     "concept-code-20261109": "Reviewed native PowerPoint renders of slides 6 and 7 and the one-page public and private Word abstracts. The conceptual excerpts omit the final-word write and explain the remaining addresses, values, and transfers. Verified four unbroken Japanese comment lines above four code statements in each Word edition. The other 16 slide renders are pixel-identical to the prior reviewed version, and embedded images and gameplay video are unchanged. Public preview metadata was cleaned without changing pixels.",
     "abstract-read-data-20261109": "Reviewed the enlarged circuit figure and native Word renders of both one-page abstract editions in color and grayscale. R labels the existing read-data input and the legend defines it as read data. Signal paths and the gameplay image are unchanged. The embedded and published circuit images have identical pixels.",
-    "abstract-write-bit-20261109": "Reviewed the enlarged circuit figure and native Word renders of both one-page abstract editions in color and grayscale. W is labelled as a one-bit direction signal, with 0 for reading and 1 for writing. Signal paths and the gameplay image are unchanged. The embedded and published circuit images have identical pixels."
+    "abstract-write-bit-20261109": "Reviewed the enlarged circuit figure and native Word renders of both one-page abstract editions in color and grayscale. W is labelled as a one-bit direction signal, with 0 for reading and 1 for writing. Signal paths and the gameplay image are unchanged. The embedded and published circuit images have identical pixels.",
+    "two-letter-signals-20261109": "Reviewed the circuit figure and both one-page native Word renders in color and grayscale. AD, WD, WE and RD replace the one-letter names; WE is the one-bit write enable, with 0 for reading and 1 for writing during the conceptual active transfer. Reviewed native PowerPoint slides 4 and 5; all other slide pixels are unchanged. The 51 links, private cover text, gameplay image and embedded video are preserved. Image metadata cleaning preserves every decoded RGBA pixel."
   }
 }

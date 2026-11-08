@@ -1,5 +1,5 @@
 // Editable functional views shared by the abstract-based presentation.
-// Interface paths aggregate timing details. The access view separates A/D/W
+// Interface paths aggregate timing details. The access view separates AD/WD/WE/RD
 // and decode/select signals; it is not an AHB/APB cycle-level diagram.
 export function drawAbstractSystem(s, api, focus='all') {
   const {text,box,route,C}=api;
@@ -47,23 +47,25 @@ export function drawAbstractAccess(s,api,reading=false) {
   box(s,'',95,325,150,145,C.white,24,ink,2.4);
   T('CPU',110,355,95,45,29,true,ink,'center');
   T('Wally',110,401,95,34,22,false,ink,'center');
-  [['A',338],['D',383],['W',428]].forEach(([v,y])=>T(v,212,y,28,25,20,true));
+  [['AD',338],['WD',383],['WE',428]].forEach(([v,y])=>T(v,202,y,40,25,20,true));
+  T('RD',147,443,44,24,20,true);
+  T('WE：書込みイネーブル（1 bit）',710,169,482,25,20,true);
   box(s,'アドレス\nデコーダ',350,185,210,64,C.white,23,blue,2.4);
-  T('A = 0x80000000',88,239,212,28,22,true,blue);
-  T(reading?'D：使わない':'D = 7',350,282,300,29,23,true,reading?gray:blue);
-  T(reading?'W = 0（読む）':'W = 1（書く）',350,326,300,29,23,true,blue);
+  T('AD = 0x80000000',88,239,212,28,22,true,blue);
+  T(reading?'WD：使わない':'WD = 7',350,282,300,29,23,true,reading?gray:blue);
+  T(reading?'WE = 0（読む）':'WE = 1（書く）',350,326,300,29,23,true,blue);
   const defs=[{x:520,name:'SD制御',select:'S0',on:false},
               {x:750,name:'DDR制御',select:'S1',on:true},
               {x:980,name:'描画命令の\n接続回路',select:'S2',on:false}];
   // Shared forward signals have a single trunk with explicit branch dots.
   for(const [signal,y0,railX,yRail,offset,col] of [
-    ['A',350,280,275,28,blue],['D',395,305,315,75,reading?gray:blue],
-    ['W',440,330,355,115,blue]]){
+    ['AD',350,280,275,28,blue],['WD',395,305,315,75,reading?gray:blue],
+    ['WE',440,330,355,115,blue]]){
     route(s,[[245,y0],[railX,y0],[railX,yRail],[defs.at(-1).x+offset,yRail]],col,false,2.5);
     for(const d of defs){
       wire(s,d.x+offset,yRail,d.x+offset,405,col,true,2.1);
       if(d!==defs.at(-1))junction(s,d.x+offset,yRail,col,5);
-      T(signal,d.x+offset-20,378,16,22,17,true,col,'center');
+      T(signal,d.x+offset-35,378,32,22,17,true,col,'center');
     }
   }
   route(s,[[280,275],[280,220],[350,220]],blue,true,2.2);junction(s,280,275,blue,5);
@@ -80,7 +82,7 @@ export function drawAbstractAccess(s,api,reading=false) {
   T('S0〜S2',346,490,112,25,18,true,reading?blue:gray,'center');
   wire(s,387,516,387,532,reading?blue:gray,true,1.8);
   route(s,[[350,574],[170,574],[170,470]],reading?blue:gray,true,2.6);
-  T(reading?'読出し値 7':'読出し値',91,587,225,31,23,true,reading?blue:gray,'center');
+  T(reading?'RD = 7（読出し値）':'RD（読出し値）',91,587,252,31,22,true,reading?blue:gray,'center');
 }
 
 export function drawConceptCode(s,api,rows,y=579) {
