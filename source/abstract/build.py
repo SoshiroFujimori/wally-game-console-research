@@ -136,6 +136,19 @@ for heading, paragraphs in sections.items():
         for example in code_examples:
             if example["section"] != heading or example["after_paragraph"] != index:
                 continue
+            if example.get("caption"):
+                caption_node = deepcopy(caption_template)
+                anchor.addnext(caption_node)
+                caption = Paragraph(caption_node, doc._body)
+                caption.clear()
+                align_within_column(caption, WD_ALIGN_PARAGRAPH.CENTER)
+                caption.paragraph_format.keep_with_next = True
+                caption.paragraph_format.space_before = Pt(3)
+                caption.paragraph_format.space_after = Pt(0)
+                run = caption.add_run(example["caption"])
+                run.bold = True
+                run.font.color.rgb = RGBColor(0, 0, 0)
+                anchor = caption_node
             code_node = deepcopy(seed)
             anchor.addnext(code_node)
             code = Paragraph(code_node, doc._body)
@@ -180,6 +193,8 @@ for heading, paragraphs in content["sections"].items():
                 md.append(figure["caption"])
         for example in code_examples:
             if example["section"] == heading and example["after_paragraph"] == index:
+                if example.get("caption"):
+                    md.append(example["caption"])
                 md.append("```" + example.get("language", "text") + "\n" +
                           "\n".join(example["lines"]) + "\n```")
 md.append("図2の出典は[実機映像の記録](../../experiments/breakout-title-top-20261108/README.md)であり，[30秒の動画](../../experiments/breakout-title-top-20261108/video/breakout-30s.mp4)も公開している．本文に示した3回の起動・動作確認の条件と結果は，[動作確認記録](../../experiments/basic-operation-20261108/README.md)を参照できる．")
