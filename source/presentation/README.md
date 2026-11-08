@@ -3,7 +3,7 @@
 This directory builds the single published presentation:
 [slides and narration](../../docs/presentation/中間発表_主要事項.md) and
 [PowerPoint](../../docs/presentation/中間発表_主要事項.pptx).
-It contains eleven main slides and two hidden question slides. Earlier editions
+It contains eleven main slides and five hidden question slides. Earlier editions
 remain in Git history rather than beside the current output.
 
 ## Build and publication
@@ -18,7 +18,10 @@ node source/presentation/build.mjs RESEARCH_ROOT PRIVATE_BUILD_DIRECTORY
 
 The entry point delegates to `board-evolution/build.mjs`. Its default is the
 public edition: it sanitizes the package with the private redaction settings,
-validates the PPTX, re-imports it, and renders all thirteen slides. The question
+validates and imports the still-frame PPTX, then embeds the reviewed video
+and checks the completed package. All sixteen slides are rendered from the
+validated still-frame edition; the native PowerPoint review covers the
+completed deck. The importer has a construction-size limit for video bytes. The question
 slides are rendered at twice the slide resolution for reading on GitHub.
 Diagrams, wires and labels are editable. The gameplay video is embedded.
 
@@ -67,3 +70,36 @@ Multicolor stripes show overlapping categories.
 The [dataset and map provenance](ddca-adoption/README.md) preserve institution,
 course, year, book role and public sources. The map includes historical
 reference-book listings; gray prefectures are unverified, not known non-users.
+
+Hidden slide 14 follows Chu (2018), Chapter 2, Sections 2.1.1-2.1.2,
+Figure 2.1: generic logic cells, programmable interconnect and dedicated
+macro cells. The lookup table and D-type flip-flop are inside the cell;
+block random access memory is a separate macro-cell resource. Full names
+appear on the editable diagram in `board-evolution/fpga-resources.mjs`.
+The cell has a direct output path and a registered output path. Notes
+explain the actual Artix-7 slice/CLB grouping separately from this generic
+schematic. No resource counts, utilization or physical placement are
+claimed, and external DDR3 remains distinct from on-chip block memory.
+
+## FPGA utilization question slide
+
+Hidden slide 15 is an editable table built by `fpga-utilization.mjs` from
+`docs/thesis/再現資料/実験記録/E6/fresh-product/qualification/qualification.json`.
+It uses the October 8, 2026 post-route result for the ordinary product shown
+in the embedded demonstration. LUTs, slice registers, block-memory tile
+equivalents and DSP blocks are reported for the complete design. Counts and
+percentages are checked against the saved record during generation. The
+table does not attribute the whole design to the graphics circuit, include
+external DDR3 capacity, or interpret spare resources as frequency headroom.
+The existing eleven-slide narration remains 355 seconds.
+
+## RVSOC textbook adoption question slide
+
+Hidden slide 16 summarizes three documented textbook-designation or use
+examples, including historical draft use. Its editable table is generated
+by `rvsoc-adoption.mjs` from `source/presentation/rvsoc-adoption/records.json`.
+The sources are official course materials and an instructor-authored ASEE
+paper. See the published source register for the dates, scope and exclusions.
+Reference-only listings, matching course titles, author affiliations and
+library holdings are not counted as textbook adoption. This is not an
+exhaustive inventory of current users. The main narration remains 355 seconds.

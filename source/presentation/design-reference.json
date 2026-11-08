@@ -126,7 +126,7 @@
       "wally-circuit.mjs",
       "integrated-internals.mjs"
     ],
-    "supplementary_module_scope": "More detailed module drawings retained as source material; not displayed in the current thirteen-slide deck."
+    "supplementary_module_scope": "More detailed module drawings retained as source material; not displayed in the current sixteen-slide deck."
   },
   "board_photograph": {
     "file": "assets/nexys-video.png",
@@ -179,5 +179,57 @@
     "purpose": "Explain that a described circuit can be implemented inside the FPGA chip to control physical components on the board.",
     "research_purpose": "Slide 3 replaces the AND example with the existing educational CPU and graphics functionality to introduce the game-console extension."
   },
-  "presentation_mapping_review_date": "2026-11-08"
+  "presentation_mapping_review_date": "2026-11-08",
+  "fpga_resource_question_slide": {
+    "slide": 14,
+    "source": "source/presentation/board-evolution/fpga-resources.mjs",
+    "scope": "Generic FPGA hierarchy from Chu (2018), not a physical Artix-7 slice or measured utilization",
+    "examples": [
+      "lookup table and D-type flip-flop inside a generic logic cell",
+      "direct versus registered output selection",
+      "block random access memory as a separate dedicated macro cell"
+    ],
+    "secondary_resources": [
+      "dedicated arithmetic circuits",
+      "clock management",
+      "input/output circuits",
+      "programmable interconnect"
+    ],
+    "references": [
+      "Chu (2018), Chapter 2, Sections 2.1.1-2.1.2, Figure 2.1, pp.19-21",
+      "AMD UG474",
+      "AMD UG473",
+      "AMD UG479",
+      "AMD UG472",
+      "Digilent Nexys Video Reference Manual"
+    ],
+    "style": "RVSOC Figures 7.11 and 23.2 adapted: medium-blue chip, pale-blue category regions, white circuit symbols, black outlines; bold circuit names and regular explanations. Classification follows Chu (2018). Japanese labels use Yu Gothic; English labels use Arial.",
+    "visible_names": "Full English names with abbreviations: Look-up table (LUT), D-type flip-flop (DFF), Multiplexer (MUX), and Block random access memory (BRAM). No duplicate katakana labels; functional explanations remain in Japanese.",
+    "style_review_date": "2026-11-08",
+    "layout": "Aligned lookup-output branching, direct and registered paths, centered English resource names, a separate clock input, and evenly spaced macro-cell rows."
+  },
+  "fpga_utilization_question_slide": {
+    "slide": 15,
+    "source": "source/presentation/board-evolution/fpga-utilization.mjs",
+    "evidence": "docs/thesis/再現資料/実験記録/E6/fresh-product/qualification/qualification.json",
+    "evidence_section": "resources",
+    "qualified_date": "2026-10-08",
+    "scope": "Post-route whole-design utilization for the qualified product used in the E6 video",
+    "presentation": "Editable table, RVSOC blue header, Yu Gothic and Arial, count-derived percentages",
+    "exclusions": [
+      "external DDR3 usage",
+      "per-module attribution",
+      "runtime CPU load",
+      "guaranteed frequency headroom"
+    ]
+  },
+  "rvsoc_adoption_question_slide": {
+    "slide": 16,
+    "source": "source/presentation/board-evolution/rvsoc-adoption.mjs",
+    "data": "source/presentation/rvsoc-adoption/records.json",
+    "checked_on": "2026-11-08",
+    "institutions": 3,
+    "scope": "Documented textbook designations and historical draft use; not an exhaustive current adoption count. Reference-only listings excluded.",
+    "presentation": "Editable table with the existing RVSOC-inspired blue header, pale alternate rows, black rules and Yu Gothic/Arial typography."
+  }
 }

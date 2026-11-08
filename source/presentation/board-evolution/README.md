@@ -92,7 +92,12 @@ manual controller input. Recorded video rate is not a game-FPS measurement.
 the Artifact Tool poster. Public text, notes and image metadata are sanitized
 before adding the reviewed video. The helper rejects a video whose exact hash
 is absent from the media-review record. Publication hooks remain unchanged.
-Static rendering is not a native PowerPoint playback test.
+Static rendering is not a native PowerPoint playback test. The builder
+validates and imports the still-frame edition before embedding the video.
+The final video-bearing package receives the same integrity and layout checks
+without re-importing the video into Artifact Tool, whose picture construction
+limit rejects the existing recording. Native PowerPoint rendering and the
+exact reviewed video hash supplement these checks.
 
 ## Build
 
@@ -103,7 +108,7 @@ private validation records. Private cover input remains outside the repository.
 Review final slides and media, run the privacy audit, and import selected public
 outputs into `docs/presentation`. Do not import private build records.
 
-There are eleven main slides and two hidden question slides. The main narration
+There are eleven main slides and five hidden question slides. The main narration
 allocation is 355 seconds including 30 seconds of video; slide 2 receives
 20 seconds and slide 3 receives 15 seconds. This is not a timed rehearsal. Existing E6 results and scope are unchanged. Controller support
 remains future work.
@@ -154,3 +159,45 @@ book's exact typefaces. The slide canvas and abstract's required one-page,
 two-column layout are retained rather than copying the book's page layout.
 Native PowerPoint and Word exports supplement the package/layout checks:
 inspect every slide and both public and submission abstract pages after edits.
+
+## FPGA resource question slide
+
+Hidden slide 14 uses `fpga-resources.mjs` and follows the hierarchy in
+Pong P. Chu (2018), Chapter 2, Sections 2.1.1-2.1.2 and Figure 2.1.
+A generic logic cell contains a lookup table, a D-type flip-flop and
+output selection. A separate group of dedicated macro cells includes
+block random access memory, arithmetic, clock-management and I/O circuits.
+These resources connect through programmable routing. Full names are
+visible; the notes also define the usual abbreviations.
+
+The editable cell illustrates both direct and registered output paths;
+it does not reproduce a physical Artix-7 slice or imply that block memory
+is inside a generic cell. The notes separately explain Artix-7 grouping,
+carry logic, distributed memory, memory clocking and resource mapping.
+Counts, placement and utilization are outside the diagram's scope.
+The external DDR3 chip is distinguished from on-chip block memory.
+The original textbook artwork is not embedded or redistributed. Book,
+AMD and Digilent references accompany the notes and Markdown.
+
+## FPGA utilization question slide
+
+Hidden slide 15 is an editable table built by `fpga-utilization.mjs` from
+`docs/thesis/再現資料/実験記録/E6/fresh-product/qualification/qualification.json`.
+It uses the October 8, 2026 post-route result for the ordinary product shown
+in the embedded demonstration. LUTs, slice registers, block-memory tile
+equivalents and DSP blocks are reported for the complete design. Counts and
+percentages are checked against the saved record during generation. The
+table does not attribute the whole design to the graphics circuit, include
+external DDR3 capacity, or interpret spare resources as frequency headroom.
+The existing eleven-slide narration remains 355 seconds.
+
+## RVSOC textbook adoption question slide
+
+Hidden slide 16 summarizes three documented textbook-designation or use
+examples, including historical draft use. Its editable table is generated
+by `rvsoc-adoption.mjs` from `source/presentation/rvsoc-adoption/records.json`.
+The sources are official course materials and an instructor-authored ASEE
+paper. See the published source register for the dates, scope and exclusions.
+Reference-only listings, matching course titles, author affiliations and
+library holdings are not counted as textbook adoption. This is not an
+exhaustive inventory of current users. The main narration remains 355 seconds.

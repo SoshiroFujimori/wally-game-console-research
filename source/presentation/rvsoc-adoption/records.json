@@ -1,0 +1,96 @@
+{
+  "checked_on": "2026-11-08",
+  "book": "RISC-V System-on-Chip Design",
+  "scope": "Examples supported by official course materials or an instructor-authored education paper; includes draft use and historical courses. Not an exhaustive current adoption count.",
+  "institutions": [
+    {
+      "id": "hmc",
+      "name": "Harvey Mudd College",
+      "country": "米国",
+      "period": "2026年春",
+      "course": "E154: System-on-Chip Design",
+      "role": "教科書として指定",
+      "sources": [
+        "hmc-2026",
+        "asee-2025"
+      ],
+      "historical_use": "The ASEE paper also reports draft use in 2023, 2024 and 2025."
+    },
+    {
+      "id": "osu",
+      "name": "Oklahoma State University",
+      "country": "米国",
+      "period": "2023〜2024年",
+      "course": "SoC設計・計算機アーキテクチャ",
+      "role": "出版前の原稿を授業で使用",
+      "sources": [
+        "asee-2025"
+      ],
+      "historical_use": "Advanced SoC course in 2023 and 2024; lower-level computer architecture course in spring 2024. The paper does not state course codes."
+    },
+    {
+      "id": "tu-darmstadt",
+      "name": "ダルムシュタット工科大学",
+      "official_name": "Technische Universität Darmstadt",
+      "country": "ドイツ",
+      "period": "2026/27年冬",
+      "course": "Computer Architecture and Implementation",
+      "role": "主教科書として指定",
+      "sources": [
+        "darmstadt-202627"
+      ],
+      "historical_use": "The official page describes the planned main textbook and a first lecture on 2026-10-14; it does not document completed attendance or learning outcomes."
+    }
+  ],
+  "sources": [
+    {
+      "id": "hmc-2026",
+      "number": 1,
+      "title": "Harvey Mudd College, E154, Spring 2026",
+      "url": "https://pages.hmc.edu/harris/class/e154/",
+      "syllabus_url": "https://docs.google.com/document/d/1p_QboZHkOTK_kwnrW-KQXBHMjPRjx9MbfUYCH90mu9c/edit",
+      "locator": "Syllabus: Textbook; course homepage: Textbook link",
+      "quote": "Textbook",
+      "evidence": "The Spring 2026 syllabus lists RISC-V System-on-Chip Design in the Textbook section. The official course page also links the book as Textbook."
+    },
+    {
+      "id": "asee-2025",
+      "number": 2,
+      "title": "Thompson et al. (2025), RISC-V System-on-Chip Design Textbook and Course",
+      "url": "https://peer.asee.org/risc-v-system-on-chip-design-textbook-and-course",
+      "pdf_url": "https://nemo.asee.org/public/conferences/365/papers/48675/download",
+      "doi": "10.18260/1-2--57147",
+      "locator": "Section 4, Courses; PDF pages 8 and 10 of 12 (including cover)",
+      "quote": "using drafts of the textbook",
+      "evidence": "The instructors report advanced courses at HMC in 2023-2025 and OSU in 2023-2024, plus an OSU lower-level course in spring 2024. Author affiliation alone is not used as evidence of adoption."
+    },
+    {
+      "id": "darmstadt-202627",
+      "number": 3,
+      "title": "TU Darmstadt, Computer Architecture and Implementation, 2026/27",
+      "url": "https://www.esa.informatik.tu-darmstadt.de/lehre/202627/cai",
+      "locator": "Lecture Study Materials; Start of Course",
+      "quote": "this will be the main textbook",
+      "evidence": "The official course page identifies the book as the main textbook and the first lecture as 14 October 2026."
+    }
+  ],
+  "not_counted": [
+    {
+      "institution": "Umm Al-Qura University",
+      "url": "https://drive.uqu.edu.sa/_/ccomp_cen/files/4e444a38-fbfc-41e0-b104-ed0fa6bc5b18.pdf",
+      "locator": "CE6000 Computer Architecture, page 6, Supportive References",
+      "reason": "Listed as a supportive reference; the essential textbook is a different book. Not counted in the three textbook-adoption examples."
+    },
+    {
+      "institution": "Rice University",
+      "url": "https://ga.rice.edu/programs-study/departments-programs/engineering/electrical-computer-engineering/",
+      "locator": "ELEC 420 and ELEC 505",
+      "reason": "A matching course title alone does not identify the textbook."
+    },
+    {
+      "institution": "University of Nevada, Las Vegas",
+      "source": "asee-2025",
+      "reason": "Author affiliations and acknowledgments do not establish textbook adoption in a named course."
+    }
+  ]
+}
