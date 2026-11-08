@@ -150,7 +150,8 @@ for heading, paragraphs in sections.items():
         for run in paragraph.runs:
             run.font.size = Pt(10.5)
         paragraph.paragraph_format.line_spacing = Pt(content.get("body_line_spacing_pt", 14))
-        paragraph.paragraph_format.keep_together = True
+        # Allow body paragraphs to continue in the next column without gaps.
+        paragraph.paragraph_format.keep_together = False
         anchor = node
         for number, figure in enumerate(figures, 1):
             if figure["section"] != heading or figure["after_paragraph"] != index:
