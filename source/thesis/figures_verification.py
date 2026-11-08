@@ -63,7 +63,7 @@ def swap():
     f.text(17,294,270,85,'保持・同期を経て\nRasterIXへ完了を返す',24,BLUE)
     f.line([(395,235),(395,560),(680,560)],BLUE)
     f.text(40,525,330,95,'GPUFrameDone\n描画側の一回分の通知',23,BLUE)
-    f.box(680,525,495,70,'次の図：CPUクロックへ通知を渡す',fill=LIGHT,size=25)
+    f.box(680,525,495,70,'CPU側へ通知を渡す（図73.6）',fill=LIGHT,size=25)
     f.save()
 
 
@@ -170,6 +170,110 @@ def software():
     f.save()
 
 
+def buffers():
+    f=Fig('verification-buffers',1200,630)
+    f.text(15,5,1170,45,'画像をコピーするのではなく、読む保存場所を変える',30,bold=True)
+    for x, title, a, b in [(30,'① Aを表示している間','表示側が読む','描画側が用意する'),
+                           (660,'② Bへ切り替えた後','次の描画に使える','表示側が読む')]:
+        f.text(x,75,510,50,title,29,bold=True)
+        f.box(x,155,510,340,fill=LIGHT)
+        f.text(x+15,163,480,40,'DDR3の中の二つの保存場所',26)
+        f.box(x+30,230,450,95,'画像Aの領域\n'+a,size=28)
+        f.box(x+30,365,450,95,'画像Bの領域\n'+b,size=28)
+    f.line([(550,317),(650,317)],BLUE)
+    f.text(540,230,120,75,'読出し先\nを切替',24,BLUE)
+    f.text(45,530,1110,70,'AもBも、画面一枚分の画素を保存する領域。\n表示側の古い読出しが残っていないことを確認してから再利用する。',26)
+    f.save()
+
+
+def read_bursts():
+    f=Fig('verification-read-bursts',1200,700)
+    f.text(15,5,1170,45,'一件の読出し要求に、複数回のデータ転送が対応する',30,bold=True)
+    f.text(20,75,1160,43,'説明例：先頭番地Bから、四つのデータを要求する',27)
+    f.text(25,160,220,70,'番地を渡す\n要求側',27,bold=True)
+    f.text(25,350,220,70,'データが返る\n応答側',27,bold=True)
+    f.box(275,125,280,125,'先頭番地B\nARVALID = 1\nARREADY = 1',size=25,fill=LIGHT)
+    f.line([(415,250),(415,300),(1085,300)],BLUE)
+    f.text(560,250,570,38,'受理されてから、データが順に返る',25,BLUE)
+    for i, x in enumerate([275,500,725,950]):
+        f.box(x,350,200,110,f'データ{i+1}\nRLAST = '+('1' if i==3 else '0'),size=26,fill=MID if i==3 else LIGHT)
+        if i<3:f.line([(x+200,405),(x+222,405)])
+    f.text(275,480,875,42,'各データは RVALID = RREADY = 1 の立ち上がりで受け取る',25)
+    f.line([(1050,460),(1178,460),(1178,565),(1050,565),(1050,575)],BLUE)
+    f.text(710,575,460,60,'ここで一件の応答が完了\nReadCompleted = 1',26,BLUE,bold=True)
+    f.text(30,575,640,60,'四つは説明用の数。\n画面一枚は多数の読出し要求に分かれる。',25)
+    f.save()
+
+
+def pulse_hold():
+    f=Fig('verification-pulse-hold',1200,690)
+    f.text(15,5,1170,45,'CPU側が入力を保存する時刻まで、変化を残す',30,bold=True)
+    xs=[300,700,1100]
+    for x,t in zip(xs,['0 ns','50 ns','100 ns']):
+        f.text(x-65,88,130,40,t,26,BLUE)
+        f.line([(x,135),(x,555)],BLUE,False,True)
+    f.text(20,75,235,65,'CPU側の\n取込み時刻',27,BLUE)
+    f.text(20,230,235,65,'一瞬だけ1\n10〜20 ns',27)
+    f.line([(280,300),(380,300),(380,210),(460,210),(460,300),(1140,300)],INK,False)
+    for x in xs:
+        f.dot(x,300)
+        f.text(x-58,310,116,40,'0を保存',24)
+    f.text(20,435,235,70,'完了時に反転\nその値を保つ',27)
+    f.line([(280,500),(380,500),(380,410),(1140,410)],INK,False)
+    for x,y,t in [(300,500,'0'),(700,410,'1'),(1100,410,'1')]:
+        f.dot(x,y)
+        f.text(x-58,y+12,116,40,t+'を保存',24)
+    f.text(30,585,1140,70,'時刻は説明例。下段の変化を二段の同期回路へ渡し、\nその前後の値を比べて一回の完了を取り出す。',26)
+    f.save()
+
+
+def address_map():
+    f=Fig('verification-address-map',1200,690)
+    f.text(15,5,1170,45,'regs[4] を読むと、回路内の完了回数が返る',31,bold=True)
+    f.box(35,105,310,125,'C++の読出し\nregs[4]',size=30,fill=LIGHT)
+    f.box(460,105,310,125,'仮想アドレス\nV + 4 × 4 byte',size=27,fill=LIGHT)
+    f.line([(345,167),(460,167)])
+    f.text(350,105,105,48,'添字4',24)
+    f.box(885,105,280,125,'物理アドレス\n0x10080010',size=27,fill=LIGHT)
+    f.line([(770,167),(885,167)])
+    f.text(775,96,105,70,'mmapの\n対応付け',22)
+    f.line([(1025,230),(1025,265),(1190,265),(1190,350),(770,350)])
+    f.box(460,290,310,120,'描画用の接続回路\n下位8 bit = 0x10',size=26,fill=LIGHT)
+    f.text(845,280,310,45,'バスが周辺回路を選ぶ',24)
+    f.box(35,290,310,120,'FrameCount\n例：101を保持',size=29,fill=MID)
+    f.line([(460,350),(345,350)])
+    f.text(350,285,105,55,'値を選ぶ',23)
+    f.line([(190,410),(190,520),(1025,520),(1025,580)],BLUE)
+    f.box(800,580,365,80,'CPUへ101が返る',size=28,fill=LIGHT)
+    f.text(265,470,695,40,'PRDATA → バスの読出し応答',27,BLUE)
+    f.text(35,570,675,80,'Vはmmapが返す仮想アドレス。\n画素の保存場所A・Bへの読出しではない。',25)
+    f.save()
+
+
+def duration():
+    f=Fig('verification-duration',1200,850)
+    f.text(15,5,1170,45,'試験時間の確認と、一回の表示処理の完了待ち',30,bold=True)
+    f.box(40,90,630,85,'初期描画4回 → 開始時刻を記録 → frames = 0',size=25,fill=LIGHT)
+    f.line([(355,175),(355,225)])
+    f.box(40,225,630,90,'経過時間が300秒以上かを調べる',size=29,fill=LIGHT)
+    f.line([(670,270),(820,270)])
+    f.text(675,218,135,40,'300秒以上',24,BLUE)
+    f.box(820,225,340,100,'繰返しを終える\n結果の文字列を出す',size=27,fill=MID)
+    f.line([(355,315),(355,390)])
+    f.text(370,333,225,40,'まだ300秒未満',25,BLUE)
+    f.box(40,390,630,85,'経過した時間に応じてゲーム状態を進める',size=27)
+    f.line([(355,475),(355,525)])
+    f.box(40,525,630,100,'present：描画を依頼し、回路の回数が\n変わるまで待ち、エラーを確認する',size=27,fill=LIGHT)
+    f.text(745,500,410,110,'ここで一回の完了を待つ。\n進行しない場合の期限は30秒。',25,BLUE)
+    f.line([(670,575),(730,575)],BLUE,False)
+    f.line([(355,625),(355,680)])
+    f.box(40,680,630,75,'正常に戻ったら frames を1増やす',size=28,fill=LIGHT)
+    f.line([(40,718),(15,718),(15,270),(40,270)],BLUE)
+    f.text(785,690,370,80,'次の周回の先頭で\n試験時間を再び調べる',25,BLUE)
+    f.text(40,795,1120,35,'一回が終わる条件と、試験全体を終える条件は別々にある。',27)
+    f.save()
+
+
 if __name__ == '__main__':
-    for draw in (system, swap, cdc, counter, mmio, software):
+    for draw in (system, buffers, swap, read_bursts, pulse_hold, cdc, counter, mmio, address_map, software, duration):
         draw()
