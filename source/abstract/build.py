@@ -167,6 +167,10 @@ for heading, paragraphs in sections.items():
             align_within_column(picture, alignment)
             picture.paragraph_format.keep_with_next = True
             shape = picture.add_run().add_picture(str(source), width=Mm(figure.get("width_mm", 83)))
+            # Explicitly disable image spacing: some readers otherwise add
+            # side margins that make an inline figure exceed the column.
+            for edge in ("distT", "distB", "distL", "distR"):
+                shape._inline.set(edge, "0")
             shape._inline.docPr.set("descr", figure["alt"])
             caption_node = deepcopy(caption_template)
             picture_node.addnext(caption_node)
