@@ -7,8 +7,9 @@ signals keep those outlines clear of arrowheads.
 
 Readback paths run toward the selector below the CPU.
 The selected read data returns to the CPU at the input labelled `R`. The
-legend pairs `D` (write data) with `R` (read data); `W` remains the write
-indicator. Drawing commands run
+legend pairs `D` (write data) with `R` (read data). `W` is a one-bit
+direction signal: 0 selects reading and 1 selects writing during an active
+transfer. The figure and body both state this mapping explicitly. Drawing commands run
 below the added command port, while the image-memory path runs between RasterIX
 and the DDR controller. Distinct signals use separate routing lanes. A gap at
 a wire crossing indicates no connection; a black dot marks a connected branch.

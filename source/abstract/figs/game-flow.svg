@@ -1,6 +1,6 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="1420" height="1510" viewBox="0 0 1420 1510" role="img" aria-labelledby="title desc">
 <title id="title">FPGAチップ内の信号接続とチップ外の部品</title>
-<desc id="desc">ボード内にFPGAチップと外部部品を置く．チップ内では，CPUのアドレスA，書込みデータD，書込み指示Wを各回路へ渡し，アドレスデコーダで接続先を選ぶ．読出し値を選び，読出しデータRとしてCPUへ返す．下部に接続回路，RasterIXの描画回路，独立した表示回路を置く．描画回路がDDRへ画像を書き，表示回路が画像を読む．破線は回路やIP設定の入手元を示す．黒丸は接続点，交差部分の隙間は接続しない線を示す．転送タイミングを省略した概念図である． HDLコードで記述した回路をチップ内に実装すること，チップ外のメモリや端子はボード上に物理的に存在すること，DDR3にプログラムと画像を保存することを補足する．</desc>
+<desc id="desc">ボード内にFPGAチップと外部部品を置く．チップ内では，CPUのアドレスA，書込みデータD，1ビットの読書き方向W（0で読出し，1で書込み）を各回路へ渡し，アドレスデコーダで接続先を選ぶ．読出し値を選び，読出しデータRとしてCPUへ返す．下部に接続回路，RasterIXの描画回路，独立した表示回路を置く．描画回路がDDRへ画像を書き，表示回路が画像を読む．破線は回路やIP設定の入手元を示す．黒丸は接続点，交差部分の隙間は接続しない線を示す．転送タイミングを省略した概念図である． HDLコードで記述した回路をチップ内に実装すること，チップ外のメモリや端子はボード上に物理的に存在すること，DDR3にプログラムと画像を保存することを補足する．</desc>
 <defs><clipPath id="chip-area"><rect x="45" y="110" width="1105" height="1315"/></clipPath>
 <marker id="arrow" viewBox="0 0 10 10" refX="10" refY="5" markerWidth="4.5" markerHeight="4.5" orient="auto-start-reverse"><path d="M0 0L10 5L0 10Z" fill="#000000"/></marker>
 <mask id="source-clearance" maskUnits="userSpaceOnUse" x="0" y="0" width="1420" height="1510"><rect width="1420" height="1510" fill="white"/>
@@ -186,10 +186,11 @@
 <text x="1295" y="1285" font-size="36" text-anchor="middle" font-weight="500" fill="#000000">HDMI端子</text>
 <text x="95" y="250" font-size="37" text-anchor="start" font-weight="bold" fill="#000000">Wallyリポジトリ</text>
 <text x="95" y="1070" font-size="37" text-anchor="start" font-weight="bold" fill="#000000">RasterIX</text>
-<text x="720" y="264" font-size="35" text-anchor="start" font-weight="500" fill="#000000">A  アドレス</text>
-<text x="720" y="308" font-size="35" text-anchor="start" font-weight="500" fill="#000000">D  書込みデータ</text>
-<text x="720" y="352" font-size="35" text-anchor="start" font-weight="500" fill="#000000">W  書込み指示</text>
-<text x="720" y="396" font-size="35" text-anchor="start" font-weight="500" fill="#000000">R  読出しデータ</text>
+<text x="720" y="240" font-size="35" text-anchor="start" font-weight="500" fill="#000000">A  アドレス</text>
+<text x="720" y="280" font-size="35" text-anchor="start" font-weight="500" fill="#000000">D  書込みデータ</text>
+<text x="720" y="320" font-size="35" text-anchor="start" font-weight="500" fill="#000000">W  読書き（1 bit）</text>
+<text x="755" y="360" font-size="32" text-anchor="start" font-weight="500" fill="#000000">0：読出し　1：書込み</text>
+<text x="720" y="400" font-size="35" text-anchor="start" font-weight="500" fill="#000000">R  読出しデータ</text>
 <text x="515" y="286" font-size="35" text-anchor="start" font-weight="500" fill="#000000">S0</text>
 <text x="565" y="326" font-size="35" text-anchor="start" font-weight="500" fill="#000000">S1</text>
 <text x="615" y="366" font-size="35" text-anchor="start" font-weight="500" fill="#000000">S2</text>
