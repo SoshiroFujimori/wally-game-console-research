@@ -27,6 +27,32 @@ Figure 2 uses the recorded color frame at `docs/thesis/figs/current-game.png`
 without a color or tone transformation. Review the circuit diagram in color and
 grayscale at its one-column print size, as well as enlarged.
 
+
+## Address selection
+
+Figure 1 shows two uses of an address. The decoder (1) selects a circuit by
+its assigned range; the selected circuit then uses the address to identify
+an operation or location. Inside the SD controller (2), `0x13048` accesses
+the transmit register and `0x1304C` accesses the receive register. Both
+addresses select the same controller. DDR addresses identify locations in
+the external memory through the DDR controller.
+
+| Figure select | Assigned range, inclusive | Configuration source |
+| --- | --- | --- |
+| S0, SD controller | `0x13000`–`0x13FFF` | `console/config/rv64gc/config.vh`, `SDC_BASE` and `SDC_RANGE` |
+| S1, DDR controller | `0x80000000`–`0x9FFFFFFF` | `console/config/derivlist.txt`, `fpganexysvideo` and its `fpga` parent |
+| S2, command port | `0x10080000`–`0x100800FF` | `console/config/rv64gc/config.vh`, `EXT_IO_BASE` and `EXT_IO_RANGE` |
+
+The range selection is implemented by `console/src/mmu/adrdec.sv` and
+`adrdecs.sv`. The SD instance in `console/src/uncore/uncore.sv` passes the
+low eight address bits to `spi_apb.sv`, whose register map defines offsets
+`0x48` and `0x4C`. The assigned range is not a claim that every address
+contains a distinct implemented register: this SD implementation has unused
+offsets and aliases. The abstract uses the canonical addresses of two
+implemented registers. S0, S1 and S2 are labels for the conceptual diagram,
+not the RTL array indices. Access timing and transfer-size checks remain
+outside the diagram.
+
 ## Code example
 
 The abstract uses a separately numbered `コード1` caption below an editable,

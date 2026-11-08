@@ -1,9 +1,9 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="1420" height="1340" viewBox="0 0 1420 1340" role="img" aria-labelledby="title desc">
+<svg xmlns="http://www.w3.org/2000/svg" width="1420" height="1390" viewBox="0 0 1420 1390" role="img" aria-labelledby="title desc">
 <title id="title">FPGAチップ内の信号接続とチップ外の部品</title>
-<desc id="desc">FPGAボード内にFPGAチップと，物理的に存在するSDカードスロット，DDR3メモリ，HDMI端子を示す．チップ内では，CPUのアドレスADをデコーダへ渡し，S0〜S2でSD制御，DDR制御，接続回路の一つを選ぶ．書込みデータWDと1ビットの書込みイネーブルWEを各回路へ渡し，読出しデータRDを選んでCPUへ返す．WEは0で読出し，1で書込みを意味する．接続回路は描画命令をRasterIXへ渡す．RasterIXの描画と表示を一つの箱にまとめ，DDR3との画像の読み書きとHDMI端子への映像出力を示す．WallyリポジトリとRasterIXの流用範囲を破線で囲む．細線は1ビット，太線は複数ビット，黒丸は接続点である．回路をHDLで記述することと，DDR3にプログラムと画像を保存することを補足する．タイミング制御を省略した概念図である．</desc>
+<desc id="desc">FPGAボード内にFPGAチップと，物理的に存在するSDカードスロット，DDR3メモリ，HDMI端子を示す．チップ内では，CPUのアドレスADをデコーダ①へ渡し，ADの属する範囲からSD制御（S0），DDR制御（S1），接続回路（S2）の一つを選ぶ．SD制御の範囲は0x13000〜0x13FFF，DDR制御は0x80000000〜0x9FFFFFFF，接続回路は0x10080000〜0x100800FFである．SD制御回路②の内部には0x13048の送信用と0x1304Cの受信用の場所を示す．複数のアドレスが同じ回路を選び，その回路内の操作先を指定する．書込みデータWDと1ビットの書込みイネーブルWEを各回路へ渡し，読出しデータRDを選んでCPUへ返す．WEは0で読出し，1で書込みを意味する．接続回路は描画命令をRasterIXへ渡す．RasterIXの描画と表示を一つの箱にまとめ，DDR3との画像の読み書きとHDMI端子への映像出力を示す．WallyリポジトリとRasterIXの流用範囲を破線で囲む．細線は1ビット，太線は複数ビット，黒丸は接続点である．回路をHDLで記述することと，DDR3にプログラムと画像を保存することを補足する．タイミング制御を省略した概念図である．</desc>
 <defs><clipPath id="chip-area"><rect x="45" y="110" width="1105" height="1180"/></clipPath>
 <!-- Arrow shafts stop inside the broad base of each filled arrowhead. -->
-<mask id="source-clearance" maskUnits="userSpaceOnUse" x="0" y="0" width="1420" height="1340"><rect width="1420" height="1340" fill="white"/>
+<mask id="source-clearance" maskUnits="userSpaceOnUse" x="0" y="0" width="1420" height="1340"><rect width="1420" height="1390" fill="white"/>
 <path d="M350 440L350 1090" stroke="black" fill="none" stroke-width="32" stroke-linecap="round" stroke-linejoin="round"/>
 <path d="M400 470L400 1120" stroke="black" fill="none" stroke-width="32" stroke-linecap="round" stroke-linejoin="round"/>
 <path d="M450 500L450 1150" stroke="black" fill="none" stroke-width="32" stroke-linecap="round" stroke-linejoin="round"/>
@@ -36,7 +36,7 @@
 </mask></defs>
 <rect width="1420" height="1340" fill="white"/>
 <g font-family="Yu Gothic,Arial,sans-serif" fill="#000000">
-<rect id="fpga-board" x="3" y="3" width="1414" height="1334" fill="#F2F5FB" stroke="black" stroke-width="5"/>
+<rect id="fpga-board" x="3" y="3" width="1414" height="1384" fill="#F2F5FB" stroke="black" stroke-width="5"/>
 <text x="28" y="56" font-size="44" font-weight="bold" fill="#000000">FPGAボード / Nexys Video</text>
 <rect id="fpga-chip" x="45" y="110" width="1105" height="1180" fill="#C4D5ED" stroke="black" stroke-width="8"/>
 <rect x="49" y="114" width="1097" height="66" fill="#ACC4E4"/>
@@ -183,15 +183,18 @@
 <rect data-block="HDMI" x="1200" y="1115" width="190" height="120" fill="white" stroke="black" stroke-width="4.2"/>
 <path data-block="ReadMux" d="M130 820L300 800V970L130 950Z" fill="white" stroke="black" stroke-width="4.2"/>
 <text x="275" y="326" font-size="38" text-anchor="middle" font-weight="500" fill="#000000">アドレスデコーダ</text>
-<text x="275" y="375" font-size="35" text-anchor="middle" font-weight="500" fill="#000000">ADから接続先を選ぶ</text>
+<text x="275" y="375" font-size="32" text-anchor="middle" font-weight="500" fill="#000000">① 範囲で回路を選択</text>
 <text x="180" y="584" font-size="49" text-anchor="middle" font-weight="bold" fill="#000000">CPU</text>
 <text x="180" y="650" font-size="43" text-anchor="middle" font-weight="500" fill="#000000">Wally</text>
 <text x="302" y="560" font-size="35" text-anchor="end" font-weight="500" fill="#000000">AD</text>
 <text x="302" y="608" font-size="35" text-anchor="end" font-weight="500" fill="#000000">WD</text>
 <text x="302" y="653" font-size="35" text-anchor="end" font-weight="500" fill="#000000">WE</text>
 <text x="210" y="698" font-size="35" text-anchor="middle" font-weight="500" fill="#000000">RD</text>
-<text x="835" y="477" font-size="40" text-anchor="middle" font-weight="500" fill="#000000">SDカード</text>
-<text x="835" y="531" font-size="40" text-anchor="middle" font-weight="500" fill="#000000">制御回路</text>
+<text x="835" y="456" font-size="34" text-anchor="middle" font-weight="500" fill="#000000">② SD制御回路</text>
+<g data-address-details="SD" fill="#000000" font-size="32" text-anchor="middle">
+<text x="835" y="501">0x13048 送信</text>
+<text x="835" y="545">0x1304C 受信</text>
+</g>
 <text x="835" y="630" font-size="40" text-anchor="middle" font-weight="500" fill="#000000">DDR</text>
 <text x="835" y="680" font-size="35" text-anchor="middle" font-weight="500" fill="#000000">コントローラー</text>
 <text x="835" y="730" font-size="35" text-anchor="middle" font-weight="500" fill="#000000">AMD製IP</text>
@@ -205,11 +208,14 @@
 <text x="1295" y="1185" font-size="36" text-anchor="middle" font-weight="500" fill="#000000">HDMI端子</text>
 <text x="95" y="250" font-size="37" text-anchor="start" font-weight="bold" fill="#000000">Wallyリポジトリ</text>
 <text x="95" y="1070" font-size="37" text-anchor="start" font-weight="bold" fill="#000000">RasterIX</text>
-<text x="720" y="240" font-size="35" text-anchor="start" font-weight="500" fill="#000000">AD  アドレス</text>
-<text x="720" y="280" font-size="35" text-anchor="start" font-weight="500" fill="#000000">WD  書込みデータ</text>
-<text x="720" y="320" font-size="35" text-anchor="start" font-weight="500" fill="#000000">WE  書込みイネーブル</text>
-<text x="720" y="360" font-size="29" text-anchor="start" font-weight="500" fill="#000000">1 bit　0：読出し　1：書込み</text>
-<text x="720" y="400" font-size="35" text-anchor="start" font-weight="500" fill="#000000">RD  読出しデータ</text>
+<g id="address-map" fill="#000000">
+<text x="710" y="238" font-size="33">S0：SD制御の範囲</text>
+<text x="710" y="272" font-family="Consolas,monospace" font-size="31" data-address-range="SD">0x13000〜0x13FFF</text>
+<text x="710" y="304" font-size="33">S1：DDRの範囲</text>
+<text x="710" y="338" font-family="Consolas,monospace" font-size="31" data-address-range="DDR">0x80000000〜0x9FFFFFFF</text>
+<text x="710" y="370" font-size="33">S2：接続回路の範囲</text>
+<text x="710" y="404" font-family="Consolas,monospace" font-size="31" data-address-range="CommandPort">0x10080000〜0x100800FF</text>
+</g>
 <text x="515" y="286" font-size="35" text-anchor="start" font-weight="500" fill="#000000">S0</text>
 <text x="565" y="326" font-size="35" text-anchor="start" font-weight="500" fill="#000000">S1</text>
 <text x="615" y="366" font-size="35" text-anchor="start" font-weight="500" fill="#000000">S2</text>
@@ -227,6 +233,7 @@
 <text x="1295" y="370" font-size="35" text-anchor="middle" font-weight="500" fill="#000000" data-explanation="true">存在する部品</text>
 <text x="1295" y="805" font-size="35" text-anchor="middle" font-weight="500" fill="#000000" data-explanation="true">プログラムと</text>
 <text x="1295" y="855" font-size="35" text-anchor="middle" font-weight="500" fill="#000000" data-explanation="true">画像を保存</text>
-<text x="30" y="1320" fill="#000000" font-size="26">細線：1 bit　太線：複数bit　太枠：チップ　破線：入手元　黒丸：接続点（概念図）</text><path d="M281 469L297 451" fill="none" stroke="black" stroke-width="2.5"/><text x="289" y="449" fill="black" font-size="28" text-anchor="middle">3</text><text x="210" y="1145" font-size="36" text-anchor="middle" fill="black">描画・表示</text>
+<text id="signal-legend" x="30" y="1325" font-size="27" fill="#000000">AD：アドレス　WD：書込データ　RD：読出データ　WE：書込みイネーブル1 bit（0：読出し，1：書込み）</text>
+<text x="30" y="1370" fill="#000000" font-size="26">細線：1 bit　太線：複数bit　太枠：チップ　破線：入手元　黒丸：接続点（概念図）</text><path d="M281 469L297 451" fill="none" stroke="black" stroke-width="2.5"/><text x="289" y="449" fill="black" font-size="28" text-anchor="middle">3</text><text x="210" y="1145" font-size="36" text-anchor="middle" fill="black">描画・表示</text>
 <text x="210" y="1200" font-size="39" text-anchor="middle" fill="black">回路</text>
 </g></svg>

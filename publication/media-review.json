@@ -19,7 +19,8 @@
     "fpga-utilization-before-after-20261108": "Reviewed slide 16 in a native PowerPoint render: editable Before/After utilization table with clear columns, readable percentages and source dates. Removed used/available counts and the requested explanatory annotations. Other 17 slides and the private cover are pixel-identical to the previous native renders. All 51 internal links in each edition retain their correct destinations, and embedded media are unchanged. Preview PNG metadata was cleaned without altering RGBA pixels.",
     "remove-fpga-note-20261108": "Reviewed the native PowerPoint render after removing the supplemental Block RAM/DDR3 comparison sentence from the FPGA components slide. Pixel differences are confined to the removed sentence area. All other slides, embedded media, private cover and the 51 internal slide links in each edition are preserved. Preview metadata was removed without changing RGBA pixels.",
     "abstract_sd_standard_display_20261109": "Reviewed the compact single RasterIX block, both one-page Word editions, and the standard-display game screenshots. The hardware operator reviewed the 30-second video and diagnostic images as recorded in experiments/dvi-recovery-20261109/media-review.json. All published media hashes were verified; embedded Word images match reviewed source pixels. The public title was also verified using PDFium because the Poppler render omitted it.",
-    "abstract_arrowheads_20261109": "Reviewed all 26 arrowheads after shortening each shaft into the broad rear of its filled triangle. Enlarged horizontal, vertical, and bidirectional comparisons confirm that shafts do not protrude through tips. Original endpoint coordinates and bus widths are preserved. The full diagram and one-page public/private Word renders were reviewed; embedded images match the reviewed source pixels. Abstract paragraph text is unchanged."
+    "abstract_arrowheads_20261109": "Reviewed all 26 arrowheads after shortening each shaft into the broad rear of its filled triangle. Enlarged horizontal, vertical, and bidirectional comparisons confirm that shafts do not protrude through tips. Original endpoint coordinates and bus widths are preserved. The full diagram and one-page public/private Word renders were reviewed; embedded images match the reviewed source pixels. Abstract paragraph text is unchanged.",
+    "abstract_address_ranges_20261109": "Reviewed the three assigned address ranges and the two SD register locations against the pinned console configuration and RTL. The diagram preserves all signal routes and 26 corrected arrowheads. Reviewed the one-page public and private Word renders and grayscale legibility. Embedded images match the reviewed pixels; the game image is unchanged."
   },
   "sha256": [
     "00eb0240b0906cb38ef39044d105b2cd8723b71ca90db2e875bee6944ceb6b92",
@@ -716,6 +717,7 @@
     "b4e89bde0d4c6221be3af4b1de7ea21166ac9ffd20913d5ba7e939ead2f4a7dc",
     "b532896683b1ff29722481ecf760853aba074b31e3be35f82b60dcc5949f36cd",
     "b54d63eac777628909d4f611f6135e491dfefdbe063a0f4d315e865652674476",
+    "b5b0b5ecbb77179baa24cd104b0bc294fbc676a2ec3cd979b94d6d00beb9476c",
     "b62cce18a9654bf8df89e86ea22b48026f4a14edb6ade221dfd29518b6319ffb",
     "b6bb632bbc3cdeb21f66e63eb3d2da9d87c4945d62b2ddf3b7b712ec21ae9c52",
     "b70649c1b78b2592f37b2b0df4df96fdbaf5fe116702edadebd00ef9d9ae23d6",
