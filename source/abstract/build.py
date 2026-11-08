@@ -22,9 +22,10 @@ p = argparse.ArgumentParser(description=__doc__)
 p.add_argument("--template", type=Path, required=True)
 p.add_argument("--config", type=Path, required=True)
 p.add_argument("--output", type=Path, required=True)
+p.add_argument("--content", type=Path, default=Path(__file__).with_name("content.json"))
 a = p.parse_args()
 config = load_config(a.config)
-content = json.loads(Path(__file__).with_name("content.json").read_text(encoding="utf-8"))
+content = json.loads(a.content.read_text(encoding="utf-8"))
 doc = Document(io.BytesIO(sanitize_docx(a.template.read_bytes(), config)))
 doc.core_properties.title = content["title"]
 
@@ -107,7 +108,7 @@ for heading, paragraphs in sections.items():
         # Retain the one-page, two-column layout with the expanded explanation.
         for run in paragraph.runs:
             run.font.size = Pt(10.5)
-        paragraph.paragraph_format.line_spacing = Pt(14)
+        paragraph.paragraph_format.line_spacing = Pt(content.get("body_line_spacing_pt", 14))
         paragraph.paragraph_format.keep_together = True
         anchor = node
         for number, figure in enumerate(figures, 1):
@@ -200,6 +201,8 @@ a.output.mkdir(parents=True, exist_ok=True)
 (a.output / "アブスト_主要事項.docx").write_bytes(public)
 
 md = ["# " + content["title"]]
+if content.get("draft_notice"):
+    md.append(content["draft_notice"])
 for heading, paragraphs in content["sections"].items():
     md.append("## " + heading)
     for index, value in enumerate(paragraphs, 1):
@@ -217,10 +220,13 @@ for heading, paragraphs in content["sections"].items():
                           "\n".join(example["lines"]) + "\n```")
                 if example.get("caption"):
                     md.append(example["caption"])
-md.append("図2の出典は[実機映像の記録](../../experiments/breakout-title-top-20261108/README.md)であり，[30秒の動画](../../experiments/breakout-title-top-20261108/video/breakout-30s.mp4)も公開している．本文に示した3回の起動・動作確認の条件と結果は，[動作確認記録](../../experiments/basic-operation-20261108/README.md)を参照できる．")
-md.append("図1では，公式RasterIXの描画回路と表示回路を分けて示す．実機映像の表示回路は，研究用の画像読出し回路とhdl-util/hdmiを用いた[実験E8の構成](../../experiments/basic-operation-20261108/hdmi/README.md)である．製品既定のDVI構成との対応は[構成比較と実機記録](../../experiments/dvi-standard-check-20261108/README.md)を参照できる．DDRコントローラーはAMD製IPで，生成・接続設定をWally側のリポジトリに収めている．回路の入手元と実装箇所は[構成要素の出典](../../source/presentation/board-evolution/README.md)にまとめた．")
+if "markdown_notes" in content:
+    md.extend(content["markdown_notes"])
+else:
+    md.append("図2の出典は[実機映像の記録](../../experiments/breakout-title-top-20261108/README.md)であり，[30秒の動画](../../experiments/breakout-title-top-20261108/video/breakout-30s.mp4)も公開している．本文に示した3回の起動・動作確認の条件と結果は，[動作確認記録](../../experiments/basic-operation-20261108/README.md)を参照できる．")
+    md.append("図1では，公式RasterIXの描画回路と表示回路を分けて示す．実機映像の表示回路は，研究用の画像読出し回路とhdl-util/hdmiを用いた[実験E8の構成](../../experiments/basic-operation-20261108/hdmi/README.md)である．製品既定のDVI構成との対応は[構成比較と実機記録](../../experiments/dvi-standard-check-20261108/README.md)を参照できる．DDRコントローラーはAMD製IPで，生成・接続設定をWally側のリポジトリに収めている．回路の入手元と実装箇所は[構成要素の出典](../../source/presentation/board-evolution/README.md)にまとめた．")
 md.append("## 参考文献")
 md.extend(content["references"])
-md.append("命令の接続設計は[論文第6章](../thesis/本文.md#ch_6)，実機で確認した条件と結果は[第12章](../thesis/本文.md#ch_12)に示す．詳しい実装は[技術付録](../thesis/技術付録.md)から参照できる．")
+md.append(content.get("markdown_footer", "命令の接続設計は[論文第6章](../thesis/本文.md#ch_6)，実機で確認した条件と結果は[第12章](../thesis/本文.md#ch_12)に示す．詳しい実装は[技術付録](../thesis/技術付録.md)から参照できる．"))
 (a.output / "アブスト_主要事項.md").write_bytes(("\n\n".join(md) + "\n").encode("utf-8"))
 print(json.dumps({"sections": len(content["sections"]), "figures": len(figures)}))

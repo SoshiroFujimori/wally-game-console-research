@@ -1,0 +1,366 @@
+{
+  "date_local": "2026-11-09",
+  "timezone": "Asia/Tokyo",
+  "outcome": "actual_latest_layout_standard_dvi_game_captured",
+  "product_revision": "ed6a1c09b34d597dcde92ec26a4f5a97cbf18a17",
+  "standard_bitstream_frozen_source_revision": "261832d48832dd6e26c4971ab8893ce61200688b",
+  "source_audit": "../dvi-standard-check-20261108/source-audit.json",
+  "rasterix_revision": "9269a01c9bd4c3342bfa70ef8e3cdd751c15c6d0",
+  "standard_bitstream_sha256": "16173de97a91e711cd7bc5389acd9739807adebedf192efc29fe78f5b96c0acf",
+  "latest_executable_sha256": "5c360babde59c6d9fc72fe58edc5729da2b2b8480c2f3a5208980d2f7d2c558b",
+  "raw_recording_sha256": "b40cf6be2d5a9345d88903aa15ab0b830c4331b985ffbc15543a63c708ad74f9",
+  "reviewed_clip_sha256": "af81418b4c1bab75a4c26835a644982500d0036f7e8352a123ce2d76d5a617da",
+  "public_video_sha256": "b852e252074388fe99a1b850a5e81eadd2548491fa72bf6b48ee794229592a09",
+  "public_video": "media/latest-standard-dvi-30s.mp4",
+  "video_duration_seconds": 30,
+  "video_frames": 1800,
+  "encoded_video_rate_hz": 60,
+  "game_rendering_fps_claimed": false,
+  "source_segment_frame_range_half_open": [
+    300,
+    2100
+  ],
+  "clip_decoded_frames_identical_to_raw_segment": true,
+  "public_remux_packets_and_timestamps_identical_to_reviewed_clip": true,
+  "standard_program_operations_in_this_recovery": 4,
+  "successful_sequence": [
+    "The initial HDMI720/DVI720 fixture replay and two boot04-style reopen-before-program replays failed for the standard game.",
+    "Program a separately qualified true HDMI640 VIC1 diagnostic fixture (25.2/126 MHz; no CPU) and select HDMI mode 0.",
+    "Wait 20 seconds and visually confirm actual color bars and white square.",
+    "Keep the OBS capture input active and unchanged while programming the hash-pinned standard DVI bitstream.",
+    "Boot the OS, load the latest executable from read-only SD, verify its hash, and unmount SD.",
+    "Run the latest game for 45 seconds and record the actual source.",
+    "Perform two additional 20-second game-only launches without FPGA reconfiguration or capture deactivation."
+  ],
+  "capture_settings": {
+    "resolution": "1280x720",
+    "res_type": 1,
+    "video_format": "YUY2 (301)",
+    "frame_interval": 166666,
+    "deactivate_when_not_showing": true,
+    "recorded_framing": "4:3 within 1920x1080"
+  },
+  "verification": {
+    "created_utc": "2026-11-08T16:24:13.833693+00:00",
+    "source_video_sha256": "b40cf6be2d5a9345d88903aa15ab0b830c4331b985ffbc15543a63c708ad74f9",
+    "source_frame_range_half_open": [
+      300,
+      2100
+    ],
+    "source_seconds_half_open": [
+      5,
+      35
+    ],
+    "clip_sha256": "af81418b4c1bab75a4c26835a644982500d0036f7e8352a123ce2d76d5a617da",
+    "clip_bytes": 1559325,
+    "duration_seconds": 30,
+    "frames": 1800,
+    "encoded_video_rate_hz": 60,
+    "decoded_yuv420p_frames_identical_to_source_segment": true,
+    "audio_removed": true,
+    "global_metadata_removed": true,
+    "all_font_cell_samples_match": true,
+    "font_cell_samples_per_frame": 805,
+    "blue_side_walls_retained_all_frames": true,
+    "original_strict_checker_passed": false,
+    "strict_checker_failure": "Title absolute-cyan area requires >600 pixels, but this capture has 296..307 despite all 805 font-cell bits matching; original failure retained unchanged.",
+    "manual_review_frames_seconds": [
+      5,
+      15,
+      35
+    ],
+    "manual_observations": [
+      "Latest title at top, SCORE and LIVES visible",
+      "Ball and paddle positions change",
+      "Score increases from 0 to 180 and bricks disappear"
+    ],
+    "claim_scope": "One actual latest-layout standard DVI demonstration after HDMI VIC1 receiver priming; not reconfiguration or cold-boot reliability."
+  },
+  "motion_observations": {
+    "sample_rate_hz": 30,
+    "sampled_frames": 1549,
+    "ball_detected_frames": 1421,
+    "event_candidates": 57
+  },
+  "retained_lock_restarts": 2,
+  "operations": [
+    {
+      "kind": "boot",
+      "label": "standard-01-fixture-primed",
+      "variant": "standard",
+      "bitstream_sha256": "16173de97a91e711cd7bc5389acd9739807adebedf192efc29fe78f5b96c0acf",
+      "program_verified": true,
+      "boot_complete": true,
+      "data_sd_unmounted": true,
+      "latest_sha256": "5c360babde59c6d9fc72fe58edc5729da2b2b8480c2f3a5208980d2f7d2c558b",
+      "old_sha256": "e8fa6130aa47bf6131b1077ebbd03f26e90055a8dcc9c11c8c814322ab71b1ae",
+      "started_utc": "2026-11-08T15:58:35.698131+00:00",
+      "finished_utc": "2026-11-08T16:02:27.134048+00:00",
+      "private_program_log_sha256": "a3b52aa2ee2e071d1b50d298ba12252055edc1da3797bbdfc84e20f0578bddb8",
+      "private_target_load_log_sha256": "482bcfbcd2014214beb957328dd34ef1ecc25e059e8be44818e3ea7e18f1247d"
+    },
+    {
+      "kind": "record",
+      "label": "standard-01-old-lock",
+      "executable_sha256": "e8fa6130aa47bf6131b1077ebbd03f26e90055a8dcc9c11c8c814322ab71b1ae",
+      "version": "old",
+      "requested_game_seconds": 20,
+      "video_sha256": "50c78fae33e269ef61404aaa5cc1e27fc6d21f34f543189a27ae1b93aaaf475d",
+      "game_result": "Game ended: score=100 lives=3 frames=1175 ticks=1199 elapsed=20.013 s",
+      "no_fpga_reconfiguration": true,
+      "no_capture_deactivation": true,
+      "settings_restored": true,
+      "started_utc": "2026-11-08T16:02:33.363054+00:00",
+      "finished_utc": "2026-11-08T16:03:01.966494+00:00"
+    },
+    {
+      "kind": "record",
+      "label": "standard-01-latest",
+      "executable_sha256": "5c360babde59c6d9fc72fe58edc5729da2b2b8480c2f3a5208980d2f7d2c558b",
+      "version": "latest",
+      "requested_game_seconds": 45,
+      "video_sha256": "61f345c4b825329bc951813994c5e06971789924a9f0b9ac32a1827648525173",
+      "game_result": "Game ended: score=240 lives=3 frames=2638 ticks=2699 elapsed=45.008 s",
+      "no_fpga_reconfiguration": true,
+      "no_capture_deactivation": true,
+      "settings_restored": true,
+      "started_utc": "2026-11-08T16:03:08.205707+00:00",
+      "finished_utc": "2026-11-08T16:04:01.564191+00:00",
+      "original_checker": {
+        "passed": false,
+        "decoded_frames": 3087,
+        "first_complete_game_seconds": null,
+        "frames_after_first_complete": 0
+      }
+    },
+    {
+      "kind": "record",
+      "label": "standard-01-mjpeg-latest",
+      "executable_sha256": "5c360babde59c6d9fc72fe58edc5729da2b2b8480c2f3a5208980d2f7d2c558b",
+      "version": "latest",
+      "requested_game_seconds": 45,
+      "video_sha256": "fc65512cf73f4fc3345ebff68c1d26582fcb8e5407caa8feaa26dcae987ff378",
+      "game_result": "Game ended: score=240 lives=3 frames=2639 ticks=2699 elapsed=45.008 s",
+      "no_fpga_reconfiguration": true,
+      "no_capture_deactivation": true,
+      "settings_restored": true,
+      "started_utc": "2026-11-08T16:04:59.466727+00:00",
+      "finished_utc": "2026-11-08T16:05:52.601888+00:00",
+      "original_checker": {
+        "passed": false,
+        "decoded_frames": 3085,
+        "first_complete_game_seconds": null,
+        "frames_after_first_complete": 0
+      }
+    },
+    {
+      "kind": "record",
+      "label": "standard-01-uvc-return-latest",
+      "executable_sha256": "5c360babde59c6d9fc72fe58edc5729da2b2b8480c2f3a5208980d2f7d2c558b",
+      "version": "latest",
+      "requested_game_seconds": 45,
+      "video_sha256": "b6a3b145a17ea61dd490c74a26768646a6e5aaa58660348293196d376b02b81e",
+      "game_result": "Game ended: score=240 lives=3 frames=2639 ticks=2699 elapsed=45.008 s",
+      "no_fpga_reconfiguration": true,
+      "no_capture_deactivation": true,
+      "settings_restored": true,
+      "started_utc": "2026-11-08T16:06:31.834646+00:00",
+      "finished_utc": "2026-11-08T16:07:25.045162+00:00",
+      "original_checker": {
+        "passed": false,
+        "decoded_frames": 3087,
+        "first_complete_game_seconds": null,
+        "frames_after_first_complete": 0
+      }
+    },
+    {
+      "kind": "boot",
+      "label": "standard-02-reopen-before",
+      "variant": "standard",
+      "bitstream_sha256": "16173de97a91e711cd7bc5389acd9739807adebedf192efc29fe78f5b96c0acf",
+      "program_verified": true,
+      "boot_complete": true,
+      "data_sd_unmounted": true,
+      "latest_sha256": "5c360babde59c6d9fc72fe58edc5729da2b2b8480c2f3a5208980d2f7d2c558b",
+      "started_utc": "2026-11-08T16:09:32.910481+00:00",
+      "finished_utc": "2026-11-08T16:12:19.350250+00:00",
+      "private_program_log_sha256": "6325eda2bbfbb461a9f0a6d30bc379a73584bf661b694f40dfc034bbb0488c79",
+      "private_target_load_log_sha256": "a485184d4612cfad9409c71f2f009f54d0664cfcc9012da644edda804821d47d"
+    },
+    {
+      "kind": "record",
+      "label": "standard-02-latest",
+      "executable_sha256": "5c360babde59c6d9fc72fe58edc5729da2b2b8480c2f3a5208980d2f7d2c558b",
+      "version": "latest",
+      "requested_game_seconds": 45,
+      "video_sha256": "9447835d261e69c8ea9c2331f75a4db2b6c5d002d9b872bcc3b5068b19c2dc88",
+      "game_result": "Game ended: score=240 lives=3 frames=2637 ticks=2699 elapsed=45.009 s",
+      "no_fpga_reconfiguration": true,
+      "no_capture_deactivation": true,
+      "settings_restored": true,
+      "started_utc": "2026-11-08T16:12:25.806883+00:00",
+      "finished_utc": "2026-11-08T16:13:19.116343+00:00",
+      "original_checker": {
+        "passed": false,
+        "decoded_frames": 3095,
+        "first_complete_game_seconds": null,
+        "frames_after_first_complete": 0
+      }
+    },
+    {
+      "kind": "boot",
+      "label": "standard-03-reopen-before",
+      "variant": "standard",
+      "bitstream_sha256": "16173de97a91e711cd7bc5389acd9739807adebedf192efc29fe78f5b96c0acf",
+      "program_verified": true,
+      "boot_complete": true,
+      "data_sd_unmounted": true,
+      "latest_sha256": "5c360babde59c6d9fc72fe58edc5729da2b2b8480c2f3a5208980d2f7d2c558b",
+      "started_utc": "2026-11-08T16:13:45.573988+00:00",
+      "finished_utc": "2026-11-08T16:16:29.641124+00:00",
+      "private_program_log_sha256": "d6e7b95a0f4c07799c0e67cf8f2a321646e5d90b347be7a89668a1f9f988c1e6",
+      "private_target_load_log_sha256": "4a7e65925df4f2ab6a2fa240f3bab1712b7d5de8ad175c8cfc3fdae855533126"
+    },
+    {
+      "kind": "record",
+      "label": "standard-03-latest",
+      "executable_sha256": "5c360babde59c6d9fc72fe58edc5729da2b2b8480c2f3a5208980d2f7d2c558b",
+      "version": "latest",
+      "requested_game_seconds": 45,
+      "video_sha256": "81e08f33877888654c0e3a9a4342ebbadfd9aba7e36a9c23bab8b1bd6a423570",
+      "game_result": "Game ended: score=240 lives=3 frames=2640 ticks=2699 elapsed=45.008 s",
+      "no_fpga_reconfiguration": true,
+      "no_capture_deactivation": true,
+      "settings_restored": true,
+      "started_utc": "2026-11-08T16:16:35.849047+00:00",
+      "finished_utc": "2026-11-08T16:17:29.417007+00:00",
+      "original_checker": {
+        "passed": false,
+        "decoded_frames": 3111,
+        "first_complete_game_seconds": null,
+        "frames_after_first_complete": 0
+      }
+    },
+    {
+      "kind": "fixture",
+      "label": "hdmi640-primer",
+      "bitstream_sha256": "2b00c4ba66570ad910c2c402c3353c02187877594e9fd18bacdeed9b4855d415",
+      "program_verified": true,
+      "started_utc": "2026-11-08T16:17:53.757929+00:00",
+      "finished_utc": "2026-11-08T16:18:21.978722+00:00"
+    },
+    {
+      "kind": "boot",
+      "label": "standard-04-vic1-primed",
+      "variant": "standard",
+      "bitstream_sha256": "16173de97a91e711cd7bc5389acd9739807adebedf192efc29fe78f5b96c0acf",
+      "program_verified": true,
+      "boot_complete": true,
+      "data_sd_unmounted": true,
+      "latest_sha256": "5c360babde59c6d9fc72fe58edc5729da2b2b8480c2f3a5208980d2f7d2c558b",
+      "started_utc": "2026-11-08T16:18:33.237683+00:00",
+      "finished_utc": "2026-11-08T16:21:17.555664+00:00",
+      "private_program_log_sha256": "209c8dff6bef75019712be505355c4f706a3f3c1ad4148d275ca35d8f601f06a",
+      "private_target_load_log_sha256": "0ff78916ee9e16c2a53601a4557f601dfa8daed370416f3759f562369be23eb4"
+    },
+    {
+      "kind": "record",
+      "label": "standard-04-latest",
+      "executable_sha256": "5c360babde59c6d9fc72fe58edc5729da2b2b8480c2f3a5208980d2f7d2c558b",
+      "version": "latest",
+      "requested_game_seconds": 45,
+      "video_sha256": "b40cf6be2d5a9345d88903aa15ab0b830c4331b985ffbc15543a63c708ad74f9",
+      "game_result": "Game ended: score=240 lives=3 frames=2638 ticks=2699 elapsed=45.008 s",
+      "no_fpga_reconfiguration": true,
+      "no_capture_deactivation": true,
+      "settings_restored": true,
+      "started_utc": "2026-11-08T16:21:23.812662+00:00",
+      "finished_utc": "2026-11-08T16:22:17.129938+00:00",
+      "original_checker": {
+        "passed": false,
+        "decoded_frames": 3098,
+        "first_complete_game_seconds": null,
+        "frames_after_first_complete": 0
+      }
+    },
+    {
+      "kind": "record",
+      "label": "standard-04-game-restart-01",
+      "executable_sha256": "5c360babde59c6d9fc72fe58edc5729da2b2b8480c2f3a5208980d2f7d2c558b",
+      "version": "latest",
+      "requested_game_seconds": 20,
+      "video_sha256": "ed2f9a506c91c7e5d9d77fe93c726e6a3e7add0af2719336ce2cd71a3ef80ccc",
+      "game_result": "Game ended: score=100 lives=3 frames=1170 ticks=1199 elapsed=20.013 s",
+      "no_fpga_reconfiguration": true,
+      "no_capture_deactivation": true,
+      "settings_restored": true,
+      "retained_lock_check": {
+        "window_seconds_half_open": [
+          5,
+          20
+        ],
+        "frames": 900,
+        "all_805_font_bits_and_side_walls_match": true,
+        "original_strict_checker_passed": false,
+        "scope": "Game-only restart with receiver lock retained; not another FPGA boot"
+      },
+      "started_utc": "2026-11-08T16:24:39.983746+00:00",
+      "finished_utc": "2026-11-08T16:25:08.202972+00:00"
+    },
+    {
+      "kind": "record",
+      "label": "standard-04-game-restart-02",
+      "executable_sha256": "5c360babde59c6d9fc72fe58edc5729da2b2b8480c2f3a5208980d2f7d2c558b",
+      "version": "latest",
+      "requested_game_seconds": 20,
+      "video_sha256": "b4d121740ffb46db18468d3b319c05d60927e95a6853d387d88f2bd82e3507f0",
+      "game_result": "Game ended: score=100 lives=3 frames=1175 ticks=1199 elapsed=20.013 s",
+      "no_fpga_reconfiguration": true,
+      "no_capture_deactivation": true,
+      "settings_restored": true,
+      "retained_lock_check": {
+        "window_seconds_half_open": [
+          5,
+          20
+        ],
+        "frames": 900,
+        "all_805_font_bits_and_side_walls_match": true,
+        "original_strict_checker_passed": false,
+        "scope": "Game-only restart with receiver lock retained; not another FPGA boot"
+      },
+      "started_utc": "2026-11-08T16:25:25.005266+00:00",
+      "finished_utc": "2026-11-08T16:25:53.139482+00:00"
+    }
+  ],
+  "final_state": {
+    "utc": "2026-11-08T16:26:57.765218+00:00",
+    "standard_bitstream_sha256": "16173de97a91e711cd7bc5389acd9739807adebedf192efc29fe78f5b96c0acf",
+    "target_executable_sha256": "5c360babde59c6d9fc72fe58edc5729da2b2b8480c2f3a5208980d2f7d2c558b",
+    "fpga_reprogrammed_after_success": false,
+    "capture_input_reopened_after_success": false,
+    "original_input_settings_retained": true,
+    "input_enabled": true,
+    "all_obs_outputs_inactive": true,
+    "record_directory_restored": true,
+    "video_settings_unchanged": true,
+    "mutes_restored": true,
+    "display_transform": "Retained the verified 4:3 source framing on 1920x1080 canvas",
+    "data_sd_unmounted": true,
+    "game_process_idle": true,
+    "e8_restored": false,
+    "e8_preserved_for_future_recovery": true
+  },
+  "limitations": [
+    "The HDMI VIC1 priming sequence worked once; its causal role and reproducibility after another reconfiguration are not established.",
+    "The two extra launches retained the same standard configuration and receiver lock; these are not boot trials.",
+    "The old strict checker failed its cyan-area gate; original failures are preserved. All 805 on/off font-cell samples and side-wall checks match in every frame of the accepted 30-second segment.",
+    "This demonstrates functional game video output, not protocol certification or long-term stability."
+  ],
+  "product_or_official_rasterix_sources_modified": false,
+  "cpu_or_console_clock_changes": false,
+  "diagnostic_fixture_only_clock_change": true,
+  "main_documents_changed_by_this_operator": false,
+  "commit_or_push_performed": false,
+  "supported_japanese_claim": "RasterIXに同梱された既存の描画・表示回路を組み込み、最新配置のブロック崩し映像をDVIで実機出力した。",
+  "local_contribution_scope": "Framebuffer/control handshake and integration wrapper are local; the underlying bundled display module is reused."
+}

@@ -1,0 +1,42 @@
+{
+  "reviewed_utc": "2026-11-08T16:28:13.229815+00:00",
+  "media": [
+    {
+      "path": "media/latest-start.png",
+      "sha256": "5563569fe65782d7ecdc1bb66107adbcff642b63273dbc7710b0e253f57b51f7",
+      "observation": "Latest title at top, score 0, full game, no private content",
+      "metadata_stripped": true,
+      "pixels_unchanged": true
+    },
+    {
+      "path": "media/latest-later.png",
+      "sha256": "4b4272742b2a49b0fbe3cec6ba877411e43e7d068cd1bbaee5c3045fec2ece04",
+      "observation": "Score 180, changed ball/paddle positions and removed bricks, no private content",
+      "metadata_stripped": true,
+      "pixels_unchanged": true
+    },
+    {
+      "path": "media/hdmi640-primer.png",
+      "sha256": "67f948bb315da7de4b764c83f1c55ec05e6202fd35d6f26f233baf791c4847e8",
+      "observation": "Diagnostic color bars and white square only; not the game",
+      "metadata_stripped": true,
+      "pixels_unchanged": true
+    },
+    {
+      "path": "media/prior-format-error.png",
+      "sha256": "53a5da3490484cb12a7c70da234e517fe23eb50218550f72925f41873b92121a",
+      "observation": "Receiver format-error banner only; failed attempt retained",
+      "metadata_stripped": true,
+      "pixels_unchanged": true
+    },
+    {
+      "path": "media/latest-standard-dvi-30s.mp4",
+      "sha256": "b852e252074388fe99a1b850a5e81eadd2548491fa72bf6b48ee794229592a09",
+      "observation": "Actual standard DVI game, latest title-top layout; ball/paddle motion, bricks disappear and score increases; no private content",
+      "metadata_stripped": true,
+      "audio_removed": true,
+      "encoded_video_packets_and_timestamps_identical_to_reviewed_clip": true
+    }
+  ],
+  "scope": "Experiment-local review, awaiting parent synchronization into the publication registry; no commit or push"
+}

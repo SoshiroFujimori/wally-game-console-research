@@ -1,0 +1,45 @@
+{
+  "qualified_utc": "2026-11-08T16:16:17.202344+00:00",
+  "qualified_for": "Bounded receiver-priming diagnostic only; not console RTL or game verification",
+  "bitstream_sha256": "2b00c4ba66570ad910c2c402c3353c02187877594e9fd18bacdeed9b4855d415",
+  "video_id_code": 1,
+  "true_hdmi_mode": 0,
+  "pixel_clock_mhz": 25.2,
+  "serializer_clock_mhz": 126.0,
+  "cpu_present": false,
+  "console_sources_modified": false,
+  "mode_control_and_pin_constraints_identical_to_historical_fixture": true,
+  "setup_wns_ns": 26.558,
+  "hold_whs_ns": 0.049,
+  "pulse_width_wpws_ns": 3.0,
+  "routing_errors": 0,
+  "drc_errors": 0,
+  "drc_critical_warnings": 0,
+  "drc_warnings": [
+    {
+      "rule": "PDCN-1569",
+      "count": 3,
+      "scope": "debug hub generated LUT equations"
+    },
+    {
+      "rule": "RTSTAT-10",
+      "count": 1,
+      "scope": "debug hub unused nets"
+    }
+  ],
+  "qualification_limits": [
+    "Diagnostic-only IO timing constraints inherited; no HDMI protocol certification",
+    "No display output is established until actual capture review"
+  ],
+  "files": {
+    "build.tcl": "d619ff034b3bda2a65f2b7ef32d9890d0d3d698eaeb1173aea743eaa542a3260",
+    "hdmilink.sv": "5342e22a69395dcc820dcde7bed47ad095730476f852b7653abe59585b7f0dd3",
+    "hdmi_mode_control.sv": "67e2e252b93668fe00ca7e113be065400da5ce7337e693f1a7e944576f1aab0c",
+    "hdmilink.xdc": "e6f296e66e2cb1fa13ac9f6f9232110b7f12721b288f408f084ec0567207376d",
+    "hdmi_link.runs/impl_1/hdmilink.bit": "2b00c4ba66570ad910c2c402c3353c02187877594e9fd18bacdeed9b4855d415",
+    "debug.ltx": "a66a914bfa7cf4e084186953be9ef0cea8eba11f493a0c975e2112f980ae1bd3",
+    "timing.rpt": "8c6916f164dcbcc2b099b4ad8a5f6f086c82d837a07b379018caefb53aa8dc88",
+    "route.rpt": "968d8abd909e1dcd3127d552f5259ea3194c2437d7b7d2926e8a39eeeaf98fad",
+    "drc.rpt": "d2987bc4682b042f89ac673c56cc1269c7f918012cf9e294eae5d75d91ca776d"
+  }
+}
