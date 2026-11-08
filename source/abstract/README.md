@@ -73,25 +73,35 @@ remain dark enough for monochrome printing. RVSOC puts that
 caption above its example; this abstract places it below for consistency with
 the figure captions. The label and placement are editorial choices, not a
 universal rule for abstracts. The fragment illustrates physical-address accesses;
-it is not the Linux game program or a complete SD driver. Declarations of
-`request`, `data`, and `cmd`, the `<stdint.h>` header, controller initialization,
-SD protocol exchanges, transfer waits, and address mapping are omitted.
-The conceptual fragment also omits `volatile`; actual MMIO accesses require
-the appropriate compiler and platform access semantics. This omission is for
-explaining address selection and must not be copied into the real driver.
+it is not the Linux game program or a complete SD driver.
+
+`sd_start_read(game_position)` is an explanatory helper that groups the
+request to send data starting at the game's position on the card. The body
+explains that the CPU writes the numeric request sequence to the transmit
+register at `0x13048`, and the SD controller passes it to the card. The loop
+then highlights the fixed receive-register address (`0x1304C`) and the advancing
+DDR destination (`dst[i]`). The byte store retains the low eight payload bits
+of the receive-register value.
+
+Initialization, the transmissions that advance an actual SPI exchange, status
+polling, protocol framing, error checks, and address mapping are omitted from
+the conceptual fragment. Repeated receive-register reads alone do not clock
+data from the card in the real implementation. The complete sequence remains
+in `console/fpga/zsbl/spi.c` and `sd.c`; the abstract briefly labels the omitted
+communication steps without explaining their byte-level mechanics.
+
+The `<stdint.h>` header and definitions of `game_position`, `size`, and `cmd`
+are omitted. The conceptual fragment also omits `volatile`; actual MMIO
+accesses require the appropriate compiler and platform access semantics.
 The Japanese SD comments refer to communication through the SD controller;
-the CPU does not access the card's pins directly.
-`request` is one request byte; `cmd` is an intermediate 32-bit word of a
-prepared drawing command list. The final-word port is omitted from this
-fragment to focus on address-based access. The actual driver still sends the
-last word through `CMD_LAST`; a normal-port write alone does not complete a
-transfer. The 32-bit variable
-`data` holds the SD receive register value; the `uint8_t` store keeps its low
-eight payload bits. The receive operation represents a payload-byte read after
-the SD protocol has reached the data phase.
-The DDR store illustrates one byte at the start of DDR3, not a safe application
-buffer or the actual game's load address. Repeated transfers and subsequent
-game execution are explained in the surrounding prose.
+the CPU does not access the card's pins directly. The program's load and
+entry address is assumed to be `0x80000000` for the explanation, not presented
+as the Linux application's actual load address.
+
+`cmd` is an intermediate 32-bit word of a prepared drawing command list. The
+final-word port is omitted from this fragment to focus on address-based access.
+The actual driver still sends the last word through `CMD_LAST`; a normal-port
+write alone does not complete a transfer.
 
 Addresses are checked against the pinned console sources:
 
@@ -130,7 +140,8 @@ paragraph are not the format being compared here.
   a twelve-page paper, cited only as a naming and layout precedent, not as a
   short-abstract example.
 
-The code is limited to four address accesses. Its caption, preceding paragraph,
+The code shows receiving data, storing it in DDR, and writing a drawing command;
+the SD request is grouped into an explanatory helper. Its caption, preceding paragraph,
 and Japanese comments explain the purpose and scope. Declaration boilerplate,
 initialization, waits, and the complete SD transaction sequence are omitted.
 The fragment remains editable in Word and fenced as C in the Markdown version.
