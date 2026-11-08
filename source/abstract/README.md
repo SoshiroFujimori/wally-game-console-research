@@ -14,6 +14,11 @@ signal roles for layout review. Text and signal lines remain black for both
 color and monochrome distribution. Transfer timing is omitted in this concept
 diagram.
 
+The chip header explains that HDL describes the implemented circuitry. Notes
+above the external components identify them as physical board parts; the note
+below DDR3 states that it stores programs and images. These notes occupy unused
+space without changing signal routing.
+
 Figure 2 uses the recorded color frame at `docs/thesis/figs/current-game.png`
 without a color or tone transformation. Review the circuit diagram in color and
 grayscale at its one-column print size, as well as enlarged.
