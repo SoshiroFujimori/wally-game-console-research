@@ -130,7 +130,7 @@ for heading, paragraphs in content["sections"].items():
                 image.write_bytes((ROOT / figure["source"]).read_bytes())
                 md.append(f"![{figure['alt']}](figs/{image.name})")
                 md.append(figure["caption"])
-md.append("図2は[文字配置変更後の実機記録](../../experiments/breakout-title-top-20261108/README.md)から取り出した．[30秒の動画](../../experiments/breakout-title-top-20261108/video/breakout-30s.mp4)も参照できる．本文で述べた3回の起動試験は，文字配置変更前の[実験E8](../../experiments/basic-operation-20261108/README.md)に記録している．")
+md.append("図2の出典は[実機映像の記録](../../experiments/breakout-title-top-20261108/README.md)であり，[30秒の動画](../../experiments/breakout-title-top-20261108/video/breakout-30s.mp4)も公開している．本文に示した3回の起動・動作確認の条件と結果は，[動作確認記録](../../experiments/basic-operation-20261108/README.md)を参照できる．")
 md.append("標準構成の表示回路は，RasterIXリポジトリに同梱されたultraembeddedの`dvi_framebuffer`を用い，本研究で接続・画面切替の回路を追加したものである．DDRコントローラーはAMD製IPで，本研究で追加したNexys Video用の生成・接続設定をWally側のリポジトリに収めている．回路の入手元と実装箇所は[構成要素の出典](../../source/presentation/board-evolution/README.md)を参照できる．映像記録時の表示部分には，[実験E8のHDMI構成](../../experiments/basic-operation-20261108/hdmi/README.md)を用いた．")
 md.append("## 参考文献")
 md.extend(content["references"])
