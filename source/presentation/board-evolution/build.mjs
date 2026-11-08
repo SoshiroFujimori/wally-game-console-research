@@ -221,7 +221,7 @@ s.hidden=true;outline[outline.length-1].backup=true;
 const utilization = await loadFpgaUtilization(root);
 s=slide('質問用：FPGAの使用量',0,
   FPGA_UTILIZATION_NARRATION,
-  `${FPGA_UTILIZATION_SOURCE} (resources); publication/console-source.json. Bitstream SHA-256: ${utilization.bitstreamSha256}.`,
+  `${FPGA_UTILIZATION_SOURCE} (historical whole-design comparison); publication/console-source.json. After bitstream SHA-256: ${utilization.bitstreamSha256}.`,
   FPGA_UTILIZATION_DETAIL);
 drawFpgaUtilization(s,api,utilization,P.slides.items.length);
 s.hidden=true;outline[outline.length-1].backup=true;
@@ -277,7 +277,7 @@ outline.forEach((o,i)=>md.push('<a id="slide-'+(i+1)+'"></a>\n## '+(i+1)+'. '+o.
   ...(i===12?['[教育機関・授業・年度・指定の種類・出典の一覧](DDCA授業利用の出典.md)',
     'スライドに示した学校名の例：'+ddcaSummary.categories.map(c=>c.label+'は'+c.examples.join('・')).join('、')+'。']:[]),
   ...(i===13?['[教育機関・時期・採用根拠の一覧](RVSOC教科書採用の出典.md)']:[]),
-  ...(i===15?['[使用量の元データ](../../experiments/basic-operation-20261108/results/implementation.json)（resources欄）']:[]),
+  ...(i===15?['[Before／Afterの比較資料と元レポート](../../experiments/fpga-resource-comparison-20261108/README.md)']:[]),
   ...(i===9?['[30秒の実機動画を開く](../../experiments/breakout-title-top-20261108/video/breakout-30s.mp4)','PowerPointには動画を埋め込んでいます。スライドショー中に動画の領域をクリックして再生します。']:[]),
   ...(o.navigation?[contentsMarkdown()]:[]),
   o.navigation?'### 目次の使い方':o.backup?'### 質問時の使い方':'### 発表原稿',o.narration,
@@ -286,7 +286,7 @@ md.push('## 動作確認と詳しい実装',
   'スライド10の映像と静止画は、タイトルを上部中央へ移した製品ed6a1c09の[30秒の実機記録](../../experiments/breakout-title-top-20261108/README.md)です。回路の設定データは実験E8と同じ研究用HDMI表示構成です。3回のFPGA設定・起動と各30秒の基本動作確認、および300秒の継続実行は、文字配置変更前の[実験E8](../../experiments/basic-operation-20261108/README.md)に記録しています。3回は電源投入の試験ではありません。4〜6・8枚目の命令と値は経路の説明例です。ゲームコントローラへの対応やホーム画面などのGUIの充実は、今後の拡充候補です。',
   '詳しい実装と再現手順は[技術付録](../thesis/技術付録.md)にまとめています。',
   '## 図と書式の出典',
-  'CPU内部の簡略図はDDCA第7章、回路記号や書式はRVSOC図7.11などを参考にしています。チップ内の拡大図からボード全体へ視野を広げ、6〜9枚目では外付け部品の位置を固定して説明します。17枚目はRVSOCと製品RTLを基にした機能単位のブロック図で、個々の論理回路や全HDL信号、物理配置を網羅するものではありません。13枚目の地図は各校の公開シラバスなどと、lalamalinkのCC0地図データを基にしています。15枚目はFProとAMDの7シリーズの資料に基づくFPGAの構成要素の概略図です。16枚目は、動画の取得にも使った実験E8の回路設定について、配置配線後の使用数と使用率を示します。14枚目は公式授業資料と教育実践論文に基づく、RVSOCの教科書指定・使用実績です。出版前の原稿版の使用を含み、参考書のみの掲載は集計しません。18枚目は2026年11月8日に確認した公式RasterIXの図を横長に再構成しています。最新公式図と実機のテクスチャ保存方式・TMU数の違いを明記しています。公開版の表紙では個人情報を伏せています。[デザインと出典](../../source/presentation/board-evolution/README.md)に省略範囲と再生成方法を記載しています。');
+  'CPU内部の簡略図はDDCA第7章、回路記号や書式はRVSOC図7.11などを参考にしています。チップ内の拡大図からボード全体へ視野を広げ、6〜9枚目では外付け部品の位置を固定して説明します。17枚目はRVSOCと製品RTLを基にした機能単位のブロック図で、個々の論理回路や全HDL信号、物理配置を網羅するものではありません。13枚目の地図は各校の公開シラバスなどと、lalamalinkのCC0地図データを基にしています。15枚目はFProとAMDの7シリーズの資料に基づくFPGAの構成要素の概略図です。16枚目は、描画機能追加前のWally構成と、動画の取得にも使った実験E8の構成を、配置配線後の使用率で比較します。開発前後の記録を比較したもので、描画回路単体の使用量を示すものではありません。14枚目は公式授業資料と教育実践論文に基づく、RVSOCの教科書指定・使用実績です。出版前の原稿版の使用を含み、参考書のみの掲載は集計しません。18枚目は2026年11月8日に確認した公式RasterIXの図を横長に再構成しています。最新公式図と実機のテクスチャ保存方式・TMU数の違いを明記しています。公開版の表紙では個人情報を伏せています。[デザインと出典](../../source/presentation/board-evolution/README.md)に省略範囲と再生成方法を記載しています。');
 await fs.writeFile(path.join(workspace,'中間発表_主要事項.md'),md.join('\n\n')+'\n');
 const raw=path.join(workspace,'raw-candidate.pptx'),poster=path.join(workspace,'poster-candidate.pptx'),candidate=path.join(workspace,'candidate.pptx');
 await(await PresentationFile.exportPptx(P)).save(raw);

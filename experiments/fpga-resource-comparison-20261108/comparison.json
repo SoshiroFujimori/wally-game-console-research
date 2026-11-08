@@ -1,0 +1,52 @@
+{
+  "kind": "historical_before_after",
+  "assembled_on": "2026-11-08",
+  "board": "Nexys Video",
+  "part": "xc7a200tsbg484-1",
+  "tool_version": "Vivado 2025.2",
+  "before": {
+    "label": "Before: Wally without graphics",
+    "report": "before-utilization.rpt",
+    "report_date": "2026-09-08",
+    "report_time_as_recorded": "Tue Sep 8 13:16:56 2026",
+    "design": "fpgaTop",
+    "design_state": "Routed",
+    "resources": {
+      "Slice LUTs": {
+        "used": 48755,
+        "available": 134600,
+        "percent": 36.22
+      },
+      "Slice Registers": {
+        "used": 31439,
+        "available": 269200,
+        "percent": 11.68
+      },
+      "Block RAM Tile": {
+        "used": 84,
+        "available": 365,
+        "percent": 23.01
+      },
+      "DSPs": {
+        "used": 25,
+        "available": 740,
+        "percent": 3.38
+      }
+    },
+    "original_report_sha256": "566b0d29b79ab13737ec1b4b81415c11ba4c978618d6f8f6067213e4767be766",
+    "published_report_sha256": "518abc7f2d4a9a617c4267f88b5e6d3be36c0a5adf4faafc2ec2954dd70607d9",
+    "source_revision": null,
+    "related_board_support_commit": "f0764f003f7c55197882bc1b2f90c84132395472",
+    "source_identity_note": "The saved report does not embed a source revision or bitstream hash. The related board-support commit gives development context, not an asserted exact source-to-report mapping."
+  },
+  "after": {
+    "label": "After: graphics-enabled configuration used for gameplay verification",
+    "record": "../basic-operation-20261108/results/implementation.json",
+    "report": "../basic-operation-20261108/results/implementation/utilization.rpt",
+    "report_date": "2026-11-08",
+    "bitstream_sha256": "fb0d8e9e853b51194e885662339cc0c339bdd6ea3bb19f6ca42211c14d9b87f6",
+    "product_revision": "261832d48832dd6e26c4971ab8893ce61200688b",
+    "rasterix_revision": "9269a01c9bd4c3342bfa70ef8e3cdd751c15c6d0"
+  },
+  "comparison_scope": "Two archived whole-design post-route records for the same FPGA and Vivado release. This is a historical development comparison, not an experiment that changes only RasterIX while holding all source revisions and implementation conditions fixed. The difference is not the standalone resource cost of RasterIX."
+}

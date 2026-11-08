@@ -70,8 +70,8 @@
       "sha256": "844c4541fab522728715faa188c63f40ad124a73e817ee3a0b21db79998d4eb8"
     },
     "docs/presentation/README.md": {
-      "bytes": 4230,
-      "sha256": "c04fe470b18a19a11b107030ac57c932b742115f5260ee40d68c134c25249700"
+      "bytes": 4503,
+      "sha256": "de252debee7722f697af08caff811122b75a27376e6d9758c1fdf0d9fe657c4d"
     },
     "docs/presentation/RVSOC教科書採用の出典.md": {
       "bytes": 4297,
@@ -138,8 +138,8 @@
       "sha256": "7c743f057f129c16d5681ae23d1aa34d77dd1e58e141f62215aadadd37f9d977"
     },
     "docs/presentation/slides/slide-16.png": {
-      "bytes": 140435,
-      "sha256": "964bc2a0942dfb9397d80d55f995b86fc7fd7f00ec60213f55d1ec202664782b"
+      "bytes": 121950,
+      "sha256": "d89186a3fe17816154241bdd52d98c325d067b03d1416a1a72cc6974587e786d"
     },
     "docs/presentation/slides/slide-17.png": {
       "bytes": 167193,
@@ -150,12 +150,12 @@
       "sha256": "de1fc17469b8130b6d8b206d5f6b7b24b47f34988d7a35b485b6daf09e0d22e4"
     },
     "docs/presentation/中間発表_主要事項.md": {
-      "bytes": 86581,
-      "sha256": "a87cbe83809404d0b95a256bb0ee4c0dd5a09b3b684ead1cb7f14bb2ef918176"
+      "bytes": 85298,
+      "sha256": "16e05f790864612bc03c909b24732cb619c85989f6d73c28430e3da0c1df90b5"
     },
     "docs/presentation/中間発表_主要事項.pptx": {
-      "bytes": 644294,
-      "sha256": "4a557a1031faffd69e390a8eced15772da8c750897ae80c1ce9a2e44d5fa2fcb"
+      "bytes": 643324,
+      "sha256": "3b4f88549269249dcabf9018eb68699193ec71e712b8cd1ea6f49a62d3e298f6"
     },
     "docs/privacy.md": {
       "bytes": 5063,
@@ -6549,6 +6549,18 @@
       "bytes": 16713,
       "sha256": "3f99434706d9cf35ff59016b4d9650ec161d06e0dbfc16a96f62f8b777057647"
     },
+    "experiments/fpga-resource-comparison-20261108/README.md": {
+      "bytes": 2530,
+      "sha256": "7f46ea00059a10562164c13f42e29a6d344a77caeeb45efbf798e72e4fbafbf4"
+    },
+    "experiments/fpga-resource-comparison-20261108/before-utilization.rpt": {
+      "bytes": 14473,
+      "sha256": "518abc7f2d4a9a617c4267f88b5e6d3be36c0a5adf4faafc2ec2954dd70607d9"
+    },
+    "experiments/fpga-resource-comparison-20261108/comparison.json": {
+      "bytes": 2230,
+      "sha256": "97759de175f31cca09322a77d87382b351c48f60186d04608a16285a0e907683"
+    },
     "experiments/rasterix-math/README.md": {
       "bytes": 2112,
       "sha256": "567ef52c91c4c4a1efe44f01cd30271e6732e642d9cc2bf145885f400f8a86cb"
@@ -12390,8 +12402,8 @@
       "sha256": "b37af8468ab90cc774380eae7acce80700a22c2cdb02aa7e1d27bf6da8ad7d04"
     },
     "publication/media-review.json": {
-      "bytes": 92445,
-      "sha256": "fa21036c43dd03e73be614698b2bcbe5d74cbaccda69d1d23509ed456573d561"
+      "bytes": 93047,
+      "sha256": "763326366e2942030bce7b4872a77108beadeab19c32cfb405b8164cb7b48820"
     },
     "publication/policy.json": {
       "bytes": 635,
@@ -12426,8 +12438,8 @@
       "sha256": "df59e954c3f564b93880a163fe807be434fae124293c58f1d2b50e0c2757cdf2"
     },
     "source/presentation/README.md": {
-      "bytes": 6251,
-      "sha256": "6193874e3daa1da40f48cf68aef64b0b4ad72fae44e556968180c1eaa1a1679c"
+      "bytes": 6662,
+      "sha256": "908f8d97d68e0eb57e8f62a38772c00764397605612f8bbaf39d7943dce472ee"
     },
     "source/presentation/assets/README.md": {
       "bytes": 1088,
@@ -12438,16 +12450,16 @@
       "sha256": "0e317c3229ff950862fbbc0d3c6fd9ca07f5dcbcb890a497603083751684d187"
     },
     "source/presentation/board-evolution/README.md": {
-      "bytes": 18461,
-      "sha256": "1d52763baeb463d289ddcc24800167c476c4460bc2d306175ac9a8a3c1b38f1c"
+      "bytes": 18889,
+      "sha256": "411d92095229639ab7bbb099d078d88911a432cbc8bae9ace8e2c440d36bf295"
     },
     "source/presentation/board-evolution/board-circuit.mjs": {
       "bytes": 13149,
       "sha256": "c056535bf2e5610869cddcb4f5e45d833b7f849126d9a88c33c5f820f4476b43"
     },
     "source/presentation/board-evolution/build.mjs": {
-      "bytes": 59229,
-      "sha256": "c26e8418152b9f86cb8e4afbb5e082c17d2195051f28b8ca31c7e708db2749f1"
+      "bytes": 59390,
+      "sha256": "5473aeb26907e20ccca9cf61cba632de1ffb7e7fdcca8316f098cde1b3b6a435"
     },
     "source/presentation/board-evolution/circuit-wiring.mjs": {
       "bytes": 6146,
@@ -12466,8 +12478,8 @@
       "sha256": "8e5c249980b453168cea576f724e5a482c94608c8a90aa06d206246362e08638"
     },
     "source/presentation/board-evolution/fpga-utilization.mjs": {
-      "bytes": 7813,
-      "sha256": "2d51c2d2b5bc5c631bf6bd32191205f147ca2d8799b3796695ae2d5c8d82e652"
+      "bytes": 7035,
+      "sha256": "5ccf2dc8a7ff4a8e4a3a16e37bbb39661413cee0d77c2dbd327eb0fe6c2ab634"
     },
     "source/presentation/board-evolution/link_slides.py": {
       "bytes": 3621,

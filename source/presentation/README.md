@@ -86,15 +86,24 @@ claimed, and external DDR3 remains distinct from on-chip block memory.
 
 ## FPGA utilization question slide
 
-Hidden slide 16 is an editable table built by `fpga-utilization.mjs` from
-`docs/thesis/再現資料/実験記録/E6/fresh-product/qualification/qualification.json`.
-It uses the October 8, 2026 post-route result for the ordinary product shown
-in the embedded demonstration. LUTs, slice registers, block-memory tile
-equivalents and DSP blocks are reported for the complete design. Counts and
-percentages are checked against the saved record during generation. The
-table does not attribute the whole design to the graphics circuit, include
-external DDR3 capacity, or interpret spare resources as frequency headroom.
-The existing eleven-slide narration remains 355 seconds.
+Hidden slide 16 is an editable Before/After percentage table built by
+`fpga-utilization.mjs` from
+`experiments/fpga-resource-comparison-20261108/comparison.json`.
+Before uses the saved September 8, 2026 routed Wally-only report; After uses
+experiment E8's November 8, 2026 research HDMI implementation, which also
+supplied the circuit configuration for the embedded demonstration.
+LUTs, slice registers, block-memory tile equivalents and DSP blocks are
+reported for each complete design on the same FPGA. The slide shows
+percentages, while the linked records retain the counts used to verify them.
+Generation checks the report hash, resource capacities, percentages and the
+qualified After bitstream identity.
+
+This is a historical comparison of two archived implementations, not a
+controlled measurement of the cost of adding only RasterIX. The Before
+report does not identify an exact source revision or bitstream hash. The
+source register preserves that limitation and distinguishes original and
+sanitized report hashes. The existing eleven-slide narration remains
+355 seconds.
 
 ## RVSOC textbook adoption question slide
 
