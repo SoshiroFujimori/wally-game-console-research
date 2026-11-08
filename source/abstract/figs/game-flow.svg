@@ -1,6 +1,6 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="1440" height="1100" viewBox="0 0 1440 1100" role="img" aria-labelledby="title desc">
-<title id="title">FPGAボードに実装したゲーム機</title>
-<desc id="desc">CPUとバス，SDカード制御，AMDのDDRコントローラー，描画用の接続回路，RasterIX，表示回路をFPGAチップ内に置き，右側にチップ外の部品を配置する。主な機能の接続を示し，仲裁や信号規約は省略する。描画回路のメモリへの書込みと表示回路の読出しはDDRコントローラーを介する。</desc>
+<title id="title">ゲーム機の標準構成と回路の入手元</title>
+<desc id="desc">CPUとバス，SDカード制御，AMDのDDRコントローラー，描画用の接続回路，RasterIX，表示回路をFPGAチップ内に置き，右側にチップ外の部品を配置する。主な機能の接続を示し，仲裁や信号規約は省略する。描画回路のメモリへの書込みと表示回路の読出しはDDRコントローラーを介する。破線のWallyリポジトリ枠はCPU・バス・SDカード制御とAMD製IPのDDR制御を囲み，RasterIXリポジトリ枠は描画・表示の両回路を囲む。DDR制御はWally側の設定で生成・接続する。両枠の外にある接続回路は本研究で追加した。</desc>
 <defs>
   <marker id="arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 Z" fill="#231F20"/></marker>
   <marker id="blue-arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 Z" fill="#1572C3"/></marker>
@@ -9,14 +9,19 @@
 <g font-family="Yu Gothic,Arial,sans-serif" fill="#231F20" text-anchor="middle">
   <rect x="8" y="8" width="1424" height="1008" fill="#E5EBF8" stroke="#231F20" stroke-width="3.5"/>
   <text x="38" y="65" text-anchor="start" font-size="49" font-weight="bold">FPGAボード / Nexys Video</text>
-  <rect x="30" y="94" width="1020" height="894" fill="#CCD9F1" stroke="#1572C3" stroke-width="3.5"/>
+  <rect x="30" y="94" width="1030" height="894" fill="#CCD9F1" stroke="#1572C3" stroke-width="3.5"/>
   <text x="55" y="150" text-anchor="start" font-size="49" font-weight="bold" fill="#1572C3">FPGAチップ</text>
   <text x="1240" y="150" font-size="43">チップ外の部品</text>
+
+  <path d="M50 180 H990 V565 H485 V735 H50 Z" fill="none" stroke="#555555" stroke-width="3.5" stroke-dasharray="13 8"/>
+  <text x="220" y="290" font-size="49" font-weight="bold">Wally</text>
+  <text x="220" y="348" font-size="43">リポジトリ</text>
+  <rect x="510" y="620" width="480" height="354" fill="none" stroke="#555555" stroke-width="3.5" stroke-dasharray="13 8"/>
+  <text x="750" y="669" font-size="43" font-weight="bold">RasterIXリポジトリ</text>
 
   <rect x="70" y="425" width="260" height="180" fill="white" stroke="#231F20" stroke-width="3.5"/>
   <text x="200" y="495" font-size="56" font-weight="bold">CPU</text>
   <text x="200" y="564" font-size="56">Wally</text>
-  <text x="200" y="660" font-size="42">ゲームの処理</text>
   <path d="M330 515 H390" stroke="#231F20" stroke-width="4" marker-start="url(#arrow)" marker-end="url(#arrow)"/>
   <rect x="390" y="240" width="72" height="475" fill="white" stroke="#231F20" stroke-width="3.5"/>
   <text x="426" y="445" font-size="50">バ</text><text x="426" y="510" font-size="50">ス</text>
@@ -28,7 +33,7 @@
   <rect x="1090" y="195" width="310" height="130" fill="white" stroke="#231F20" stroke-width="3.5"/>
   <text x="1245" y="250" font-size="46">SDカード</text><text x="1245" y="307" font-size="46">スロット</text>
 
-  <text x="740" y="380" font-size="44" fill="#1572C3">AMD提供</text>
+  <text x="740" y="380" font-size="44" fill="#1572C3">AMD製IP</text>
   <rect x="530" y="400" width="420" height="145" fill="#77A3DC" stroke="#231F20" stroke-width="3.5"/>
   <text x="740" y="457" font-size="49">DDR</text><text x="740" y="519" font-size="48">コントローラー</text>
   <path d="M462 462 H530" stroke="#231F20" stroke-width="4" marker-start="url(#arrow)" marker-end="url(#arrow)"/>
@@ -37,21 +42,22 @@
   <text x="1245" y="437" font-size="55" font-weight="bold">DDR3</text>
   <text x="1245" y="499" font-size="43">プログラム</text><text x="1245" y="554" font-size="43">画像</text>
 
-  <path d="M462 650 H530" stroke="#1572C3" stroke-width="4.5" marker-end="url(#blue-arrow)"/>
-  <rect x="530" y="620" width="420" height="180" fill="white" stroke="#1572C3" stroke-width="4.5"/>
-  <path d="M530 680 H950" stroke="#1572C3" stroke-width="3"/>
-  <text x="740" y="665" font-size="46">接続回路</text>
-  <text x="740" y="732" font-size="47">描画回路 RasterIX</text>
-  <text x="740" y="783" font-size="42">画像を作って保存</text>
-  <path d="M950 735 H985 V520 H950" fill="none" stroke="#1572C3" stroke-width="4.5" marker-end="url(#blue-arrow)"/>
+  <path d="M426 715 V757 H260 V800" fill="none" stroke="#1572C3" stroke-width="4.5" marker-end="url(#blue-arrow)"/>
+  <rect x="60" y="800" width="400" height="125" fill="white" stroke="#1572C3" stroke-width="4.5"/>
+  <text x="260" y="849" font-size="43">本研究で追加</text>
+  <text x="260" y="904" font-size="48">接続回路</text>
+  <path d="M460 863 H490 V745 H550" fill="none" stroke="#1572C3" stroke-width="4.5" marker-end="url(#blue-arrow)"/>
+  <rect x="550" y="695" width="400" height="105" fill="white" stroke="#1572C3" stroke-width="4.5"/>
+  <text x="750" y="740" font-size="48">描画回路</text>
+  <text x="750" y="786" font-size="42">画像を作って保存</text>
+  <path d="M950 735 H1005 V520 H950" fill="none" stroke="#1572C3" stroke-width="4.5" marker-end="url(#blue-arrow)"/>
 
-  <rect x="530" y="855" width="420" height="105" fill="white" stroke="#1572C3" stroke-width="4.5"/>
-  <text x="740" y="902" font-size="48">表示回路</text><text x="740" y="948" font-size="40">画像を読んで出力</text>
-  <path d="M950 475 H1020 V880 H950" fill="none" stroke="#1572C3" stroke-width="4.5" marker-end="url(#blue-arrow)"/>
+  <rect x="550" y="855" width="400" height="105" fill="white" stroke="#1572C3" stroke-width="4.5"/>
+  <text x="750" y="902" font-size="48">表示回路</text><text x="750" y="948" font-size="40">画像を読んで出力</text>
+  <path d="M950 475 H1040 V880 H950" fill="none" stroke="#1572C3" stroke-width="4.5" marker-end="url(#blue-arrow)"/>
   <path d="M950 934 H1090" stroke="#1572C3" stroke-width="4.5" marker-end="url(#blue-arrow)"/>
   <rect x="1090" y="855" width="310" height="105" fill="white" stroke="#231F20" stroke-width="3.5"/>
   <text x="1245" y="922" font-size="48">HDMI端子</text>
-  <text x="200" y="790" font-size="40">主な接続を示す</text>
-  <text x="720" y="1074" font-size="43" fill="#1572C3">白地・青枠：追加した描画・表示の機能</text>
+  <text x="720" y="1074" font-size="43" fill="#1572C3">破線：回路・IP設定の入手元</text>
 </g>
 </svg>

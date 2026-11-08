@@ -50,20 +50,20 @@
       "sha256": "97ad5c5e945333020b589efef355b3fb1162e404f06dd766b1f7fc8903a08009"
     },
     "docs/abstract/figs/figure-1.png": {
-      "bytes": 450614,
-      "sha256": "df1c7113b7cbaee5ce29085f6ca5730a719e774505b384a2f4dd92c4e4d8ea63"
+      "bytes": 358842,
+      "sha256": "3573001cdc50ed0ee332da6f52516cbd9501382f38e968213856f8fbf1f44259"
     },
     "docs/abstract/figs/figure-2.png": {
       "bytes": 4833,
       "sha256": "84c90a4a2cdb983bcda05edbf74b186ba113ff3f8d5bdd40e992afdb68719d86"
     },
     "docs/abstract/アブスト_主要事項.docx": {
-      "bytes": 427924,
-      "sha256": "f4370b9b9fd76835154af7f46215e1ba72eef2e253c2dbedfeed8292e5e7a27f"
+      "bytes": 347752,
+      "sha256": "1b7383f8424a939f3207fe32c1bdb2b6542d6580a856b477f5506bd383cfdb74"
     },
     "docs/abstract/アブスト_主要事項.md": {
-      "bytes": 4806,
-      "sha256": "2197a6134d0db0736bb86ba3e30fb76a170eb9b461435d9aec073b374340d7dd"
+      "bytes": 5533,
+      "sha256": "69b3fcac27cb11c79a9f5e3003c177a36dd59c9716b9d784c9ff4aa898c0eeac"
     },
     "docs/presentation/DDCA授業利用の出典.md": {
       "bytes": 18811,
@@ -12382,8 +12382,8 @@
       "sha256": "b37af8468ab90cc774380eae7acce80700a22c2cdb02aa7e1d27bf6da8ad7d04"
     },
     "publication/media-review.json": {
-      "bytes": 89336,
-      "sha256": "b5601e7c641e55994df536c86dc06797806bcfd6120f2bf5fff1e8a1a7786657"
+      "bytes": 89956,
+      "sha256": "7eda3cc8b18d7af495e22c4753467571e461987bdd4335927b4b70913b82e29d"
     },
     "publication/policy.json": {
       "bytes": 635,
@@ -12402,20 +12402,20 @@
       "sha256": "b9317436f514a4c0c34075618b473d5b56cb10e93cfd5023655c78d4d9127236"
     },
     "source/abstract/build.py": {
-      "bytes": 6712,
-      "sha256": "341ffee885613834d0ad3cbe76df374c47f3ed94575c2e40b5689a24af6c7bd0"
+      "bytes": 7342,
+      "sha256": "60fc0d70aa9b86a3bf2417836cffc980f19b1b3d08c8e8c2ca35da340db73c7e"
     },
     "source/abstract/content.json": {
-      "bytes": 5563,
-      "sha256": "21f3f14396df12cd200b49aac170c80ff5e9a3e1b265fb3cf9c68c9e19837384"
+      "bytes": 5672,
+      "sha256": "8fdaf0b1a2db52ddaddec9249746760efe69bfdda49a76a6354cd190c024d531"
     },
     "source/abstract/figs/game-flow.png": {
-      "bytes": 450614,
-      "sha256": "df1c7113b7cbaee5ce29085f6ca5730a719e774505b384a2f4dd92c4e4d8ea63"
+      "bytes": 358842,
+      "sha256": "3573001cdc50ed0ee332da6f52516cbd9501382f38e968213856f8fbf1f44259"
     },
     "source/abstract/figs/game-flow.svg": {
-      "bytes": 5021,
-      "sha256": "a380441aa8a70a0756d44473718f8e93a240148daa6d9c66ea6496dfd2d6fed0"
+      "bytes": 5866,
+      "sha256": "df59e954c3f564b93880a163fe807be434fae124293c58f1d2b50e0c2757cdf2"
     },
     "source/presentation/README.md": {
       "bytes": 6113,
