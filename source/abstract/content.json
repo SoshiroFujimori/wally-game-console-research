@@ -12,7 +12,7 @@
       "RasterIXは描画命令に従って画面の各点（画素）の色を求め，画像をDDR3へ保存する．表示回路はその画像を読み出し，HDMI端子から映像を出す．画像の読み書きもAMDのメモリ制御回路を介する．RasterIX本体は変更していない．"
     ],
     "3  動作の確認": [
-      "実機で640×480画素のブロック崩しを実行した．FPGAに回路を設定して起動する手順を3回繰り返し，各30秒の映像をHDMI端子から記録した．3回とも，ボールが動き，壁やパドルで跳ね返り，当たったブロックが消えることを確認した（図2）．",
+      "実機で640×480画素のブロック崩しを実行した（図2）．FPGAに回路を設定して起動する手順を3回繰り返し，各30秒の映像をHDMI端子から記録した．3回とも，ボールが動き，壁やパドルで跳ね返り，当たったブロックが消えることを確認した．",
       "現在はプログラムがパドルを動かす自動操作であり，ゲームコントローラによる操作は今後実装する．"
     ],
     "4  おわりに": [
@@ -23,7 +23,7 @@
     "[1] D. Harrisほか，RISC-V System-on-Chip Design，Morgan Kaufmann，2026．",
     "[2] ToNi3141，RasterIX，https://github.com/ToNi3141/RasterIX （使用版9269a01c9bd4，参照2026-10-09）．"
   ],
-  "evidence": "E8, acquired 2026-11-08: three FPGA reconfigurations and OS boots, each with a 30-second recorded game run; actual paddle, brick-removal and side-wall event triplets reviewed in all three. The E8 display variant is an isolated research HDMI patch on product 261832d4 and official RasterIX 9269a01, not the unchanged default product output. See experiments/basic-operation-20261108/results.json and hdmi/. A further 300-second recording is supplementary evidence. Earlier receiver failures remain in E8 history. Recording rate is not game FPS; controller input remains planned.",
+  "evidence": "E8, acquired 2026-11-08: three FPGA reconfigurations and OS boots, each with a 30-second recorded game run; actual paddle, brick-removal and side-wall event triplets reviewed in all three. The E8 display variant is an isolated research HDMI patch on product 261832d4 and official RasterIX 9269a01, not the unchanged default product output. See experiments/basic-operation-20261108/results.json and hdmi/. A further 300-second recording is supplementary evidence. Earlier receiver failures remain in E8 history. Recording rate is not game FPS; controller input remains planned. Figure 2 is a later recording of product ed6a1c09 with revised text placement, using the same E8 bitstream. Its separate 30-second run and exact revisions are recorded in experiments/breakout-title-top-20261108/results.json. It is not one of the three E8 boot trials or the 300-second run.",
   "figures": [
     {
       "section": "2  ゲーム機の設計",
@@ -36,9 +36,9 @@
     {
       "section": "3  動作の確認",
       "after_paragraph": 2,
-      "source": "docs/thesis/figs/basic-operation-game.png",
-      "caption": "図2  実機から記録したブロック崩しの映像",
-      "alt": "実機のHDMI映像から取り出したブロック崩しの画面。色付きのブロック，白いボールとパドルが描かれている。自動操作で確認した。"
+      "source": "docs/thesis/figs/current-game.png",
+      "caption": "図2  実機のゲーム画面（文字配置変更後）",
+      "alt": "タイトルWALLY BREAKOUTを上部中央に置いた、実機のHDMI映像から取り出したブロック崩しの画面。色付きのブロック、白いボールとパドルが描かれている。自動操作で確認した。"
     }
   ]
 }

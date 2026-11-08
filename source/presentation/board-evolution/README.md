@@ -79,12 +79,12 @@ topology and the meaning of the blue emphasis remain unchanged.
 | Drawing core | Official RasterIX: `rtl/RasterIX/RasterIX_IF.v`. |
 | Standard display core | The same official RasterIX repository includes `rtl/3rdParty/core_dvi_framebuffer/src_v/dvi_framebuffer.v`, originally from ultraembedded. |
 | Integration logic | This work adds `rasterix_apb.sv`, `rasterix.sv` and the swap/configuration wrapper in `rasterixdisplay.sv` on the Wally side. These wrappers are not labeled as upstream RasterIX components. |
-| Display used in the E8 video | The research variant replaces the standard display core with research scanout logic and `hdl-util/hdmi`. Its exact sources are recorded in [E8](../../../experiments/basic-operation-20261108/hdmi/README.md). |
+| Display used in the embedded video | The research variant replaces the standard display core with research scanout logic and `hdl-util/hdmi`. Its exact sources are recorded in [E8](../../../experiments/basic-operation-20261108/hdmi/README.md). |
 
 The upstream sources are [Wally/CVW](https://github.com/openhwgroup/cvw) and
 [official RasterIX at the recorded revision](https://github.com/ToNi3141/RasterIX/tree/9269a01c9bd4c3342bfa70ef8e3cdd751c15c6d0).
 Slides 3 and 6-9 label acquisition sources; the detailed diagram marks the
-two reused RasterIX cores with `[R]`. The E8 video slide visibly identifies
+two reused RasterIX cores with `[R]`. The video slide visibly identifies
 its display replacement so it is not mistaken for a standard-product capture.
 
 ## Detailed-diagram connectivity
@@ -122,11 +122,15 @@ the blue outlines used for functions covered in the main presentation.
 
 ## Embedded demonstration
 
-Slide 10 embeds the reviewed 30-second E8 clip without further transcoding:
-`experiments/basic-operation-20261108/video/breakout-30s.mp4`.
-It was recorded on November 8, 2026 using the isolated research HDMI display
-variant documented in the same experiment directory. The default product
-checkout is unchanged. The clip derivation and complete recordings are retained.
+Slide 10 embeds the reviewed 30-second recording without further transcoding:
+`experiments/breakout-title-top-20261108/video/breakout-30s.mp4`.
+Its poster is `playing.png` in the same directory. Both show product `ed6a1c09`,
+with WALLY BREAKOUT at the top center, recorded on November 8, 2026.
+This later run uses the exact same research HDMI bitstream as E8, but an
+updated game executable. It is separate from the three boot trials and the
+300-second run retained under `experiments/basic-operation-20261108/`.
+The default product display circuit is unchanged. Exact revisions, hashes,
+clip derivation and the complete recording are retained with the new clip.
 Click the video in a slideshow to play it. It needs no external media file.
 Markdown links to the same recording. This is deterministic autoplay, not
 manual controller input. Recorded video rate is not a game-FPS measurement.

@@ -130,6 +130,7 @@ for heading, paragraphs in content["sections"].items():
                 image.write_bytes((ROOT / figure["source"]).read_bytes())
                 md.append(f"![{figure['alt']}](figs/{image.name})")
                 md.append(figure["caption"])
+md.append("図2は[文字配置変更後の実機記録](../../experiments/breakout-title-top-20261108/README.md)から取り出した．[30秒の動画](../../experiments/breakout-title-top-20261108/video/breakout-30s.mp4)も参照できる．本文で述べた3回の起動試験は，文字配置変更前の[実験E8](../../experiments/basic-operation-20261108/README.md)に記録している．")
 md.append("## 参考文献")
 md.extend(content["references"])
 md.append("命令の接続設計は[論文第6章](../thesis/本文.md#ch_6)，実機で確認した条件と結果は[第12章](../thesis/本文.md#ch_12)に示す．詳しい実装は[技術付録](../thesis/技術付録.md)から参照できる．")

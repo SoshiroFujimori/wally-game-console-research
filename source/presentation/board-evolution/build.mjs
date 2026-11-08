@@ -61,9 +61,9 @@ const cover=audience==='private'?JSON.parse(await fs.readFile(process.env.PRESEN
 const DDCA='Harris, S. L. and Harris, D., Digital Design and Computer Architecture: RISC-V Edition (2021), Chapter 7. Official figure source: https://pages.hmc.edu/harris/ddca/ddcarv.html (DDCArv_Figures.zip).';
 const RVSOC='Harris et al., RISC-V System-on-Chip Design, Chapters 7–13, 20, 22–23. Official figure source: https://pages.hmc.edu/harris/ddca/rvsocd.html (RVSoCD_figs.zip).';
 const PRODUCT='Product revision 261832d48832dd6e26c4971ab8893ce61200688b. console/fpga/src/fpgaTopNexysVideo.sv; console/fpga/src/rasterix.sv; console/fpga/src/rasterix_apb.sv; console/fpga/generator/axiscdc.tcl.';
-const VIDEO='experiments/basic-operation-20261108/video/breakout-30s.mp4';
-const POSTER='experiments/basic-operation-20261108/video/poster.png';
-const BASIC='experiments/basic-operation-20261108/README.md; results.json and hdmi/source-manifest.json. Captured 2026-11-08. Video: '+VIDEO;
+const VIDEO='experiments/breakout-title-top-20261108/video/breakout-30s.mp4';
+const POSTER='experiments/breakout-title-top-20261108/video/playing.png';
+const BASIC='experiments/basic-operation-20261108/README.md; results.json and hdmi/source-manifest.json. Captured 2026-11-08. Later title-layout recording: experiments/breakout-title-top-20261108/README.md and results.json. Video: '+VIDEO;
 const PROVENANCE_DETAIL='CPU・バス・SD制御はWally（CVW）の既存RTLを利用する。DDR制御はWally側の生成・接続の仕組みを利用し、回路本体はAMD製MIG IPである。Nexys Video用の設定は本研究で追加した。標準構成の描画本体RasterIX_IFと表示本体dvi_framebufferは、同じ公式RasterIXリポジトリから取得する。表示本体はrtl/3rdParty/core_dvi_framebufferに同梱されたultraembedded由来の回路で、RasterIXの作者がすべて新規に設計したという意味ではない。バスから描画回路への変換、画面切替などの接続処理は本研究で追加した。動作確認動画のE8構成では、表示本体を研究用の読出し回路とhdl-util/hdmiへ置き換えているため、標準構成の提供元とは区別する。';
 const PROVENANCE_SOURCE='Wally upstream: https://github.com/openhwgroup/cvw . Official RasterIX: https://github.com/ToNi3141/RasterIX/tree/9269a01c9bd4c3342bfa70ef8e3cdd751c15c6d0 . RTL: console/src/wally/wallypipelinedcore.sv; console/src/uncore/uncore.sv; console/src/uncore/spi_apb.sv; console/fpga/generator/ddr3-nexysvideo.tcl; console/fpga/generator/wally.tcl; console/fpga/src/rasterixdisplay.sv. RasterIX: rtl/RasterIX/RasterIX_IF.v; rtl/3rdParty/core_dvi_framebuffer/README.md; rtl/3rdParty/core_dvi_framebuffer/src_v/dvi_framebuffer.v. E8: experiments/basic-operation-20261108/hdmi/source-manifest.json.';
 
@@ -153,15 +153,15 @@ foot(s,'標準構成：描画・表示の本体はRasterIXから取得。両者�
 s=slide('接続した構成で、ブロック崩しを動かした',30,
   'こちらは、FPGAボードのHDMI端子から記録した30秒の動画です。ボールが動き、パドルや壁に当たると跳ね返ります。また、当たったブロックが消えることも確認しました。現在は、プログラムがパドルを自動で動かしています。ゲームコントローラによる操作は、これから追加します。',
   `${BASIC} ${PRODUCT}`,
-  '2026年11月8日の実験E8で取得した実機映像。製品261832d4に研究用HDMI表示差分を適用し、公式RasterIX 9269a01は変更していない。FPGA設定、OS起動、読み取り専用SDからの同じ実行ファイルの読み込みを3回行い、各30秒の録画でボールの移動、パドル・壁での反射、ブロックの消去を確認した。3回は電源の入れ直しではない。スライドの動画は1回目の録画から取り出した30秒である。5分間の連続録画と詳細な検査はE8に保存した。パドルは自動操作。録画の毎秒60枚をゲームFPSとして扱わない。動画領域をクリックして再生する。音声はない。');
-s.images.add({blob:await fs.readFile(path.join(root,POSTER)),contentType:'image/png',alt:'実機で取得した30秒の自動プレイ動画の開始画面',fit:'contain',position:{left:64,top:151,width:676,height:380.25}});
+  '2026年11月8日に、タイトルWALLY BREAKOUTを上部中央へ移した製品ed6a1c09で取得した30秒の実機映像。SCOREは左寄せ、LIVESは右寄せである。ゲームの文字配置を更新した実行ファイルをSDカードから読み込み、30秒の自動プレイと正常終了を確認した。この録画の版・ハッシュ・文字検査はexperiments/breakout-title-top-20261108/に保存している。回路には実験E8と同じ研究用HDMI表示構成の設定データを使い、公式RasterIX 9269a01は変更していない。基本動作を3回のFPGA設定・起動と各30秒の録画で確認した記録、および300秒の継続実行は、文字配置変更前の実験E8である。表示中の動画を、その3回や300秒の記録として扱わない。パドルは自動操作。録画の保存レートをゲームFPSとして扱わない。動画領域をクリックして再生する。音声はない。');
+s.images.add({blob:await fs.readFile(path.join(root,POSTER)),contentType:'image/png',alt:'タイトルを上部へ移した実機の自動プレイ動画の一場面',fit:'contain',position:{left:64,top:151,width:676,height:380.25}});
 text(s,'30秒の実機動画（クリックで再生）',64,539,676,31,23,true,C.blue,'center');
 text(s,'映像で確かめたこと',791,158,425,40,28,true,C.heading);
 text(s,'① ボールが動く',791,227,425,54,29,true);
 text(s,'② 壁やパドルで\n　 跳ね返る',791,307,425,88,29,true);
 text(s,'③ 当たったブロックが\n　 消える',791,421,425,88,29,true);
 text(s,'現在は自動操作：プログラムがパドルを動かす',64,575,1152,45,29,true);
-text(s,'FPGAの設定から3回起動し、各30秒の映像で確認',64,630,1152,35,24);
+text(s,'基本動作は3回の起動で確認。動画は文字配置変更後の版',64,630,1152,35,24);
 foot(s,'動画の表示部分は研究用回路＋hdl-util/hdmiへ置換。標準構成との差分は実験E8に保存');
 
 
@@ -261,14 +261,14 @@ outline.forEach((o,i)=>md.push('<a id="slide-'+(i+1)+'"></a>\n## '+(i+1)+'. '+o.
     'スライドに示した学校名の例：'+ddcaSummary.categories.map(c=>c.label+'は'+c.examples.join('・')).join('、')+'。']:[]),
   ...(i===15?['[教育機関・時期・採用根拠の一覧](RVSOC教科書採用の出典.md)']:[]),
   ...(i===14?['[使用量の元データ](../../experiments/basic-operation-20261108/results/implementation.json)（resources欄）']:[]),
-  ...(i===9?['[30秒の実機動画を開く](../../experiments/basic-operation-20261108/video/breakout-30s.mp4)','PowerPointには動画を埋め込んでいます。スライドショー中に動画の領域をクリックして再生します。']:[]),
+  ...(i===9?['[30秒の実機動画を開く](../../experiments/breakout-title-top-20261108/video/breakout-30s.mp4)','PowerPointには動画を埋め込んでいます。スライドショー中に動画の領域をクリックして再生します。']:[]),
   o.backup?'### 質問時の使い方':'### 発表原稿',o.narration,
   '<details>\n<summary>補足説明と出典</summary>\n',o.detail,o.source?'出典：'+o.source:'','\n</details>'));
 md.push('## 動作確認と詳しい実装',
-  '実機映像は2026年11月8日の実験E8です。製品261832d4に研究用HDMI表示差分を適用し、CPU、公式RasterIX、ゲーム実行ファイルは同じ版を使いました。FPGA設定から3回起動し、各30秒の映像でボールの移動、壁・パドルでの反射、ブロックの消去を確認しました。[映像・条件・再生成方法](../../experiments/basic-operation-20261108/README.md)を参照できます。3回は電源投入の試験ではありません。4〜6・8枚目の命令と値は経路の説明例です。ゲームコントローラは今後の項目です。',
+  'スライド10の映像と静止画は、タイトルを上部中央へ移した製品ed6a1c09の[30秒の実機記録](../../experiments/breakout-title-top-20261108/README.md)です。回路の設定データは実験E8と同じ研究用HDMI表示構成です。3回のFPGA設定・起動と各30秒の基本動作確認、および300秒の継続実行は、文字配置変更前の[実験E8](../../experiments/basic-operation-20261108/README.md)に記録しています。3回は電源投入の試験ではありません。4〜6・8枚目の命令と値は経路の説明例です。ゲームコントローラは今後の項目です。',
   '詳しい実装と再現手順は[技術付録](../thesis/技術付録.md)にまとめています。',
   '## 図と書式の出典',
-  'CPU内部の簡略図はDDCA第7章、回路記号や書式はRVSOC図7.11などを参考にしています。チップ内の拡大図からボード全体へ視野を広げ、6〜9枚目では外付け部品の位置を固定して説明します。12枚目はRVSOCと製品RTLを基にした機能単位のブロック図で、個々の論理回路や全HDL信号、物理配置を網羅するものではありません。13枚目の地図は各校の公開シラバスなどと、lalamalinkのCC0地図データを基にしています。14枚目はFProとAMDの7シリーズの資料に基づくFPGAの構成要素の概略図です。15枚目は動画と同じ実験E8の配置配線後の記録から使用数と使用率を示します。16枚目は公式授業資料と教育実践論文に基づく、RVSOCの教科書指定・使用実績です。出版前の原稿版の使用を含み、参考書のみの掲載は集計しません。公開版の表紙では個人情報を伏せています。[デザインと出典](../../source/presentation/board-evolution/README.md)に省略範囲と再生成方法を記載しています。');
+  'CPU内部の簡略図はDDCA第7章、回路記号や書式はRVSOC図7.11などを参考にしています。チップ内の拡大図からボード全体へ視野を広げ、6〜9枚目では外付け部品の位置を固定して説明します。12枚目はRVSOCと製品RTLを基にした機能単位のブロック図で、個々の論理回路や全HDL信号、物理配置を網羅するものではありません。13枚目の地図は各校の公開シラバスなどと、lalamalinkのCC0地図データを基にしています。14枚目はFProとAMDの7シリーズの資料に基づくFPGAの構成要素の概略図です。15枚目は、動画の取得にも使った実験E8の回路設定について、配置配線後の使用数と使用率を示します。16枚目は公式授業資料と教育実践論文に基づく、RVSOCの教科書指定・使用実績です。出版前の原稿版の使用を含み、参考書のみの掲載は集計しません。公開版の表紙では個人情報を伏せています。[デザインと出典](../../source/presentation/board-evolution/README.md)に省略範囲と再生成方法を記載しています。');
 await fs.writeFile(path.join(workspace,'中間発表_主要事項.md'),md.join('\n\n')+'\n');
 const raw=path.join(workspace,'raw-candidate.pptx'),poster=path.join(workspace,'poster-candidate.pptx'),candidate=path.join(workspace,'candidate.pptx');
 await(await PresentationFile.exportPptx(P)).save(raw);

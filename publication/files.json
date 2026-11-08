@@ -54,16 +54,16 @@
       "sha256": "df1c7113b7cbaee5ce29085f6ca5730a719e774505b384a2f4dd92c4e4d8ea63"
     },
     "docs/abstract/figs/figure-2.png": {
-      "bytes": 15511,
-      "sha256": "1cfa5aa570a84fa910dcb765e55ebabb736aca6d1e12a77acf069e61955664ab"
+      "bytes": 4833,
+      "sha256": "84c90a4a2cdb983bcda05edbf74b186ba113ff3f8d5bdd40e992afdb68719d86"
     },
     "docs/abstract/アブスト_主要事項.docx": {
-      "bytes": 440074,
-      "sha256": "cbf8afa711c0967527ee259e31b5f942112bb3e421b08630696d18db11cc968e"
+      "bytes": 427924,
+      "sha256": "f4370b9b9fd76835154af7f46215e1ba72eef2e253c2dbedfeed8292e5e7a27f"
     },
     "docs/abstract/アブスト_主要事項.md": {
-      "bytes": 4360,
-      "sha256": "77753f5b237783ec3eeee35e719ff507b89dcf69bbfa6b2ff3b594f7ae6c5de7"
+      "bytes": 4806,
+      "sha256": "2197a6134d0db0736bb86ba3e30fb76a170eb9b461435d9aec073b374340d7dd"
     },
     "docs/presentation/DDCA授業利用の出典.md": {
       "bytes": 18811,
@@ -114,8 +114,8 @@
       "sha256": "3566bb96a3d2d8375b4f3cf8ea694f24aed68dd4d1c5bf590c00fa914fdf5428"
     },
     "docs/presentation/slides/slide-10.png": {
-      "bytes": 110383,
-      "sha256": "cfa2f111843e0c8e52356dda99fd4c3cda9e72914966ee1e48782f5b135b27c4"
+      "bytes": 106597,
+      "sha256": "5829a0873d25a52f85ee57c6cb7d85c9af65da8bd51a5be7744eef91fce3f46b"
     },
     "docs/presentation/slides/slide-11.png": {
       "bytes": 75122,
@@ -142,12 +142,12 @@
       "sha256": "bbc35ab7f36afb462b05d024d54b621952ab7164a7490e02eec74209bf11b8a8"
     },
     "docs/presentation/中間発表_主要事項.md": {
-      "bytes": 77715,
-      "sha256": "228975241134892f44d130db2a7b8d898adf4e44c9afc0058bcb879611cc24c7"
+      "bytes": 78318,
+      "sha256": "2d40e1229977b567945efb65c7972e6c978cd1943019b997deda2fed7a43c2c7"
     },
     "docs/presentation/中間発表_主要事項.pptx": {
-      "bytes": 650831,
-      "sha256": "64c935476180bc342c8cdf09319ce96c87c802d2e3bad0026d4f7176fc54050d"
+      "bytes": 626800,
+      "sha256": "129c3af07b81147272cdf37c59f1a4fddfc357ec2e5e4c7a803a03622728a192"
     },
     "docs/privacy.md": {
       "bytes": 5063,
@@ -740,6 +740,10 @@
     "docs/thesis/figs/cpu-gpu-timing-overlap.svg": {
       "bytes": 3357,
       "sha256": "0c9f2e0427350bce6f2ac2644e42f0f51983c9fb710ac2e568665f29b7a95004"
+    },
+    "docs/thesis/figs/current-game.png": {
+      "bytes": 4833,
+      "sha256": "84c90a4a2cdb983bcda05edbf74b186ba113ff3f8d5bdd40e992afdb68719d86"
     },
     "docs/thesis/figs/damage-closure.png": {
       "bytes": 117663,
@@ -5238,12 +5242,12 @@
       "sha256": "5dd11340611fd94dc8fa70a5e338aee9e68c0cd7548a070b4ef93c4d628f7ebf"
     },
     "docs/thesis/本文.docx": {
-      "bytes": 9214970,
-      "sha256": "86a90525c53f16476b9a3230f0beac4a3d138c8de2d4ece829053dfb9334ded2"
+      "bytes": 9203053,
+      "sha256": "b78fe79e4b27847a19915b0d5b004e526a7434c077a22ae7dab1d310a4f1e5b5"
     },
     "docs/thesis/本文.md": {
-      "bytes": 181593,
-      "sha256": "5c9564846c6f090527a74229a99b671de4e8010e41ea5d806cdb3a4d76b258c0"
+      "bytes": 182293,
+      "sha256": "ce9df7938dab9ce3a75593d4ac172c6e92ea9c0072a290e414743799bc39f883"
     },
     "examples/technical-models/README.md": {
       "bytes": 3174,
@@ -12378,8 +12382,8 @@
       "sha256": "b37af8468ab90cc774380eae7acce80700a22c2cdb02aa7e1d27bf6da8ad7d04"
     },
     "publication/media-review.json": {
-      "bytes": 88053,
-      "sha256": "a6ff3aa654910fa2f5d60ea0cef7fb0687721c18f3f7c39ed08b3e3cb0feb465"
+      "bytes": 88917,
+      "sha256": "27e769a9c8827d07b7c574ca0240e2a527f8cb3af971381481d4ffad81f00c48"
     },
     "publication/policy.json": {
       "bytes": 635,
@@ -12398,12 +12402,12 @@
       "sha256": "b9317436f514a4c0c34075618b473d5b56cb10e93cfd5023655c78d4d9127236"
     },
     "source/abstract/build.py": {
-      "bytes": 6310,
-      "sha256": "7df5eacd1c13a3d6b7f49c5bd6da2e129cd280b373715f3a7f42b8cf1eb92610"
+      "bytes": 6712,
+      "sha256": "341ffee885613834d0ad3cbe76df374c47f3ed94575c2e40b5689a24af6c7bd0"
     },
     "source/abstract/content.json": {
-      "bytes": 5225,
-      "sha256": "bd38261ad205e2e8e233011d6ddd88cc6f5f4b952fcf61a5367a3bb6948a1d0d"
+      "bytes": 5563,
+      "sha256": "21f3f14396df12cd200b49aac170c80ff5e9a3e1b265fb3cf9c68c9e19837384"
     },
     "source/abstract/figs/game-flow.png": {
       "bytes": 450614,
@@ -12426,16 +12430,16 @@
       "sha256": "0e317c3229ff950862fbbc0d3c6fd9ca07f5dcbcb890a497603083751684d187"
     },
     "source/presentation/board-evolution/README.md": {
-      "bytes": 15953,
-      "sha256": "02993288bd30964e46dfe566cad15f57d1f6417156e7517942ef3b0d8fd82c46"
+      "bytes": 16249,
+      "sha256": "604181877be0d499c57bbbff9c66e6db3771f5a70d9dfd10e6fa69d49273d5f6"
     },
     "source/presentation/board-evolution/board-circuit.mjs": {
       "bytes": 13149,
       "sha256": "c056535bf2e5610869cddcb4f5e45d833b7f849126d9a88c33c5f820f4476b43"
     },
     "source/presentation/board-evolution/build.mjs": {
-      "bytes": 54704,
-      "sha256": "19298da478aa8e2742a2e1304dc743959c54e072dc36a08dbe82ecc70ab2cbbc"
+      "bytes": 55145,
+      "sha256": "58f465576d0ef3521ebebdee7eea9d1215186656ce09a0d3520484e66797bc5d"
     },
     "source/presentation/board-evolution/circuit-wiring.mjs": {
       "bytes": 6146,
@@ -12454,8 +12458,8 @@
       "sha256": "8e5c249980b453168cea576f724e5a482c94608c8a90aa06d206246362e08638"
     },
     "source/presentation/board-evolution/fpga-utilization.mjs": {
-      "bytes": 7702,
-      "sha256": "26e1d81c7060be3f8fa0055f79f0fce0c665d765f52f9b4347c98788818c00cd"
+      "bytes": 7792,
+      "sha256": "05cba3113bc69ae5466237c200e42729ed5450ab6d0860b499ef23465739fb86"
     },
     "source/presentation/board-evolution/rvsoc-adoption.mjs": {
       "bytes": 5394,
@@ -12845,6 +12849,14 @@
       "bytes": 3357,
       "sha256": "0c9f2e0427350bce6f2ac2644e42f0f51983c9fb710ac2e568665f29b7a95004"
     },
+    "source/thesis/figs/current-game.json": {
+      "bytes": 688,
+      "sha256": "7b895deef35db303e69103d620f5c5156878e478ab92c88b925e95a30ad5b954"
+    },
+    "source/thesis/figs/current-game.png": {
+      "bytes": 4833,
+      "sha256": "84c90a4a2cdb983bcda05edbf74b186ba113ff3f8d5bdd40e992afdb68719d86"
+    },
     "source/thesis/figs/fifo-choice.png": {
       "bytes": 803456,
       "sha256": "2842c584a6d56d6d67af3f2ee0ca4cda7ba868f656b1f4905075a3e9f2c3ed03"
@@ -13230,8 +13242,8 @@
       "sha256": "d2b447c2d5a9163aa0a6ce9647532e92f560d8cc406660629add50e8e32685ea"
     },
     "source/thesis/本文.md": {
-      "bytes": 168362,
-      "sha256": "0277b9e7d91738a11a52cdbb5a02143d7f74f168124f4512cb4c1ae6cb541203"
+      "bytes": 169025,
+      "sha256": "88e00f02672b2fba5c86433294e7faf4d636a13e7f2c8063bd765fe0a24d0577"
     },
     "tests/test_appendix_markdown.py": {
       "bytes": 6783,

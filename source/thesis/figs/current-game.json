@@ -1,0 +1,23 @@
+{
+  "source": "experiments/breakout-title-top-20261108/video/playing.png",
+  "source_sha256": "7d732a7434b38f0cbbf04d0c75963a4aa178f6a9816d88b49371dc70df586bb4",
+  "source_size_pixels": [
+    1280,
+    720
+  ],
+  "crop_box_xyxy": [
+    160,
+    0,
+    1120,
+    720
+  ],
+  "processing": "Remove only the black side margins. Preserve all game pixels; no scaling, recoloring or overlays.",
+  "output": "current-game.png",
+  "output_size_pixels": [
+    960,
+    720
+  ],
+  "output_sha256": "84c90a4a2cdb983bcda05edbf74b186ba113ff3f8d5bdd40e992afdb68719d86",
+  "record": "experiments/breakout-title-top-20261108/results.json",
+  "console_commit": "ed6a1c09b34d597dcde92ec26a4f5a97cbf18a17"
+}
