@@ -1,12 +1,18 @@
 # Abstract figures
 
 `game-flow.svg` uses three nested levels: the pale board, the inset blue FPGA
-chip, and white circuit blocks within the chip. A stronger chip border and
-visible spacing between the board, chip, and source outlines make containment
-legible in color and monochrome. The chip has a darker title band. Dashed outlines
-identify component sources; they do not indicate another physical chip.
-Text and signal lines remain black. The drawing is a functional concept diagram;
-transfer timing is omitted.
+chip, and white circuit blocks within the chip. Dashed rectangular outlines
+identify the sources of the circuits and IP settings. Gaps around crossing
+signals keep those outlines clear of arrowheads.
+
+Readback paths run toward the selector below the CPU. Drawing commands run
+below the added command port, while the image-memory path runs between RasterIX
+and the DDR controller. Distinct signals use separate routing lanes. A gap at
+a wire crossing indicates no connection; a black dot marks a connected branch.
+The SVG `data-net`, `data-source`, and `data-target` attributes identify the
+signal roles for layout review. Text and signal lines remain black for both
+color and monochrome distribution. Transfer timing is omitted in this concept
+diagram.
 
 Figure 2 uses the recorded color frame at `docs/thesis/figs/current-game.png`
 without a color or tone transformation. Review the circuit diagram in color and

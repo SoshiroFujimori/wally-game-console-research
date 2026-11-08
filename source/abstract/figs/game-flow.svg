@@ -1,168 +1,197 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="1420" height="1330" viewBox="0 0 1420 1330" role="img" aria-labelledby="title desc">
+<svg xmlns="http://www.w3.org/2000/svg" width="1420" height="1370" viewBox="0 0 1420 1370" role="img" aria-labelledby="title desc">
 <title id="title">FPGAチップ内の信号接続とチップ外の部品</title>
-<desc id="desc">薄い地色のFPGAボードの中に，太枠と濃い地色のFPGAチップを置き，さらにその内部に白い箱の回路を置く．チップ内にCPU，アドレスデコーダ，読出しデータの選択回路，SD制御，DDR制御，描画命令の接続回路，描画・表示回路を置く．アドレスA，書込みデータD，書込み指示Wを各回路へ分岐し，選択信号で読書き先とCPUへ返す値を選ぶ．チップ外のSDカードスロット，DDR3メモリ，HDMI端子は対応する回路へ接続する．転送のタイミング制御を省略した概念図である．</desc>
-<defs>
-<clipPath id="chip-area" clipPathUnits="userSpaceOnUse"><rect x="-15.957447" y="-88.297872" width="1063.829787" height="1234.042553"/></clipPath>
+<desc id="desc">ボード内にFPGAチップと外部部品を置く．チップ内では，CPUのアドレスA，書込みデータD，書込み指示Wを各回路へ渡し，アドレスデコーダで接続先を選ぶ．読出し値を選んでCPUへ返す．下部に追加した接続回路とRasterIXの描画・表示回路を置き，DDRへ画像を読み書きする．破線は回路やIP設定の入手元を示す．黒丸は接続点，交差部分の隙間は接続しない線を示す．転送タイミングを省略した概念図である．</desc>
+<defs><clipPath id="chip-area"><rect x="45" y="110" width="1105" height="1175"/></clipPath>
 <marker id="arrow" viewBox="0 0 10 10" refX="10" refY="5" markerWidth="4.5" markerHeight="4.5" orient="auto-start-reverse"><path d="M0 0L10 5L0 10Z" fill="#000000"/></marker>
-<marker id="blue-arrow" viewBox="0 0 10 10" refX="10" refY="5" markerWidth="4.5" markerHeight="4.5" orient="auto-start-reverse"><path d="M0 0L10 5L0 10Z" fill="#000000"/></marker>
-</defs><rect width="1420" height="1330" fill="white"/>
+<mask id="source-clearance" maskUnits="userSpaceOnUse" x="0" y="0" width="1420" height="1370"><rect width="1420" height="1370" fill="white"/>
+<path d="M350 440L350 1090" stroke="black" fill="none" stroke-width="32" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M400 470L400 1120" stroke="black" fill="none" stroke-width="32" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M450 500L450 1150" stroke="black" fill="none" stroke-width="32" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M350 440L700 440" stroke="black" fill="none" stroke-width="32" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M350 620L700 620" stroke="black" fill="none" stroke-width="32" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M350 1090L700 1090" stroke="black" fill="none" stroke-width="32" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M400 470L700 470" stroke="black" fill="none" stroke-width="32" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M400 650L700 650" stroke="black" fill="none" stroke-width="32" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M400 1120L700 1120" stroke="black" fill="none" stroke-width="32" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M450 500L700 500" stroke="black" fill="none" stroke-width="32" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M450 680L700 680" stroke="black" fill="none" stroke-width="32" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M450 1150L700 1150" stroke="black" fill="none" stroke-width="32" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M310 550L350 550" stroke="black" fill="none" stroke-width="32" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M310 595L400 595" stroke="black" fill="none" stroke-width="32" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M310 640L450 640" stroke="black" fill="none" stroke-width="32" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M400 440L400 400" stroke="black" fill="none" stroke-width="32" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M450 300L500 300L500 530L700 530" stroke="black" fill="none" stroke-width="32" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M450 340L550 340L550 710L700 710" stroke="black" fill="none" stroke-width="32" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M450 380L600 380L600 1180L700 1180" stroke="black" fill="none" stroke-width="32" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M260 400L260 460L330 460L330 765L220 765L220 809.412" stroke="black" fill="none" stroke-width="32" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M970 535L1010 535L1010 825L300 825" stroke="black" fill="none" stroke-width="32" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M970 715L1050 715L1050 885L300 885" stroke="black" fill="none" stroke-width="32" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M970 1185L1090 1185L1090 945L300 945" stroke="black" fill="none" stroke-width="32" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M130 885L95 885L95 740L210 740L210 710" stroke="black" fill="none" stroke-width="32" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M850 1210L850 1225L400 1225L400 1150L320 1150" stroke="black" fill="none" stroke-width="32" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M280 1095L280 1020L650 1020L650 785L830 785L830 755" stroke="black" fill="none" stroke-width="32" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M970 465L1200 465" stroke="black" fill="none" stroke-width="32" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M970 645L1200 645" stroke="black" fill="none" stroke-width="32" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M220 1205L220 1260L1170 1260L1170 1140L1200 1140" stroke="black" fill="none" stroke-width="32" stroke-linecap="round" stroke-linejoin="round"/>
+</mask></defs>
+<rect width="1420" height="1370" fill="white"/>
 <g font-family="Yu Gothic,Arial,sans-serif" fill="#000000">
-<rect x="3" y="3" width="1414" height="1324" fill="#F2F5FB" stroke="#000000" stroke-width="5" id="fpga-board"/>
-<text x="28" y="56" font-size="44.0" text-anchor="start" fill="#000000" font-weight="bold">FPGAボード / Nexys Video</text>
-<rect x="45" y="110" width="1000" height="1160" fill="#C4D5ED" stroke="#000000" stroke-width="8" id="fpga-chip"/>
-<rect x="49" y="114" width="992" height="66" fill="#ACC4E4"/><text x="73" y="161" font-size="43" text-anchor="start" fill="#000000" font-weight="bold">FPGAチップ</text>
-<text x="1230" y="161" font-size="37" text-anchor="middle" fill="#000000" font-weight="500">チップ外の部品</text>
-<g transform="translate(60 193) scale(0.94)">
-<path d="M10 5H930V650H570V1110H275V790H10Z" fill="none" stroke="#000000" stroke-width="3.6" stroke-dasharray="13 9"/>
-<text x="38" y="49" font-size="39.3617" text-anchor="start" fill="#000000" font-weight="bold">Wallyリポジトリ</text>
-<rect x="10" y="810" width="225" height="190" fill="none" stroke="#000000" stroke-width="3.6" stroke-dasharray="13 9"/>
-<text x="110" y="846" font-size="37.2340" text-anchor="middle" fill="#000000" font-weight="bold">RasterIX</text>
-<path d="M290 255L290 765" fill="none" stroke="#F2F5FB" stroke-width="12" stroke-linejoin="round"/>
-<path d="M290 255L290 765" fill="none" stroke="#C4D5ED" stroke-width="12" stroke-linejoin="round" clip-path="url(#chip-area)"/>
-<path data-net="A" d="M290 255L290 765" fill="none" stroke="#000000" stroke-width="4.468085" stroke-linejoin="round"/>
-<path d="M340 287L340 797" fill="none" stroke="#F2F5FB" stroke-width="12" stroke-linejoin="round"/>
-<path d="M340 287L340 797" fill="none" stroke="#C4D5ED" stroke-width="12" stroke-linejoin="round" clip-path="url(#chip-area)"/>
-<path data-net="D" d="M340 287L340 797" fill="none" stroke="#000000" stroke-width="4.468085" stroke-linejoin="round"/>
-<path d="M390 319L390 829" fill="none" stroke="#F2F5FB" stroke-width="12" stroke-linejoin="round"/>
-<path d="M390 319L390 829" fill="none" stroke="#C4D5ED" stroke-width="12" stroke-linejoin="round" clip-path="url(#chip-area)"/>
-<path data-net="W" d="M390 319L390 829" fill="none" stroke="#000000" stroke-width="4.468085" stroke-linejoin="round"/>
-<path d="M290 255L600 255" fill="none" stroke="#F2F5FB" stroke-width="12" stroke-linejoin="round"/>
-<path d="M290 255L600 255" fill="none" stroke="#C4D5ED" stroke-width="12" stroke-linejoin="round" clip-path="url(#chip-area)"/>
-<path data-net="A" d="M290 255L600 255" fill="none" stroke="#000000" stroke-width="4.468085" stroke-linejoin="round" marker-end="url(#arrow)"/>
-<path d="M340 287L600 287" fill="none" stroke="#F2F5FB" stroke-width="12" stroke-linejoin="round"/>
-<path d="M340 287L600 287" fill="none" stroke="#C4D5ED" stroke-width="12" stroke-linejoin="round" clip-path="url(#chip-area)"/>
-<path data-net="D" d="M340 287L600 287" fill="none" stroke="#000000" stroke-width="4.468085" stroke-linejoin="round" marker-end="url(#arrow)"/>
-<path d="M390 319L600 319" fill="none" stroke="#F2F5FB" stroke-width="12" stroke-linejoin="round"/>
-<path d="M390 319L600 319" fill="none" stroke="#C4D5ED" stroke-width="12" stroke-linejoin="round" clip-path="url(#chip-area)"/>
-<path data-net="W" d="M390 319L600 319" fill="none" stroke="#000000" stroke-width="4.468085" stroke-linejoin="round" marker-end="url(#arrow)"/>
-<path d="M290 510L600 510" fill="none" stroke="#F2F5FB" stroke-width="12" stroke-linejoin="round"/>
-<path d="M290 510L600 510" fill="none" stroke="#C4D5ED" stroke-width="12" stroke-linejoin="round" clip-path="url(#chip-area)"/>
-<path data-net="A" d="M290 510L600 510" fill="none" stroke="#000000" stroke-width="4.468085" stroke-linejoin="round" marker-end="url(#arrow)"/>
-<path d="M340 542L600 542" fill="none" stroke="#F2F5FB" stroke-width="12" stroke-linejoin="round"/>
-<path d="M340 542L600 542" fill="none" stroke="#C4D5ED" stroke-width="12" stroke-linejoin="round" clip-path="url(#chip-area)"/>
-<path data-net="D" d="M340 542L600 542" fill="none" stroke="#000000" stroke-width="4.468085" stroke-linejoin="round" marker-end="url(#arrow)"/>
-<path d="M390 574L600 574" fill="none" stroke="#F2F5FB" stroke-width="12" stroke-linejoin="round"/>
-<path d="M390 574L600 574" fill="none" stroke="#C4D5ED" stroke-width="12" stroke-linejoin="round" clip-path="url(#chip-area)"/>
-<path data-net="W" d="M390 574L600 574" fill="none" stroke="#000000" stroke-width="4.468085" stroke-linejoin="round" marker-end="url(#arrow)"/>
-<path d="M290 765L600 765" fill="none" stroke="#F2F5FB" stroke-width="12" stroke-linejoin="round"/>
-<path d="M290 765L600 765" fill="none" stroke="#C4D5ED" stroke-width="12" stroke-linejoin="round" clip-path="url(#chip-area)"/>
-<path data-net="A" d="M290 765L600 765" fill="none" stroke="#000000" stroke-width="4.468085" stroke-linejoin="round" marker-end="url(#blue-arrow)"/>
-<path d="M340 797L600 797" fill="none" stroke="#F2F5FB" stroke-width="12" stroke-linejoin="round"/>
-<path d="M340 797L600 797" fill="none" stroke="#C4D5ED" stroke-width="12" stroke-linejoin="round" clip-path="url(#chip-area)"/>
-<path data-net="D" d="M340 797L600 797" fill="none" stroke="#000000" stroke-width="4.468085" stroke-linejoin="round" marker-end="url(#blue-arrow)"/>
-<path d="M390 829L600 829" fill="none" stroke="#F2F5FB" stroke-width="12" stroke-linejoin="round"/>
-<path d="M390 829L600 829" fill="none" stroke="#C4D5ED" stroke-width="12" stroke-linejoin="round" clip-path="url(#chip-area)"/>
-<path data-net="W" d="M390 829L600 829" fill="none" stroke="#000000" stroke-width="4.468085" stroke-linejoin="round" marker-end="url(#blue-arrow)"/>
-<path d="M230 510L290 510" fill="none" stroke="#F2F5FB" stroke-width="12" stroke-linejoin="round"/>
-<path d="M230 510L290 510" fill="none" stroke="#C4D5ED" stroke-width="12" stroke-linejoin="round" clip-path="url(#chip-area)"/>
-<path data-net="A" d="M230 510L290 510" fill="none" stroke="#000000" stroke-width="4.468085" stroke-linejoin="round"/>
-<path d="M230 565L340 565" fill="none" stroke="#F2F5FB" stroke-width="12" stroke-linejoin="round"/>
-<path d="M230 565L340 565" fill="none" stroke="#C4D5ED" stroke-width="12" stroke-linejoin="round" clip-path="url(#chip-area)"/>
-<path data-net="D" d="M230 565L340 565" fill="none" stroke="#000000" stroke-width="4.468085" stroke-linejoin="round"/>
-<path d="M230 620L390 620" fill="none" stroke="#F2F5FB" stroke-width="12" stroke-linejoin="round"/>
-<path d="M230 620L390 620" fill="none" stroke="#C4D5ED" stroke-width="12" stroke-linejoin="round" clip-path="url(#chip-area)"/>
-<path data-net="W" d="M230 620L390 620" fill="none" stroke="#000000" stroke-width="4.468085" stroke-linejoin="round"/>
-<path d="M360 255L360 200" fill="none" stroke="#F2F5FB" stroke-width="12" stroke-linejoin="round"/>
-<path d="M360 255L360 200" fill="none" stroke="#C4D5ED" stroke-width="12" stroke-linejoin="round" clip-path="url(#chip-area)"/>
-<path data-net="A" d="M360 255L360 200" fill="none" stroke="#000000" stroke-width="4.468085" stroke-linejoin="round" marker-end="url(#arrow)"/>
-<path d="M390 100L450 100L450 351L600 351" fill="none" stroke="#F2F5FB" stroke-width="12" stroke-linejoin="round"/>
-<path d="M390 100L450 100L450 351L600 351" fill="none" stroke="#C4D5ED" stroke-width="12" stroke-linejoin="round" clip-path="url(#chip-area)"/>
-<path data-net="S0" d="M390 100L450 100L450 351L600 351" fill="none" stroke="#000000" stroke-width="4.468085" stroke-linejoin="round" marker-end="url(#arrow)"/>
-<path d="M390 145L500 145L500 606L600 606" fill="none" stroke="#F2F5FB" stroke-width="12" stroke-linejoin="round"/>
-<path d="M390 145L500 145L500 606L600 606" fill="none" stroke="#C4D5ED" stroke-width="12" stroke-linejoin="round" clip-path="url(#chip-area)"/>
-<path data-net="S1" d="M390 145L500 145L500 606L600 606" fill="none" stroke="#000000" stroke-width="4.468085" stroke-linejoin="round" marker-end="url(#arrow)"/>
-<path d="M390 190L550 190L550 861L600 861" fill="none" stroke="#F2F5FB" stroke-width="12" stroke-linejoin="round"/>
-<path d="M390 190L550 190L550 861L600 861" fill="none" stroke="#C4D5ED" stroke-width="12" stroke-linejoin="round" clip-path="url(#chip-area)"/>
-<path data-net="S2" d="M390 190L550 190L550 861L600 861" fill="none" stroke="#000000" stroke-width="4.468085" stroke-linejoin="round" marker-end="url(#blue-arrow)"/>
-<path d="M200 200L200 225L255 225L255 955L480 955L480 979" fill="none" stroke="#F2F5FB" stroke-width="12" stroke-linejoin="round"/>
-<path d="M200 200L200 225L255 225L255 955L480 955L480 979" fill="none" stroke="#C4D5ED" stroke-width="12" stroke-linejoin="round" clip-path="url(#chip-area)"/>
-<path data-net="S0,S1,S2" d="M200 200L200 225L255 225L255 955L480 955L480 979" fill="none" stroke="#000000" stroke-width="4.468085" stroke-linejoin="round" marker-end="url(#arrow)"/>
-<path d="M900 354L920 354L920 995L550 995" fill="none" stroke="#F2F5FB" stroke-width="12" stroke-linejoin="round"/>
-<path d="M900 354L920 354L920 995L550 995" fill="none" stroke="#C4D5ED" stroke-width="12" stroke-linejoin="round" clip-path="url(#chip-area)"/>
-<path data-net="ReadSD" d="M900 354L920 354L920 995L550 995" fill="none" stroke="#000000" stroke-width="4.468085" stroke-linejoin="round" marker-end="url(#arrow)"/>
-<path d="M900 609L960 609L960 1035L550 1035" fill="none" stroke="#F2F5FB" stroke-width="12" stroke-linejoin="round"/>
-<path d="M900 609L960 609L960 1035L550 1035" fill="none" stroke="#C4D5ED" stroke-width="12" stroke-linejoin="round" clip-path="url(#chip-area)"/>
-<path data-net="ReadDDR" d="M900 609L960 609L960 1035L550 1035" fill="none" stroke="#000000" stroke-width="4.468085" stroke-linejoin="round" marker-end="url(#arrow)"/>
-<path d="M900 864L1000 864L1000 1075L550 1075" fill="none" stroke="#F2F5FB" stroke-width="12" stroke-linejoin="round"/>
-<path d="M900 864L1000 864L1000 1075L550 1075" fill="none" stroke="#C4D5ED" stroke-width="12" stroke-linejoin="round" clip-path="url(#chip-area)"/>
-<path data-net="ReadGraphicsPort" d="M900 864L1000 864L1000 1075L550 1075" fill="none" stroke="#000000" stroke-width="4.468085" stroke-linejoin="round" marker-end="url(#blue-arrow)"/>
-<path d="M390 1035L245 1035L245 690L130 690L130 660" fill="none" stroke="#F2F5FB" stroke-width="12" stroke-linejoin="round"/>
-<path d="M390 1035L245 1035L245 690L130 690L130 660" fill="none" stroke="#C4D5ED" stroke-width="12" stroke-linejoin="round" clip-path="url(#chip-area)"/>
-<path data-net="ReadData" d="M390 1035L245 1035L245 690L130 690L130 660" fill="none" stroke="#000000" stroke-width="4.468085" stroke-linejoin="round" marker-end="url(#arrow)"/>
-<path d="M780 875L780 950L300 950L300 890L220 890" fill="none" stroke="#F2F5FB" stroke-width="12" stroke-linejoin="round"/>
-<path d="M780 875L780 950L300 950L300 890L220 890" fill="none" stroke="#C4D5ED" stroke-width="12" stroke-linejoin="round" clip-path="url(#chip-area)"/>
-<path data-net="DrawingCommands" d="M780 875L780 950L300 950L300 890L220 890" fill="none" stroke="#000000" stroke-width="4.468085" stroke-linejoin="round" marker-end="url(#blue-arrow)"/>
-<path d="M205 860L205 705L675 705L675 620" fill="none" stroke="#F2F5FB" stroke-width="12" stroke-linejoin="round"/>
-<path d="M205 860L205 705L675 705L675 620" fill="none" stroke="#C4D5ED" stroke-width="12" stroke-linejoin="round" clip-path="url(#chip-area)"/>
-<path data-net="ImageMemory" d="M205 860L205 705L675 705L675 620" fill="none" stroke="#000000" stroke-width="4.468085" stroke-linejoin="round" marker-end="url(#blue-arrow)" marker-start="url(#blue-arrow)"/>
-<path d="M900 280L1100 280" fill="none" stroke="#F2F5FB" stroke-width="12" stroke-linejoin="round"/>
-<path d="M900 280L1100 280" fill="none" stroke="#C4D5ED" stroke-width="12" stroke-linejoin="round" clip-path="url(#chip-area)"/>
-<path data-net="SDPhysical" d="M900 280L1100 280" fill="none" stroke="#000000" stroke-width="4.468085" stroke-linejoin="round" marker-end="url(#arrow)" marker-start="url(#arrow)"/>
-<path d="M900 535L1100 535" fill="none" stroke="#F2F5FB" stroke-width="12" stroke-linejoin="round"/>
-<path d="M900 535L1100 535" fill="none" stroke="#C4D5ED" stroke-width="12" stroke-linejoin="round" clip-path="url(#chip-area)"/>
-<path data-net="DDRPhysical" d="M900 535L1100 535" fill="none" stroke="#000000" stroke-width="4.468085" stroke-linejoin="round" marker-end="url(#arrow)" marker-start="url(#arrow)"/>
-<path d="M130 985L130 1120L1070 1120L1070 915L1100 915" fill="none" stroke="#F2F5FB" stroke-width="12" stroke-linejoin="round"/>
-<path d="M130 985L130 1120L1070 1120L1070 915L1100 915" fill="none" stroke="#C4D5ED" stroke-width="12" stroke-linejoin="round" clip-path="url(#chip-area)"/>
-<path data-net="Video" d="M130 985L130 1120L1070 1120L1070 915L1100 915" fill="none" stroke="#000000" stroke-width="4.468085" stroke-linejoin="round" marker-end="url(#blue-arrow)"/>
-<circle cx="290" cy="255" r="7.446809" fill="#000000"/>
-<circle cx="290" cy="510" r="7.446809" fill="#000000"/>
-<circle cx="290" cy="765" r="7.446809" fill="#000000"/>
-<circle cx="340" cy="287" r="7.446809" fill="#000000"/>
-<circle cx="340" cy="542" r="7.446809" fill="#000000"/>
-<circle cx="340" cy="565" r="7.446809" fill="#000000"/>
-<circle cx="340" cy="797" r="7.446809" fill="#000000"/>
-<circle cx="390" cy="319" r="7.446809" fill="#000000"/>
-<circle cx="390" cy="574" r="7.446809" fill="#000000"/>
-<circle cx="390" cy="620" r="7.446809" fill="#000000"/>
-<circle cx="390" cy="829" r="7.446809" fill="#000000"/>
-<circle cx="360" cy="255" r="7.446809" fill="#000000"/>
-<rect x="30" y="75" width="360" height="125" fill="white" stroke="#000000" stroke-width="4.468085"/>
-<text x="210" y="126" font-size="41.4894" text-anchor="middle" fill="#000000" font-weight="500">アドレスデコーダ</text>
-<text x="210" y="177" font-size="37.2340" text-anchor="middle" fill="#000000" font-weight="500">Aから接続先を選ぶ</text>
-<rect x="30" y="480" width="200" height="180" fill="white" stroke="#000000" stroke-width="4.468085"/>
-<text x="110" y="548" font-size="54.2553" text-anchor="middle" fill="#000000" font-weight="bold">CPU</text>
-<text x="110" y="610" font-size="47.8723" text-anchor="middle" fill="#000000" font-weight="500">Wally</text>
-<rect x="600" y="235" width="300" height="130" fill="white" stroke="#000000" stroke-width="4.468085"/>
-<text x="750" y="289" font-size="44.6809" text-anchor="middle" fill="#000000" font-weight="500">SDカード</text>
-<text x="750" y="342" font-size="44.6809" text-anchor="middle" fill="#000000" font-weight="500">制御回路</text>
-<rect x="600" y="490" width="300" height="130" fill="white" stroke="#000000" stroke-width="4.468085"/>
-<text x="750" y="532" font-size="44.6809" text-anchor="middle" fill="#000000" font-weight="500">DDR</text>
-<text x="750" y="575" font-size="39.3617" text-anchor="middle" fill="#000000" font-weight="500">コントローラー</text>
-<text x="750" y="612" font-size="37.2340" text-anchor="middle" fill="#000000" font-weight="500">AMD製IP</text>
-<rect x="600" y="745" width="300" height="130" fill="white" stroke="#000000" stroke-width="4.468085"/>
-<text x="750" y="798" font-size="44.6809" text-anchor="middle" fill="#000000" font-weight="500">接続回路</text>
-<text x="750" y="850" font-size="38.2979" text-anchor="middle" fill="#000000" font-weight="500">描画命令を渡す</text>
-<rect x="30" y="860" width="190" height="125" fill="white" stroke="#000000" stroke-width="4.468085"/>
-<text x="125" y="912" font-size="37.2340" text-anchor="middle" fill="#000000" font-weight="500">描画・表示</text>
-<text x="125" y="960" font-size="41.4894" text-anchor="middle" fill="#000000" font-weight="500">回路</text>
-<path d="M390 990L550 970V1100L390 1080Z" fill="white" stroke="#000000" stroke-width="4.468085"/>
-<text x="480" y="1051" font-size="42.5532" text-anchor="middle" fill="#000000" font-weight="500">選択</text>
-<rect x="1100" y="235" width="280" height="130" fill="white" stroke="#000000" stroke-width="4.468085"/>
-<text x="1240" y="288" font-size="43.6170" text-anchor="middle" fill="#000000" font-weight="500">SDカード</text>
-<text x="1240" y="340" font-size="43.6170" text-anchor="middle" fill="#000000" font-weight="500">スロット</text>
-<rect x="1100" y="490" width="280" height="130" fill="white" stroke="#000000" stroke-width="4.468085"/>
-<text x="1240" y="545" font-size="46.8085" text-anchor="middle" fill="#000000" font-weight="bold">DDR3</text>
-<text x="1240" y="596" font-size="44.6809" text-anchor="middle" fill="#000000" font-weight="500">メモリ</text>
-<rect x="1100" y="850" width="280" height="130" fill="white" stroke="#000000" stroke-width="4.468085"/>
-<text x="1240" y="925" font-size="44.6809" text-anchor="middle" fill="#000000" font-weight="500">HDMI端子</text>
-<text x="30" y="279" font-size="37.2340" text-anchor="start" fill="#000000" font-weight="500">A  アドレス</text>
-<text x="30" y="331" font-size="37.2340" text-anchor="start" fill="#000000" font-weight="500">D  書込み</text>
-<text x="64" y="372" font-size="37.2340" text-anchor="start" fill="#000000" font-weight="500">データ</text>
-<text x="30" y="426" font-size="37.2340" text-anchor="start" fill="#000000" font-weight="500">W  書込み</text>
-<text x="64" y="467" font-size="37.2340" text-anchor="start" fill="#000000" font-weight="500">指示</text><text x="222" y="522" font-size="37.2340" text-anchor="end" fill="#000000" font-weight="500">A</text>
-<text x="222" y="577" font-size="37.2340" text-anchor="end" fill="#000000" font-weight="500">D</text>
-<text x="222" y="632" font-size="37.2340" text-anchor="end" fill="#000000" font-weight="500">W</text>
-<text x="460" y="90" font-size="37.2340" text-anchor="start" fill="#000000" font-weight="500">S0</text>
-<text x="510" y="135" font-size="37.2340" text-anchor="start" fill="#000000" font-weight="500">S1</text>
-<text x="560" y="180" font-size="37.2340" text-anchor="start" fill="#000000" font-weight="500">S2</text>
-<text x="32" y="236" font-size="37.2340" text-anchor="start" fill="#000000" font-weight="500">S0〜S2</text>
-<text x="40" y="737" font-size="37.2340" text-anchor="start" fill="#000000" font-weight="500">読出し</text>
-<text x="40" y="777" font-size="37.2340" text-anchor="start" fill="#000000" font-weight="500">データ</text>
-<text x="900" y="735" font-size="37.2340" text-anchor="end" fill="#000000" font-weight="500">本研究で追加</text>
-<text x="600" y="984" font-size="37.2340" text-anchor="start" fill="#000000" font-weight="500">SDの値</text>
-<text x="600" y="1024" font-size="37.2340" text-anchor="start" fill="#000000" font-weight="500">DDRの値</text>
-<text x="600" y="1064" font-size="37.2340" text-anchor="start" fill="#000000" font-weight="500">接続回路の値</text>
-<text x="650" y="697" font-size="37.2340" text-anchor="end" fill="#000000" font-weight="500">画像</text>
-</g>
-<text x="30" y="1320" font-size="35" text-anchor="start" fill="#000000" font-weight="500">太枠：チップ　破線：入手元　黒丸：接続点（概念図）</text>
+<rect id="fpga-board" x="3" y="3" width="1414" height="1364" fill="#F2F5FB" stroke="black" stroke-width="5"/>
+<text x="28" y="56" font-size="44" font-weight="bold" fill="#000000">FPGAボード / Nexys Video</text>
+<rect id="fpga-chip" x="45" y="110" width="1105" height="1175" fill="#C4D5ED" stroke="black" stroke-width="8"/>
+<rect x="49" y="114" width="1097" height="66" fill="#ACC4E4"/>
+<text x="73" y="161" font-size="43" font-weight="bold" fill="#000000">FPGAチップ</text>
+<text x="1295" y="145" font-size="35" text-anchor="middle" fill="#000000">チップ外の</text>
+<text x="1295" y="195" font-size="35" text-anchor="middle" fill="#000000">部品</text>
+<g id="source-outlines" fill="none" stroke="black" stroke-width="3.2" stroke-dasharray="12 9" mask="url(#source-clearance)">
+<rect id="wally-source" x="70" y="205" width="1050" height="790"/>
+<rect id="rasterix-source" x="70" y="1025" width="300" height="205"/></g>
+<path d="M350 440L350 1090" fill="none" stroke="#F2F5FB" stroke-width="14" stroke-linejoin="round"/>
+<path d="M350 440L350 1090" fill="none" stroke="#C4D5ED" stroke-width="14" stroke-linejoin="round" clip-path="url(#chip-area)"/>
+<path data-net="A" data-source="CPU" data-target="Fanout" d="M350 440L350 1090" fill="none" stroke="#000000" stroke-width="4.2" stroke-linejoin="round"/>
+<path d="M400 470L400 1120" fill="none" stroke="#F2F5FB" stroke-width="14" stroke-linejoin="round"/>
+<path d="M400 470L400 1120" fill="none" stroke="#C4D5ED" stroke-width="14" stroke-linejoin="round" clip-path="url(#chip-area)"/>
+<path data-net="D" data-source="CPU" data-target="Fanout" d="M400 470L400 1120" fill="none" stroke="#000000" stroke-width="4.2" stroke-linejoin="round"/>
+<path d="M450 500L450 1150" fill="none" stroke="#F2F5FB" stroke-width="14" stroke-linejoin="round"/>
+<path d="M450 500L450 1150" fill="none" stroke="#C4D5ED" stroke-width="14" stroke-linejoin="round" clip-path="url(#chip-area)"/>
+<path data-net="W" data-source="CPU" data-target="Fanout" d="M450 500L450 1150" fill="none" stroke="#000000" stroke-width="4.2" stroke-linejoin="round"/>
+<path d="M350 440L700 440" fill="none" stroke="#F2F5FB" stroke-width="14" stroke-linejoin="round"/>
+<path d="M350 440L700 440" fill="none" stroke="#C4D5ED" stroke-width="14" stroke-linejoin="round" clip-path="url(#chip-area)"/>
+<path data-net="A" data-source="CPU" data-target="SD" d="M350 440L700 440" fill="none" stroke="#000000" stroke-width="4.2" stroke-linejoin="round" marker-end="url(#arrow)"/>
+<path d="M350 620L700 620" fill="none" stroke="#F2F5FB" stroke-width="14" stroke-linejoin="round"/>
+<path d="M350 620L700 620" fill="none" stroke="#C4D5ED" stroke-width="14" stroke-linejoin="round" clip-path="url(#chip-area)"/>
+<path data-net="A" data-source="CPU" data-target="DDR" d="M350 620L700 620" fill="none" stroke="#000000" stroke-width="4.2" stroke-linejoin="round" marker-end="url(#arrow)"/>
+<path d="M350 1090L700 1090" fill="none" stroke="#F2F5FB" stroke-width="14" stroke-linejoin="round"/>
+<path d="M350 1090L700 1090" fill="none" stroke="#C4D5ED" stroke-width="14" stroke-linejoin="round" clip-path="url(#chip-area)"/>
+<path data-net="A" data-source="CPU" data-target="CommandPort" d="M350 1090L700 1090" fill="none" stroke="#000000" stroke-width="4.2" stroke-linejoin="round" marker-end="url(#arrow)"/>
+<path d="M400 470L700 470" fill="none" stroke="#F2F5FB" stroke-width="14" stroke-linejoin="round"/>
+<path d="M400 470L700 470" fill="none" stroke="#C4D5ED" stroke-width="14" stroke-linejoin="round" clip-path="url(#chip-area)"/>
+<path data-net="D" data-source="CPU" data-target="SD" d="M400 470L700 470" fill="none" stroke="#000000" stroke-width="4.2" stroke-linejoin="round" marker-end="url(#arrow)"/>
+<path d="M400 650L700 650" fill="none" stroke="#F2F5FB" stroke-width="14" stroke-linejoin="round"/>
+<path d="M400 650L700 650" fill="none" stroke="#C4D5ED" stroke-width="14" stroke-linejoin="round" clip-path="url(#chip-area)"/>
+<path data-net="D" data-source="CPU" data-target="DDR" d="M400 650L700 650" fill="none" stroke="#000000" stroke-width="4.2" stroke-linejoin="round" marker-end="url(#arrow)"/>
+<path d="M400 1120L700 1120" fill="none" stroke="#F2F5FB" stroke-width="14" stroke-linejoin="round"/>
+<path d="M400 1120L700 1120" fill="none" stroke="#C4D5ED" stroke-width="14" stroke-linejoin="round" clip-path="url(#chip-area)"/>
+<path data-net="D" data-source="CPU" data-target="CommandPort" d="M400 1120L700 1120" fill="none" stroke="#000000" stroke-width="4.2" stroke-linejoin="round" marker-end="url(#arrow)"/>
+<path d="M450 500L700 500" fill="none" stroke="#F2F5FB" stroke-width="14" stroke-linejoin="round"/>
+<path d="M450 500L700 500" fill="none" stroke="#C4D5ED" stroke-width="14" stroke-linejoin="round" clip-path="url(#chip-area)"/>
+<path data-net="W" data-source="CPU" data-target="SD" d="M450 500L700 500" fill="none" stroke="#000000" stroke-width="4.2" stroke-linejoin="round" marker-end="url(#arrow)"/>
+<path d="M450 680L700 680" fill="none" stroke="#F2F5FB" stroke-width="14" stroke-linejoin="round"/>
+<path d="M450 680L700 680" fill="none" stroke="#C4D5ED" stroke-width="14" stroke-linejoin="round" clip-path="url(#chip-area)"/>
+<path data-net="W" data-source="CPU" data-target="DDR" d="M450 680L700 680" fill="none" stroke="#000000" stroke-width="4.2" stroke-linejoin="round" marker-end="url(#arrow)"/>
+<path d="M450 1150L700 1150" fill="none" stroke="#F2F5FB" stroke-width="14" stroke-linejoin="round"/>
+<path d="M450 1150L700 1150" fill="none" stroke="#C4D5ED" stroke-width="14" stroke-linejoin="round" clip-path="url(#chip-area)"/>
+<path data-net="W" data-source="CPU" data-target="CommandPort" d="M450 1150L700 1150" fill="none" stroke="#000000" stroke-width="4.2" stroke-linejoin="round" marker-end="url(#arrow)"/>
+<path d="M310 550L350 550" fill="none" stroke="#F2F5FB" stroke-width="14" stroke-linejoin="round"/>
+<path d="M310 550L350 550" fill="none" stroke="#C4D5ED" stroke-width="14" stroke-linejoin="round" clip-path="url(#chip-area)"/>
+<path data-net="A" data-source="CPU" data-target="Fanout" d="M310 550L350 550" fill="none" stroke="#000000" stroke-width="4.2" stroke-linejoin="round"/>
+<path d="M310 595L400 595" fill="none" stroke="#F2F5FB" stroke-width="14" stroke-linejoin="round"/>
+<path d="M310 595L400 595" fill="none" stroke="#C4D5ED" stroke-width="14" stroke-linejoin="round" clip-path="url(#chip-area)"/>
+<path data-net="D" data-source="CPU" data-target="Fanout" d="M310 595L400 595" fill="none" stroke="#000000" stroke-width="4.2" stroke-linejoin="round"/>
+<path d="M310 640L450 640" fill="none" stroke="#F2F5FB" stroke-width="14" stroke-linejoin="round"/>
+<path d="M310 640L450 640" fill="none" stroke="#C4D5ED" stroke-width="14" stroke-linejoin="round" clip-path="url(#chip-area)"/>
+<path data-net="W" data-source="CPU" data-target="Fanout" d="M310 640L450 640" fill="none" stroke="#000000" stroke-width="4.2" stroke-linejoin="round"/>
+<path d="M400 440L400 400" fill="none" stroke="#F2F5FB" stroke-width="14" stroke-linejoin="round"/>
+<path d="M400 440L400 400" fill="none" stroke="#C4D5ED" stroke-width="14" stroke-linejoin="round" clip-path="url(#chip-area)"/>
+<path data-net="A" data-source="CPU" data-target="Decoder" d="M400 440L400 400" fill="none" stroke="#000000" stroke-width="4.2" stroke-linejoin="round" marker-end="url(#arrow)"/>
+<path d="M450 300L500 300L500 530L700 530" fill="none" stroke="#F2F5FB" stroke-width="14" stroke-linejoin="round"/>
+<path d="M450 300L500 300L500 530L700 530" fill="none" stroke="#C4D5ED" stroke-width="14" stroke-linejoin="round" clip-path="url(#chip-area)"/>
+<path data-net="S0" data-source="Decoder" data-target="SD" d="M450 300L500 300L500 530L700 530" fill="none" stroke="#000000" stroke-width="4.2" stroke-linejoin="round" marker-end="url(#arrow)"/>
+<path d="M450 340L550 340L550 710L700 710" fill="none" stroke="#F2F5FB" stroke-width="14" stroke-linejoin="round"/>
+<path d="M450 340L550 340L550 710L700 710" fill="none" stroke="#C4D5ED" stroke-width="14" stroke-linejoin="round" clip-path="url(#chip-area)"/>
+<path data-net="S1" data-source="Decoder" data-target="DDR" d="M450 340L550 340L550 710L700 710" fill="none" stroke="#000000" stroke-width="4.2" stroke-linejoin="round" marker-end="url(#arrow)"/>
+<path d="M450 380L600 380L600 1180L700 1180" fill="none" stroke="#F2F5FB" stroke-width="14" stroke-linejoin="round"/>
+<path d="M450 380L600 380L600 1180L700 1180" fill="none" stroke="#C4D5ED" stroke-width="14" stroke-linejoin="round" clip-path="url(#chip-area)"/>
+<path data-net="S2" data-source="Decoder" data-target="CommandPort" d="M450 380L600 380L600 1180L700 1180" fill="none" stroke="#000000" stroke-width="4.2" stroke-linejoin="round" marker-end="url(#arrow)"/>
+<path d="M260 400L260 460L330 460L330 765L220 765L220 809.412" fill="none" stroke="#F2F5FB" stroke-width="14" stroke-linejoin="round"/>
+<path d="M260 400L260 460L330 460L330 765L220 765L220 809.412" fill="none" stroke="#C4D5ED" stroke-width="14" stroke-linejoin="round" clip-path="url(#chip-area)"/>
+<path data-net="S0,S1,S2" data-source="Decoder" data-target="ReadMux" d="M260 400L260 460L330 460L330 765L220 765L220 809.412" fill="none" stroke="#000000" stroke-width="4.2" stroke-linejoin="round" marker-end="url(#arrow)"/>
+<path d="M970 535L1010 535L1010 825L300 825" fill="none" stroke="#F2F5FB" stroke-width="14" stroke-linejoin="round"/>
+<path d="M970 535L1010 535L1010 825L300 825" fill="none" stroke="#C4D5ED" stroke-width="14" stroke-linejoin="round" clip-path="url(#chip-area)"/>
+<path data-net="ReadSD" data-source="SD" data-target="ReadMux" d="M970 535L1010 535L1010 825L300 825" fill="none" stroke="#000000" stroke-width="4.2" stroke-linejoin="round" marker-end="url(#arrow)"/>
+<path d="M970 715L1050 715L1050 885L300 885" fill="none" stroke="#F2F5FB" stroke-width="14" stroke-linejoin="round"/>
+<path d="M970 715L1050 715L1050 885L300 885" fill="none" stroke="#C4D5ED" stroke-width="14" stroke-linejoin="round" clip-path="url(#chip-area)"/>
+<path data-net="ReadDDR" data-source="DDR" data-target="ReadMux" d="M970 715L1050 715L1050 885L300 885" fill="none" stroke="#000000" stroke-width="4.2" stroke-linejoin="round" marker-end="url(#arrow)"/>
+<path d="M970 1185L1090 1185L1090 945L300 945" fill="none" stroke="#F2F5FB" stroke-width="14" stroke-linejoin="round"/>
+<path d="M970 1185L1090 1185L1090 945L300 945" fill="none" stroke="#C4D5ED" stroke-width="14" stroke-linejoin="round" clip-path="url(#chip-area)"/>
+<path data-net="ReadGraphicsPort" data-source="CommandPort" data-target="ReadMux" d="M970 1185L1090 1185L1090 945L300 945" fill="none" stroke="#000000" stroke-width="4.2" stroke-linejoin="round" marker-end="url(#arrow)"/>
+<path d="M130 885L95 885L95 740L210 740L210 710" fill="none" stroke="#F2F5FB" stroke-width="14" stroke-linejoin="round"/>
+<path d="M130 885L95 885L95 740L210 740L210 710" fill="none" stroke="#C4D5ED" stroke-width="14" stroke-linejoin="round" clip-path="url(#chip-area)"/>
+<path data-net="ReadData" data-source="ReadMux" data-target="CPU" d="M130 885L95 885L95 740L210 740L210 710" fill="none" stroke="#000000" stroke-width="4.2" stroke-linejoin="round" marker-end="url(#arrow)"/>
+<path d="M850 1210L850 1225L400 1225L400 1150L320 1150" fill="none" stroke="#F2F5FB" stroke-width="14" stroke-linejoin="round"/>
+<path d="M850 1210L850 1225L400 1225L400 1150L320 1150" fill="none" stroke="#C4D5ED" stroke-width="14" stroke-linejoin="round" clip-path="url(#chip-area)"/>
+<path data-net="DrawingCommands" data-source="CommandPort" data-target="RasterIX" d="M850 1210L850 1225L400 1225L400 1150L320 1150" fill="none" stroke="#000000" stroke-width="4.2" stroke-linejoin="round" marker-end="url(#arrow)"/>
+<path d="M280 1095L280 1020L650 1020L650 785L830 785L830 755" fill="none" stroke="#F2F5FB" stroke-width="14" stroke-linejoin="round"/>
+<path d="M280 1095L280 1020L650 1020L650 785L830 785L830 755" fill="none" stroke="#C4D5ED" stroke-width="14" stroke-linejoin="round" clip-path="url(#chip-area)"/>
+<path data-net="ImageMemory" data-source="RasterIX" data-target="DDR" d="M280 1095L280 1020L650 1020L650 785L830 785L830 755" fill="none" stroke="#000000" stroke-width="4.2" stroke-linejoin="round" marker-start="url(#arrow)" marker-end="url(#arrow)"/>
+<path d="M970 465L1200 465" fill="none" stroke="#F2F5FB" stroke-width="14" stroke-linejoin="round"/>
+<path d="M970 465L1200 465" fill="none" stroke="#C4D5ED" stroke-width="14" stroke-linejoin="round" clip-path="url(#chip-area)"/>
+<path data-net="SDPhysical" data-source="SD" data-target="SDSlot" d="M970 465L1200 465" fill="none" stroke="#000000" stroke-width="4.2" stroke-linejoin="round" marker-start="url(#arrow)" marker-end="url(#arrow)"/>
+<path d="M970 645L1200 645" fill="none" stroke="#F2F5FB" stroke-width="14" stroke-linejoin="round"/>
+<path d="M970 645L1200 645" fill="none" stroke="#C4D5ED" stroke-width="14" stroke-linejoin="round" clip-path="url(#chip-area)"/>
+<path data-net="DDRPhysical" data-source="DDR" data-target="DDR3" d="M970 645L1200 645" fill="none" stroke="#000000" stroke-width="4.2" stroke-linejoin="round" marker-start="url(#arrow)" marker-end="url(#arrow)"/>
+<path d="M220 1205L220 1260L1170 1260L1170 1140L1200 1140" fill="none" stroke="#F2F5FB" stroke-width="14" stroke-linejoin="round"/>
+<path d="M220 1205L220 1260L1170 1260L1170 1140L1200 1140" fill="none" stroke="#C4D5ED" stroke-width="14" stroke-linejoin="round" clip-path="url(#chip-area)"/>
+<path data-net="Video" data-source="RasterIX" data-target="HDMI" d="M220 1205L220 1260L1170 1260L1170 1140L1200 1140" fill="none" stroke="#000000" stroke-width="4.2" stroke-linejoin="round" marker-end="url(#arrow)"/>
+<circle cx="350" cy="440" r="7" fill="black"/>
+<circle cx="350" cy="550" r="7" fill="black"/>
+<circle cx="350" cy="620" r="7" fill="black"/>
+<circle cx="350" cy="1090" r="7" fill="black"/>
+<circle cx="400" cy="470" r="7" fill="black"/>
+<circle cx="400" cy="595" r="7" fill="black"/>
+<circle cx="400" cy="650" r="7" fill="black"/>
+<circle cx="400" cy="1120" r="7" fill="black"/>
+<circle cx="450" cy="500" r="7" fill="black"/>
+<circle cx="450" cy="640" r="7" fill="black"/>
+<circle cx="450" cy="680" r="7" fill="black"/>
+<circle cx="450" cy="1150" r="7" fill="black"/>
+<circle cx="400" cy="440" r="7" fill="black"/>
+<rect data-block="Decoder" x="100" y="275" width="350" height="125" fill="white" stroke="black" stroke-width="4.2"/>
+<rect data-block="CPU" x="100" y="515" width="210" height="195" fill="white" stroke="black" stroke-width="4.2"/>
+<rect data-block="SD" x="700" y="420" width="270" height="140" fill="white" stroke="black" stroke-width="4.2"/>
+<rect data-block="DDR" x="700" y="585" width="270" height="170" fill="white" stroke="black" stroke-width="4.2"/>
+<rect data-block="CommandPort" x="700" y="1070" width="270" height="140" fill="white" stroke="black" stroke-width="4.2"/>
+<rect data-block="RasterIX" x="100" y="1095" width="220" height="110" fill="white" stroke="black" stroke-width="4.2"/>
+<rect data-block="SDSlot" x="1200" y="420" width="190" height="140" fill="white" stroke="black" stroke-width="4.2"/>
+<rect data-block="DDR3" x="1200" y="600" width="190" height="140" fill="white" stroke="black" stroke-width="4.2"/>
+<rect data-block="HDMI" x="1200" y="1090" width="190" height="120" fill="white" stroke="black" stroke-width="4.2"/>
+<path data-block="ReadMux" d="M130 820L300 800V970L130 950Z" fill="white" stroke="black" stroke-width="4.2"/>
+<text x="275" y="326" font-size="38" text-anchor="middle" font-weight="500" fill="#000000">アドレスデコーダ</text>
+<text x="275" y="375" font-size="35" text-anchor="middle" font-weight="500" fill="#000000">Aから接続先を選ぶ</text>
+<text x="180" y="584" font-size="49" text-anchor="middle" font-weight="bold" fill="#000000">CPU</text>
+<text x="180" y="650" font-size="43" text-anchor="middle" font-weight="500" fill="#000000">Wally</text>
+<text x="302" y="560" font-size="35" text-anchor="end" font-weight="500" fill="#000000">A</text>
+<text x="302" y="608" font-size="35" text-anchor="end" font-weight="500" fill="#000000">D</text>
+<text x="302" y="653" font-size="35" text-anchor="end" font-weight="500" fill="#000000">W</text>
+<text x="835" y="477" font-size="40" text-anchor="middle" font-weight="500" fill="#000000">SDカード</text>
+<text x="835" y="531" font-size="40" text-anchor="middle" font-weight="500" fill="#000000">制御回路</text>
+<text x="835" y="630" font-size="40" text-anchor="middle" font-weight="500" fill="#000000">DDR</text>
+<text x="835" y="680" font-size="35" text-anchor="middle" font-weight="500" fill="#000000">コントローラー</text>
+<text x="835" y="730" font-size="35" text-anchor="middle" font-weight="500" fill="#000000">AMD製IP</text>
+<text x="835" y="1129" font-size="40" text-anchor="middle" font-weight="500" fill="#000000">接続回路</text>
+<text x="835" y="1184" font-size="35" text-anchor="middle" font-weight="500" fill="#000000">描画命令を渡す</text>
+<text x="210" y="1136" font-size="35" text-anchor="middle" font-weight="500" fill="#000000">描画・表示</text>
+<text x="210" y="1185" font-size="37" text-anchor="middle" font-weight="500" fill="#000000">回路</text>
+<text x="216" y="892" font-size="40" text-anchor="middle" font-weight="500" fill="#000000">選択</text>
+<text x="1295" y="477" font-size="37" text-anchor="middle" font-weight="500" fill="#000000">SDカード</text>
+<text x="1295" y="531" font-size="37" text-anchor="middle" font-weight="500" fill="#000000">スロット</text>
+<text x="1295" y="658" font-size="42" text-anchor="middle" font-weight="bold" fill="#000000">DDR3</text>
+<text x="1295" y="712" font-size="39" text-anchor="middle" font-weight="500" fill="#000000">メモリ</text>
+<text x="1295" y="1160" font-size="36" text-anchor="middle" font-weight="500" fill="#000000">HDMI端子</text>
+<text x="95" y="250" font-size="37" text-anchor="start" font-weight="bold" fill="#000000">Wallyリポジトリ</text>
+<text x="95" y="1070" font-size="37" text-anchor="start" font-weight="bold" fill="#000000">RasterIX</text>
+<text x="720" y="286" font-size="35" text-anchor="start" font-weight="500" fill="#000000">A  アドレス</text>
+<text x="720" y="331" font-size="35" text-anchor="start" font-weight="500" fill="#000000">D  書込みデータ</text>
+<text x="720" y="376" font-size="35" text-anchor="start" font-weight="500" fill="#000000">W  書込み指示</text>
+<text x="515" y="286" font-size="35" text-anchor="start" font-weight="500" fill="#000000">S0</text>
+<text x="565" y="326" font-size="35" text-anchor="start" font-weight="500" fill="#000000">S1</text>
+<text x="615" y="366" font-size="35" text-anchor="start" font-weight="500" fill="#000000">S2</text>
+<text x="100" y="450" font-size="35" text-anchor="start" font-weight="500" fill="#000000">S0〜S2</text>
+<text x="102" y="787" font-size="35" text-anchor="start" font-weight="500" fill="#000000">読出し</text>
+<text x="970" y="1050" font-size="35" text-anchor="end" font-weight="500" fill="#000000">本研究で追加</text>
+<text x="850" y="810" font-size="35" text-anchor="start" font-weight="500" fill="#000000">SDの値</text>
+<text x="850" y="870" font-size="35" text-anchor="start" font-weight="500" fill="#000000">DDRの値</text>
+<text x="850" y="930" font-size="35" text-anchor="start" font-weight="500" fill="#000000">接続回路の値</text>
+<text x="675" y="870" font-size="35" text-anchor="start" font-weight="500" fill="#000000">画像</text>
+<text x="30" y="1350" font-size="35" fill="#000000">太枠：チップ　破線：入手元　黒丸：接続点（概念図）</text>
 </g></svg>
