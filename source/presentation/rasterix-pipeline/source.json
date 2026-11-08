@@ -1,0 +1,17 @@
+{
+  "repository": "https://github.com/ToNi3141/RasterIX",
+  "revision": "3e2ee5aa5214b829c2a824250c445ce799ac8dc0",
+  "checked_on": "2026-11-08",
+  "path": "pictures/fpgaFlow.drawio.png",
+  "url": "https://github.com/ToNi3141/RasterIX/blob/3e2ee5aa5214b829c2a824250c445ce799ac8dc0/pictures/fpgaFlow.drawio.png",
+  "sha256": "191cd6b67e143534a12d04c144626677ed589ec9e1db7ce58f9dd53ed5e39505",
+  "license": "GPL-3.0-or-later",
+  "adaptation": "../board-evolution/rasterix-pipeline.mjs",
+  "console_rasterix_revision": "9269a01c9bd4c3342bfa70ef8e3cdd751c15c6d0",
+  "console_configuration": {
+    "module": "RasterIX_IF",
+    "TMU_COUNT": 1,
+    "ENABLE_EXTERNAL_TEXTURE_MEMORY": 0
+  },
+  "scope": "Conceptual processing graph; no claim of cycle-accurate RTL equivalence or updated hardware measurements."
+}

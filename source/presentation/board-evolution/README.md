@@ -253,3 +253,16 @@ paper. See the published source register for the dates, scope and exclusions.
 Reference-only listings, matching course titles, author affiliations and
 library holdings are not counted as textbook adoption. This is not an
 exhaustive inventory of current users. The main narration remains 355 seconds.
+
+## RasterIX pipeline reference slide
+
+Hidden question slide 17 redraws the official RasterIX FPGA pipeline as native
+editable circuit blocks. `rasterix-pipeline.mjs` retains all processing nodes
+and directed connections from the pinned upstream figure, including the
+parallel destination-buffer reads and fragment operations. The four phase
+columns replace the portrait layout; they are not clock-cycle boundaries.
+
+See [source and scope](../rasterix-pipeline/README.md) for the upstream revision,
+license and the distinction between this latest conceptual figure and the
+measured console configuration. No product or RasterIX revision is changed by
+adding the reference slide.

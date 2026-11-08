@@ -1,3 +1,4 @@
+import { drawRasterixPipeline, RASTERIX_PIPELINE_SOURCE, RASTERIX_PIPELINE_NARRATION, RASTERIX_PIPELINE_DETAIL } from './rasterix-pipeline.mjs';
 import { createCircuitWiring } from './circuit-wiring.mjs';
 import fs from 'node:fs/promises';
 import path from 'node:path';
@@ -223,6 +224,13 @@ s=slide('質問用：RVSOCの教科書採用例',0,
 drawRvsocAdoption(s,api,adoption);
 s.hidden=true;outline[outline.length-1].backup=true;
 
+s=slide('質問用：描画回路のFPGAパイプライン',0,
+  RASTERIX_PIPELINE_NARRATION,RASTERIX_PIPELINE_SOURCE,RASTERIX_PIPELINE_DETAIL);
+const pipelineGraph=drawRasterixPipeline(s,api);
+foot(s,'ToNi3141, RasterIX “FPGA pipeline”, main 3e2ee5aa（2026-11-08確認）を再構成');
+s.hidden=true;outline[outline.length-1].backup=true;
+await fs.writeFile(path.join(workspace,'rasterix-pipeline-graph.json'),JSON.stringify(pipelineGraph,null,2)+'\n');
+
 // Keep provenance in the notes and the GitHub-readable counterpart.
 for (const number of [3,6,7,8,9,10,12]) {
   const o=outline[number-1];
@@ -232,11 +240,11 @@ for (const number of [3,6,7,8,9,10,12]) {
 }
 await fs.writeFile(path.join(workspace,'wire-audit.json'),JSON.stringify(wiring.finalize(),null,2)+'\n');
 const total=outline.reduce((n,s)=>n+s.seconds,0);
-if(outline.length!==16||total!==355)throw new Error(`Unexpected allocation ${outline.length} slides, ${total} seconds`);
+if(outline.length!==17||total!==355)throw new Error(`Unexpected allocation ${outline.length} slides, ${total} seconds`);
 await fs.writeFile(path.join(workspace,'outline.json'),JSON.stringify(outline,null,2)+'\n');
 const md=[
   '# 中間発表：FPGAを用いた2Dゲーム機の製作',
-  '本編11枚と質問用5枚です。2枚目でFPGAの仕組み、3枚目で研究の目的を説明します。4枚目でlw、5枚目でswを、FPGA内のメモリを使って説明します。6枚目では同じ図にバスと外付けDDR3への接続を加えます。その後、SDカード、描画と表示を順に加えます。',
+  '本編11枚と質問用6枚です。2枚目でFPGAの仕組み、3枚目で研究の目的を説明します。4枚目でlw、5枚目でswを、FPGA内のメモリを使って説明します。6枚目では同じ図にバスと外付けDDR3への接続を加えます。その後、SDカード、描画と表示を順に加えます。',
   '[PowerPoint版](中間発表_主要事項.pptx) / [アブスト](../abstract/アブスト_主要事項.md) / [論文本文](../thesis/本文.md) / [技術付録](../thesis/技術付録.md) / [再生成方法](../../source/presentation/board-evolution/README.md) / [DDCA授業利用の出典](DDCA授業利用の出典.md) / [RVSOC教科書採用の出典](RVSOC教科書採用の出典.md)',
   '## 図の見方',
   '線の分岐を示す点は接続を表します。接続しない線の交差には短い隙間を設けています。双方向の線の矢印は、回路の端に置きます。短い端子の線では矢印を省略し、同じ経路の長い部分に進行方向を示す場合があります。',
@@ -248,7 +256,7 @@ const md=[
   PROVENANCE_DETAIL,
   '対応するソースは[回路の提供元一覧](../../source/presentation/board-evolution/README.md#component-provenance)にまとめています。',
   '## 発表時間と質問用スライド',
-  '本編の配分は動画の再生30秒を含め355秒です。2枚目は20秒、3枚目は15秒を割り当てています。動画を再生しながら結果を説明します。6分まで5秒の余裕を置きます。これは練習を実測した時間ではありません。12〜16枚目は非表示の質問用スライドです。13枚目はDDCAの授業利用例を示す日本地図、14枚目はFPGAチップの構成要素、15枚目は実機で使った回路全体のFPGA使用量、16枚目はRVSOCの教科書採用例です。通常のスライドショーでは本編11枚を表示します。',
+  '本編の配分は動画の再生30秒を含め355秒です。2枚目は20秒、3枚目は15秒を割り当てています。動画を再生しながら結果を説明します。6分まで5秒の余裕を置きます。これは練習を実測した時間ではありません。12〜17枚目は非表示の質問用スライドです。13枚目はDDCAの授業利用例を示す日本地図、14枚目はFPGAチップの構成要素、15枚目は実機で使った回路全体のFPGA使用量、16枚目はRVSOCの教科書採用例、17枚目はRasterIX公式のFPGAパイプライン図を再構成した資料です。通常のスライドショーでは本編11枚を表示します。',
   '## 目次',
   outline.map((o,i)=>'- ['+(i+1)+'. '+o.title.replaceAll('\n','')+'](#slide-'+(i+1)+')'+(o.backup?'（質問用）':'')).join('\n')
 ];
@@ -266,7 +274,7 @@ md.push('## 動作確認と詳しい実装',
   'スライド10の映像と静止画は、タイトルを上部中央へ移した製品ed6a1c09の[30秒の実機記録](../../experiments/breakout-title-top-20261108/README.md)です。回路の設定データは実験E8と同じ研究用HDMI表示構成です。3回のFPGA設定・起動と各30秒の基本動作確認、および300秒の継続実行は、文字配置変更前の[実験E8](../../experiments/basic-operation-20261108/README.md)に記録しています。3回は電源投入の試験ではありません。4〜6・8枚目の命令と値は経路の説明例です。ゲームコントローラへの対応やホーム画面などのGUIの充実は、今後の拡充候補です。',
   '詳しい実装と再現手順は[技術付録](../thesis/技術付録.md)にまとめています。',
   '## 図と書式の出典',
-  'CPU内部の簡略図はDDCA第7章、回路記号や書式はRVSOC図7.11などを参考にしています。チップ内の拡大図からボード全体へ視野を広げ、6〜9枚目では外付け部品の位置を固定して説明します。12枚目はRVSOCと製品RTLを基にした機能単位のブロック図で、個々の論理回路や全HDL信号、物理配置を網羅するものではありません。13枚目の地図は各校の公開シラバスなどと、lalamalinkのCC0地図データを基にしています。14枚目はFProとAMDの7シリーズの資料に基づくFPGAの構成要素の概略図です。15枚目は、動画の取得にも使った実験E8の回路設定について、配置配線後の使用数と使用率を示します。16枚目は公式授業資料と教育実践論文に基づく、RVSOCの教科書指定・使用実績です。出版前の原稿版の使用を含み、参考書のみの掲載は集計しません。公開版の表紙では個人情報を伏せています。[デザインと出典](../../source/presentation/board-evolution/README.md)に省略範囲と再生成方法を記載しています。');
+  'CPU内部の簡略図はDDCA第7章、回路記号や書式はRVSOC図7.11などを参考にしています。チップ内の拡大図からボード全体へ視野を広げ、6〜9枚目では外付け部品の位置を固定して説明します。12枚目はRVSOCと製品RTLを基にした機能単位のブロック図で、個々の論理回路や全HDL信号、物理配置を網羅するものではありません。13枚目の地図は各校の公開シラバスなどと、lalamalinkのCC0地図データを基にしています。14枚目はFProとAMDの7シリーズの資料に基づくFPGAの構成要素の概略図です。15枚目は、動画の取得にも使った実験E8の回路設定について、配置配線後の使用数と使用率を示します。16枚目は公式授業資料と教育実践論文に基づく、RVSOCの教科書指定・使用実績です。出版前の原稿版の使用を含み、参考書のみの掲載は集計しません。17枚目は2026年11月8日に確認した公式RasterIXの図を横長に再構成しています。最新公式図と実機のテクスチャ保存方式・TMU数の違いを明記しています。公開版の表紙では個人情報を伏せています。[デザインと出典](../../source/presentation/board-evolution/README.md)に省略範囲と再生成方法を記載しています。');
 await fs.writeFile(path.join(workspace,'中間発表_主要事項.md'),md.join('\n\n')+'\n');
 const raw=path.join(workspace,'raw-candidate.pptx'),poster=path.join(workspace,'poster-candidate.pptx'),candidate=path.join(workspace,'candidate.pptx');
 await(await PresentationFile.exportPptx(P)).save(raw);
@@ -280,7 +288,7 @@ if(audience==='public'){
 // Final package integrity/layout and video relationships are checked separately.
 await fs.mkdir(path.join(workspace,'poster-review'), { recursive: true });
 const posterFinal=path.join(workspace,'poster-review','poster-validated.pptx');
-const validationOptions={workspaceDir:workspace,pythonExecutable:process.env.RUNTIME_PYTHON,integrityValidatorPath:path.join(process.env.PRESENTATION_SKILL,'container_tools/inspect_presentation_package_integrity.py'),layoutValidatorPath:path.join(process.env.PRESENTATION_SKILL,'container_tools/inspect_presentation_layout_geometry.py'),layoutArgs:['--expected-slide-size-emu','12192000,6858000','--validate-bullet-geometry','--validate-heading-fit','--require-native-table-slide','15','--require-native-table-slide','16'],explicitTotalSlideCount:16,requiredNativeTableOwnerSlides:[15,16],requiredNativeChartOwnerSlides:[],fontPolicy:{basis:'design',families:[font,latinFont,codeFont]}};
+const validationOptions={workspaceDir:workspace,pythonExecutable:process.env.RUNTIME_PYTHON,integrityValidatorPath:path.join(process.env.PRESENTATION_SKILL,'container_tools/inspect_presentation_package_integrity.py'),layoutValidatorPath:path.join(process.env.PRESENTATION_SKILL,'container_tools/inspect_presentation_layout_geometry.py'),layoutArgs:['--expected-slide-size-emu','12192000,6858000','--validate-bullet-geometry','--validate-heading-fit','--require-native-table-slide','15','--require-native-table-slide','16'],explicitTotalSlideCount:17,requiredNativeTableOwnerSlides:[15,16],requiredNativeChartOwnerSlides:[],fontPolicy:{basis:'design',families:[font,latinFont,codeFont]}};
 await finalizePresentation({...validationOptions,candidatePath:poster,finalPath:posterFinal,verifyArtifactToolImport:true,receiptPath:path.join(workspace,'poster-validation.json')});
 const embedding=spawnSync(process.env.RUNTIME_PYTHON,[path.join(root,'source/presentation/board-evolution/embed_video.py'),posterFinal,candidate,path.join(root,VIDEO),'--review',path.join(root,'publication/media-review.json'),'--slide','10'],{encoding:'utf8'});
 if(embedding.status!==0)throw new Error(embedding.stderr||embedding.stdout||'Video embedding failed');
