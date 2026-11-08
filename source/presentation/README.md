@@ -3,115 +3,47 @@
 This directory builds the single published presentation:
 [slides and narration](../../docs/presentation/中間発表_主要事項.md) and
 [PowerPoint](../../docs/presentation/中間発表_主要事項.pptx).
-It contains eleven main slides, one clickable contents slide, and six hidden
-question slides. Earlier editions
-remain in Git history rather than beside the current output.
+The abstract-based main talk has eleven slides and a 355-second allocation,
+including a 30-second video. Clickable contents and six hidden question slides
+follow it. See [builder notes](board-evolution/README.md) for sources and scope.
 
-## Build and publication
+## Build
 
 Set `RUNTIME_NODE_MODULES`, `RUNTIME_PYTHON` and `PRESENTATION_SKILL` to the
-installed Artifact Tool runtime and presentation skill. Use a private build
-directory outside the repository:
+bundled Artifact Tool environment. Use a private directory outside OneDrive:
 
 ```sh
 node source/presentation/build.mjs RESEARCH_ROOT PRIVATE_BUILD_DIRECTORY
 ```
 
-The entry point delegates to `board-evolution/build.mjs`. Its default is the
-public edition: it sanitizes the package with the private redaction settings
-and validates its structure and layout. Content import checks cover all eighteen
-slides in two contiguous batches (1-11 and 12-18), because the complete deck
-exceeds the runtime's default aggregate XML import limit. The builder then adds
-native slide-jump links and the reviewed video, and validates the completed
-package. Native PowerPoint review checks that final deck's rendering and
-navigation. Question previews use twice the slide resolution for reading on
-GitHub. Diagrams, wires, labels and contents entries remain editable; the
-gameplay video is embedded.
+The entry point delegates to `board-evolution/build.mjs`. Public output is
+sanitized with the private redaction settings. The eighteen-slide content is
+imported in two batches before adding internal slide jumps and the reviewed
+video. The complete final package is checked structurally and rendered in
+native PowerPoint. Preview images and the Markdown counterpart permit reading
+on GitHub. Circuit blocks, signal lines, code, tables and links remain editable.
 
-For a school copy, set `PRESENTATION_AUDIENCE=private` and
-`PRESENTATION_PRIVATE_COVER_JSON` to a private JSON file outside this repository.
-Only that private edition reads the `student` and `supervisor` cover fields.
-Do not import or publish it. Both editions share the circuit and narration
-sources. No private names belong in this source tree.
+For a separate school copy, `PRESENTATION_AUDIENCE=private` and
+`PRESENTATION_PRIVATE_COVER_JSON` read private cover fields from outside the
+repository. A verified cover-only patch of the public build is also possible.
+Never publish that copy or the private input. Inspect all output slides, run
+the local privacy audit, and keep the publication hooks enabled.
 
-Review the public slides and media, import selected outputs through
-`tools/publication/sanitize.py`, update the media-review record, and run the
-privacy and reference checks. Refresh `publication/files.json` from the intended
-Git index. Keep build receipts, old local variants and private copies outside
-the public repository. Publication hooks must remain enabled.
+## Content
 
-## Content and design
+The main talk explains the FPGA board, the game-console extension, CPU address
+accesses, loading from SD, sending drawing commands, image output and observed
+game behavior. The main drawing source is `board-evolution/abstract-flow.mjs`.
+It uses the abstract's address map and the existing RVSOC-inspired palette,
+line conventions and fonts. `design-reference.json` retains source provenance.
 
-Slides 4-5 explain `lw` and `sw` using the same FPGA-internal memories. Slide 6
-adds the bus and AMD DDR controller to that datapath. SD control, RasterIX and
-display are then added in turn. The RVSOC Figure 7.11-derived pipeline remains
-the basis of the hidden whole-system diagram. Detailed scope, omissions and
-embedded-video handling are in the [builder notes](board-evolution/README.md).
+The original pipeline-based diagrams remain in source and in the hidden
+question diagram. They are not a second published presentation. The previous
+main talk is recoverable at commit `40d8a51bd1ab0d9c9a469146c349cd31b173bdce`.
 
-The notation and typography follow Harris et al., *RISC-V System-on-Chip
-Design* and the [authors' figure resources](https://pages.hmc.edu/harris/ddca/rvsocd.html).
-Source hashes are retained in [design-reference.json](design-reference.json).
-White register symbols, ALU/MUX shapes and word-versus-control line weights
-follow those references. Arial, Yu Gothic and Consolas are font adaptations.
-Blue highlights the current route or previously explained functions; it does
-not encode clock domains. Slide 2 uses a code example and an editable board
-schematic without a photograph. Slide 3 retains the board geometry and
-shows the research purpose using the CPU and graphics functions inside the
-chip. The source paths retain upstream identifiers,
-while audience-facing labels call RasterIX the drawing circuit (描画回路).
-The source includes unused detailed module drawings for possible question
-slides; they are not additional published presentation editions.
-
-Results retain the existing E6 scope: four image comparisons, 300.011 seconds
-of autoplay, and a separate 30-second capture. No new hardware measurement,
-educational-effectiveness test or universal display compatibility is claimed.
-Controller support remains future work. The 355-second narration allocation
-includes the 30-second video and is not a timed rehearsal.
-
-Hidden slide 13 summarizes selected DDCA syllabus listings on one prefecture map.
-Multicolor stripes show overlapping categories.
-The [dataset and map provenance](ddca-adoption/README.md) preserve institution,
-course, year, book role and public sources. The map includes historical
-reference-book listings; gray prefectures are unverified, not known non-users.
-
-Hidden slide 15 follows Chu (2018), Chapter 2, Sections 2.1.1-2.1.2,
-Figure 2.1: generic logic cells, programmable interconnect and dedicated
-macro cells. The lookup table and D-type flip-flop are inside the cell;
-block random access memory is a separate macro-cell resource. Full names
-appear on the editable diagram in `board-evolution/fpga-resources.mjs`.
-The cell has a direct output path and a registered output path. Notes
-explain the actual Artix-7 slice/CLB grouping separately from this generic
-schematic. No resource counts, utilization or physical placement are
-claimed, and external DDR3 remains distinct from on-chip block memory.
-
-## FPGA utilization question slide
-
-Hidden slide 16 is an editable Before/After percentage table built by
-`fpga-utilization.mjs` from
-`experiments/fpga-resource-comparison-20261108/comparison.json`.
-Before uses the saved September 8, 2026 routed Wally-only report; After uses
-experiment E8's November 8, 2026 research HDMI implementation, which also
-supplied the circuit configuration for the embedded demonstration.
-LUTs, slice registers, block-memory tile equivalents and DSP blocks are
-reported for each complete design on the same FPGA. The slide shows
-percentages, while the linked records retain the counts used to verify them.
-Generation checks the report hash, resource capacities, percentages and the
-qualified After bitstream identity.
-
-This is a historical comparison of two archived implementations, not a
-controlled measurement of the cost of adding only RasterIX. The Before
-report does not identify an exact source revision or bitstream hash. The
-source register preserves that limitation and distinguishes original and
-sanitized report hashes. The existing eleven-slide narration remains
-355 seconds.
-
-## RVSOC textbook adoption question slide
-
-Hidden slide 14 summarizes three documented textbook-designation or use
-examples, including historical draft use. Its editable table is generated
-by `rvsoc-adoption.mjs` from `source/presentation/rvsoc-adoption/records.json`.
-The sources are official course materials and an instructor-authored ASEE
-paper. See the published source register for the dates, scope and exclusions.
-Reference-only listings, matching course titles, author affiliations and
-library holdings are not counted as textbook adoption. This is not an
-exhaustive inventory of current users. The main narration remains 355 seconds.
+Observed behavior is bound to the E8 boot recordings and the separately dated
+title-layout recording. Main slides report movement, rebounds and block removal.
+Controller input and home-screen/menu GUI work remain future extensions.
+The source and notes retain display-configuration and evidence distinctions.
+No educational-effectiveness measurement or universal display compatibility
+is claimed. Question-slide datasets preserve their own dates and scope.

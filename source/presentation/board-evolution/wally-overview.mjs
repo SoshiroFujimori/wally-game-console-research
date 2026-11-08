@@ -24,7 +24,7 @@ export function drawWallyOverview(s, api) {
   const R=(pts,c=C.ink,arrow=true,w=1.8)=>route(s,pts.map(([x,y])=>[X(x),Y(y)]),c,arrow,w*k);
   const P=(pts,fill=C.white,stroke=C.ink,width=1.5)=>polygon(s,pts.map(([x,y])=>[X(x),Y(y)]),fill,stroke,width*k);
   const J=(x,y,c=C.ink)=>api.junction(s,X(x),Y(y),c,4*k);
-  const blue=C.blue, known=C.white;
+  const blue=C.ink, known=C.white;
   const M=(x,y,h=44,fill=C.white,inputs=2,ports=null)=>{
     P([[x,y],[x+17,y+6],[x+17,y+h-6],[x,y+h]],fill);
     const centers=ports||Array.from({length:inputs},(_,i)=>10+i*(h-20)/(inputs-1));
@@ -34,12 +34,12 @@ export function drawWallyOverview(s, api) {
   const F=(x,y,h=42,c=C.ink)=>{B('',x,y,12,h,C.white,16,c);P([[x+2,y],[x+6,y+5],[x+10,y]],'none',c);W(x+6,y-6,x+6,y,c,false,0.8);};
   const BI=(pts,c=C.ink,w=2)=>R(pts,c,'both',w);
 
-  // Highlight only functions/routes introduced in slides 4-9. A blue wire
-  // does not claim that the intervening black-outlined module was explained.
+  // The abstract-based talk does not introduce pipeline internals. Keep the
+  // reference diagram's signal outlines neutral rather than marking them taught.
   // Vendor-IP fill and pale hierarchy backgrounds have independent meanings.
-  T('青線・青枠：本編で説明した機能・経路',0,0,405,23,16,false,blue);
+  T('CPU内部を含む主要回路の接続',0,0,405,23,16,false,blue);
   T('●：接続　隙間のある交差：非接続',410,0,380,23,14,false,C.ink);
-  T('濃い塗り：AMD製IP　[R]：RasterIXリポジトリ由来（標準構成）',0,24,780,23,14,false,C.ink);
+  T('濃い塗り：AMD製IP　[R]：RasterIXリポジトリ由来',0,24,780,23,14,false,C.ink);
 
   // Board components outside the programmable chip.
   B('DDR3',800,0,144,36,C.white,19,blue);
@@ -297,7 +297,7 @@ export function drawWallyOverview(s, api) {
     B('描画回路 [R]',949,437,154,40,C.white,19,blue,2);
     W(975,419,975,437,blue,true,1.7);
     W(1065,437,1065,419,C.ink,true,1.7);
-    B('表示回路 [R]',939,515,164,35,C.white,18,blue,2);
+    B('表示回路',939,515,164,35,C.white,18,blue,2);
     W(958,477,958,515,C.ink,true,1.5);
     W(1094,515,1094,477,C.ink,true,1.5);
     T('表示先・完了',956,482,130,27,14,false,C.ink,'center');

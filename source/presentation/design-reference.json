@@ -1,5 +1,5 @@
 {
-  "version": 6,
+  "version": 7,
   "reference": "Harris et al., RISC-V System-on-Chip Design",
   "official_resources": "https://pages.hmc.edu/harris/ddca/rvsocd.html",
   "inspection_date": "2026-10-24",
@@ -140,22 +140,26 @@
     "used_in_current_deck": false
   },
   "simplified_diagrams": {
-    "source": "board-evolution/board-circuit.mjs",
-    "instruction_fetch_slide": 4,
-    "load_store_slides": [
+    "source": "board-evolution/abstract-flow.mjs",
+    "overview_and_transfer_slides": [
+      3,
+      6,
+      7,
+      8
+    ],
+    "address_access_slides": [
       4,
       5
     ],
-    "bus_software_graphics_slides": [
-      6,
-      7,
-      8,
-      9
+    "scope": "Functional diagrams aligned with the abstract; no instruction-encoding lesson in the main talk.",
+    "forward_signals": [
+      "address A",
+      "write data D",
+      "write indicator W"
     ],
-    "clock_symbol": "Triangular edge-triggered clock input on a white register symbol",
-    "sd_transfer_arrow": "CPU software requests SD data, reads the receive register and stores data through the DDR controller; no direct SD-to-DDR DMA link",
-    "ddr_controller": "Shown explicitly on slides 6-9. CPU, graphics-write and display-read paths terminate at the controller. The DDR3 chip is separate.",
-    "drawing_stage_numbers": "Main instruction examples use drawBoard stages 3 and 4 on slides 4 and 5; stages 5-8 correspond to slides 6-9. CPU geometry is shared."
+    "selection": "Decode selects one target; the corresponding select chooses read data.",
+    "sd_transfer": "CPU reads SD receive data and stores it through the DDR controller.",
+    "display": "A functional image-read/output block. Recorded implementation is identified by E8 evidence, not by the box label."
   },
   "cover": {
     "fields": [
@@ -177,11 +181,11 @@
     "internal_circuit_example": "An AND gate corresponding to the SystemVerilog expression assign y = a & b.",
     "code_scope": "A small combinational-logic example; it is not a complete peripheral controller.",
     "purpose": "Explain that a described circuit can be implemented inside the FPGA chip to control physical components on the board.",
-    "research_purpose": "Slide 3 replaces the AND example with the existing educational CPU and graphics functionality to introduce the game-console extension."
+    "research_purpose": "Slide 3 shows the console connection and identifies the added command adapter."
   },
   "presentation_mapping_review_date": "2026-11-08",
   "fpga_resource_question_slide": {
-    "slide": 14,
+    "slide": 15,
     "source": "source/presentation/board-evolution/fpga-resources.mjs",
     "scope": "Generic FPGA hierarchy from Chu (2018), not a physical Artix-7 slice or measured utilization",
     "examples": [
@@ -209,12 +213,11 @@
     "layout": "Aligned lookup-output branching, direct and registered paths, centered English resource names, a separate clock input, and evenly spaced macro-cell rows."
   },
   "fpga_utilization_question_slide": {
-    "slide": 15,
+    "slide": 16,
     "source": "source/presentation/board-evolution/fpga-utilization.mjs",
-    "evidence": "docs/thesis/再現資料/実験記録/E6/fresh-product/qualification/qualification.json",
-    "evidence_section": "resources",
-    "qualified_date": "2026-10-08",
-    "scope": "Post-route whole-design utilization for the qualified product used in the E6 video",
+    "evidence": "experiments/fpga-resource-comparison-20261108/comparison.json",
+    "qualified_date": "2026-11-08",
+    "scope": "Historical Before/After whole-design comparison; After is the E8 recording configuration.",
     "presentation": "Editable table, RVSOC blue header, Yu Gothic and Arial, count-derived percentages",
     "exclusions": [
       "external DDR3 usage",
@@ -224,12 +227,13 @@
     ]
   },
   "rvsoc_adoption_question_slide": {
-    "slide": 16,
+    "slide": 14,
     "source": "source/presentation/board-evolution/rvsoc-adoption.mjs",
     "data": "source/presentation/rvsoc-adoption/records.json",
     "checked_on": "2026-11-08",
     "institutions": 3,
     "scope": "Documented textbook designations and historical draft use; not an exhaustive current adoption count. Reference-only listings excluded.",
     "presentation": "Editable table with the existing RVSOC-inspired blue header, pale alternate rows, black rules and Yu Gothic/Arial typography."
-  }
+  },
+  "previous_presentation_commit": "40d8a51bd1ab0d9c9a469146c349cd31b173bdce"
 }

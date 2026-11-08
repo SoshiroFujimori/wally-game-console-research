@@ -58,6 +58,9 @@ original_images = {b.get(qn("r:embed")) for b in doc.element.findall(".//" + qn(
 for paragraph in list(doc.paragraphs):
     if paragraph.style.name == "Title":
         replace(paragraph, content["title"])
+        paragraph.paragraph_format.line_spacing = Pt(22)
+        paragraph.paragraph_format.space_before = Pt(0)
+        paragraph.paragraph_format.space_after = Pt(6)
     elif paragraph.style.name == "Subtitle":
         paragraph._p.getparent().remove(paragraph._p)
 
@@ -104,7 +107,7 @@ for heading, paragraphs in sections.items():
         # Retain the one-page, two-column layout with the expanded explanation.
         for run in paragraph.runs:
             run.font.size = Pt(10.5)
-        paragraph.paragraph_format.line_spacing = Pt(15)
+        paragraph.paragraph_format.line_spacing = Pt(14)
         paragraph.paragraph_format.keep_together = True
         anchor = node
         for number, figure in enumerate(figures, 1):
@@ -215,7 +218,7 @@ for heading, paragraphs in content["sections"].items():
                 if example.get("caption"):
                     md.append(example["caption"])
 md.append("図2の出典は[実機映像の記録](../../experiments/breakout-title-top-20261108/README.md)であり，[30秒の動画](../../experiments/breakout-title-top-20261108/video/breakout-30s.mp4)も公開している．本文に示した3回の起動・動作確認の条件と結果は，[動作確認記録](../../experiments/basic-operation-20261108/README.md)を参照できる．")
-md.append("標準構成の表示回路は，RasterIXリポジトリに同梱されたultraembeddedの`dvi_framebuffer`を用い，本研究で接続・画面切替の回路を追加したものである．DDRコントローラーはAMD製IPで，本研究で追加したNexys Video用の生成・接続設定をWally側のリポジトリに収めている．回路の入手元と実装箇所は[構成要素の出典](../../source/presentation/board-evolution/README.md)を参照できる．映像記録時の表示部分には，[実験E8のHDMI構成](../../experiments/basic-operation-20261108/hdmi/README.md)を用いた．")
+md.append("図1では，公式RasterIXの描画回路と表示回路を分けて示す．実機映像の表示回路は，研究用の画像読出し回路とhdl-util/hdmiを用いた[実験E8の構成](../../experiments/basic-operation-20261108/hdmi/README.md)である．製品既定のDVI構成との対応は[構成比較と実機記録](../../experiments/dvi-standard-check-20261108/README.md)を参照できる．DDRコントローラーはAMD製IPで，生成・接続設定をWally側のリポジトリに収めている．回路の入手元と実装箇所は[構成要素の出典](../../source/presentation/board-evolution/README.md)にまとめた．")
 md.append("## 参考文献")
 md.extend(content["references"])
 md.append("命令の接続設計は[論文第6章](../thesis/本文.md#ch_6)，実機で確認した条件と結果は[第12章](../thesis/本文.md#ch_12)に示す．詳しい実装は[技術付録](../thesis/技術付録.md)から参照できる．")

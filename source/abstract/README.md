@@ -91,3 +91,12 @@ and Japanese comments explain the purpose and scope. Declaration boilerplate,
 initialization, waits, and the complete SD transaction sequence are omitted.
 The fragment remains editable in Word and fenced as C in the Markdown version.
 Review the full one-page layout in both color and grayscale after rebuilding.
+
+## Display provenance
+
+The functional figure separates official RasterIX drawing from the display
+circuit. The demonstrated system uses the E8 research scanout with hdl-util/hdmi.
+Only the drawing block belongs inside the RasterIX source outline. Display
+implementation details and the standard-output comparison remain in
+[the reproduction record](../../experiments/dvi-standard-check-20261108/README.md).
+The abstract body reports observed gameplay without discussing capture software.
