@@ -18,10 +18,15 @@ signal roles for layout review. Text and signal lines remain black for both
 color and monochrome distribution. Transfer timing is omitted in this concept
 diagram.
 
-The chip header explains that HDL describes the implemented circuitry. Notes
-above the external components identify them as physical board parts; the note
-below DDR3 states that it stores programs and images. These notes occupy unused
-space without changing signal routing.
+The chip header explains that HDL describes the implemented circuitry.
+A single panel encloses the three physical components outside the FPGA chip.
+Its header explicitly applies to all three components. Each component's role
+is inside its own outline: the SD slot accepts the game card, DDR3 stores
+programs and images, and HDMI carries video to the screen. The two labelled
+items inside DDR3 identify stored content, not a fixed memory partition.
+The DDR3 description occupies the space between its title and the HDMI block.
+Clearance gaps at the panel boundary keep the existing signal arrowheads
+visible. Signal routing and arrow geometry are unchanged.
 
 Figure 2 uses the recorded color frame at `docs/thesis/figs/current-game.png`
 without a color or tone transformation. Review the circuit diagram in color and

@@ -1,9 +1,9 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="1420" height="1390" viewBox="0 0 1420 1390" role="img" aria-labelledby="title desc">
 <title id="title">FPGAチップ内の信号接続とチップ外の部品</title>
-<desc id="desc">FPGAボード内にFPGAチップと，物理的に存在するSDカードスロット，DDR3メモリ，HDMI端子を示す．チップ内では，CPUのアドレスADをデコーダ①へ渡し，ADの属する範囲からSD制御（S0），DDR制御（S1），接続回路（S2）の一つを選ぶ．SD制御の範囲は0x13000〜0x13FFF，DDR制御は0x80000000〜0x9FFFFFFF，接続回路は0x10080000〜0x100800FFである．SD制御回路②の内部には0x13048の送信用と0x1304Cの受信用の場所を示す．複数のアドレスが同じ回路を選び，その回路内の操作先を指定する．書込みデータWDと1ビットの書込みイネーブルWEを各回路へ渡し，読出しデータRDを選んでCPUへ返す．WEは0で読出し，1で書込みを意味する．接続回路は描画命令をRasterIXへ渡す．RasterIXの描画と表示を一つの箱にまとめ，DDR3との画像の読み書きとHDMI端子への映像出力を示す．WallyリポジトリとRasterIXの流用範囲を破線で囲む．細線は1ビット，太線は複数ビット，黒丸は接続点である．回路をHDLで記述することと，DDR3にプログラムと画像を保存することを補足する．タイミング制御を省略した概念図である．</desc>
+<desc id="desc">FPGAボード内にFPGAチップと，チップ外のSDカードスロット，DDR3メモリ，HDMI端子を示す．右側の3部品を共通の枠で囲み，「枠内の3点は基板に実装済み」と示す．ゲーム入りのカードを挿す説明はSDカードスロットの枠内に，保存するプログラムと画像はDDR3メモリの枠内に，画面へ映像を送り出す説明はHDMI端子の枠内に配置する．チップ内では，CPUのアドレスADをデコーダ①へ渡し，ADの属する範囲からSD制御（S0），DDR制御（S1），接続回路（S2）の一つを選ぶ．SD制御の範囲は0x13000〜0x13FFF，DDR制御は0x80000000〜0x9FFFFFFF，接続回路は0x10080000〜0x100800FFである．SD制御回路②の内部には0x13048の送信用と0x1304Cの受信用の場所を示す．複数のアドレスが同じ回路を選び，その回路内の操作先を指定する．書込みデータWDと1ビットの書込みイネーブルWEを各回路へ渡し，読出しデータRDを選んでCPUへ返す．WEは0で読出し，1で書込みを意味する．接続回路は描画命令をRasterIXへ渡す．RasterIXの描画と表示を一つの箱にまとめ，DDR3との画像の読み書きとHDMI端子への映像出力を示す．WallyリポジトリとRasterIXの流用範囲を破線で囲む．細線は1ビット，太線は複数ビット，黒丸は接続点である．回路をHDLで記述することと，DDR3にプログラムと画像を保存することを補足する．タイミング制御を省略した概念図である．</desc>
 <defs><clipPath id="chip-area"><rect x="45" y="110" width="1105" height="1180"/></clipPath>
 <!-- Arrow shafts stop inside the broad base of each filled arrowhead. -->
-<mask id="source-clearance" maskUnits="userSpaceOnUse" x="0" y="0" width="1420" height="1340"><rect width="1420" height="1390" fill="white"/>
+<mask id="source-clearance" maskUnits="userSpaceOnUse" x="0" y="0" width="1420" height="1390"><rect width="1420" height="1390" fill="white"/>
 <path d="M350 440L350 1090" stroke="black" fill="none" stroke-width="32" stroke-linecap="round" stroke-linejoin="round"/>
 <path d="M400 470L400 1120" stroke="black" fill="none" stroke-width="32" stroke-linecap="round" stroke-linejoin="round"/>
 <path d="M450 500L450 1150" stroke="black" fill="none" stroke-width="32" stroke-linecap="round" stroke-linejoin="round"/>
@@ -33,16 +33,28 @@
 <path d="M970 465L1200 465" stroke="black" fill="none" stroke-width="32" stroke-linecap="round" stroke-linejoin="round"/>
 <path d="M970 645L1200 645" stroke="black" fill="none" stroke-width="32" stroke-linecap="round" stroke-linejoin="round"/>
 <path d="M320 1220L400 1220L400 1260L1170 1260L1170 1175L1200 1175" stroke="black" fill="none" stroke-width="32" stroke-linecap="round" stroke-linejoin="round"/>
+</mask><mask id="external-entry-clearance" maskUnits="userSpaceOnUse" x="1160" y="100" width="250" height="1200">
+<rect x="1160" y="100" width="250" height="1200" fill="white"/>
+<path d="M1165 465H1210M1165 645H1210M1165 1175H1210" fill="none" stroke="black" stroke-width="38"/>
 </mask></defs>
-<rect width="1420" height="1340" fill="white"/>
+<rect width="1420" height="1390" fill="white"/>
 <g font-family="Yu Gothic,Arial,sans-serif" fill="#000000">
 <rect id="fpga-board" x="3" y="3" width="1414" height="1384" fill="#F2F5FB" stroke="black" stroke-width="5"/>
 <text x="28" y="56" font-size="44" font-weight="bold" fill="#000000">FPGAボード / Nexys Video</text>
 <rect id="fpga-chip" x="45" y="110" width="1105" height="1180" fill="#C4D5ED" stroke="black" stroke-width="8"/>
 <rect x="49" y="114" width="1097" height="66" fill="#ACC4E4"/>
 <text x="73" y="161" font-size="43" font-weight="bold" fill="#000000">FPGAチップ</text>
-<text x="1295" y="145" font-size="35" text-anchor="middle" fill="#000000">チップ外の</text>
-<text x="1295" y="195" font-size="35" text-anchor="middle" fill="#000000">部品</text>
+<g id="external-components-panel" data-scope="SDSlot DDR3 HDMI">
+<rect x="1182" y="110" width="223" height="1180" fill="#F2F5FB"/>
+<rect x="1184" y="112" width="219" height="188" fill="#DEE7F4"/>
+<rect x="1182" y="110" width="223" height="1180" fill="none" stroke="#526071" stroke-width="2.5" mask="url(#external-entry-clearance)"/>
+<path d="M1184 300H1403" fill="none" stroke="#526071" stroke-width="2"/>
+<g id="external-common-note" text-anchor="middle" fill="#000000">
+<text x="1293.5" y="158" font-size="29" font-weight="bold">チップ外の部品</text>
+<text x="1293.5" y="211" font-size="31">枠内の3点は</text>
+<text x="1293.5" y="257" font-size="29">基板に実装済み</text>
+</g>
+</g>
 <g id="source-outlines" fill="none" stroke="black" stroke-width="3.2" stroke-dasharray="12 9" mask="url(#source-clearance)">
 <rect id="wally-source" x="70" y="205" width="1050" height="790"/>
 <path id="rasterix-source" d="M70 1025H370V1265H70Z"/></g>
@@ -178,9 +190,9 @@
 <rect data-block="DDR" x="700" y="585" width="270" height="170" fill="white" stroke="black" stroke-width="4.2"/>
 <rect data-block="CommandPort" x="700" y="1070" width="270" height="140" fill="white" stroke="black" stroke-width="4.2"/>
 <rect data-block="RasterIX" x="100" y="1095" width="220" height="145" fill="white" stroke="black" stroke-width="4.2"/>
-<rect data-block="SDSlot" x="1200" y="420" width="190" height="140" fill="white" stroke="black" stroke-width="4.2"/>
-<rect data-block="DDR3" x="1200" y="600" width="190" height="140" fill="white" stroke="black" stroke-width="4.2"/>
-<rect data-block="HDMI" x="1200" y="1115" width="190" height="120" fill="white" stroke="black" stroke-width="4.2"/>
+<rect data-block="SDSlot" x="1200" y="350" width="190" height="220" fill="white" stroke="black" stroke-width="4.2"/>
+<rect data-block="DDR3" x="1200" y="600" width="190" height="385" fill="white" stroke="black" stroke-width="4.2"/>
+<rect data-block="HDMI" x="1200" y="1050" width="190" height="215" fill="white" stroke="black" stroke-width="4.2"/>
 <path data-block="ReadMux" d="M130 820L300 800V970L130 950Z" fill="white" stroke="black" stroke-width="4.2"/>
 <text x="275" y="326" font-size="38" text-anchor="middle" font-weight="500" fill="#000000">アドレスデコーダ</text>
 <text x="275" y="375" font-size="32" text-anchor="middle" font-weight="500" fill="#000000">① 範囲で回路を選択</text>
@@ -201,11 +213,11 @@
 <text x="835" y="1129" font-size="40" text-anchor="middle" font-weight="500" fill="#000000">接続回路</text>
 <text x="835" y="1184" font-size="35" text-anchor="middle" font-weight="500" fill="#000000">描画命令を渡す</text>
 <text x="216" y="892" font-size="40" text-anchor="middle" font-weight="500" fill="#000000">選択</text>
-<text x="1295" y="477" font-size="37" text-anchor="middle" font-weight="500" fill="#000000">SDカード</text>
-<text x="1295" y="531" font-size="37" text-anchor="middle" font-weight="500" fill="#000000">スロット</text>
+<text x="1295" y="395" font-size="37" text-anchor="middle" font-weight="500" fill="#000000">SDカード</text>
+<text x="1295" y="439" font-size="37" text-anchor="middle" font-weight="500" fill="#000000">スロット</text>
 <text x="1295" y="658" font-size="42" text-anchor="middle" font-weight="bold" fill="#000000">DDR3</text>
 <text x="1295" y="712" font-size="39" text-anchor="middle" font-weight="500" fill="#000000">メモリ</text>
-<text x="1295" y="1185" font-size="36" text-anchor="middle" font-weight="500" fill="#000000">HDMI端子</text>
+<text x="1295" y="1105" font-size="36" text-anchor="middle" font-weight="500" fill="#000000">HDMI端子</text>
 <text x="95" y="250" font-size="37" text-anchor="start" font-weight="bold" fill="#000000">Wallyリポジトリ</text>
 <text x="95" y="1070" font-size="37" text-anchor="start" font-weight="bold" fill="#000000">RasterIX</text>
 <g id="address-map" fill="#000000">
@@ -228,11 +240,26 @@
 <text x="675" y="870" font-size="35" text-anchor="start" font-weight="500" fill="#000000">画像</text>
 
 <text x="1115" y="161" font-size="35" text-anchor="end" font-weight="500" fill="#000000" data-explanation="true">HDLコードで回路を記述し，チップ内に実装</text>
-<text x="1295" y="270" font-size="35" text-anchor="middle" font-weight="500" fill="#000000" data-explanation="true">ボード上に</text>
-<text x="1295" y="320" font-size="35" text-anchor="middle" font-weight="500" fill="#000000" data-explanation="true">物理的に</text>
-<text x="1295" y="370" font-size="35" text-anchor="middle" font-weight="500" fill="#000000" data-explanation="true">存在する部品</text>
-<text x="1295" y="805" font-size="35" text-anchor="middle" font-weight="500" fill="#000000" data-explanation="true">プログラムと</text>
-<text x="1295" y="855" font-size="35" text-anchor="middle" font-weight="500" fill="#000000" data-explanation="true">画像を保存</text>
+<g id="external-component-notes" fill="#000000" text-anchor="middle">
+<g data-for="SDSlot">
+<path d="M1215 456H1375" fill="none" stroke="#526071" stroke-width="2"/>
+<text x="1295" y="498" font-size="28">ゲーム入りの</text>
+<text x="1295" y="540" font-size="28">カードを挿す</text>
+</g>
+<g data-for="DDR3">
+<path d="M1215 742H1375" fill="none" stroke="#526071" stroke-width="2"/>
+<text x="1295" y="785" font-size="28">保存する内容</text>
+<rect x="1213" y="809" width="164" height="60" fill="#DEE7F4" stroke="#526071" stroke-width="2"/>
+<text x="1295" y="851" font-size="30">プログラム</text>
+<rect x="1213" y="900" width="164" height="60" fill="#DEE7F4" stroke="#526071" stroke-width="2"/>
+<text x="1295" y="943" font-size="33">画像</text>
+</g>
+<g data-for="HDMI">
+<path d="M1215 1132H1375" fill="none" stroke="#526071" stroke-width="2"/>
+<text x="1295" y="1180" font-size="28">画面へ映像を</text>
+<text x="1295" y="1222" font-size="28">送り出す</text>
+</g>
+</g>
 <text id="signal-legend" x="30" y="1325" font-size="27" fill="#000000">AD：アドレス　WD：書込データ　RD：読出データ　WE：書込みイネーブル1 bit（0：読出し，1：書込み）</text>
 <text x="30" y="1370" fill="#000000" font-size="26">細線：1 bit　太線：複数bit　太枠：チップ　破線：入手元　黒丸：接続点（概念図）</text><path d="M281 469L297 451" fill="none" stroke="black" stroke-width="2.5"/><text x="289" y="449" fill="black" font-size="28" text-anchor="middle">3</text><text x="210" y="1145" font-size="36" text-anchor="middle" fill="black">描画・表示</text>
 <text x="210" y="1200" font-size="39" text-anchor="middle" fill="black">回路</text>

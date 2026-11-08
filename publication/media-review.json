@@ -20,7 +20,8 @@
     "remove-fpga-note-20261108": "Reviewed the native PowerPoint render after removing the supplemental Block RAM/DDR3 comparison sentence from the FPGA components slide. Pixel differences are confined to the removed sentence area. All other slides, embedded media, private cover and the 51 internal slide links in each edition are preserved. Preview metadata was removed without changing RGBA pixels.",
     "abstract_sd_standard_display_20261109": "Reviewed the compact single RasterIX block, both one-page Word editions, and the standard-display game screenshots. The hardware operator reviewed the 30-second video and diagnostic images as recorded in experiments/dvi-recovery-20261109/media-review.json. All published media hashes were verified; embedded Word images match reviewed source pixels. The public title was also verified using PDFium because the Poppler render omitted it.",
     "abstract_arrowheads_20261109": "Reviewed all 26 arrowheads after shortening each shaft into the broad rear of its filled triangle. Enlarged horizontal, vertical, and bidirectional comparisons confirm that shafts do not protrude through tips. Original endpoint coordinates and bus widths are preserved. The full diagram and one-page public/private Word renders were reviewed; embedded images match the reviewed source pixels. Abstract paragraph text is unchanged.",
-    "abstract_address_ranges_20261109": "Reviewed the three assigned address ranges and the two SD register locations against the pinned console configuration and RTL. The diagram preserves all signal routes and 26 corrected arrowheads. Reviewed the one-page public and private Word renders and grayscale legibility. Embedded images match the reviewed pixels; the game image is unchanged."
+    "abstract_address_ranges_20261109": "Reviewed the three assigned address ranges and the two SD register locations against the pinned console configuration and RTL. The diagram preserves all signal routes and 26 corrected arrowheads. Reviewed the one-page public and private Word renders and grayscale legibility. Embedded images match the reviewed pixels; the game image is unchanged.",
+    "abstract_external_parts_20261109": "Reviewed the shared scope panel for the three physical board parts and the role descriptions contained in each component outline. DDR3 stores the two labelled content types; no fixed partition sizes are implied. Signal routes and all 26 arrowheads are unchanged. Reviewed the one-page public/private Word renders and grayscale legibility. Embedded images match the reviewed pixels; the game image and abstract paragraphs are unchanged."
   },
   "sha256": [
     "00eb0240b0906cb38ef39044d105b2cd8723b71ca90db2e875bee6944ceb6b92",
@@ -690,6 +691,7 @@
     "ae74ee981ecd5c8027fcb0b174f912ecaa38c7c8199db3a32abfb0d66a253c1a",
     "ae775f308be3f9d9820c8f8b2986c5aac69335388857c328fe61561807420a13",
     "aedad0f1af2b5cd131accd5d3a0610e8a8e590d9758313a7054a72f98fdaec28",
+    "af3da380883610f9c3682353bf5c6aa68a9d59cf3e3813e0a6a2feb8aaaa4e53",
     "af40ff95b319c25961574baf944ee6fee7b4e231de447fb53d18e78f19eb45c0",
     "af52d807e0a6ca1e6054ae52de16acfb0d32003000262cfefcfc31b5e7e8b58f",
     "af596b454717249b0e1eecad54138bcec071745b58b1490df218e6bf966c8150",
