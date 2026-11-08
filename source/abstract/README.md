@@ -7,7 +7,7 @@ signals keep those outlines clear of arrowheads.
 The chip and external-component panel share balanced side margins within the
 board outline. Address ranges are inset from the right boundary, and readback
 labels are centered in the available space above their return paths. The
-underlying connection paths and arrowhead geometry are preserved.
+circuit blocks retain their signal roles and connections.
 
 Readback paths run toward the selector below the CPU.
 The selected read data returns to the CPU at the input labelled `RD`. The
@@ -17,6 +17,10 @@ transfer. The figure and body both state this mapping explicitly. Drawing comman
 below the added command port, while the image-memory path runs between RasterIX
 and the DDR controller. Distinct signals use separate routing lanes. A gap at
 a wire crossing indicates no connection; a black dot marks a connected branch.
+Within each signal group, all clearance strokes are drawn before the black
+wire strokes. This prevents the crossing treatment from erasing same-signal
+junctions. Connected branches meet continuously at each black dot; different
+signals retain a gap where they cross.
 The SVG `data-net`, `data-source`, and `data-target` attributes identify the
 signal roles for layout review. Text and signal lines remain black for both
 color and monochrome distribution. Transfer timing is omitted in this concept

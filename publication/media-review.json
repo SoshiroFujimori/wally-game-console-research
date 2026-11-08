@@ -23,7 +23,8 @@
     "abstract_address_ranges_20261109": "Reviewed the three assigned address ranges and the two SD register locations against the pinned console configuration and RTL. The diagram preserves all signal routes and 26 corrected arrowheads. Reviewed the one-page public and private Word renders and grayscale legibility. Embedded images match the reviewed pixels; the game image is unchanged.",
     "abstract_external_parts_20261109": "Reviewed the shared scope panel for the three physical board parts and the role descriptions contained in each component outline. DDR3 stores the two labelled content types; no fixed partition sizes are implied. Signal routes and all 26 arrowheads are unchanged. Reviewed the one-page public/private Word renders and grayscale legibility. Embedded images match the reviewed pixels; the game image and abstract paragraphs are unchanged.",
     "abstract_no_circled_labels_20261109": "Reviewed the circuit figure and both one-page native Word renders after removing the circled numeric cross-references from labels, body text and alternative text. All figure geometry and signal routes are unchanged. Embedded images match reviewed source pixels; the game image is unchanged.",
-    "abstract_diagram_balance_20261109": "Reviewed the balanced internal board margins, inset address-range text and centered readback labels in color and grayscale at column size. All signal paths, block geometry, labels and 26 arrowheads are preserved under a shared horizontal translation. Moved label ink bounds do not overlap labels, wires or arrowheads. Both one-page document editions were rendered and reviewed; document text and gameplay pixels are unchanged. Embedded figure pixels match the reviewed source images."
+    "abstract_diagram_balance_20261109": "Reviewed the balanced internal board margins, inset address-range text and centered readback labels in color and grayscale at column size. All signal paths, block geometry, labels and 26 arrowheads are preserved under a shared horizontal translation. Moved label ink bounds do not overlap labels, wires or arrowheads. Both one-page document editions were rendered and reviewed; document text and gameplay pixels are unchanged. Embedded figure pixels match the reviewed source images.",
+    "abstract_junction_continuity_20261109": "Reviewed all 13 black-dot junctions in the rendered circuit diagram: each incident wire remains continuous immediately outside its dot. Pixel checks confirmed the previous gaps and their removal; representative crossings between different nets retain their clearance. All 26 arrowheads and signal roles are retained. The DDR write-data branch was moved slightly to keep its junction clear of the nearby write-enable crossing. Reviewed enlarged details, column-size color and grayscale proofs, and both one-page Word editions. Document text and gameplay pixels are unchanged; embedded figure pixels match reviewed source images."
   },
   "sha256": [
     "00eb0240b0906cb38ef39044d105b2cd8723b71ca90db2e875bee6944ceb6b92",
@@ -586,6 +587,7 @@
     "8fd713538971f30ed85cb408acd14f865d2dc17feb5882122db85be433bc46b6",
     "902bec362751eb35e0dbb4675cf811b235d9a259ad10dc37effc7346eda9280b",
     "902e5784a4f0e816e2557941850b350070ed0ed817c27b1004a237dc0427ce62",
+    "90730426610d15be0436c8469fe3994d1b167a4ff30397bfedc2cdb438c7ca6e",
     "90e7e9bd45a1ad2b9af30a03ffb94991724244a0cfff5f8699592b5a4ffc5b11",
     "911bf4f751e80d4e7e0c602b3ccc48119f1e327a81525ac975cdbe313f3b7aa6",
     "91591e1e63e0372570416509c0d4973013cf10a888b30402241c383e28f7cb93",
@@ -911,6 +913,7 @@
     "eb94c43c8ecc70be72c244ac1ad4ca835aa20af35b5d03cf941d9ff4bb094342",
     "eba0a666a1ec7913252fd71c9dc5a50599d4d3f33e0b642fb52939a88456c8a6",
     "ec5c0a94ec8fd7cf6ed6f616e529ff7c27e28c419b1452927f4f4a1e34edd873",
+    "ed9f51210165793d635a399c518814a50a8553e33da083a47511700ee789dfc8",
     "ee1dc67859ef408ff0a325595adcf4aef17a93beea5b96736d302c4ddbc522ca",
     "ee27d16babfa6d39ea5dcea4b794d40593a452f342ed4bad70df986855e51a76",
     "ee314d55c49a564e2c3d572e3852cce8ac6adbb61719df436ad82acf69d75475",

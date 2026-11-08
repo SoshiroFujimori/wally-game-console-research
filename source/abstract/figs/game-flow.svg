@@ -11,7 +11,7 @@
 <path d="M350 620L700 620" stroke="black" fill="none" stroke-width="32" stroke-linecap="round" stroke-linejoin="round"/>
 <path d="M350 1090L700 1090" stroke="black" fill="none" stroke-width="32" stroke-linecap="round" stroke-linejoin="round"/>
 <path d="M400 470L700 470" stroke="black" fill="none" stroke-width="32" stroke-linecap="round" stroke-linejoin="round"/>
-<path d="M400 650L700 650" stroke="black" fill="none" stroke-width="32" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M400 660L700 660" stroke="black" fill="none" stroke-width="32" stroke-linecap="round" stroke-linejoin="round"/>
 <path d="M400 1120L700 1120" stroke="black" fill="none" stroke-width="32" stroke-linecap="round" stroke-linejoin="round"/>
 <path d="M450 500L700 500" stroke="black" fill="none" stroke-width="32" stroke-linecap="round" stroke-linejoin="round"/>
 <path d="M450 680L700 680" stroke="black" fill="none" stroke-width="32" stroke-linecap="round" stroke-linejoin="round"/>
@@ -59,126 +59,159 @@
 <g id="source-outlines" fill="none" stroke="black" stroke-width="3.2" stroke-dasharray="12 9" mask="url(#source-clearance)">
 <rect id="wally-source" x="70" y="205" width="1050" height="790"/>
 <path id="rasterix-source" d="M70 1025H370V1265H70Z"/></g>
+<!-- Draw all clearance strokes for a signal before its wires, so connected branches remain continuous. -->
+<g data-signal-group="AD">
 <path d="M350 440L350 1090" fill="none" stroke="#F2F5FB" stroke-width="18" stroke-linejoin="round"/>
 <path d="M350 440L350 1090" fill="none" stroke="#C4D5ED" stroke-width="18" stroke-linejoin="round" clip-path="url(#chip-area)"/>
-<path data-net="AD" data-source="CPU" data-target="Fanout" d="M350 440L350 1090" fill="none" stroke="#000000" stroke-width="7.6" stroke-linejoin="round" data-bits="multiple"/>
-<path d="M400 470L400 1120" fill="none" stroke="#F2F5FB" stroke-width="18" stroke-linejoin="round"/>
-<path d="M400 470L400 1120" fill="none" stroke="#C4D5ED" stroke-width="18" stroke-linejoin="round" clip-path="url(#chip-area)"/>
-<path data-net="WD" data-source="CPU" data-target="Fanout" d="M400 470L400 1120" fill="none" stroke="#000000" stroke-width="7.6" stroke-linejoin="round" data-bits="multiple"/>
-<path d="M450 500L450 1150" fill="none" stroke="#F2F5FB" stroke-width="18" stroke-linejoin="round"/>
-<path d="M450 500L450 1150" fill="none" stroke="#C4D5ED" stroke-width="18" stroke-linejoin="round" clip-path="url(#chip-area)"/>
-<path data-net="WE" data-source="CPU" data-target="Fanout" d="M450 500L450 1150" fill="none" stroke="#000000" stroke-width="3.2" stroke-linejoin="round" data-bits="1"/>
 <path d="M350 440L700 440" fill="none" stroke="#F2F5FB" stroke-width="18" stroke-linejoin="round"/>
 <path d="M350 440L700 440" fill="none" stroke="#C4D5ED" stroke-width="18" stroke-linejoin="round" clip-path="url(#chip-area)"/>
-<path data-net="AD" data-source="CPU" data-target="SD" d="M350 440L682 440" fill="none" stroke="#000000" stroke-width="7.6" stroke-linejoin="round" data-bits="multiple" stroke-linecap="butt"/>
-<path data-arrowhead="end" data-net="AD" d="M681 430.5L700 440L681 449.5Z" fill="#000000" stroke="none"/>
 <path d="M350 620L700 620" fill="none" stroke="#F2F5FB" stroke-width="18" stroke-linejoin="round"/>
 <path d="M350 620L700 620" fill="none" stroke="#C4D5ED" stroke-width="18" stroke-linejoin="round" clip-path="url(#chip-area)"/>
-<path data-net="AD" data-source="CPU" data-target="DDR" d="M350 620L682 620" fill="none" stroke="#000000" stroke-width="7.6" stroke-linejoin="round" data-bits="multiple" stroke-linecap="butt"/>
-<path data-arrowhead="end" data-net="AD" d="M681 610.5L700 620L681 629.5Z" fill="#000000" stroke="none"/>
 <path d="M350 1090L700 1090" fill="none" stroke="#F2F5FB" stroke-width="18" stroke-linejoin="round"/>
 <path d="M350 1090L700 1090" fill="none" stroke="#C4D5ED" stroke-width="18" stroke-linejoin="round" clip-path="url(#chip-area)"/>
-<path data-net="AD" data-source="CPU" data-target="CommandPort" d="M350 1090L682 1090" fill="none" stroke="#000000" stroke-width="7.6" stroke-linejoin="round" data-bits="multiple" stroke-linecap="butt"/>
-<path data-arrowhead="end" data-net="AD" d="M681 1080.5L700 1090L681 1099.5Z" fill="#000000" stroke="none"/>
-<path d="M400 470L700 470" fill="none" stroke="#F2F5FB" stroke-width="18" stroke-linejoin="round"/>
-<path d="M400 470L700 470" fill="none" stroke="#C4D5ED" stroke-width="18" stroke-linejoin="round" clip-path="url(#chip-area)"/>
-<path data-net="WD" data-source="CPU" data-target="SD" d="M400 470L682 470" fill="none" stroke="#000000" stroke-width="7.6" stroke-linejoin="round" data-bits="multiple" stroke-linecap="butt"/>
-<path data-arrowhead="end" data-net="WD" d="M681 460.5L700 470L681 479.5Z" fill="#000000" stroke="none"/>
-<path d="M400 650L700 650" fill="none" stroke="#F2F5FB" stroke-width="18" stroke-linejoin="round"/>
-<path d="M400 650L700 650" fill="none" stroke="#C4D5ED" stroke-width="18" stroke-linejoin="round" clip-path="url(#chip-area)"/>
-<path data-net="WD" data-source="CPU" data-target="DDR" d="M400 650L682 650" fill="none" stroke="#000000" stroke-width="7.6" stroke-linejoin="round" data-bits="multiple" stroke-linecap="butt"/>
-<path data-arrowhead="end" data-net="WD" d="M681 640.5L700 650L681 659.5Z" fill="#000000" stroke="none"/>
-<path d="M400 1120L700 1120" fill="none" stroke="#F2F5FB" stroke-width="18" stroke-linejoin="round"/>
-<path d="M400 1120L700 1120" fill="none" stroke="#C4D5ED" stroke-width="18" stroke-linejoin="round" clip-path="url(#chip-area)"/>
-<path data-net="WD" data-source="CPU" data-target="CommandPort" d="M400 1120L682 1120" fill="none" stroke="#000000" stroke-width="7.6" stroke-linejoin="round" data-bits="multiple" stroke-linecap="butt"/>
-<path data-arrowhead="end" data-net="WD" d="M681 1110.5L700 1120L681 1129.5Z" fill="#000000" stroke="none"/>
-<path d="M450 500L700 500" fill="none" stroke="#F2F5FB" stroke-width="18" stroke-linejoin="round"/>
-<path d="M450 500L700 500" fill="none" stroke="#C4D5ED" stroke-width="18" stroke-linejoin="round" clip-path="url(#chip-area)"/>
-<path data-net="WE" data-source="CPU" data-target="SD" d="M450 500L682 500" fill="none" stroke="#000000" stroke-width="3.2" stroke-linejoin="round" data-bits="1" stroke-linecap="butt"/>
-<path data-arrowhead="end" data-net="WE" d="M681 490.5L700 500L681 509.5Z" fill="#000000" stroke="none"/>
-<path d="M450 680L700 680" fill="none" stroke="#F2F5FB" stroke-width="18" stroke-linejoin="round"/>
-<path d="M450 680L700 680" fill="none" stroke="#C4D5ED" stroke-width="18" stroke-linejoin="round" clip-path="url(#chip-area)"/>
-<path data-net="WE" data-source="CPU" data-target="DDR" d="M450 680L682 680" fill="none" stroke="#000000" stroke-width="3.2" stroke-linejoin="round" data-bits="1" stroke-linecap="butt"/>
-<path data-arrowhead="end" data-net="WE" d="M681 670.5L700 680L681 689.5Z" fill="#000000" stroke="none"/>
-<path d="M450 1150L700 1150" fill="none" stroke="#F2F5FB" stroke-width="18" stroke-linejoin="round"/>
-<path d="M450 1150L700 1150" fill="none" stroke="#C4D5ED" stroke-width="18" stroke-linejoin="round" clip-path="url(#chip-area)"/>
-<path data-net="WE" data-source="CPU" data-target="CommandPort" d="M450 1150L682 1150" fill="none" stroke="#000000" stroke-width="3.2" stroke-linejoin="round" data-bits="1" stroke-linecap="butt"/>
-<path data-arrowhead="end" data-net="WE" d="M681 1140.5L700 1150L681 1159.5Z" fill="#000000" stroke="none"/>
 <path d="M310 550L350 550" fill="none" stroke="#F2F5FB" stroke-width="18" stroke-linejoin="round"/>
 <path d="M310 550L350 550" fill="none" stroke="#C4D5ED" stroke-width="18" stroke-linejoin="round" clip-path="url(#chip-area)"/>
-<path data-net="AD" data-source="CPU" data-target="Fanout" d="M310 550L350 550" fill="none" stroke="#000000" stroke-width="7.6" stroke-linejoin="round" data-bits="multiple"/>
-<path d="M310 595L400 595" fill="none" stroke="#F2F5FB" stroke-width="18" stroke-linejoin="round"/>
-<path d="M310 595L400 595" fill="none" stroke="#C4D5ED" stroke-width="18" stroke-linejoin="round" clip-path="url(#chip-area)"/>
-<path data-net="WD" data-source="CPU" data-target="Fanout" d="M310 595L400 595" fill="none" stroke="#000000" stroke-width="7.6" stroke-linejoin="round" data-bits="multiple"/>
-<path d="M310 640L450 640" fill="none" stroke="#F2F5FB" stroke-width="18" stroke-linejoin="round"/>
-<path d="M310 640L450 640" fill="none" stroke="#C4D5ED" stroke-width="18" stroke-linejoin="round" clip-path="url(#chip-area)"/>
-<path data-net="WE" data-source="CPU" data-target="Fanout" d="M310 640L450 640" fill="none" stroke="#000000" stroke-width="3.2" stroke-linejoin="round" data-bits="1"/>
 <path d="M400 440L400 400" fill="none" stroke="#F2F5FB" stroke-width="18" stroke-linejoin="round"/>
 <path d="M400 440L400 400" fill="none" stroke="#C4D5ED" stroke-width="18" stroke-linejoin="round" clip-path="url(#chip-area)"/>
+<path data-net="AD" data-source="CPU" data-target="Fanout" d="M350 440L350 1090" fill="none" stroke="#000000" stroke-width="7.6" stroke-linejoin="round" data-bits="multiple"/>
+<path data-net="AD" data-source="CPU" data-target="SD" d="M350 440L682 440" fill="none" stroke="#000000" stroke-width="7.6" stroke-linejoin="round" data-bits="multiple" stroke-linecap="butt"/>
+<path data-net="AD" data-source="CPU" data-target="DDR" d="M350 620L682 620" fill="none" stroke="#000000" stroke-width="7.6" stroke-linejoin="round" data-bits="multiple" stroke-linecap="butt"/>
+<path data-net="AD" data-source="CPU" data-target="CommandPort" d="M350 1090L682 1090" fill="none" stroke="#000000" stroke-width="7.6" stroke-linejoin="round" data-bits="multiple" stroke-linecap="butt"/>
+<path data-net="AD" data-source="CPU" data-target="Fanout" d="M310 550L350 550" fill="none" stroke="#000000" stroke-width="7.6" stroke-linejoin="round" data-bits="multiple"/>
 <path data-net="AD" data-source="CPU" data-target="Decoder" d="M400 440L400 418" fill="none" stroke="#000000" stroke-width="7.6" stroke-linejoin="round" data-bits="multiple" stroke-linecap="butt"/>
+<path data-arrowhead="end" data-net="AD" d="M681 430.5L700 440L681 449.5Z" fill="#000000" stroke="none"/>
+<path data-arrowhead="end" data-net="AD" d="M681 610.5L700 620L681 629.5Z" fill="#000000" stroke="none"/>
+<path data-arrowhead="end" data-net="AD" d="M681 1080.5L700 1090L681 1099.5Z" fill="#000000" stroke="none"/>
 <path data-arrowhead="end" data-net="AD" d="M390.5 419L400 400L409.5 419Z" fill="#000000" stroke="none"/>
+</g>
+<g data-signal-group="WD">
+<path d="M400 470L400 1120" fill="none" stroke="#F2F5FB" stroke-width="18" stroke-linejoin="round"/>
+<path d="M400 470L400 1120" fill="none" stroke="#C4D5ED" stroke-width="18" stroke-linejoin="round" clip-path="url(#chip-area)"/>
+<path d="M400 470L700 470" fill="none" stroke="#F2F5FB" stroke-width="18" stroke-linejoin="round"/>
+<path d="M400 470L700 470" fill="none" stroke="#C4D5ED" stroke-width="18" stroke-linejoin="round" clip-path="url(#chip-area)"/>
+<path d="M400 660L700 660" fill="none" stroke="#F2F5FB" stroke-width="18" stroke-linejoin="round"/>
+<path d="M400 660L700 660" fill="none" stroke="#C4D5ED" stroke-width="18" stroke-linejoin="round" clip-path="url(#chip-area)"/>
+<path d="M400 1120L700 1120" fill="none" stroke="#F2F5FB" stroke-width="18" stroke-linejoin="round"/>
+<path d="M400 1120L700 1120" fill="none" stroke="#C4D5ED" stroke-width="18" stroke-linejoin="round" clip-path="url(#chip-area)"/>
+<path d="M310 595L400 595" fill="none" stroke="#F2F5FB" stroke-width="18" stroke-linejoin="round"/>
+<path d="M310 595L400 595" fill="none" stroke="#C4D5ED" stroke-width="18" stroke-linejoin="round" clip-path="url(#chip-area)"/>
+<path data-net="WD" data-source="CPU" data-target="Fanout" d="M400 470L400 1120" fill="none" stroke="#000000" stroke-width="7.6" stroke-linejoin="round" data-bits="multiple"/>
+<path data-net="WD" data-source="CPU" data-target="SD" d="M400 470L682 470" fill="none" stroke="#000000" stroke-width="7.6" stroke-linejoin="round" data-bits="multiple" stroke-linecap="butt"/>
+<path data-net="WD" data-source="CPU" data-target="DDR" d="M400 660L682 660" fill="none" stroke="#000000" stroke-width="7.6" stroke-linejoin="round" data-bits="multiple" stroke-linecap="butt"/>
+<path data-net="WD" data-source="CPU" data-target="CommandPort" d="M400 1120L682 1120" fill="none" stroke="#000000" stroke-width="7.6" stroke-linejoin="round" data-bits="multiple" stroke-linecap="butt"/>
+<path data-net="WD" data-source="CPU" data-target="Fanout" d="M310 595L400 595" fill="none" stroke="#000000" stroke-width="7.6" stroke-linejoin="round" data-bits="multiple"/>
+<path data-arrowhead="end" data-net="WD" d="M681 460.5L700 470L681 479.5Z" fill="#000000" stroke="none"/>
+<path data-arrowhead="end" data-net="WD" d="M681 650.5L700 660L681 669.5Z" fill="#000000" stroke="none"/>
+<path data-arrowhead="end" data-net="WD" d="M681 1110.5L700 1120L681 1129.5Z" fill="#000000" stroke="none"/>
+</g>
+<g data-signal-group="WE">
+<path d="M450 500L450 1150" fill="none" stroke="#F2F5FB" stroke-width="18" stroke-linejoin="round"/>
+<path d="M450 500L450 1150" fill="none" stroke="#C4D5ED" stroke-width="18" stroke-linejoin="round" clip-path="url(#chip-area)"/>
+<path d="M450 500L700 500" fill="none" stroke="#F2F5FB" stroke-width="18" stroke-linejoin="round"/>
+<path d="M450 500L700 500" fill="none" stroke="#C4D5ED" stroke-width="18" stroke-linejoin="round" clip-path="url(#chip-area)"/>
+<path d="M450 680L700 680" fill="none" stroke="#F2F5FB" stroke-width="18" stroke-linejoin="round"/>
+<path d="M450 680L700 680" fill="none" stroke="#C4D5ED" stroke-width="18" stroke-linejoin="round" clip-path="url(#chip-area)"/>
+<path d="M450 1150L700 1150" fill="none" stroke="#F2F5FB" stroke-width="18" stroke-linejoin="round"/>
+<path d="M450 1150L700 1150" fill="none" stroke="#C4D5ED" stroke-width="18" stroke-linejoin="round" clip-path="url(#chip-area)"/>
+<path d="M310 640L450 640" fill="none" stroke="#F2F5FB" stroke-width="18" stroke-linejoin="round"/>
+<path d="M310 640L450 640" fill="none" stroke="#C4D5ED" stroke-width="18" stroke-linejoin="round" clip-path="url(#chip-area)"/>
+<path data-net="WE" data-source="CPU" data-target="Fanout" d="M450 500L450 1150" fill="none" stroke="#000000" stroke-width="3.2" stroke-linejoin="round" data-bits="1"/>
+<path data-net="WE" data-source="CPU" data-target="SD" d="M450 500L682 500" fill="none" stroke="#000000" stroke-width="3.2" stroke-linejoin="round" data-bits="1" stroke-linecap="butt"/>
+<path data-net="WE" data-source="CPU" data-target="DDR" d="M450 680L682 680" fill="none" stroke="#000000" stroke-width="3.2" stroke-linejoin="round" data-bits="1" stroke-linecap="butt"/>
+<path data-net="WE" data-source="CPU" data-target="CommandPort" d="M450 1150L682 1150" fill="none" stroke="#000000" stroke-width="3.2" stroke-linejoin="round" data-bits="1" stroke-linecap="butt"/>
+<path data-net="WE" data-source="CPU" data-target="Fanout" d="M310 640L450 640" fill="none" stroke="#000000" stroke-width="3.2" stroke-linejoin="round" data-bits="1"/>
+<path data-arrowhead="end" data-net="WE" d="M681 490.5L700 500L681 509.5Z" fill="#000000" stroke="none"/>
+<path data-arrowhead="end" data-net="WE" d="M681 670.5L700 680L681 689.5Z" fill="#000000" stroke="none"/>
+<path data-arrowhead="end" data-net="WE" d="M681 1140.5L700 1150L681 1159.5Z" fill="#000000" stroke="none"/>
+</g>
+<g data-signal-group="S0">
 <path d="M450 300L500 300L500 530L700 530" fill="none" stroke="#F2F5FB" stroke-width="18" stroke-linejoin="round"/>
 <path d="M450 300L500 300L500 530L700 530" fill="none" stroke="#C4D5ED" stroke-width="18" stroke-linejoin="round" clip-path="url(#chip-area)"/>
 <path data-net="S0" data-source="Decoder" data-target="SD" d="M450 300L500 300L500 530L682 530" fill="none" stroke="#000000" stroke-width="3.2" stroke-linejoin="round" data-bits="1" stroke-linecap="butt"/>
 <path data-arrowhead="end" data-net="S0" d="M681 520.5L700 530L681 539.5Z" fill="#000000" stroke="none"/>
+</g>
+<g data-signal-group="S1">
 <path d="M450 340L550 340L550 710L700 710" fill="none" stroke="#F2F5FB" stroke-width="18" stroke-linejoin="round"/>
 <path d="M450 340L550 340L550 710L700 710" fill="none" stroke="#C4D5ED" stroke-width="18" stroke-linejoin="round" clip-path="url(#chip-area)"/>
 <path data-net="S1" data-source="Decoder" data-target="DDR" d="M450 340L550 340L550 710L682 710" fill="none" stroke="#000000" stroke-width="3.2" stroke-linejoin="round" data-bits="1" stroke-linecap="butt"/>
 <path data-arrowhead="end" data-net="S1" d="M681 700.5L700 710L681 719.5Z" fill="#000000" stroke="none"/>
+</g>
+<g data-signal-group="S2">
 <path d="M450 380L600 380L600 1180L700 1180" fill="none" stroke="#F2F5FB" stroke-width="18" stroke-linejoin="round"/>
 <path d="M450 380L600 380L600 1180L700 1180" fill="none" stroke="#C4D5ED" stroke-width="18" stroke-linejoin="round" clip-path="url(#chip-area)"/>
 <path data-net="S2" data-source="Decoder" data-target="CommandPort" d="M450 380L600 380L600 1180L682 1180" fill="none" stroke="#000000" stroke-width="3.2" stroke-linejoin="round" data-bits="1" stroke-linecap="butt"/>
 <path data-arrowhead="end" data-net="S2" d="M681 1170.5L700 1180L681 1189.5Z" fill="#000000" stroke="none"/>
+</g>
+<g data-signal-group="S0,S1,S2">
 <path d="M260 400L260 460L330 460L330 765L220 765L220 809.412" fill="none" stroke="#F2F5FB" stroke-width="18" stroke-linejoin="round"/>
 <path d="M260 400L260 460L330 460L330 765L220 765L220 809.412" fill="none" stroke="#C4D5ED" stroke-width="18" stroke-linejoin="round" clip-path="url(#chip-area)"/>
 <path data-net="S0,S1,S2" data-source="Decoder" data-target="ReadMux" d="M260 400L260 460L330 460L330 765L220 765L220 791.412" fill="none" stroke="#000000" stroke-width="7.6" stroke-linejoin="round" data-bits="3" stroke-linecap="butt"/>
 <path data-arrowhead="end" data-net="S0,S1,S2" d="M229.5 790.412L220 809.412L210.5 790.412Z" fill="#000000" stroke="none"/>
+</g>
+<g data-signal-group="ReadSD">
 <path d="M970 535L1010 535L1010 825L300 825" fill="none" stroke="#F2F5FB" stroke-width="18" stroke-linejoin="round"/>
 <path d="M970 535L1010 535L1010 825L300 825" fill="none" stroke="#C4D5ED" stroke-width="18" stroke-linejoin="round" clip-path="url(#chip-area)"/>
 <path data-net="ReadSD" data-source="SD" data-target="ReadMux" d="M970 535L1010 535L1010 825L318 825" fill="none" stroke="#000000" stroke-width="7.6" stroke-linejoin="round" data-bits="multiple" stroke-linecap="butt"/>
 <path data-arrowhead="end" data-net="ReadSD" d="M319 834.5L300 825L319 815.5Z" fill="#000000" stroke="none"/>
+</g>
+<g data-signal-group="ReadDDR">
 <path d="M970 715L1050 715L1050 885L300 885" fill="none" stroke="#F2F5FB" stroke-width="18" stroke-linejoin="round"/>
 <path d="M970 715L1050 715L1050 885L300 885" fill="none" stroke="#C4D5ED" stroke-width="18" stroke-linejoin="round" clip-path="url(#chip-area)"/>
 <path data-net="ReadDDR" data-source="DDR" data-target="ReadMux" d="M970 715L1050 715L1050 885L318 885" fill="none" stroke="#000000" stroke-width="7.6" stroke-linejoin="round" data-bits="multiple" stroke-linecap="butt"/>
 <path data-arrowhead="end" data-net="ReadDDR" d="M319 894.5L300 885L319 875.5Z" fill="#000000" stroke="none"/>
+</g>
+<g data-signal-group="ReadGraphicsPort">
 <path d="M970 1185L1090 1185L1090 945L300 945" fill="none" stroke="#F2F5FB" stroke-width="18" stroke-linejoin="round"/>
 <path d="M970 1185L1090 1185L1090 945L300 945" fill="none" stroke="#C4D5ED" stroke-width="18" stroke-linejoin="round" clip-path="url(#chip-area)"/>
 <path data-net="ReadGraphicsPort" data-source="CommandPort" data-target="ReadMux" d="M970 1185L1090 1185L1090 945L318 945" fill="none" stroke="#000000" stroke-width="7.6" stroke-linejoin="round" data-bits="multiple" stroke-linecap="butt"/>
 <path data-arrowhead="end" data-net="ReadGraphicsPort" d="M319 954.5L300 945L319 935.5Z" fill="#000000" stroke="none"/>
+</g>
+<g data-signal-group="ReadData">
 <path d="M130 885L95 885L95 740L210 740L210 710" fill="none" stroke="#F2F5FB" stroke-width="18" stroke-linejoin="round"/>
 <path d="M130 885L95 885L95 740L210 740L210 710" fill="none" stroke="#C4D5ED" stroke-width="18" stroke-linejoin="round" clip-path="url(#chip-area)"/>
 <path data-net="ReadData" data-source="ReadMux" data-target="CPU" d="M130 885L95 885L95 740L210 740L210 728" fill="none" stroke="#000000" stroke-width="7.6" stroke-linejoin="round" data-bits="multiple" stroke-linecap="butt"/>
 <path data-arrowhead="end" data-net="ReadData" d="M200.5 729L210 710L219.5 729Z" fill="#000000" stroke="none"/>
+</g>
+<g data-signal-group="DrawingCommands">
 <path d="M850 1210L850 1225L450 1225L450 1170L320 1170" fill="none" stroke="#F2F5FB" stroke-width="18" stroke-linejoin="round"/>
 <path d="M850 1210L850 1225L450 1225L450 1170L320 1170" fill="none" stroke="#C4D5ED" stroke-width="18" stroke-linejoin="round" clip-path="url(#chip-area)"/>
 <path data-net="DrawingCommands" data-source="CommandPort" data-target="RasterIX" d="M850 1210L850 1225L450 1225L450 1170L338 1170" fill="none" stroke="#000000" stroke-width="7.6" stroke-linejoin="round" data-bits="multiple" stroke-linecap="butt"/>
 <path data-arrowhead="end" data-net="DrawingCommands" d="M339 1179.5L320 1170L339 1160.5Z" fill="#000000" stroke="none"/>
+</g>
+<g data-signal-group="ImageMemory">
 <path d="M280 1095L280 1020L650 1020L650 785L830 785L830 755" fill="none" stroke="#F2F5FB" stroke-width="18" stroke-linejoin="round"/>
 <path d="M280 1095L280 1020L650 1020L650 785L830 785L830 755" fill="none" stroke="#C4D5ED" stroke-width="18" stroke-linejoin="round" clip-path="url(#chip-area)"/>
 <path data-net="ImageMemory" data-source="RasterIX" data-target="DDR" d="M280 1077L280 1020L650 1020L650 785L830 785L830 773" fill="none" stroke="#000000" stroke-width="7.6" stroke-linejoin="round" data-bits="multiple" stroke-linecap="butt"/>
 <path data-arrowhead="start" data-net="ImageMemory" d="M289.5 1076L280 1095L270.5 1076Z" fill="#000000" stroke="none"/>
 <path data-arrowhead="end" data-net="ImageMemory" d="M820.5 774L830 755L839.5 774Z" fill="#000000" stroke="none"/>
+</g>
+<g data-signal-group="SDPhysical">
 <path d="M970 465L1200 465" fill="none" stroke="#F2F5FB" stroke-width="18" stroke-linejoin="round"/>
 <path d="M970 465L1200 465" fill="none" stroke="#C4D5ED" stroke-width="18" stroke-linejoin="round" clip-path="url(#chip-area)"/>
 <path data-net="SDPhysical" data-source="SD" data-target="SDSlot" d="M988 465L1182 465" fill="none" stroke="#000000" stroke-width="7.6" stroke-linejoin="round" data-bits="multiple" stroke-linecap="butt"/>
 <path data-arrowhead="start" data-net="SDPhysical" d="M989 474.5L970 465L989 455.5Z" fill="#000000" stroke="none"/>
 <path data-arrowhead="end" data-net="SDPhysical" d="M1181 455.5L1200 465L1181 474.5Z" fill="#000000" stroke="none"/>
+</g>
+<g data-signal-group="DDRPhysical">
 <path d="M970 645L1200 645" fill="none" stroke="#F2F5FB" stroke-width="18" stroke-linejoin="round"/>
 <path d="M970 645L1200 645" fill="none" stroke="#C4D5ED" stroke-width="18" stroke-linejoin="round" clip-path="url(#chip-area)"/>
 <path data-net="DDRPhysical" data-source="DDR" data-target="DDR3" d="M988 645L1182 645" fill="none" stroke="#000000" stroke-width="7.6" stroke-linejoin="round" data-bits="multiple" stroke-linecap="butt"/>
 <path data-arrowhead="start" data-net="DDRPhysical" d="M989 654.5L970 645L989 635.5Z" fill="#000000" stroke="none"/>
 <path data-arrowhead="end" data-net="DDRPhysical" d="M1181 635.5L1200 645L1181 654.5Z" fill="#000000" stroke="none"/>
+</g>
+<g data-signal-group="Video">
 <path d="M320 1220L400 1220L400 1260L1170 1260L1170 1175L1200 1175" fill="none" stroke="#F2F5FB" stroke-width="18" stroke-linejoin="round"/>
 <path d="M320 1220L400 1220L400 1260L1170 1260L1170 1175L1200 1175" fill="none" stroke="#C4D5ED" stroke-width="18" stroke-linejoin="round" clip-path="url(#chip-area)"/>
 <path data-net="Video" data-source="RasterIX" data-target="HDMI" d="M320 1220L400 1220L400 1260L1170 1260L1170 1175L1182 1175" fill="none" stroke="black" stroke-width="7.6" stroke-linejoin="round" data-bits="multiple" stroke-linecap="butt"/>
 <path data-arrowhead="end" data-net="Video" d="M1181 1165.5L1200 1175L1181 1184.5Z" fill="#000000" stroke="none"/>
+</g>
 <circle cx="350" cy="440" r="7" fill="black"/>
 <circle cx="350" cy="550" r="7" fill="black"/>
 <circle cx="350" cy="620" r="7" fill="black"/>
 <circle cx="350" cy="1090" r="7" fill="black"/>
 <circle cx="400" cy="470" r="7" fill="black"/>
 <circle cx="400" cy="595" r="7" fill="black"/>
-<circle cx="400" cy="650" r="7" fill="black"/>
+<circle cx="400" cy="660" r="7" fill="black"/>
 <circle cx="400" cy="1120" r="7" fill="black"/>
 <circle cx="450" cy="500" r="7" fill="black"/>
 <circle cx="450" cy="640" r="7" fill="black"/>

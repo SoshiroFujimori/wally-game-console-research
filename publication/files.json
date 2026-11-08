@@ -50,16 +50,16 @@
       "sha256": "97ad5c5e945333020b589efef355b3fb1162e404f06dd766b1f7fc8903a08009"
     },
     "docs/abstract/figs/figure-1.png": {
-      "bytes": 568620,
-      "sha256": "786e94eb54ca26a42d824ef4aafddf265022ebd54a42f4912e158263fd0a62f4"
+      "bytes": 568548,
+      "sha256": "90730426610d15be0436c8469fe3994d1b167a4ff30397bfedc2cdb438c7ca6e"
     },
     "docs/abstract/figs/figure-2.png": {
       "bytes": 43987,
       "sha256": "99ee1b8079af40111fd49441a140f8fe1db13e8e06210fae63be6dae1c4e1aa3"
     },
     "docs/abstract/アブスト_主要事項.docx": {
-      "bytes": 585018,
-      "sha256": "ce071b741c54881a3f3b80a01b2f058152aea35d6d44e094e86d62b4318df476"
+      "bytes": 583459,
+      "sha256": "f57238ae2771c3155df3100ffc5db0ae65b0f6d615e5b5164c3a63e3241f1875"
     },
     "docs/abstract/アブスト_主要事項.md": {
       "bytes": 6651,
@@ -12506,8 +12506,8 @@
       "sha256": "b37af8468ab90cc774380eae7acce80700a22c2cdb02aa7e1d27bf6da8ad7d04"
     },
     "publication/media-review.json": {
-      "bytes": 106142,
-      "sha256": "3f64e8fc933a8630aee54ae121c47ef7fa4109f00e4cb9b2d2ffc4d1cade171e"
+      "bytes": 106962,
+      "sha256": "0c2ca42597c1979f73a924074099c197fa5aa1f848cb0d2b8aa7393cbfb60afa"
     },
     "publication/policy.json": {
       "bytes": 635,
@@ -12526,8 +12526,8 @@
       "sha256": "b9317436f514a4c0c34075618b473d5b56cb10e93cfd5023655c78d4d9127236"
     },
     "source/abstract/README.md": {
-      "bytes": 10413,
-      "sha256": "59e696c5aeda60213bd7202c18371268b4525c151c424e8e1b86593492f24c14"
+      "bytes": 10672,
+      "sha256": "d6bb887f79c92da6be300fd97e8b51a9d1ccf7dc468eb9c2ff0234dc29956bff"
     },
     "source/abstract/build.py": {
       "bytes": 13864,
@@ -12538,12 +12538,12 @@
       "sha256": "62920f880b9020196fa5726af8436de24f71038413d00ff4b17a00980c1f5e7b"
     },
     "source/abstract/figs/game-flow.png": {
-      "bytes": 568620,
-      "sha256": "786e94eb54ca26a42d824ef4aafddf265022ebd54a42f4912e158263fd0a62f4"
+      "bytes": 568548,
+      "sha256": "90730426610d15be0436c8469fe3994d1b167a4ff30397bfedc2cdb438c7ca6e"
     },
     "source/abstract/figs/game-flow.svg": {
-      "bytes": 31849,
-      "sha256": "47ea0b46ca820b826a30e9859683fb398347127f6e4b318967dd74cd48a74f0d"
+      "bytes": 32547,
+      "sha256": "3d51885467235f671306757555c3eeb9b74dc2fd589d0c2c792d7c51f1acd15b"
     },
     "source/presentation/README.md": {
       "bytes": 2638,
