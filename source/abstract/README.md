@@ -75,28 +75,34 @@ the figure captions. The label and placement are editorial choices, not a
 universal rule for abstracts. The fragment illustrates physical-address accesses;
 it is not the Linux game program or a complete SD driver.
 
-`sd_start_read(game_position)` is an explanatory helper that groups the
-request to send data starting at the game's position on the card. The body
-explains that the CPU writes the numeric request sequence to the transmit
-register at `0x13048`, and the SD controller passes it to the card. The loop
-then highlights the fixed receive-register address (`0x1304C`) and the advancing
-DDR destination (`dst[i]`). The byte store retains the low eight payload bits
-of the receive-register value.
+The code writes an explicit six-byte request to the fixed transmit-register
+address `0x13048`. The array `{0x52, 0, 0, 0, 0, 0xE1}` requests a continuous
+read beginning at card position zero: `0x52` encodes CMD18, the next four bytes
+are its zero argument, and `0xE1` is CRC7 followed by the end bit. These values
+follow `sd_cmd` in `console/fpga/zsbl/sd.c` and the CRC calculation in
+`console/fpga/zsbl/boot.c`. The loop makes each MMIO write visible instead of
+hiding the request behind a helper function. The Japanese comment explains
+the packet's purpose, and the body links the loop to the repeated writes to
+one address.
 
-Initialization, the transmissions that advance an actual SPI exchange, status
-polling, protocol framing, error checks, and address mapping are omitted from
-the conceptual fragment. Repeated receive-register reads alone do not clock
-data from the card in the real implementation. The complete sequence remains
-in `console/fpga/zsbl/spi.c` and `sd.c`; the abstract briefly labels the omitted
-communication steps without explaining their byte-level mechanics.
+The receive loop highlights the fixed register address (`0x1304C`) and the
+advancing DDR destination (`dst[i]`). The byte store retains the low eight
+payload bits of the receive-register value. The program is placed at card
+position zero and loaded at `0x80000000` for this conceptual example; these
+positions are not the Linux application's actual file location and load address.
 
-The `<stdint.h>` header and definitions of `game_position`, `size`, and `cmd`
-are omitted. The conceptual fragment also omits `volatile`; actual MMIO
-accesses require the appropriate compiler and platform access semantics.
-The Japanese SD comments refer to communication through the SD controller;
-the CPU does not access the card's pins directly. The program's load and
-entry address is assumed to be `0x80000000` for the explanation, not presented
-as the Linux application's actual load address.
+Initialization, transmissions that advance an SPI exchange, status polling,
+response parsing, framing, error checks and address mapping remain in the
+complete implementation in `console/fpga/zsbl/spi.c`, `sd.c` and `boot.c`.
+Repeated receive-register reads alone do not clock data from the real card.
+The abstract is labelled as conceptual code and focuses on address-based
+access; its body does not enumerate these lower-level communication details.
+
+The `<stdint.h>` header and definitions of `size` and `cmd` are not shown.
+The conceptual fragment also omits `volatile`; actual MMIO accesses require
+the appropriate compiler and platform access semantics. The Japanese SD
+comments refer to communication through the SD controller; the CPU does not
+access the card's pins directly.
 
 `cmd` is an intermediate 32-bit word of a prepared drawing command list. The
 final-word port is omitted from this fragment to focus on address-based access.
@@ -140,8 +146,8 @@ paragraph are not the format being compared here.
   a twelve-page paper, cited only as a naming and layout precedent, not as a
   short-abstract example.
 
-The code shows receiving data, storing it in DDR, and writing a drawing command;
-the SD request is grouped into an explanatory helper. Its caption, preceding paragraph,
+The code shows sending the SD request, receiving data, storing it in DDR,
+and writing a drawing command. Its caption, preceding paragraph,
 and Japanese comments explain the purpose and scope. Declaration boilerplate,
 initialization, waits, and the complete SD transaction sequence are omitted.
 The fragment remains editable in Word and fenced as C in the Markdown version.
@@ -149,9 +155,9 @@ Review the full one-page layout in both color and grayscale after rebuilding.
 
 ## Display provenance
 
-The functional figure separates official RasterIX drawing from the display
-circuit. The demonstrated system uses the E8 research scanout with hdl-util/hdmi.
-Only the drawing block belongs inside the RasterIX source outline. Display
-implementation details and the standard-output comparison remain in
-[the reproduction record](../../experiments/dvi-standard-check-20261108/README.md).
-The abstract body reports observed gameplay without discussing capture software.
+Figure 1 groups the drawing and display circuits supplied by RasterIX in one
+box. Figure 2 uses the reviewed standard-DVI recording in
+[the reproduction record](../../experiments/dvi-recovery-20261109/README.md),
+which displayed the latest title-top executable on the unchanged standard
+bitstream. The local command/control wrappers remain integration work.
+The earlier HDMI research fixture is not the source of the current game image.

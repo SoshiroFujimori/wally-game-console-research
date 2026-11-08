@@ -162,7 +162,9 @@ for heading, paragraphs in sections.items():
             anchor.addnext(picture_node)
             picture = Paragraph(picture_node, doc._body)
             picture.clear()
-            align_within_column(picture, WD_ALIGN_PARAGRAPH.CENTER)
+            alignment = (WD_ALIGN_PARAGRAPH.LEFT if figure.get("align") == "left"
+                         else WD_ALIGN_PARAGRAPH.CENTER)
+            align_within_column(picture, alignment)
             picture.paragraph_format.keep_with_next = True
             shape = picture.add_run().add_picture(str(source), width=Mm(figure.get("width_mm", 83)))
             shape._inline.docPr.set("descr", figure["alt"])
@@ -232,6 +234,9 @@ for heading, paragraphs in sections.items():
 used_images = {b.get(qn("r:embed")) for b in doc.element.findall(".//" + qn("a:blip"))}
 for relationship in original_images - used_images:
     doc.part.drop_rel(relationship)
+# Use the explicit paragraph line spacing throughout the one-page abstract.
+for grid in doc.element.findall(".//" + qn("w:docGrid")):
+    grid.getparent().remove(grid)
 stream = io.BytesIO()
 doc.save(stream)
 public = sanitize_docx(stream.getvalue(), config)
