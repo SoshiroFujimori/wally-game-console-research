@@ -645,6 +645,7 @@
     "a6d86ff16de79d2546c3f30620be92ddb5083b3cad8f571d4df64f8b4374a258",
     "a70c8557c3b8414395f74e91aa0bc7e91a71c2b0ba5eb60fce0cd0b5ebbffb70",
     "a82e0085959055e9644c2daec0dc9f774f01dbc6d1f3f4323809b74ed4a5c20e",
+    "a82fe617287f66e185453988657723ea8e9e4b8481858a477453483a42fa999d",
     "a84044dc700d94a7f6e28d91b00f3a19fcd7e0c865b0c26d3ff86cc0a7772bf5",
     "a862db6d8ca6fbb37474b9af4fbfa698e3623d7e722f0bd3ebbdfbafd06f4890",
     "a8c5e6816a3d4de224493d9484d3d17cd834c57e2ccae500ec4d55f467129a35",
@@ -926,6 +927,7 @@
     "fc128f92d60d80d9bfa632b68fde2c2d948247436f3839698480daad5aef20d8",
     "fc3a5bcea2352e4f898f12221b8634ab4c6e7e78e2f72bee568b68460a95a14e",
     "fc83e7bf750965206210e0917f2f2a5a49dcc077e01e5627b87a85fb59096952",
+    "fc9e287c50405fee03c91f912ea948e1ab4a3291881f5bb59338cce61ff9ce1d",
     "fce826fc0b99137aef8ddbdd658bc10358724cdf760638bf83cf5a14bec7dd36",
     "fd1c18a79b11aa4b78b4ef515cf639cd9098c863163752b5ffaa23b3f3888c31",
     "fd4963759d331b257f0d08786ecd77eea11b5cc44f9e06f650b8060d3aff52fd",
@@ -941,6 +943,7 @@
   ],
   "reviews": {
     "abstract-based-presentation-20261108": "Reviewed all 18 native PowerPoint slide renders and the private cover. Main slides use functional circuits and address-access examples; source differences remain in notes and reproduction records. Confirmed 51 internal links, six hidden question slides, original embedded video hash, and cover-only differences between editions. Reviewed the revised abstract diagram, color and monochrome one-page Word renders, code lines and title placement. Public image metadata was cleaned without changing decoded pixels; newly embedded PNGs match visually reviewed sources.",
-    "concept-code-20261109": "Reviewed native PowerPoint renders of slides 6 and 7 and the one-page public and private Word abstracts. The conceptual excerpts omit the final-word write and explain the remaining addresses, values, and transfers. Verified four unbroken Japanese comment lines above four code statements in each Word edition. The other 16 slide renders are pixel-identical to the prior reviewed version, and embedded images and gameplay video are unchanged. Public preview metadata was cleaned without changing pixels."
+    "concept-code-20261109": "Reviewed native PowerPoint renders of slides 6 and 7 and the one-page public and private Word abstracts. The conceptual excerpts omit the final-word write and explain the remaining addresses, values, and transfers. Verified four unbroken Japanese comment lines above four code statements in each Word edition. The other 16 slide renders are pixel-identical to the prior reviewed version, and embedded images and gameplay video are unchanged. Public preview metadata was cleaned without changing pixels.",
+    "abstract-read-data-20261109": "Reviewed the enlarged circuit figure and native Word renders of both one-page abstract editions in color and grayscale. R labels the existing read-data input and the legend defines it as read data. Signal paths and the gameplay image are unchanged. The embedded and published circuit images have identical pixels."
   }
 }

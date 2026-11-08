@@ -5,7 +5,10 @@ chip, and white circuit blocks within the chip. Dashed rectangular outlines
 identify the sources of the circuits and IP settings. Gaps around crossing
 signals keep those outlines clear of arrowheads.
 
-Readback paths run toward the selector below the CPU. Drawing commands run
+Readback paths run toward the selector below the CPU.
+The selected read data returns to the CPU at the input labelled `R`. The
+legend pairs `D` (write data) with `R` (read data); `W` remains the write
+indicator. Drawing commands run
 below the added command port, while the image-memory path runs between RasterIX
 and the DDR controller. Distinct signals use separate routing lanes. A gap at
 a wire crossing indicates no connection; a black dot marks a connected branch.
