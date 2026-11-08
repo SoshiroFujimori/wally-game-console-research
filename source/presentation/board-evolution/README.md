@@ -47,6 +47,25 @@ It is not an exhaustive or cycle-accurate RTL/netlist drawing. More detailed
 module diagrams remain in `../wally-circuit.mjs` for future question slides.
 Source and omission notes are in the speaker notes.
 
+## Circuit-line readability
+
+`circuit-wiring.mjs` draws each route once with native editable line segments
+and solid, outline-free arrowheads. It trims the shaft at the arrowhead base
+so the line does not protrude through the tip. Bidirectional interfaces have
+one route with a head at each component endpoint, not two overlaid routes.
+
+At unconnected crossings, the line geometry contains a short gap. Explicit
+junction dots preserve actual fanout connections. No background-colored
+patches cover wires or labels. Closely spaced independent routes use separate
+lanes; shared trunks are drawn once. Very short internal pin stubs can omit
+a head while a longer section of the same route shows its direction.
+
+The main datapath positions and signal endpoints are retained. Minor changes
+to peripheral margins and vendor-IP box heights provide room for arrowheads.
+The build records crossing diagnostics in the private build directory.
+Review native PowerPoint renders after routing changes: geometry checks alone
+cannot establish legibility or the correctness of the depicted connections.
+
 ## Component provenance
 
 Repository labels identify where the reused components are obtained; they do

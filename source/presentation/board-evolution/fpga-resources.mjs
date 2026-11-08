@@ -60,7 +60,7 @@ export function drawFpgaResources(s, api) {
   wire(s, 104, 424, 138, 424, C.ink, true, 2.2);
   text(s, '入力に応じた\n0 / 1を出す', 122, 484, 206, 57, 23, false, C.ink, 'center');
   wire(s, 312, 402, 340, 402, C.ink, false, 2.2);
-  box(s, '', 337.5, 399.5, 5, 5, C.ink, 1, C.ink, 0);
+  api.junction(s, 340, 402, C.ink, 5);
   route(s, [[340,402],[340,370],[642,370]], C.ink, false, 2.2);
   text(s, 'そのまま出す', 390, 326, 212, 30, 22, false, C.ink, 'center');
 

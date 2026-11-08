@@ -1,7 +1,7 @@
 // Native circuit drawings; the first CPU examples enlarge the chip view.
 // Bundled links represent interfaces. They do not short independent signals.
 export const BOARD = {
-  board:[48,218,1184,418], chip:[67,264,960,357], cpu:[85,296,649,307],
+  board:[48,218,1184,418], chip:[67,264,974,357], cpu:[85,296,649,307],
   pc:[106,438,33,66], fetch:[168,414,145,122], rf:[398,399,165,156],
   bus:[760,395,60,184], sd:[857,308,147,56], ddr:[857,421,147,67],
   dataMemory:[857,414,147,142],
@@ -20,6 +20,7 @@ function chipView(a) {
     polygon:(s,p,fill,stroke,width)=>a.polygon(s,points(p),fill,stroke,width*k),
     wire:(s,x1,y1,x2,y2,c,arrow,width)=>a.wire(s,x(x1),y(y1),x(x2),y(y2),c,arrow,width*k),
     route:(s,p,c,arrow,width)=>a.route(s,points(p),c,arrow,width*k),
+    junction:(s,px,py,c,d)=>a.junction(s,x(px),y(py),c,d*k),
   };
 }
 
@@ -36,7 +37,8 @@ export function drawBoard(s,a,stage){
   };
   const r=(p,c=C.ink,arrow=true,w=2.5)=>R(s,p,c,arrow,w);
   const wire=(x1,y1,x2,y2,c=C.ink,arrow=true,w=2.5)=>W(s,x1,y1,x2,y2,c,arrow,w);
-  const bi=(p,c=C.ink,w=2.5)=>{r(p,c,true,w);r([p[1],p[0]],c,true,w);};
+  const bi=(p,c=C.ink,w=2.5)=>r(p,c,'both',w);
+  const dot=(x,y,c=C.ink)=>a.junction(s,x,y,c,4.8);
   const poly=(p,fill=white,stroke=C.ink,width=2.2)=>P(s,p,fill,stroke,width);
 
   if(!chipOnly){
@@ -50,6 +52,7 @@ export function drawBoard(s,a,stage){
   }
   b('chip','',C.chip,22,blue);
   t('FPGAチップ',80,266,250,29,23,true,blue);
+  t('●：接続　隙間のある交差：非接続',350,268,650,25,16,false,C.ink);
   const internalMemory = stage <= 4;
   const sdColor=sdFocus?blue:gray;
   const memoryColor=internalMemory?gray:blue;
@@ -84,19 +87,23 @@ export function drawBoard(s,a,stage){
     t('DDR\nコントローラー',861,426,139,57,18.5,true,C.ink,'center');
     t('AMD提供（MIG）',838,385,188,30,21,true,blue,'center');
     bi([[1004,455],[1051,455]],memoryColor);
-    wire(832,stage>=6?336:453,832,stage>=7?526:479,gray,false,2.2);
-    bi([[820,479],[832,479]],busFocus||command?blue:gray);
-    bi([[832,453],[857,453]],memoryColor);
+    // Only component ports receive arrowheads; the trunk has explicit junctions.
+    const trunk=838;
+    if(stage>=6)wire(trunk,336,trunk,453,sdFocus?blue:gray,false,2.2);
+    wire(trunk,453,trunk,479,busFocus||sdFocus?blue:gray,false,2.2);
+    if(stage>=7)wire(trunk,479,trunk,526,command?blue:gray,false,2.2);
+    wire(820,479,trunk,479,busFocus||sdFocus||command?blue:gray,'start');
+    wire(trunk,453,857,453,memoryColor);
+    if(stage>=6)dot(trunk,453,memoryColor);
+    if(stage>=7)dot(trunk,479,command?blue:gray);
     if(stage>=6){
       b('sd','SD制御',sdFocus?C.pale:white,23,sdColor);
       bi([[1004,336],[1051,336]],sdColor);
-      bi([[832,336],[857,336]],sdColor);
-      if(sdFocus)r([[820,479],[832,479],[832,336],[857,336]],blue,true,3);
+      wire(trunk,336,857,336,sdColor);
     }
     if(stage>=7){
       b('gpu','描画回路',command?C.pale:white,21,gpuColor);
-      wire(832,526,857,526,gpuColor);
-      if(command)r([[820,479],[832,479],[832,526],[857,526]],blue,true,3);
+      wire(trunk,526,857,526,gpuColor);
     }
     if(display){
       b('display','表示回路',C.pale,19,displayColor);
@@ -131,24 +138,24 @@ export function drawBoard(s,a,stage){
   if(stage>=4){
     poly([[183,357],[227,368],[227,390],[183,401],[183,388],[193,379],[183,367]]);
     t('+',199,364,25,30,25,true,C.ink,'center');
-    r([[149,468],[149,368],[183,368]],C.ink);
-    t('4',158,382,20,23,19);wire(178,389,183,389,C.ink);
-    r([[227,379],[247,379],[247,346],[96,346],[96,468],[106,468]],C.ink);
+    r([[149,468],[149,368],[183,368]],C.ink);dot(149,468,blue);
+    t('4',158,382,20,23,19);wire(178,389,183,389,C.ink,false);
+    r([[227,379],[247,379],[247,336],[90,336],[90,468],[106,468]],C.ink);
     t('PC + 4',98,348,80,24,18,true,store?blue:C.ink);
   }
 
   // The field extraction and unused datapath inputs are intentionally reduced.
-  r([[522,369],[522,383],[380,383],[380,442],[398,442]],blue,true,2.1);
-  r([[425,369],[425,376],[606,376],[606,508],[629,508]],blue,true,2.3);
+  r([[522,369],[522,385],[380,385],[380,442],[398,442]],blue,true,2.1);
+  r([[425,369],[425,376],[612,376],[612,508],[629,508]],blue,true,2.3);
   if(load){
-    r([[631,369],[631,392],[365,392],[365,515],[398,515]],blue,true,2.1);
+    r([[631,369],[631,394],[365,394],[365,515],[398,515]],blue,true,2.1);
     wire(381,484,398,484,gray,true,1.5);
   }else{
-    r([[608,369],[608,388],[372,388],[372,484],[398,484]],command||store?blue:gray,true,2.1);
+    r([[585,369],[585,394],[368,394],[368,484],[398,484]],command||store?blue:gray,true,2.1);
     wire(381,515,398,515,store||command?gray:C.ink,true,1.5);
   }
   b('rf');
-  poly([[439,399],[447,408],[455,399]],'none');wire(447,392,447,399,C.ink,false,1.2);
+  poly([[439,399],[447,408],[455,399]],'none');
   t('レジスタ群',411,448,139,25,17,true,C.ink,'center');
   [['A1',404,427],['A2',404,471],['A3',404,501],['WD3',404,531],['RD1',523,427],['RD2',523,471]].forEach(([v,x,y])=>t(v,x,y,35,22,14,false,(load&&['A2','RD2'].includes(v))||((store||command)&&['A3','WD3'].includes(v))?gray:C.ink));
   t('WE3',521,401,37,22,14,false,store||command?gray:blue);
@@ -160,18 +167,18 @@ export function drawBoard(s,a,stage){
 
   const addrColor=load||store||command||sdFocus?blue:C.ink;
   wire(697,464,internalMemory?857:760,464,addrColor,true,2.8);
-  t(load?'8':store?'12':command?'B':'番地',702,431,51,28,load||store||command?23:19,true,blue,'center');
-  const writeTurn=internalMemory?829:746, target=internalMemory?857:760;
+  t(load?'8':store?'12':command?'B':'番地',internalMemory?702:710,431,internalMemory?51:32,28,load||store||command?23:16,true,blue,'center');
+  const writeTurn=internalMemory?829:720, target=internalMemory?857:760;
   r([[563,484],[575,484],[575,565],[writeTurn,565],[writeTurn,527],[target,527]],load?gray:blue,true,2.7);
   t(store?'3':command?'D':load?'':'値',576,500,30,27,20,true,blue,'center');
-  const readRoute=internalMemory?[[1004,512],[1015,512],[1015,610],[380,610],[380,541],[398,541]]:[[760,558],[749,558],[749,610],[380,610],[380,541],[398,541]];
+  const readRoute=internalMemory?[[1004,512],[1015,512],[1015,610],[380,610],[380,541],[398,541]]:[[760,558],[732,558],[732,610],[380,610],[380,541],[398,541]];
   r(readRoute,store||command?gray:blue,true,2.7);
   if(load)t('3',351,538,24,26,21,true,blue,'center');
 
   // The local instruction memory has no bus routes.
   if(!internalMemory){
-  r([[213,536],[213,580],[752,580],[752,408],[760,408]],busFocus?blue:gray,true,2.1);
-  r([[760,428],[740,428],[740,594],[300,594],[300,536]],busFocus?blue:gray,true,2.1);
+  r([[213,536],[213,580],[744,580],[744,408],[760,408]],busFocus?blue:gray,true,2.1);
+  r([[760,428],[708,428],[708,594],[300,594],[300,536]],busFocus?blue:gray,true,2.1);
   if(busFocus){
     t('命令',765,402,50,27,16,true,blue,'center');
     t('データ',764,498,52,27,16,true,blue,'center');
@@ -180,8 +187,8 @@ export function drawBoard(s,a,stage){
 
   // Graphics and scanout access shared memory through the DDR controller.
   if(display){
-    r([[1004,521],[1011,521],[1011,478],[1004,478]],blue,true,2.8);
-    r([[1004,485],[1020,485],[1020,584],[1004,584]],blue,true,2.8);
+    r([[1004,521],[1018,521],[1018,470],[1004,470]],blue,true,2.8);
+    r([[1004,486],[1032,486],[1032,590],[1004,590]],blue,true,2.8);
     t('画素を保存',863,487,130,18,14,true,blue,'center');
     t('画素を読む',863,548,130,18,14,true,blue,'center');
   }

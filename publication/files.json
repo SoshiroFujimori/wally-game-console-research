@@ -82,36 +82,36 @@
       "sha256": "b4065e7fc911bcf60121cda6b0a0867ace5a560d6cd80e07edc3f2f5e427f6c5"
     },
     "docs/presentation/slides/slide-02.png": {
-      "bytes": 80042,
-      "sha256": "78b1828af1d5db3ed09f8a5b6284a77a765f841ace487ea4d432895017d980e8"
+      "bytes": 114420,
+      "sha256": "813ccb973d1928a96b4c57737a194c54790310ece6847e4f767033df9707db8e"
     },
     "docs/presentation/slides/slide-03.png": {
-      "bytes": 116914,
-      "sha256": "e66a16182e6c792275a352554bf5a9d3fd7f82ecaaa701440f5e53a1d1926770"
+      "bytes": 116926,
+      "sha256": "a555c4814123bc40f1d43e1a00107d7af09d321f02a4633d01db8353e2145243"
     },
     "docs/presentation/slides/slide-04.png": {
-      "bytes": 73381,
-      "sha256": "970fb8892913ccf5a6386f917b7fb0f38766bf287246b79e5746952df4d00060"
+      "bytes": 109813,
+      "sha256": "199270a3db8fc85463c8a100a75dbce06f21ab8a1812015ce6146b92500e587c"
     },
     "docs/presentation/slides/slide-05.png": {
-      "bytes": 72006,
-      "sha256": "c737cf3306601cb8a7ab67325b4ad606b7b1838dbcb4a287833a38048bfc624f"
+      "bytes": 110157,
+      "sha256": "c623b9c2604eda1c7b4b5b9e6d29979bcefcda45741bc15e2934a8f5ddb4a2cb"
     },
     "docs/presentation/slides/slide-06.png": {
-      "bytes": 125797,
-      "sha256": "5044dd656d7b86873aa793e9b6f0376f98608a9a97f1e4ec22440a51d4c868fb"
+      "bytes": 129902,
+      "sha256": "41ba9fdcfccb9d6a760c8e4e0c762f0d217ba50dabe0de26ce7a4eb3f26f52fe"
     },
     "docs/presentation/slides/slide-07.png": {
-      "bytes": 137388,
-      "sha256": "b62cce18a9654bf8df89e86ea22b48026f4a14edb6ade221dfd29518b6319ffb"
+      "bytes": 141433,
+      "sha256": "f158c7605cf54a700d6569677a31dc78ec8f2093f354c1c1ac42ec07c9b6c044"
     },
     "docs/presentation/slides/slide-08.png": {
-      "bytes": 134233,
-      "sha256": "fdd08d060e972cee8d7337beeb528223bc4da34cbb652e9062c5e4d6959a5e30"
+      "bytes": 138336,
+      "sha256": "f7c0ab92bfbdf0ee56b6b97663efed0aa08db71df6f14c52145a2454bc2d60a2"
     },
     "docs/presentation/slides/slide-09.png": {
-      "bytes": 143431,
-      "sha256": "0b0afbad70e13db345a3c8ce6ed4a3a76325a8554df47af774cc1c6e3fec9b42"
+      "bytes": 147094,
+      "sha256": "3566bb96a3d2d8375b4f3cf8ea694f24aed68dd4d1c5bf590c00fa914fdf5428"
     },
     "docs/presentation/slides/slide-10.png": {
       "bytes": 110383,
@@ -122,16 +122,16 @@
       "sha256": "a4a418a759a425780b7767c52544ba37eb92c934333eaf894f8502059ac981e8"
     },
     "docs/presentation/slides/slide-12.png": {
-      "bytes": 281149,
-      "sha256": "fce826fc0b99137aef8ddbdd658bc10358724cdf760638bf83cf5a14bec7dd36"
+      "bytes": 290742,
+      "sha256": "c9d73b2875ca2ddc7fef66de1e90da0d253f49229fd3e5fc46ccf4e01dc3714b"
     },
     "docs/presentation/slides/slide-13.png": {
       "bytes": 219924,
       "sha256": "3f7014f39c4bbfb7b772c1e5796b56af4cc38942aef667b888174b0298aedfea"
     },
     "docs/presentation/slides/slide-14.png": {
-      "bytes": 245452,
-      "sha256": "961f7cc540bfbf144c1d37100cc76c5b457dd5caadea1421343e697379cad95f"
+      "bytes": 138803,
+      "sha256": "1e45983a799a05b3f5b6cb651948bbd478ce5f047072345c64455d9560edd8f6"
     },
     "docs/presentation/slides/slide-15.png": {
       "bytes": 235516,
@@ -142,12 +142,12 @@
       "sha256": "bbc35ab7f36afb462b05d024d54b621952ab7164a7490e02eec74209bf11b8a8"
     },
     "docs/presentation/中間発表_主要事項.md": {
-      "bytes": 77413,
-      "sha256": "a9e997e032f6285b5d8b9632fb6ed13431fa8648b86f404a682cb483a939bcb5"
+      "bytes": 77715,
+      "sha256": "228975241134892f44d130db2a7b8d898adf4e44c9afc0058bcb879611cc24c7"
     },
     "docs/presentation/中間発表_主要事項.pptx": {
-      "bytes": 648189,
-      "sha256": "2a028ea587aa1a89b5f2840ae68a681974acf2c0712c452e6dd1c4131f50f564"
+      "bytes": 650831,
+      "sha256": "64c935476180bc342c8cdf09319ce96c87c802d2e3bad0026d4f7176fc54050d"
     },
     "docs/privacy.md": {
       "bytes": 5063,
@@ -12378,8 +12378,8 @@
       "sha256": "b37af8468ab90cc774380eae7acce80700a22c2cdb02aa7e1d27bf6da8ad7d04"
     },
     "publication/media-review.json": {
-      "bytes": 86671,
-      "sha256": "2ff5e6bfa51a0efdba268746106cc5fd44005bd26a89ba033cd43a7eaf5f856d"
+      "bytes": 88053,
+      "sha256": "a6ff3aa654910fa2f5d60ea0cef7fb0687721c18f3f7c39ed08b3e3cb0feb465"
     },
     "publication/policy.json": {
       "bytes": 635,
@@ -12426,16 +12426,20 @@
       "sha256": "0e317c3229ff950862fbbc0d3c6fd9ca07f5dcbcb890a497603083751684d187"
     },
     "source/presentation/board-evolution/README.md": {
-      "bytes": 14865,
-      "sha256": "4b5875b10a89ac216a5fb8ed7431178930b5c75a7513583e0567d96b10dd461c"
+      "bytes": 15953,
+      "sha256": "02993288bd30964e46dfe566cad15f57d1f6417156e7517942ef3b0d8fd82c46"
     },
     "source/presentation/board-evolution/board-circuit.mjs": {
-      "bytes": 12748,
-      "sha256": "99bd298954c564145a9a8ea3b6d2a09de343e6b0915bcd40733166ece2062040"
+      "bytes": 13149,
+      "sha256": "c056535bf2e5610869cddcb4f5e45d833b7f849126d9a88c33c5f820f4476b43"
     },
     "source/presentation/board-evolution/build.mjs": {
-      "bytes": 54879,
-      "sha256": "f8c0e25fc3cea9824516b16c969b3a7bb6c99fac48cb384b1ec6c7ef659ef829"
+      "bytes": 54704,
+      "sha256": "19298da478aa8e2742a2e1304dc743959c54e072dc36a08dbe82ecc70ab2cbbc"
+    },
+    "source/presentation/board-evolution/circuit-wiring.mjs": {
+      "bytes": 6146,
+      "sha256": "3d7b49ea998e76502500cf0308e0d264140c224f3718f4e5e3c617241453f15b"
     },
     "source/presentation/board-evolution/ddca-map.mjs": {
       "bytes": 6202,
@@ -12446,8 +12450,8 @@
       "sha256": "41f35d906a1e8ca6e219bf7d318ded6a539dcb41b90cc954263056499e9da807"
     },
     "source/presentation/board-evolution/fpga-resources.mjs": {
-      "bytes": 14747,
-      "sha256": "6a50f3f18b7fb480aa4e36ffb559d80b852e6964d3eb6eacfdd41586db3614e8"
+      "bytes": 14732,
+      "sha256": "8e5c249980b453168cea576f724e5a482c94608c8a90aa06d206246362e08638"
     },
     "source/presentation/board-evolution/fpga-utilization.mjs": {
       "bytes": 7702,
@@ -12458,8 +12462,8 @@
       "sha256": "cb7cd60189423c219aff3e8d96d6a60e9cfa534a16ea56f362816aea2c059ebe"
     },
     "source/presentation/board-evolution/wally-overview.mjs": {
-      "bytes": 15909,
-      "sha256": "b2bc694bf13b6386014d43ba26f165021991437550cb65ea40445696e2866499"
+      "bytes": 15974,
+      "sha256": "6112504dbd530d64b71342bb79efec627c7351b8e947333b98c9f02c1895b83d"
     },
     "source/presentation/build.mjs": {
       "bytes": 83,
