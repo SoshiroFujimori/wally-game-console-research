@@ -26,14 +26,15 @@ grayscale at its one-column print size, as well as enlarged.
 ## Code example
 
 The abstract uses a separately numbered `コード1` caption below an editable,
-monospaced C fragment. Japanese comments explain each access at the user's
-request. A pale background, black horizontal rules, and monospaced code follow
+monospaced C fragment. A Japanese comment above each access explains its
+purpose without wrapping beside the code. A pale background, black horizontal
+rules and monospaced code follow
 the visual treatment of RVSOC Code Example 3.1 (printed p. 92). RVSOC puts that
 caption above its example; this abstract places it below for consistency with
 the figure captions. The label and placement are editorial choices, not a
 universal rule for abstracts. The fragment illustrates physical-address accesses;
 it is not the Linux game program or a complete SD driver. Declarations of
-`request`, `data`, `cmd`, and `last`, the `<stdint.h>` header, controller initialization,
+`request`, `data`, and `cmd`, the `<stdint.h>` header, controller initialization,
 SD protocol exchanges, transfer waits, and address mapping are omitted.
 The conceptual fragment also omits `volatile`; actual MMIO accesses require
 the appropriate compiler and platform access semantics. This omission is for
@@ -41,7 +42,10 @@ explaining address selection and must not be copied into the real driver.
 The Japanese SD comments refer to communication through the SD controller;
 the CPU does not access the card's pins directly.
 `request` is one request byte; `cmd` is an intermediate 32-bit word of a
-prepared drawing command list; `last` is its final word. The 32-bit variable
+prepared drawing command list. The final-word port is omitted from this
+fragment to focus on address-based access. The actual driver still sends the
+last word through `CMD_LAST`; a normal-port write alone does not complete a
+transfer. The 32-bit variable
 `data` holds the SD receive register value; the `uint8_t` store keeps its low
 eight payload bits. The receive operation represents a payload-byte read after
 the SD protocol has reached the data phase.
@@ -86,7 +90,7 @@ paragraph are not the format being compared here.
   a twelve-page paper, cited only as a naming and layout precedent, not as a
   short-abstract example.
 
-The code is limited to five address accesses. Its caption, preceding paragraph,
+The code is limited to four address accesses. Its caption, preceding paragraph,
 and Japanese comments explain the purpose and scope. Declaration boilerplate,
 initialization, waits, and the complete SD transaction sequence are omitted.
 The fragment remains editable in Word and fenced as C in the Markdown version.

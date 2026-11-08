@@ -17,7 +17,7 @@ is 355 seconds including the 30-second embedded video, not a timed rehearsal.
 | 4 | Writing by address | A, D, W and separate select signals; an example DDR3 write of 7. |
 | 5 | Reading by address | The same layout with selected return data routed to the CPU. |
 | 6 | SD-to-DDR loading | CPU-controlled transfers and three concrete C address accesses. |
-| 7 | Drawing-command submission | CPU library, command words, adapter, and final-word port. |
+| 7 | Drawing-command submission | CPU library, command words, adapter, and one address-write example. |
 | 8 | Image storage and output | Drawing to DDR3 and display reads through the memory controller. |
 | 9 | Hardware checks | Three FPGA reconfiguration/boot trials, each with a 30-second recording. |
 | 10 | Demonstration | The later reviewed 30-second autoplay video. |
@@ -38,7 +38,9 @@ in the notes and the detailed question diagram.
 
 The C fragments use the same addresses as the abstract. They omit initialization,
 complete SD transactions, waits, declarations, address mapping and `volatile`.
-They are conceptual excerpts, not an executable driver. The real MMIO code
+The final-word write is also omitted from the main fragment; the notes
+identify the actual completion port. They are conceptual excerpts, not an
+executable driver. The real MMIO code
 is unchanged. See [the address checks and scope](../../abstract/README.md).
 
 ## Design and circuit lines

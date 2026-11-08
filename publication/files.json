@@ -58,12 +58,12 @@
       "sha256": "84c90a4a2cdb983bcda05edbf74b186ba113ff3f8d5bdd40e992afdb68719d86"
     },
     "docs/abstract/アブスト_主要事項.docx": {
-      "bytes": 408982,
-      "sha256": "598a42feb204ebca8bc0ec71982a9512b85bf3e1ef66e8852a6507f4ac7bb197"
+      "bytes": 408977,
+      "sha256": "73055c79a87d46193cad9ed772bd983718089c578ebb7be10798956f5d8d9f09"
     },
     "docs/abstract/アブスト_主要事項.md": {
-      "bytes": 6288,
-      "sha256": "adfb045b72edc8992a9bb7d5907d39d911e78d47974d48507bfbb6501be49348"
+      "bytes": 6277,
+      "sha256": "6dd39f8bd2382de0dc71dc2a86685da37b5eeed4afe016009c99bee9f48fc63d"
     },
     "docs/presentation/DDCA授業利用の出典.md": {
       "bytes": 18811,
@@ -98,12 +98,12 @@
       "sha256": "80116ed617a749986d38cad5acffea1d3d4cd8e7dc7b5dec07670a297cde17c2"
     },
     "docs/presentation/slides/slide-06.png": {
-      "bytes": 129206,
-      "sha256": "4552c80f1f274a56f76cde7c62f5707eb0060dcc0ff6d4de7c4a2634c2610396"
+      "bytes": 132636,
+      "sha256": "42efd2e5486962835216626f08da7d52ef130c1ef6f6f4d81b719d4ca88826f5"
     },
     "docs/presentation/slides/slide-07.png": {
-      "bytes": 113825,
-      "sha256": "71109bed2eed54ff47121c7a1df2a1d69bd3e5e8fbac4bc835163bbe954a80d4"
+      "bytes": 113530,
+      "sha256": "259eefd60a68064ac654b4ae9ce7a53c4cafa3a92b2fe52d0d52cf6b6682b3a4"
     },
     "docs/presentation/slides/slide-08.png": {
       "bytes": 107219,
@@ -150,12 +150,12 @@
       "sha256": "de1fc17469b8130b6d8b206d5f6b7b24b47f34988d7a35b485b6daf09e0d22e4"
     },
     "docs/presentation/中間発表_主要事項.md": {
-      "bytes": 74335,
-      "sha256": "ce4d65ffb230ddcf28bc4a163b0ef3d716838faffccb534efebf469ab75b9f19"
+      "bytes": 74399,
+      "sha256": "25b326b0db66b411d8ac416e5ff29bb2ca46ffef771d7f8ddf5b552e9f5cc6a9"
     },
     "docs/presentation/中間発表_主要事項.pptx": {
-      "bytes": 604437,
-      "sha256": "95bea90e42c349de4127c594f3f572cebe095bcd8ea6897b887ec93d834930e0"
+      "bytes": 604612,
+      "sha256": "f8528bcf6d600d23e86f30d44943da523bbb964783ac7803f48981c1361f9a64"
     },
     "docs/privacy.md": {
       "bytes": 5063,
@@ -12454,8 +12454,8 @@
       "sha256": "b37af8468ab90cc774380eae7acce80700a22c2cdb02aa7e1d27bf6da8ad7d04"
     },
     "publication/media-review.json": {
-      "bytes": 99828,
-      "sha256": "eac68b609633ec117b3fd0d749c672cd9ea57972c16ed971cd1d63dad8bc9da9"
+      "bytes": 100507,
+      "sha256": "5529c78be0656d554849c1be3ca462357fef1d34e49a3290977c34a1af7c2fe4"
     },
     "publication/policy.json": {
       "bytes": 635,
@@ -12474,16 +12474,16 @@
       "sha256": "b9317436f514a4c0c34075618b473d5b56cb10e93cfd5023655c78d4d9127236"
     },
     "source/abstract/README.md": {
-      "bytes": 6519,
-      "sha256": "37bf48f8119a719d39da18bb4793257bc58d64417212e281759fa36a1ccf13b7"
+      "bytes": 6719,
+      "sha256": "9e2564c69b76673932edfb7c41d33a19e3db9d472a2be585685b03f54e4c49b8"
     },
     "source/abstract/build.py": {
       "bytes": 11659,
       "sha256": "615c1982df6c177dc26233480747628c63f45bab300dc975a5cc70de2c35d67b"
     },
     "source/abstract/content.json": {
-      "bytes": 6857,
-      "sha256": "40d821466f9d95629b80dae38129bdeff79903c97103dc08ee441479456d3a21"
+      "bytes": 6879,
+      "sha256": "b7c963ab9464e0f7ab0e43e1e1fb575748395cde8772ed55ff487591de02e733"
     },
     "source/abstract/figs/game-flow.png": {
       "bytes": 401073,
@@ -12506,8 +12506,8 @@
       "sha256": "0e317c3229ff950862fbbc0d3c6fd9ca07f5dcbcb890a497603083751684d187"
     },
     "source/presentation/board-evolution/README.md": {
-      "bytes": 11660,
-      "sha256": "bf4a0438658117da64aeacba3749aa319c1d13227c2658b2eba233eca58d7d49"
+      "bytes": 11778,
+      "sha256": "187ebae3f90753316b1df446af8e0760f8c222e92080d775b824e3c4298bea55"
     },
     "source/presentation/board-evolution/abstract-flow.mjs": {
       "bytes": 5359,
@@ -12518,8 +12518,8 @@
       "sha256": "c056535bf2e5610869cddcb4f5e45d833b7f849126d9a88c33c5f820f4476b43"
     },
     "source/presentation/board-evolution/build.mjs": {
-      "bytes": 49192,
-      "sha256": "12706bd0fc8a47da94034a4429b444875855ebd22195824c379feacf8708bad4"
+      "bytes": 49311,
+      "sha256": "4c66b38fd535392cfe0f2f8c9997ef98bb93cc0c5e28edf519a916e0ae541179"
     },
     "source/presentation/board-evolution/circuit-wiring.mjs": {
       "bytes": 6146,
