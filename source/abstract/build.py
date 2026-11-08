@@ -182,7 +182,7 @@ for heading, paragraphs in content["sections"].items():
             if example["section"] == heading and example["after_paragraph"] == index:
                 md.append("```" + example.get("language", "text") + "\n" +
                           "\n".join(example["lines"]) + "\n```")
-md.append("図2は，実機映像を白黒表示にし，暗いブロックも印刷で見えるよう画像全体の階調を調整したものである．画素の位置と画像サイズは維持している．[変換方法](../../source/abstract/README.md)，[元の実機映像の記録](../../experiments/breakout-title-top-20261108/README.md)，[30秒の動画](../../experiments/breakout-title-top-20261108/video/breakout-30s.mp4)を公開している．本文に示した3回の起動・動作確認の条件と結果は，[動作確認記録](../../experiments/basic-operation-20261108/README.md)を参照できる．")
+md.append("図2の出典は[実機映像の記録](../../experiments/breakout-title-top-20261108/README.md)であり，[30秒の動画](../../experiments/breakout-title-top-20261108/video/breakout-30s.mp4)も公開している．本文に示した3回の起動・動作確認の条件と結果は，[動作確認記録](../../experiments/basic-operation-20261108/README.md)を参照できる．")
 md.append("標準構成の表示回路は，RasterIXリポジトリに同梱されたultraembeddedの`dvi_framebuffer`を用い，本研究で接続・画面切替の回路を追加したものである．DDRコントローラーはAMD製IPで，本研究で追加したNexys Video用の生成・接続設定をWally側のリポジトリに収めている．回路の入手元と実装箇所は[構成要素の出典](../../source/presentation/board-evolution/README.md)を参照できる．映像記録時の表示部分には，[実験E8のHDMI構成](../../experiments/basic-operation-20261108/hdmi/README.md)を用いた．")
 md.append("## 参考文献")
 md.extend(content["references"])
