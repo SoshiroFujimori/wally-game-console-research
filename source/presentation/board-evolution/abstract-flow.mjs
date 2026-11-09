@@ -117,16 +117,16 @@ export function drawIntegrationContribution(s,api) {
   text(s,'描画命令',798,272,149,32,23,true,C.blue,'center');
 }
 
-export function drawConceptCode(s,api,rows,y=579) {
+export function drawConceptCode(s,api,rows,y=579,{step=34,codeSize=23,commentSize=21}={}) {
   const {text,box,wire,C}=api;
-  const step=34,h=rows.length*step+12;
+  const h=rows.length*step+12;
   box(s,'',64,y,1152,h,'#EEF0FC',24,'#EEF0FC',0);
   wire(s,64,y,1216,y,C.ink,false,1.1);
   wire(s,64,y+h,1216,y+h,C.ink,false,1.1);
   rows.forEach(([code,comment],i)=>{
-    const shape=text(s,code,78,y+5+i*step,724,step,23,false,C.ink);
-    shape.text.style={typeface:'Consolas',fontSize:23,bold:false,color:C.ink,verticalAlignment:'middle',wrap:'none'};
+    const shape=text(s,code,78,y+5+i*step,724,step,codeSize,false,C.ink);
+    shape.text.style={typeface:'Consolas',fontSize:codeSize,bold:false,color:C.ink,verticalAlignment:'middle',wrap:'none'};
     shape.text=[{runs:code.split(/(0x[0-9a-fA-F]+|\b(?:uint32_t|uint8_t|int|void|for)\b)/).filter(Boolean).map(run=>({run,style:{color:run.startsWith('0x')?'#703077':/^(uint32_t|uint8_t|int|void|for)$/.test(run)?C.blue:C.ink,typeface:'Consolas'}}))}];
-    text(s,'// '+comment,823,y+5+i*step,380,step,21,false,'#445369');
+    text(s,'// '+comment,823,y+5+i*step,380,step,commentSize,false,'#445369');
   });
 }

@@ -35,8 +35,11 @@ the local privacy audit, and keep the publication hooks enabled.
 The main talk explains the FPGA board, the game-console extension, SD read
 requests and returned data, DDR3 storage and execution, drawing commands and
 image output. It identifies the added circuit/software work and uses one video
-slide for the observed game behavior. The main drawing source is `board-evolution/abstract-flow.mjs`.
-It uses the abstract's address map and the existing RVSOC-inspired palette,
+slide for the observed game behavior. The main drawing source is `board-evolution/stable-board.mjs`.
+Slides 2-11 share fixed board/chip and physical-component positions; slides
+4-11 retain the same circuit and signal geometry as each transfer is explained.
+Slide 7 extends slide 6 by highlighting the alternating SD-read/DDR-write copy.
+The code-panel helper is in `board-evolution/abstract-flow.mjs`. The diagrams use the abstract's address map and the existing RVSOC-inspired palette,
 line conventions and fonts. `design-reference.json` retains source provenance.
 
 The earlier single-cycle load/store explanations are restored as hidden

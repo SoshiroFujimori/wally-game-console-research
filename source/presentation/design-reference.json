@@ -1,5 +1,5 @@
 {
-  "version": 11,
+  "version": 12,
   "reference": "Harris et al., RISC-V System-on-Chip Design",
   "official_resources": "https://pages.hmc.edu/harris/ddca/rvsocd.html",
   "inspection_date": "2026-10-24",
@@ -103,7 +103,7 @@
     "block_outline": 2.2,
     "note": "Aggregated interface links represent several signals, not one conductor."
   },
-  "diagram_basis": "Pinned console RTL; main slides introduce Wally, then follow SD requests and receive data, DDR3 storage and execution, drawing commands, and output. Slide 11 identifies the added integration work. Slide 12 is the sole execution-result slide. Hidden question slide 26 retains the detailed system view.",
+  "diagram_basis": "Pinned console RTL; main slides introduce Wally, then follow SD requests and receive data, DDR3 storage and execution, drawing commands, and output. Slide 11 identifies the added integration work. Slide 12 is the sole execution-result slide. Hidden question slide 26 retains the detailed system view. Main circuit diagrams use one board coordinate system throughout slides 2-11.",
   "console_revision": "261832d48832dd6e26c4971ab8893ce61200688b",
   "detailed_diagram": {
     "source": "board-evolution/wally-overview.mjs",
@@ -140,12 +140,17 @@
     "used_in_current_deck": false
   },
   "simplified_diagrams": {
-    "source": "board-evolution/abstract-flow.mjs",
+    "source": "board-evolution/stable-board.mjs",
     "overview_and_transfer_slides": [
+      3,
+      4,
+      5,
+      6,
       7,
       8,
       9,
-      10
+      10,
+      11
     ],
     "address_access_slides": [
       4,
@@ -184,7 +189,32 @@
         "write_enable": 1,
         "select": "S1"
       }
-    ]
+    ],
+    "board_slides": [
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11
+    ],
+    "fixed_signal_geometry_slides": [
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11
+    ],
+    "code_panel_source": "board-evolution/abstract-flow.mjs",
+    "geometry": "Board and chip boundaries and physical SD/DDR3/HDMI parts keep fixed positions and sizes. Slide 3 abstracts Wally inside the same boundary; slide 4 expands that area. Slides 4-11 retain circuit block positions and signal routes.",
+    "slide_6_to_7": "Retain the DDR3 write diagram and highlight the SD read path as well. The CPU alternates reads and writes; S0 and S1 are not asserted simultaneously."
   },
   "cover": {
     "fields": [
@@ -206,7 +236,19 @@
     "internal_circuit_example": "An AND gate corresponding to the SystemVerilog expression assign y = a & b.",
     "code_scope": "A small combinational-logic example; it is not a complete peripheral controller.",
     "purpose": "Explain that a described circuit can be implemented inside the FPGA chip to control physical components on the board.",
-    "research_purpose": "Slide 3 groups Wally into one block, describes its HDL/textbook, and introduces the extension purpose."
+    "research_purpose": "Slide 3 groups Wally into one block, describes its HDL/textbook, and introduces the extension purpose.",
+    "source": "board-evolution/stable-board.mjs",
+    "coordinates_shared_with": [
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11
+    ]
   },
   "presentation_mapping_review_date": "2026-11-09",
   "fpga_resource_question_slide": {
@@ -260,7 +302,7 @@
     "scope": "Documented textbook designations and historical draft use; not an exhaustive current adoption count. Reference-only listings excluded.",
     "presentation": "Editable table with the existing RVSOC-inspired blue header, pale alternate rows, black rules and Yu Gothic/Arial typography."
   },
-  "previous_presentation_commit": "99613918618b4d5e4a3329e200a0baded0386897",
+  "previous_presentation_commit": "f4c3d1d13ade4ef0db3428ac08e6d8bd105bf09f",
   "restored_datapath_question_slides": {
     "source_commit": "40d8a51bd1ab0d9c9a469146c349cd31b173bdce",
     "slides": [

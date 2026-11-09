@@ -26,12 +26,22 @@ is 355 seconds including the 30-second embedded video, not a timed rehearsal.
 | 13 | Conclusion | A published Wally extension example; controller/GUI work remains planned. |
 
 `main-slides.mjs` defines the cover and twelve-slide main talk.
-`abstract-flow.mjs` draws editable functional diagrams and code panels.
-Slide 3 groups Wally into one block and explains its public HDL and textbook.
-Slides 4-6 keep the same signal layout while following an SD request, a received
-byte, and its DDR3 write. Slides 7-10 keep the same full-system component positions. Blue emphasizes
-the path being discussed. Wally's processor datapath and instruction encoding
-are not prerequisites for this main explanation.
+`stable-board.mjs` supplies one editable coordinate system for slides 2-11.
+The board, chip boundary, SD slot, DDR3 memory and HDMI connector keep exactly
+the same positions and sizes. Slide 3 groups Wally into one block and explains
+its public HDL and textbook. Slide 4 expands that block into the CPU, decoder,
+SD control and DDR control, within the same Wally boundary.
+
+Slides 4-11 retain the same circuit blocks and signal routes. Blue emphasizes
+the path being discussed. In particular, slide 7 keeps slide 6's DDR3 write
+path and also highlights the SD read path. The code explains how the CPU
+alternates between those two transfers; the two selects are not asserted
+simultaneously. The following slides change the highlighted transfer and code,
+without moving components to a different whole-system diagram.
+
+`abstract-flow.mjs` retains the conceptual code-panel helper and the earlier
+whole-system view used on question slide 25. Wally's processor datapath and
+instruction encoding are not prerequisites for the main explanation.
 
 The access view separates address AD, write data WD, one-bit write enable WE,
 read data RD, and selection signals S0-S2. Only one destination accepts a transfer, and a
@@ -173,7 +183,7 @@ node source/presentation/build.mjs RESEARCH_ROOT PRIVATE_BUILD_DIRECTORY
 ```
 
 The builder creates PPTX, Markdown, preview images and private QA records.
-The still-frame content is re-imported in three contiguous batches because the
+The still-frame content is re-imported in four contiguous batches because the
 full twenty-seven-slide package exceeds the runtime import limit. The final
 video-bearing package receives integrity/layout checks and native PowerPoint
 rendering. Inspect all slides, private cover, video identity and internal links.
@@ -205,3 +215,6 @@ decoder and target registers; independent request outputs are never
 shorted together. The selected read value fans out to both CPU
 interfaces and is accepted by the requesting side. The notes identify
 the omitted timing and the correspondence to IFU, LSU, EBU and uncore.
+
+The revision before unifying the main-talk board geometry is commit
+`f4c3d1d13ade4ef0db3428ac08e6d8bd105bf09f`.
