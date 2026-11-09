@@ -24,13 +24,13 @@ function chipView(a) {
   };
 }
 
-export function drawBoard(s,a,stage){
-  const chipOnly=stage===3||stage===4;
+export function drawBoard(s,a,stage,{ports=false}={}){
+  const chipOnly=stage===3||stage===4||ports;
   if(chipOnly)a=chipView(a);
   const {text:T,box:B,polygon:P,wire:W,route:R,C}=a;
   const blue=C.blue, gray='#9FA9B9', white=C.white;
   const load=stage===3, store=stage===4||stage===5, busFocus=stage===5;
-  const sdFocus=stage===6, command=stage===7, display=stage>=8;
+  const sdFocus=stage===6, command=stage===7, display=stage>=8&&!ports;
   const t=(v,x,y,w,h=28,z=20,b=false,c=C.ink,align='left')=>T(s,v,x,y,w,h,z,b,c,align);
   const b=(key,label='',fill=white,z=22,stroke=C.ink)=>{
     const sh=B(s,label,...BOARD[key],fill,z,stroke,2.2);sh.name='board-stable-'+key;return sh;
@@ -53,7 +53,7 @@ export function drawBoard(s,a,stage){
   b('chip','',C.chip,22,blue);
   t('FPGAチップ',80,266,250,29,23,true,blue);
   t('●：接続　隙間のある交差：非接続',350,268,650,25,16,false,C.ink);
-  const internalMemory = stage <= 4;
+  const internalMemory = stage <= 4 || ports;
   const sdColor=sdFocus?blue:gray;
   const memoryColor=internalMemory?gray:blue;
   const gpuColor=command||display?blue:gray;
@@ -77,8 +77,14 @@ export function drawBoard(s,a,stage){
     t('A',864,452,25,24,16);
     t('WD',864,515,35,24,16);
     t('RD',968,498,30,24,16);
-    t(load?'8番地':'12番地',897,434,99,29,21,true,blue,'center');
-    t('3',914,469,51,38,29,true,blue,'center');
+    if(ports){
+      t('外部への',898,443,98,25,17,true,blue,'center');
+      t('接続口 D',897,469,99,28,19,true,blue,'center');
+      t('WE',968,415,33,22,14,true,blue);
+    }else{
+      t(load?'8番地':'12番地',897,434,99,29,21,true,blue,'center');
+      t('3',914,469,51,38,29,true,blue,'center');
+    }
   }else{
     // The shared bus and vendor memory IP first appear in the bus explanation.
     b('bus','',busFocus?C.pale:white,22,busFocus?blue:gray);
@@ -132,7 +138,7 @@ export function drawBoard(s,a,stage){
   t(load?'0':store?'4':'番地',137,477,36,28,load||store?22:14,true,blue,'center');
   b('fetch');t(internalMemory?'命令メモリ':'命令読出し',174,418,133,29,22,true,C.ink,'center');
   t('A',175,456,25,24,16);t('RD',281,456,30,24,16);
-  t(load?'0：lw x1,8(x0)':store?'4：sw x1,12(x0)':'DDR3から\n命令を読む',182,485,116,47,load||store?14:18,true,load||store?blue:C.ink,'center');
+  t(ports?'外部への\n接続口 I':load?'0：lw x1,8(x0)':store?'4：sw x1,12(x0)':'DDR3から\n命令を読む',182,485,116,47,load||store?14:18,true,load||store||ports?blue:C.ink,'center');
   r([[313,468],[336,468],[336,355],[359,355]],C.ink,true,2.3);
 
   if(stage>=4){
@@ -174,6 +180,21 @@ export function drawBoard(s,a,stage){
   const readRoute=internalMemory?[[1004,512],[1015,512],[1015,610],[380,610],[380,541],[398,541]]:[[760,558],[732,558],[732,610],[380,610],[380,541],[398,541]];
   r(readRoute,store||command?gray:blue,true,2.7);
   if(load)t('3',351,538,24,26,21,true,blue,'center');
+
+  if(ports){
+    // Keep both original memory rectangles. Here they represent the CPU-side
+    // access interfaces, not separate local memories in the implemented SoC.
+    for(const [xs,y0,prefix] of [
+      [[183,219,255,291],536,'I'],[[875,911,947,983],556,'D']]){
+      ['AD','WD','WE','RD'].forEach((name,i)=>{
+        const x=xs[i],reading=name==='RD';
+        wire(x,y0,x,584,blue,reading?'start':true,name==='WE'?1.3:2.5);
+        t(name,x-17,586,34,21,14,true,blue,'center');
+      });
+    }
+    t('読書き制御',917,309,106,27,17,true,blue,'center');
+    r([[1018,338],[1032,338],[1032,425],[1004,425]],blue,true,1.3);
+  }
 
   // The local instruction memory has no bus routes.
   if(!internalMemory){

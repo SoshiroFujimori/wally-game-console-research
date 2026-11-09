@@ -1,5 +1,5 @@
 {
-  "version": 10,
+  "version": 11,
   "reference": "Harris et al., RISC-V System-on-Chip Design",
   "official_resources": "https://pages.hmc.edu/harris/ddca/rvsocd.html",
   "inspection_date": "2026-10-24",
@@ -103,11 +103,11 @@
     "block_outline": 2.2,
     "note": "Aggregated interface links represent several signals, not one conductor."
   },
-  "diagram_basis": "Pinned console RTL; main slides introduce Wally, then follow SD requests and receive data, DDR3 storage and execution, drawing commands, and output. Slide 11 identifies the added integration work. Slide 12 is the sole execution-result slide. Hidden question slide 19 retains the detailed system view.",
+  "diagram_basis": "Pinned console RTL; main slides introduce Wally, then follow SD requests and receive data, DDR3 storage and execution, drawing commands, and output. Slide 11 identifies the added integration work. Slide 12 is the sole execution-result slide. Hidden question slide 26 retains the detailed system view.",
   "console_revision": "261832d48832dd6e26c4971ab8893ce61200688b",
   "detailed_diagram": {
     "source": "board-evolution/wally-overview.mjs",
-    "slide": 19,
+    "slide": 26,
     "hierarchy": [
       "fpgaTop",
       "wallypipelinedsoc",
@@ -126,7 +126,7 @@
       "wally-circuit.mjs",
       "integrated-internals.mjs"
     ],
-    "supplementary_module_scope": "More detailed module drawings retained as source material; not displayed in the current twenty-slide deck."
+    "supplementary_module_scope": "More detailed module drawings retained as source material; not displayed in the current twenty-seven-slide deck."
   },
   "board_photograph": {
     "file": "assets/nexys-video.png",
@@ -260,5 +260,30 @@
     "scope": "Documented textbook designations and historical draft use; not an exhaustive current adoption count. Reference-only listings excluded.",
     "presentation": "Editable table with the existing RVSOC-inspired blue header, pale alternate rows, black rules and Yu Gothic/Arial typography."
   },
-  "previous_presentation_commit": "b0cdac50bbcc638a736b7e1737b33dbf72b6c8d3"
+  "previous_presentation_commit": "99613918618b4d5e4a3329e200a0baded0386897",
+  "restored_datapath_question_slides": {
+    "source_commit": "40d8a51bd1ab0d9c9a469146c349cd31b173bdce",
+    "slides": [
+      19,
+      20,
+      21,
+      22,
+      23,
+      24,
+      25
+    ],
+    "sources": [
+      "board-evolution/datapath-backups.mjs",
+      "board-evolution/board-circuit.mjs",
+      "board-evolution/memory-ports.mjs"
+    ],
+    "geometry": "Keep the PC, instruction/data memory rectangles, register file and ALU positions from the single-cycle examples.",
+    "interfaces": "The memory rectangles become access interfaces; explicit AD/WD/WE/RD connect through request selection, address decode and read selection.",
+    "limits": "Functional mappings; no claim of actual local IROM/DTIM, complete control wiring or cycle accuracy."
+  },
+  "wire_rendering": {
+    "shafts": "Filled native polygons with exact endpoint geometry.",
+    "heads": "Solid outline-free triangles placed after other shapes; shafts stop at the base.",
+    "crossings": "Gaps in the crossing segment; actual junction radius protects connected dots."
+  }
 }

@@ -18,8 +18,15 @@ export const CONTENTS_ITEMS=[
   {number:16,label:'RVSOCの教科書採用例',group:'教科書の採用例'},
   {number:17,label:'FPGAチップの構成要素',group:'FPGA'},
   {number:18,label:'FPGAの使用量',group:'FPGA'},
-  {number:19,label:'詳細な全体のブロック図',group:'回路の詳細'},
-  {number:20,label:'描画回路のFPGAパイプライン',group:'回路の詳細'},
+  {number:19,label:'lw命令とデータの読出し',group:'命令の実行と周辺接続'},
+  {number:20,label:'sw命令とデータの書込み',group:'命令の実行と周辺接続'},
+  {number:21,label:'二つのメモリの箱と接続口',group:'命令の実行と周辺接続'},
+  {number:22,label:'アドレス判定と読出し値の選択',group:'命令の実行と周辺接続'},
+  {number:23,label:'SDカードからDDR3へのコピー',group:'命令の実行と周辺接続'},
+  {number:24,label:'sw命令で描画用の数値を送る',group:'命令の実行と周辺接続'},
+  {number:25,label:'画像の保存と表示の経路',group:'命令の実行と周辺接続'},
+  {number:26,label:'詳細な全体のブロック図',group:'回路の詳細'},
+  {number:27,label:'描画回路のFPGAパイプライン',group:'回路の詳細'},
 ];
 
 const destinations=new Map();
@@ -42,18 +49,14 @@ export function drawContents(s,api){
     linkToSlide(number,record.number);linkToSlide(label,record.number);
   };
   CONTENTS_ITEMS.slice(0,13).forEach((r,i)=>item(r,64,193+i*32));
-  ['教科書の採用例','FPGA','回路の詳細'].forEach((group,i)=>{
-    const y=191+i*139;
-    text(s,group,668,y,548,33,24,true,C.heading);
-    CONTENTS_ITEMS.filter(r=>r.group===group).forEach((r,j)=>item(r,668,y+42+j*38));
-  });
+  CONTENTS_ITEMS.slice(13).forEach((r,i)=>item(r,668,193+i*32));
   text(s,'項目をクリックすると、そのスライドへ移動します',64,628,1152,34,24,true,C.ink);
   text(s,'各スライドの右下の番号をクリックすると、この目次に戻れます',64,670,1100,31,21,false,C.old);
 }
 
 export function contentsMarkdown(){
   const lines=[];
-  for(const group of ['発表スライド','教科書の採用例','FPGA','回路の詳細']){
+  for(const group of ['発表スライド','教科書の採用例','FPGA','命令の実行と周辺接続','回路の詳細']){
     lines.push('### '+(group==='発表スライド'?group:'質問用：'+group),'');
     for(const r of CONTENTS_ITEMS.filter(r=>r.group===group))lines.push(`- [${r.number}. ${r.label}](#slide-${r.number})`);
     lines.push('');

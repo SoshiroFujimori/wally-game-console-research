@@ -5,12 +5,22 @@ export function createCircuitWiring() {
   const slides = new Map();
   let serial = 0;
   const state = slide => {
-    if (!slides.has(slide)) slides.set(slide, {segments: [], junctions: []});
+    if (!slides.has(slide)) slides.set(slide, {segments: [], junctions: [], heads: []});
     return slides.get(slide);
   };
   const point = (a,b,t) => [a[0]+(b[0]-a[0])*t,a[1]+(b[1]-a[1])*t];
   const distance = (a,b) => Math.hypot(b[0]-a[0],b[1]-a[1]);
   const cross = (a,b) => a[0]*b[1]-a[1]*b[0];
+
+  // Filled polygons have exact endpoints; PowerPoint line caps cannot extend
+  // the shaft into or beyond an independently drawn arrowhead.
+  function shaftPath(a,b,width,left,top){
+    const len=distance(a,b),nx=-(b[1]-a[1])*width/(2*len),ny=(b[0]-a[0])*width/(2*len);
+    const pts=[[a[0]+nx,a[1]+ny],[b[0]+nx,b[1]+ny],
+      [b[0]-nx,b[1]-ny],[a[0]-nx,a[1]-ny]];
+    return [{moveTo:{x:pts[0][0]-left,y:pts[0][1]-top}},
+      ...pts.slice(1).map(p=>({lineTo:{x:p[0]-left,y:p[1]-top}})),{close:{}}];
+  }
 
   function head(slide, tip, direction, length, halfWidth, color) {
     const base=[tip[0]-direction[0]*length,tip[1]-direction[1]*length];
@@ -35,8 +45,8 @@ export function createCircuitWiring() {
       const d=[(p[end][0]-p[neighbor][0])/full,(p[end][1]-p[neighbor][1])/full];
       const setback=Math.min(1.3,full*0.06);
       const cap=(p.length===2&&ends.length===2?0.42:0.76)*(full-setback);
-      const length=Math.min(Math.max(6.5,3.35*width),cap);
-      const halfWidth=Math.min(Math.max(2.5,1.48*width),length*0.52);
+      const length=Math.min(Math.max(7,3.8*width),cap);
+      const halfWidth=Math.min(Math.max(2.8,1.65*width),length*0.52);
       const tip=[p[end][0]-d[0]*setback,p[end][1]-d[1]*setback];
       trims.set(end,{length:length+setback,d,tip,headLength:length,halfWidth});
     }
@@ -48,19 +58,19 @@ export function createCircuitWiring() {
       }
       const length=distance(a,b);
       if(length<0.05)continue;
-      const left=Math.min(a[0],b[0]),top=Math.min(a[1],b[1]);
-      const w=Math.max(1,Math.abs(b[0]-a[0])),h=Math.max(1,Math.abs(b[1]-a[1]));
+      const left=Math.min(a[0],b[0])-width/2,top=Math.min(a[1],b[1])-width/2;
+      const w=Math.max(1,Math.abs(b[0]-a[0])+width),h=Math.max(1,Math.abs(b[1]-a[1])+width);
       const shape=slide.shapes.add({geometry:'custom',name:'wire-'+(++serial),
-        position:{left,top,width:w,height:h},fill:'none',line:{fill:color,width},
-        customPaths:[{width:w,height:h,commands:[{moveTo:{x:a[0]-left,y:a[1]-top}},{lineTo:{x:b[0]-left,y:b[1]-top}}]}]});
+        position:{left,top,width:w,height:h},fill:color,line:{fill:'none',width:0},
+        customPaths:[{width:w,height:h,commands:shaftPath(a,b,width,left,top)}]});
       state(slide).segments.push({shape,a,b,origA,origB,left,top,w,h,width,color,group,length,cuts:[]});
     }
-    for(const trim of trims.values())head(slide,trim.tip,trim.d,trim.headLength,trim.halfWidth,color);
+    for(const trim of trims.values())state(slide).heads.push({tip:trim.tip,d:trim.d,length:trim.headLength,halfWidth:trim.halfWidth,color});
   }
 
   function wire(slide,x1,y1,x2,y2,color,arrows=false,width=3){route(slide,[[x1,y1],[x2,y2]],color,arrows,width);}
   function junction(slide,x,y,color='#231F20',diameter=4.8){
-    state(slide).junctions.push([x,y]);
+    state(slide).junctions.push([x,y,diameter/2]);
     return slide.shapes.add({geometry:'ellipse',name:'junction-'+(++serial),
       position:{left:x-diameter/2,top:y-diameter/2,width:diameter,height:diameter},
       fill:color,line:{fill:'none',width:0}});
@@ -68,7 +78,7 @@ export function createCircuitWiring() {
 
   function finalize(){
     const report=[];
-    for(const [slide,{segments,junctions}]of slides){
+    for(const [slide,{segments,junctions,heads}]of slides){
       let crossings=0,gaps=0;const crowded=[];
       for(let i=0;i<segments.length;i++)for(let j=i+1;j<segments.length;j++){
         const a=segments[i],b=segments[j];
@@ -79,7 +89,7 @@ export function createCircuitWiring() {
         const t=cross(q,v)/den,s=cross(q,u)/den;
         if(t<=0.001||t>=0.999||s<=0.001||s>=0.999)continue;
         const hit=point(a.a,a.b,t);
-        if(junctions.some(p=>distance(p,hit)<2))continue;
+        if(junctions.some(p=>distance(p,hit)<=p[2]+1))continue;
         crossings++;
         // Horizontal routes are normally continuous; the crossing route
         // receives a gap. A cramped terminal is never cut through its head.
@@ -107,11 +117,12 @@ export function createCircuitWiring() {
         const commands=[];
         for(const [lo,hi]of intervals){
           const a=point(seg.a,seg.b,lo/seg.length),b=point(seg.a,seg.b,hi/seg.length);
-          commands.push({moveTo:{x:a[0]-seg.left,y:a[1]-seg.top}},{lineTo:{x:b[0]-seg.left,y:b[1]-seg.top}});
+          commands.push(...shaftPath(a,b,seg.width,seg.left,seg.top));
         }
         seg.shape.customPaths=[{width:seg.w,height:seg.h,commands}];
       }
-      report.push({segments:segments.length,crossings,gaps,crowded});
+      for(const h of heads)head(slide,h.tip,h.d,h.length,h.halfWidth,h.color);
+      report.push({segments:segments.length,arrowheads:heads.length,crossings,gaps,crowded});
     }
     return report;
   }
