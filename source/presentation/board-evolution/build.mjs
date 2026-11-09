@@ -9,7 +9,7 @@ import path from 'node:path';
 import { pathToFileURL } from 'node:url';
 import { spawnSync } from 'node:child_process';
 import { loadRvsocAdoption, drawRvsocAdoption, RVSOC_ADOPTION_NARRATION, RVSOC_ADOPTION_DETAIL } from './rvsoc-adoption.mjs';
-import { loadFpgaUtilization, drawFpgaUtilization, FPGA_UTILIZATION_SOURCE, FPGA_UTILIZATION_NARRATION, FPGA_UTILIZATION_DETAIL } from './fpga-utilization.mjs';
+import { loadFpgaUtilization, drawFpgaUtilization, FPGA_UTILIZATION_SOURCE, STANDARD_UTILIZATION_SOURCE, FPGA_UTILIZATION_NARRATION, FPGA_UTILIZATION_DETAIL } from './fpga-utilization.mjs';
 import { drawFpgaResources, FPGA_RESOURCE_SOURCES, FPGA_RESOURCE_NARRATION, FPGA_RESOURCE_DETAIL } from './fpga-resources.mjs';
 import { drawWallyOverview } from './wally-overview.mjs';
 import { drawDdcaMap, summarizeDdca } from './ddca-map.mjs';
@@ -109,7 +109,7 @@ s.hidden=true;outline[outline.length-1].backup=true;
 const utilization = await loadFpgaUtilization(root);
 s=slide('回答用：FPGAの使用量',0,
   FPGA_UTILIZATION_NARRATION,
-  `${FPGA_UTILIZATION_SOURCE} (historical whole-design comparison); publication/console-source.json. After bitstream SHA-256: ${utilization.bitstreamSha256}.`,
+  `Before: ${FPGA_UTILIZATION_SOURCE}; After: ${STANDARD_UTILIZATION_SOURCE}. Historical whole-design comparison. After bitstream SHA-256: ${utilization.bitstreamSha256}.`,
   FPGA_UTILIZATION_DETAIL);
 drawFpgaUtilization(s,api,utilization,P.slides.items.length);
 s.hidden=true;outline[outline.length-1].backup=true;
@@ -134,7 +134,7 @@ await fs.writeFile(path.join(workspace,'rasterix-pipeline-graph.json'),JSON.stri
 await addOpenGLSlides({slide,api,root,outline});
 
 // Keep provenance in the notes and the GitHub-readable counterpart.
-for (const number of [3,4,7,8,9,11,13,19,20]) {
+for (const number of [4,7,8,9,10,11,13,19,20]) {
   const o=outline[number-1];
   o.detail += '\n\n' + PROVENANCE_DETAIL;
   o.source += '\n' + PROVENANCE_SOURCE;
@@ -147,11 +147,11 @@ if(outline.length!==30||total!==335)throw new Error(`Unexpected allocation ${out
 await fs.writeFile(path.join(workspace,'outline.json'),JSON.stringify(outline,null,2)+'\n');
 const md=[
   '# 中間発表：FPGAを用いた2Dゲーム機の製作',
-  '表紙1枚、発表用12枚、移動用の目次1枚、回答用16枚で構成します。Wallyへの描画機能の追加を、目的、既存回路との分担、接続の設計、実機での動作確認、公開した拡張例の順に説明します。ゲームの動きは30秒の実機動画で示します。',
+  '表紙1枚、発表用12枚、移動用の目次1枚、回答用16枚で構成します。Wallyへの描画機能の追加を、教科書とのつながりと目的、既存回路との分担、接続の設計、実機動画、FPGA使用量の順に説明します。ゲームの動きは30秒の実機動画で示します。',
   '[PowerPoint版](中間発表_主要事項.pptx) / [アブスト](../abstract/アブスト_主要事項.md) / [論文本文](../thesis/本文.md) / [技術付録](../thesis/技術付録.md) / [再生成方法](../../source/presentation/board-evolution/README.md) / [DDCA授業利用の出典](DDCA授業利用の出典.md) / [RVSOC教科書採用の出典](RVSOC教科書採用の出典.md)',
   '[発表の要点を読む](発表の要点.md) / [OpenGLの説明と想定質問](OpenGLの説明と想定質問.md)',
   '## 図の見方',
-  '2〜9枚目と13枚目の図は、FPGAボードとチップ外の部品を同じ位置に置いています。3枚目のCPUと周辺回路のまとまりを、4枚目でCPU・SD制御・DDR制御へ展開します。4枚目以降は回路の配置をそろえ、説明する経路を青で強調します。矢印は要求やデータの経路を機能ごとにまとめたもので、一本の信号線を表すものではありません。破線の枠は回路コードの主な提供元です。「Wally」はCPU、「Wallyリポジトリ」はCPUと周辺回路の設計コードの提供元として使います。',
+  '2枚目ではFPGAと周辺部品、3枚目では教科書と研究の関係を説明します。4〜10枚目と13枚目の構成図は、FPGAボードとチップ外の部品を同じ位置に置き、説明する経路を青で強調します。9枚目は画像を保存する向き、10枚目は画像を読み出して表示する向きを示します。矢印は要求やデータの経路を機能ごとにまとめたもので、一本の信号線を表すものではありません。破線の枠は回路コードの主な提供元です。「Wally」はCPU、「Wallyリポジトリ」はCPUと周辺回路の設計コードの提供元として使います。',
   '回答用19枚目では、信号を詳しく示しています。ADはアドレス、WDは書込みデータ、WEは1ビットの書込みイネーブル、RDは読出しデータです。有効な読書きの際のWE=1を書込み、WE=0を読出しとして示します。アドレスデコーダが接続先を選び、読出し値も対応する選択信号で選びます。分岐の黒丸は接続を表し、接続しない線の交差には隙間があります。転送の細かなタイミングや待ち処理は省略しています。',
   '## 回路の提供元',
   PROVENANCE_DETAIL,
@@ -167,7 +167,7 @@ outline.forEach((o,i)=>md.push('<a id="slide-'+(i+1)+'"></a>\n## '+(i+1)+'. '+o.
   ...(i===14?['[教育機関・授業・年度・指定の種類・出典の一覧](DDCA授業利用の出典.md)',
     'スライドに示した学校名の例：'+ddcaSummary.categories.map(c=>c.label+'は'+c.examples.join('・')).join('、')+'。']:[]),
   ...(i===15?['[教育機関・時期・採用根拠の一覧](RVSOC教科書採用の出典.md)']:[]),
-  ...(i===17?['[Before／Afterの比較資料と元レポート](../../experiments/fpga-resource-comparison-20261108/README.md)']:[]),
+  ...(i===11||i===17?['[動画と同じ回路の使用量・比較範囲・元レポート](../../experiments/standard-display-resources-20261110/README.md)']:[]),
   ...(i===10?['[30秒の実機動画を開く](../../source/presentation/assets/breakout-standard-dvi-compatible.mp4)','PowerPointには動画を埋め込んでいます。スライドショーで11枚目に進むと自動再生します。']:[]),
   ...(o.navigation?[contentsMarkdown()]:[]),
   o.navigation?'### 目次の使い方':o.backup?'### 質問時の使い方':'### 発表原稿',o.narration,
@@ -195,7 +195,7 @@ if(audience==='public'){
 // Final package integrity/layout and video relationships are checked separately.
 await fs.mkdir(path.join(workspace,'poster-review'), { recursive: true });
 const posterFinal=path.join(workspace,'poster-review','poster-validated.pptx');
-const validationOptions={workspaceDir:workspace,pythonExecutable:process.env.RUNTIME_PYTHON,integrityValidatorPath:path.join(process.env.PRESENTATION_SKILL,'container_tools/inspect_presentation_package_integrity.py'),layoutValidatorPath:path.join(process.env.PRESENTATION_SKILL,'container_tools/inspect_presentation_layout_geometry.py'),layoutArgs:['--expected-slide-size-emu','12192000,6858000','--validate-bullet-geometry','--validate-heading-fit','--require-native-table-slide','10','--require-native-table-slide','12','--require-native-table-slide','16','--require-native-table-slide','18'],explicitTotalSlideCount:30,requiredNativeTableOwnerSlides:[10,12,16,18],requiredNativeChartOwnerSlides:[],fontPolicy:{basis:'design',families:[font,latinFont,codeFont]}};
+const validationOptions={workspaceDir:workspace,pythonExecutable:process.env.RUNTIME_PYTHON,integrityValidatorPath:path.join(process.env.PRESENTATION_SKILL,'container_tools/inspect_presentation_package_integrity.py'),layoutValidatorPath:path.join(process.env.PRESENTATION_SKILL,'container_tools/inspect_presentation_layout_geometry.py'),layoutArgs:['--expected-slide-size-emu','12192000,6858000','--validate-bullet-geometry','--validate-heading-fit','--require-native-table-slide','12','--require-native-table-slide','16','--require-native-table-slide','18'],explicitTotalSlideCount:30,requiredNativeTableOwnerSlides:[12,16,18],requiredNativeChartOwnerSlides:[],fontPolicy:{basis:'design',families:[font,latinFont,codeFont]}};
 await finalizePresentation({...validationOptions,candidatePath:poster,finalPath:posterFinal,verifyArtifactToolImport:false,receiptPath:path.join(workspace,'poster-validation.json')});
 // Import authored content in five contiguous batches to bound the runtime's
 // XML construction size, then inspect the full

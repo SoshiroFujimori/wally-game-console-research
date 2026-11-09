@@ -13,16 +13,16 @@ is 335 seconds including the 30-second embedded video, not a timed rehearsal.
 | --- | --- | --- |
 | 1 | Title | Private cover retained in the school copy. |
 | 2 | FPGA and external components | HDL and an AND gate illustrate circuit implementation. |
-| 3 | Wally and the objective | A working extension example for Wally learners. |
+| 3 | Educational context and objective | DDCA teaching use, the RVSOC/Wally learning path, and a working extension example. |
 | 4 | Existing and added parts | Reused CPU/peripheral/graphics components and local integration. |
 | 5 | Program loading | SD control returns data to the CPU, which stores it through DDR control. |
 | 6 | Game execution | CPU execution updates positions, collisions and score. |
 | 7 | Drawing commands | The CPU library prepares commands for the graphics block. |
 | 8 | Interface design | Local bus adaptation and an AMD IP for clock-domain transfer. |
-| 9 | Image output | Graphics and display use DDR3 through its controller. |
-| 10 | Functional checks | Visible objects, motion, brick removal and score updates. |
+| 9 | Image storage | Graphics writes image pixels through DDR control. |
+| 10 | Image output | Display reads image pixels through DDR control and drives the HDMI connector. |
 | 11 | Actual video | The unchanged reviewed 30-second standard-output recording. |
-| 12 | Published extension example | Source, execution instructions and functional evidence for learners. |
+| 12 | FPGA utilization | Archived implementation report for the exact bitstream in the video. |
 | 13 | Conclusion and next steps | Verified game behavior and optional controller/GUI work. |
 
 `core-board.mjs` provides a stable functional diagram. It summarizes the
@@ -128,7 +128,8 @@ the blue outlines used for functions covered in the main presentation.
 Slide 11 embeds the compatible H.264 distribution copy of
 `experiments/dvi-recovery-20261109/media/latest-standard-dvi-30s.mp4`, using its
 reviewed `latest-start.png` poster. This is the sole execution-result slide.
-Slide 8 explains the adapter roles; slide 10 introduces the functional checks.
+Slide 8 explains the adapter roles; slides 9 and 10 separate image storage and display.
+Slide 12 shows resource utilization for the exact standard-display bitstream.
 The latest title-top executable
 is shown using the unchanged standard display bitstream and RasterIX-bundled
 drawing/display cores. Local connection and control wrappers remain integration
@@ -138,8 +139,8 @@ video rate is not a game-FPS measurement.
 The main talk reports motion, removal of hit blocks and score updates.
 It makes no repeated-boot, long-duration or universal display claim.
 The acquisition conditions, revisions and hashes are retained in the experiment
-record. The historical utilization table has its own earlier display variant;
-its After column is not the bitstream used in this updated video.
+record. The utilization table uses this same standard-display bitstream for
+its After column. The previous experimental-display comparison remains archived.
 
 The video starts automatically in a slideshow. Internal slide
 jumps and return links are native OOXML relationships. `embed_video.py` checks
@@ -237,3 +238,25 @@ The revision before unifying the main-talk board geometry is commit
 
 The seven-view question section before integration is preserved at commit
 `e6484b91a443f65896ab058a1204c87ae9fe3360`.
+
+## Educational context and implementation resources
+
+Slide 3 links the DDCA CPU-design foundation to RVSOC/Wally and this game's
+integration example. The cited 2026 Hiroshima University syllabus explicitly
+lists DDCA as a textbook, and the Spring 2026 Harvey Mudd E154 page identifies
+RVSOC as its textbook. These examples identify an existing teaching context;
+they do not establish adoption or measured educational benefit for this project.
+The source URLs and scope are included in the slide notes.
+
+Slides 12 and 18 read the same
+[standard-display implementation record](../../../experiments/standard-display-resources-20261110/implementation.json).
+The loader validates report hashes, extracted counts and percentages, FPGA
+capacity, and the exact bitstream SHA-256 used by the embedded video. Slide 18
+retains the historical CPU-only comparison, whose revision limits are stated
+in its notes. Earlier experimental-display results remain archived in their
+original experiment directory.
+
+`PRESENTATION_RESOURCE_DIRECTORY` may select a sanitized staging directory
+containing `implementation.json` and `utilization.rpt` for publication review.
+Normal builds resolve the checked-in experiment directory without this variable.
+The existing video and the nine OpenGL answer slides are retained.

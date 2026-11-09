@@ -1,6 +1,6 @@
 # DDCAの授業利用例と出典
 
-[スライドに戻る](中間発表_主要事項.md#slide-13)
+[スライドに戻る](中間発表_主要事項.md#slide-15)
 
 DDCA（Digital Design and Computer Architecture、日本語書名『ディジタル回路設計とコンピュータアーキテクチャ』）が、授業の教科書・教材・参考書として掲載された例を集めた。日本語版と英語版、MIPS版・ARM版・RISC-V版などを含む。
 

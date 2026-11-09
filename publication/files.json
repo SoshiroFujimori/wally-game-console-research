@@ -67,19 +67,19 @@
     },
     "docs/presentation/DDCA授業利用の出典.md": {
       "bytes": 18811,
-      "sha256": "844c4541fab522728715faa188c63f40ad124a73e817ee3a0b21db79998d4eb8"
+      "sha256": "72c619289f3bba4185c449c4f461779a33dd6ad11fe794429ffdc1239b80735a"
     },
     "docs/presentation/OpenGLの説明と想定質問.md": {
       "bytes": 22801,
       "sha256": "e5eade7ad9c95d2ab6334096331ca27015c1e648835b8110bd02b7b123134e89"
     },
     "docs/presentation/README.md": {
-      "bytes": 7165,
-      "sha256": "d9f16036a6e069af1f4901cd514e141e9dfd74c2899118e04285e5ad7980ea42"
+      "bytes": 7698,
+      "sha256": "5193973bef0552e2da24736bd198b6d028a93a24884b58d7a06d207f16e71787"
     },
     "docs/presentation/RVSOC教科書採用の出典.md": {
       "bytes": 4297,
-      "sha256": "efc5624bde0f7cdd416e3017ccad476b0527969f80c1620569dccf7fa339bb5b"
+      "sha256": "fe5213778934104f77d91d71793cc98f7341966588a61284fe32523383230ea0"
     },
     "docs/presentation/slides/slide-01.png": {
       "bytes": 34178,
@@ -90,8 +90,8 @@
       "sha256": "949e273cdf9708e6ec390b85cbee205c9f552b894b80a52651417e744c3524ec"
     },
     "docs/presentation/slides/slide-03.png": {
-      "bytes": 105522,
-      "sha256": "721296cd9eb48008dde40528c42921e89b45c6bf5af9c170e4d66d38c973db03"
+      "bytes": 128875,
+      "sha256": "854ba4ce5ee6e5f6c6c176a73f52a284ceca01141c609d12ec0f3f10c865fc80"
     },
     "docs/presentation/slides/slide-04.png": {
       "bytes": 118005,
@@ -114,28 +114,28 @@
       "sha256": "b302cebe6e8a3742bfbbc7195b16182297e0e41611ac40257b040d2a62e3f78a"
     },
     "docs/presentation/slides/slide-09.png": {
-      "bytes": 118751,
-      "sha256": "912d3d3a253c4524fbc5390d3a3cc750b89a60e9010a6f3017b3600a560c06ac"
+      "bytes": 118210,
+      "sha256": "1212b8a7b2ef25cb1121ba406bc1c616ddce16a92eef3672425ae0c57625dfbd"
     },
     "docs/presentation/slides/slide-10.png": {
-      "bytes": 103664,
-      "sha256": "485eb3e5bca28d9920d7f782e89639f4b52d291e8e1c8c7e980b458f505e380b"
+      "bytes": 122218,
+      "sha256": "c454089ca0ed21a033d25265b5000bdc7b40380be9ec80586c40ab91fe312bae"
     },
     "docs/presentation/slides/slide-11.png": {
       "bytes": 65815,
       "sha256": "be7662be148c8ff1afc407334800bb999690b8ab6f43491b8e9f8043dd62b291"
     },
     "docs/presentation/slides/slide-12.png": {
-      "bytes": 105600,
-      "sha256": "bf337a87cdfc0ff86a071c52c97a7c5adce1bbe88af457402193770c7d743a8a"
+      "bytes": 101829,
+      "sha256": "e0812db21912bae9261af4caad12637ff154465e44f8cda981c94bf27b8b41a7"
     },
     "docs/presentation/slides/slide-13.png": {
-      "bytes": 120390,
-      "sha256": "7976806ca25f7ad8e20c7b60f06dbf41deb4a715a9e333d3d76b57346ebf3951"
+      "bytes": 119903,
+      "sha256": "b8a5dc68669f4171f1d4cad9bb6749c316607d06864954ad6a127eced4fbc3c9"
     },
     "docs/presentation/slides/slide-14.png": {
-      "bytes": 204137,
-      "sha256": "c4350692586eb5f01eb78314db05efd691209ae0c045891d334be27a367a08ab"
+      "bytes": 202412,
+      "sha256": "6fa3a19e02dd8c0103e43989a556c49492a7188c5deeda25f4fbdab7a6310c84"
     },
     "docs/presentation/slides/slide-15.png": {
       "bytes": 136110,
@@ -150,8 +150,8 @@
       "sha256": "968021714a358b21f47410a6a1cc477edba555b9535d18fcc428c8fd6555ef35"
     },
     "docs/presentation/slides/slide-18.png": {
-      "bytes": 121696,
-      "sha256": "eaf89bfca9b8dce72210511bdee501e2f4ab95dc20de06777113e54015c5cbb0"
+      "bytes": 109893,
+      "sha256": "b597a2e657414626b46335740c67018ebb433d7d348b2b1e01763781b454c337"
     },
     "docs/presentation/slides/slide-19.png": {
       "bytes": 178738,
@@ -202,16 +202,16 @@
       "sha256": "a75395d42745658fcce6420aab3f11b4596af1574b8a83d91c7ce4a8394e738a"
     },
     "docs/presentation/中間発表_主要事項.md": {
-      "bytes": 112483,
-      "sha256": "a18cd0e458aa98d1f156a16a7f9d1fedb9e2421846351b426f0bc1e0c3bd3e4b"
+      "bytes": 114065,
+      "sha256": "5fa1f1e99dc6b94cd42d824cc9e7a0bd03eba0299713ebbc55a67ca55ecc4be1"
     },
     "docs/presentation/中間発表_主要事項.pptx": {
-      "bytes": 830197,
-      "sha256": "af801bfd4283dc0e79354248ff5e37f5c105c652b878238210c338f6ae056028"
+      "bytes": 833079,
+      "sha256": "b005a4c69fce94a1f00db14def9397bbc31b61841cc24589682e9c911df943a8"
     },
     "docs/presentation/発表の要点.md": {
-      "bytes": 7154,
-      "sha256": "74a98cdac9c35bd7a538430beb3580da3b7a70a162ca39f7b37ef1213b112d9f"
+      "bytes": 10408,
+      "sha256": "d36542607ce42656bb39a1e602ce02a73e67959913ef1962e05155e901632a52"
     },
     "docs/privacy.md": {
       "bytes": 5063,
@@ -6781,6 +6781,18 @@
       "bytes": 908,
       "sha256": "bd0c2711b649f0935f5a04fb7cdf7f3643e871a930bab7e81775cb2f72051c91"
     },
+    "experiments/standard-display-resources-20261110/README.md": {
+      "bytes": 3500,
+      "sha256": "8d9173af918ff0086b03161aff476a5128967535a9ee42b97429204dae84d21b"
+    },
+    "experiments/standard-display-resources-20261110/implementation.json": {
+      "bytes": 1956,
+      "sha256": "4157f36ac58c0fdc98aaff378ffdfbb3564b08cb50972afe0c5c1eb262160f57"
+    },
+    "experiments/standard-display-resources-20261110/utilization.rpt": {
+      "bytes": 14631,
+      "sha256": "7b72a908ab2b826de0c047a47f62735062443a40eafda9fe37877063ee94b8be"
+    },
     "experiments/transport-study-20261009/CMakeLists.txt": {
       "bytes": 2234,
       "sha256": "d78fa3ab061603fe6fe2efc0677fea5f99a891a54f106e4eb8db11a243039611"
@@ -12562,8 +12574,8 @@
       "sha256": "b37af8468ab90cc774380eae7acce80700a22c2cdb02aa7e1d27bf6da8ad7d04"
     },
     "publication/media-review.json": {
-      "bytes": 135579,
-      "sha256": "896892f52a0d326268918337f9050a073ba9d0fff1da0b31e470f72ff2a2ef97"
+      "bytes": 137079,
+      "sha256": "3c432486f839f901de068b591f9165b292518027b57b57edb3d0e8ea049b67ae"
     },
     "publication/policy.json": {
       "bytes": 635,
@@ -12622,8 +12634,8 @@
       "sha256": "0e317c3229ff950862fbbc0d3c6fd9ca07f5dcbcb890a497603083751684d187"
     },
     "source/presentation/board-evolution/README.md": {
-      "bytes": 15503,
-      "sha256": "9b27ece629de4b26498130e172240a36edd3e83585446f00e63d5fd601f9983d"
+      "bytes": 16945,
+      "sha256": "1ec58ef9ba32d10b85385a215cb2fe4061afe1ba468b29b41d7169f0b9568d43"
     },
     "source/presentation/board-evolution/abstract-flow.mjs": {
       "bytes": 7874,
@@ -12634,16 +12646,16 @@
       "sha256": "48840ea964ddb0479fe8b1ac82e61846ac88277758ba760afbee5c9024554584"
     },
     "source/presentation/board-evolution/build.mjs": {
-      "bytes": 33391,
-      "sha256": "5644d9bfd78b7e34be16796ee9c6c537a945105efe26fb4ec5013409739c2313"
+      "bytes": 33484,
+      "sha256": "2f2ce58947fa88b4dd160ff5c7fabd62d91ae9e406afe88bb6d88b8a831877f9"
     },
     "source/presentation/board-evolution/circuit-wiring.mjs": {
       "bytes": 6778,
       "sha256": "e9995beeed3c0aa170f40b2708067e682dc9216f9a93e6e3d1b9fc24dbc00a4d"
     },
     "source/presentation/board-evolution/core-board.mjs": {
-      "bytes": 4775,
-      "sha256": "94203f8d328fe38748f9ce2cffcda25a55ebd4c7f9c96aade460c7138507a925"
+      "bytes": 5170,
+      "sha256": "cd4d7485f703e5782aa9495f7608dfeb295bd90ee0d85f38c7929a7f0ac6faf6"
     },
     "source/presentation/board-evolution/datapath-backups.mjs": {
       "bytes": 12317,
@@ -12662,16 +12674,16 @@
       "sha256": "c06759f52a178733ad20ce3dd26e605430ceebfa325e1de833980cf6b9b1fc99"
     },
     "source/presentation/board-evolution/fpga-utilization.mjs": {
-      "bytes": 7198,
-      "sha256": "29a52c14904cc42d13b8e60628213e2ff917c655fcbb55be87cfd7ccef442508"
+      "bytes": 9164,
+      "sha256": "dd85e99ded608f18f5121ceda3d323d7bb26487627b2dbf61053c343d0666923"
     },
     "source/presentation/board-evolution/link_slides.py": {
       "bytes": 3621,
       "sha256": "3c9bb2e1b9eb8808ac227b067f23b6144529ff6c3433f9300a43c59a32b08c55"
     },
     "source/presentation/board-evolution/main-slides.mjs": {
-      "bytes": 18180,
-      "sha256": "b4dbc33a771e8eb792ed052c12b2f9e183c9861ebbc821a758504d0bab6e3b88"
+      "bytes": 19618,
+      "sha256": "c9d6fbb2b719e7aa134c79f5ebb4673fbc4acec41512605303eea55723350cda"
     },
     "source/presentation/board-evolution/memory-ports.mjs": {
       "bytes": 5952,
@@ -12682,8 +12694,8 @@
       "sha256": "46e5b99d64d36bb17cb6d3947cb9d8f98e88830caf0a9cd63a59b12e91eeb117"
     },
     "source/presentation/board-evolution/navigation.mjs": {
-      "bytes": 3994,
-      "sha256": "53d15ca9b9cb4698cac73758b2f3988311fa33b9372622db398ddf72ea0519a5"
+      "bytes": 3985,
+      "sha256": "94931d644adfdab40985579576435ae3d553cfc855fab9a0eb8db10b15a386a2"
     },
     "source/presentation/board-evolution/opengl-functions.mjs": {
       "bytes": 33748,

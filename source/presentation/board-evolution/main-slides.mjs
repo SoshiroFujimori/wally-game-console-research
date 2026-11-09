@@ -1,7 +1,8 @@
 import fs from 'node:fs/promises';
 import path from 'node:path';
 import {drawStableBoard} from './stable-board.mjs';
-import {drawCoreBoard,drawCoreTable} from './core-board.mjs';
+import {drawCoreBoard} from './core-board.mjs';
+import {loadFpgaUtilization,drawCurrentUtilization,STANDARD_UTILIZATION_SOURCE} from './fpga-utilization.mjs';
 
 // A bounded integration result and its functional evidence form the main talk.
 // Detailed architecture and OpenGL API material remain in the answer slides.
@@ -25,14 +26,26 @@ export async function addMainSlides(ctx) {
   drawStableBoard(s,api,{mode:'implementation'});
   line(s,'回路をHDLコードで記述し、FPGAチップ内に実装する',603,true,28);
 
-  s=slide('拡張元のWallyと研究の目的',30,
-    'Wallyは、回路の設計を教科書で学べるCPUです。CPUと周辺回路のコードが公開されています。本研究では、この構成に描画機能を追加し、2Dゲームが動くようにします。Wallyの学習者が、CPUに周辺回路を加えるときに参照できる拡張例を示すことが目的です。',
-    `${RVSOC} console/README.md; ${PRODUCT}`,
-    '対象は、Wallyを使ってCPU設計を学び、周辺回路の接続へ進む人である。目的は、CPU・描画・表示の動作する接続例を設計と実機記録で示すこと。学習者の理解度が向上したという教育効果の測定は行っていない。本資料ではCPUをWallyと呼び、CPUと周辺回路の設計コードの提供元をWallyリポジトリと呼ぶ。');
-  lead(s,'Wally：回路の設計を教科書で学べるCPU');
-  drawStableBoard(s,api,{mode:'purpose'});
-  line(s,'CPUと周辺回路の設計コードが公開されている',582,false,26);
-  line(s,'目的：Wallyの学習者に、2Dゲーム機への拡張例を示す',627,true,28);
+  s=slide('教科書で学ぶCPUをゲーム機へ拡張する',30,
+    'DDCAは、論理回路からCPUの仕組みまでを学ぶ教科書で、国内でも授業に使われています。その学習を発展させるRVSOCでは、回路コードが公開されたCPU、Wallyの設計を学べます。本研究の目的は、このWallyに描画機能を加え、学習者が参照できる2Dゲーム機への拡張例を示すことです。',
+    'DDCA textbook adoption: https://momiji.hiroshima-u.ac.jp/syllabusHtml/2026_12_K6406020.html . RVSOC textbook adoption: https://pages.hmc.edu/harris/class/e154/ . Learning path: https://github.com/riscv/learn#-learning-paths . Official books: https://pages.hmc.edu/harris/ddca/ddcarv.html ; https://pages.hmc.edu/harris/ddca/rvsocd.html . Checked 2026-11-10.',
+    'DDCAの正式名称はDigital Design and Computer Architectureである。広島大学の2026年度「コンピューターアーキテクチャ」はRISC-V版を教科書に指定している。RVSOCはRISC-V System-on-Chip Designで、Harvey Mudd Collegeの2026年春E154で教科書として掲載されている。RISC-Vの学習資料集riscv/learnにも、DDCAから基礎を学び、RVSOCとWallyで発展させる学習経路が示されている。図は教材間の内容のつながりと、本研究が提供する拡張例を示す。各校の全学生がこの順番で学習するという意味ではない。国内でのDDCAの教科書指定は、CPU設計を学ぶ人がいることを示す背景である。本研究の利用を想定するのは、その先でWallyの拡張を学ぶ人であり、教材の採用だけで本研究の教育効果が実証されたとはしない。教育効果や利用者数は測定していない。');
+  lead(s,'CPU設計の学習を、動作するゲーム機の実装例につなげる');
+  const stages=[
+    {x:64,title:'DDCA',body:'論理回路から\nCPUの仕組みを学ぶ',example:'教科書の指定例\n広島大学\n2026年度'},
+    {x:470,title:'RVSOC',body:'CPU「Wally」の設計を学ぶ\n回路コードも公開',example:'教科書の指定例\nHarvey Mudd College\n2026年春'},
+    {x:876,title:'本研究',body:'Wallyに描画機能を追加\n2Dゲーム機を実装',example:'回路とプログラムを公開\n拡張の方法を参照できる'}
+  ];
+  for(const item of stages){
+    box(s,'',item.x,235,340,166,C.pale,25,C.ink,1.8);
+    text(s,item.title,item.x+12,245,316,44,33,true,C.heading,'center');
+    text(s,item.body,item.x+12,303,316,78,25,false,C.ink,'center');
+    text(s,item.example,item.x,424,340,105,23,false,C.ink,'center');
+  }
+  wire(s,404,318,460,318,C.ink,true,2.6);
+  wire(s,810,318,866,318,C.ink,true,2.6);
+  line(s,'目的：Wallyの学習者に、2Dゲーム機への拡張例を示す',584,true,28);
+  line(s,'CPUと周辺回路をつなぐ方法を、設計と動作例で示す',634,false,27);
 
   s=slide('既存回路と本研究で追加した部分',30,
     'CPUとSD制御にはWallyリポジトリの回路を使います。メモリ制御にはAMD製の回路を使います。描画と表示にはRasterIXに含まれる回路を使います。本研究では、これらの接続部分と、動作確認に使うブロック崩しのプログラムを作成しました。青い枠が、描画命令を受け渡す接続部分です。',
@@ -89,28 +102,23 @@ export async function addMainSlides(ctx) {
   wire(s,964,652,1024,652,C.blue,true,3);
   box(s,'描画回路',1024,628,192,49,C.white,25,C.ink,2.2);
 
-  s=slide('作った画像をHDMI端子から出力する',25,
-    '描画回路は画像を作り、DDR制御を通してDDR3へ保存します。表示回路はそこから画像を読み出し、HDMI端子へ映像を出します。描画と表示の本体は、どちらもRasterIXリポジトリに含まれる回路を使っています。',
-    `${PRODUCT} console/fpga/src/rasterixdisplay.sv; console/fpga/generator/rasterixmem.tcl; ${BASIC}`,
-    'CPUが使うプログラムの領域と、描画・表示が使う画像の領域は同じDDR3の中にある。描画と表示の要求は、接続した回路を経由してDDR制御へ届く。表示本体はRasterIXに同梱されたdvi_framebufferであり、表示本体へ渡す制御や画面切替などの接続部分を本研究で加えている。HDMIはボード上の端子名として用いている。');
-  lead(s,'描画回路が画像を保存し、表示回路が画像を読み出す');
-  drawCoreBoard(s,api,{mode:'image'});
-  line(s,'DDR3には、実行するプログラムと、表示する画像を置く',585,false,27);
-  line(s,'描画・表示の本体には、RasterIXの既存回路を利用する',631,true,27);
+  s=slide('描画回路が画像をメモリに保存する',25,
+    '描画回路は、命令に従って、ブロックやボールなどの画素を作ります。画素の色をDDR制御へ渡し、DDR3に画像として保存します。DDR3には、CPUが実行するプログラムに加え、この表示する画像も置いています。',
+    `${PRODUCT} console/fpga/src/rasterix.sv; console/fpga/generator/rasterixmem.tcl; ${BASIC}`,
+    'RasterIX_IFは内部の作業領域で描画を進め、画像のデータを外部メモリへ転送する。図ではその細部を省き、DDR制御を介して画像をDDR3へ保存する経路を示す。プログラムと画像はDDR3内の異なるアドレス領域を使う。図中の一本の矢印は転送の役割をまとめたものであり、実装の各信号を表してはいない。');
+  lead(s,'図形の位置や色から画素を作り、DDR3に画像として保存');
+  drawCoreBoard(s,api,{mode:'image-write'});
+  line(s,'描画回路が、ブロック・ボール・文字などの画素を作る',585,false,27);
+  line(s,'DDR3には、プログラムと表示する画像を置く',631,true,28);
 
-  s=slide('実機で確認する動作',25,
-    '動作確認には、ブロック崩しを使いました。表示された図形が正しいか、ボールやパドルが動くか、ブロックへの衝突で画面と得点が変わるかを確認します。これにより、CPUのゲーム処理から描画と表示までがつながって動いていることを確かめます。次の30秒の映像をご覧ください。',
-    BASIC,
-    '対象はNexys Video上の標準表示構成と、最新の文字配置のブロック崩しである。次の動画で、図形の表示、位置の変化、ブロック消去、得点更新を観察できる。現在はパドルをプログラムで自動操作する。30秒は提示する記録の長さであり、ゲームの描画FPSや長時間の故障率を表す値ではない。映像だけで個々のバス転送の全条件を検証したとは主張しない。');
-  lead(s,'Nexys Video上でブロック崩しを実行し、画面の変化を確認');
-  drawCoreTable(s,api,[
-    ['確認するもの','映像で見る動作'],
-    ['ゲーム画面','壁・ブロック・ボール・文字が表示される'],
-    ['位置の更新','ボールとパドルの位置が変わる'],
-    ['ゲームの進行','衝突でブロックが消え、得点が増える']
-  ],{top:218,height:338,widths:[330,822]});
-  line(s,'CPUのゲーム処理・描画・表示が連携して動くかを確かめる',588,true,27);
-  line(s,'次の動画：30秒の実機映像、パドルはプログラムで自動操作',635,false,25);
+  s=slide('表示回路が画像を読み出して映像を出す',25,
+    '表示回路は、DDR制御に画像の読出しを要求します。返ってきた画素を順に映像信号へ変え、HDMI端子へ出力します。ゲームが作る画像を、表示回路が繰り返し読み出すことで画面に映ります。描画と表示の本体は、どちらもRasterIXリポジトリに含まれる回路を使っています。',
+    `${PRODUCT} console/fpga/src/rasterixdisplay.sv; console/fpga/generator/rasterixmem.tcl; ${BASIC}`,
+    '表示本体はRasterIXに同梱されたdvi_framebufferである。画像データはDDR3からDDR制御を経て表示回路へ戻る。青い矢印は画像データが進む向きで、読出し要求は逆方向へ送る。表示タイミングに合わせて画素を信号へ変える回路も表示本体に含まれる。表示本体へ渡す制御や画面切替などの接続部分を本研究で追加している。HDMIはボード上の端子名として用いている。');
+  lead(s,'DDR3から画素を読み出し、HDMI端子へ映像を出力');
+  drawCoreBoard(s,api,{mode:'image-read'});
+  line(s,'表示回路が画像を繰り返し読み出し、画素を順に出力する',585,false,27);
+  line(s,'描画・表示の本体には、RasterIXの既存回路を利用する',631,true,27);
 
   s=slide('ブロック崩しの実機動画',30,
     'こちらが実機の映像です。ボールとパドルが動き、当たったブロックが消え、得点が増えています。既存のCPUと描画・表示回路を接続した構成で、このゲームの処理と画面の更新ができることを確認しました。パドルはプログラムが自動で動かしています。',
@@ -120,26 +128,21 @@ export async function addMainSlides(ctx) {
   s.images.add({blob:await fs.readFile(path.join(root,POSTER)),contentType:'image/png',alt:'標準表示構成で動くブロック崩しの実機動画',fit:'contain',position:{left:200,top:173,width:880,height:495}});
   text(s,'ボールの移動・ブロックの消去・得点の変化を確認',64,681,1080,29,22,true,C.blue,'center');
 
-  s=slide('Wallyの学習者が参照できる拡張例',25,
-    '得られた成果は、この接続方法を使って実際にゲームが動く設計例です。回路のコード、ゲームのプログラム、実行手順と動作記録を公開しています。Wallyの学習者が描画回路などを追加するときに、必要な接続や確認方法を調べるための参考として使うことを想定しています。',
-    'README.md; console/README.md; console/examples/rasterix/README.md; docs/thesis/技術付録.md; experiments/dvi-recovery-20261109/README.md; https://github.com/SoshiroFujimori/wally-game-console ; https://github.com/SoshiroFujimori/wally-game-console-research',
-    '有用性の対象は、Wallyに周辺回路を追加したい学習者や開発者である。公開物は設計の選択と接続箇所を確認する手掛かりになり、対象構成での動作結果も確認できる。誰でも簡単に再現できることや、学習時間を短縮することを実験で示したわけではない。研究の貢献は、既存IPを組み合わせる接続の具体例と、その構成で確認した機能を、コードと記録に対応させて提示することに置く。世界初の組合せとは断定しない。');
-  lead(s,'対象：Wallyに周辺回路を追加したい学習者');
-  drawCoreTable(s,api,[
-    ['公開したもの','参照できる内容'],
-    ['回路のコード','CPU・描画回路・メモリをつなぐ構成'],
-    ['ゲームプログラム','CPUから描画回路を使う実行例'],
-    ['説明・手順・動画','接続の理由、実行方法、確認できた動作']
-  ],{top:218,height:338,widths:[330,822]});
-  line(s,'動作する接続例を、設計コードと実機の記録で示した',588,true,29);
-  line(s,'実装と研究資料をGitHubで公開',635,false,27);
+  const utilization=await loadFpgaUtilization(root);
+  s=slide('FPGAの使用量',25,
+    'ゲーム機を実装したときの、FPGA内部の使用量です。論理回路に使うLUTは約50%、チップ内メモリは約59%を使っています。CPUやメモリ制御を含む回路全体が、Nexys Videoの一つのFPGAに収まり、この構成で先ほどのゲームが動きました。',
+    `${STANDARD_UTILIZATION_SOURCE}; experiments/standard-display-resources-20261110/utilization.rpt; ${BASIC}`,
+    '標準表示構成の配置配線後の使用量である。2026年10月8日に保存された実装レポートを使用し、回路設定データのSHA-256が11月9日の実機動画で使ったものと一致することを確認した。LUTは67166/134600で49.90%、Slice Registersは50890/269200で18.90%、Block RAM Tileは215/365で58.90%、DSPは61/740で8.24%。CPU、バス、DDR制御、描画・表示などをすべて含む。LUT、レジスタ、Block RAM、DSPはそれぞれ異なる種類の資源なので、割合は合算しない。Block RAMはFPGAチップ内のメモリを指し、ボード上のDDR3を含めない。使用率は各資源の使用数を搭載数で割った値である。未使用の資源があっても、任意の回路を追加できる保証にはならない。比較用の回答スライド18には、以前保存したCPU構成の値も示す。');
+  lead(s,'CPUと描画・表示を組み込んだ、回路全体の使用率');
+  drawCurrentUtilization(s,api,utilization);
+  line(s,'CPU・メモリ制御・描画・表示を、1個のFPGAに実装できた',631,true,27);
 
   s=slide('結論と今後の展望',20,
-    'WallyとRasterIXの接続を設計し、ブロック崩しの画面が更新されることを実機で確認しました。CPUに描画機能を追加する、具体的な拡張例を示せました。今後は、ゲームコントローラによる操作や、ホーム画面などのGUIを追加したいと考えています。',
+    'WallyとRasterIXの接続を設計し、ブロック崩しの画面が更新されることを実機で確認しました。CPUに描画機能を追加する拡張例として、設計コードと動作記録を公開しています。今後は、ゲームコントローラによる操作や、ホーム画面などのGUIを追加したいと考えています。',
     `${PRODUCT} ${BASIC}`,
     '結論は、接続を実装した構成で、ブロック崩しの自動操作によるゲーム進行と映像出力を確認したことである。今回の組合せを他のCPUやボードにもそのまま適用できるという結論ではない。今後の候補はゲームコントローラへの対応とホーム画面などのGUIであり、実装する項目は今後選択する。');
   lead(s,'Wallyに描画機能を追加し、ブロック崩しの動作を確認した');
   drawCoreBoard(s,api,{mode:'overview'});
-  line(s,'成果：接続の設計と実機動作を示す、Wallyの拡張例',585,true,28);
+  line(s,'成果：ゲーム機への拡張例を、設計コードと動作記録で公開',585,true,27);
   line(s,'今後：ゲームコントローラによる操作や、ホーム画面を追加',634,false,27);
 }

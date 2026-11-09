@@ -6,8 +6,8 @@ export function drawCoreBoard(s,a,{mode='overview'}={}) {
   const provenance=mode==='overview';
   const on=(...m)=>provenance||m.includes(mode);
   const cpu=on('copy','execute','command','adapter');
-  const sd=on('copy'),ddr=on('copy','execute','image');
-  const graphics=on('command','adapter','image');
+  const sd=on('copy'),ddr=on('copy','execute','image','image-write','image-read');
+  const graphics=on('command','adapter','image','image-write','image-read');
   const command=on('command','adapter');
   const col=active=>provenance?frame:active?C.blue:faded;
   const T=(v,x,y,w,h=28,size=22,bold=false,color=C.ink,align='left')=>text(s,v,x,y,w,h,size,bold,color,align);
@@ -54,12 +54,13 @@ export function drawCoreBoard(s,a,{mode='overview'}={}) {
   T('描画・表示\n回路',1035,346,140,66,25,true,graphics?C.ink:faded,'center');
 
   R([[490,430],[490,533]],sd,'both',2.4);
-  R([[680,430],[680,533]],ddr,'both',2.4);
-  R([[1150,430],[1150,533]],on('image'),true,2.4);
-  R([[1080,430],[1080,481],[752,481],[752,430]],on('image'),'both',2.7);
-  T('画像の保存・読出し',845,486,235,26,18,true,col(on('image')),'center');
+  R(mode==='image-read'?[[680,533],[680,430]]:[[680,430],[680,533]],ddr,mode.startsWith('image-')?true:'both',2.4);
+  R([[1150,430],[1150,533]],on('image','image-read'),true,2.4);
+  const imagePath=[[1080,430],[1080,481],[752,481],[752,430]];
+  R(mode==='image-read'?[...imagePath].reverse():imagePath,on('image','image-write','image-read'),mode.startsWith('image-')?true:'both',2.7);
+  T(mode==='image-write'?'画像の保存':mode==='image-read'?'読み出した画像':'画像の保存・読出し',845,486,235,26,18,true,col(on('image','image-write','image-read')),'center');
   T('基板上の部品',100,533,290,28,20,true,frame);
-  for(const [name,label,x,active] of [['sd-card','SDスロット',435,sd],['ddr-memory','DDR3メモリ',645,ddr],['hdmi','HDMI端子',1030,on('image')]]) {
+  for(const [name,label,x,active] of [['sd-card','SDスロット',435,sd],['ddr-memory','DDR3メモリ',645,ddr],['hdmi','HDMI端子',1030,on('image','image-read')]]) {
     B(name,x,533,150,32,active);
     T(label,x+4,535,142,26,20,true,active?C.ink:faded,'center');
   }

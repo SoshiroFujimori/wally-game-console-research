@@ -1,0 +1,54 @@
+{
+  "kind": "qualified_standard_display",
+  "part": "xc7a200tsbg484-1",
+  "tool": "Vivado 2025.2",
+  "report_date": "2026-10-08",
+  "report_state": "Physopt postRoute",
+  "report": "utilization.rpt",
+  "imported_on": "2026-11-10",
+  "measurement_kind": "archived_implementation_report",
+  "original_report_sha256": "fafe56b2cfc15de28688344766cff6887350af263b8690491093fbb1d7ef49cf",
+  "published_report_sha256": "7b72a908ab2b826de0c047a47f62735062443a40eafda9fe37877063ee94b8be",
+  "bitstream_sha256": "16173de97a91e711cd7bc5389acd9739807adebedf192efc29fe78f5b96c0acf",
+  "configuration_payload_sha256": "132bb2add2389edce9d31c01248fcf756781615e75ab41a4a345550198a2154a",
+  "implementation_qualified": true,
+  "resources": {
+    "Slice LUTs": {
+      "used": 67166.0,
+      "available": 134600.0,
+      "percent": 49.9
+    },
+    "Slice Registers": {
+      "used": 50890.0,
+      "available": 269200.0,
+      "percent": 18.9
+    },
+    "Block RAM Tile": {
+      "used": 215.0,
+      "available": 365.0,
+      "percent": 58.9
+    },
+    "DSPs": {
+      "used": 61.0,
+      "available": 740.0,
+      "percent": 8.24
+    }
+  },
+  "qualification": {
+    "qualified_utc": "2026-10-08T13:02:26.935609+00:00",
+    "wns_ns": 0.018,
+    "whs_ns": 0.014,
+    "unconstrained_internal_endpoints": 0,
+    "route_errors": 0,
+    "drc_errors": 0
+  },
+  "product_rtl_revision": "261832d48832dd6e26c4971ab8893ce61200688b",
+  "rasterix_revision": "9269a01c9bd4c3342bfa70ef8e3cdd751c15c6d0",
+  "source_audit": "../dvi-standard-check-20261108/source-audit.json",
+  "video_evidence": "../dvi-recovery-20261109/results.json",
+  "scope": "Complete standard-display FPGA design used in the 2026-11-09 gameplay capture. Imported from the archived qualification directory; no implementation or hardware test was rerun for this publication.",
+  "publication_edits": [
+    "Redacted private host and filesystem paths",
+    "Normalized trailing blank lines to one final newline"
+  ]
+}
