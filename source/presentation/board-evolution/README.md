@@ -4,7 +4,7 @@ This builder produces the single published intermediate presentation:
 [slides and narration](../../../docs/presentation/中間発表_主要事項.md) and
 [PowerPoint](../../../docs/presentation/中間発表_主要事項.pptx).
 A cover and twelve presentation slides explain the integration design and its functional evidence. Slide 14
-is clickable contents; slides 15-23 are hidden answer slides. The narration allocation
+is clickable contents; slides 15-30 are hidden answer slides. The narration allocation
 is 335 seconds including the 30-second embedded video, not a timed rehearsal.
 
 ## Main explanation
@@ -171,16 +171,25 @@ the input video against the approved media hashes; `link_slides.py` adds links.
 - 21: the official RasterIX FPGA pipeline redrawn for the presentation. Its
   version and differences from measured hardware are in `../rasterix-pipeline/`.
 
-- 22: Core OpenGL drawing calls for the complete Breakout screen. The code
-  connects four vertex positions and a color to a rectangle, while the
-  unchanged game capture locates bricks, walls, paddle, ball and text. A
-  separate two-line excerpt explains background initialization.
-- 23: Texture mapping for one character. Editable diagrams reproduce the
-  pinned game's font pixels, select its A cell, and pair image coordinates
-  with screen coordinates in the code. The notes include image registration,
-  coordinate normalization, color and alpha blending. Both slides explain
-  ordinary API usage, without optimization or implementation-tuning claims.
-  See `opengl-functions.mjs`.
+- 22: Game objects and their drawing methods, with the unchanged actual capture.
+- 23: The 640 by 480 game coordinate system and projection setup.
+- 24: One rectangle with actual vertex/color values and its triangle decomposition.
+- 25: Native font pixels, RGBA input and texture registration.
+- 26: The A cell and normalized texture coordinates.
+- 27: Four texture/vertex pairs mapping the cell to a screen rectangle.
+- 28: Modulated text color, alpha and blending over the prior image.
+- 29: CPU library execution, command preparation and hardware pixel processing.
+- 30: Actual frame submission calls and the display-swap completion counter.
+
+`opengl-functions.mjs` derives font diagrams from the pinned product source.
+Its examples explain API semantics and ordinary drawing operations. Detailed
+notes and [OpenGL questions](../../../docs/presentation/OpenGLの説明と想定質問.md)
+cover immediate mode, VBO availability, fixed-function scope, filtering,
+CPU/hardware responsibilities, compilation, command transfer and completion.
+No VBO performance comparison or API compliance certification is claimed.
+The main talk remains twelve content slides and retains its 335-second allocation.
+The previous two-slide OpenGL explanation is preserved at commit
+`99463b338d9facfd78cbd46582219b535af6a07c`.
 
 ## Build and publication
 
@@ -191,7 +200,7 @@ node source/presentation/build.mjs RESEARCH_ROOT PRIVATE_BUILD_DIRECTORY
 ```
 
 The builder creates PPTX, Markdown, preview images and private QA records.
-The still-frame content is re-imported in four contiguous batches to keep
+The still-frame content is re-imported in five contiguous batches to keep
 the runtime XML construction size bounded. The final
 video-bearing package receives integrity/layout checks and native PowerPoint
 rendering. Inspect all slides, private cover, video identity and internal links.

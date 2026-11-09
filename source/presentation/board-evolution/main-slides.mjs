@@ -64,7 +64,7 @@ export async function addMainSlides(ctx) {
   s=slide('ゲームから描画命令を送る',25,
     'CPUは、描く図形の位置や色を、RasterIX付属のライブラリへ渡します。ライブラリが描画回路用の命令を作り、CPUが接続回路へ送ります。描画回路は受け取った命令に従って、ブロックやボールなどの画素を塗ります。',
     `${PRODUCT} console/examples/rasterix/WallyBusConnector.hpp; console/examples/rasterix/BreakoutRenderer.hpp; console/addins/rasterix/lib.`,
-    '付属ライブラリはOpenGL互換の描画指定をCPU上で処理し、描画回路に渡す数値列を用意する。Wally用のソフトウェア接続部分が、その値を決められた入出力アドレスへ書く。接続回路は値を受け取り、RasterIXへ渡す。ブロック、壁、パドル、ボールは四角形で、文字は画像を貼った四角形で表す。関数名やテクスチャ座標の具体例は回答用22・23枚目にある。');
+    '付属ライブラリはOpenGL互換の描画指定をCPU上で処理し、描画回路に渡す数値列を用意する。Wally用のソフトウェア接続部分が、その値を決められた入出力アドレスへ書く。接続回路は値を受け取り、RasterIXへ渡す。ブロック、壁、パドル、ボールは四角形で、文字は画像を貼った四角形で表す。関数名やテクスチャ座標の具体例は回答用22〜30枚目にある。');
   lead(s,'図形の位置や色を、ライブラリが描画命令にする');
   drawCoreBoard(s,api,{mode:'command'});
   line(s,'CPU：ゲームの計算と、描画命令の送信',584,true,28);

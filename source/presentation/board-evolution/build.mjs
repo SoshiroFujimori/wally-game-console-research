@@ -1,4 +1,4 @@
-import { drawOpenGLFunctions, drawTextureMapping, OPENGL_SOURCE, OPENGL_NARRATION, OPENGL_DETAIL, TEXTURE_NARRATION, TEXTURE_DETAIL } from './opengl-functions.mjs';
+import { addOpenGLSlides } from './opengl-functions.mjs';
 import {addMergedDatapath} from './merged-datapath.mjs';
 import { addMainSlides } from './main-slides.mjs';
 import { CONTENTS_SLIDE, drawContents, linkToSlide, contentsMarkdown, navigationTargets } from './navigation.mjs';
@@ -75,7 +75,7 @@ await addMainSlides({slide,api,cover,root,DDCA,RVSOC,PRODUCT,BASIC,POSTER,VIDEO}
 let s=slide('目次：発表・回答用スライド',0,
   '質問に関係する項目をクリックすると、そのスライドへ移動します。移動した後は右下のスライド番号をクリックすると、この目次へ戻れます。',
   '',
-  '表紙1枚と発表用12枚の後に置く操作用の目次である。発表用スライドと回答用スライドの両方へ移動できる。回答用スライドは、教科書の採用例、FPGAの構成要素と使用量、命令の実行から周辺回路へつながる統合図、回路の詳細、ゲームの描画の順にまとめる。回答用の9枚は通常の順送りでは表示しないが、目次から選んで開ける。本編の説明時間には目次の操作時間を含めない。');
+  '表紙1枚と発表用12枚の後に置く操作用の目次である。発表用スライドと回答用スライドの両方へ移動できる。回答用スライドは、教科書の採用例、FPGAの構成要素と使用量、命令の実行から周辺回路へつながる統合図、回路の詳細、ゲームの描画の順にまとめる。回答用の16枚は通常の順送りでは表示しないが、目次から選んで開ける。本編の説明時間には目次の操作時間を含めない。');
 drawContents(s,api);outline[outline.length-1].navigation=true;
 
 const ddcaDataRoot=process.env.PRESENTATION_DDCA_ASSET_DIRECTORY||path.join(root,'source/presentation/ddca-adoption');
@@ -131,15 +131,7 @@ const pipelineGraph=drawRasterixPipeline(s,api);
 s.hidden=true;outline[outline.length-1].backup=true;
 await fs.writeFile(path.join(workspace,'rasterix-pipeline-graph.json'),JSON.stringify(pipelineGraph,null,2)+'\n');
 
-s=slide('回答用：ゲームで使うOpenGL関数',0,
-  OPENGL_NARRATION,OPENGL_SOURCE,OPENGL_DETAIL);
-await drawOpenGLFunctions(s,api,root);
-s.hidden=true;outline[outline.length-1].backup=true;
-
-s=slide('回答用：文字画像を四角形に貼る',0,
-  TEXTURE_NARRATION,OPENGL_SOURCE,TEXTURE_DETAIL);
-await drawTextureMapping(s,api,root);
-s.hidden=true;outline[outline.length-1].backup=true;
+await addOpenGLSlides({slide,api,root,outline});
 
 // Keep provenance in the notes and the GitHub-readable counterpart.
 for (const number of [3,4,7,8,9,11,13,19,20]) {
@@ -151,13 +143,13 @@ for (const number of [3,4,7,8,9,11,13,19,20]) {
 for(const {page,number} of pageNumbers)if(number!==CONTENTS_SLIDE)linkToSlide(page,CONTENTS_SLIDE);
 await fs.writeFile(path.join(workspace,'wire-audit.json'),JSON.stringify(wiring.finalize(),null,2)+'\n');
 const total=outline.reduce((n,s)=>n+s.seconds,0);
-if(outline.length!==23||total!==335)throw new Error(`Unexpected allocation ${outline.length} slides, ${total} seconds`);
+if(outline.length!==30||total!==335)throw new Error(`Unexpected allocation ${outline.length} slides, ${total} seconds`);
 await fs.writeFile(path.join(workspace,'outline.json'),JSON.stringify(outline,null,2)+'\n');
 const md=[
   '# 中間発表：FPGAを用いた2Dゲーム機の製作',
-  '表紙1枚、発表用12枚、移動用の目次1枚、回答用9枚で構成します。Wallyへの描画機能の追加を、目的、既存回路との分担、接続の設計、実機での動作確認、公開した拡張例の順に説明します。ゲームの動きは30秒の実機動画で示します。',
+  '表紙1枚、発表用12枚、移動用の目次1枚、回答用16枚で構成します。Wallyへの描画機能の追加を、目的、既存回路との分担、接続の設計、実機での動作確認、公開した拡張例の順に説明します。ゲームの動きは30秒の実機動画で示します。',
   '[PowerPoint版](中間発表_主要事項.pptx) / [アブスト](../abstract/アブスト_主要事項.md) / [論文本文](../thesis/本文.md) / [技術付録](../thesis/技術付録.md) / [再生成方法](../../source/presentation/board-evolution/README.md) / [DDCA授業利用の出典](DDCA授業利用の出典.md) / [RVSOC教科書採用の出典](RVSOC教科書採用の出典.md)',
-  '[発表の要点を読む](発表の要点.md)',
+  '[発表の要点を読む](発表の要点.md) / [OpenGLの説明と想定質問](OpenGLの説明と想定質問.md)',
   '## 図の見方',
   '2〜9枚目と13枚目の図は、FPGAボードとチップ外の部品を同じ位置に置いています。3枚目のCPUと周辺回路のまとまりを、4枚目でCPU・SD制御・DDR制御へ展開します。4枚目以降は回路の配置をそろえ、説明する経路を青で強調します。矢印は要求やデータの経路を機能ごとにまとめたもので、一本の信号線を表すものではありません。破線の枠は回路コードの主な提供元です。「Wally」はCPU、「Wallyリポジトリ」はCPUと周辺回路の設計コードの提供元として使います。',
   '回答用19枚目では、信号を詳しく示しています。ADはアドレス、WDは書込みデータ、WEは1ビットの書込みイネーブル、RDは読出しデータです。有効な読書きの際のWE=1を書込み、WE=0を読出しとして示します。アドレスデコーダが接続先を選び、読出し値も対応する選択信号で選びます。分岐の黒丸は接続を表し、接続しない線の交差には隙間があります。転送の細かなタイミングや待ち処理は省略しています。',
@@ -165,7 +157,7 @@ const md=[
   PROVENANCE_DETAIL,
   '対応するソースは[回路の提供元一覧](../../source/presentation/board-evolution/README.md#component-provenance)にまとめています。主図では、同じRasterIXリポジトリに含まれる描画と表示を一つの箱にまとめています。実機動画も、この標準表示構成で取得しています。',
   '## 発表時間と回答用スライド',
-  '表紙と発表用12枚の配分は動画30秒を含め335秒です。動画の再生中に結果を説明します。これは練習を実測した時間ではありません。14枚目の目次から本編と回答用の両方へ移動できます。各スライドの右下の番号から目次に戻れます。回答用の15〜23枚目は、通常の順送りでは表示しません。',
+  '表紙と発表用12枚の配分は動画30秒を含め335秒です。動画の再生中に結果を説明します。これは練習を実測した時間ではありません。14枚目の目次から本編と回答用の両方へ移動できます。各スライドの右下の番号から目次に戻れます。回答用の15〜30枚目は、通常の順送りでは表示しません。',
   '## 目次',
   outline.map((o,i)=>'- ['+(i+1)+'. '+o.title.replaceAll('\n','')+'](#slide-'+(i+1)+')'+(o.backup?'（回答用）':'')).join('\n')
 ];
@@ -203,13 +195,13 @@ if(audience==='public'){
 // Final package integrity/layout and video relationships are checked separately.
 await fs.mkdir(path.join(workspace,'poster-review'), { recursive: true });
 const posterFinal=path.join(workspace,'poster-review','poster-validated.pptx');
-const validationOptions={workspaceDir:workspace,pythonExecutable:process.env.RUNTIME_PYTHON,integrityValidatorPath:path.join(process.env.PRESENTATION_SKILL,'container_tools/inspect_presentation_package_integrity.py'),layoutValidatorPath:path.join(process.env.PRESENTATION_SKILL,'container_tools/inspect_presentation_layout_geometry.py'),layoutArgs:['--expected-slide-size-emu','12192000,6858000','--validate-bullet-geometry','--validate-heading-fit','--require-native-table-slide','10','--require-native-table-slide','12','--require-native-table-slide','16','--require-native-table-slide','18'],explicitTotalSlideCount:23,requiredNativeTableOwnerSlides:[10,12,16,18],requiredNativeChartOwnerSlides:[],fontPolicy:{basis:'design',families:[font,latinFont,codeFont]}};
+const validationOptions={workspaceDir:workspace,pythonExecutable:process.env.RUNTIME_PYTHON,integrityValidatorPath:path.join(process.env.PRESENTATION_SKILL,'container_tools/inspect_presentation_package_integrity.py'),layoutValidatorPath:path.join(process.env.PRESENTATION_SKILL,'container_tools/inspect_presentation_layout_geometry.py'),layoutArgs:['--expected-slide-size-emu','12192000,6858000','--validate-bullet-geometry','--validate-heading-fit','--require-native-table-slide','10','--require-native-table-slide','12','--require-native-table-slide','16','--require-native-table-slide','18'],explicitTotalSlideCount:30,requiredNativeTableOwnerSlides:[10,12,16,18],requiredNativeChartOwnerSlides:[],fontPolicy:{basis:'design',families:[font,latinFont,codeFont]}};
 await finalizePresentation({...validationOptions,candidatePath:poster,finalPath:posterFinal,verifyArtifactToolImport:false,receiptPath:path.join(workspace,'poster-validation.json')});
-// Import authored content in four contiguous batches to bound the runtime's
+// Import authored content in five contiguous batches to bound the runtime's
 // XML construction size, then inspect the full
 // final package and its native PowerPoint rendering/navigation separately.
 const importChecks=[];
-for(const [batchNumber,first,count] of [[1,0,7],[2,7,7],[3,14,5],[4,19,4]]){
+for(const [batchNumber,first,count] of [[1,0,7],[2,7,7],[3,14,5],[4,19,5],[5,24,6]]){
   const batch=await Presentation.load(structuredClone(P.toProto()));
   batch.slides.keep(Array.from({length:count},(_,i)=>first+i));
   const batchPath=path.join(workspace,`content-batch-${batchNumber}.pptx`);

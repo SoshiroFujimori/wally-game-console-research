@@ -1,3 +1,4 @@
+import {OPENGL_TOPICS} from './opengl-functions.mjs';
 // Native slide navigation. The slide names remain editable text objects.
 export const CONTENTS_SLIDE=14;
 export const CONTENTS_ITEMS=[
@@ -21,8 +22,7 @@ export const CONTENTS_ITEMS=[
   {number:19,label:'命令実行から周辺回路への接続',group:'命令の実行と周辺接続'},
   {number:20,label:'詳細な全体のブロック図',group:'回路の詳細'},
   {number:21,label:'描画回路のFPGAパイプライン',group:'回路の詳細'},
-  {number:22,label:'ゲームで使うOpenGL関数',group:'ゲームの描画'},
-  {number:23,label:'文字画像を四角形に貼る',group:'ゲームの描画'},
+  ...OPENGL_TOPICS.map(record=>({...record,group:'ゲームの描画'})),
 ];
 
 const destinations=new Map();
@@ -37,15 +37,15 @@ export function drawContents(s,api){
   text(s,'回答用スライド',668,127,548,42,29,true,C.heading);
   wire(s,64,178,608,178,C.ink,false,1.2);
   wire(s,668,178,1216,178,C.ink,false,1.2);
-  const item=(record,x,y)=>{
-    const number=text(s,String(record.number),x,y,46,31,25,true,C.heading,'right');
-    const label=text(s,record.label,x+63,y,481,31,24,false,C.ink);
+  const item=(record,x,y,compact=false)=>{
+    const number=text(s,String(record.number),x,y,46,compact?26:31,compact?23:25,true,C.heading,'right');
+    const label=text(s,record.label,x+63,y,481,compact?26:31,compact?22:24,false,C.ink);
     number.name=`contents-number-${record.number}`;
     label.name=`contents-label-${record.number}`;
     linkToSlide(number,record.number);linkToSlide(label,record.number);
   };
   CONTENTS_ITEMS.slice(0,13).forEach((r,i)=>item(r,64,193+i*32));
-  CONTENTS_ITEMS.slice(13).forEach((r,i)=>item(r,668,193+i*32));
+  CONTENTS_ITEMS.slice(13).forEach((r,i)=>item(r,668,193+i*26,true));
   text(s,'項目をクリックすると、そのスライドへ移動します',64,628,1152,34,24,true,C.ink);
   text(s,'各スライドの右下の番号をクリックすると、この目次に戻れます',64,670,1100,31,21,false,C.old);
 }
