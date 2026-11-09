@@ -1,5 +1,5 @@
 {
-  "version": 13,
+  "version": 14,
   "reference": "Harris et al., RISC-V System-on-Chip Design",
   "official_resources": "https://pages.hmc.edu/harris/ddca/rvsocd.html",
   "inspection_date": "2026-10-24",
@@ -103,7 +103,7 @@
     "block_outline": 2.2,
     "note": "Aggregated interface links represent several signals, not one conductor."
   },
-  "diagram_basis": "Pinned console RTL; main slides introduce Wally, then follow SD requests and receive data, DDR3 storage and execution, drawing commands, and output. Slide 11 identifies the added integration work. Slide 12 is the sole execution-result slide. Hidden question slide 20 retains the detailed system view. Main circuit diagrams use one board coordinate system throughout slides 2-11.",
+  "diagram_basis": "Pinned console RTL; main slides introduce Wally, then follow SD requests and receive data, DDR3 storage and execution, drawing commands, the adapter's command acceptance/delivery, and output. Slide 10 explains the added command adapter. Slide 12 is the sole execution-result slide. Hidden question slide 20 retains the detailed system view. Main circuit diagrams use one board coordinate system throughout slides 2-11.",
   "console_revision": "261832d48832dd6e26c4971ab8893ce61200688b",
   "detailed_diagram": {
     "source": "board-evolution/wally-overview.mjs",
@@ -335,5 +335,18 @@
     "crossings": "Gaps in the crossing segment; actual junction radius protects connected dots."
   },
   "question_slide_count": 7,
-  "total_slide_count": 21
+  "total_slide_count": 21,
+  "command_adapter_slide": {
+    "slide": 10,
+    "title": "接続回路が描画命令を受け渡す",
+    "board_source": "board-evolution/stable-board.mjs",
+    "layout": "Same board and circuit geometry as slide 9, followed by an editable data-flow inset.",
+    "scope": "Normal command-word write: select, write direction and address qualify acceptance; commandfifo holds the unchanged write-data word and delivers it in order when the drawing circuit is ready.",
+    "rtl": [
+      "console/fpga/src/rasterix_apb.sv",
+      "console/fpga/src/rasterix.sv"
+    ],
+    "following_slide": 11,
+    "replaces": "The former slide 11 listing added circuit/software work."
+  }
 }

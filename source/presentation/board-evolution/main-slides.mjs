@@ -99,6 +99,21 @@ export async function addMainSlides(ctx) {
   text(s,'AD＝0x10080000、WD＝cmd、WE＝1 → S2で接続回路を選ぶ',64,635,1152,38,25,true);
   foot(s,'CPUから接続回路を介して描画命令を送る概念コード');
 
+  s=slide('接続回路が描画命令を受け渡す',25,
+    '接続回路は、S2が1で選ばれ、WEが1の書込みなら、ADが命令の書込み先かを調べます。そのときWDの数値を一時保存します。保存した値は、描画回路が受け取れるときに、書かれた順に渡します。この仕組みで、CPUの書込みを描画回路への命令送信につなげました。',
+    `${PRODUCT} console/fpga/src/rasterix_apb.sv: CommandWrite, CmdData, CmdValid, PREADY; console/fpga/src/rasterix.sv: commandfifo, gpu.`,
+    '通常の命令語を0x10080000へ書く場合を説明する。図のS2はPSEL、WEはPWRITE、ADはPADDR、WDはPWDATAに対応する概念名である。実装はPSEL・PENABLE・PWRITE、32 bit書込みの条件、および命令ポートのアドレス条件からCommandWriteを生成する。CmdValid=CommandWrite、CmdData=WriteDataであり、接続回路が図形の意味を解析したり数値を別の描画命令へ翻訳したりするわけではない。一時保存はrasterix.svのaxiscdc commandfifoが行う。CPU側ではCmdValidとCmdReadyがともに1のときに受け取り、描画側ではGPUCmdValidとGPUCmdReadyがともに1のときに渡す。FIFOの入力が受取れない間はPREADYを下げ、CPU側の書込み完了を待たせる。本文の「そのとき取り込む」は書込みが完了したときの働きを示し、毎クロック無条件で取り込むという意味ではない。末尾用アドレス0x10080004、応答、クロック境界の実装、転送幅の選択は本図では省略する。これらを含む正確な信号条件は上記RTLに対応する。');
+  text(s,'CPUが書いた数値を受け取り、描画回路へ順に渡す',64,119,1152,38,27,true,C.blue);
+  drawStableBoard(s,api,{mode:'command'});
+  text(s,'S2＝1、WE＝1、AD＝0x10080000のとき、WDの値を取り込む',64,582,1152,34,25,true);
+  text(s,'WD＝cmd',80,625,190,48,25,true,C.blue,'center');
+  wire(s,270,650,342,650,C.blue,true,3);
+  api.box(s,'値を一時保存',342,625,310,48,C.white,25,C.blue,2.2);
+  text(s,'描画回路が受け取れるとき',675,617,316,28,22,true,C.blue,'center');
+  wire(s,652,650,1008,650,C.blue,true,3);
+  api.box(s,'描画回路',1008,625,208,48,C.white,25,C.blue,2.2);
+  foot(s,'接続回路による描画命令の受取りと受渡し');
+
   s=slide('画像をDDR3へ保存し、映像を出す',20,
     'RasterIXは、描画命令に従って画像を作り、DDR制御を通してDDR3へ保存します。表示回路がその画像を読み、HDMI端子から映像を出します。描画と表示は、どちらもRasterIXに含まれる回路を流用しています。',
     `${PRODUCT} console/fpga/generator/rasterixmem.tcl; console/fpga/src/rasterixdisplay.sv; ${BASIC}`,
@@ -108,17 +123,6 @@ export async function addMainSlides(ctx) {
   text(s,'描画：画像をDDR3へ保存する',64,585,1152,38,29,true);
   text(s,'表示：DDR3の画像を読み、HDMI端子から映像を出す',64,633,1152,38,29,true);
   foot(s,'描画・表示回路とDDR3の間で画像をやり取りする経路');
-
-  s=slide('本研究で追加した回路とソフトウェア',25,
-    '本研究では、CPUが指定アドレスへ書いた値を、RasterIXへ渡す接続回路を加えました。ソフトウェアには、ライブラリが作った命令列をそのアドレスへ書く処理を用意しました。接続方法と実行手順は公開しています。次に、この構成の実機動作を示します。',
-    `${PRODUCT} console/examples/rasterix/WallyBusConnector.hpp; source/abstract/content.json; docs/thesis/本文.md.`,
-    'Wallyと公式RasterIXの再利用を前提とする本研究の実装範囲を示す。WallyBusConnectorがRasterIXライブラリの接続先インターフェースを実装し、メモリに置いた命令列をCPUで読み出してMMIOへ書く。rasterix_apbとrasterixの接続回路が命令を渡す。描画本体、表示本体、OpenGL互換ライブラリ自体を新規設計したという主張ではない。図のAD/WD/WEは概念的な信号名で、転送幅、待ち、末尾通知、応答、クロック変換などは集約する。共有DDRへの接続と表示切替の制御も実装に含まれる。公開の目的は学習者が拡張方法を参照できるようにすることであり、教育効果の測定結果ではない。');
-  text(s,'Wallyの読書きで、RasterIXへ描画命令を渡せるようにした',64,119,1152,38,27,true,C.blue);
-  drawStableBoard(s,api,{mode:'contribution'});
-  text(s,'回路：描画命令用のアドレスを設け、受け取った値を渡す',64,583,1152,31,25,true);
-  text(s,'ソフトウェア：ライブラリの命令列を、そのアドレスへ書く',64,619,1152,31,25,true);
-  text(s,'接続回路・書込み処理・ゲームの実行手順を公開',64,655,1152,26,22,true,C.heading);
-  foot(s,'CPUから描画回路へ命令を渡すために追加した部分');
 
   s=slide('ブロック崩しの実機動画',30,
     'こちらが実機の映像です。640かける480画素のゲーム画面をHDMI端子から出しています。ボールの移動、壁やパドルでの反射、当たったブロックの消去を確認しました。現在はプログラムがパドルを自動で動かしています。',

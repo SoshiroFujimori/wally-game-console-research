@@ -20,8 +20,8 @@ is 355 seconds including the 30-second embedded video, not a timed rehearsal.
 | 7 | SD-to-DDR copy | Read the fixed receive register and advance the DDR3 destination. |
 | 8 | Execution start | A call to the address of the program copied into DDR3. |
 | 9 | Drawing commands | CPU library, command values, address write, and connection circuit. |
-| 10 | Image storage and output | Reused RasterIX drawing/display and shared DDR3. |
-| 11 | Work added in this research | Command adapter circuit, MMIO software connector, and published execution steps. |
+| 10 | Command adapter | Select, address and write-enable conditions accept WD; temporary storage delivers words in order when the drawing circuit can receive them. |
+| 11 | Image storage and output | Reused RasterIX drawing/display and shared DDR3. |
 | 12 | Demonstration | The reviewed standard-output 30-second autoplay video. |
 | 13 | Conclusion | A published Wally extension example; controller/GUI work remains planned. |
 
@@ -54,6 +54,16 @@ The C fragments use the same addresses as the abstract. They omit initialization
 complete SD transactions, waits, address mapping and `volatile`.
 The copy/start excerpt illustrates control flow rather than replacing the actual
 bootloader and OS startup sequence.
+Slide 10 follows the normal command-word write with a functional inset.
+`rasterix_apb.sv` qualifies a 32-bit command write with peripheral select,
+APB access phase, write direction, strobes and address. `CmdData` carries the
+selected write-data word unchanged. The `axiscdc commandfifo` instance in
+`rasterix.sv` holds accepted words and delivers them in order under the
+drawing circuit's ready/valid handshake. A full input delays the APB write
+through `PREADY`. The visible diagram groups these timing conditions; the
+notes give their RTL correspondence. It does not claim an instruction
+translator or a separate added holding register.
+
 The final-word write is also omitted from the main fragment; the notes
 identify the actual completion port. They are conceptual excerpts, not an
 executable driver. The real MMIO code
@@ -133,7 +143,7 @@ the blue outlines used for functions covered in the main presentation.
 
 Slide 12 embeds `experiments/dvi-recovery-20261109/media/latest-standard-dvi-30s.mp4`
 without transcoding, using its reviewed `latest-start.png` poster. This is
-the sole execution-result slide. Slide 11 explains the added integration work. The latest title-top executable
+the sole execution-result slide. Slide 10 explains command acceptance and delivery by the added adapter. The latest title-top executable
 is shown using the unchanged standard display bitstream and RasterIX-bundled
 drawing/display cores. Local connection and control wrappers remain integration
 work. The player is automatic; controller input is not implemented. Recorded
