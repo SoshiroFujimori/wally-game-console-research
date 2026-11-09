@@ -114,8 +114,8 @@
       "sha256": "47446578c72adfa6ae16f3fff5872a9f9f16aa37297879b08cb4090fc16257e5"
     },
     "docs/presentation/slides/slide-10.png": {
-      "bytes": 131703,
-      "sha256": "d6a8f03139698979c205c56a1cfb290e00347b3552fec89bb8140f0c75c97e85"
+      "bytes": 142083,
+      "sha256": "15c83856c570ca9a079616a3e5f17cb1ed4fbe8b5a849a5796578e6958575195"
     },
     "docs/presentation/slides/slide-11.png": {
       "bytes": 129749,
@@ -162,12 +162,12 @@
       "sha256": "104fe6d2a370898dc4001895b777116c976b95c57df1c51ac6f1b33d083db988"
     },
     "docs/presentation/中間発表_主要事項.md": {
-      "bytes": 91108,
-      "sha256": "e0c6147e3432231b7eabae3cfb2444dc9e8479e1529c6377fa0ad3cd1453bddb"
+      "bytes": 91377,
+      "sha256": "543c1000fdfb771eb3efdf7b159f3440d5428d2fe36bc2a9870c984c02fac3c5"
     },
     "docs/presentation/中間発表_主要事項.pptx": {
-      "bytes": 771068,
-      "sha256": "45e5988928d6ecec951770d629f5fd0ec62251900cba3874bfdf1d6e0365af69"
+      "bytes": 771668,
+      "sha256": "e3183fff6dd5a9e3103215319795ebcb49122af45a9594b717d25df77b1d5383"
     },
     "docs/privacy.md": {
       "bytes": 5063,
@@ -12518,8 +12518,8 @@
       "sha256": "b37af8468ab90cc774380eae7acce80700a22c2cdb02aa7e1d27bf6da8ad7d04"
     },
     "publication/media-review.json": {
-      "bytes": 127883,
-      "sha256": "f1c4e898de8fe2f768873430068a4bcdfa49d16a8d31aebafc9996d6040570de"
+      "bytes": 128437,
+      "sha256": "81bca90d7d388454005b8be03b886fc3ebc1b9df34d9411ed895a86c66e11088"
     },
     "publication/policy.json": {
       "bytes": 635,
@@ -12578,8 +12578,8 @@
       "sha256": "0e317c3229ff950862fbbc0d3c6fd9ca07f5dcbcb890a497603083751684d187"
     },
     "source/presentation/board-evolution/README.md": {
-      "bytes": 17303,
-      "sha256": "db4e3a2e97e0c8d83d99789fd2e78c20d25817cfe2572eccca93aa321ce45bff"
+      "bytes": 17505,
+      "sha256": "d02262eaa36952f79a96ef8e34819e0547037120e7418e4c77bf5543420391b1"
     },
     "source/presentation/board-evolution/abstract-flow.mjs": {
       "bytes": 7874,
@@ -12622,8 +12622,8 @@
       "sha256": "3c9bb2e1b9eb8808ac227b067f23b6144529ff6c3433f9300a43c59a32b08c55"
     },
     "source/presentation/board-evolution/main-slides.mjs": {
-      "bytes": 19659,
-      "sha256": "a85deca9514dd9d02ffeea7509fb2bd788b65e622ff68c9d9eec1619e776330c"
+      "bytes": 20201,
+      "sha256": "aa5bce0f439b1dbab745e704592d70266e08463cca0a01605e9ce86e80cfa150"
     },
     "source/presentation/board-evolution/memory-ports.mjs": {
       "bytes": 5952,

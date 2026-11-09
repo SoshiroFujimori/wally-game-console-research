@@ -100,18 +100,23 @@ export async function addMainSlides(ctx) {
 
 
   s=slide('接続回路が描画命令を受け渡す',25,
-    '接続回路は、S2が1で選ばれ、WEが1の書込みなら、ADが命令の書込み先かを調べます。そのときWDの数値を一時保存します。保存した値は、描画回路が受け取れるときに、書かれた順に渡します。この仕組みで、CPUの書込みを描画回路への命令送信につなげました。',
-    `${PRODUCT} console/fpga/src/rasterix_apb.sv: CommandWrite, CmdData, CmdValid, PREADY; console/fpga/src/rasterix.sv: commandfifo, gpu.`,
-    '通常の命令語を0x10080000へ書く場合を説明する。図のS2はPSEL、WEはPWRITE、ADはPADDR、WDはPWDATAに対応する概念名である。実装はPSEL・PENABLE・PWRITE、32 bit書込みの条件、および命令ポートのアドレス条件からCommandWriteを生成する。CmdValid=CommandWrite、CmdData=WriteDataであり、接続回路が図形の意味を解析したり数値を別の描画命令へ翻訳したりするわけではない。一時保存はrasterix.svのaxiscdc commandfifoが行う。CPU側ではCmdValidとCmdReadyがともに1のときに受け取り、描画側ではGPUCmdValidとGPUCmdReadyがともに1のときに渡す。FIFOの入力が受取れない間はPREADYを下げ、CPU側の書込み完了を待たせる。本文の「そのとき取り込む」は書込みが完了したときの働きを示し、毎クロック無条件で取り込むという意味ではない。末尾用アドレス0x10080004、応答、クロック境界の実装、転送幅の選択は本図では省略する。これらを含む正確な信号条件は上記RTLに対応する。');
-  text(s,'CPUが書いた数値を受け取り、描画回路へ順に渡す',64,119,1152,38,27,true,C.blue);
+    'CPUと描画回路は、動作周波数と、データを受け渡すバスの形式が異なります。そこで、二つの回路を組み合わせて接続しました。一つは、CPUからの書込みを描画回路が受け取る形式に合わせる回路です。もう一つは、周波数の違いに対応するAMD製の回路です。',
+    `${PRODUCT} console/fpga/src/rasterix_apb.sv: CommandWrite, CmdData, CmdValid, PREADY; console/fpga/src/rasterix.sv: commandfifo, gpu; console/fpga/generator/axiscdc.tcl. AMD, AXI4-Stream Infrastructure IP Suite, PG085: https://docs.amd.com/r/en-US/pg085-axi4stream-infrastructure/Overview-of-Features`,
+    '命令を送る経路を、バス形式への対応とクロック間の受渡しの二つの役割に分けて示す。CPU側はAPB、RasterIX側はAXI4-Streamであり、本研究で追加したrasterix_apbがCPUの書込みをストリームのデータと有効信号に対応させる。描画命令の数値自体は変更しない。周波数への対応には、AMD製AXI4-Stream Data FIFOを非同期設定で使用する。axiscdc.tclでIS_ACLK_ASYNCを1に設定し、rasterix.svのcommandfifoでは書込み側にCPUCLK、読出し側にRasterIXと同じDDRCLKを接続する。標準構成はCPU側20 MHz、描画側100 MHzである。二つの役割のうち、AMD製なのは非同期FIFOであり、APB接続部分は本研究で追加したRTLである。図の回路名は役割を表し、IP名やモジュール名は示していない。異なるクロック間の命令転送に非同期FIFOを採用したという説明であり、その方式だけが使用可能であることや性能向上を主張しない。FIFOに空きがなくなるとCmdReadyとPREADYを通じて書込みを待たせる。応答側のFIFO、末尾通知、32 bit書込み条件などの詳細は主図では省略している。');
+  text(s,'CPUと描画回路の、周波数とバス形式の違いに対応する',64,119,1152,38,27,true,C.blue);
   drawStableBoard(s,api,{mode:'command'});
-  text(s,'S2＝1、WE＝1、AD＝0x10080000のとき、WDの値を取り込む',64,582,1152,34,25,true);
-  text(s,'WD＝cmd',80,625,190,48,25,true,C.blue,'center');
-  wire(s,270,650,342,650,C.blue,true,3);
-  api.box(s,'値を一時保存',342,625,310,48,C.white,25,C.blue,2.2);
-  text(s,'描画回路が受け取れるとき',675,617,316,28,22,true,C.blue,'center');
-  wire(s,652,650,1008,650,C.blue,true,3);
-  api.box(s,'描画回路',1008,625,208,48,C.white,25,C.blue,2.2);
+  text(s,'AMD製回路を含む2つの回路を組み合わせて接続',64,580,1152,35,27,true);
+  api.box(s,'CPU',64,625,130,50,C.white,25,C.ink,2.2);
+  wire(s,194,650,244,650,C.blue,true,3);
+  api.box(s,'',244,621,330,58,C.white,25,C.blue,2.2);
+  text(s,'バス形式に対応',254,624,310,28,24,true,C.blue,'center');
+  text(s,'本研究で追加',254,653,310,22,20,false,C.ink,'center');
+  wire(s,574,650,634,650,C.blue,true,3);
+  api.box(s,'',634,621,330,58,C.pale,25,C.blue,2.2);
+  text(s,'周波数の違いに対応',644,624,310,28,24,true,C.blue,'center');
+  text(s,'AMD製の回路',644,653,310,22,20,false,C.ink,'center');
+  wire(s,964,650,1024,650,C.blue,true,3);
+  api.box(s,'描画回路',1024,625,192,50,C.white,25,C.ink,2.2);
 
 
   s=slide('画像をDDR3へ保存し、映像を出す',20,

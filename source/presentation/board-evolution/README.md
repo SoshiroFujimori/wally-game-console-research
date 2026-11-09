@@ -20,7 +20,7 @@ is 355 seconds including the 30-second embedded video, not a timed rehearsal.
 | 7 | SD-to-DDR copy | Read the fixed receive register and advance the DDR3 destination. |
 | 8 | Execution start | A call to the address of the program copied into DDR3. |
 | 9 | Drawing commands | CPU library, command values, address write, and connection circuit. |
-| 10 | Command adapter | Select, address and write-enable conditions accept WD; temporary storage delivers words in order when the drawing circuit can receive them. |
+| 10 | Command connection | Two circuit roles accommodate the bus format and clock difference: a local APB adapter and an AMD asynchronous FIFO. |
 | 11 | Image storage and output | Reused RasterIX drawing/display and shared DDR3. |
 | 12 | Demonstration | The reviewed standard-output 30-second autoplay video. |
 | 13 | Conclusion | The same board diagram identifies reused Wally/RasterIX circuits and the added adapter; controller/GUI work remains planned. |
@@ -66,15 +66,18 @@ The C fragments use the same addresses as the abstract. They omit initialization
 complete SD transactions, waits, address mapping and `volatile`.
 The copy/start excerpt illustrates control flow rather than replacing the actual
 bootloader and OS startup sequence.
-Slide 10 follows the normal command-word write with a functional inset.
-`rasterix_apb.sv` qualifies a 32-bit command write with peripheral select,
-APB access phase, write direction, strobes and address. `CmdData` carries the
-selected write-data word unchanged. The `axiscdc commandfifo` instance in
-`rasterix.sv` holds accepted words and delivers them in order under the
-drawing circuit's ready/valid handshake. A full input delays the APB write
-through `PREADY`. The visible diagram groups these timing conditions; the
-notes give their RTL correspondence. It does not claim an instruction
-translator or a separate added holding register.
+Slide 10 explains the command connection through two functional blocks.
+The added `rasterix_apb.sv` logic adapts APB writes to the AXI4-Stream command
+interface. AMD's AXI4-Stream Data FIFO, configured for independent clocks,
+transfers those words from the CPU clock to the drawing clock. The visible
+labels state the two roles and their provenance, without module or IP names.
+Only the FIFO is AMD IP; the bus-format adapter is integration RTL added by
+this project. This is an explanation of the selected connection method,
+not a claim that an asynchronous FIFO is the only possible design or that
+its buffering has improved game performance. The standard clock settings
+are 20 MHz for the CPU and 100 MHz for the drawing circuit. A full FIFO
+delays the APB write through `PREADY`. Exact interface names and source
+correspondence remain in the speaker notes.
 
 The final-word write is also omitted from the main fragment; the notes
 identify the actual completion port. They are conceptual excerpts, not an
