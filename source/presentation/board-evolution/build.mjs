@@ -79,7 +79,7 @@ await addMainSlides({slide,api,foot,cover,root,DDCA,RVSOC,PRODUCT,BASIC,POSTER,V
 let s=slide('目次：発表・質問用スライド',0,
   '質問に関係する項目をクリックすると、そのスライドへ移動します。移動した後は右下のスライド番号をクリックすると、この目次へ戻れます。',
   '',
-  '表紙1枚と発表用12枚の後に置く操作用の目次である。発表スライドと質問用スライドの両方へ移動できる。質問用スライドは、教科書の採用例、FPGAの構成要素と使用量、命令の実行から周辺回路へつながる統合図、回路の詳細の順にまとめる。質問用の7枚は通常の順送りでは表示しないが、目次から選んで開ける。本編の説明時間には目次の操作時間を含めない。');
+  '表紙1枚と発表用12枚の後に置く操作用の目次である。発表用スライドと質問用スライドの両方へ移動できる。質問用スライドは、教科書の採用例、FPGAの構成要素と使用量、命令の実行から周辺回路へつながる統合図、回路の詳細の順にまとめる。質問用の7枚は通常の順送りでは表示しないが、目次から選んで開ける。本編の説明時間には目次の操作時間を含めない。');
 drawContents(s,api);outline[outline.length-1].navigation=true;
 
 const ddcaDataRoot=process.env.PRESENTATION_DDCA_ASSET_DIRECTORY||path.join(root,'source/presentation/ddca-adoption');

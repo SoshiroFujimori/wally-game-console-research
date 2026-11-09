@@ -32,6 +32,15 @@ the same positions and sizes. Slide 3 groups Wally into one block and explains
 its public HDL and textbook. Slide 4 expands that block into the CPU, decoder,
 SD control and DDR control, within the same Wally boundary.
 
+The common layout places input labels inside each peripheral, aligns the
+SD/DDR/command input rows, and reserves separate lanes for read returns and
+image transfer. Muted component names, outlines, fills and connections keep
+unrelated hardware visible without competing with the operation in focus.
+The DDR vendor fill is saturated only when DDR is relevant. Blue marks the
+explained data path; it does not encode a logic level or disconnection of a
+muted shared branch. The copy view emphasizes the SD read path and DDR write
+path without highlighting an SD write or DDR read.
+
 Slides 4-11 retain the same circuit blocks and signal routes. Blue emphasizes
 the path being discussed. In particular, slide 7 keeps slide 6's DDR3 write
 path and also highlights the SD read path. The code explains how the CPU

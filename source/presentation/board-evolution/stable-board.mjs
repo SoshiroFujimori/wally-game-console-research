@@ -1,96 +1,100 @@
-// One editable board coordinate system throughout the main circuit explanation.
-// Physical components, functional ports and their routes keep their positions.
+// One editable board coordinate system throughout the main explanation.
+// Emphasis follows the operation being explained, not logic-high/low levels.
 export const MAIN_BOARD = {
-  board:[64,175,1152,400], chip:[84,210,1112,306],
-  wally:[96,244,719,254], cpu:[112,342,126,96], decoder:[305,250,178,48],
-  sd:[440,383,145,56], ddr:[640,383,155,56], adapter:[840,383,150,56],
-  rasterix:[1030,383,150,56], card:[435,527,150,36],
-  memory:[645,527,150,36], hdmi:[1030,527,150,36]
+  board:[64,175,1152,400], chip:[84,210,1112,312],
+  wally:[96,244,719,270], cpu:[112,342,126,96], decoder:[318,250,180,54],
+  sd:[440,381,155,72], ddr:[640,381,155,72], adapter:[840,381,155,72],
+  rasterix:[1030,381,150,72], card:[435,533,150,32],
+  memory:[645,533,150,32], hdmi:[1030,533,150,32]
 };
 
 export function drawStableBoard(s,a,{mode='request'}={}){
   const {text,box,polygon,wire,route,junction,C}=a;
-  const gray='#9BA7B8',ink=C.ink,blue=C.blue;
+  const muted='#A6B2C3',edge='#BBC6D6',frame='#718299',ink=C.ink,blue=C.blue;
+  const fadedFill='#F5F7FB',chipFill='#E8EFF9';
+  const is=(...modes)=>modes.includes(mode);
+  const purpose=mode==='purpose',intro=mode==='implementation',image=mode==='image';
+  const sd=is('request','receive','copy'),memory=is('write','copy','execute','image');
+  const command=is('command','contribution'),reading=is('receive','copy','execute');
+  const transfer=is('request','receive','write','copy','execute','command','contribution');
+  const writing=is('request','write','copy','command','contribution');
+  const color=on=>on?blue:muted;
   const T=(v,x,y,w,h=26,z=20,b=false,c=ink,align='left')=>text(s,v,x,y,w,h,z,b,c,align);
   const B=(name,label='',fill=C.white,z=22,stroke=ink,width=2.2)=>{
     const sh=box(s,label,...MAIN_BOARD[name],fill,z,stroke,width);
     sh.name='main-board-'+name;return sh;
   };
   const R=(p,c=ink,ar=true,w=2.7)=>route(s,p,c,ar,w);
-  const active=(...modes)=>modes.includes(mode);
-  const memory=active('write','copy','execute','image'),sd=active('request','receive','copy');
-  const command=active('command','contribution'),reading=active('receive','copy','execute');
-  const transfer=active('request','receive','write','copy','execute','command','contribution');
-  const image=mode==='image';
-  const forward=transfer?blue:gray,write=active('request','write','copy','command','contribution');
-  const rd=reading?blue:gray;
 
-  B('board','',C.pale,22,ink,2);
-  T('FPGAボード / Nexys Video',80,177,760,29,24,true);
-  B('chip','',C.chip,22,ink,2.3);
-  T('FPGAチップ',100,214,240,25,20,true);
-  T('基板上の部品',100,530,300,29,22,true);
-  B('card','SDスロット',C.white,20);
-  B('memory','DDR3メモリ',C.white,20);
-  B('hdmi','HDMI端子',C.white,20);
+  B('board','','#F6F8FC',22,frame,1.5);
+  T('FPGAボード / Nexys Video',80,178,760,28,23,true,intro?ink:frame);
+  B('chip','',chipFill,22,frame,1.8);
+  T('FPGAチップ',100,214,240,25,20,true,intro?ink:frame);
+  T('基板上の部品',100,533,290,28,20,true,intro?ink:frame);
+  for(const [name,label,on] of [['card','SDスロット',sd||intro],['memory','DDR3メモリ',memory||intro],['hdmi','HDMI端子',image||intro]]){
+    B(name,'',on?C.white:fadedFill,20,on?blue:edge,on?2.2:1.3);
+    T(label,MAIN_BOARD[name][0]+4,535,142,26,20,true,on?ink:muted,'center');
+  }
 
-  if(mode==='implementation'){
-    T('HDLによる記述例',112,269,415,30,25,true,C.heading);
-    const lines=['module example(input logic a, b,',
-      '               output logic y);','  assign y = a & b;','endmodule'];
-    box(s,'',112,309,444,132,C.white,20,ink,1.8).name='main-board-code-example';
+  if(intro){
+    T('HDLによる記述例',112,263,450,32,25,true,C.heading);
+    box(s,'',112,307,450,136,C.white,20,ink,1.8).name='main-board-code-example';
+    const lines=['module example(input logic a, b,','               output logic y);','  assign y = a & b;','endmodule'];
     lines.forEach((v,i)=>{
-      const sh=T(v,127,318+i*28,415,28,20,false,i===2?blue:ink);
+      const sh=T(v,127,316+i*28,423,28,20,false,i===2?blue:ink);
       sh.text.style={typeface:'Consolas',fontSize:20,color:i===2?blue:ink,wrap:'none',verticalAlignment:'middle'};
     });
-    const gate=[[757,333],[797,333]];
+    const gate=[[780,332],[823,332]];
     for(let i=1;i<=18;i++){
       const angle=-Math.PI/2+i*Math.PI/18;
-      gate.push([797+43*Math.cos(angle),376+43*Math.sin(angle)]);
+      gate.push([823+43*Math.cos(angle),375+43*Math.sin(angle)]);
     }
-    gate.push([757,419]);
+    gate.push([780,418]);
     polygon(s,gate,C.white,ink,2.2).name='main-board-logic-example';
-    wire(s,708,354,757,354,ink,false,2.5);wire(s,708,398,757,398,ink,false,2.5);
-    wire(s,840,376,924,376,ink,true,2.5);
-    T('a',678,340,30,29,25,true);T('b',678,384,30,29,25,true);T('y',935,361,30,29,25,true);
-    T('論理回路の例（AND）',689,449,341,32,25,true,ink,'center');
-    wire(s,568,376,666,376,blue,true,3);
-    T('回路を\n実装',570,309,97,55,22,true,blue,'center');
+    wire(s,730,353,780,353,ink,false,2.5);wire(s,730,397,780,397,ink,false,2.5);
+    wire(s,866,375,973,375,ink,true,2.5);
+    T('a',699,339,30,29,25,true);T('b',699,383,30,29,25,true);T('y',989,361,30,29,25,true);
+    T('論理回路の例（AND）',714,452,341,32,25,true,ink,'center');
+    wire(s,586,375,686,375,blue,true,3);
+    T('回路を実装',574,325,126,30,22,true,blue,'center');
     return;
   }
 
-  const reused=B('wally','','none',20,C.old,1.3);reused.line={style:'dashed',fill:C.old,width:1.3};
-  T('Wallyから流用',105,248,190,25,19,true);
-  const rixGroup=box(s,'',1020,375,170,72,'none',20,C.old,1.3);
-  rixGroup.name='main-board-rasterix-origin';rixGroup.line={style:'dashed',fill:C.old,width:1.3};
-  T('RasterIXから流用',1022,340,174,28,19,true,ink,'center');
-  B('adapter','',C.white,20,command||mode==='purpose'?blue:ink,command?3:2.2);
-  T('接続回路',845,387,140,25,23,true,command||mode==='purpose'?blue:ink,'center');
-  T('本研究で追加',845,414,140,21,17,true,command||mode==='purpose'?blue:ink,'center');
-  B('rasterix','描画・表示\n回路',C.white,22,command||image?blue:ink);
-  R([[990,410],[1030,410]],command||mode==='purpose'?blue:gray,true,3);
-  T('描画命令',982,449,122,25,18,true,command?blue:ink,'center');
+  const reused=B('wally','','none',20,edge,1.1);reused.line={style:'dashed',fill:edge,width:1.1};
+  T('Wallyから流用',105,248,190,23,18,true,purpose?ink:muted);
+  const origin=box(s,'',1020,373,170,88,'none',20,edge,1.1);
+  origin.name='main-board-rasterix-origin';origin.line={style:'dashed',fill:edge,width:1.1};
+  T('RasterIXから流用',1020,341,178,27,18,true,purpose?ink:muted,'center');
+  B('adapter','',command||purpose?C.white:fadedFill,20,command||purpose?blue:edge,command||purpose?2.6:1.3);
+  T('接続回路',845,purpose?395:409,145,26,22,true,command||purpose?blue:muted,'center');
+  T('本研究で追加',845,purpose?426:433,145,18,16,true,command||purpose?blue:muted,'center');
+  B('rasterix','',command||image||purpose?C.white:fadedFill,20,command||image||purpose?blue:edge,command||image||purpose?2.3:1.3);
+  T('描画・表示\n回路',1035,392,140,49,23,true,command||image||purpose?ink:muted,'center');
+  R([[995,417],[1030,417]],color(command||purpose),true,3);
+  T('描画命令',984,459,122,23,17,true,color(command||purpose),'center');
 
-  // Physical device links are distinct from the CPU's AD/WD/WE/RD lanes.
-  R(mode==='purpose'?[[440,439],[440,456],[420,456],[420,545],[435,545]]:
-    [[440,412],[420,412],[420,545],[435,545]],sd||mode==='purpose'?blue:gray,'both',2.4);
-  R([[mode==='purpose'?792:795,412],[825,412],[825,545],[795,545]],memory||mode==='purpose'?blue:gray,'both',2.4);
-  R([[1150,439],[1150,527]],image||mode==='purpose'?blue:gray,true,2.4);
-  R([[1080,439],[1080,506],[752,506],[752,439]],image?blue:gray,'both',2.7);
-  T('画像の保存・読出し',862,483,205,22,17,false,image?blue:ink,'center');
+  // External-component links stay clear of the read-return lanes.
+  R(purpose?[[440,453],[440,470],[420,470],[420,549],[435,549]]:
+    [[440,423],[420,423],[420,549],[435,549]],color(sd),'both',2.4);
+  R(purpose?[[712,453],[712,481],[820,481],[820,549],[795,549]]:
+    [[795,423],[820,423],[820,549],[795,549]],color(memory),'both',2.4);
+  R([[1150,453],[1150,533]],color(image),true,2.4);
+  R([[1080,453],[1080,510],[752,510],[752,453]],color(image),'both',2.7);
+  T('画像の保存・読出し',916,485,160,22,16,false,color(image),'center');
 
-  if(mode==='purpose'){
-    box(s,'Wally\nCPUと周辺制御回路',112,307,680,132,C.white,32,ink,2.3).name='main-board-wally-summary';
-    // The summary covers the same CPU/decoder/SD/DDR footprint as the next view.
-    R([[792,400],[840,400]],blue,true,3);
-    T('読書き',791,354,55,28,17,true,blue,'center');
+  if(purpose){
+    box(s,'Wally\nCPUと周辺制御回路',112,307,668,146,C.white,31,ink,2.3).name='main-board-wally-summary';
+    R([[780,417],[840,417]],blue,true,3);
+    T('読書き',782,385,56,25,17,true,blue,'center');
     return;
   }
 
-  B('cpu');T('CPU',122,350,77,29,25,true,ink,'center');T('Wally',122,385,77,26,21,false,ink,'center');
-  for(const [name,y]of [['AD',345],['WD',375],['WE',405]])T(name,201,y,33,22,18,true);
-  T('RD',151,414,34,22,18,true);
-  B('decoder','アドレス\nデコーダ',C.white,21,transfer?blue:gray);
+  B('cpu','',transfer?C.white:fadedFill,20,transfer?ink:edge,transfer?2.3:1.3);
+  T('CPU',121,351,78,28,25,true,transfer?ink:muted,'center');
+  T('Wally',121,385,78,26,21,false,transfer?ink:muted,'center');
+  for(const [name,y,on]of [['AD',345,transfer],['WD',375,writing],['WE',405,transfer]])T(name,201,y,33,22,18,true,color(on));
+  T('RD',151,414,34,22,18,true,color(reading));
+  B('decoder','アドレス\nデコーダ',transfer?C.white:fadedFill,20,color(transfer),transfer?2.3:1.3);
   const values={request:['AD = 0x13048','WD = request[i]','WE = 1'],
     receive:['AD = 0x1304C','WD：使わない','WE = 0'],
     write:['AD = 0x80000000','WD = 受信値','WE = 1'],
@@ -99,42 +103,52 @@ export function drawStableBoard(s,a,{mode='request'}={}){
     command:['AD = 0x10080000','WD = cmd','WE = 1'],
     contribution:['AD = 0x10080000','WD = 描画命令','WE = 1'],
     image:['AD：アドレス','WD：書込みデータ','WE（1 bit）']}[mode];
-  T(values[0],102,275,196,22,18,true,forward);
-  T(values[1],102,298,196,22,18,true,write?blue:ink);
-  T(values[2],102,321,196,20,17,true,forward);
+  T(values[0],102,275,196,22,18,true,color(transfer));
+  T(values[1],102,298,196,22,18,true,color(writing));
+  T(values[2],102,321,196,20,17,true,color(transfer));
   const defs=[
-    {name:'sd',x:440,label:'SD制御',sub:mode==='request'?'送信用レジスタ':active('receive','copy')?'受信用レジスタ':'送受信レジスタ',select:'S0',on:sd},
-    {name:'ddr',x:640,label:'DDR制御',sub:'AMD製IP',select:'S1',on:memory},
-    {name:'adapter',x:840,select:'S2',on:command}];
-  for(const [signal,y0,railX,yRail,offset,c,w] of [
-    ['AD',356,265,299,24,forward,3],['WD',386,285,324,62,write?blue:gray,3],
-    ['WE',416,305,349,100,forward,1.35]]){
-    R([[238,y0],[railX,y0],[railX,yRail],[940-(100-offset),yRail]],c,false,w);
-    for(const [i,d]of defs.entries()){
-      wire(s,d.x+offset,yRail,d.x+offset,383,c,true,w);
-      if(i<2)junction(s,d.x+offset,yRail,c,5);
-      T(signal,d.x+offset-15,357,30,23,16,true,c,'center');
-    }
+    {name:'sd',x:440,label:'SD制御',sub:mode==='request'?'送信用レジスタ':is('receive','copy')?'受信用レジスタ':'送受信レジスタ',select:'S0',on:sd,write:mode==='request',read:is('receive','copy')},
+    {name:'ddr',x:640,label:'DDR制御',sub:'AMD製IP',select:'S1',on:memory,write:is('write','copy'),read:mode==='execute'},
+    {name:'adapter',x:840,select:'S2',on:command,write:command,read:false}];
+
+  // Shared lines remain connected. Only the path relevant to the described
+  // operation is blue; muted branches do not imply physical disconnection.
+  for(const [signal,y0,railX,yRail,offset,w] of [
+    ['AD',356,265,314,20,3],['WD',386,285,337,55,3],['WE',416,305,360,90,1.35]]){
+    const involved=defs.map(d=>transfer&&(signal==='WD'?d.write:d.on));
+    const last=involved.lastIndexOf(true),trunkColor=color(last>=0);
+    R([[238,y0],[railX,y0],[railX,yRail],[defs[0].x+offset,yRail]],trunkColor,false,w);
+    defs.forEach((d,i)=>{
+      const x=d.x+offset;
+      if(i<2)wire(s,x,yRail,defs[i+1].x+offset,yRail,color(last>i),false,w);
+      wire(s,x,yRail,x,381,color(involved[i]),true,w);
+      if(i<2)junction(s,x,yRail,color(involved[i]||last>i),4.6);
+    });
   }
-  R([[265,299],[265,273],[305,273]],forward,true,3);junction(s,265,299,forward,5);
+  R([[265,314],[265,277],[318,277]],color(transfer),true,3);
+  junction(s,265,314,color(transfer),4.6);
+
   defs.forEach((d,i)=>{
-    const c=d.on?blue:gray,selectColor=transfer&&d.on?blue:gray,selX=d.x+125,y=260+i*16;
-    R([[483,y],[selX,y],[selX,383]],selectColor,true,1.35);
-    // Copy consists of alternating SD reads and DDR writes, not two selects at once.
-    const suffix=mode==='copy'||mode==='image'?'':d.on?'=1':'=0';
-    T(d.select+suffix,selX+3,354,60,25,17,true,selectColor);
+    const sel=transfer&&d.on,selX=d.x+130,y=262+i*16;
+    R([[498,y],[selX,y],[selX,381]],color(sel),true,1.35);
     if(d.name!=='adapter'){
-      B(d.name,'',d.name==='ddr'?C.ip:C.white,20,c,d.on?2.7:2.2);
-      T(d.label,d.x+6,388,MAIN_BOARD[d.name][2]-12,24,22,true,ink,'center');
-      T(d.sub,d.x+6,414,MAIN_BOARD[d.name][2]-12,21,17,true,ink,'center');
+      B(d.name,'',d.on?(d.name==='ddr'?C.ip:C.white):fadedFill,20,d.on?blue:edge,d.on?2.4:1.3);
+      T(d.label,d.x+5,409,145,24,22,true,d.on?ink:muted,'center');
+      T(d.sub,d.x+5,433,145,18,16,true,d.on?ink:muted,'center');
     }
-    const ry=454+i*16,x=d.x+72;
-    R([[x,439],[x,ry],[375,ry]],reading&&d.on?blue:gray,true,2.7);
+    // Labels are inside the input row, so no shaft passes through a letter.
+    for(const [sig,offset,on]of [['AD',20,sel],['WD',55,d.write],['WE',90,sel]]){
+      T(sig,d.x+offset-15,384,30,21,16,true,d.name==='ddr'&&on?ink:color(on),'center');
+    }
+    const suffix=mode==='copy'||image?'':d.on?'=1':'=0';
+    T(d.select+suffix,d.x+106,384,48,21,15,true,d.name==='ddr'&&sel?ink:color(sel),'center');
+    const ry=465+i*16;
+    R([[d.x+72,453],[d.x+72,ry],[375,ry]],color(d.read),true,2.7);
   });
-  polygon(s,[[375,443],[330,454],[330,487],[375,498]],C.white,rd,2.2).name='main-board-read-selector';
-  T('選択',333,459,40,29,18,true,rd,'center');
-  T('S0〜S2',331,405,89,25,17,true,rd);
-  wire(s,352,431,352,448,rd,true,1.3);
-  R([[330,471],[175,471],[175,438]],rd,true,2.7);
-  T(reading?'RD = '+(mode==='execute'?'命令':'受信値'):'RD：読出しデータ',105,472,214,24,18,true,rd);
+  polygon(s,[[375,454],[330,465],[330,497],[375,508]],reading?C.white:fadedFill,color(reading),reading?2.3:1.3).name='main-board-read-selector';
+  T('選択',333,468,40,26,18,true,color(reading),'center');
+  T('S0〜S2',320,423,90,24,17,true,color(reading),'center');
+  wire(s,352,449,352,460,color(reading),true,1.35);
+  R([[330,481],[175,481],[175,438]],color(reading),true,2.7);
+  T(reading?'RD = '+(mode==='execute'?'命令':'受信値'):'RD：読出しデータ',105,489,214,24,18,true,color(reading));
 }

@@ -1,19 +1,19 @@
 // Native slide navigation. The slide names remain editable text objects.
 export const CONTENTS_SLIDE=14;
 export const CONTENTS_ITEMS=[
-  {number:1,label:'表紙',group:'発表スライド'},
-  {number:2,label:'FPGAチップと周辺部品',group:'発表スライド'},
-  {number:3,label:'拡張元のWallyと研究の目的',group:'発表スライド'},
-  {number:4,label:'SDカードへ読出しを要求する',group:'発表スライド'},
-  {number:5,label:'SDカードから届いた値をCPUへ戻す',group:'発表スライド'},
-  {number:6,label:'受け取った値をDDR3へ保存する',group:'発表スライド'},
-  {number:7,label:'SDカードからDDR3へコピーする',group:'発表スライド'},
-  {number:8,label:'DDR3に置いたプログラムを実行する',group:'発表スライド'},
-  {number:9,label:'描画回路へ命令を送る',group:'発表スライド'},
-  {number:10,label:'接続回路が描画命令を受け渡す',group:'発表スライド'},
-  {number:11,label:'画像を保存し、映像を出す',group:'発表スライド'},
-  {number:12,label:'ブロック崩しの実機動画',group:'発表スライド'},
-  {number:13,label:'結論と今後の展望',group:'発表スライド'},
+  {number:1,label:'表紙',group:'発表用スライド'},
+  {number:2,label:'FPGAチップと周辺部品',group:'発表用スライド'},
+  {number:3,label:'拡張元のWallyと研究の目的',group:'発表用スライド'},
+  {number:4,label:'SDカードへ読出しを要求する',group:'発表用スライド'},
+  {number:5,label:'SDカードから届いた値をCPUへ戻す',group:'発表用スライド'},
+  {number:6,label:'受け取った値をDDR3へ保存する',group:'発表用スライド'},
+  {number:7,label:'SDカードからDDR3へコピーする',group:'発表用スライド'},
+  {number:8,label:'DDR3に置いたプログラムを実行する',group:'発表用スライド'},
+  {number:9,label:'描画回路へ命令を送る',group:'発表用スライド'},
+  {number:10,label:'接続回路が描画命令を受け渡す',group:'発表用スライド'},
+  {number:11,label:'画像を保存し、映像を出す',group:'発表用スライド'},
+  {number:12,label:'ブロック崩しの実機動画',group:'発表用スライド'},
+  {number:13,label:'結論と今後の展望',group:'発表用スライド'},
   {number:15,label:'DDCAを教材に挙げる授業',group:'教科書の採用例'},
   {number:16,label:'RVSOCの教科書採用例',group:'教科書の採用例'},
   {number:17,label:'FPGAチップの構成要素',group:'FPGA'},
@@ -31,7 +31,7 @@ export function linkToSlide(shape,number){
 
 export function drawContents(s,api){
   const {text,wire,C}=api;
-  text(s,'発表スライド',64,127,544,42,29,true,C.heading);
+  text(s,'発表用スライド',64,127,544,42,29,true,C.heading);
   text(s,'質問用スライド',668,127,548,42,29,true,C.heading);
   wire(s,64,178,608,178,C.ink,false,1.2);
   wire(s,668,178,1216,178,C.ink,false,1.2);
@@ -50,8 +50,8 @@ export function drawContents(s,api){
 
 export function contentsMarkdown(){
   const lines=[];
-  for(const group of ['発表スライド','教科書の採用例','FPGA','命令の実行と周辺接続','回路の詳細']){
-    lines.push('### '+(group==='発表スライド'?group:'質問用：'+group),'');
+  for(const group of ['発表用スライド','教科書の採用例','FPGA','命令の実行と周辺接続','回路の詳細']){
+    lines.push('### '+(group==='発表用スライド'?group:'質問用：'+group),'');
     for(const r of CONTENTS_ITEMS.filter(r=>r.group===group))lines.push(`- [${r.number}. ${r.label}](#slide-${r.number})`);
     lines.push('');
   }

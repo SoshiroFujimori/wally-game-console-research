@@ -1,5 +1,5 @@
 {
-  "version": 14,
+  "version": 15,
   "reference": "Harris et al., RISC-V System-on-Chip Design",
   "official_resources": "https://pages.hmc.edu/harris/ddca/rvsocd.html",
   "inspection_date": "2026-10-24",
@@ -348,5 +348,29 @@
     ],
     "following_slide": 11,
     "replaces": "The former slide 11 listing added circuit/software work."
+  },
+  "main_slide_emphasis": {
+    "source": "board-evolution/stable-board.mjs",
+    "slides": [
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11
+    ],
+    "inactive_text_and_wires": "#A6B2C3",
+    "inactive_outlines": "#BBC6D6",
+    "inactive_fill": "#F5F7FB",
+    "chip_fill": "#E8EFF9",
+    "board_fill": "#F6F8FC",
+    "boundary_color": "#718299",
+    "layout": "Fixed board and component locations, aligned peripheral input rows, separated return paths and image-transfer labels.",
+    "semantics": "Blue marks the operation explained on the slide, not signal value 1. Muted branches remain physically connected. Copy highlights SD reads and DDR writes.",
+    "contents_label": "発表用スライド"
   }
 }
