@@ -36,13 +36,6 @@ function polygon(s,pts,fill=C.white,stroke=C.ink,width=2.2) {
 }
 const wiring=createCircuitWiring();
 const {wire,route,junction}=wiring;
-function foot(s,value) {
-  const n=P.slides.items.length;
-  if(n===1||n===13){text(s,value,64,665,1110,30,16,false,C.old);return;}
-  const captionY=684;
-  text(s,'図 '+n,64,captionY,63,30,17,true,C.heading);
-  text(s,value,131,captionY,1028,30,16,false,C.ink);
-}
 function slide(title,seconds,narration,source,detail,diagramOnly=false) {
   const s=P.slides.add();s.background.fill=C.white;
   const n=P.slides.items.length;
@@ -53,7 +46,8 @@ function slide(title,seconds,narration,source,detail,diagramOnly=false) {
     text(s,title,132,33,1084,82,38,true,C.heading);
   }
   if(!diagramOnly){
-    const page=text(s,String(n),1184,684,32,26,18,false,C.old,'right');
+    // Keep a fixed footer box and right edge for one- and two-digit numbers.
+    const page=text(s,String(n),1160,686,56,22,16,false,C.old,'right');
     page.name=`contents-return-${n}`;pageNumbers.push({page,number:n});
   }
   s.speakerNotes.text=`説明時間の目安：${seconds}秒\n\n${narration}\n\n出典：${source}\n\n補足説明：${detail}`;
@@ -75,7 +69,7 @@ const PROVENANCE_DETAIL='CPU・バス・SD制御はWally（CVW）の既存RTLを
 const PROVENANCE_SOURCE='Wally upstream: https://github.com/openhwgroup/cvw . Official RasterIX: https://github.com/ToNi3141/RasterIX/tree/9269a01c9bd4c3342bfa70ef8e3cdd751c15c6d0 . RTL: console/src/wally/wallypipelinedcore.sv; console/src/uncore/uncore.sv; console/src/uncore/spi_apb.sv; console/fpga/generator/ddr3-nexysvideo.tcl; console/fpga/generator/wally.tcl; console/fpga/src/rasterixdisplay.sv. RasterIX: rtl/RasterIX/RasterIX_IF.v; rtl/3rdParty/core_dvi_framebuffer/README.md; rtl/3rdParty/core_dvi_framebuffer/src_v/dvi_framebuffer.v. Standard-output evidence: experiments/dvi-recovery-20261109/results.json.';
 
 
-await addMainSlides({slide,api,foot,cover,root,DDCA,RVSOC,PRODUCT,BASIC,POSTER,VIDEO});
+await addMainSlides({slide,api,cover,root,DDCA,RVSOC,PRODUCT,BASIC,POSTER,VIDEO});
 
 let s=slide('目次：発表・回答用スライド',0,
   '質問に関係する項目をクリックすると、そのスライドへ移動します。移動した後は右下のスライド番号をクリックすると、この目次へ戻れます。',
@@ -94,7 +88,7 @@ s=slide('回答用：DDCAを教材に挙げる授業の広がり',0,
   `図は、DDCAを公式シラバス・授業資料の教科書・教材・参考書欄で確認した例を示す。日本語版と英語版、MIPS版・ARM版・RISC-V版などを含む。区分別では${ddcaSummary.categories.map(c=>c.label+c.institutions+'機関').join('、')}である。東京大学と広島大学は学部・大学院の両方に例があるが、全体ではそれぞれ1機関と数える。重複を除いた合計は${ddcaSummary.institutions}機関・${ddcaSummary.prefectures}都道府県である。区分は学校名ではなく授業の対象課程を表す。所在地は授業のキャンパスや開催地を使い、大学本部の住所でまとめない。教科書と参考書は出典一覧で区別する。参考書欄への掲載だけから、授業で毎回使うことや全学生の購入までは分からない。年度が分かる資料は${ddcaSummary.firstYear}〜${ddcaSummary.lastYear}年度である。開志専門職大学と長崎大学は授業年度不明、京都大学は2026年度授業ページからリンクされている資料である。現在も同じ指定が続くことや、同一年度の全国分布を示すものではない。縞模様は同じ県に複数の区分があることを示し、各色の面積は機関数に比例しない。灰色はこの一覧で未確認という意味で、使う学校がないという意味ではない。全国の全校・全年度を網羅していないため、色の面積や県数を採用率・市場シェアとして解釈しない。図書館の蔵書だけや書店の取扱いだけは根拠にしない。高知大学の資料は授業名とシラバス掲載図書を対応づけた公式一覧である。長崎大学は公式学部サイトの個別授業紹介を根拠とする。DDCAの掲載例は、RVSOCの採用実績や本研究の教育効果を直接示さない。授業・年度・版・確認箇所はDDCA授業利用の出典.mdを参照。地図の着色と集計はsource/presentation/ddca-adoption/records.jsonから生成する。地図は都道府県の形を簡略化した比較用の図である。`);
 text(s,'教科書・参考書への掲載例（過去の指定を含む）',64,118,1152,38,26,true,C.ink);
 drawDdcaMap(s,api,ddcaData,ddcaGeography);
-foot(s,'出典：各校の公式資料と出典一覧。地図：lalamalink（CC0 1.0）。確認日：2026-10-26');
+
 s.hidden=true;outline[outline.length-1].backup=true;
 
 const adoption = await loadRvsocAdoption(root);
@@ -108,7 +102,7 @@ s.hidden=true;outline[outline.length-1].backup=true;
 s=slide('回答用：FPGAチップの構成要素',0,
   FPGA_RESOURCE_NARRATION, FPGA_RESOURCE_SOURCES, FPGA_RESOURCE_DETAIL);
 drawFpgaResources(s,api);
-foot(s,'FPro（Chu, 2018）§2.1・図2.1。セル内部と配線は概念図（実際の個数・配置は省略）');
+
 s.hidden=true;outline[outline.length-1].backup=true;
 
 const utilization = await loadFpgaUtilization(root);
@@ -119,7 +113,7 @@ s=slide('回答用：FPGAの使用量',0,
 drawFpgaUtilization(s,api,utilization,P.slides.items.length);
 s.hidden=true;outline[outline.length-1].backup=true;
 
-addMergedDatapath({slide,api,foot,outline,DDCA,RVSOC,PRODUCT});
+addMergedDatapath({slide,api,outline,DDCA,RVSOC,PRODUCT});
 
 s=slide('回答用：詳細な全体のブロック図',0,
   'RVSOCのパイプライン図を基にした全体図です。PC、レジスタ群、ALU、段間レジスタ、書戻しの経路を保ち、実機のメモリ接続と本研究の描画接続を付け加えています。質問に応じて関係する経路をたどります。',
@@ -132,7 +126,7 @@ s.hidden=true; outline[outline.length-1].backup=true;
 s=slide('回答用：描画回路のFPGAパイプライン',0,
   RASTERIX_PIPELINE_NARRATION,RASTERIX_PIPELINE_SOURCE,RASTERIX_PIPELINE_DETAIL);
 const pipelineGraph=drawRasterixPipeline(s,api);
-foot(s,'ToNi3141, RasterIX “FPGA pipeline”, main 3e2ee5aa（2026-11-08確認）を再構成');
+
 s.hidden=true;outline[outline.length-1].backup=true;
 await fs.writeFile(path.join(workspace,'rasterix-pipeline-graph.json'),JSON.stringify(pipelineGraph,null,2)+'\n');
 

@@ -5,7 +5,7 @@ import {drawConceptCode} from './abstract-flow.mjs';
 
 // Main talk: one board layout expands the same circuit explanation.
 export async function addMainSlides(ctx) {
-  const {slide, api, foot, cover, root, DDCA, RVSOC, PRODUCT, BASIC, POSTER, VIDEO} = ctx;
+  const {slide, api, cover, root, DDCA, RVSOC, PRODUCT, BASIC, POSTER, VIDEO} = ctx;
   const {text, wire, C} = api;
   let s = slide('FPGAを用いた2Dゲーム機の製作',5,
     'この題目で発表します。', '',
@@ -21,7 +21,7 @@ export async function addMainSlides(ctx) {
   text(s,'SDカードやメモリを制御する回路を、チップ内に実装できる',64,119,1152,38,27,true,C.blue);
   drawStableBoard(s,api,{mode:'implementation'});
   text(s,'回路をHDLコードで記述し、FPGAチップ内に実装する',64,603,1152,40,28,true);
-  foot(s,'HDLの例とAND回路の対応');
+
 
   s=slide('拡張元のWallyと研究の目的',35,
     'Wallyは、教科書で設計を学べるCPUです。RISC-Vという命令の規則に従ってプログラムを実行します。CPUと周辺回路のHDLコードが公開されており、回路を変更したり、機能を追加したりできます。教科書RISC-V System-on-Chip Designが、その設計を説明しています。本研究ではWallyにRasterIXの描画・表示回路を接続し、学習者が参考にできるゲーム機への拡張例を示します。',
@@ -32,7 +32,7 @@ export async function addMainSlides(ctx) {
   text(s,'『RISC-V System-on-Chip Design』が設計を解説',64,616,1152,30,25);
   drawStableBoard(s,api,{mode:'purpose'});
   text(s,'目的：Wallyの学習者に、ゲーム機への拡張例を示す',64,650,1152,31,26,true);
-  foot(s,'WallyとRasterIXを利用したゲーム機への拡張');
+
 
   s=slide('SDカードへ読出しを要求する',45,
     'まず、SDカードからゲームプログラムを読み込みます。CPUはアドレスADに0x13048、書込みデータWDに読出し要求を表す数値、書込みイネーブルWEに1を出します。デコーダは、アドレスがSD制御の範囲に入るため、S0を1にします。SD制御は、選ばれた送信用レジスタにWDを取り込み、カードへ送ります。下のコードのrequestは要求を表す数値の配列です。同じアドレスへ順に書いて、カードに読出しを要求します。',
@@ -75,7 +75,7 @@ export async function addMainSlides(ctx) {
     ['for (int i = 0; i < size; i++)','sizeバイトをコピー'],
     ['  dst[i] = *(uint32_t *)0x1304C;','SDから読み、DDR3へ保存']
   ],580,{step:29,codeSize:21,commentSize:19});
-  foot(s,'受信用レジスタから繰り返し読み、DDR3へ順番に保存する概念コード');
+
 
   s=slide('DDR3に置いたプログラムを実行する',20,
     'コピーが終わったら、ゲームの実行を始めます。startにプログラムの先頭アドレスを入れ、startを呼びます。CPUの実行位置がそのアドレスへ移り、DDR制御を通して命令を読みながら、DDR3に置いたゲームプログラムを実行します。',
@@ -87,7 +87,7 @@ export async function addMainSlides(ctx) {
     ['void (*start)(void) = (void (*)(void))0x80000000;','実行を始めるアドレス'],
     ['start();','そのアドレスへ分岐する']
   ],583);
-  foot(s,'プログラムの先頭へ実行位置を移す概念コード');
+
 
   s=slide('描画回路へ命令を送る',25,
     'ゲームは、RasterIX付属のOpenGL互換ライブラリへ、図形の位置や色を渡します。ライブラリもCPU上で動き、描画命令を数値の列にします。CPUが0x10080000へ値を書くと、S2で選ばれた接続回路が受け取り、RasterIXへ渡します。',
@@ -97,7 +97,7 @@ export async function addMainSlides(ctx) {
   drawStableBoard(s,api,{mode:'command'});
   drawConceptCode(s,api,[['*(uint32_t *)0x10080000 = cmd;','描画命令の値を一つ送る']],584);
   text(s,'AD＝0x10080000、WD＝cmd、WE＝1 → S2で接続回路を選ぶ',64,635,1152,38,25,true);
-  foot(s,'CPUから接続回路を介して描画命令を送る概念コード');
+
 
   s=slide('接続回路が描画命令を受け渡す',25,
     '接続回路は、S2が1で選ばれ、WEが1の書込みなら、ADが命令の書込み先かを調べます。そのときWDの数値を一時保存します。保存した値は、描画回路が受け取れるときに、書かれた順に渡します。この仕組みで、CPUの書込みを描画回路への命令送信につなげました。',
@@ -112,7 +112,7 @@ export async function addMainSlides(ctx) {
   text(s,'描画回路が受け取れるとき',675,617,316,28,22,true,C.blue,'center');
   wire(s,652,650,1008,650,C.blue,true,3);
   api.box(s,'描画回路',1008,625,208,48,C.white,25,C.blue,2.2);
-  foot(s,'接続回路による描画命令の受取りと受渡し');
+
 
   s=slide('画像をDDR3へ保存し、映像を出す',20,
     'RasterIXは、描画命令に従って画像を作り、DDR制御を通してDDR3へ保存します。表示回路がその画像を読み、HDMI端子から映像を出します。描画と表示は、どちらもRasterIXに含まれる回路を利用しています。',
@@ -122,7 +122,7 @@ export async function addMainSlides(ctx) {
   drawStableBoard(s,api,{mode:'image'});
   text(s,'描画：画像をDDR3へ保存する',64,585,1152,38,29,true);
   text(s,'表示：DDR3の画像を読み、HDMI端子から映像を出す',64,633,1152,38,29,true);
-  foot(s,'描画・表示回路とDDR3の間で画像をやり取りする経路');
+
 
   s=slide('ブロック崩しの実機動画',30,
     'こちらが実機の映像です。640かける480画素のゲーム画面をHDMI端子から出しています。ボールの移動、壁やパドルでの反射、当たったブロックの消去を確認しました。現在はプログラムがパドルを自動で動かしています。',

@@ -1074,7 +1074,28 @@
     "cdd143974f95dc0cde33bb41a3fc5a33ca44f7d5cb09262a74a5e9edf2d5a40f",
     "dda06aff264cc10c7ec633e49f988bc630e270ae16b9a44407d25ce2c2481172",
     "ecb27b2844592275e36118b5575d95596141a8243a92c63ef56815d4e7b5caa3",
-    "f37c4d31196dabf496f7bf4176d3ac86e29fac26807c79be87e1f9d61214e273"
+    "f37c4d31196dabf496f7bf4176d3ac86e29fac26807c79be87e1f9d61214e273",
+    "104fe6d2a370898dc4001895b777116c976b95c57df1c51ac6f1b33d083db988",
+    "1f85d6411243607f5c31c70028eecca7041cbe34f9800fbb19e0cf7136ddd352",
+    "2027a929e44034f0911619470345bdd90c77fc48def48ddbba20314f2286c795",
+    "24c69d797af40dd706c4ea515c27efd0cdb9e69fb59ef84b2b928339a7528b01",
+    "26f2fcc73bbb65b12a3b98354e3634494fc7fce6ca8421741f8bc32d18141437",
+    "2cc43e6c89f6d1eda60d7a65ae918a842c7beb9a4d80d7932a5d0c1455ca3f63",
+    "2ec57178de6d9086eaf95292df0dc30d547a1bb8271f638cebf99a7d5f0ebf93",
+    "3ab713d4c99fc1bc25854436a52a1cd4190a20ddf99d8481108df0502871d9fe",
+    "3bef1924bd44f99058c4b3644078dc1d327a5cf6cd9c56ea51b7fcd0707685ef",
+    "51152fd8e5698d2984716769fc0b09bdac2571573b99e6b269d8522d322c4b6a",
+    "62e4259c10176cbaae06178114e93a5617827e485af7fb116a4751fda31348bd",
+    "67a0bf458e295c9e11bdd7a4e01762b696ca8877605c113db149508fe1b72ec2",
+    "756beace1c74bb42ab470223ca7c534437f56fed9394e75c07ce40f2e4b3fe58",
+    "86985624499bd1879afa1ddd1a98a127e73684cd33070c8e9de3a8e73419068a",
+    "8c07e6b1867c52a641a21e70541d510c80e60741aeb39074bce5123e2fe4818d",
+    "8f7daf5f908e6d48092e1003b37734809afed0fd33cebd0c6965f992e166459b",
+    "94bb9215dc0e7dc10565bbe46a0fb803a22ca44478f7528feb23007c8e92fc01",
+    "961f465a862311df3e98ba2404098623ca404bdc4f0d12cd3c5c2706b9879c45",
+    "c9cfde9f03dc9a565a6725b5831e69865b44d6c489237a9bd2936f92b9e5c98f",
+    "df8fd04d21e6ec80da33c1e86ade4c5e5a505d261aa987ebe6e819029e9b7cfd",
+    "ff602281206d1b1d436658a4c1775a3c4b20a6decf97ce22158913fcbe4c1aa3"
   ],
   "reviews": {
     "abstract-based-presentation-20261108": "Reviewed all 18 native PowerPoint slide renders and the private cover. Main slides use functional circuits and address-access examples; source differences remain in notes and reproduction records. Confirmed 51 internal links, six hidden question slides, original embedded video hash, and cover-only differences between editions. Reviewed the revised abstract diagram, color and monochrome one-page Word renders, code lines and title placement. Public image metadata was cleaned without changing decoded pixels; newly embedded PNGs match visually reviewed sources.",
@@ -1092,6 +1113,7 @@
     "presentation-focused-layout-20261109": "Reviewed all main presentation slides in native PowerPoint renders. Main circuit views keep one board/component coordinate system and emphasize only the operation being explained. Unrelated text, outlines, fills and connections are muted; shared branches remain connected. Input labels are aligned inside peripheral blocks without wire/text intersections. Checked read-return, device and image-transfer paths, arrowheads, junctions, group boundaries and label spacing. The copy view emphasizes SD reads and DDR writes, not an SD write or DDR read. The contents heading reads 発表用スライド. Cover, demonstration, conclusion and seven question slides have identical rendered pixels to the preceding publication. Confirmed 21 slides, twelve main content slides, seven hidden questions, 60 internal navigation links and unchanged 30000 ms video bytes. Public/private packages differ only in cover identity text and have identical non-cover pixels. PNG metadata was stripped without changing pixels. No hardware implementation or measured result was changed.",
     "presentation-video-compatibility-20261109": "Reviewed frames of the H.264 High distribution derivative of the already-reviewed standard-display recording. Re-encoding preserves the 1920x1080 frame size, 60/1 rate, 1800 frames and 30-second duration; it adds no overlays and changes no gameplay content. Full decoding completed without errors. The original experiment recording remains unchanged.",
     "presentation-provenance-playback-20261109": "Reviewed native PowerPoint renders of the conclusion, contents and seven answer slides. The conclusion repeats the same circuit positions, with dashed Wally/RasterIX acquisition frames and a solid blue integration adapter. Labels identify the AMD DDR IP and the contribution as a working combination. Slide titles and navigation use 回答用. Slides 1-12 have identical rendered pixels to the preceding publication. Confirmed 21 slides, twelve main content slides, seven hidden answers and 60 internal navigation links. The reviewed 30-second distribution video replaces the unsupported encoding; the original recording remains unchanged. Native PowerPoint playback positions advanced to the end, including automatic start in the public package and a complete replay of the private package. Public/private packages differ only in cover identity text and have identical non-cover pixels. PNG metadata was stripped without changing pixels. No hardware implementation or measurement was changed.",
-    "existing-circuit-wording-20261109": "Reviewed the changed native PowerPoint views after replacing reuse labels with 既存回路 Wally and 既存回路 RasterIX. All circuit and text-box geometry remains unchanged. Other slides have identical rendered pixels. The embedded demonstration bytes, automatic playback timing, 21-slide count, 355-second allocation and 60 navigation links are unchanged. Public and private presentations differ only in cover identity text. The abstract uses RasterIXという描画・表示回路を利用し with its citation number. Each public/private abstract remains one page; only text in document.xml changes, preserving paragraph/section geometry and all original images. The SVG change affects the accessible description only. No measurement or implementation changes are included."
+    "existing-circuit-wording-20261109": "Reviewed the changed native PowerPoint views after replacing reuse labels with 既存回路 Wally and 既存回路 RasterIX. All circuit and text-box geometry remains unchanged. Other slides have identical rendered pixels. The embedded demonstration bytes, automatic playback timing, 21-slide count, 355-second allocation and 60 navigation links are unchanged. Public and private presentations differ only in cover identity text. The abstract uses RasterIXという描画・表示回路を利用し with its citation number. Each public/private abstract remains one page; only text in document.xml changes, preserving paragraph/section geometry and all original images. The SVG change affects the accessible description only. No measurement or implementation changes are included.",
+    "presentation-footer-layout-20261109": "Reviewed every changed native PowerPoint footer at full rendered resolution. Removed figure numbers and their caption rows. Slide numbers use a consistent right-aligned 16-pixel footer with the same 64-pixel right margin on every slide. Rendered content above the footer is pixel-identical to the preceding deck. All speaker notes, internal slide links, hidden-slide state, embedded video bytes and video timing are unchanged. Public and private packages differ only in cover identity text. Source attributions remain in speaker notes."
   }
 }
