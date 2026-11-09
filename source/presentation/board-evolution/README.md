@@ -28,9 +28,12 @@ is 355 seconds including the 30-second embedded video, not a timed rehearsal.
 `main-slides.mjs` defines the cover and twelve-slide main talk.
 `stable-board.mjs` supplies one editable coordinate system for slides 2-11 and 13.
 The board, chip boundary, SD slot, DDR3 memory and HDMI connector keep exactly
-the same positions and sizes. Slide 3 groups Wally into one block and explains
-its public HDL and textbook. Slide 4 expands that block into the CPU, decoder,
-SD control and DDR control, within the same Wally boundary.
+the same positions and sizes. The name Wally identifies the CPU in this
+presentation. The Wally repository label identifies the source of CPU and
+peripheral code. Slide 3 groups those circuits into one block and introduces
+their public HDL and textbook. Slide 4 expands the block into the CPU, decoder,
+SD control and DDR control, within the same source boundary. A repository is
+the place where design code is published; it is not a hardware component.
 
 The common layout places input labels inside each peripheral, aligns the
 SD/DDR/command input rows, and reserves separate lanes for read returns and
@@ -109,14 +112,14 @@ not imply that one project authored every included component. The component posi
 
 The upstream sources are [Wally/CVW](https://github.com/openhwgroup/cvw) and
 [official RasterIX at the recorded revision](https://github.com/ToNi3141/RasterIX/tree/9269a01c9bd4c3342bfa70ef8e3cdd751c15c6d0).
-The main functional diagrams group the reused Wally circuitry and the
+The main functional diagrams group circuitry from the Wally repository and the
 RasterIX drawing/display circuits by acquisition source. The command adapter
 is marked as integration work. The drawing and display share one box, with
 image traffic through the AMD controller and output at the HDMI connector.
 The exact modules and connection wrappers remain identified in the notes.
 
 Slide 13 repeats the circuit layout to explain the contribution. Dashed frames
-identify the Wally and RasterIX acquisition sources. A solid blue adapter
+identify the Wally and RasterIX repositories as acquisition sources. A solid blue adapter
 frame identifies added integration work. The conclusion is the demonstrated
 combination into a game console; it does not claim a worldwide first or that
 every primitive inside an adapter is newly invented. The AMD controller remains

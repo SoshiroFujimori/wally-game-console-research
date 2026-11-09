@@ -39,10 +39,10 @@ export async function loadFpgaUtilization(root) {
   return {rows,bitstreamSha256:after.bit_sha256,beforeDate:evidence.before.report_date,afterDate:evidence.after.report_date};
 }
 
-export const FPGA_UTILIZATION_NARRATION = '開発時に保存した、描画機能の追加前と追加後の使用率を比較します。BeforeはWally構成、Afterは描画・表示機能を備えた構成です。ルックアップテーブルは36.22%から50.39%、ブロックメモリは23.01%から58.63%になっています。どちらも同じFPGAに実装した回路全体について、配置配線後の記録から示しています。Afterは開発時の表示構成で、今回の動画の標準表示構成とは異なります。';
+export const FPGA_UTILIZATION_NARRATION = '開発時に保存した、描画機能の追加前と追加後の使用率を比較します。BeforeはCPUと周辺回路の構成、Afterは描画・表示機能を備えた構成です。ルックアップテーブルは36.22%から50.39%、ブロックメモリは23.01%から58.63%になっています。どちらも同じFPGAに実装した回路全体について、配置配線後の記録から示しています。Afterは開発時の表示構成で、今回の動画の標準表示構成とは異なります。';
 
 export const FPGA_UTILIZATION_DETAIL = `比較する構成
-Beforeは2026年9月8日に保存されたNexys Video対応時のWally構成、Afterは2026年11月8日の実験E8でブロック崩しの動作確認に使った描画・表示機能付きの構成である。どちらもNexys VideoのArtix-7 XC7A200T（xc7a200tsbg484-1）、Vivado 2025.2による配置配線後の記録を使う。CPU、バス、メモリ制御なども含む、FPGA内の回路全体を比較する。
+Beforeは2026年9月8日に保存されたNexys Video対応時のCPUと周辺回路の構成、Afterは2026年11月8日の実験E8でブロック崩しの動作確認に使った描画・表示機能付きの構成である。どちらもNexys VideoのArtix-7 XC7A200T（xc7a200tsbg484-1）、Vivado 2025.2による配置配線後の記録を使う。CPU、バス、メモリ制御なども含む、FPGA内の回路全体を比較する。
 
 Beforeの根拠
 experiments/fpga-resource-comparison-20261108/before-utilization.rptに保存したレポートを使う。レポートの日付は2026年9月8日13:16:56、DesignはfpgaTop、Design StateはRoutedである。保存元は製品作業ディレクトリのfpga/generator/reports/nexysvideo_utilization.rptで、Nexys Video対応時の描画機能がない構成の記録である。レポート自体にGitリビジョンやビットストリームのハッシュは記載されていないため、特定のコミットから完全に再生成した結果とは主張しない。公開したコピーではホスト名などを伏せ、元ファイルと公開ファイルのハッシュをcomparison.jsonに区別して記録している。
@@ -59,7 +59,7 @@ LUT、レジスタ、Block RAM Tile、DSPの四種類を示す。元レポート
 export function drawFpgaUtilization(slide, api, data, pageNumber) {
   const {text, C} = api;
   text(slide, 'Nexys Video：Artix-7 XC7A200T', 64, 125, 1152, 44, 28, true, C.blue);
-  text(slide, 'Before：Wally構成　／　After：描画・表示機能を追加', 64, 176, 1152, 35, 25);
+  text(slide, 'Before：CPU・周辺回路　／　After：描画・表示機能を追加', 64, 176, 1152, 35, 25);
   const values = [
     ['FPGA内部の資源', '主な役割', 'Before\n追加前', 'After\n追加後'],
     ...data.rows.map(r => [r.label, r.role, r.before+'%', r.after+'%']),

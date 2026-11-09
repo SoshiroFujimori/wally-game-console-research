@@ -65,7 +65,7 @@ const RECORDING='experiments/dvi-recovery-20261109/media/latest-standard-dvi-30s
 const VIDEO='source/presentation/assets/breakout-standard-dvi-compatible.mp4';
 const POSTER='experiments/dvi-recovery-20261109/media/latest-start.png';
 const BASIC='experiments/dvi-recovery-20261109/README.md; results.json; media-review.json. Captured 2026-11-09. Standard bitstream SHA-256: 16173de97a91e711cd7bc5389acd9739807adebedf192efc29fe78f5b96c0acf. Latest game executable SHA-256: 5c360babde59c6d9fc72fe58edc5729da2b2b8480c2f3a5208980d2f7d2c558b. Video: '+RECORDING;
-const PROVENANCE_DETAIL='CPU・バス・SD制御はWally（CVW）の既存RTLを利用する。DDR制御はWally側の生成・接続の仕組みを利用し、回路本体はAMD製MIG IPである。Nexys Video用の設定は本研究で追加した。標準構成の描画本体RasterIX_IFと表示本体dvi_framebufferは、同じ公式RasterIXリポジトリから取得する。表示本体はrtl/3rdParty/core_dvi_framebufferに同梱されたultraembedded由来の回路で、RasterIXの作者がすべて新規に設計したという意味ではない。バスから描画回路への変換、画面切替などの接続処理は本研究で追加した。本資料の実機動画は、RasterIX同梱の表示本体を利用する標準構成で取得した。表示本体そのものを本研究で新規設計したという主張ではない。';
+const PROVENANCE_DETAIL='CPU・バス・SD制御はWallyリポジトリ（CVW）の既存RTLを利用する。DDR制御はWallyリポジトリの生成・接続の仕組みを利用し、回路本体はAMD製MIG IPである。Nexys Video用の設定は本研究で追加した。標準構成の描画本体RasterIX_IFと表示本体dvi_framebufferは、同じ公式RasterIXリポジトリから取得する。表示本体はrtl/3rdParty/core_dvi_framebufferに同梱されたultraembedded由来の回路で、RasterIXの作者がすべて新規に設計したという意味ではない。バスから描画回路への変換、画面切替などの接続処理は本研究で追加した。本資料の実機動画は、RasterIX同梱の表示本体を利用する標準構成で取得した。表示本体そのものを本研究で新規設計したという主張ではない。';
 const PROVENANCE_SOURCE='Wally upstream: https://github.com/openhwgroup/cvw . Official RasterIX: https://github.com/ToNi3141/RasterIX/tree/9269a01c9bd4c3342bfa70ef8e3cdd751c15c6d0 . RTL: console/src/wally/wallypipelinedcore.sv; console/src/uncore/uncore.sv; console/src/uncore/spi_apb.sv; console/fpga/generator/ddr3-nexysvideo.tcl; console/fpga/generator/wally.tcl; console/fpga/src/rasterixdisplay.sv. RasterIX: rtl/RasterIX/RasterIX_IF.v; rtl/3rdParty/core_dvi_framebuffer/README.md; rtl/3rdParty/core_dvi_framebuffer/src_v/dvi_framebuffer.v. Standard-output evidence: experiments/dvi-recovery-20261109/results.json.';
 
 
@@ -144,10 +144,10 @@ if(outline.length!==21||total!==355)throw new Error(`Unexpected allocation ${out
 await fs.writeFile(path.join(workspace,'outline.json'),JSON.stringify(outline,null,2)+'\n');
 const md=[
   '# 中間発表：FPGAを用いた2Dゲーム機の製作',
-  'アブストの説明に沿った発表です。表紙1枚、発表用12枚、移動用の目次1枚、回答用7枚で構成します。FPGAと拡張元のWallyを紹介し、SDカードへの読出し要求、受信値の読出し、DDR3への保存と実行開始、描画命令の送信、接続回路での受渡し、映像出力を順に説明します。動作確認は実機動画で示します。',
+  'アブストの説明に沿った発表です。表紙1枚、発表用12枚、移動用の目次1枚、回答用7枚で構成します。FPGAとCPUのWallyを紹介し、SDカードへの読出し要求、受信値の読出し、DDR3への保存と実行開始、描画命令の送信、接続回路での受渡し、映像出力を順に説明します。動作確認は実機動画で示します。',
   '[PowerPoint版](中間発表_主要事項.pptx) / [アブスト](../abstract/アブスト_主要事項.md) / [論文本文](../thesis/本文.md) / [技術付録](../thesis/技術付録.md) / [再生成方法](../../source/presentation/board-evolution/README.md) / [DDCA授業利用の出典](DDCA授業利用の出典.md) / [RVSOC教科書採用の出典](RVSOC教科書採用の出典.md)',
   '## 図の見方',
-  '2〜11枚目は、同じ位置・大きさのFPGAボードを使います。外側の薄い枠はボード、内側の青い枠はFPGAチップです。SDカードスロット、DDR3メモリ、HDMI端子はチップの外にある部品で、位置を変えずに示します。3枚目のWallyの箱を、4枚目でCPU・アドレスデコーダ・SD制御・DDR制御へ展開します。4〜11枚目は回路と信号線の配置を保ち、説明中の経路を青で示します。7枚目は6枚目のDDR3への書込み経路にSDからの読出し経路を加えて強調し、この二つを交互に繰り返すコピー処理を説明します。',
+  '2〜11枚目は、同じ位置・大きさのFPGAボードを使います。外側の薄い枠はボード、内側の青い枠はFPGAチップです。SDカードスロット、DDR3メモリ、HDMI端子はチップの外にある部品で、位置を変えずに示します。外枠の「Wallyリポジトリ」は回路の提供元を示し、その中のCPUを「Wally」と表記します。3枚目のCPUと周辺回路の箱を、4枚目でCPU・アドレスデコーダ・SD制御・DDR制御へ展開します。4〜11枚目は回路と信号線の配置を保ち、説明中の経路を青で示します。7枚目は6枚目のDDR3への書込み経路にSDからの読出し経路を加えて強調し、この二つを交互に繰り返すコピー処理を説明します。',
   'ADはアドレス、WDは書込みデータ、WEは1ビットの書込みイネーブル、RDは読出しデータです。有効な読書きの際のWE=1を書込み、WE=0を読出しとして示します。アドレスデコーダが接続先を選び、読出し値も対応する選択信号で選びます。分岐の黒丸は接続を表し、接続しない線の交差には隙間があります。転送の細かなタイミングや待ち処理は省略します。Cのコードは、物理アドレスを直接使うと仮定した概念コードです。完全なSDドライバやゲームプログラムではありません。',
   '## 回路の提供元',
   PROVENANCE_DETAIL,

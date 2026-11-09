@@ -62,10 +62,10 @@ export function drawStableBoard(s,a,{mode='request'}={}){
   }
 
   const reused=B('wally','',provenance?'#F4F6FA':'none',20,edge,1.1);reused.line={style:'dashed',fill:provenance?frame:edge,width:provenance?2:1.1};
-  T('既存回路 Wally',105,248,190,23,18,true,purpose||provenance?ink:muted);
+  T('Wallyリポジトリ',105,248,190,23,18,true,purpose||provenance?ink:muted);
   const origin=box(s,'',1020,373,170,88,provenance?'#F4F6FA':'none',20,edge,1.1);
   origin.name='main-board-rasterix-origin';origin.line={style:'dashed',fill:provenance?frame:edge,width:provenance?2:1.1};
-  T('既存回路 RasterIX',1020,341,178,27,18,true,purpose||provenance?ink:muted,'center');
+  T('RasterIXリポジトリ',1020,341,178,27,18,true,purpose||provenance?ink:muted,'center');
   B('adapter','',provenance?'#DCEAF9':command||purpose?C.white:fadedFill,20,command||purpose?blue:edge,provenance?3.3:command||purpose?2.6:1.3);
   T('接続回路',845,purpose?395:409,145,26,22,true,command||purpose?blue:muted,'center');
   T('本研究で追加',845,purpose?426:433,145,18,16,true,command||purpose?blue:muted,'center');
@@ -84,7 +84,7 @@ export function drawStableBoard(s,a,{mode='request'}={}){
   T('画像の保存・読出し',916,485,160,22,16,false,color(image),'center');
 
   if(purpose){
-    box(s,'Wally\nCPUと周辺制御回路',112,307,668,146,C.white,31,ink,2.3).name='main-board-wally-summary';
+    box(s,'CPU Wally と周辺制御回路',112,307,668,146,C.white,31,ink,2.3).name='main-board-wally-summary';
     R([[780,417],[840,417]],blue,true,3);
     T('読書き',782,385,56,25,17,true,blue,'center');
     return;

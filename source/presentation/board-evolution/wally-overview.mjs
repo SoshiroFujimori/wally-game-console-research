@@ -50,7 +50,7 @@ export function drawWallyOverview(s, api) {
 
   // Preserve the HDL hierarchy: RasterIX and memory IP are outside the SoC.
   B('',15,91,875,481,C.white,15,C.ink,1.8);
-  T('wallypipelinedsoc / Wally',30,94,350,25,20,true);
+  T('Wallyリポジトリ：wallypipelinedsoc',30,94,350,25,17,true);
   B('',28,124,847,110,C.pale,16,C.ink,1.6);
   T('uncore',38,128,95,23,18,true);
   // HADDR fans out to the decoder and AHB endpoints. Decoding produces
@@ -103,7 +103,7 @@ export function drawWallyOverview(s, api) {
   B('clkconverter',922,138,181,30,C.ip,16);
   B(expanded?'SmartConnect':'AXI connection',922,188,181,30,C.ip,15);
   B('',922,238,181,34,C.ip,14,blue,2.2);
-  T('DDR / MIG (Wally設定)',925,239,175,32,13.5,true,C.ink,'center');
+  T('DDR / MIG（AMD製IP）',925,239,175,32,13.5,true,C.ink,'center');
   BI([[1012,119],[1012,138]],blue);
   BI([[1012,168],[1012,188]],blue);
   BI([[1012,218],[1012,238]],blue);
@@ -112,7 +112,7 @@ export function drawWallyOverview(s, api) {
   // CPU blocks follow the source units. Functional routes remain readable
   // without showing every prediction, exception, or arithmetic extension.
   B('',28,240,847,328,C.white,16,C.ink,1.6);
-  T('wallypipelinedcore',38,241,310,24,20,true);
+  T('CPU Wally / wallypipelinedcore',38,241,310,24,18,true);
   T('20 MHz',370,243,110,22,17);
   T('整数系の主な経路',489,245,180,19,12);
   B('ebu',755,248,104,29,C.white,17);
