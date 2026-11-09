@@ -1,41 +1,46 @@
 // Editable functional views shared by the abstract-based presentation.
 // Interface paths aggregate timing details. The access view separates AD/WD/WE/RD
 // and decode/select signals; it is not an AHB/APB cycle-level diagram.
-export function drawAbstractSystem(s, api, focus='all') {
+export function drawAbstractSystem(s, api, focus='all', {compact=false}={}) {
   const {text,box,route,C}=api;
-  const ox=64,oy=185,gray='#98A3B5';
-  const T=(v,x,y,w,h=30,z=23,b=false,c=C.ink,a='left')=>text(s,v,ox+x,oy+y,w,h,z,b,c,a);
-  const B=(v,x,y,w,h,fill=C.white,z=23,stroke=C.ink,width=2.2)=>box(s,v,ox+x,oy+y,w,h,fill,z,stroke,width);
-  const active=key=>focus==='all'||({sd:['sd','memory'],command:['command'],image:['image','memory']}[focus]||[]).includes(key);
-  const R=(points,key,arrow=true)=>route(s,points.map(([x,y])=>[ox+x,oy+y]),active(key)?C.blue:gray,arrow,active(key)?3:2);
-  B('',0,0,1152,384,C.pale,23,C.ink,2);
+  const ox=64,oy=compact?180:185,sy=compact?0.82:1,gray='#8B96A8';
+  const T=(v,x,y,w,h=30,z=23,b=false,c=C.ink,a='left')=>text(s,v,ox+x,oy+y*sy,w,h*sy,z*(compact?0.94:1),b,c,a);
+  const B=(v,x,y,w,h,fill=C.white,z=23,stroke=C.ink,width=2.2)=>box(s,v,ox+x,oy+y*sy,w,h*sy,fill,z*(compact?0.94:1),stroke,width);
+  const active=key=>focus==='all'||({request:['request'],copy:['request','memory'],draw:['command','image','memory']}[focus]||[]).includes(key);
+  const R=(points,key,arrow=true)=>route(s,points.map(([x,y])=>[ox+x,oy+y*sy]),active(key)?C.blue:gray,arrow,active(key)?3:1.6);
+  B('',0,0,1152,355,C.pale,23,C.ink,2);
   T('FPGAボード / Nexys Video',14,5,680,34,25,true);
-  B('',20,44,930,320,C.chip,23,C.ink,2.4);
-  T('FPGAチップ',34,48,250,29,23,true);
-  T('チップ外の部品',974,45,170,29,18,true,C.ink,'center');
-  B('CPU\nWally',70,150,130,100,C.white,26);
-  B('SD制御\nWally',400,90,175,65,C.white,23);
-  B('DDR制御\nAMD製IP',740,180,175,75,C.ip,23);
-  B('接続回路\n本研究で追加',400,275,175,65,C.white,21,C.blue,3);
-  B('描画回路\nRasterIX',740,275,175,65,C.white,23);
-  B('表示回路',740,80,175,65,C.white,25);
-  B('SDカード\nスロット',1010,85,120,65,C.white,21);
-  B('DDR3\nメモリ',1010,185,120,75,C.white,23);
-  B('HDMI端子',1010,300,120,64,C.white,21);
-  R([[200,170],[300,170],[300,122],[400,122]],'sd','both');
-  R([[200,200],[700,200],[700,218],[740,218]],'memory','both');
-  R([[200,230],[300,230],[300,307],[400,307]],'command');
-  R([[575,307],[740,307]],'command');
-  R([[825,275],[825,255]],'image');
-  R([[825,180],[825,145]],'image');
-  R([[575,122],[600,122],[600,62],[980,62],[980,117],[1010,117]],'sd','both');
-  R([[915,218],[1010,218]],'memory','both');
-  R([[915,112],[965,112],[965,332],[1010,332]],'image');
-  T('読書き',322,163,130,30,21,false,active('sd')?C.blue:C.ink);
-  T('読書き',465,204,140,30,21,false,active('memory')?C.blue:C.ink);
-  T('描画命令',588,272,145,30,22,true,active('command')?C.blue:C.ink,'center');
-  T('画像',850,255,65,22,17,false,C.ink);
-  T('読出し',846,149,80,26,19,false,C.ink);
+  if(focus==='request')T('SD制御：0x13000〜0x13FFF',573,8,560,29,20,true,C.blue,'right');
+  if(focus==='draw')T('接続回路：0x10080000〜0x100800FF',517,8,616,29,20,true,C.blue,'right');
+  B('',20,44,930,292,C.chip,23,C.ink,2.4);
+  T('FPGAチップ',34,46,220,28,22,true);
+  T('基板上の部品',970,48,170,27,20,true,C.ink,'center');
+  const reused=B('',40,79,890,128,'none',23,C.old,1.3);
+  reused.line={style:'dashed',fill:C.old,width:1.3};
+  T('Wallyの既存構成を利用',52,80,435,28,20,true,C.ink);
+  B('CPU\nWally',65,121,120,64,C.white,24);
+  B('SD制御',360,121,165,60,C.white,25);
+  B('DDR制御\nAMD製IP',725,121,185,60,C.ip,22);
+  B('接続回路\n本研究で追加',360,264,165,61,C.white,21,C.blue,3);
+  const rix=B('',680,250,250,80,'none',23,C.old,1.3);
+  rix.line={style:'dashed',fill:C.old,width:1.3};
+  T('RasterIXから流用',684,224,206,27,20,true,C.ink,'center');
+  B('描画・表示回路',700,264,210,61,C.white,25);
+  B('SDカード\nスロット',1000,90,132,65,C.white,21);
+  B('DDR3\nメモリ',1000,186,132,69,C.white,23);
+  B('HDMI端子',1000,281,132,54,C.white,21);
+  R([[185,145],[360,145]],'request','both');
+  R([[185,166],[260,166],[260,195],[795,195],[795,181]],'memory','both');
+  R([[125,185],[125,295],[360,295]],'command');
+  R([[525,295],[700,295]],'command');
+  R([[525,145],[560,145],[560,110],[975,110],[975,122],[1000,122]],'request','both');
+  R([[910,152],[965,152],[965,220],[1000,220]],'memory','both');
+  R([[885,181],[885,215],[900,215],[900,264]],'image','both');
+  R([[910,307],[1000,307]],'image');
+  T('読書き',210,113,125,29,21,false,active('request')?C.blue:C.ink,'center');
+  T('読書き',549,163,137,29,21,false,active('memory')?C.blue:C.ink,'center');
+  T('描画命令',542,259,142,29,22,true,active('command')?C.blue:C.ink,'center');
+  T('画像',817,182,61,23,18,false,C.ink);
 }
 
 export function drawAbstractAccess(s,api,reading=false) {
@@ -61,9 +66,10 @@ export function drawAbstractAccess(s,api,reading=false) {
   for(const [signal,y0,railX,yRail,offset,col] of [
     ['AD',350,280,275,28,blue],['WD',395,305,315,75,reading?gray:blue],
     ['WE',440,330,355,115,blue]]){
-    route(s,[[245,y0],[railX,y0],[railX,yRail],[defs.at(-1).x+offset,yRail]],col,false,2.5);
+    const width=signal==='WE'?1.4:3;
+    route(s,[[245,y0],[railX,y0],[railX,yRail],[defs.at(-1).x+offset,yRail]],col,false,width);
     for(const d of defs){
-      wire(s,d.x+offset,yRail,d.x+offset,405,col,true,2.1);
+      wire(s,d.x+offset,yRail,d.x+offset,405,col,true,width);
       if(d!==defs.at(-1))junction(s,d.x+offset,yRail,col,5);
       T(signal,d.x+offset-35,378,32,22,17,true,col,'center');
     }
@@ -71,11 +77,11 @@ export function drawAbstractAccess(s,api,reading=false) {
   route(s,[[280,275],[280,220],[350,220]],blue,true,2.2);junction(s,280,275,blue,5);
   defs.forEach((d,i)=>{
     const col=d.on?blue:gray,y=197+i*21,selX=d.x+155;
-    route(s,[[560,y],[selX,y],[selX,405]],col,true,2.0);
+    route(s,[[560,y],[selX,y],[selX,405]],col,true,1.4);
     T(d.select+(d.on?'=1':'=0'),selX+5,366,64,28,19,true,col);
     box(s,d.name,d.x,405,180,95,d.on?C.pale:C.white,24,col,d.on?3:2);
     const ry=541+i*33,x=d.x+90;
-    route(s,[[x,500],[x,ry],[425,ry]],reading&&d.on?blue:gray,true,2.2);
+    route(s,[[x,500],[x,ry],[425,ry]],reading&&d.on?blue:gray,true,3);
   });
   polygon(s,[[425,525],[350,539],[350,609],[425,623]],C.white,reading?blue:gray,2.3);
   T('選択',359,557,60,34,20,true,reading?blue:gray,'center');
@@ -87,13 +93,14 @@ export function drawAbstractAccess(s,api,reading=false) {
 
 export function drawConceptCode(s,api,rows,y=579) {
   const {text,box,wire,C}=api;
-  const h=rows.length*29+12;
+  const step=34,h=rows.length*step+12;
   box(s,'',64,y,1152,h,'#EEF0FC',24,'#EEF0FC',0);
   wire(s,64,y,1216,y,C.ink,false,1.1);
   wire(s,64,y+h,1216,y+h,C.ink,false,1.1);
   rows.forEach(([code,comment],i)=>{
-    const shape=text(s,code,78,y+5+i*29,710,29,24,false,C.ink);
-    shape.text.style={typeface:'Consolas',fontSize:24,bold:false,color:C.ink,verticalAlignment:'middle',wrap:'none'};
-    text(s,'// '+comment,805,y+5+i*29,395,29,23,false,C.ink);
+    const shape=text(s,code,78,y+5+i*step,724,step,23,false,C.ink);
+    shape.text.style={typeface:'Consolas',fontSize:23,bold:false,color:C.ink,verticalAlignment:'middle',wrap:'none'};
+    shape.text=[{runs:code.split(/(0x[0-9a-fA-F]+|\b(?:uint32_t|uint8_t|int|void|for)\b)/).filter(Boolean).map(run=>({run,style:{color:run.startsWith('0x')?'#703077':/^(uint32_t|uint8_t|int|void|for)$/.test(run)?C.blue:C.ink,typeface:'Consolas'}}))}];
+    text(s,'// '+comment,823,y+5+i*step,380,step,21,false,'#445369');
   });
 }

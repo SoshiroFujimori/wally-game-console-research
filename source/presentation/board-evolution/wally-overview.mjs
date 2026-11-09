@@ -297,7 +297,7 @@ export function drawWallyOverview(s, api) {
     B('描画回路 [R]',949,437,154,40,C.white,19,blue,2);
     W(975,419,975,437,blue,true,1.7);
     W(1065,437,1065,419,C.ink,true,1.7);
-    B('表示回路',939,515,164,35,C.white,18,blue,2);
+    B('表示回路 [R]',939,515,164,35,C.white,18,blue,2);
     W(958,477,958,515,C.ink,true,1.5);
     W(1094,515,1094,477,C.ink,true,1.5);
     T('表示先・完了',956,482,130,27,14,false,C.ink,'center');

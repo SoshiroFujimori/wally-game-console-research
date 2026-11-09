@@ -14,30 +14,33 @@ is 355 seconds including the 30-second embedded video, not a timed rehearsal.
 | 1 | Title | Public identities are withheld; the school copy retains its private cover. |
 | 2 | FPGA circuit implementation | HDL and an AND gate, with physical SD, DDR3 and HDMI parts. |
 | 3 | Game-console extension | Existing CPU/drawing circuits and the added adapter, inside the FPGA. |
-| 4 | Writing by address | A, D, W and separate select signals; an example DDR3 write of 7. |
+| 4 | Writing by address | AD, WD, one-bit WE and separate selects; a DDR3 write of 7. |
 | 5 | Reading by address | The same layout with selected return data routed to the CPU. |
-| 6 | SD-to-DDR loading | CPU-controlled transfers and three concrete C address accesses. |
-| 7 | Drawing-command submission | CPU library, command words, adapter, and one address-write example. |
-| 8 | Image storage and output | Drawing to DDR3 and display reads through the memory controller. |
-| 9 | Hardware checks | Three FPGA reconfiguration/boot trials, each with a 30-second recording. |
-| 10 | Demonstration | The later reviewed 30-second autoplay video. |
+| 6 | SD read request | A request byte array written repeatedly to the fixed transmit register. |
+| 7 | Copy and execution | Fixed receive register, advancing DDR3 destination, and a call to the program entry. |
+| 8 | Drawing and output | CPU library, address write, reused RasterIX drawing/display, and shared DDR3. |
+| 9 | Observed behavior | Unmodified start/later frames from the same standard-output recording. |
+| 10 | Demonstration | The reviewed standard-output 30-second autoplay video. |
 | 11 | Conclusion | A published Wally extension example; controller/GUI work remains planned. |
 
+`main-slides.mjs` defines the eleven-slide main talk.
 `abstract-flow.mjs` draws editable functional diagrams and code panels.
 Slides 3 and 6-8 keep the same component positions. Slides 4-5 show the
 CPU/peripheral access portion in an enlarged signal view. Blue emphasizes
 the path being discussed. Wally's processor datapath and instruction encoding
 are not prerequisites for this main explanation.
 
-The access view separates address A, write data D, write indicator W, and
-selection signals S0-S2. Only one destination accepts a transfer, and a
+The access view separates address AD, write data WD, one-bit write enable WE,
+read data RD, and selection signals S0-S2. Only one destination accepts a transfer, and a
 selector returns that destination's read value. The selects are explanatory
 names, not RTL bit indices. Timing, wait states, transfer width, bus conversion,
 and clock-domain logic are omitted. The source correspondence is preserved
 in the notes and the detailed question diagram.
 
 The C fragments use the same addresses as the abstract. They omit initialization,
-complete SD transactions, waits, declarations, address mapping and `volatile`.
+complete SD transactions, waits, address mapping and `volatile`.
+The copy/start excerpt illustrates control flow rather than replacing the actual
+bootloader and OS startup sequence.
 The final-word write is also omitted from the main fragment; the notes
 identify the actual completion port. They are conceptual excerpts, not an
 executable driver. The real MMIO code
@@ -67,15 +70,15 @@ not imply that one project authored every included component. The component posi
 | Drawing core | Official RasterIX: `rtl/RasterIX/RasterIX_IF.v`. |
 | Standard display core | The same official RasterIX repository includes `rtl/3rdParty/core_dvi_framebuffer/src_v/dvi_framebuffer.v`, originally from ultraembedded. |
 | Integration logic | This work adds `rasterix_apb.sv`, `rasterix.sv` and the swap/configuration wrapper in `rasterixdisplay.sv` on the Wally side. These wrappers are not labeled as upstream RasterIX components. |
-| Display used in the embedded video | The research variant replaces the standard display core with research scanout logic and `hdl-util/hdmi`. Its exact sources are recorded in [E8](../../../experiments/basic-operation-20261108/hdmi/README.md). |
+| Display used in the embedded video | The unchanged standard display configuration, using the RasterIX-bundled `dvi_framebuffer`. See [the recorded configuration](../../../experiments/dvi-recovery-20261109/README.md). |
 
 The upstream sources are [Wally/CVW](https://github.com/openhwgroup/cvw) and
 [official RasterIX at the recorded revision](https://github.com/ToNi3141/RasterIX/tree/9269a01c9bd4c3342bfa70ef8e3cdd751c15c6d0).
-The main functional diagrams label Wally CPU/SD control, AMD memory control,
-the reused RasterIX drawing core, and this work's command adapter. The display
-block is labeled by its function. It does not assign the recorded display
-implementation to the upstream RasterIX repository. Exact implementation
-provenance remains in the source records and speaker-note supplements.
+The main functional diagrams group the reused Wally circuitry and the
+RasterIX drawing/display circuits by acquisition source. The command adapter
+is marked as integration work. The drawing and display share one box, with
+image traffic through the AMD controller and output at the HDMI connector.
+The exact modules and connection wrappers remain identified in the notes.
 
 ## Detailed-diagram connectivity
 
@@ -112,19 +115,19 @@ the blue outlines used for functions covered in the main presentation.
 
 ## Recorded demonstration and scope
 
-Slide 10 embeds `experiments/breakout-title-top-20261108/video/breakout-30s.mp4`
-without transcoding, using its reviewed `playing.png` poster. The software
-is product `ed6a1c09`; its recording used the same E8 display bitstream as the
-earlier boot trials. It is not one of those three trials or the 300-second run.
-The player is automatic; controller input is not implemented. Recorded video
-rate is not a game-FPS measurement.
+Slide 10 embeds `experiments/dvi-recovery-20261109/media/latest-standard-dvi-30s.mp4`
+without transcoding, using its reviewed `latest-start.png` poster. Slide 9 uses
+the same record's unmodified start/later images. The latest title-top executable
+is shown using the unchanged standard display bitstream and RasterIX-bundled
+drawing/display cores. Local connection and control wrappers remain integration
+work. The player is automatic; controller input is not implemented. Recorded
+video rate is not a game-FPS measurement.
 
-The main explanation reports observable output at the FPGA's HDMI connector.
-Receiver software and signaling internals are not main-talk topics. The
-functional display block is common to the explanations; its exact implementation
-and the scope of verified configurations remain recorded in E8 and the later
-video's source manifest. Standard-output compatibility is not inferred merely
-from successful capture of the E8 configuration.
+The main talk reports the ball's movement and rebounds and the removal of hit
+blocks. It makes no repeated-boot, long-duration or universal display claim.
+The acquisition conditions, revisions and hashes are retained in the experiment
+record. The historical utilization table has its own earlier display variant;
+its After column is not the bitstream used in this updated video.
 
 The video is played by clicking its area during a slideshow. Internal slide
 jumps and return links are native OOXML relationships. `embed_video.py` checks
@@ -167,11 +170,9 @@ the media hashes and publication manifest, and run the local privacy audit.
 The previous presentation is preserved at commit
 `40d8a51bd1ab0d9c9a469146c349cd31b173bdce`:
 [published files at that revision](https://github.com/SoshiroFujimori/wally-game-console-research/tree/40d8a51bd1ab0d9c9a469146c349cd31b173bdce/docs/presentation).
-The local annotated tag `presentation-before-abstract-20261108` identifies
-that commit. Do not assume the local tag has been published. Export the old
-files into a separate directory when comparing or restoring a presentation;
-do not reset unrelated work or the product checkout.
-
-The display box is generic in the detailed diagram as well. Source notes
-record the E8 implementation used for the video and the product-default
-display implementation. See the [standard-output comparison](../../../experiments/dvi-standard-check-20261108/README.md).
+The deck immediately preceding this update is preserved at commit
+`1c826a0363901f2a77e8bbb0e8748c168bbb2cbc` and local annotated tag
+`presentation-before-latest-abstract-20261109`. The tag is a local checkpoint;
+the commit is also available in public Git history. Export old files into a
+separate directory when comparing or restoring; do not reset unrelated work
+or the product checkout.

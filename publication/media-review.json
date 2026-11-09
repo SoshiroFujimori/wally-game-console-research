@@ -970,13 +970,27 @@
     "fe6fc9519ef078657b488e45fb3d9c1f5d5a9cab7238f9c00f17d411ab53fce6",
     "fe9a83a5ddcfbc588b661749b217e0a99282209cc79f709901bfaef10e6e98ee",
     "fececf28bdb48ba496e15d96b4b2bb9a789bfacc2cd3af625faa9435667fae0d",
-    "ffd0dbf067db5d99eb66603494ead978dd4f351ddd5dc2256c27016c5fc6d3c7"
+    "ffd0dbf067db5d99eb66603494ead978dd4f351ddd5dc2256c27016c5fc6d3c7",
+    "15e956490f996805b2f3c79bfee9e3d167c92d199a28d3e9046745555062d29b",
+    "2d93beae6d045de1624943b5829650b76821572b637866e7f96d18b466949a0a",
+    "5a50daf506a0b529fa364465c343331ad10c0eed569097da4bf860ac95dae2fb",
+    "5ab9e5d3588db613e852ba3b018abb516cfbdde30a682755a767d448acfa9bd0",
+    "8b2281058e3e890b466db5238aa5f25278fca62ee682460a3ae9a5c393e5e113",
+    "98e4a2dbdd65e0abbaf2403ea433d45e10d20a094b2e1467d025c86c7e13e5f4",
+    "aa32177aca34d38f3b924826b06dbfb751534051e981500221e9af797723be0c",
+    "ae1e1edc18d5121a220fdf69bf8f30769324e25237065f36a4055d9ded353eb7",
+    "c150c50554c31aea78c780e630ce9125fb5fc9a612891a7b477e53be191925fc",
+    "c20895024031dd58014a17032ed8ea5908941ed4d85416ad5bb8db463039cb75",
+    "ca76a03669093711c3d8349509e5eb053885907dfc0b19b6afaa5f6caf912515",
+    "dfc8b7abd95d409f00c4a70b794f50bfb3723186aa0e5eb13535516eb5938ab8",
+    "e34a0d751f3fbd648ee5941c183114cc006dbfd012ffc0cf7b5138ac3d04a0e9"
   ],
   "reviews": {
     "abstract-based-presentation-20261108": "Reviewed all 18 native PowerPoint slide renders and the private cover. Main slides use functional circuits and address-access examples; source differences remain in notes and reproduction records. Confirmed 51 internal links, six hidden question slides, original embedded video hash, and cover-only differences between editions. Reviewed the revised abstract diagram, color and monochrome one-page Word renders, code lines and title placement. Public image metadata was cleaned without changing decoded pixels; newly embedded PNGs match visually reviewed sources.",
     "concept-code-20261109": "Reviewed native PowerPoint renders of slides 6 and 7 and the one-page public and private Word abstracts. The conceptual excerpts omit the final-word write and explain the remaining addresses, values, and transfers. Verified four unbroken Japanese comment lines above four code statements in each Word edition. The other 16 slide renders are pixel-identical to the prior reviewed version, and embedded images and gameplay video are unchanged. Public preview metadata was cleaned without changing pixels.",
     "abstract-read-data-20261109": "Reviewed the enlarged circuit figure and native Word renders of both one-page abstract editions in color and grayscale. R labels the existing read-data input and the legend defines it as read data. Signal paths and the gameplay image are unchanged. The embedded and published circuit images have identical pixels.",
     "abstract-write-bit-20261109": "Reviewed the enlarged circuit figure and native Word renders of both one-page abstract editions in color and grayscale. W is labelled as a one-bit direction signal, with 0 for reading and 1 for writing. Signal paths and the gameplay image are unchanged. The embedded and published circuit images have identical pixels.",
-    "two-letter-signals-20261109": "Reviewed the circuit figure and both one-page native Word renders in color and grayscale. AD, WD, WE and RD replace the one-letter names; WE is the one-bit write enable, with 0 for reading and 1 for writing during the conceptual active transfer. Reviewed native PowerPoint slides 4 and 5; all other slide pixels are unchanged. The 51 links, private cover text, gameplay image and embedded video are preserved. Image metadata cleaning preserves every decoded RGBA pixel."
+    "two-letter-signals-20261109": "Reviewed the circuit figure and both one-page native Word renders in color and grayscale. AD, WD, WE and RD replace the one-letter names; WE is the one-bit write enable, with 0 for reading and 1 for writing during the conceptual active transfer. Reviewed native PowerPoint slides 4 and 5; all other slide pixels are unchanged. The 51 links, private cover text, gameplay image and embedded video are preserved. Image metadata cleaning preserves every decoded RGBA pixel.",
+    "presentation-latest-abstract-20261109": "Reviewed all 18 native PowerPoint renders and the private cover. Corrected the RasterIX attribution/wire collision; reviewed changed slides 3, 6, 7, 8, 16 and 17 again. Final slide pixels match the reviewed renders. Public/private packages differ only in slide 1 identity text. The reviewed standard-output video is embedded byte-for-byte; PowerPoint recognizes it as a 30000 ms movie. Confirmed 51 internal slide links and six hidden question slides. Published PNG metadata was stripped with identical decoded pixels; embedded pictures match the reviewed gameplay images. No new hardware or long-duration test is claimed."
   }
 }

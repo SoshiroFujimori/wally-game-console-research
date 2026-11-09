@@ -39,7 +39,7 @@ export async function loadFpgaUtilization(root) {
   return {rows,bitstreamSha256:after.bit_sha256,beforeDate:evidence.before.report_date,afterDate:evidence.after.report_date};
 }
 
-export const FPGA_UTILIZATION_NARRATION = '描画機能の追加前と、ブロック崩しの動作確認に使った構成の使用率を比較します。BeforeはWally構成、Afterは描画・表示機能を備えた構成です。ルックアップテーブルは36.22%から50.39%、ブロックメモリは23.01%から58.63%になっています。どちらも同じFPGAに実装した回路全体について、配置配線後の記録から示しています。';
+export const FPGA_UTILIZATION_NARRATION = '開発時に保存した、描画機能の追加前と追加後の使用率を比較します。BeforeはWally構成、Afterは描画・表示機能を備えた構成です。ルックアップテーブルは36.22%から50.39%、ブロックメモリは23.01%から58.63%になっています。どちらも同じFPGAに実装した回路全体について、配置配線後の記録から示しています。Afterは開発時の表示構成で、今回の動画の標準表示構成とは異なります。';
 
 export const FPGA_UTILIZATION_DETAIL = `比較する構成
 Beforeは2026年9月8日に保存されたNexys Video対応時のWally構成、Afterは2026年11月8日の実験E8でブロック崩しの動作確認に使った描画・表示機能付きの構成である。どちらもNexys VideoのArtix-7 XC7A200T（xc7a200tsbg484-1）、Vivado 2025.2による配置配線後の記録を使う。CPU、バス、メモリ制御なども含む、FPGA内の回路全体を比較する。
@@ -48,7 +48,7 @@ Beforeの根拠
 experiments/fpga-resource-comparison-20261108/before-utilization.rptに保存したレポートを使う。レポートの日付は2026年9月8日13:16:56、DesignはfpgaTop、Design StateはRoutedである。保存元は製品作業ディレクトリのfpga/generator/reports/nexysvideo_utilization.rptで、Nexys Video対応時の描画機能がない構成の記録である。レポート自体にGitリビジョンやビットストリームのハッシュは記載されていないため、特定のコミットから完全に再生成した結果とは主張しない。公開したコピーではホスト名などを伏せ、元ファイルと公開ファイルのハッシュをcomparison.jsonに区別して記録している。
 
 Afterの根拠
-experiments/basic-operation-20261108/results/implementation.jsonと、その配置配線レポートを使う。製品261832d48832dd6e26c4971ab8893ce61200688bへ研究用の表示差分を適用したE8のHDMI表示構成であり、公式RasterIX 9269a01は変更していない。差分とソースのハッシュはexperiments/basic-operation-20261108/hdmi/に記録した。スライド10の文字配置変更後の動画でも同じ回路設定データを使った。製品の標準DVI表示構成の値とは区別する。
+experiments/basic-operation-20261108/results/implementation.jsonと、その配置配線レポートを使う。製品261832d48832dd6e26c4971ab8893ce61200688bへ研究用の表示差分を適用したE8のHDMI表示構成であり、公式RasterIX 9269a01は変更していない。差分とソースのハッシュはexperiments/basic-operation-20261108/hdmi/に記録した。今回のスライド10は標準DVI表示構成の動画であり、このAfterの回路設定データを使用していない。この表は開発時に保存した構成間の比較として示す。
 
 比較の範囲
 これは開発前後に保存した二つの実装全体の比較である。CPUのRTLなどの版やその他の実装条件を固定し、描画機能の有無だけを変えた比較実験ではない。差をすべてRasterIX単体の使用量として解釈しない。
@@ -83,5 +83,5 @@ export function drawFpgaUtilization(slide, api, data, pageNumber) {
   }
   text(slide, 'CPU・メモリ制御などを含む、FPGA内の回路全体を比較', 64, 624, 1152, 32, 23);
   text(slide, '表 '+pageNumber, 64, 684, 63, 30, 17, true, C.heading);
-  text(slide, `配置配線後の記録：Before ${data.beforeDate} ／ After ${data.afterDate}（Vivado 2025.2）`, 131, 684, 1028, 30, 16);
+  text(slide, `開発時の構成：Before ${data.beforeDate} ／ After ${data.afterDate}（Vivado 2025.2）`, 131, 684, 1028, 30, 16);
 }

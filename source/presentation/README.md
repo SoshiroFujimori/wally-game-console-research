@@ -41,8 +41,8 @@ The original pipeline-based diagrams remain in source and in the hidden
 question diagram. They are not a second published presentation. The previous
 main talk is recoverable at commit `40d8a51bd1ab0d9c9a469146c349cd31b173bdce`.
 
-Observed behavior is bound to the E8 boot recordings and the separately dated
-title-layout recording. Main slides report movement, rebounds and block removal.
+Observed behavior is bound to the standard-output recording in
+`experiments/dvi-recovery-20261109`, also used by the current abstract. Main slides report movement, rebounds and block removal.
 Controller input and home-screen/menu GUI work remain future extensions.
 The source and notes retain display-configuration and evidence distinctions.
 No educational-effectiveness measurement or universal display compatibility

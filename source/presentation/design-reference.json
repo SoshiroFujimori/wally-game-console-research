@@ -1,5 +1,5 @@
 {
-  "version": 7,
+  "version": 8,
   "reference": "Harris et al., RISC-V System-on-Chip Design",
   "official_resources": "https://pages.hmc.edu/harris/ddca/rvsocd.html",
   "inspection_date": "2026-10-24",
@@ -126,7 +126,7 @@
       "wally-circuit.mjs",
       "integrated-internals.mjs"
     ],
-    "supplementary_module_scope": "More detailed module drawings retained as source material; not displayed in the current sixteen-slide deck."
+    "supplementary_module_scope": "More detailed module drawings retained as source material; not displayed in the current eighteen-slide deck."
   },
   "board_photograph": {
     "file": "assets/nexys-video.png",
@@ -153,13 +153,14 @@
     ],
     "scope": "Functional diagrams aligned with the abstract; no instruction-encoding lesson in the main talk.",
     "forward_signals": [
-      "address A",
-      "write data D",
-      "write indicator W"
+      "address AD",
+      "write data WD",
+      "one-bit write enable WE"
     ],
     "selection": "Decode selects one target; the corresponding select chooses read data.",
-    "sd_transfer": "CPU reads SD receive data and stores it through the DDR controller.",
-    "display": "A functional image-read/output block. Recorded implementation is identified by E8 evidence, not by the box label."
+    "sd_transfer": "CPU issues the SD request, copies received bytes to successive DDR3 addresses, then transfers execution to the copied program; the C fragment is conceptual.",
+    "display": "A combined drawing/display block reused from official RasterIX. The same standard display configuration is verified by experiments/dvi-recovery-20261109.",
+    "read_signal": "read data RD"
   },
   "cover": {
     "fields": [
@@ -183,7 +184,7 @@
     "purpose": "Explain that a described circuit can be implemented inside the FPGA chip to control physical components on the board.",
     "research_purpose": "Slide 3 shows the console connection and identifies the added command adapter."
   },
-  "presentation_mapping_review_date": "2026-11-08",
+  "presentation_mapping_review_date": "2026-11-09",
   "fpga_resource_question_slide": {
     "slide": 15,
     "source": "source/presentation/board-evolution/fpga-resources.mjs",
@@ -235,5 +236,5 @@
     "scope": "Documented textbook designations and historical draft use; not an exhaustive current adoption count. Reference-only listings excluded.",
     "presentation": "Editable table with the existing RVSOC-inspired blue header, pale alternate rows, black rules and Yu Gothic/Arial typography."
   },
-  "previous_presentation_commit": "40d8a51bd1ab0d9c9a469146c349cd31b173bdce"
+  "previous_presentation_commit": "1c826a0363901f2a77e8bbb0e8748c168bbb2cbc"
 }
