@@ -70,8 +70,8 @@
       "sha256": "844c4541fab522728715faa188c63f40ad124a73e817ee3a0b21db79998d4eb8"
     },
     "docs/presentation/README.md": {
-      "bytes": 6301,
-      "sha256": "dd54bbdacb18c2a7d34eca0f65113e2fdb967f18443f3c1f6c10adc236a381e7"
+      "bytes": 6187,
+      "sha256": "3e760a1bde9c6d8b32cc6efa78943721b4f5413b8f027a668fc0b17f699d5bbe"
     },
     "docs/presentation/RVSOC教科書採用の出典.md": {
       "bytes": 4297,
@@ -130,8 +130,8 @@
       "sha256": "693d4da34f54aacfdff4be6a956fd1d3ecc1671d39cdb186f5660525efb72948"
     },
     "docs/presentation/slides/slide-14.png": {
-      "bytes": 183669,
-      "sha256": "086b02a54a651414ce028b0abcb3f3763a06ce0b3da292fe107984d100d24822"
+      "bytes": 156017,
+      "sha256": "2d88be5b3079b832948cbf9e82ecd5e04ddbdb91a4d8a2080196403ccb84ac0c"
     },
     "docs/presentation/slides/slide-15.png": {
       "bytes": 144721,
@@ -150,48 +150,24 @@
       "sha256": "4e015ef6b120a9b6a4ecf8bb2b539fc45ad9ffee229ad22cd45078a3e6c79dc0"
     },
     "docs/presentation/slides/slide-19.png": {
-      "bytes": 105760,
-      "sha256": "c7b635fcaa67f2dc24115ce80bc537183eede1005098aaf43ce0f80b57886b35"
+      "bytes": 187657,
+      "sha256": "64d5e08ef5712bd9e7841ed5ab827274450ed7d22584e37b0f2452a295c86431"
     },
     "docs/presentation/slides/slide-20.png": {
-      "bytes": 109825,
-      "sha256": "777146031d4fa4548c061c35593a1df31f40efbe2a713389b88fbaf3cac63e72"
+      "bytes": 162434,
+      "sha256": "c6283f4d62e8d41c437ab9f10b2b982334e36e957cdc083c6ed71af19b33075a"
     },
     "docs/presentation/slides/slide-21.png": {
-      "bytes": 125150,
-      "sha256": "3fe7cef6a048931a77a69a9269954e00bfc221b6f5067cd377dd5328280d0151"
-    },
-    "docs/presentation/slides/slide-22.png": {
-      "bytes": 121311,
-      "sha256": "d8a20aae30cc4a939b89d0424750454bd0f4c45c2b4ade3a33d600dc04bd5182"
-    },
-    "docs/presentation/slides/slide-23.png": {
-      "bytes": 117407,
-      "sha256": "efc12373c906331d4727709596d6016fccd2e38406c85c4ce3fa8868d94d910a"
-    },
-    "docs/presentation/slides/slide-24.png": {
-      "bytes": 115833,
-      "sha256": "ffdf4ea6fd3b5db0f637d035415db04c67b9a164b2b48e791cb9ff7fe6b590a5"
-    },
-    "docs/presentation/slides/slide-25.png": {
-      "bytes": 118341,
-      "sha256": "183932b9fe105bca505bb8b407bf7c33c59c6e580b9ea65b05801f43b283ec93"
-    },
-    "docs/presentation/slides/slide-26.png": {
-      "bytes": 162660,
-      "sha256": "fd4b04bee1512b3f3c9889010244d0b057c00b07a3ad15fc09f6c5816570a410"
-    },
-    "docs/presentation/slides/slide-27.png": {
-      "bytes": 127962,
-      "sha256": "cd141c5c46faf9215a4af2b9dd1fe9273a0ed7d6b179321cdd6c42305f905158"
+      "bytes": 127537,
+      "sha256": "a4ba71b47873bd2568340318e495dcaef4d9304016029db8e1c121d3639dc8a6"
     },
     "docs/presentation/中間発表_主要事項.md": {
-      "bytes": 104858,
-      "sha256": "bec8f77659186bad40490d2a2bf94de32d94ac8922fe8fe09e866c4329b65d80"
+      "bytes": 87849,
+      "sha256": "e2287056a5bca0001137460a2077e6e0d52bde88f7bd8394c0babe885413a17c"
     },
     "docs/presentation/中間発表_主要事項.pptx": {
-      "bytes": 2008371,
-      "sha256": "16b669031e56d413875514f91b47fe06333654ad7047fafb185cd4f412e34109"
+      "bytes": 1932049,
+      "sha256": "bfc75af528432faacfc8677964edcc7b910a2849f5d2ad692da13d133df39c40"
     },
     "docs/privacy.md": {
       "bytes": 5063,
@@ -12542,8 +12518,8 @@
       "sha256": "b37af8468ab90cc774380eae7acce80700a22c2cdb02aa7e1d27bf6da8ad7d04"
     },
     "publication/media-review.json": {
-      "bytes": 115823,
-      "sha256": "b9890b591e052d27761e59abf39263cb7e1354e3ddc9cc285963bd522359d35d"
+      "bytes": 117278,
+      "sha256": "ece145289f92162d5dc06ab5cf16b5e443cef3cc18ccb5f683db9235f85c1af5"
     },
     "publication/policy.json": {
       "bytes": 635,
@@ -12582,8 +12558,8 @@
       "sha256": "3d51885467235f671306757555c3eeb9b74dc2fd589d0c2c792d7c51f1acd15b"
     },
     "source/presentation/README.md": {
-      "bytes": 3316,
-      "sha256": "5161ca371b7d2fb09329000c2635c8e26e13bd29a1c476eb1bb2a86149eeebb7"
+      "bytes": 3410,
+      "sha256": "798e20d54164a13a9a3f54366b5edcd9de28e8be3c27c18aed53efeb8bed59c0"
     },
     "source/presentation/assets/README.md": {
       "bytes": 1088,
@@ -12594,20 +12570,20 @@
       "sha256": "0e317c3229ff950862fbbc0d3c6fd9ca07f5dcbcb890a497603083751684d187"
     },
     "source/presentation/board-evolution/README.md": {
-      "bytes": 14409,
-      "sha256": "9d868ad907005d48c72fe78aded6cb139de676666d9c1c737ef0270bd22518aa"
+      "bytes": 14629,
+      "sha256": "b30a8b12a1fba28d90595b1a7dbdbaa4f061c7c88a9aa3092e1cd7663198547a"
     },
     "source/presentation/board-evolution/abstract-flow.mjs": {
       "bytes": 7873,
       "sha256": "3b1591756f5d2b1a1f46e322926bbb1cc13bf001b19f9d495d5ea0500e4d07ce"
     },
     "source/presentation/board-evolution/board-circuit.mjs": {
-      "bytes": 14067,
-      "sha256": "8039e937c0e373105b2c4c9d357b90ab0b9f675d6b5b12d6ea9d3d9b6f6665b2"
+      "bytes": 14270,
+      "sha256": "48840ea964ddb0479fe8b1ac82e61846ac88277758ba760afbee5c9024554584"
     },
     "source/presentation/board-evolution/build.mjs": {
-      "bytes": 33471,
-      "sha256": "ff54a1b6ad94790393392a41dbc2e00b3bdadf69ff0d3511f3bbc14ff347fe5c"
+      "bytes": 33483,
+      "sha256": "1eeeb9b28418e589eefafc895941f0a45ebc0b29ca425eff8d981159b96e9010"
     },
     "source/presentation/board-evolution/circuit-wiring.mjs": {
       "bytes": 6778,
@@ -12645,9 +12621,13 @@
       "bytes": 5951,
       "sha256": "f4115c562313e3f0d360f8cb97d477be83a025c8f85dfb2b731ea32d577508a6"
     },
+    "source/presentation/board-evolution/merged-datapath.mjs": {
+      "bytes": 11187,
+      "sha256": "b32081647ab11cfa07f9c91ba6dce25c3e4c12584f06f73cdb50be7350a93abf"
+    },
     "source/presentation/board-evolution/navigation.mjs": {
-      "bytes": 4372,
-      "sha256": "33267e4d7c4a595d44e8ed97970fbc02682b548c3b36c9f1519f4a567fce9dba"
+      "bytes": 3787,
+      "sha256": "f75c07179c5184f9f55f352aa6039a272bd3addb4310e01c47363bc958c27156"
     },
     "source/presentation/board-evolution/rasterix-pipeline.mjs": {
       "bytes": 10380,
@@ -12686,8 +12666,8 @@
       "sha256": "863e186786396edb3c18f3c9dfc1a0e14c14e81a0ca88bd9223d50835e92ab4a"
     },
     "source/presentation/design-reference.json": {
-      "bytes": 13607,
-      "sha256": "4b53fc0dcf70c5cba3faf6db6c2d88c5ee843145a7d008012706d52b758f1fb6"
+      "bytes": 14133,
+      "sha256": "28fe90197449b3afac2cf472d5fc84baf3b66eb24e8a90c5eefd0619944bfc14"
     },
     "source/presentation/integrated-internals.mjs": {
       "bytes": 12246,

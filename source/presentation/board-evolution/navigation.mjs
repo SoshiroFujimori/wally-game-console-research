@@ -18,15 +18,9 @@ export const CONTENTS_ITEMS=[
   {number:16,label:'RVSOCの教科書採用例',group:'教科書の採用例'},
   {number:17,label:'FPGAチップの構成要素',group:'FPGA'},
   {number:18,label:'FPGAの使用量',group:'FPGA'},
-  {number:19,label:'lw命令とデータの読出し',group:'命令の実行と周辺接続'},
-  {number:20,label:'sw命令とデータの書込み',group:'命令の実行と周辺接続'},
-  {number:21,label:'二つのメモリの箱と接続口',group:'命令の実行と周辺接続'},
-  {number:22,label:'アドレス判定と読出し値の選択',group:'命令の実行と周辺接続'},
-  {number:23,label:'SDカードからDDR3へのコピー',group:'命令の実行と周辺接続'},
-  {number:24,label:'sw命令で描画用の数値を送る',group:'命令の実行と周辺接続'},
-  {number:25,label:'画像の保存と表示の経路',group:'命令の実行と周辺接続'},
-  {number:26,label:'詳細な全体のブロック図',group:'回路の詳細'},
-  {number:27,label:'描画回路のFPGAパイプライン',group:'回路の詳細'},
+  {number:19,label:'命令実行から周辺回路への接続',group:'命令の実行と周辺接続'},
+  {number:20,label:'詳細な全体のブロック図',group:'回路の詳細'},
+  {number:21,label:'描画回路のFPGAパイプライン',group:'回路の詳細'},
 ];
 
 const destinations=new Map();

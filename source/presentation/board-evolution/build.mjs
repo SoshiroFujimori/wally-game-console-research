@@ -1,4 +1,4 @@
-import {addDatapathBackups} from './datapath-backups.mjs';
+import {addMergedDatapath} from './merged-datapath.mjs';
 import { addMainSlides } from './main-slides.mjs';
 import { CONTENTS_SLIDE, drawContents, linkToSlide, contentsMarkdown, navigationTargets } from './navigation.mjs';
 import { drawRasterixPipeline, RASTERIX_PIPELINE_SOURCE, RASTERIX_PIPELINE_NARRATION, RASTERIX_PIPELINE_DETAIL } from './rasterix-pipeline.mjs';
@@ -79,7 +79,7 @@ await addMainSlides({slide,api,foot,cover,root,DDCA,RVSOC,PRODUCT,BASIC,POSTER,V
 let s=slide('目次：発表・質問用スライド',0,
   '質問に関係する項目をクリックすると、そのスライドへ移動します。移動した後は右下のスライド番号をクリックすると、この目次へ戻れます。',
   '',
-  '表紙1枚と発表用12枚の後に置く操作用の目次である。発表スライドと質問用スライドの両方へ移動できる。質問用スライドは、教科書の採用例、FPGAの構成要素と使用量、命令の実行と周辺接続、回路の詳細の順にまとめる。質問用の13枚は通常の順送りでは表示しないが、目次から選んで開ける。本編の説明時間には目次の操作時間を含めない。');
+  '表紙1枚と発表用12枚の後に置く操作用の目次である。発表スライドと質問用スライドの両方へ移動できる。質問用スライドは、教科書の採用例、FPGAの構成要素と使用量、命令の実行から周辺回路へつながる統合図、回路の詳細の順にまとめる。質問用の7枚は通常の順送りでは表示しないが、目次から選んで開ける。本編の説明時間には目次の操作時間を含めない。');
 drawContents(s,api);outline[outline.length-1].navigation=true;
 
 const ddcaDataRoot=process.env.PRESENTATION_DDCA_ASSET_DIRECTORY||path.join(root,'source/presentation/ddca-adoption');
@@ -118,7 +118,7 @@ s=slide('質問用：FPGAの使用量',0,
 drawFpgaUtilization(s,api,utilization,P.slides.items.length);
 s.hidden=true;outline[outline.length-1].backup=true;
 
-addDatapathBackups({slide,api,foot,outline,DDCA,RVSOC,PRODUCT});
+addMergedDatapath({slide,api,foot,outline,DDCA,RVSOC,PRODUCT});
 
 s=slide('質問用：詳細な全体のブロック図',0,
   'RVSOCのパイプライン図を基にした全体図です。PC、レジスタ群、ALU、段間レジスタ、書戻しの経路を保ち、実機のメモリ接続と本研究の描画接続を付け加えています。質問に応じて関係する経路をたどります。',
@@ -136,7 +136,7 @@ s.hidden=true;outline[outline.length-1].backup=true;
 await fs.writeFile(path.join(workspace,'rasterix-pipeline-graph.json'),JSON.stringify(pipelineGraph,null,2)+'\n');
 
 // Keep provenance in the notes and the GitHub-readable counterpart.
-for (const number of [3,6,7,8,9,10,11,12,23,24,25,26]) {
+for (const number of [3,6,7,8,9,10,11,12,19,20]) {
   const o=outline[number-1];
   o.detail += '\n\n' + PROVENANCE_DETAIL;
   o.source += '\n' + PROVENANCE_SOURCE;
@@ -145,11 +145,11 @@ for (const number of [3,6,7,8,9,10,11,12,23,24,25,26]) {
 for(const {page,number} of pageNumbers)if(number!==CONTENTS_SLIDE)linkToSlide(page,CONTENTS_SLIDE);
 await fs.writeFile(path.join(workspace,'wire-audit.json'),JSON.stringify(wiring.finalize(),null,2)+'\n');
 const total=outline.reduce((n,s)=>n+s.seconds,0);
-if(outline.length!==27||total!==355)throw new Error(`Unexpected allocation ${outline.length} slides, ${total} seconds`);
+if(outline.length!==21||total!==355)throw new Error(`Unexpected allocation ${outline.length} slides, ${total} seconds`);
 await fs.writeFile(path.join(workspace,'outline.json'),JSON.stringify(outline,null,2)+'\n');
 const md=[
   '# 中間発表：FPGAを用いた2Dゲーム機の製作',
-  'アブストの説明に沿った発表です。表紙1枚、発表用12枚、移動用の目次1枚、質問用13枚で構成します。FPGAと拡張元のWallyを紹介し、SDカードへの読出し要求、受信値の読出し、DDR3への保存と実行開始、描画命令の送信、映像出力を順に説明します。本研究で追加した部分をまとめ、動作確認は実機動画で示します。',
+  'アブストの説明に沿った発表です。表紙1枚、発表用12枚、移動用の目次1枚、質問用7枚で構成します。FPGAと拡張元のWallyを紹介し、SDカードへの読出し要求、受信値の読出し、DDR3への保存と実行開始、描画命令の送信、映像出力を順に説明します。本研究で追加した部分をまとめ、動作確認は実機動画で示します。',
   '[PowerPoint版](中間発表_主要事項.pptx) / [アブスト](../abstract/アブスト_主要事項.md) / [論文本文](../thesis/本文.md) / [技術付録](../thesis/技術付録.md) / [再生成方法](../../source/presentation/board-evolution/README.md) / [DDCA授業利用の出典](DDCA授業利用の出典.md) / [RVSOC教科書採用の出典](RVSOC教科書採用の出典.md)',
   '## 図の見方',
   '2〜11枚目は、同じ位置・大きさのFPGAボードを使います。外側の薄い枠はボード、内側の青い枠はFPGAチップです。SDカードスロット、DDR3メモリ、HDMI端子はチップの外にある部品で、位置を変えずに示します。3枚目のWallyの箱を、4枚目でCPU・アドレスデコーダ・SD制御・DDR制御へ展開します。4〜11枚目は回路と信号線の配置を保ち、説明中の経路を青で示します。7枚目は6枚目のDDR3への書込み経路にSDからの読出し経路を加えて強調し、この二つを交互に繰り返すコピー処理を説明します。',
@@ -158,7 +158,7 @@ const md=[
   PROVENANCE_DETAIL,
   '対応するソースは[回路の提供元一覧](../../source/presentation/board-evolution/README.md#component-provenance)にまとめています。主図では、同じRasterIXリポジトリに含まれる描画と表示を一つの箱にまとめています。実機動画も、この標準表示構成で取得しています。',
   '## 発表時間と質問用スライド',
-  '表紙と発表用12枚の配分は動画30秒を含め355秒です。動画の再生中に結果を説明します。これは練習を実測した時間ではありません。14枚目の目次から本編と質問用の両方へ移動できます。各スライドの右下の番号から目次に戻れます。質問用の15〜27枚目は、通常の順送りでは表示しません。',
+  '表紙と発表用12枚の配分は動画30秒を含め355秒です。動画の再生中に結果を説明します。これは練習を実測した時間ではありません。14枚目の目次から本編と質問用の両方へ移動できます。各スライドの右下の番号から目次に戻れます。質問用の15〜21枚目は、通常の順送りでは表示しません。',
   '## 目次',
   outline.map((o,i)=>'- ['+(i+1)+'. '+o.title.replaceAll('\n','')+'](#slide-'+(i+1)+')'+(o.backup?'（質問用）':'')).join('\n')
 ];
@@ -179,7 +179,7 @@ md.push('## 動作確認と詳しい実装',
   '## 図と書式の出典',
   '主図はアブストと製品RTLを基にした機能図です。書式はRVSOCの図7.11・9.28・23.2を参考にしています。質問用の詳細な回路図、教科書の採用例、FPGAの構成要素・使用量、描画回路の内部については、それぞれのスライドの出典と補足を参照してください。[デザインと再生成方法](../../source/presentation/board-evolution/README.md)に実装箇所をまとめています。',
   '## 以前の発表資料',
-  '命令の実行から順に説明した版は、[変更前のコミット40d8a51](https://github.com/SoshiroFujimori/wally-game-console-research/tree/40d8a51bd1ab0d9c9a469146c349cd31b173bdce/docs/presentation)に保存されています。lw・swの図は現在の質問用スライドにも収録しています。外部メモリへの接続は、二つのメモリの箱を接続口として残し、AD・WD・WE・RDとアドレスデコーダで示します。');
+  '命令の実行から順に説明した版は、[変更前のコミット40d8a51](https://github.com/SoshiroFujimori/wally-game-console-research/tree/40d8a51bd1ab0d9c9a469146c349cd31b173bdce/docs/presentation)に保存されています。命令の実行から周辺回路へつながる図は、現在の質問用19枚目に統合しています。外部メモリへの接続は、二つのメモリの箱を接続口として残し、AD・WD・WE・RDとアドレスデコーダで示します。');
 await fs.writeFile(path.join(workspace,'中間発表_主要事項.md'),md.join('\n\n')+'\n');
 const raw=path.join(workspace,'raw-candidate.pptx'),poster=path.join(workspace,'poster-candidate.pptx'),candidate=path.join(workspace,'candidate.pptx');
 await(await PresentationFile.exportPptx(P)).save(raw);
@@ -195,13 +195,13 @@ if(audience==='public'){
 // Final package integrity/layout and video relationships are checked separately.
 await fs.mkdir(path.join(workspace,'poster-review'), { recursive: true });
 const posterFinal=path.join(workspace,'poster-review','poster-validated.pptx');
-const validationOptions={workspaceDir:workspace,pythonExecutable:process.env.RUNTIME_PYTHON,integrityValidatorPath:path.join(process.env.PRESENTATION_SKILL,'container_tools/inspect_presentation_package_integrity.py'),layoutValidatorPath:path.join(process.env.PRESENTATION_SKILL,'container_tools/inspect_presentation_layout_geometry.py'),layoutArgs:['--expected-slide-size-emu','12192000,6858000','--validate-bullet-geometry','--validate-heading-fit','--require-native-table-slide','16','--require-native-table-slide','18'],explicitTotalSlideCount:27,requiredNativeTableOwnerSlides:[16,18],requiredNativeChartOwnerSlides:[],fontPolicy:{basis:'design',families:[font,latinFont,codeFont]}};
+const validationOptions={workspaceDir:workspace,pythonExecutable:process.env.RUNTIME_PYTHON,integrityValidatorPath:path.join(process.env.PRESENTATION_SKILL,'container_tools/inspect_presentation_package_integrity.py'),layoutValidatorPath:path.join(process.env.PRESENTATION_SKILL,'container_tools/inspect_presentation_layout_geometry.py'),layoutArgs:['--expected-slide-size-emu','12192000,6858000','--validate-bullet-geometry','--validate-heading-fit','--require-native-table-slide','16','--require-native-table-slide','18'],explicitTotalSlideCount:21,requiredNativeTableOwnerSlides:[16,18],requiredNativeChartOwnerSlides:[],fontPolicy:{basis:'design',families:[font,latinFont,codeFont]}};
 await finalizePresentation({...validationOptions,candidatePath:poster,finalPath:posterFinal,verifyArtifactToolImport:false,receiptPath:path.join(workspace,'poster-validation.json')});
-// The 27-slide poster exceeds the runtime's aggregate XML construction limit.
-// Import all authored content in four contiguous batches, then inspect the full
+// Import authored content in four contiguous batches to bound the runtime's
+// XML construction size, then inspect the full
 // final package and its native PowerPoint rendering/navigation separately.
 const importChecks=[];
-for(const [batchNumber,first,count] of [[1,0,7],[2,7,7],[3,14,7],[4,21,6]]){
+for(const [batchNumber,first,count] of [[1,0,7],[2,7,7],[3,14,5],[4,19,2]]){
   const batch=await Presentation.load(structuredClone(P.toProto()));
   batch.slides.keep(Array.from({length:count},(_,i)=>first+i));
   const batchPath=path.join(workspace,`content-batch-${batchNumber}.pptx`);
@@ -214,7 +214,7 @@ for(const [batchNumber,first,count] of [[1,0,7],[2,7,7],[3,14,7],[4,21,6]]){
     await fs.writeFile(path.join(workspace,'slides',`slide-${String(first+i+1).padStart(2,'0')}.png`),new Uint8Array(await png.arrayBuffer()));
   }
 }
-await fs.writeFile(path.join(workspace,'content-import-checks.json'),JSON.stringify({wholeDeckImport:'exceeds_default_construction_limit',batches:importChecks},null,2)+'\n');
+await fs.writeFile(path.join(workspace,'content-import-checks.json'),JSON.stringify({wholeDeckImport:'validated_in_contiguous_batches',batches:importChecks},null,2)+'\n');
 // Slide jumps are internal OOXML relationships; no external file is opened.
 const linked=path.join(workspace,'linked-candidate.pptx');
 const linking=spawnSync(process.env.RUNTIME_PYTHON,[path.join(root,'source/presentation/board-evolution/link_slides.py'),posterFinal,linked,path.join(workspace,'navigation-targets.json')],{encoding:'utf8'});

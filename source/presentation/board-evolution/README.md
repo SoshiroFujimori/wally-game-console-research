@@ -4,7 +4,7 @@ This builder produces the single published intermediate presentation:
 [slides and narration](../../../docs/presentation/中間発表_主要事項.md) and
 [PowerPoint](../../../docs/presentation/中間発表_主要事項.pptx).
 A cover and twelve presentation slides follow the current abstract. Slide 14
-is clickable contents; slides 15-27 are hidden question slides. The narration allocation
+is clickable contents; slides 15-21 are hidden question slides. The narration allocation
 is 355 seconds including the 30-second embedded video, not a timed rehearsal.
 
 ## Main explanation
@@ -40,7 +40,7 @@ simultaneously. The following slides change the highlighted transfer and code,
 without moving components to a different whole-system diagram.
 
 `abstract-flow.mjs` retains the conceptual code-panel helper and the earlier
-whole-system view used on question slide 25. Wally's processor datapath and
+whole-system drawing source. The current question view is `merged-datapath.mjs`. Wally's processor datapath and
 instruction encoding are not prerequisites for the main explanation.
 
 The access view separates address AD, write data WD, one-bit write enable WE,
@@ -160,18 +160,19 @@ the input video against the approved media hashes; `link_slides.py` adds links.
 - 18: Before/After whole-design resource percentages from
   `experiments/fpga-resource-comparison-20261108/comparison.json`. This is a
   historical comparison, not isolated attribution to the drawing core.
-- 19-20: restored single-cycle `lw` and `sw` examples using the earlier
-  editable datapath and component positions.
-- 21: the same instruction/data memory rectangles used as external access
-  interfaces, with AD, WD, WE and RD ports. This is a functional mapping,
-  not a claim that the actual IROM and DTIM are enabled.
-- 22-24: a larger view of the two access interfaces, coordinated request
-  selection, address decoding and returned-data selection. The same
-  connections explain an SD-to-DDR copy and a drawing-command write.
-- 25: drawing and display accessing images through the DDR controller.
-- 26: the RVSOC pipeline-derived detailed whole-system diagram. Signal outlines
+- 19: one connected functional diagram integrates the earlier seven load/store,
+  memory-interface, decode, SD-copy, drawing-command and image-output views.
+  The horizontal CPU layout is retained inside the FPGA board. AD/WD/WE from
+  the two memory interfaces enter three coordinated request multiplexers.
+  Decoding selects the target, and a response selector returns RD to the
+  interfaces. S0-S2 are named connections rather than long overlapping wires.
+  The same drawing includes SD registers, the AMD DDR controller, drawing
+  command adapter, RasterIX drawing/display and physical board components.
+  The load/store examples use x2 as the DDR3 base; the drawing example first
+  sets x2 to the command address. The notes distinguish these independent cases.
+- 20: the RVSOC pipeline-derived detailed whole-system diagram. Signal outlines
   are neutral; CPU internals are not marked as explained in the main talk.
-- 27: the official RasterIX FPGA pipeline redrawn for the presentation. Its
+- 21: the official RasterIX FPGA pipeline redrawn for the presentation. Its
   version and differences from measured hardware are in `../rasterix-pipeline/`.
 
 ## Build and publication
@@ -183,8 +184,8 @@ node source/presentation/build.mjs RESEARCH_ROOT PRIVATE_BUILD_DIRECTORY
 ```
 
 The builder creates PPTX, Markdown, preview images and private QA records.
-The still-frame content is re-imported in four contiguous batches because the
-full twenty-seven-slide package exceeds the runtime import limit. The final
+The still-frame content is re-imported in four contiguous batches to keep
+the runtime XML construction size bounded. The final
 video-bearing package receives integrity/layout checks and native PowerPoint
 rendering. Inspect all slides, private cover, video identity and internal links.
 Keep build data outside OneDrive. Import only reviewed public outputs, update
@@ -208,13 +209,15 @@ slides is commit `fbb34c27ab0f1e5fab338257976076bea32fdbbc`.
 The revision before the SD-first explanation is commit
 `b0cdac50bbcc638a736b7e1737b33dbf72b6c8d3`.
 
-`datapath-backups.mjs` arranges the restored explanation. `memory-ports.mjs` expands its memory interfaces.
-Instruction fetch is read-only (WE=0, unused WD). The three input
-multiplexers use the same request selection. Their outputs feed the
-decoder and target registers; independent request outputs are never
-shorted together. The selected read value fans out to both CPU
-interfaces and is accepted by the requesting side. The notes identify
-the omitted timing and the correspondence to IFU, LSU, EBU and uncore.
+`merged-datapath.mjs` defines the integrated question slide.
+`board-circuit.mjs` preserves the earlier datapath coordinates and provides a
+combined view with externally connected ports. `memory-ports.mjs` supplies
+the retained functional correspondence and scope notes. The legacy seven-view
+builder `datapath-backups.mjs` remains source material and is not invoked by
+the current deck. Independent request outputs are never shorted together.
 
 The revision before unifying the main-talk board geometry is commit
 `f4c3d1d13ade4ef0db3428ac08e6d8bd105bf09f`.
+
+The seven-view question section before integration is preserved at commit
+`e6484b91a443f65896ab058a1204c87ae9fe3360`.

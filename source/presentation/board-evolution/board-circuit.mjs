@@ -24,7 +24,7 @@ function chipView(a) {
   };
 }
 
-export function drawBoard(s,a,stage,{ports=false}={}){
+export function drawBoard(s,a,stage,{ports=false,combined=false}={}){
   const chipOnly=stage===3||stage===4||ports;
   if(chipOnly)a=chipView(a);
   const {text:T,box:B,polygon:P,wire:W,route:R,C}=a;
@@ -51,8 +51,8 @@ export function drawBoard(s,a,stage,{ports=false}={}){
     t('チップ外の部品',1045,259,176,31,20,true,C.ink,'center');
   }
   b('chip','',C.chip,22,blue);
-  t('FPGAチップ',80,266,250,29,23,true,blue);
-  t('●：接続　隙間のある交差：非接続',350,268,650,25,16,false,C.ink);
+  t(combined?'CPUの読書き（機能図）':'FPGAチップ',80,266,combined?540:250,29,23,true,blue);
+  if(!combined)t('●：接続　隙間のある交差：非接続',350,268,650,25,16,false,C.ink);
   const internalMemory = stage <= 4 || ports;
   const sdColor=sdFocus?blue:gray;
   const memoryColor=internalMemory?gray:blue;
@@ -159,6 +159,7 @@ export function drawBoard(s,a,stage,{ports=false}={}){
   }else{
     r([[585,369],[585,394],[368,394],[368,484],[398,484]],command||store?blue:gray,true,2.1);
     wire(381,515,398,515,store||command?gray:C.ink,true,1.5);
+    if(combined)t('rd',350,501,28,23,15,true,C.ink);
   }
   b('rf');
   poly([[439,399],[447,408],[455,399]],'none');
@@ -188,8 +189,9 @@ export function drawBoard(s,a,stage,{ports=false}={}){
       [[183,219,255,291],536,'I'],[[875,911,947,983],556,'D']]){
       ['AD','WD','WE','RD'].forEach((name,i)=>{
         const x=xs[i],reading=name==='RD';
-        wire(x,y0,x,584,blue,reading?'start':true,name==='WE'?1.3:2.5);
-        t(name,x-17,586,34,21,14,true,blue,'center');
+        wire(x,y0,x,584,blue,reading?'start':!combined,name==='WE'?1.3:2.5);
+        if(combined)t(name,x+3,y0+1,30,20,14,true,blue);
+        else t(name,x-17,586,34,21,14,true,blue,'center');
       });
     }
     t('読書き制御',917,309,106,27,17,true,blue,'center');

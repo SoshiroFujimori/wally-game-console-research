@@ -5,7 +5,7 @@ This directory builds the single published presentation:
 [PowerPoint](../../docs/presentation/中間発表_主要事項.pptx).
 The abstract-based main talk has twelve content slides plus a cover and a
 355-second allocation,
-including a 30-second video. Clickable contents and thirteen hidden question slides
+including a 30-second video. Clickable contents and seven hidden question slides
 follow it. See [builder notes](board-evolution/README.md) for sources and scope.
 
 ## Build
@@ -18,7 +18,7 @@ node source/presentation/build.mjs RESEARCH_ROOT PRIVATE_BUILD_DIRECTORY
 ```
 
 The entry point delegates to `board-evolution/build.mjs`. Public output is
-sanitized with the private redaction settings. The twenty-seven-slide content is
+sanitized with the private redaction settings. The twenty-one-slide content is
 imported in four batches before adding internal slide jumps and the reviewed
 video. The complete final package is checked structurally and rendered in
 native PowerPoint. Preview images and the Markdown counterpart permit reading
@@ -42,11 +42,13 @@ Slide 7 extends slide 6 by highlighting the alternating SD-read/DDR-write copy.
 The code-panel helper is in `board-evolution/abstract-flow.mjs`. The diagrams use the abstract's address map and the existing RVSOC-inspired palette,
 line conventions and fonts. `design-reference.json` retains source provenance.
 
-The earlier single-cycle load/store explanations are restored as hidden
-question slides. Their memory rectangles are retained as access interfaces
-when introducing external memory, with explicit AD/WD/WE/RD and decoding.
-The detailed pipeline diagram remains available in the same question section. They are not a second published presentation. The previous
-main talk is recoverable at commit `40d8a51bd1ab0d9c9a469146c349cd31b173bdce`.
+Question slide 19 integrates the earlier seven explanations into one connected
+diagram. It retains the single-cycle CPU arrangement and shows the two memory
+interfaces, request multiplexers, address decode, selected response, SD-copy
+path, drawing command write, and shared image storage/output. This view is in
+`board-evolution/merged-datapath.mjs`. The detailed pipeline diagram and RasterIX
+pipeline follow on slides 20 and 21. The former seven-slide section remains
+recoverable at commit `e6484b91a443f65896ab058a1204c87ae9fe3360`.
 
 Observed behavior is bound to the standard-output recording in
 `experiments/dvi-recovery-20261109`, also used by the current abstract. Main slides report movement, rebounds and block removal.
