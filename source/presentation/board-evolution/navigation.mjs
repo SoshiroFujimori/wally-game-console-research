@@ -22,6 +22,7 @@ export const CONTENTS_ITEMS=[
   {number:20,label:'詳細な全体のブロック図',group:'回路の詳細'},
   {number:21,label:'描画回路のFPGAパイプライン',group:'回路の詳細'},
   {number:22,label:'ゲームで使うOpenGL関数',group:'ゲームの描画'},
+  {number:23,label:'文字画像を四角形に貼る',group:'ゲームの描画'},
 ];
 
 const destinations=new Map();

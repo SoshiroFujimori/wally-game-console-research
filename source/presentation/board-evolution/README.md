@@ -4,7 +4,7 @@ This builder produces the single published intermediate presentation:
 [slides and narration](../../../docs/presentation/中間発表_主要事項.md) and
 [PowerPoint](../../../docs/presentation/中間発表_主要事項.pptx).
 A cover and twelve presentation slides follow the current abstract. Slide 14
-is clickable contents; slides 15-22 are hidden answer slides. The narration allocation
+is clickable contents; slides 15-23 are hidden answer slides. The narration allocation
 is 355 seconds including the 30-second embedded video, not a timed rehearsal.
 
 ## Main explanation
@@ -218,12 +218,16 @@ the input video against the approved media hashes; `link_slides.py` adds links.
 - 21: the official RasterIX FPGA pipeline redrawn for the presentation. Its
   version and differences from measured hardware are in `../rasterix-pipeline/`.
 
-- 22: OpenGL calls for the complete Breakout screen: background initialization,
-  colored rectangles (bricks, walls, paddle and square ball), and image-based
-  title, score, lives and state messages. A common rectangle excerpt, an
-  unchanged game capture, and short function descriptions identify each role.
-  Notes explain basic API usage without optimization or implementation-tuning
-  material. See `opengl-functions.mjs`.
+- 22: Core OpenGL drawing calls for the complete Breakout screen. The code
+  connects four vertex positions and a color to a rectangle, while the
+  unchanged game capture locates bricks, walls, paddle, ball and text. A
+  separate two-line excerpt explains background initialization.
+- 23: Texture mapping for one character. Editable diagrams reproduce the
+  pinned game's font pixels, select its A cell, and pair image coordinates
+  with screen coordinates in the code. The notes include image registration,
+  coordinate normalization, color and alpha blending. Both slides explain
+  ordinary API usage, without optimization or implementation-tuning claims.
+  See `opengl-functions.mjs`.
 
 ## Build and publication
 
