@@ -24,7 +24,7 @@ export function drawAbstractSystem(s, api, focus='all', {compact=false}={}) {
   B('接続回路\n本研究で追加',360,264,165,61,C.white,21,C.blue,3);
   const rix=B('',680,250,250,80,'none',23,C.old,1.3);
   rix.line={style:'dashed',fill:C.old,width:1.3};
-  T('RasterIXから流用',684,224,206,27,20,true,C.ink,'center');
+  T('既存回路 RasterIX',684,224,206,27,20,true,C.ink,'center');
   B('描画・表示回路',700,264,210,61,C.white,25);
   B('SDカード\nスロット',1000,90,132,65,C.white,21);
   B('DDR3\nメモリ',1000,186,132,69,C.white,23);

@@ -62,10 +62,10 @@ export function drawStableBoard(s,a,{mode='request'}={}){
   }
 
   const reused=B('wally','',provenance?'#F4F6FA':'none',20,edge,1.1);reused.line={style:'dashed',fill:provenance?frame:edge,width:provenance?2:1.1};
-  T('Wallyから流用',105,248,190,23,18,true,purpose||provenance?ink:muted);
+  T('既存回路 Wally',105,248,190,23,18,true,purpose||provenance?ink:muted);
   const origin=box(s,'',1020,373,170,88,provenance?'#F4F6FA':'none',20,edge,1.1);
   origin.name='main-board-rasterix-origin';origin.line={style:'dashed',fill:provenance?frame:edge,width:provenance?2:1.1};
-  T('RasterIXから流用',1020,341,178,27,18,true,purpose||provenance?ink:muted,'center');
+  T('既存回路 RasterIX',1020,341,178,27,18,true,purpose||provenance?ink:muted,'center');
   B('adapter','',provenance?'#DCEAF9':command||purpose?C.white:fadedFill,20,command||purpose?blue:edge,provenance?3.3:command||purpose?2.6:1.3);
   T('接続回路',845,purpose?395:409,145,26,22,true,command||purpose?blue:muted,'center');
   T('本研究で追加',845,purpose?426:433,145,18,16,true,command||purpose?blue:muted,'center');
