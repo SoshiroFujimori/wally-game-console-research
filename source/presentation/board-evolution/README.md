@@ -3,8 +3,8 @@
 This builder produces the single published intermediate presentation:
 [slides and narration](../../../docs/presentation/中間発表_主要事項.md) and
 [PowerPoint](../../../docs/presentation/中間発表_主要事項.pptx).
-Its eleven main slides follow the current abstract. Slide 12 is clickable
-contents; slides 13-18 are hidden question slides. The narration allocation
+A cover and twelve presentation slides follow the current abstract. Slide 14
+is clickable contents; slides 15-20 are hidden question slides. The narration allocation
 is 355 seconds including the 30-second embedded video, not a timed rehearsal.
 
 ## Main explanation
@@ -17,15 +17,17 @@ is 355 seconds including the 30-second embedded video, not a timed rehearsal.
 | 4 | Writing by address | AD, WD, one-bit WE and separate selects; a DDR3 write of 7. |
 | 5 | Reading by address | The same layout with selected return data routed to the CPU. |
 | 6 | SD read request | A request byte array written repeatedly to the fixed transmit register. |
-| 7 | Copy and execution | Fixed receive register, advancing DDR3 destination, and a call to the program entry. |
-| 8 | Drawing and output | CPU library, address write, reused RasterIX drawing/display, and shared DDR3. |
-| 9 | Observed behavior | Unmodified start/later frames from the same standard-output recording. |
-| 10 | Demonstration | The reviewed standard-output 30-second autoplay video. |
-| 11 | Conclusion | A published Wally extension example; controller/GUI work remains planned. |
+| 7 | SD-to-DDR copy | Read the fixed receive register and advance the DDR3 destination. |
+| 8 | Execution start | A call to the address of the program copied into DDR3. |
+| 9 | Drawing commands | CPU library, command values, address write, and connection circuit. |
+| 10 | Image storage and output | Reused RasterIX drawing/display and shared DDR3. |
+| 11 | Observed behavior | Unmodified start/later frames from the same standard-output recording. |
+| 12 | Demonstration | The reviewed standard-output 30-second autoplay video. |
+| 13 | Conclusion | A published Wally extension example; controller/GUI work remains planned. |
 
-`main-slides.mjs` defines the eleven-slide main talk.
+`main-slides.mjs` defines the cover and twelve-slide main talk.
 `abstract-flow.mjs` draws editable functional diagrams and code panels.
-Slides 3 and 6-8 keep the same component positions. Slides 4-5 show the
+Slides 3 and 6-10 keep the same component positions. Slides 4-5 show the
 CPU/peripheral access portion in an enlarged signal view. Blue emphasizes
 the path being discussed. Wally's processor datapath and instruction encoding
 are not prerequisites for this main explanation.
@@ -115,8 +117,8 @@ the blue outlines used for functions covered in the main presentation.
 
 ## Recorded demonstration and scope
 
-Slide 10 embeds `experiments/dvi-recovery-20261109/media/latest-standard-dvi-30s.mp4`
-without transcoding, using its reviewed `latest-start.png` poster. Slide 9 uses
+Slide 12 embeds `experiments/dvi-recovery-20261109/media/latest-standard-dvi-30s.mp4`
+without transcoding, using its reviewed `latest-start.png` poster. Slide 11 uses
 the same record's unmodified start/later images. The latest title-top executable
 is shown using the unchanged standard display bitstream and RasterIX-bundled
 drawing/display cores. Local connection and control wrappers remain integration
@@ -135,18 +137,18 @@ the input video against the approved media hashes; `link_slides.py` adds links.
 
 ## Question slides
 
-- 13: DDCA teaching/reference-book listings on one prefecture map, including
+- 15: DDCA teaching/reference-book listings on one prefecture map, including
   historical examples. See `../ddca-adoption/` for sources and counting scope.
-- 14: three documented RVSOC textbook-use examples, including draft use.
+- 16: three documented RVSOC textbook-use examples, including draft use.
   See `../rvsoc-adoption/`.
-- 15: generic FPGA logic cells, routing and dedicated macro cells, following
+- 17: generic FPGA logic cells, routing and dedicated macro cells, following
   Chu (2018), Sections 2.1.1-2.1.2 and Figure 2.1.
-- 16: Before/After whole-design resource percentages from
+- 18: Before/After whole-design resource percentages from
   `experiments/fpga-resource-comparison-20261108/comparison.json`. This is a
   historical comparison, not isolated attribution to the drawing core.
-- 17: the RVSOC pipeline-derived detailed whole-system diagram. Signal outlines
+- 19: the RVSOC pipeline-derived detailed whole-system diagram. Signal outlines
   are neutral; CPU internals are not marked as explained in the main talk.
-- 18: the official RasterIX FPGA pipeline redrawn for the presentation. Its
+- 20: the official RasterIX FPGA pipeline redrawn for the presentation. Its
   version and differences from measured hardware are in `../rasterix-pipeline/`.
 
 ## Build and publication
@@ -158,8 +160,8 @@ node source/presentation/build.mjs RESEARCH_ROOT PRIVATE_BUILD_DIRECTORY
 ```
 
 The builder creates PPTX, Markdown, preview images and private QA records.
-The still-frame content is re-imported in two contiguous batches because the
-full eighteen-slide package exceeds the runtime import limit. The final
+The still-frame content is re-imported in three contiguous batches because the
+full twenty-slide package exceeds the runtime import limit. The final
 video-bearing package receives integrity/layout checks and native PowerPoint
 rendering. Inspect all slides, private cover, video identity and internal links.
 Keep build data outside OneDrive. Import only reviewed public outputs, update
@@ -167,12 +169,15 @@ the media hashes and publication manifest, and run the local privacy audit.
 
 ## Previous version
 
-The previous presentation is preserved at commit
+The original pipeline-based presentation is preserved at commit
 `40d8a51bd1ab0d9c9a469146c349cd31b173bdce`:
 [published files at that revision](https://github.com/SoshiroFujimori/wally-game-console-research/tree/40d8a51bd1ab0d9c9a469146c349cd31b173bdce/docs/presentation).
-The deck immediately preceding this update is preserved at commit
+The earlier abstract-based deck is preserved at commit
 `1c826a0363901f2a77e8bbb0e8748c168bbb2cbc` and local annotated tag
 `presentation-before-latest-abstract-20261109`. The tag is a local checkpoint;
 the commit is also available in public Git history. Export old files into a
 separate directory when comparing or restoring; do not reset unrelated work
 or the product checkout.
+
+The version before splitting the two compound explanations into twelve content
+slides is commit `fbb34c27ab0f1e5fab338257976076bea32fdbbc`.

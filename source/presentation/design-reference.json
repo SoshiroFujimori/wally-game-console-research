@@ -1,5 +1,5 @@
 {
-  "version": 8,
+  "version": 9,
   "reference": "Harris et al., RISC-V System-on-Chip Design",
   "official_resources": "https://pages.hmc.edu/harris/ddca/rvsocd.html",
   "inspection_date": "2026-10-24",
@@ -103,11 +103,11 @@
     "block_outline": 2.2,
     "note": "Aggregated interface links represent several signals, not one conductor."
   },
-  "diagram_basis": "Pinned console RTL; main slides progressively introduce instruction fetch, load/store operations, the bus, SD, drawing and display. The pipeline, EBU, MMU and caches are shown on hidden question slide 12.",
+  "diagram_basis": "Pinned console RTL; the main slides explain FPGA implementation, address-based reads/writes, SD-to-DDR copying, program execution, drawing commands and image output. Hidden question slide 19 retains the pipeline, EBU, MMU and cache diagram.",
   "console_revision": "261832d48832dd6e26c4971ab8893ce61200688b",
   "detailed_diagram": {
     "source": "board-evolution/wally-overview.mjs",
-    "slide": 12,
+    "slide": 19,
     "hierarchy": [
       "fpgaTop",
       "wallypipelinedsoc",
@@ -120,13 +120,13 @@
     ],
     "expanded": "Pipeline state and operand/forwarding selectors; PC and register-file paths; address decoding and selected responses; cache/MMU interfaces; external memory, SD and graphics connections.",
     "grouped": "ALU internals, cache/MMU internals, prediction, privilege/FPU/MDU logic, instruction expansion, load/store formatting, and most clock/reset/interrupt/control nets.",
-    "highlight": "Blue lines and outlines identify functions and routes introduced in main slides 4-9. AMD IP has a separate dark-blue fill. Internal implementation and display-completion signals remain unhighlighted.",
+    "highlight": "Neutral signal outlines; processor internals are not marked as explained in the main talk. AMD IP retains its separate dark-blue fill.",
     "limits": "A functional projection of the configured source, not an exhaustive RTL-equivalent netlist, cycle-accurate diagram or physical placement. Crossings without junction dots do not connect nets.",
     "supplementary_module_sources": [
       "wally-circuit.mjs",
       "integrated-internals.mjs"
     ],
-    "supplementary_module_scope": "More detailed module drawings retained as source material; not displayed in the current eighteen-slide deck."
+    "supplementary_module_scope": "More detailed module drawings retained as source material; not displayed in the current twenty-slide deck."
   },
   "board_photograph": {
     "file": "assets/nexys-video.png",
@@ -145,7 +145,9 @@
       3,
       6,
       7,
-      8
+      8,
+      9,
+      10
     ],
     "address_access_slides": [
       4,
@@ -186,7 +188,7 @@
   },
   "presentation_mapping_review_date": "2026-11-09",
   "fpga_resource_question_slide": {
-    "slide": 15,
+    "slide": 17,
     "source": "source/presentation/board-evolution/fpga-resources.mjs",
     "scope": "Generic FPGA hierarchy from Chu (2018), not a physical Artix-7 slice or measured utilization",
     "examples": [
@@ -214,7 +216,7 @@
     "layout": "Aligned lookup-output branching, direct and registered paths, centered English resource names, a separate clock input, and evenly spaced macro-cell rows."
   },
   "fpga_utilization_question_slide": {
-    "slide": 16,
+    "slide": 18,
     "source": "source/presentation/board-evolution/fpga-utilization.mjs",
     "evidence": "experiments/fpga-resource-comparison-20261108/comparison.json",
     "qualified_date": "2026-11-08",
@@ -228,7 +230,7 @@
     ]
   },
   "rvsoc_adoption_question_slide": {
-    "slide": 14,
+    "slide": 16,
     "source": "source/presentation/board-evolution/rvsoc-adoption.mjs",
     "data": "source/presentation/rvsoc-adoption/records.json",
     "checked_on": "2026-11-08",
@@ -236,5 +238,5 @@
     "scope": "Documented textbook designations and historical draft use; not an exhaustive current adoption count. Reference-only listings excluded.",
     "presentation": "Editable table with the existing RVSOC-inspired blue header, pale alternate rows, black rules and Yu Gothic/Arial typography."
   },
-  "previous_presentation_commit": "1c826a0363901f2a77e8bbb0e8748c168bbb2cbc"
+  "previous_presentation_commit": "fbb34c27ab0f1e5fab338257976076bea32fdbbc"
 }

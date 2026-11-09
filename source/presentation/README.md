@@ -3,7 +3,8 @@
 This directory builds the single published presentation:
 [slides and narration](../../docs/presentation/中間発表_主要事項.md) and
 [PowerPoint](../../docs/presentation/中間発表_主要事項.pptx).
-The abstract-based main talk has eleven slides and a 355-second allocation,
+The abstract-based main talk has twelve content slides plus a cover and a
+355-second allocation,
 including a 30-second video. Clickable contents and six hidden question slides
 follow it. See [builder notes](board-evolution/README.md) for sources and scope.
 
@@ -17,8 +18,8 @@ node source/presentation/build.mjs RESEARCH_ROOT PRIVATE_BUILD_DIRECTORY
 ```
 
 The entry point delegates to `board-evolution/build.mjs`. Public output is
-sanitized with the private redaction settings. The eighteen-slide content is
-imported in two batches before adding internal slide jumps and the reviewed
+sanitized with the private redaction settings. The twenty-slide content is
+imported in three batches before adding internal slide jumps and the reviewed
 video. The complete final package is checked structurally and rendered in
 native PowerPoint. Preview images and the Markdown counterpart permit reading
 on GitHub. Circuit blocks, signal lines, code, tables and links remain editable.

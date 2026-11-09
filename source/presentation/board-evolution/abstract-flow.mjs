@@ -6,12 +6,12 @@ export function drawAbstractSystem(s, api, focus='all', {compact=false}={}) {
   const ox=64,oy=compact?180:185,sy=compact?0.82:1,gray='#8B96A8';
   const T=(v,x,y,w,h=30,z=23,b=false,c=C.ink,a='left')=>text(s,v,ox+x,oy+y*sy,w,h*sy,z*(compact?0.94:1),b,c,a);
   const B=(v,x,y,w,h,fill=C.white,z=23,stroke=C.ink,width=2.2)=>box(s,v,ox+x,oy+y*sy,w,h*sy,fill,z*(compact?0.94:1),stroke,width);
-  const active=key=>focus==='all'||({request:['request'],copy:['request','memory'],draw:['command','image','memory']}[focus]||[]).includes(key);
+  const active=key=>focus==='all'||({request:['request'],copy:['request','memory','ddr'],execute:['memory','ddr'],command:['command'],image:['image','ddr']}[focus]||[]).includes(key);
   const R=(points,key,arrow=true)=>route(s,points.map(([x,y])=>[ox+x,oy+y*sy]),active(key)?C.blue:gray,arrow,active(key)?3:1.6);
   B('',0,0,1152,355,C.pale,23,C.ink,2);
   T('FPGAボード / Nexys Video',14,5,680,34,25,true);
   if(focus==='request')T('SD制御：0x13000〜0x13FFF',573,8,560,29,20,true,C.blue,'right');
-  if(focus==='draw')T('接続回路：0x10080000〜0x100800FF',517,8,616,29,20,true,C.blue,'right');
+  if(focus==='command')T('接続回路：0x10080000〜0x100800FF',517,8,616,29,20,true,C.blue,'right');
   B('',20,44,930,292,C.chip,23,C.ink,2.4);
   T('FPGAチップ',34,46,220,28,22,true);
   T('基板上の部品',970,48,170,27,20,true,C.ink,'center');
@@ -34,7 +34,7 @@ export function drawAbstractSystem(s, api, focus='all', {compact=false}={}) {
   R([[125,185],[125,295],[360,295]],'command');
   R([[525,295],[700,295]],'command');
   R([[525,145],[560,145],[560,110],[975,110],[975,122],[1000,122]],'request','both');
-  R([[910,152],[965,152],[965,220],[1000,220]],'memory','both');
+  R([[910,152],[965,152],[965,220],[1000,220]],'ddr','both');
   R([[885,181],[885,215],[900,215],[900,264]],'image','both');
   R([[910,307],[1000,307]],'image');
   T('読書き',210,113,125,29,21,false,active('request')?C.blue:C.ink,'center');

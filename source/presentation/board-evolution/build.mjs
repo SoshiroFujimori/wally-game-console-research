@@ -37,7 +37,7 @@ const wiring=createCircuitWiring();
 const {wire,route,junction}=wiring;
 function foot(s,value) {
   const n=P.slides.items.length;
-  if(n===1||n===11){text(s,value,64,665,1110,30,16,false,C.old);return;}
+  if(n===1||n===13){text(s,value,64,665,1110,30,16,false,C.old);return;}
   const captionY=684;
   text(s,'図 '+n,64,captionY,63,30,17,true,C.heading);
   text(s,value,131,captionY,1028,30,16,false,C.ink);
@@ -78,7 +78,7 @@ await addMainSlides({slide,api,foot,cover,root,DDCA,RVSOC,PRODUCT,BASIC,POSTER,V
 let s=slide('目次：発表・質問用スライド',0,
   '質問に関係する項目をクリックすると、そのスライドへ移動します。移動した後は右下のスライド番号をクリックすると、この目次へ戻れます。',
   '',
-  '本編11枚の後に置く操作用の目次である。発表スライドと質問用スライドの両方へ移動できる。質問用スライドは、教科書の採用例、FPGAの構成要素と使用量、回路の詳細の順にまとめる。質問用の6枚は通常の順送りでは表示しないが、目次から選んで開ける。本編の説明時間には目次の操作時間を含めない。');
+  '表紙1枚と発表用12枚の後に置く操作用の目次である。発表スライドと質問用スライドの両方へ移動できる。質問用スライドは、教科書の採用例、FPGAの構成要素と使用量、回路の詳細の順にまとめる。質問用の6枚は通常の順送りでは表示しないが、目次から選んで開ける。本編の説明時間には目次の操作時間を含めない。');
 drawContents(s,api);outline[outline.length-1].navigation=true;
 
 const ddcaDataRoot=process.env.PRESENTATION_DDCA_ASSET_DIRECTORY||path.join(root,'source/presentation/ddca-adoption');
@@ -133,7 +133,7 @@ s.hidden=true;outline[outline.length-1].backup=true;
 await fs.writeFile(path.join(workspace,'rasterix-pipeline-graph.json'),JSON.stringify(pipelineGraph,null,2)+'\n');
 
 // Keep provenance in the notes and the GitHub-readable counterpart.
-for (const number of [3,6,7,8,9,10,17]) {
+for (const number of [3,6,7,8,9,10,11,12,19]) {
   const o=outline[number-1];
   o.detail += '\n\n' + PROVENANCE_DETAIL;
   o.source += '\n' + PROVENANCE_SOURCE;
@@ -142,36 +142,36 @@ for (const number of [3,6,7,8,9,10,17]) {
 for(const {page,number} of pageNumbers)if(number!==CONTENTS_SLIDE)linkToSlide(page,CONTENTS_SLIDE);
 await fs.writeFile(path.join(workspace,'wire-audit.json'),JSON.stringify(wiring.finalize(),null,2)+'\n');
 const total=outline.reduce((n,s)=>n+s.seconds,0);
-if(outline.length!==18||total!==355)throw new Error(`Unexpected allocation ${outline.length} slides, ${total} seconds`);
+if(outline.length!==20||total!==355)throw new Error(`Unexpected allocation ${outline.length} slides, ${total} seconds`);
 await fs.writeFile(path.join(workspace,'outline.json'),JSON.stringify(outline,null,2)+'\n');
 const md=[
   '# 中間発表：FPGAを用いた2Dゲーム機の製作',
-  'アブストの説明に沿った発表です。本編11枚、移動用の目次1枚、質問用6枚で構成します。FPGAボードとゲーム機の全体像を示し、アドレスとデータを使ったCPUの読書き、SDからDDR3へのコピーと実行開始、描画命令の送信、映像出力を順に説明します。',
+  'アブストの説明に沿った発表です。表紙1枚、発表用12枚、移動用の目次1枚、質問用6枚で構成します。FPGAボードとゲーム機の全体像を示し、アドレスとデータを使ったCPUの読書き、SDからDDR3へのコピーと実行開始、描画命令の送信、映像出力を順に説明します。',
   '[PowerPoint版](中間発表_主要事項.pptx) / [アブスト](../abstract/アブスト_主要事項.md) / [論文本文](../thesis/本文.md) / [技術付録](../thesis/技術付録.md) / [再生成方法](../../source/presentation/board-evolution/README.md) / [DDCA授業利用の出典](DDCA授業利用の出典.md) / [RVSOC教科書採用の出典](RVSOC教科書採用の出典.md)',
   '## 図の見方',
-  '外側の薄い枠はFPGAボード、内側の青い枠はFPGAチップです。SDカードスロット、DDR3メモリ、HDMI端子はチップの外にある部品です。CPUや周辺制御の回路はチップ内に実装します。3・6〜8枚目は同じ配置を使い、説明中の経路を青で示します。4〜5枚目はCPUと周辺回路の読書き部分を拡大した概念図です。',
+  '外側の薄い枠はFPGAボード、内側の青い枠はFPGAチップです。SDカードスロット、DDR3メモリ、HDMI端子はチップの外にある部品です。CPUや周辺制御の回路はチップ内に実装します。3・6〜10枚目は同じ配置を使い、説明中の経路を青で示します。4〜5枚目はCPUと周辺回路の読書き部分を拡大した概念図です。',
   'ADはアドレス、WDは書込みデータ、WEは1ビットの書込みイネーブル、RDは読出しデータです。有効な読書きの際のWE=1を書込み、WE=0を読出しとして示します。アドレスデコーダが接続先を選び、読出し値も対応する選択信号で選びます。分岐の黒丸は接続を表し、接続しない線の交差には隙間があります。転送の細かなタイミングや待ち処理は省略します。Cのコードは、物理アドレスを直接使うと仮定した概念コードです。完全なSDドライバやゲームプログラムではありません。',
   '## 回路の提供元',
   PROVENANCE_DETAIL,
   '対応するソースは[回路の提供元一覧](../../source/presentation/board-evolution/README.md#component-provenance)にまとめています。主図では、同じRasterIXリポジトリに含まれる描画と表示を一つの箱にまとめています。実機動画も、この標準表示構成で取得しています。',
   '## 発表時間と質問用スライド',
-  '本編の配分は動画30秒を含め355秒です。動画の再生中に結果を説明します。これは練習を実測した時間ではありません。12枚目の目次から本編と質問用の両方へ移動できます。各スライドの右下の番号から目次に戻れます。質問用の13〜18枚目は、通常の順送りでは表示しません。',
+  '表紙と発表用12枚の配分は動画30秒を含め355秒です。動画の再生中に結果を説明します。これは練習を実測した時間ではありません。14枚目の目次から本編と質問用の両方へ移動できます。各スライドの右下の番号から目次に戻れます。質問用の15〜20枚目は、通常の順送りでは表示しません。',
   '## 目次',
   outline.map((o,i)=>'- ['+(i+1)+'. '+o.title.replaceAll('\n','')+'](#slide-'+(i+1)+')'+(o.backup?'（質問用）':'')).join('\n')
 ];
 outline.forEach((o,i)=>md.push('<a id="slide-'+(i+1)+'"></a>\n## '+(i+1)+'. '+o.title.replaceAll('\n',''),
   o.navigation?'項目名から移動できます。PowerPointでは右下の番号から、この目次へ戻れます。':o.backup?'質問時に参照する資料。本編の発表時間には含めません。':'説明時間の配分：'+o.seconds+'秒',
   '!['+o.title.replaceAll('\n','')+'](slides/slide-'+String(i+1).padStart(2,'0')+'.png)',
-  ...(i===12?['[教育機関・授業・年度・指定の種類・出典の一覧](DDCA授業利用の出典.md)',
+  ...(i===14?['[教育機関・授業・年度・指定の種類・出典の一覧](DDCA授業利用の出典.md)',
     'スライドに示した学校名の例：'+ddcaSummary.categories.map(c=>c.label+'は'+c.examples.join('・')).join('、')+'。']:[]),
-  ...(i===13?['[教育機関・時期・採用根拠の一覧](RVSOC教科書採用の出典.md)']:[]),
-  ...(i===15?['[Before／Afterの比較資料と元レポート](../../experiments/fpga-resource-comparison-20261108/README.md)']:[]),
-  ...(i===9?['[30秒の実機動画を開く](../../experiments/dvi-recovery-20261109/media/latest-standard-dvi-30s.mp4)','PowerPointには動画を埋め込んでいます。スライドショー中に動画の領域をクリックして再生します。']:[]),
+  ...(i===15?['[教育機関・時期・採用根拠の一覧](RVSOC教科書採用の出典.md)']:[]),
+  ...(i===17?['[Before／Afterの比較資料と元レポート](../../experiments/fpga-resource-comparison-20261108/README.md)']:[]),
+  ...(i===11?['[30秒の実機動画を開く](../../experiments/dvi-recovery-20261109/media/latest-standard-dvi-30s.mp4)','PowerPointには動画を埋め込んでいます。スライドショー中に動画の領域をクリックして再生します。']:[]),
   ...(o.navigation?[contentsMarkdown()]:[]),
   o.navigation?'### 目次の使い方':o.backup?'### 質問時の使い方':'### 発表原稿',o.narration,
-  '<details>\n<summary>補足説明と出典</summary>\n',o.detail,o.source?'出典：'+o.source:'','\n</details>',...(o.navigation?[]:['[移動用の目次へ戻る](#slide-12)'])));
+  '<details>\n<summary>補足説明と出典</summary>\n',o.detail,o.source?'出典：'+o.source:'','\n</details>',...(o.navigation?[]:['[移動用の目次へ戻る](#slide-14)'])));
 md.push('## 動作確認と詳しい実装',
-  '9枚目の画像と10枚目の動画は、[標準表示構成の同じ30秒の実機記録](../../experiments/dvi-recovery-20261109/README.md)です。最新の文字配置のゲームを実行し、ボールの移動・反射とブロック消去を確認しました。これは自動プレイであり、コントローラによる操作ではありません。取得条件と構成の版は再現資料に保存しています。',
+  '11枚目の画像と12枚目の動画は、[標準表示構成の同じ30秒の実機記録](../../experiments/dvi-recovery-20261109/README.md)です。最新の文字配置のゲームを実行し、ボールの移動・反射とブロック消去を確認しました。これは自動プレイであり、コントローラによる操作ではありません。取得条件と構成の版は再現資料に保存しています。',
   '詳しい実装と再現手順は[技術付録](../thesis/技術付録.md)にまとめています。コントローラへの対応やホーム画面などのGUIの充実は今後の拡充候補です。',
   '## 図と書式の出典',
   '主図はアブストと製品RTLを基にした機能図です。書式はRVSOCの図7.11・9.28・23.2を参考にしています。質問用の詳細な回路図、教科書の採用例、FPGAの構成要素・使用量、描画回路の内部については、それぞれのスライドの出典と補足を参照してください。[デザインと再生成方法](../../source/presentation/board-evolution/README.md)に実装箇所をまとめています。',
@@ -192,13 +192,13 @@ if(audience==='public'){
 // Final package integrity/layout and video relationships are checked separately.
 await fs.mkdir(path.join(workspace,'poster-review'), { recursive: true });
 const posterFinal=path.join(workspace,'poster-review','poster-validated.pptx');
-const validationOptions={workspaceDir:workspace,pythonExecutable:process.env.RUNTIME_PYTHON,integrityValidatorPath:path.join(process.env.PRESENTATION_SKILL,'container_tools/inspect_presentation_package_integrity.py'),layoutValidatorPath:path.join(process.env.PRESENTATION_SKILL,'container_tools/inspect_presentation_layout_geometry.py'),layoutArgs:['--expected-slide-size-emu','12192000,6858000','--validate-bullet-geometry','--validate-heading-fit','--require-native-table-slide','14','--require-native-table-slide','16'],explicitTotalSlideCount:18,requiredNativeTableOwnerSlides:[14,16],requiredNativeChartOwnerSlides:[],fontPolicy:{basis:'design',families:[font,latinFont,codeFont]}};
+const validationOptions={workspaceDir:workspace,pythonExecutable:process.env.RUNTIME_PYTHON,integrityValidatorPath:path.join(process.env.PRESENTATION_SKILL,'container_tools/inspect_presentation_package_integrity.py'),layoutValidatorPath:path.join(process.env.PRESENTATION_SKILL,'container_tools/inspect_presentation_layout_geometry.py'),layoutArgs:['--expected-slide-size-emu','12192000,6858000','--validate-bullet-geometry','--validate-heading-fit','--require-native-table-slide','16','--require-native-table-slide','18'],explicitTotalSlideCount:20,requiredNativeTableOwnerSlides:[16,18],requiredNativeChartOwnerSlides:[],fontPolicy:{basis:'design',families:[font,latinFont,codeFont]}};
 await finalizePresentation({...validationOptions,candidatePath:poster,finalPath:posterFinal,verifyArtifactToolImport:false,receiptPath:path.join(workspace,'poster-validation.json')});
-// The 18-slide poster exceeds the runtime's aggregate XML construction limit.
-// Import all authored content in two contiguous batches, then inspect the full
+// The 20-slide poster exceeds the runtime's aggregate XML construction limit.
+// Import all authored content in three contiguous batches, then inspect the full
 // final package and its native PowerPoint rendering/navigation separately.
 const importChecks=[];
-for(const [batchNumber,first,count] of [[1,0,11],[2,11,7]]){
+for(const [batchNumber,first,count] of [[1,0,7],[2,7,7],[3,14,6]]){
   const batch=await Presentation.load(structuredClone(P.toProto()));
   batch.slides.keep(Array.from({length:count},(_,i)=>first+i));
   const batchPath=path.join(workspace,`content-batch-${batchNumber}.pptx`);
@@ -217,7 +217,7 @@ const linked=path.join(workspace,'linked-candidate.pptx');
 const linking=spawnSync(process.env.RUNTIME_PYTHON,[path.join(root,'source/presentation/board-evolution/link_slides.py'),posterFinal,linked,path.join(workspace,'navigation-targets.json')],{encoding:'utf8'});
 if(linking.status!==0)throw new Error(linking.stderr||linking.stdout||'Slide linking failed');
 await fs.writeFile(path.join(workspace,'navigation-links.json'),linking.stdout);
-const embedding=spawnSync(process.env.RUNTIME_PYTHON,[path.join(root,'source/presentation/board-evolution/embed_video.py'),linked,candidate,path.join(root,VIDEO),'--review',path.join(root,'publication/media-review.json'),'--slide','10'],{encoding:'utf8'});
+const embedding=spawnSync(process.env.RUNTIME_PYTHON,[path.join(root,'source/presentation/board-evolution/embed_video.py'),linked,candidate,path.join(root,VIDEO),'--review',path.join(root,'publication/media-review.json'),'--slide','12'],{encoding:'utf8'});
 if(embedding.status!==0)throw new Error(embedding.stderr||embedding.stdout||'Video embedding failed');
 await fs.writeFile(path.join(workspace,'video-embedding.json'),embedding.stdout);
 if(process.env.PRESENTATION_PREVIEW_ONLY==='1'){

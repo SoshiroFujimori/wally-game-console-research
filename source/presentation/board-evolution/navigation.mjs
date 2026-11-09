@@ -1,5 +1,5 @@
 // Native slide navigation. The slide names remain editable text objects.
-export const CONTENTS_SLIDE=12;
+export const CONTENTS_SLIDE=14;
 export const CONTENTS_ITEMS=[
   {number:1,label:'表紙',group:'発表スライド'},
   {number:2,label:'FPGAチップと周辺部品',group:'発表スライド'},
@@ -7,17 +7,19 @@ export const CONTENTS_ITEMS=[
   {number:4,label:'アドレスで相手を選び、値を書く',group:'発表スライド'},
   {number:5,label:'選んだ相手の値をCPUへ戻す',group:'発表スライド'},
   {number:6,label:'SDカードへ読出しを要求する',group:'発表スライド'},
-  {number:7,label:'DDR3へコピーし、実行する',group:'発表スライド'},
-  {number:8,label:'描画命令とゲーム画面の出力',group:'発表スライド'},
-  {number:9,label:'実機での動作確認',group:'発表スライド'},
-  {number:10,label:'ブロック崩しの実機動画',group:'発表スライド'},
-  {number:11,label:'結論と今後の展望',group:'発表スライド'},
-  {number:13,label:'DDCAを教材に挙げる授業',group:'教科書の採用例'},
-  {number:14,label:'RVSOCの教科書採用例',group:'教科書の採用例'},
-  {number:15,label:'FPGAチップの構成要素',group:'FPGA'},
-  {number:16,label:'FPGAの使用量',group:'FPGA'},
-  {number:17,label:'詳細な全体のブロック図',group:'回路の詳細'},
-  {number:18,label:'描画回路のFPGAパイプライン',group:'回路の詳細'},
+  {number:7,label:'SDカードからDDR3へコピーする',group:'発表スライド'},
+  {number:8,label:'DDR3に置いたプログラムを実行する',group:'発表スライド'},
+  {number:9,label:'描画回路へ命令を送る',group:'発表スライド'},
+  {number:10,label:'画像を保存し、映像を出す',group:'発表スライド'},
+  {number:11,label:'実機で確認した動作',group:'発表スライド'},
+  {number:12,label:'ブロック崩しの実機動画',group:'発表スライド'},
+  {number:13,label:'結論と今後の展望',group:'発表スライド'},
+  {number:15,label:'DDCAを教材に挙げる授業',group:'教科書の採用例'},
+  {number:16,label:'RVSOCの教科書採用例',group:'教科書の採用例'},
+  {number:17,label:'FPGAチップの構成要素',group:'FPGA'},
+  {number:18,label:'FPGAの使用量',group:'FPGA'},
+  {number:19,label:'詳細な全体のブロック図',group:'回路の詳細'},
+  {number:20,label:'描画回路のFPGAパイプライン',group:'回路の詳細'},
 ];
 
 const destinations=new Map();
@@ -33,13 +35,13 @@ export function drawContents(s,api){
   wire(s,64,178,608,178,C.ink,false,1.2);
   wire(s,668,178,1216,178,C.ink,false,1.2);
   const item=(record,x,y)=>{
-    const number=text(s,String(record.number),x,y,46,34,25,true,C.heading,'right');
-    const label=text(s,record.label,x+63,y,481,34,24,false,C.ink);
+    const number=text(s,String(record.number),x,y,46,31,25,true,C.heading,'right');
+    const label=text(s,record.label,x+63,y,481,31,24,false,C.ink);
     number.name=`contents-number-${record.number}`;
     label.name=`contents-label-${record.number}`;
     linkToSlide(number,record.number);linkToSlide(label,record.number);
   };
-  CONTENTS_ITEMS.slice(0,11).forEach((r,i)=>item(r,64,193+i*37));
+  CONTENTS_ITEMS.slice(0,13).forEach((r,i)=>item(r,64,193+i*32));
   ['教科書の採用例','FPGA','回路の詳細'].forEach((group,i)=>{
     const y=191+i*139;
     text(s,group,668,y,548,33,24,true,C.heading);
