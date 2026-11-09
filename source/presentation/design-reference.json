@@ -1,5 +1,5 @@
 {
-  "version": 9,
+  "version": 10,
   "reference": "Harris et al., RISC-V System-on-Chip Design",
   "official_resources": "https://pages.hmc.edu/harris/ddca/rvsocd.html",
   "inspection_date": "2026-10-24",
@@ -103,7 +103,7 @@
     "block_outline": 2.2,
     "note": "Aggregated interface links represent several signals, not one conductor."
   },
-  "diagram_basis": "Pinned console RTL; the main slides explain FPGA implementation, address-based reads/writes, SD-to-DDR copying, program execution, drawing commands and image output. Hidden question slide 19 retains the pipeline, EBU, MMU and cache diagram.",
+  "diagram_basis": "Pinned console RTL; main slides introduce Wally, then follow SD requests and receive data, DDR3 storage and execution, drawing commands, and output. Slide 11 identifies the added integration work. Slide 12 is the sole execution-result slide. Hidden question slide 19 retains the detailed system view.",
   "console_revision": "261832d48832dd6e26c4971ab8893ce61200688b",
   "detailed_diagram": {
     "source": "board-evolution/wally-overview.mjs",
@@ -142,8 +142,6 @@
   "simplified_diagrams": {
     "source": "board-evolution/abstract-flow.mjs",
     "overview_and_transfer_slides": [
-      3,
-      6,
       7,
       8,
       9,
@@ -151,7 +149,8 @@
     ],
     "address_access_slides": [
       4,
-      5
+      5,
+      6
     ],
     "scope": "Functional diagrams aligned with the abstract; no instruction-encoding lesson in the main talk.",
     "forward_signals": [
@@ -162,7 +161,30 @@
     "selection": "Decode selects one target; the corresponding select chooses read data.",
     "sd_transfer": "CPU issues the SD request, copies received bytes to successive DDR3 addresses, then transfers execution to the copied program; the C fragment is conceptual.",
     "display": "A combined drawing/display block reused from official RasterIX. The same standard display configuration is verified by experiments/dvi-recovery-20261109.",
-    "read_signal": "read data RD"
+    "read_signal": "read data RD",
+    "access_examples": [
+      {
+        "slide": 4,
+        "target": "SD transmit register",
+        "address": "0x13048",
+        "write_enable": 1,
+        "select": "S0"
+      },
+      {
+        "slide": 5,
+        "target": "SD receive register",
+        "address": "0x1304C",
+        "write_enable": 0,
+        "select": "S0"
+      },
+      {
+        "slide": 6,
+        "target": "DDR3 storage",
+        "address": "0x80000000",
+        "write_enable": 1,
+        "select": "S1"
+      }
+    ]
   },
   "cover": {
     "fields": [
@@ -184,7 +206,7 @@
     "internal_circuit_example": "An AND gate corresponding to the SystemVerilog expression assign y = a & b.",
     "code_scope": "A small combinational-logic example; it is not a complete peripheral controller.",
     "purpose": "Explain that a described circuit can be implemented inside the FPGA chip to control physical components on the board.",
-    "research_purpose": "Slide 3 shows the console connection and identifies the added command adapter."
+    "research_purpose": "Slide 3 groups Wally into one block, describes its HDL/textbook, and introduces the extension purpose."
   },
   "presentation_mapping_review_date": "2026-11-09",
   "fpga_resource_question_slide": {
@@ -238,5 +260,5 @@
     "scope": "Documented textbook designations and historical draft use; not an exhaustive current adoption count. Reference-only listings excluded.",
     "presentation": "Editable table with the existing RVSOC-inspired blue header, pale alternate rows, black rules and Yu Gothic/Arial typography."
   },
-  "previous_presentation_commit": "fbb34c27ab0f1e5fab338257976076bea32fdbbc"
+  "previous_presentation_commit": "b0cdac50bbcc638a736b7e1737b33dbf72b6c8d3"
 }

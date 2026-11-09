@@ -1,7 +1,7 @@
 import fs from 'node:fs/promises';
 import path from 'node:path';
 import {drawImplementationFlow} from './board-circuit.mjs';
-import {drawAbstractSystem, drawAbstractAccess, drawConceptCode} from './abstract-flow.mjs';
+import {drawAbstractSystem, drawAbstractAccess, drawConceptCode, drawWallyExtension, drawIntegrationContribution} from './abstract-flow.mjs';
 
 // Main talk: the same functional paths lead from the abstract to its C example.
 export async function addMainSlides(ctx) {
@@ -23,45 +23,42 @@ export async function addMainSlides(ctx) {
   text(s,'回路をHDLコードで記述し、FPGAチップ内に実装する',64,645,1152,32,28,true);
   foot(s,'HDLの例とAND回路の対応');
 
-  s=slide('教育用CPUをゲーム機へ拡張する',30,
-    '本研究では、教育用CPUのWallyに描画・表示機能を追加しました。CPUやSD制御にはWallyの既存構成を使います。DDR制御の本体はAMD製です。描画と表示には、RasterIXに含まれる回路を流用しました。その間をつなぐ回路を追加し、Nexys Videoに実装しました。目的は、Wallyの学習者にゲーム機への拡張例を示すことです。',
-    `${RVSOC} ${PRODUCT} source/abstract/content.json.`,
-    'Wallyの既存構成を囲む枠はCPU・周辺制御・メモリ接続の利用範囲を示す。DDRコントローラー本体はAMD MIG IPであり、Wally側の生成・接続の仕組みを利用した。Nexys Video向け設定とRasterIXへの接続を本研究で追加した。描画と表示を一つの箱にまとめ、内部の画素処理や表示タイミングはこの図では示していない。');
-  text(s,'既存のCPUと描画・表示回路を、接続回路でつなぐ',64,129,1152,44,29,true,C.blue);
-  drawAbstractSystem(s,api,'all');
-  text(s,'目的：Wallyの学習者に、ゲーム機への拡張例を示す',64,579,1152,58,31,true);
-  foot(s,'枠は回路の提供元、矢印はデータの通り道を示す');
-
-  s=slide('アドレスで相手を選び、値を書く',40,
-    'CPUからの読み書きを拡大します。CPUはアドレスAD、書込みデータWD、書込みイネーブルWEを出します。アドレスデコーダは、ADがどの範囲に入るかを調べます。この例ではDDR3の範囲なので、DDR制御を選ぶS1だけが1になります。WEが1なので、選ばれたDDR制御がWDの7を受け取り、ADが示す番地に保存します。アドレスは、相手の回路と、その中の場所を指定しています。',
-    `${PRODUCT} console/src/mmu/adrdecs.sv; console/src/uncore/uncore.sv. ${RVSOC} Figure 9.28.`,
-    '有効な読書きが行われるときの概念図である。AD/WD/WE/RD、S0〜S2は説明用の信号名であり、単一の実バスの全信号を表さない。実装にある転送の有効性、バス変換、待ち、クロック変換、アクセス幅などを省略する。DDR3のアドレス範囲は0x80000000〜0x9FFFFFFFである。線の太さは1ビットと複数ビットの区別を示す。');
-  text(s,'例：DDR3の 0x80000000 番地へ、値7を書く',64,119,1152,38,28,true,C.blue);
-  drawAbstractAccess(s,api,false);
-  text(s,'DDR3の範囲：0x80000000〜0x9FFFFFFF → S1＝1',64,647,1152,34,27,true);
-
-  s=slide('選んだ相手の値を、CPUへ戻す',35,
-    '次に、同じ番地から値を読みます。アドレスでDDR制御が選ばれる点は同じですが、今度はWEを0にします。各回路が返す値は、下の選択回路に集まります。選択回路も同じS0からS2を使います。この例ではS1が1なので、DDR制御の値だけを選びます。先ほど保存した7が、読出しデータRDとしてCPUへ戻ります。',
-    `${PRODUCT} console/src/uncore/uncore.sv. ${RVSOC} Figure 9.28.`,
-    '有効な転送中のWE=0を読出し、WE=1を書込みとして説明している。WE=0だけで転送が開始するという意味ではない。読み出す相手の選択はアドレスから決まる。戻り値を選ぶS0〜S2は同じ選択信号を表し、図では同名のラベルで接続を示す。実バスでは応答まで選択を保持する必要がある。');
-  text(s,'例：同じ番地から値7を読み、CPUへ返す',64,119,1152,38,28,true,C.blue);
-  drawAbstractAccess(s,api,true);
-  text(s,'同じ選択信号S0〜S2で、戻す値も一つに選ぶ',64,647,1152,34,29,true);
+  s=slide('拡張元のWallyと研究の目的',35,
+    'Wallyは、教科書で設計を学べるCPUです。RISC-Vという命令の規則に従ってプログラムを実行します。CPUと周辺回路のHDLコードが公開されており、回路を変更したり、機能を追加したりできます。教科書RISC-V System-on-Chip Designが、その設計を説明しています。本研究ではWallyにRasterIXの描画・表示回路を接続し、学習者が参考にできるゲーム機への拡張例を示します。',
+    `${RVSOC} console/README.md; ${PRODUCT} source/abstract/content.json.`,
+    'WallyをCPUと周辺制御を含む一つのまとまりとして示す。図は命令転送に関わる主要な接続だけを表し、共有メモリへの接続は後の全体図に示す。WallyのリポジトリにはCPUと周辺回路のRTLが含まれる。DDRコントローラー本体はAMD製IPである。Wallyの教育効果を測定したという主張ではない。');
+  text(s,'Wally：教科書で設計を学べるRISC-V CPU',64,135,1152,44,30,true,C.blue);
+  text(s,'CPUと周辺回路のHDLコードが公開されている',64,206,1152,40,29);
+  text(s,'『RISC-V System-on-Chip Design』が設計を解説',64,254,1152,40,29);
+  drawWallyExtension(s,api);
+  text(s,'目的：Wallyの学習者に、ゲーム機への拡張例を示す',64,557,1152,65,31,true);
+  foot(s,'WallyとRasterIXを利用したゲーム機への拡張');
 
   s=slide('SDカードへ読出しを要求する',45,
-    'この読み書きを使って、SDカードからゲームを読み込みます。まずCPUは、SD制御の送信用レジスタへ、読出し要求を表す数値を順番に書きます。下のコードでは、配列の6個の数値を、同じアドレスへ一つずつ書いています。アドレスは0x13048、WEは1です。デコーダがS0を1にし、SD制御が書き込まれた数値をカードへ送ります。カードはこの要求に応じてデータを返します。',
-    'source/abstract/content.json; console/fpga/zsbl/spi.h; console/src/uncore/spi_apb.sv.',
-    'SD制御の割当範囲は0x13000〜0x13FFF、送信用レジスタは0x13048、受信用は0x1304Cである。request配列は先頭からの複数ブロック読出しに対応するCMD18の要求例。Cは物理アドレスへ直接アクセスできると仮定した概念コードであり、実行可能なSDドライバ全体ではない。実装の初期化、応答確認、受信クロックの発生、転送待ちなどはソースにある。');
-  text(s,'送信用レジスタ 0x13048 へ、要求を表す数値を順に書く',64,129,1152,44,28,true,C.blue);
-  drawAbstractSystem(s,api,'request');
-  drawConceptCode(s,api,[
-    ['uint8_t request[] = {0x52, 0, 0, 0, 0, 0xE1};','読出し要求を表す数値'],
-    ['for (int i = 0; i < 6; i++)','6個を一つずつ送る'],
-    ['  *(uint32_t *)0x13048 = request[i];','書込み先は毎回同じ']
-  ],551);
-  foot(s,'SDカードへ読出し要求を送る概念コード');
+    'まず、SDカードからゲームプログラムを読み込みます。CPUはアドレスADに0x13048、書込みデータWDに読出し要求を表す数値、書込みイネーブルWEに1を出します。デコーダは、アドレスがSD制御の範囲に入るため、S0を1にします。SD制御は、選ばれた送信用レジスタにWDを取り込み、カードへ送ります。下のコードのrequestは要求を表す数値の配列です。同じアドレスへ順に書いて、カードに読出しを要求します。',
+    'source/abstract/content.json; console/fpga/zsbl/spi.h; console/src/uncore/spi_apb.sv; console/src/mmu/adrdecs.sv; console/src/uncore/uncore.sv.',
+    'AD/WD/WE/RD、S0〜S2は説明用の信号名である。有効な読書きが行われる場面を示し、転送の有効性、バス変換、待ち、クロック変換、アクセス幅などは省略する。SD制御の範囲は0x13000〜0x13FFF。requestは読出し要求を構成する数値の配列、iは順番を示し、アブストのCMD18の配列に対応する。Cは物理アドレスを直接参照する概念コードであり、初期化や応答確認などを含む実行可能なドライバ全体ではない。');
+  text(s,'CPUが読出し要求を、SD制御の送信用レジスタへ書く',64,119,1152,38,28,true,C.blue);
+  drawAbstractAccess(s,api,{target:'sd',address:'0x13048',value:'request[i]'});
+  drawConceptCode(s,api,[['*(uint32_t *)0x13048 = request[i];','要求の数値を順に送る']],638);
 
-  s=slide('SDカードからDDR3へコピーする',30,
+  s=slide('SDカードから届いた値をCPUへ戻す',35,
+    'カードから届いたデータは、SD制御の受信用レジスタに入ります。CPUはそのアドレス0x1304Cを出し、今度はWEを0にします。デコーダは同じSD制御を選ぶS0を1にします。下の選択回路にもS0からS2が入り、S0が1なので、SD制御の受信値だけを選びます。その値がRDとしてCPUへ戻ります。アドレスを変えることで、同じSD制御の送信用と受信用を使い分けています。',
+    'source/abstract/content.json; console/fpga/zsbl/spi.h; console/src/uncore/spi_apb.sv; console/src/uncore/uncore.sv.',
+    '受信用レジスタは0x1304C。受信値の下位8ビットをvalueに格納する。有効な転送中のWE=0を読出しとして示しており、WE=0だけで転送が始まる意味ではない。戻り値を選ぶS0〜S2は同じ選択信号を表す。図の同名ラベルは接続を表し、実バスでは応答まで選択を保持する。受信可能性の確認と通信クロックの発生は概念コードから省略している。');
+  text(s,'受信用レジスタ 0x1304C の値を、RDとしてCPUへ返す',64,119,1152,38,28,true,C.blue);
+  drawAbstractAccess(s,api,{reading:true,target:'sd',address:'0x1304C',value:'受信値'});
+  drawConceptCode(s,api,[['uint8_t value = *(uint32_t *)0x1304C;','受信した1バイトを読む']],638);
+
+  s=slide('受け取った値をDDR3へ保存する',30,
+    '受け取ったプログラムを置くメモリがDDR3です。CPUは、ADに保存先の0x80000000、WDに受信値、WEに1を出します。今度はアドレスがDDR3の範囲なので、S1が1になります。選ばれたDDRコントローラーが、ADで指定された場所に受信値を書き込みます。このDDRコントローラーにはAMD製の回路を使っています。',
+    'source/abstract/content.json; console/fpga/zsbl/boot.c; console/fpga/generator/ddr3-nexysvideo.tcl; console/fpga/generator/wally.tcl; console/src/uncore/uncore.sv.',
+    'DDR3の範囲は0x80000000〜0x9FFFFFFF。図は1バイトの保存先指定を示し、バスの転送幅、書込みストローブ、キャッシュ、クロック変換、メモリ仲裁は省略する。コントローラー本体はAMD MIG IPであり、生成と接続にはWally側の仕組みを利用する。DDR3への画像保存は後の描画・表示の説明で扱う。');
+  text(s,'DDR3の 0x80000000 番地へ、SDカードからの受信値を書く',64,119,1152,38,27,true,C.blue);
+  drawAbstractAccess(s,api,{target:'ddr',address:'0x80000000',value:'受信値'});
+  drawConceptCode(s,api,[['*(uint8_t *)0x80000000 = value;','DDR3へ1バイトを保存']],638);
+
+  s=slide('SDカードからDDR3へコピーする',35,
     '返ってきたデータは、受信用レジスタ0x1304Cから読みます。CPUはそれを、DDR3の0x80000000から順に保存します。次のデータも同じ受信用レジスタから読みますが、保存先は1バイトずつ進めます。こうしてSDカードの内容をDDR3へコピーします。',
     'source/abstract/content.json; console/fpga/zsbl/spi.h; console/fpga/zsbl/boot.c; console/examples/rasterix/WallyBusConnector.hpp.',
     'sizeはコピーするバイト数、dstは保存先の先頭、iは先頭からのバイト位置を表す。受信用レジスタの下位8ビットを保存する。物理アドレスを直接使う概念例であり、実機のブートローダーやOSを含む起動手順の全体を置き換えるものではない。Linuxで動く実際のゲームがそのまま物理アドレスを参照するわけではなく、入出力には対応付けた領域を使う。');
@@ -98,7 +95,7 @@ export async function addMainSlides(ctx) {
   foot(s,'CPUから接続回路を介して描画命令を送る概念コード');
 
   s=slide('画像をDDR3へ保存し、映像を出す',20,
-    'RasterIXは、受け取った描画命令に従って画像を作ります。画像はDDR制御を通してDDR3へ保存します。さらに、その画像を読み出し、HDMI端子から映像を出します。画像を作る描画回路と、映像を出す表示回路は、どちらもRasterIXに含まれるものを流用しています。',
+    'RasterIXは、描画命令に従って画像を作り、DDR制御を通してDDR3へ保存します。表示回路がその画像を読み、HDMI端子から映像を出します。描画と表示は、どちらもRasterIXに含まれる回路を流用しています。',
     `${PRODUCT} console/fpga/generator/rasterixmem.tcl; console/fpga/src/rasterixdisplay.sv; ${BASIC}`,
     'DDR3への画像の保存と読出しはRasterIX側の回路が要求し、DDRコントローラーが処理する。描画と表示は内部ではそれぞれの回路が担当するが、提供元が同じため主図では一つの箱にまとめている。画像の切替やメモリ仲裁、画素データの形式、映像の符号化は省略している。標準表示構成の実機記録を根拠とする。');
   text(s,'RasterIXが画像を作り、DDR3に保存した画像を表示する',64,129,1152,44,29,true,C.blue);
@@ -107,24 +104,24 @@ export async function addMainSlides(ctx) {
   text(s,'表示：DDR3の画像を読み、HDMI端子から映像を出す',64,633,1152,38,29,true);
   foot(s,'描画・表示回路とDDR3の間で画像をやり取りする経路');
 
-  s=slide('実機で確認した動作',25,
-    '実機では、640かける480画素のゲーム画面を出力しました。左が開始時、右がプレイ中の画面です。ボールが動き、壁やパドルで跳ね返り、当たったブロックが消えることを確認しました。現在はプログラムがパドルを自動で動かしています。次のスライドで実際の映像を示します。',
-    BASIC,
-    '最新のタイトル配置を持つ実行ファイルと、RasterIX同梱の表示回路を使った30秒の実機記録から抽出した元画像を使用。画像は加工せず、縦横比を維持して配置している。640×480はゲームの画像解像度で、録画ファイルの保存解像度ではない。画像だけで動きを判定せず、実機動画と対応する観察記録を根拠にする。');
-  text(s,'HDMI端子から、640×480画素のゲーム画面を出力',64,130,1152,42,29,true,C.blue);
-  for (const [p,x,label] of [[POSTER,64,'ゲーム開始時'],['experiments/dvi-recovery-20261109/media/latest-later.png',662,'プレイ中']]) {
-    text(s,label,x,195,554,35,26,true,C.heading,'center');
-    s.images.add({blob:await fs.readFile(path.join(root,p)),contentType:'image/png',alt:label+'の未加工の実機映像',fit:'contain',position:{left:x,top:242,width:554,height:311.625}});
-  }
-  text(s,'ボールの移動・反射と、当たったブロックの消去を確認',64,583,1152,45,29,true);
-  text(s,'現在は、プログラムがパドルを動かす自動プレイ',64,635,1152,34,26);
+  s=slide('本研究で追加した回路とソフトウェア',25,
+    '本研究では、CPUが指定アドレスへ書いた値を、RasterIXへ渡す接続回路を加えました。ソフトウェアには、ライブラリが作った命令列をそのアドレスへ書く処理を用意しました。接続方法と実行手順は公開しています。次に、この構成の実機動作を示します。',
+    `${PRODUCT} console/examples/rasterix/WallyBusConnector.hpp; source/abstract/content.json; docs/thesis/本文.md.`,
+    'Wallyと公式RasterIXの再利用を前提とする本研究の実装範囲を示す。WallyBusConnectorがRasterIXライブラリの接続先インターフェースを実装し、メモリに置いた命令列をCPUで読み出してMMIOへ書く。rasterix_apbとrasterixの接続回路が命令を渡す。描画本体、表示本体、OpenGL互換ライブラリ自体を新規設計したという主張ではない。図のAD/WD/WEは概念的な信号名で、転送幅、待ち、末尾通知、応答、クロック変換などは集約する。共有DDRへの接続と表示切替の制御も実装に含まれる。公開の目的は学習者が拡張方法を参照できるようにすることであり、教育効果の測定結果ではない。');
+  text(s,'Wallyの読書きで、RasterIXへ描画命令を渡せるようにした',64,129,1152,44,28,true,C.blue);
+  drawIntegrationContribution(s,api);
+  text(s,'回路：描画命令用のアドレスを設け、受け取った値を渡す',64,422,1152,48,29,true);
+  text(s,'ソフトウェア：ライブラリの命令列を、そのアドレスへ書く',64,493,1152,48,29,true);
+  text(s,'接続回路・書込み処理・ゲームの実行手順を公開',64,594,1152,44,29,true,C.heading);
+  foot(s,'CPUから描画回路へ命令を渡すために追加した部分');
 
   s=slide('ブロック崩しの実機動画',30,
-    'こちらが実際の映像です。ボールが壁やパドルで跳ね返り、ブロックが消えていきます。',
+    'こちらが実機の映像です。640かける480画素のゲーム画面をHDMI端子から出しています。ボールの移動、壁やパドルでの反射、当たったブロックの消去を確認しました。現在はプログラムがパドルを自動で動かしています。',
     `${BASIC} Video: ${VIDEO}`,
     '2026年11月9日の標準表示構成による30秒の記録。RasterIX_IFと同梱dvi_framebufferを利用している。動画領域をクリックすると再生する。パドルは自動操作であり、コントローラによるプレイではない。録画の保存フレームレートからゲームの描画FPSを求めていない。確認した取得条件と機器の範囲は再現資料を参照。');
-  s.images.add({blob:await fs.readFile(path.join(root,POSTER)),contentType:'image/png',alt:'標準表示構成で動くブロック崩しの実機動画',fit:'contain',position:{left:160,top:132,width:960,height:540}});
-  text(s,'30秒の実機動画：画面をクリックして再生',64,681,1080,29,21,true,C.blue,'center');
+  text(s,'640×480画素のゲーム画面を出力し、プログラムで自動操作',64,126,1152,38,27,true,C.blue);
+  s.images.add({blob:await fs.readFile(path.join(root,POSTER)),contentType:'image/png',alt:'標準表示構成で動くブロック崩しの実機動画',fit:'contain',position:{left:200,top:173,width:880,height:495}});
+  text(s,'ボールの移動・反射と、当たったブロックの消去を確認',64,681,1080,29,22,true,C.blue,'center');
 
   s=slide('結論と今後の展望',25,
     'Wallyに描画・表示機能を追加し、ブロック崩しの実行と映像出力を実現しました。回路の接続方法とゲームの実行手順を公開し、Wallyの学習者が参考にできる拡張例を示しました。今後は、ゲームコントローラによる操作や、ホーム画面などのGUIの追加を検討します。',

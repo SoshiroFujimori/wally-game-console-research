@@ -13,22 +13,23 @@ is 355 seconds including the 30-second embedded video, not a timed rehearsal.
 | --- | --- | --- |
 | 1 | Title | Public identities are withheld; the school copy retains its private cover. |
 | 2 | FPGA circuit implementation | HDL and an AND gate, with physical SD, DDR3 and HDMI parts. |
-| 3 | Game-console extension | Existing CPU/drawing circuits and the added adapter, inside the FPGA. |
-| 4 | Writing by address | AD, WD, one-bit WE and separate selects; a DDR3 write of 7. |
-| 5 | Reading by address | The same layout with selected return data routed to the CPU. |
-| 6 | SD read request | A request byte array written repeatedly to the fixed transmit register. |
+| 3 | Wally and the research purpose | Published CPU/peripheral HDL, its textbook, and the extension goal. |
+| 4 | SD read request | AD, WD and WE select the SD transmit register through S0. |
+| 5 | Received SD data | The same layout returns the SD receive value through S0 and RD. |
+| 6 | DDR3 storage | The received byte is written to DDR3 through S1 and the AMD controller. |
 | 7 | SD-to-DDR copy | Read the fixed receive register and advance the DDR3 destination. |
 | 8 | Execution start | A call to the address of the program copied into DDR3. |
 | 9 | Drawing commands | CPU library, command values, address write, and connection circuit. |
 | 10 | Image storage and output | Reused RasterIX drawing/display and shared DDR3. |
-| 11 | Observed behavior | Unmodified start/later frames from the same standard-output recording. |
+| 11 | Work added in this research | Command adapter circuit, MMIO software connector, and published execution steps. |
 | 12 | Demonstration | The reviewed standard-output 30-second autoplay video. |
 | 13 | Conclusion | A published Wally extension example; controller/GUI work remains planned. |
 
 `main-slides.mjs` defines the cover and twelve-slide main talk.
 `abstract-flow.mjs` draws editable functional diagrams and code panels.
-Slides 3 and 6-10 keep the same component positions. Slides 4-5 show the
-CPU/peripheral access portion in an enlarged signal view. Blue emphasizes
+Slide 3 groups Wally into one block and explains its public HDL and textbook.
+Slides 4-6 keep the same signal layout while following an SD request, a received
+byte, and its DDR3 write. Slides 7-10 keep the same full-system component positions. Blue emphasizes
 the path being discussed. Wally's processor datapath and instruction encoding
 are not prerequisites for this main explanation.
 
@@ -118,8 +119,8 @@ the blue outlines used for functions covered in the main presentation.
 ## Recorded demonstration and scope
 
 Slide 12 embeds `experiments/dvi-recovery-20261109/media/latest-standard-dvi-30s.mp4`
-without transcoding, using its reviewed `latest-start.png` poster. Slide 11 uses
-the same record's unmodified start/later images. The latest title-top executable
+without transcoding, using its reviewed `latest-start.png` poster. This is
+the sole execution-result slide. Slide 11 explains the added integration work. The latest title-top executable
 is shown using the unchanged standard display bitstream and RasterIX-bundled
 drawing/display cores. Local connection and control wrappers remain integration
 work. The player is automatic; controller input is not implemented. Recorded
@@ -181,3 +182,6 @@ or the product checkout.
 
 The version before splitting the two compound explanations into twelve content
 slides is commit `fbb34c27ab0f1e5fab338257976076bea32fdbbc`.
+
+The revision before the SD-first explanation is commit
+`b0cdac50bbcc638a736b7e1737b33dbf72b6c8d3`.

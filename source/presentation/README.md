@@ -32,9 +32,10 @@ the local privacy audit, and keep the publication hooks enabled.
 
 ## Content
 
-The main talk explains the FPGA board, the game-console extension, CPU address
-accesses, loading from SD, sending drawing commands, image output and observed
-game behavior. The main drawing source is `board-evolution/abstract-flow.mjs`.
+The main talk explains the FPGA board, the game-console extension, SD read
+requests and returned data, DDR3 storage and execution, drawing commands and
+image output. It identifies the added circuit/software work and uses one video
+slide for the observed game behavior. The main drawing source is `board-evolution/abstract-flow.mjs`.
 It uses the abstract's address map and the existing RVSOC-inspired palette,
 line conventions and fonts. `design-reference.json` retains source provenance.
 

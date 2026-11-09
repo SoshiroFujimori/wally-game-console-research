@@ -43,7 +43,7 @@ export function drawAbstractSystem(s, api, focus='all', {compact=false}={}) {
   T('画像',817,182,61,23,18,false,C.ink);
 }
 
-export function drawAbstractAccess(s,api,reading=false) {
+export function drawAbstractAccess(s,api,{reading=false,target='ddr',address='0x80000000',value='受信値'}={}) {
   const {text,box,polygon,wire,route,junction,C}=api;
   const gray='#9DA7B6', ink=C.ink, blue=C.blue;
   const T=(v,x,y,w,h=30,z=24,b=false,c=ink,a='left')=>text(s,v,x,y,w,h,z,b,c,a);
@@ -56,11 +56,11 @@ export function drawAbstractAccess(s,api,reading=false) {
   T('RD',147,443,44,24,20,true);
   T('WE：書込みイネーブル（1 bit）',710,169,482,25,20,true);
   box(s,'アドレス\nデコーダ',350,185,210,64,C.white,23,blue,2.4);
-  T('AD = 0x80000000',88,239,212,28,22,true,blue);
-  T(reading?'WD：使わない':'WD = 7',350,282,300,29,23,true,reading?gray:blue);
+  T('AD = '+address,88,239,212,28,22,true,blue);
+  T(reading?'WD：使わない':'WD = '+value,350,282,330,29,23,true,reading?gray:blue);
   T(reading?'WE = 0（読む）':'WE = 1（書く）',350,326,300,29,23,true,blue);
-  const defs=[{x:520,name:'SD制御',select:'S0',on:false},
-              {x:750,name:'DDR制御',select:'S1',on:true},
+  const defs=[{x:520,name:target==='sd'?'SD制御\n'+(reading?'受信用レジスタ':'送信用レジスタ'):'SD制御',select:'S0',on:target==='sd'},
+              {x:750,name:'DDR制御',select:'S1',on:target==='ddr'},
               {x:980,name:'描画命令の\n接続回路',select:'S2',on:false}];
   // Shared forward signals have a single trunk with explicit branch dots.
   for(const [signal,y0,railX,yRail,offset,col] of [
@@ -79,7 +79,7 @@ export function drawAbstractAccess(s,api,reading=false) {
     const col=d.on?blue:gray,y=197+i*21,selX=d.x+155;
     route(s,[[560,y],[selX,y],[selX,405]],col,true,1.4);
     T(d.select+(d.on?'=1':'=0'),selX+5,366,64,28,19,true,col);
-    box(s,d.name,d.x,405,180,95,d.on?C.pale:C.white,24,col,d.on?3:2);
+    box(s,d.name,d.x,405,180,95,d.on?C.pale:C.white,d.on&&target==='sd'?22:24,col,d.on?3:2);
     const ry=541+i*33,x=d.x+90;
     route(s,[[x,500],[x,ry],[425,ry]],reading&&d.on?blue:gray,true,3);
   });
@@ -88,7 +88,33 @@ export function drawAbstractAccess(s,api,reading=false) {
   T('S0〜S2',346,490,112,25,18,true,reading?blue:gray,'center');
   wire(s,387,516,387,532,reading?blue:gray,true,1.8);
   route(s,[[350,574],[170,574],[170,470]],reading?blue:gray,true,2.6);
-  T(reading?'RD = 7（読出し値）':'RD（読出し値）',91,587,252,31,22,true,reading?blue:gray,'center');
+  T(reading?'RD = '+value:'RD（読出し値）',91,587,252,31,22,true,reading?blue:gray,'center');
+}
+
+export function drawWallyExtension(s,api) {
+  const {text,box,wire,C}=api;
+  text(s,'既存の回路',64,316,330,33,24,true,C.heading,'center');
+  text(s,'本研究で追加',526,316,230,33,24,true,C.heading,'center');
+  text(s,'既存の回路',888,316,328,33,24,true,C.heading,'center');
+  box(s,'Wally\nCPUと周辺制御',64,362,330,118,C.pale,30);
+  box(s,'接続回路',526,362,230,118,C.white,30,C.blue,3);
+  box(s,'RasterIX\n描画・表示回路',888,362,328,118,C.pale,29);
+  wire(s,394,421,526,421,C.blue,true,3);
+  wire(s,756,421,888,421,C.blue,true,3);
+}
+
+export function drawIntegrationContribution(s,api) {
+  const {text,box,wire,C}=api;
+  text(s,'既存のCPU',64,206,280,34,24,true,C.heading,'center');
+  text(s,'本研究で実装',490,206,300,34,24,true,C.heading,'center');
+  text(s,'既存の描画・表示',955,206,261,34,24,true,C.heading,'center');
+  box(s,'Wally',64,267,280,94,C.pale,32);
+  box(s,'接続回路',490,267,300,94,C.white,32,C.blue,3);
+  box(s,'RasterIX',955,267,261,94,C.pale,32);
+  wire(s,344,314,490,314,C.blue,true,3);
+  wire(s,790,314,955,314,C.blue,true,3);
+  text(s,'AD / WD / WE',346,272,142,32,20,true,C.blue,'center');
+  text(s,'描画命令',798,272,149,32,23,true,C.blue,'center');
 }
 
 export function drawConceptCode(s,api,rows,y=579) {
