@@ -47,7 +47,7 @@ function slide(title,seconds,narration,source,detail,diagramOnly=false) {
   }
   if(!diagramOnly){
     // Keep a fixed footer box and right edge for one- and two-digit numbers.
-    const page=text(s,String(n),1160,686,56,22,16,false,C.old,'right');
+    const page=text(s,String(n),1200,686,56,22,16,false,C.old,'right');
     page.name=`contents-return-${n}`;pageNumbers.push({page,number:n});
   }
   s.speakerNotes.text=`説明時間の目安：${seconds}秒\n\n${narration}\n\n出典：${source}\n\n補足説明：${detail}`;

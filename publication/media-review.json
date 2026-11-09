@@ -1109,7 +1109,28 @@
     "daf85023270828f0157a024cc6cb341ca563ba652dd277a9ade278ccabc35465",
     "e102403cb3fa627a44cc1628cec85391f0fcf7d32adfbc5ab2704de5fb5b3a75",
     "e87523f0d9123630938275484f575125267a4397f72bb6a396d755491ea1524f",
-    "15c83856c570ca9a079616a3e5f17cb1ed4fbe8b5a849a5796578e6958575195"
+    "15c83856c570ca9a079616a3e5f17cb1ed4fbe8b5a849a5796578e6958575195",
+    "ef050394a259e200f128859de814c481745117fb00cf3870607ffaf3c295eb98",
+    "30d6edaaf4bf90e6ed73d984b93ddc3ba9a884b236338cd7171ef740a68f4d61",
+    "61b85b3a115fd6f48efc100d58df31336b88cc3c0b08bcb81aba1bc20a18e464",
+    "b83c8b75608924d23895537aff3be107cdf754962069b4e3721c1296753dd221",
+    "dbe47c0f9a27e0128791f30727c2b47cabc64e59254d7f4b1df1b98a522432ef",
+    "c5033f63106e904c6d72412b5794a593bfea306832b52656c8c6b40a9de78177",
+    "84a2b03198cdd73a3463b0ed3019189a052dc2964ece96c2c7271805449290bb",
+    "8df572e77ce3269b7eb3688022770b437809ebf0585227f5c1c8911917741d20",
+    "5623efd33284d08b2204a83587149c97723d1d7538ecca2d760203d71437c67a",
+    "3ebdd64295aadd4e3611939594dcd03c47134be822ea7423e91b888c8aa15d73",
+    "b59f5e5aa5de05a3ba962bcf40e5afb79d8f65cefd3f047a886619d9a9e98c48",
+    "68a9eca92e2e955cb9cb3f0ccc0f5c95b816f4c2bf6a207c68f465834eb969e0",
+    "e9f5f8252d0d20c90aeab2af30b5bda77b193992fa47d859e962e2b934ba6ba0",
+    "63634baa2913689db98c9c4ac1c244017c2ce4dfcafd6b2d3000e9c70b51fb1b",
+    "46b78933b014dd60109d6888f563912b749d83ea1ca8247013cc6daa6f1d5f82",
+    "3b4adef4d11d64496018aaf13014f032adacc9eee6601da8eb71c2d5a50e4f97",
+    "968021714a358b21f47410a6a1cc477edba555b9535d18fcc428c8fd6555ef35",
+    "eaf89bfca9b8dce72210511bdee501e2f4ab95dc20de06777113e54015c5cbb0",
+    "189136c1c90d867b6991277d1bd2368092560046c9400306538477d6b24b8ed9",
+    "b6dfaf991f45a3ccb67b6168a68d4309faef2dfaad4055cd367f3f60f0626798",
+    "8016be71bd0cc992ee37e0111ffaccf64625a9711b50031a92ef4a768bbfff73"
   ],
   "reviews": {
     "abstract-based-presentation-20261108": "Reviewed all 18 native PowerPoint slide renders and the private cover. Main slides use functional circuits and address-access examples; source differences remain in notes and reproduction records. Confirmed 51 internal links, six hidden question slides, original embedded video hash, and cover-only differences between editions. Reviewed the revised abstract diagram, color and monochrome one-page Word renders, code lines and title placement. Public image metadata was cleaned without changing decoded pixels; newly embedded PNGs match visually reviewed sources.",
@@ -1130,6 +1151,7 @@
     "existing-circuit-wording-20261109": "Reviewed the changed native PowerPoint views after replacing reuse labels with 既存回路 Wally and 既存回路 RasterIX. All circuit and text-box geometry remains unchanged. Other slides have identical rendered pixels. The embedded demonstration bytes, automatic playback timing, 21-slide count, 355-second allocation and 60 navigation links are unchanged. Public and private presentations differ only in cover identity text. The abstract uses RasterIXという描画・表示回路を利用し with its citation number. Each public/private abstract remains one page; only text in document.xml changes, preserving paragraph/section geometry and all original images. The SVG change affects the accessible description only. No measurement or implementation changes are included.",
     "presentation-footer-layout-20261109": "Reviewed every changed native PowerPoint footer at full rendered resolution. Removed figure numbers and their caption rows. Slide numbers use a consistent right-aligned 16-pixel footer with the same 64-pixel right margin on every slide. Rendered content above the footer is pixel-identical to the preceding deck. All speaker notes, internal slide links, hidden-slide state, embedded video bytes and video timing are unchanged. Public and private packages differ only in cover identity text. Source attributions remain in speaker notes.",
     "presentation-wally-naming-20261109": "Reviewed native presentation views after distinguishing CPU Wally from the Wally repository as the source of CPU and peripheral design code. The main summary, provenance labels, conclusion, resource comparison and detailed HDL hierarchy use the same terminology. Circuit shapes and media are unchanged. Slide count, hidden state, all 60 internal links and the cleaned page-number layout are preserved. Unchanged slides have identical pixels. Public/private decks differ only in cover identity text. All recorded abstract files retain their original hashes.",
-    "presentation-connection-roles-20261109": "Reviewed native slide 10 after replacing the buffer-focused inset with bus-format adaptation and clock-domain transfer. The visible roles identify the local adapter and AMD circuit without IP or module names. The common board diagram and all other slides are pixel-identical. The embedded video, 60 navigation links, hidden answer slides and private cover remain unchanged. All protected abstract files retain their original hashes."
+    "presentation-connection-roles-20261109": "Reviewed native slide 10 after replacing the buffer-focused inset with bus-format adaptation and clock-domain transfer. The visible roles identify the local adapter and AMD circuit without IP or module names. The common board diagram and all other slides are pixel-identical. The embedded video, 60 navigation links, hidden answer slides and private cover remain unchanged. All protected abstract files retain their original hashes.",
+    "presentation-footer-right-20261109": "Reviewed all 21 native PowerPoint footer crops and representative full slides. Moved right-aligned page numbers 40 CSS pixels toward the right edge, leaving a 24-pixel right margin. Pixel comparisons preserve all content outside the footer; the digits themselves are identical after translation. All slide text, speaker notes, the embedded video, 60 navigation links, hidden answer slides and private cover text remain unchanged. All protected abstract files retain their original hashes."
   }
 }
