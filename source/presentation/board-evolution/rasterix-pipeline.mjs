@@ -5,7 +5,7 @@
 
 export const RASTERIX_PIPELINE_SOURCE = 'ToNi3141/RasterIX, README "FPGA pipeline" and pictures/fpgaFlow.drawio.png, main revision 3e2ee5aa5214b829c2a824250c445ce799ac8dc0 (checked 2026-11-08). https://github.com/ToNi3141/RasterIX/blob/3e2ee5aa5214b829c2a824250c445ce799ac8dc0/pictures/fpgaFlow.drawio.png . GPL-3.0-or-later. Current console: console/fpga/src/rasterix.sv; RasterIX revision 9269a01c9bd4c3342bfa70ef8e3cdd751c15c6d0, rtl/RasterIX/RasterIX_IF.v and RasterIXRenderCore.v.';
 export const RASTERIX_PIPELINE_NARRATION = '左から、命令の解釈と画素の準備、画素の色の計算、書き込むかどうかの判定、画像の書込みの順に追います。青線は、描画先にすでに保存されている色・深度・ステンシル値を、色の計算と並行して読む経路です。Concatで計算結果と読み出した値を対応づけ、判定や色の合成に使います。これは最新の公式資料を横長に描き直した概念図です。今回の実機はTMUが1基で、テクスチャの保存方式も図のTexture Cacheとは異なります。';
-export const RASTERIX_PIPELINE_DETAIL = `この図は、公式RasterIXリポジトリのREADMEにある「FPGA pipeline」の処理と接続関係を、質問用に横長へ配置し直したものである。2026年11月8日に確認したmainの先頭は3e2ee5aa5214b829c2a824250c445ce799ac8dc0である。回路の概念的な処理経路を示しており、一つの箱が必ず1クロックで完了するという意味ではない。配線はデータの処理・参照関係を示し、全ポート、制御信号、待ち合わせ回路を網羅しない。
+export const RASTERIX_PIPELINE_DETAIL = `この図は、公式RasterIXリポジトリのREADMEにある「FPGA pipeline」の処理と接続関係を、回答用に横長へ配置し直したものである。2026年11月8日に確認したmainの先頭は3e2ee5aa5214b829c2a824250c445ce799ac8dc0である。回路の概念的な処理経路を示しており、一つの箱が必ず1クロックで完了するという意味ではない。配線はデータの処理・参照関係を示し、全ポート、制御信号、待ち合わせ回路を網羅しない。
 
 ① Frame Streaming Coreは、ドライバから届く転送データを扱う入口である。ここでいうFrameは通信上のまとまりであり、HDMIへ映像を送り出す表示回路を指さない。Command Parserが描画命令を解釈し、Rasterizerが三角形について処理する画素の位置を求める。Broadcastから、属性の計算と描画先の読出しの両方へ情報を送る。Attribute Interpolationは、頂点で指定した色やテクスチャ座標などから、画素ごとの値を求める。
 

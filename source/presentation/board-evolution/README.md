@@ -4,7 +4,7 @@ This builder produces the single published intermediate presentation:
 [slides and narration](../../../docs/presentation/中間発表_主要事項.md) and
 [PowerPoint](../../../docs/presentation/中間発表_主要事項.pptx).
 A cover and twelve presentation slides follow the current abstract. Slide 14
-is clickable contents; slides 15-21 are hidden question slides. The narration allocation
+is clickable contents; slides 15-21 are hidden answer slides. The narration allocation
 is 355 seconds including the 30-second embedded video, not a timed rehearsal.
 
 ## Main explanation
@@ -23,10 +23,10 @@ is 355 seconds including the 30-second embedded video, not a timed rehearsal.
 | 10 | Command adapter | Select, address and write-enable conditions accept WD; temporary storage delivers words in order when the drawing circuit can receive them. |
 | 11 | Image storage and output | Reused RasterIX drawing/display and shared DDR3. |
 | 12 | Demonstration | The reviewed standard-output 30-second autoplay video. |
-| 13 | Conclusion | A published Wally extension example; controller/GUI work remains planned. |
+| 13 | Conclusion | The same board diagram identifies reused Wally/RasterIX circuits and the added adapter; controller/GUI work remains planned. |
 
 `main-slides.mjs` defines the cover and twelve-slide main talk.
-`stable-board.mjs` supplies one editable coordinate system for slides 2-11.
+`stable-board.mjs` supplies one editable coordinate system for slides 2-11 and 13.
 The board, chip boundary, SD slot, DDR3 memory and HDMI connector keep exactly
 the same positions and sizes. Slide 3 groups Wally into one block and explains
 its public HDL and textbook. Slide 4 expands that block into the CPU, decoder,
@@ -49,7 +49,7 @@ simultaneously. The following slides change the highlighted transfer and code,
 without moving components to a different whole-system diagram.
 
 `abstract-flow.mjs` retains the conceptual code-panel helper and the earlier
-whole-system drawing source. The current question view is `merged-datapath.mjs`. Wally's processor datapath and
+whole-system drawing source. The current answer view is `merged-datapath.mjs`. Wally's processor datapath and
 instruction encoding are not prerequisites for the main explanation.
 
 The access view separates address AD, write data WD, one-bit write enable WE,
@@ -57,7 +57,7 @@ read data RD, and selection signals S0-S2. Only one destination accepts a transf
 selector returns that destination's read value. The selects are explanatory
 names, not RTL bit indices. Timing, wait states, transfer width, bus conversion,
 and clock-domain logic are omitted. The source correspondence is preserved
-in the notes and the detailed question diagram.
+in the notes and the detailed answer diagram.
 
 The C fragments use the same addresses as the abstract. They omit initialization,
 complete SD transactions, waits, address mapping and `volatile`.
@@ -115,9 +115,27 @@ is marked as integration work. The drawing and display share one box, with
 image traffic through the AMD controller and output at the HDMI connector.
 The exact modules and connection wrappers remain identified in the notes.
 
+Slide 13 repeats the circuit layout to explain the contribution. Dashed frames
+identify the Wally and RasterIX acquisition sources. A solid blue adapter
+frame identifies added integration work. The conclusion is the demonstrated
+combination into a game console; it does not claim a worldwide first or that
+every primitive inside an adapter is newly invented. The AMD controller remains
+identified as vendor IP, and peripheral address selection includes the added
+configuration for the drawing circuit.
+
+## Embedded demonstration
+
+The presentation embeds [the compatible distribution copy](../assets/breakout-standard-dvi-compatible.mp4)
+and starts it automatically when slide 12 is entered in the slideshow.
+The original experiment recording is preserved. The distribution file uses
+H.264 High, level 4.2, yuv420p and retains the original 1920 by 1080 frame size,
+60 frames per second, 1800 frames and 30-second duration. See the
+[encoding and source record](../assets/breakout-standard-dvi-compatible.json).
+The video is packaged internally, with no local-file dependency.
+
 ## Detailed-diagram connectivity
 
-The question diagram follows the CPU and drawing connections of product revision
+The answer diagram follows the CPU and drawing connections of product revision
 `261832d48832dd6e26c4971ab8893ce61200688b` and the
 `fpganexysvideo_rasterix` configuration. It preserves the pipeline layout
 while using RVSOC Figure 9.28 for decoding and response selection.
@@ -168,7 +186,7 @@ The video is played by clicking its area during a slideshow. Internal slide
 jumps and return links are native OOXML relationships. `embed_video.py` checks
 the input video against the approved media hashes; `link_slides.py` adds links.
 
-## Question slides
+## Answer slides
 
 - 15: DDCA teaching/reference-book listings on one prefecture map, including
   historical examples. See `../ddca-adoption/` for sources and counting scope.
@@ -228,7 +246,7 @@ slides is commit `fbb34c27ab0f1e5fab338257976076bea32fdbbc`.
 The revision before the SD-first explanation is commit
 `b0cdac50bbcc638a736b7e1737b33dbf72b6c8d3`.
 
-`merged-datapath.mjs` defines the integrated question slide.
+`merged-datapath.mjs` defines the integrated answer slide.
 `board-circuit.mjs` preserves the earlier datapath coordinates and provides a
 combined view with externally connected ports. `memory-ports.mjs` supplies
 the retained functional correspondence and scope notes. The legacy seven-view

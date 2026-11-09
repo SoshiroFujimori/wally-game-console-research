@@ -1,0 +1,20 @@
+{
+  "description": "Distribution encoding of the standard-display demonstration, with unchanged frame order and duration.",
+  "source": "../../../experiments/dvi-recovery-20261109/media/latest-standard-dvi-30s.mp4",
+  "source_sha256": "b852e252074388fe99a1b850a5e81eadd2548491fa72bf6b48ee794229592a09",
+  "output": "breakout-standard-dvi-compatible.mp4",
+  "output_sha256": "47ffc98f1cf2b7fa0d430acd02aa5ef1a8cfa96588d407a4fb42a756e6d8772b",
+  "codec": "H.264",
+  "profile": "High",
+  "level": 4.2,
+  "pixel_format": "yuv420p",
+  "width": 1920,
+  "height": 1080,
+  "frame_rate": "60/1",
+  "frames": 1800,
+  "duration_seconds": 30,
+  "audio": false,
+  "encoding": "ffmpeg -i latest-standard-dvi-30s.mp4 -map 0:v:0 -an -c:v libx264 -preset medium -crf 18 -profile:v high -level:v 4.2 -pix_fmt yuv420p -fps_mode passthrough -movflags +faststart -map_metadata -1 breakout-standard-dvi-compatible.mp4",
+  "compatibility_reference": "https://learn.microsoft.com/en-us/windows/win32/medfound/h-264-video-decoder",
+  "scope": "Re-encoding of existing evidence, not a new hardware measurement. Lossy distribution encoding; original capture bytes are retained."
+}

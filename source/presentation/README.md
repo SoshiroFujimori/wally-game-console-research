@@ -5,7 +5,7 @@ This directory builds the single published presentation:
 [PowerPoint](../../docs/presentation/中間発表_主要事項.pptx).
 The abstract-based main talk has twelve content slides plus a cover and a
 355-second allocation,
-including a 30-second video. Clickable contents and seven hidden question slides
+including a 30-second video. Clickable contents and seven hidden answer slides
 follow it. See [builder notes](board-evolution/README.md) for sources and scope.
 
 ## Build
@@ -35,7 +35,7 @@ the local privacy audit, and keep the publication hooks enabled.
 The main talk explains the FPGA board, the game-console extension, SD read
 requests and returned data, DDR3 storage and execution, drawing commands and
 the adapter's command acceptance/delivery and image output. One video
-slide shows the observed game behavior. The main drawing source is `board-evolution/stable-board.mjs`.
+slide shows the observed game behavior. The conclusion repeats the same board with Wally/RasterIX source frames and an added-adapter frame. The main drawing source is `board-evolution/stable-board.mjs`.
 Slides 2-11 share fixed board/chip and physical-component positions; slides
 4-11 retain the same circuit and signal geometry as each transfer is explained.
 Port labels occupy input rows inside the blocks. Unrelated components and
@@ -44,7 +44,7 @@ Slide 7 extends slide 6 by highlighting the alternating SD-read/DDR-write copy.
 The code-panel helper is in `board-evolution/abstract-flow.mjs`. The diagrams use the abstract's address map and the existing RVSOC-inspired palette,
 line conventions and fonts. `design-reference.json` retains source provenance.
 
-Question slide 19 integrates the earlier seven explanations into one connected
+Answer slide 19 integrates the earlier seven explanations into one connected
 diagram. It retains the single-cycle CPU arrangement and shows the two memory
 interfaces, request multiplexers, address decode, selected response, SD-copy
 path, drawing command write, and shared image storage/output. This view is in
@@ -57,4 +57,4 @@ Observed behavior is bound to the standard-output recording in
 Controller input and home-screen/menu GUI work remain future extensions.
 The source and notes retain display-configuration and evidence distinctions.
 No educational-effectiveness measurement or universal display compatibility
-is claimed. Question-slide datasets preserve their own dates and scope.
+is claimed. Answer-slide datasets preserve their own dates and scope.

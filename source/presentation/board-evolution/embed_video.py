@@ -2,7 +2,7 @@
 """Attach one previously reviewed MP4 to an existing poster picture.
 
 The slide itself is authored with Artifact Tool. This small packaging step adds
-the Office video relationship and click-to-play timing, which the local slide
+the Office video relationship and playback timing, which the local slide
 authoring API does not expose. It does not render or rewrite other slides.
 
 Format references:
@@ -33,7 +33,7 @@ def xml(root):
     return E.tostring(root, encoding='UTF-8', xml_declaration=True, standalone=True)
 
 
-def embed(source, destination, video, review_path, slide_number):
+def embed(source, destination, video, review_path, slide_number, autoplay=False):
     data = video.read_bytes()
     digest = hashlib.sha256(data).hexdigest()
     reviewed = set(json.loads(review_path.read_text(encoding='utf-8'))['sha256'])
@@ -81,7 +81,7 @@ def embed(source, destination, video, review_path, slide_number):
     movie = child(child(clock, P, 'childTnLst'), P, 'video')
     media = child(movie, P, 'cMediaNode', vol='0')
     clock = child(media, P, 'cTn', id='2', fill='hold', display='0')
-    child(child(clock, P, 'stCondLst'), P, 'cond', delay='indefinite')
+    child(child(clock, P, 'stCondLst'), P, 'cond', delay='0' if autoplay else 'indefinite')
     child(child(media, P, 'tgtEl'), P, 'spTgt', spid=shape_id)
     extensions = root.find('p:extLst', NS)
     root.insert(root.index(extensions) if extensions is not None else len(root), timing)
@@ -98,7 +98,7 @@ def embed(source, destination, video, review_path, slide_number):
             info = zipfile.ZipInfo(name, date_time=(2026, 1, 1, 0, 0, 0))
             info.compress_type = zipfile.ZIP_STORED if name == member else zipfile.ZIP_DEFLATED
             archive.writestr(info, body)
-    print(json.dumps({'embedded_video_sha256': digest, 'bytes': len(data), 'slide': slide_number, 'playback': 'on-click'}))
+    print(json.dumps({'embedded_video_sha256': digest, 'bytes': len(data), 'slide': slide_number, 'playback': 'automatic' if autoplay else 'on-click'}))
 
 
 if __name__ == '__main__':
@@ -108,5 +108,6 @@ if __name__ == '__main__':
     parser.add_argument('video', type=Path)
     parser.add_argument('--review', required=True, type=Path)
     parser.add_argument('--slide', type=int, default=10)
+    parser.add_argument('--autoplay', action='store_true')
     args = parser.parse_args()
-    embed(args.source, args.destination, args.video, args.review, args.slide)
+    embed(args.source, args.destination, args.video, args.review, args.slide, args.autoplay)

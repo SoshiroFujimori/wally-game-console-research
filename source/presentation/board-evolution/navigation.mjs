@@ -32,7 +32,7 @@ export function linkToSlide(shape,number){
 export function drawContents(s,api){
   const {text,wire,C}=api;
   text(s,'発表用スライド',64,127,544,42,29,true,C.heading);
-  text(s,'質問用スライド',668,127,548,42,29,true,C.heading);
+  text(s,'回答用スライド',668,127,548,42,29,true,C.heading);
   wire(s,64,178,608,178,C.ink,false,1.2);
   wire(s,668,178,1216,178,C.ink,false,1.2);
   const item=(record,x,y)=>{
@@ -51,7 +51,7 @@ export function drawContents(s,api){
 export function contentsMarkdown(){
   const lines=[];
   for(const group of ['発表用スライド','教科書の採用例','FPGA','命令の実行と周辺接続','回路の詳細']){
-    lines.push('### '+(group==='発表用スライド'?group:'質問用：'+group),'');
+    lines.push('### '+(group==='発表用スライド'?group:'回答用：'+group),'');
     for(const r of CONTENTS_ITEMS.filter(r=>r.group===group))lines.push(`- [${r.number}. ${r.label}](#slide-${r.number})`);
     lines.push('');
   }
