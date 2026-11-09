@@ -21,6 +21,7 @@ export const CONTENTS_ITEMS=[
   {number:19,label:'命令実行から周辺回路への接続',group:'命令の実行と周辺接続'},
   {number:20,label:'詳細な全体のブロック図',group:'回路の詳細'},
   {number:21,label:'描画回路のFPGAパイプライン',group:'回路の詳細'},
+  {number:22,label:'ゲームで使うOpenGL関数',group:'ゲームの描画'},
 ];
 
 const destinations=new Map();
@@ -50,7 +51,7 @@ export function drawContents(s,api){
 
 export function contentsMarkdown(){
   const lines=[];
-  for(const group of ['発表用スライド','教科書の採用例','FPGA','命令の実行と周辺接続','回路の詳細']){
+  for(const group of ['発表用スライド','教科書の採用例','FPGA','命令の実行と周辺接続','回路の詳細','ゲームの描画']){
     lines.push('### '+(group==='発表用スライド'?group:'回答用：'+group),'');
     for(const r of CONTENTS_ITEMS.filter(r=>r.group===group))lines.push(`- [${r.number}. ${r.label}](#slide-${r.number})`);
     lines.push('');

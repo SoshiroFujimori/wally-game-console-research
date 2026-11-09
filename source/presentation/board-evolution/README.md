@@ -4,7 +4,7 @@ This builder produces the single published intermediate presentation:
 [slides and narration](../../../docs/presentation/中間発表_主要事項.md) and
 [PowerPoint](../../../docs/presentation/中間発表_主要事項.pptx).
 A cover and twelve presentation slides follow the current abstract. Slide 14
-is clickable contents; slides 15-21 are hidden answer slides. The narration allocation
+is clickable contents; slides 15-22 are hidden answer slides. The narration allocation
 is 355 seconds including the 30-second embedded video, not a timed rehearsal.
 
 ## Main explanation
@@ -217,6 +217,13 @@ the input video against the approved media hashes; `link_slides.py` adds links.
   are neutral; CPU internals are not marked as explained in the main talk.
 - 21: the official RasterIX FPGA pipeline redrawn for the presentation. Its
   version and differences from measured hardware are in `../rasterix-pipeline/`.
+
+- 22: OpenGL calls for the complete Breakout screen: background initialization,
+  colored rectangles (bricks, walls, paddle and square ball), and image-based
+  title, score, lives and state messages. A common rectangle excerpt, an
+  unchanged game capture, and short function descriptions identify each role.
+  Notes explain basic API usage without optimization or implementation-tuning
+  material. See `opengl-functions.mjs`.
 
 ## Build and publication
 
