@@ -142,7 +142,7 @@ await drawTextureMapping(s,api,root);
 s.hidden=true;outline[outline.length-1].backup=true;
 
 // Keep provenance in the notes and the GitHub-readable counterpart.
-for (const number of [3,6,7,8,9,10,11,12,13,19,20]) {
+for (const number of [3,4,7,8,9,11,13,19,20]) {
   const o=outline[number-1];
   o.detail += '\n\n' + PROVENANCE_DETAIL;
   o.source += '\n' + PROVENANCE_SOURCE;
@@ -151,20 +151,21 @@ for (const number of [3,6,7,8,9,10,11,12,13,19,20]) {
 for(const {page,number} of pageNumbers)if(number!==CONTENTS_SLIDE)linkToSlide(page,CONTENTS_SLIDE);
 await fs.writeFile(path.join(workspace,'wire-audit.json'),JSON.stringify(wiring.finalize(),null,2)+'\n');
 const total=outline.reduce((n,s)=>n+s.seconds,0);
-if(outline.length!==23||total!==355)throw new Error(`Unexpected allocation ${outline.length} slides, ${total} seconds`);
+if(outline.length!==23||total!==335)throw new Error(`Unexpected allocation ${outline.length} slides, ${total} seconds`);
 await fs.writeFile(path.join(workspace,'outline.json'),JSON.stringify(outline,null,2)+'\n');
 const md=[
   '# 中間発表：FPGAを用いた2Dゲーム機の製作',
-  'アブストの説明に沿った発表です。表紙1枚、発表用12枚、移動用の目次1枚、回答用9枚で構成します。FPGAとCPUのWallyを紹介し、SDカードへの読出し要求、受信値の読出し、DDR3への保存と実行開始、描画命令の送信、接続回路での受渡し、映像出力を順に説明します。動作確認は実機動画で示します。',
+  '表紙1枚、発表用12枚、移動用の目次1枚、回答用9枚で構成します。Wallyへの描画機能の追加を、目的、既存回路との分担、接続の設計、実機での動作確認、公開した拡張例の順に説明します。ゲームの動きは30秒の実機動画で示します。',
   '[PowerPoint版](中間発表_主要事項.pptx) / [アブスト](../abstract/アブスト_主要事項.md) / [論文本文](../thesis/本文.md) / [技術付録](../thesis/技術付録.md) / [再生成方法](../../source/presentation/board-evolution/README.md) / [DDCA授業利用の出典](DDCA授業利用の出典.md) / [RVSOC教科書採用の出典](RVSOC教科書採用の出典.md)',
+  '[発表の要点を読む](発表の要点.md)',
   '## 図の見方',
-  '2〜11枚目は、同じ位置・大きさのFPGAボードを使います。外側の薄い枠はボード、内側の青い枠はFPGAチップです。SDカードスロット、DDR3メモリ、HDMI端子はチップの外にある部品で、位置を変えずに示します。外枠の「Wallyリポジトリ」は回路の提供元を示し、その中のCPUを「Wally」と表記します。3枚目のCPUと周辺回路の箱を、4枚目でCPU・アドレスデコーダ・SD制御・DDR制御へ展開します。4〜11枚目は回路と信号線の配置を保ち、説明中の経路を青で示します。7枚目は6枚目のDDR3への書込み経路にSDからの読出し経路を加えて強調し、この二つを交互に繰り返すコピー処理を説明します。',
-  'ADはアドレス、WDは書込みデータ、WEは1ビットの書込みイネーブル、RDは読出しデータです。有効な読書きの際のWE=1を書込み、WE=0を読出しとして示します。アドレスデコーダが接続先を選び、読出し値も対応する選択信号で選びます。分岐の黒丸は接続を表し、接続しない線の交差には隙間があります。転送の細かなタイミングや待ち処理は省略します。Cのコードは、物理アドレスを直接使うと仮定した概念コードです。完全なSDドライバやゲームプログラムではありません。',
+  '2〜9枚目と13枚目の図は、FPGAボードとチップ外の部品を同じ位置に置いています。3枚目のCPUと周辺回路のまとまりを、4枚目でCPU・SD制御・DDR制御へ展開します。4枚目以降は回路の配置をそろえ、説明する経路を青で強調します。矢印は要求やデータの経路を機能ごとにまとめたもので、一本の信号線を表すものではありません。破線の枠は回路コードの主な提供元です。「Wally」はCPU、「Wallyリポジトリ」はCPUと周辺回路の設計コードの提供元として使います。',
+  '回答用19枚目では、信号を詳しく示しています。ADはアドレス、WDは書込みデータ、WEは1ビットの書込みイネーブル、RDは読出しデータです。有効な読書きの際のWE=1を書込み、WE=0を読出しとして示します。アドレスデコーダが接続先を選び、読出し値も対応する選択信号で選びます。分岐の黒丸は接続を表し、接続しない線の交差には隙間があります。転送の細かなタイミングや待ち処理は省略しています。',
   '## 回路の提供元',
   PROVENANCE_DETAIL,
   '対応するソースは[回路の提供元一覧](../../source/presentation/board-evolution/README.md#component-provenance)にまとめています。主図では、同じRasterIXリポジトリに含まれる描画と表示を一つの箱にまとめています。実機動画も、この標準表示構成で取得しています。',
   '## 発表時間と回答用スライド',
-  '表紙と発表用12枚の配分は動画30秒を含め355秒です。動画の再生中に結果を説明します。これは練習を実測した時間ではありません。14枚目の目次から本編と回答用の両方へ移動できます。各スライドの右下の番号から目次に戻れます。回答用の15〜23枚目は、通常の順送りでは表示しません。',
+  '表紙と発表用12枚の配分は動画30秒を含め335秒です。動画の再生中に結果を説明します。これは練習を実測した時間ではありません。14枚目の目次から本編と回答用の両方へ移動できます。各スライドの右下の番号から目次に戻れます。回答用の15〜23枚目は、通常の順送りでは表示しません。',
   '## 目次',
   outline.map((o,i)=>'- ['+(i+1)+'. '+o.title.replaceAll('\n','')+'](#slide-'+(i+1)+')'+(o.backup?'（回答用）':'')).join('\n')
 ];
@@ -175,16 +176,17 @@ outline.forEach((o,i)=>md.push('<a id="slide-'+(i+1)+'"></a>\n## '+(i+1)+'. '+o.
     'スライドに示した学校名の例：'+ddcaSummary.categories.map(c=>c.label+'は'+c.examples.join('・')).join('、')+'。']:[]),
   ...(i===15?['[教育機関・時期・採用根拠の一覧](RVSOC教科書採用の出典.md)']:[]),
   ...(i===17?['[Before／Afterの比較資料と元レポート](../../experiments/fpga-resource-comparison-20261108/README.md)']:[]),
-  ...(i===11?['[30秒の実機動画を開く](../../source/presentation/assets/breakout-standard-dvi-compatible.mp4)','PowerPointには動画を埋め込んでいます。スライドショーで12枚目に進むと自動再生します。']:[]),
+  ...(i===10?['[30秒の実機動画を開く](../../source/presentation/assets/breakout-standard-dvi-compatible.mp4)','PowerPointには動画を埋め込んでいます。スライドショーで11枚目に進むと自動再生します。']:[]),
   ...(o.navigation?[contentsMarkdown()]:[]),
   o.navigation?'### 目次の使い方':o.backup?'### 質問時の使い方':'### 発表原稿',o.narration,
   '<details>\n<summary>補足説明と出典</summary>\n',o.detail,o.source?'出典：'+o.source:'','\n</details>',...(o.navigation?[]:['[移動用の目次へ戻る](#slide-14)'])));
 md.push('## 動作確認と詳しい実装',
-  '12枚目の動画は、[標準表示構成の30秒の実機記録](../../experiments/dvi-recovery-20261109/README.md)です。最新の文字配置のゲームを実行し、ボールの移動・反射とブロック消去を確認しました。これは自動プレイであり、コントローラによる操作ではありません。取得条件と構成の版は再現資料に保存しています。',
+  '11枚目の動画は、[標準表示構成の30秒の実機記録](../../experiments/dvi-recovery-20261109/README.md)です。最新の文字配置のゲームを実行し、ボールの移動・反射とブロック消去を確認しました。これは自動プレイであり、コントローラによる操作ではありません。取得条件と構成の版は再現資料に保存しています。',
   '詳しい実装と再現手順は[技術付録](../thesis/技術付録.md)にまとめています。コントローラへの対応やホーム画面などのGUIの充実は今後の拡充候補です。',
   '## 図と書式の出典',
-  '主図はアブストと製品RTLを基にした機能図です。書式はRVSOCの図7.11・9.28・23.2を参考にしています。回答用の詳細な回路図、教科書の採用例、FPGAの構成要素・使用量、描画回路の内部については、それぞれのスライドの出典と補足を参照してください。[デザインと再生成方法](../../source/presentation/board-evolution/README.md)に実装箇所をまとめています。',
+  '主図は製品RTLの役割をまとめた機能図です。書式はRVSOCの図7.11・9.28・23.2を参考にしています。回答用の詳細な回路図、教科書の採用例、FPGAの構成要素・使用量、描画回路の内部については、それぞれのスライドの出典と補足を参照してください。[デザインと再生成方法](../../source/presentation/board-evolution/README.md)に実装箇所をまとめています。',
   '## 以前の発表資料',
+  '信号名とアドレスを詳しく示した版は、[変更前のコミットcbec749](https://github.com/SoshiroFujimori/wally-game-console-research/tree/cbec7498c75ca0e17876c7ea99760ed144367732/docs/presentation)に保存されています。',
   '命令の実行から順に説明した版は、[変更前のコミット40d8a51](https://github.com/SoshiroFujimori/wally-game-console-research/tree/40d8a51bd1ab0d9c9a469146c349cd31b173bdce/docs/presentation)に保存されています。命令の実行から周辺回路へつながる図は、現在の回答用19枚目に統合しています。外部メモリへの接続は、二つのメモリの箱を接続口として残し、AD・WD・WE・RDとアドレスデコーダで示します。');
 await fs.writeFile(path.join(workspace,'中間発表_主要事項.md'),md.join('\n\n')+'\n');
 const raw=path.join(workspace,'raw-candidate.pptx'),poster=path.join(workspace,'poster-candidate.pptx'),candidate=path.join(workspace,'candidate.pptx');
@@ -201,7 +203,7 @@ if(audience==='public'){
 // Final package integrity/layout and video relationships are checked separately.
 await fs.mkdir(path.join(workspace,'poster-review'), { recursive: true });
 const posterFinal=path.join(workspace,'poster-review','poster-validated.pptx');
-const validationOptions={workspaceDir:workspace,pythonExecutable:process.env.RUNTIME_PYTHON,integrityValidatorPath:path.join(process.env.PRESENTATION_SKILL,'container_tools/inspect_presentation_package_integrity.py'),layoutValidatorPath:path.join(process.env.PRESENTATION_SKILL,'container_tools/inspect_presentation_layout_geometry.py'),layoutArgs:['--expected-slide-size-emu','12192000,6858000','--validate-bullet-geometry','--validate-heading-fit','--require-native-table-slide','16','--require-native-table-slide','18'],explicitTotalSlideCount:23,requiredNativeTableOwnerSlides:[16,18],requiredNativeChartOwnerSlides:[],fontPolicy:{basis:'design',families:[font,latinFont,codeFont]}};
+const validationOptions={workspaceDir:workspace,pythonExecutable:process.env.RUNTIME_PYTHON,integrityValidatorPath:path.join(process.env.PRESENTATION_SKILL,'container_tools/inspect_presentation_package_integrity.py'),layoutValidatorPath:path.join(process.env.PRESENTATION_SKILL,'container_tools/inspect_presentation_layout_geometry.py'),layoutArgs:['--expected-slide-size-emu','12192000,6858000','--validate-bullet-geometry','--validate-heading-fit','--require-native-table-slide','10','--require-native-table-slide','12','--require-native-table-slide','16','--require-native-table-slide','18'],explicitTotalSlideCount:23,requiredNativeTableOwnerSlides:[10,12,16,18],requiredNativeChartOwnerSlides:[],fontPolicy:{basis:'design',families:[font,latinFont,codeFont]}};
 await finalizePresentation({...validationOptions,candidatePath:poster,finalPath:posterFinal,verifyArtifactToolImport:false,receiptPath:path.join(workspace,'poster-validation.json')});
 // Import authored content in four contiguous batches to bound the runtime's
 // XML construction size, then inspect the full
@@ -226,7 +228,7 @@ const linked=path.join(workspace,'linked-candidate.pptx');
 const linking=spawnSync(process.env.RUNTIME_PYTHON,[path.join(root,'source/presentation/board-evolution/link_slides.py'),posterFinal,linked,path.join(workspace,'navigation-targets.json')],{encoding:'utf8'});
 if(linking.status!==0)throw new Error(linking.stderr||linking.stdout||'Slide linking failed');
 await fs.writeFile(path.join(workspace,'navigation-links.json'),linking.stdout);
-const embedding=spawnSync(process.env.RUNTIME_PYTHON,[path.join(import.meta.dirname,'embed_video.py'),linked,candidate,path.join(root,VIDEO),'--review',path.join(root,'publication/media-review.json'),'--slide','12','--autoplay'],{encoding:'utf8'});
+const embedding=spawnSync(process.env.RUNTIME_PYTHON,[path.join(import.meta.dirname,'embed_video.py'),linked,candidate,path.join(root,VIDEO),'--review',path.join(root,'publication/media-review.json'),'--slide','11','--autoplay'],{encoding:'utf8'});
 if(embedding.status!==0)throw new Error(embedding.stderr||embedding.stdout||'Video embedding failed');
 await fs.writeFile(path.join(workspace,'video-embedding.json'),embedding.stdout);
 if(process.env.PRESENTATION_PREVIEW_ONLY==='1'){

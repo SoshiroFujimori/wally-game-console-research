@@ -1136,7 +1136,20 @@
     "cf998aa6c5af086672b6f6c78a1a78376448a9ead7af123ee6e798e24fa59f1f",
     "9b4774378f33aec456121fc26feb123bbdc4a8399e5ecca956f0fee5d764cc5d",
     "17fc09989e34266702616c36c362903593b43eda532d560db506fbd5e5c3c701",
-    "a637d3ecdb28acd1f24ae5fa3736d62bf50d5af6065eb700e98ee91836a184bc"
+    "a637d3ecdb28acd1f24ae5fa3736d62bf50d5af6065eb700e98ee91836a184bc",
+    "949e273cdf9708e6ec390b85cbee205c9f552b894b80a52651417e744c3524ec",
+    "721296cd9eb48008dde40528c42921e89b45c6bf5af9c170e4d66d38c973db03",
+    "a6bb5de9d3b55fb845d07438ff3139aac9ef10d2bc54b7c2d2245c3f5e826617",
+    "1de2103520bafbd2b634813c9d09b58ad50b3a76335b0f2e1456e0b334e8e60d",
+    "26d61314b0bf23a271f13d6952aa0368e6d17044b57e124efae15317150f14fc",
+    "eac8ac846ca19b4fb58354ec4400537bdaae05e8b31dffa123b76571feaccff4",
+    "b302cebe6e8a3742bfbbc7195b16182297e0e41611ac40257b040d2a62e3f78a",
+    "912d3d3a253c4524fbc5390d3a3cc750b89a60e9010a6f3017b3600a560c06ac",
+    "485eb3e5bca28d9920d7f782e89639f4b52d291e8e1c8c7e980b458f505e380b",
+    "be7662be148c8ff1afc407334800bb999690b8ab6f43491b8e9f8043dd62b291",
+    "bf337a87cdfc0ff86a071c52c97a7c5adce1bbe88af457402193770c7d743a8a",
+    "7976806ca25f7ad8e20c7b60f06dbf41deb4a715a9e333d3d76b57346ebf3951",
+    "2da6c7981cad5352036d6481823a843c5e193c2d3c4ba934175c95d6a9df432d"
   ],
   "reviews": {
     "abstract-based-presentation-20261108": "Reviewed all 18 native PowerPoint slide renders and the private cover. Main slides use functional circuits and address-access examples; source differences remain in notes and reproduction records. Confirmed 51 internal links, six hidden question slides, original embedded video hash, and cover-only differences between editions. Reviewed the revised abstract diagram, color and monochrome one-page Word renders, code lines and title placement. Public image metadata was cleaned without changing decoded pixels; newly embedded PNGs match visually reviewed sources.",
@@ -1160,6 +1173,7 @@
     "presentation-connection-roles-20261109": "Reviewed native slide 10 after replacing the buffer-focused inset with bus-format adaptation and clock-domain transfer. The visible roles identify the local adapter and AMD circuit without IP or module names. The common board diagram and all other slides are pixel-identical. The embedded video, 60 navigation links, hidden answer slides and private cover remain unchanged. All protected abstract files retain their original hashes.",
     "presentation-footer-right-20261109": "Reviewed all 21 native PowerPoint footer crops and representative full slides. Moved right-aligned page numbers 40 CSS pixels toward the right edge, leaving a 24-pixel right margin. Pixel comparisons preserve all content outside the footer; the digits themselves are identical after translation. All slide text, speaker notes, the embedded video, 60 navigation links, hidden answer slides and private cover text remain unchanged. All protected abstract files retain their original hashes.",
     "presentation-opengl-answer-20261109": "Reviewed native slide 22 and the updated contents on slide 14. The slide covers background initialization, all rectangular objects (bricks, walls, paddle and square ball), and texture-based title, score, lives and state messages. Code and explanations are grounded in the pinned game source and official RasterIX API. The embedded screenshot is the unchanged reviewed standard-output capture. Optimization and implementation-tuning explanations are excluded. All existing slides except the contents row are pixel-identical. Video, cover and protected abstracts are unchanged; all 63 navigation links are checked.",
-    "presentation-opengl-core-20261110": "Reviewed native slides 22 and 23 and their clickable contents. Slide 22 relates position, size and color to all rectangular game objects and explains background initialization. Slide 23 uses editable diagrams of the pinned font pixels and pairs texture coordinates with screen vertices in the code. Notes explain registration, color and transparency. The original game capture and embedded recording are unchanged. No optimization or implementation-tuning material was added. Main slides and prior answer slides remain pixel-identical except the contents and the edited OpenGL slide. All 66 navigation links and protected abstract files are checked. No private identities or local paths are visible."
+    "presentation-opengl-core-20261110": "Reviewed native slides 22 and 23 and their clickable contents. Slide 22 relates position, size and color to all rectangular game objects and explains background initialization. Slide 23 uses editable diagrams of the pinned font pixels and pairs texture coordinates with screen vertices in the code. Notes explain registration, color and transparency. The original game capture and embedded recording are unchanged. No optimization or implementation-tuning material was added. Main slides and prior answer slides remain pixel-identical except the contents and the edited OpenGL slide. All 66 navigation links and protected abstract files are checked. No private identities or local paths are visible.",
+    "presentation-core-scope-20261110": "Reviewed native PowerPoint slides 2-14 at full size. The twelve-slide main explanation focuses on the integration objective, existing and added components, data-transfer roles, observed game behavior and the published extension example. Repeated board views retain component positions. Detailed architecture and OpenGL material remains in the nine unchanged hidden answer slides. Tables and circuit diagrams are editable. The embedded 30-second recording and its game poster are unchanged; video moved to slide 11. All 66 links, private/public body identity, answer-slide pixels and 12 protected abstract files were checked. The allocated 335 seconds is a plan, not a timed rehearsal. No private identity or local path is visible in the public copy."
   }
 }

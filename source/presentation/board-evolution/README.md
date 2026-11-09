@@ -3,86 +3,37 @@
 This builder produces the single published intermediate presentation:
 [slides and narration](../../../docs/presentation/中間発表_主要事項.md) and
 [PowerPoint](../../../docs/presentation/中間発表_主要事項.pptx).
-A cover and twelve presentation slides follow the current abstract. Slide 14
+A cover and twelve presentation slides explain the integration design and its functional evidence. Slide 14
 is clickable contents; slides 15-23 are hidden answer slides. The narration allocation
-is 355 seconds including the 30-second embedded video, not a timed rehearsal.
+is 335 seconds including the 30-second embedded video, not a timed rehearsal.
 
 ## Main explanation
 
-| Slide | Subject | Diagram or evidence |
+| Slide | Subject | Evidence or role |
 | --- | --- | --- |
-| 1 | Title | Public identities are withheld; the school copy retains its private cover. |
-| 2 | FPGA circuit implementation | HDL and an AND gate, with physical SD, DDR3 and HDMI parts. |
-| 3 | Wally and the research purpose | Published CPU/peripheral HDL, its textbook, and the extension goal. |
-| 4 | SD read request | AD, WD and WE select the SD transmit register through S0. |
-| 5 | Received SD data | The same layout returns the SD receive value through S0 and RD. |
-| 6 | DDR3 storage | The received byte is written to DDR3 through S1 and the AMD controller. |
-| 7 | SD-to-DDR copy | Read the fixed receive register and advance the DDR3 destination. |
-| 8 | Execution start | A call to the address of the program copied into DDR3. |
-| 9 | Drawing commands | CPU library, command values, address write, and connection circuit. |
-| 10 | Command connection | Two circuit roles accommodate the bus format and clock difference: a local APB adapter and an AMD asynchronous FIFO. |
-| 11 | Image storage and output | Reused RasterIX drawing/display and shared DDR3. |
-| 12 | Demonstration | The reviewed standard-output 30-second autoplay video. |
-| 13 | Conclusion | The same board diagram identifies reused Wally/RasterIX circuits and the added adapter; controller/GUI work remains planned. |
+| 1 | Title | Private cover retained in the school copy. |
+| 2 | FPGA and external components | HDL and an AND gate illustrate circuit implementation. |
+| 3 | Wally and the objective | A working extension example for Wally learners. |
+| 4 | Existing and added parts | Reused CPU/peripheral/graphics components and local integration. |
+| 5 | Program loading | SD control returns data to the CPU, which stores it through DDR control. |
+| 6 | Game execution | CPU execution updates positions, collisions and score. |
+| 7 | Drawing commands | The CPU library prepares commands for the graphics block. |
+| 8 | Interface design | Local bus adaptation and an AMD IP for clock-domain transfer. |
+| 9 | Image output | Graphics and display use DDR3 through its controller. |
+| 10 | Functional checks | Visible objects, motion, brick removal and score updates. |
+| 11 | Actual video | The unchanged reviewed 30-second standard-output recording. |
+| 12 | Published extension example | Source, execution instructions and functional evidence for learners. |
+| 13 | Conclusion and next steps | Verified game behavior and optional controller/GUI work. |
 
-`main-slides.mjs` defines the cover and twelve-slide main talk.
-`stable-board.mjs` supplies one editable coordinate system for slides 2-11 and 13.
-The board, chip boundary, SD slot, DDR3 memory and HDMI connector keep exactly
-the same positions and sizes. The name Wally identifies the CPU in this
-presentation. The Wally repository label identifies the source of CPU and
-peripheral code. Slide 3 groups those circuits into one block and introduces
-their public HDL and textbook. Slide 4 expands the block into the CPU, decoder,
-SD control and DDR control, within the same source boundary. A repository is
-the place where design code is published; it is not a hardware component.
-
-The common layout places input labels inside each peripheral, aligns the
-SD/DDR/command input rows, and reserves separate lanes for read returns and
-image transfer. Muted component names, outlines, fills and connections keep
-unrelated hardware visible without competing with the operation in focus.
-The DDR vendor fill is saturated only when DDR is relevant. Blue marks the
-explained data path; it does not encode a logic level or disconnection of a
-muted shared branch. The copy view emphasizes the SD read path and DDR write
-path without highlighting an SD write or DDR read.
-
-Slides 4-11 retain the same circuit blocks and signal routes. Blue emphasizes
-the path being discussed. In particular, slide 7 keeps slide 6's DDR3 write
-path and also highlights the SD read path. The code explains how the CPU
-alternates between those two transfers; the two selects are not asserted
-simultaneously. The following slides change the highlighted transfer and code,
-without moving components to a different whole-system diagram.
-
-`abstract-flow.mjs` retains the conceptual code-panel helper and the earlier
-whole-system drawing source. The current answer view is `merged-datapath.mjs`. Wally's processor datapath and
-instruction encoding are not prerequisites for the main explanation.
-
-The access view separates address AD, write data WD, one-bit write enable WE,
-read data RD, and selection signals S0-S2. Only one destination accepts a transfer, and a
-selector returns that destination's read value. The selects are explanatory
-names, not RTL bit indices. Timing, wait states, transfer width, bus conversion,
-and clock-domain logic are omitted. The source correspondence is preserved
-in the notes and the detailed answer diagram.
-
-The C fragments use the same addresses as the abstract. They omit initialization,
-complete SD transactions, waits, address mapping and `volatile`.
-The copy/start excerpt illustrates control flow rather than replacing the actual
-bootloader and OS startup sequence.
-Slide 10 explains the command connection through two functional blocks.
-The added `rasterix_apb.sv` logic adapts APB writes to the AXI4-Stream command
-interface. AMD's AXI4-Stream Data FIFO, configured for independent clocks,
-transfers those words from the CPU clock to the drawing clock. The visible
-labels state the two roles and their provenance, without module or IP names.
-Only the FIFO is AMD IP; the bus-format adapter is integration RTL added by
-this project. This is an explanation of the selected connection method,
-not a claim that an asynchronous FIFO is the only possible design or that
-its buffering has improved game performance. The standard clock settings
-are 20 MHz for the CPU and 100 MHz for the drawing circuit. A full FIFO
-delays the APB write through `PREADY`. Exact interface names and source
-correspondence remain in the speaker notes.
-
-The final-word write is also omitted from the main fragment; the notes
-identify the actual completion port. They are conceptual excerpts, not an
-executable driver. The real MMIO code
-is unchanged. See [the address checks and scope](../../abstract/README.md).
+`core-board.mjs` provides a stable functional diagram. It summarizes the
+transfers rather than drawing individual bus wires. `stable-board.mjs` retains
+the earlier detailed signal diagram and the introductory board views.
+The detailed OpenGL and architecture slides remain hidden answer material.
+The notes and [presentation essentials](../../../docs/presentation/発表の要点.md)
+describe the scope of the claims. No measured educational benefit, global
+novelty, comparative speedup or universal reliability is asserted.
+The previous deck is preserved at commit
+`cbec7498c75ca0e17876c7ea99760ed144367732`.
 
 ## Design and circuit lines
 
@@ -132,7 +83,7 @@ configuration for the drawing circuit.
 ## Embedded demonstration
 
 The presentation embeds [the compatible distribution copy](../assets/breakout-standard-dvi-compatible.mp4)
-and starts it automatically when slide 12 is entered in the slideshow.
+and starts it automatically when slide 11 is entered in the slideshow.
 The original experiment recording is preserved. The distribution file uses
 H.264 High, level 4.2, yuv420p and retains the original 1920 by 1080 frame size,
 60 frames per second, 1800 frames and 30-second duration. See the
@@ -174,21 +125,23 @@ the blue outlines used for functions covered in the main presentation.
 
 ## Recorded demonstration and scope
 
-Slide 12 embeds `experiments/dvi-recovery-20261109/media/latest-standard-dvi-30s.mp4`
-without transcoding, using its reviewed `latest-start.png` poster. This is
-the sole execution-result slide. Slide 10 explains command acceptance and delivery by the added adapter. The latest title-top executable
+Slide 11 embeds the compatible H.264 distribution copy of
+`experiments/dvi-recovery-20261109/media/latest-standard-dvi-30s.mp4`, using its
+reviewed `latest-start.png` poster. This is the sole execution-result slide.
+Slide 8 explains the adapter roles; slide 10 introduces the functional checks.
+The latest title-top executable
 is shown using the unchanged standard display bitstream and RasterIX-bundled
 drawing/display cores. Local connection and control wrappers remain integration
 work. The player is automatic; controller input is not implemented. Recorded
 video rate is not a game-FPS measurement.
 
-The main talk reports the ball's movement and rebounds and the removal of hit
-blocks. It makes no repeated-boot, long-duration or universal display claim.
+The main talk reports motion, removal of hit blocks and score updates.
+It makes no repeated-boot, long-duration or universal display claim.
 The acquisition conditions, revisions and hashes are retained in the experiment
 record. The historical utilization table has its own earlier display variant;
 its After column is not the bitstream used in this updated video.
 
-The video is played by clicking its area during a slideshow. Internal slide
+The video starts automatically in a slideshow. Internal slide
 jumps and return links are native OOXML relationships. `embed_video.py` checks
 the input video against the approved media hashes; `link_slides.py` adds links.
 
