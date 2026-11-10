@@ -29,7 +29,7 @@ export async function addMainSlides(ctx) {
 
 
   section="背景";
-  s=slide("FPGAとは",40,
+  s=slide("背景：FPGAとは",40,
     "まず背景です。FPGAボードは、SDカードスロットやDDRメモリなどを載せた基板です。基板上にはFPGAチップもあります。このチップ内に、周囲の部品を制御するデジタル回路を実装できます。図は、チップ内に実装できる論理回路の一例です。",
     "Harris, S. L. and Harris, D., Digital Design and Computer Architecture: RISC-V Edition (2021), Chapter 7. Official figure source: https://pages.hmc.edu/harris/ddca/ddcarv.html (DDCArv_Figures.zip). Chapters 2 and 4. Harris et al., RISC-V System-on-Chip Design, Chapters 7–13, 20, 22–23. Official figure source: https://pages.hmc.edu/harris/ddca/rvsocd.html (RVSoCD_figs.zip). Chapter 23. Nexys Video Reference Manual.",
     "FPGAは、コードで記述したデジタル回路をチップ内に実装できるデバイスである。CPUも、その方法で実装する回路の一つである。SDカードなどを実際に制御するにはそれぞれの制御回路が必要であり、図のAND回路は、チップ内に実装できる論理回路の一例を示す。");
@@ -38,7 +38,7 @@ export async function addMainSlides(ctx) {
   line(s,'基板上に、FPGAチップ・SDカードスロット・DDRメモリなどがある',603,true,26);
 
   section="背景";
-  s=slide("チップ上の回路の例",55,
+  s=slide("背景：チップ上の回路の例",55,
     "FPGAにCPUや描画回路を実装する先行研究があります。左はCPUのWallyと、SDカードやDDRメモリを制御する周辺回路です。SDカードスロットに挿したSDカードからプログラムをDDRメモリに読み込み、CPUで実行できます。右は描画回路のRasterIXです。また、Wallyの設計を学ぶ教科書RVSOCは、ここに示す大学で採用されています。こうした教材採用から、CPUや周辺回路の設計を学ぶ一定の需要があると考えます。",
     "Wally: Thompson et al., RISC-V System-on-Chip Design Textbook and Course (2025), Section 4, https://doi.org/10.18260/1-2--57147 ; https://nemo.asee.org/public/conferences/365/papers/48675/download . Official CPU implementation: https://github.com/openhwgroup/cvw . Official RasterIX implementation: https://github.com/ToNi3141/RasterIX . RVSOC textbook adoption: docs/presentation/RVSOC教科書採用の出典.md; source/presentation/rvsoc-adoption/records.json . Harvey Mudd College E154, Spring 2026: https://pages.hmc.edu/harris/class/e154/ . Oklahoma State University, 2023–2024 manuscript use: Thompson et al. (2025), Section 4. TU Darmstadt, Winter 2026/27: https://www.esa.informatik.tu-darmstadt.de/lehre/202627/cai . Official textbook: https://pages.hmc.edu/harris/ddca/rvsocd.html . Wally FPGA configuration: console/config/derivlist.txt; console/src/uncore/uncore.sv; console/fpga/src/fpgaTopNexysVideo.sv. Boot from SD and main memory: RISC-V System-on-Chip Design, Chapters 20 and 23.",
     "二つのFPGAは既存の実装例を別々に示す。左はCPU Wally、SDカード制御、DDRメモリ制御、GPIOなどを含む構成の機能図である。CPUが起動用プログラムを実行してSDカードの内容を読み出し、DDRメモリに配置する。後から実行する命令はDDRメモリなどからCPUに読み込まれるため、SDカードを命令メモリとして直接実行するという意味ではない。図の読出し・書込みの経路は、複数の信号とバス制御をまとめる。右の図は描画・表示機能と映像端子の関係を示す例であり、必要なCPU・外部メモリ等を網羅した回路図ではない。\n\nCPUと周辺制御はWallyリポジトリの既存回路を使う。DDRメモリ制御の本体はAMD製MIG IPであり、Wallyの生成・接続の仕組みと本研究のNexys Video用設定を利用している。描画本体RasterIX_IFと表示本体dvi_framebufferは公式RasterIXリポジトリに含まれる。後者はultraembedded由来の回路である。\n\n『RISC-V SoC設計』は英語書名RISC-V System-on-Chip Designの説明用の日本語表記である。Harvey Mudd Collegeは2026年春の授業で教科書指定、Oklahoma State Universityは2023〜2024年に出版前の原稿版を授業で使用、ダルムシュタット工科大学は2026/27年冬の授業で主教科書に指定している。過去の使用を含む確認例であり、同一年度の採用校一覧ではない。ダルムシュタットの実習はASIC設計を扱うため、3校すべてがFPGAでゲーム機を作る授業をしているという意味ではない。\n\n教材採用という事実から、CPUや周辺回路の設計を学ぶ需要があると解釈する。本研究のゲーム機の利用希望者数や教育効果を測定した結果ではない。");

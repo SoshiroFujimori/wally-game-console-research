@@ -13,8 +13,8 @@ export const ANSWER_CATEGORIES=[
 const answerCategories=new Map(ANSWER_CATEGORIES.flatMap(group=>group.numbers.map(number=>[number,group.label])));
 export const CONTENTS_ITEMS=[
   {number:1,label:'表紙'},
-  {number:2,label:'FPGAとは'},
-  {number:3,label:'チップ上の回路の例'},
+  {number:2,label:'背景：FPGAとは'},
+  {number:3,label:'背景：チップ上の回路の例'},
   {number:4,label:'本研究の概要'},
   {number:5,label:'構成：ソフトウェア'},
   {number:6,label:'構成：ハードウェア'},
