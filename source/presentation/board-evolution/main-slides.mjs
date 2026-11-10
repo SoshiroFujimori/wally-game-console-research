@@ -87,14 +87,14 @@ export async function addMainSlides(ctx) {
   line(s,'追加したアドレス範囲：0x10080000〜0x100800FF',631,false,27);
 
   section="実行結果";
-  s=slide("実行結果：FPGAの使用量",25,
-    "次に、実行結果です。まず、FPGA内部のリソースの使用量を示します。FPGAには、論理回路やメモリなど、実装に使える資源の数に上限があります。表は、Wallyの基本構成と、今回のゲーム機構成の使用率です。ゲーム機では、LUTが約50%、チップ内のBlock RAMが約59%でした。CPUや周辺制御、描画・表示を含む回路を、一つのFPGAに実装できました。",
+  s=slide("実行結果：FPGAチップの使用量",25,
+    "次に、実行結果です。まず、FPGAチップ内部のリソースの使用量を示します。FPGAチップには、論理回路やメモリなど、実装に使える資源の数に上限があります。表は、Wallyの基本構成と、今回のゲーム機構成の使用率です。ゲーム機では、LUTが約50%、チップ内のBlock RAMが約59%でした。CPUや周辺制御、描画・表示を含む回路を、一つのFPGAチップに実装できました。",
     "Before: experiments/fpga-resource-comparison-20261108/comparison.json; After: experiments/standard-display-resources-20261110/implementation.json; experiments/dvi-recovery-20261109/README.md; results.json; media-review.json. Captured 2026-11-09. Standard bitstream SHA-256: 16173de97a91e711cd7bc5389acd9739807adebedf192efc29fe78f5b96c0acf. Latest game executable SHA-256: 5c360babde59c6d9fc72fe58edc5729da2b2b8480c2f3a5208980d2f7d2c558b. Video: experiments/dvi-recovery-20261109/media/latest-standard-dvi-30s.mp4",
     "比較する構成\nBeforeは2026年9月8日に保存したNexys Video対応時のCPUと周辺回路、Afterは2026年10月8日に保存した標準表示のゲーム機構成である。どちらもArtix-7 XC7A200T（xc7a200tsbg484-1）、Vivado 2025.2による配置配線後の記録を使う。Afterは実機動画と同じ回路設定データであり、この表はその構成の使用率を示す。\n\nBeforeの根拠\nexperiments/fpga-resource-comparison-20261108/before-utilization.rptを使う。日付は2026年9月8日13:16:56、DesignはfpgaTop、Design StateはRoutedである。Nexys Video対応時の描画機能がない構成として保存された記録である。レポートにGitリビジョンや回路設定データのハッシュは記載されておらず、特定のコミットから完全に再生成した結果とは主張しない。元ファイルと公開用コピーのハッシュはcomparison.jsonに区別して記録した。\n\nAfterの根拠\nexperiments/standard-display-resources-20261110/implementation.jsonとutilization.rptを使う。製品RTLは261832d48832dd6e26c4971ab8893ce61200688b、公式RasterIXは9269a01c9bd4c3342bfa70ef8e3cdd751c15c6d0。回路設定データのSHA-256は16173de97a91e711cd7bc5389acd9739807adebedf192efc29fe78f5b96c0acfで、11月9日の映像記録に一致する。レポートは11月10日に保存済みの検証ディレクトリから取り出して確認し、再配置配線や新たな実機試験は行っていない。公開コピーはホスト名や個人用パスを除去した。\n\n比較の範囲\n開発前後に保存した実装全体を参考比較する。CPUのRTLなどの版や各種設定を固定して描画機能だけを追加した比較ではない。したがって、差をRasterIX単体の使用量と解釈しない。動作するゲーム機全体が対象FPGAに収まることは、Afterの実装記録と対応する実機動画から確認できる。\n\n掲載値\nLUT、Slice Registers、Block RAM Tile、DSPの四種類を示す。それぞれの搭載数に対する使用数の割合で、異なる資源の割合は合算しない。Block RAMはFPGA内のメモリで、ボード上のDDR3は含まれない。未使用資源の数だけから任意の拡張が可能とは判断できず、回路を追加する場合は配置配線とタイミングを再確認する。");
   lead(s,'Wallyの基本構成と、製作したゲーム機の使用率');
   const utilization=await loadFpgaUtilization(root);
   drawCurrentUtilization(s,api,utilization);
-  line(s,'CPU・周辺制御・描画・表示を、1個のFPGAに実装できた',631,true,27);
+  line(s,'CPU・周辺制御・描画・表示を、1個のFPGAチップに実装できた',631,true,27);
 
   section="実行結果";
   s=slide("実行結果：ブロック崩しの動画",30,

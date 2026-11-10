@@ -73,7 +73,7 @@ LUT、Slice Registers、Block RAM Tile、DSPの四種類を示す。それぞれ
 export function drawCurrentUtilization(slide, api, data) {
   const {text,C}=api;
   text(slide,'Nexys Video：Artix-7 XC7A200T',64,174,1152,36,26,false,C.ink);
-  const values=[['FPGA内部の資源','主な役割','Wally\n基本構成','ゲーム機\n構成'],
+  const values=[['チップ内部の資源','主な役割','Wally\n基本構成','ゲーム機\n構成'],
     ...data.rows.map(r=>[r.label,r.role,r.before+'%',r.after+'%'])];
   const table=slide.tables.add({rows:5,columns:4,left:64,top:227,width:1152,height:362,
     columnWidths:[320,312,260,260],values});

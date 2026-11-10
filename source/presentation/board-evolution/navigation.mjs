@@ -8,7 +8,7 @@ export const CONTENTS_ITEMS=[
   {"number": 4, "label": "本研究の概要", "group": "発表用スライド"},
   {"number": 5, "label": "ソフトウェアの概要", "group": "発表用スライド"},
   {"number": 6, "label": "アドレスの割当て", "group": "発表用スライド"},
-  {"number": 7, "label": "FPGAの使用量", "group": "発表用スライド"},
+  {"number": 7, "label": "FPGAチップの使用量", "group": "発表用スライド"},
   {"number": 8, "label": "ブロック崩しの実機動画", "group": "発表用スライド"},
   {"number": 9, "label": "まとめと今後の展望", "group": "発表用スライド"},
   {"number": 11, "label": "回路・CPU設計の教科書の利用例", "group": "教科書の採用例"},
