@@ -14,10 +14,10 @@ const answerCategories=new Map(ANSWER_CATEGORIES.flatMap(group=>group.numbers.ma
 export const CONTENTS_ITEMS=[
   {number:1,label:'表紙'},
   {number:2,label:'FPGAとは'},
-  {number:3,label:'先行研究と教育現状'},
+  {number:3,label:'チップ上の回路の例'},
   {number:4,label:'本研究の概要'},
-  {number:5,label:'ソフトウェアの概要'},
-  {number:6,label:'アドレスの割当て'},
+  {number:5,label:'構成：ソフトウェア'},
+  {number:6,label:'構成：ハードウェア'},
   {number:7,label:'FPGAチップの使用量'},
   {number:8,label:'ブロック崩しの実機動画'},
   {number:9,label:'まとめと今後の展望'},
