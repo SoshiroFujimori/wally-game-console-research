@@ -30,22 +30,32 @@ export async function addMainSlides(ctx) {
 
   section="背景";
   s=slide("FPGAとは",40,
-    "まず背景です。FPGAボードは、SDカードスロットやDDRメモリなどを載せた基板です。基板上にはFPGAチップもあります。このチップ内に、周囲の部品を制御するデジタル回路を実装できます。図のように、回路をコードで記述して、チップ内に実装します。",
+    "まず背景です。FPGAボードは、SDカードスロットやDDRメモリなどを載せた基板です。基板上にはFPGAチップもあります。このチップ内に、周囲の部品を制御するデジタル回路を実装できます。図は、チップ内に実装できる論理回路の一例です。",
     "Harris, S. L. and Harris, D., Digital Design and Computer Architecture: RISC-V Edition (2021), Chapter 7. Official figure source: https://pages.hmc.edu/harris/ddca/ddcarv.html (DDCArv_Figures.zip). Chapters 2 and 4. Harris et al., RISC-V System-on-Chip Design, Chapters 7–13, 20, 22–23. Official figure source: https://pages.hmc.edu/harris/ddca/rvsocd.html (RVSoCD_figs.zip). Chapter 23. Nexys Video Reference Manual.",
-    "FPGAは、コードで記述したデジタル回路をチップ内に実装できるデバイスである。CPUも、その方法で実装する回路の一つである。SDカードなどを実際に制御するにはそれぞれの制御回路が必要であり、AND回路はコードと回路の対応だけを示す。回路を記述するHDLと、CPUが実行するゲームのプログラムは、それぞれ作る対象が異なる。");
+    "FPGAは、コードで記述したデジタル回路をチップ内に実装できるデバイスである。CPUも、その方法で実装する回路の一つである。SDカードなどを実際に制御するにはそれぞれの制御回路が必要であり、図のAND回路は、チップ内に実装できる論理回路の一例を示す。");
   lead(s,'ボード上の部品を制御する回路を、FPGAチップ内に実装できる');
   drawStableBoard(s,api,{mode:'implementation'});
   line(s,'基板上に、FPGAチップ・SDカードスロット・DDRメモリなどがある',603,true,26);
 
   section="背景";
   s=slide("先行研究と教育現状",35,
-    "このように、FPGAのチップ上にCPUや描画回路を実装する先行研究があります。CPUの例がWally、描画回路の例がRasterIXです。描画回路と表示用の回路によって、HDMI端子から映像を出力できます。また、CPU設計を授業で扱う高専や大学もあります。例えば、久留米高専や広島大学では、回路やCPU設計の教科書がシラバスに挙げられています。",
-    "Wally: Thompson et al., RISC-V System-on-Chip Design Textbook and Course (2025), https://doi.org/10.18260/1-2--57147 ; https://peer.asee.org/57147.pdf . Official CPU implementation: https://github.com/openhwgroup/cvw . Official RasterIX implementation: https://github.com/ToNi3141/RasterIX ; rtl/3rdParty/core_dvi_framebuffer/README.md .\nWally upstream: https://github.com/openhwgroup/cvw . Official RasterIX: https://github.com/ToNi3141/RasterIX/tree/9269a01c9bd4c3342bfa70ef8e3cdd751c15c6d0 . RTL: console/src/wally/wallypipelinedcore.sv; console/src/uncore/uncore.sv; console/src/uncore/spi_apb.sv; console/fpga/generator/ddr3-nexysvideo.tcl; console/fpga/generator/wally.tcl; console/fpga/src/rasterixdisplay.sv. RasterIX: rtl/RasterIX/RasterIX_IF.v; rtl/3rdParty/core_dvi_framebuffer/README.md; rtl/3rdParty/core_dvi_framebuffer/src_v/dvi_framebuffer.v. Standard-output evidence: experiments/dvi-recovery-20261109/results.json.\nHarris, S. L. and Harris, D., Digital Design and Computer Architecture: RISC-V Edition (2021), Chapter 7. Official figure source: https://pages.hmc.edu/harris/ddca/ddcarv.html (DDCArv_Figures.zip). Chapters 3, 5 and 7. Harris et al., RISC-V System-on-Chip Design, Chapters 7–13, 20, 22–23. Official figure source: https://pages.hmc.edu/harris/ddca/rvsocd.html (RVSoCD_figs.zip). Chapters 7, 9, 20 and 23. School records: docs/presentation/DDCA授業利用の出典.md (U07, U05, K02, K04); docs/presentation/RVSOC教科書採用の出典.md. Tokyo: https://catalog.he.u-tokyo.ac.jp/detail?code=0510019&year=2022 ; Hiroshima: https://momiji.hiroshima-u.ac.jp/syllabusHtml/2026_12_K6406020.html ; Toyota: https://syllabus.kosen-k.go.jp/Pages/PublicSyllabus?department_id=13&lang=ja&school_id=23&subject_code=34234&year=2022 ; Kurume: https://syllabus.kosen-k.go.jp/Pages/PublicSyllabus?department_id=03&from=curriculum&lang=ja&school_id=43&subject_code=4S18&year=2023 ; HMC: https://pages.hmc.edu/harris/class/e154/ ; OSU: Thompson et al., RISC-V System-on-Chip Design Textbook and Course (2025), Section 4, https://doi.org/10.18260/1-2--57147 ; TU Darmstadt: https://www.esa.informatik.tu-darmstadt.de/lehre/202627/cai . Official books: https://pages.hmc.edu/harris/ddca/ddcarv.html ; https://pages.hmc.edu/harris/ddca/rvsocd.html .",
-    "CPUの先行研究には、WallyのCPU・SoC、FPGA実装と教材を扱うASEE論文を挙げる。RasterIXについては公式の研究・開発成果として公開された回路・ソフトウェアと実装例を参照する。RasterIXに査読付き論文があるという主張ではない。図はFPGAに実装できる既存回路を例示したもので、同じボードにWallyとRasterIXを接続した先行研究を示すものではない。描画・表示の出典と本研究の接続部分は4枚目で区別する。\n\nCPU・バス・SDカード制御はWallyリポジトリ（CVW）の既存RTLを利用する。DDRメモリ制御はWallyリポジトリの生成・接続の仕組みを利用し、回路本体はAMD製MIG IPである。Nexys Video用の設定は本研究で追加した。標準構成の描画本体RasterIX_IFと表示本体dvi_framebufferは、同じ公式RasterIXリポジトリから取得する。表示本体はrtl/3rdParty/core_dvi_framebufferに同梱されたultraembedded由来の回路で、RasterIXの作者がすべて新規に設計したという意味ではない。バスから描画回路への変換、画面切替などの接続処理は本研究で追加した。本資料の実機動画は、RasterIX同梱の表示本体を利用する標準構成で取得した。表示本体そのものを本研究で新規設計したという主張ではない。\n\n左の教科書は、日本語版の書名を表示した。略称はDDCA、英語の書名はDigital Design and Computer Architectureである。第3章の順序回路、第5章の演算回路などの基礎を使い、第7章で命令を実行するプロセッサを組み立てる。図の「値を保存」はレジスタ、「計算する」は演算回路、「命令に応じて指示」は制御回路の役割を表す。CPUを構成する役割の例であり、命令メモリやフィードバックなどをすべて描いた配線図ではない。中央の「RISC-V SoC設計」は、RISC-V System-on-Chip Designという英語書名を説明用に日本語で表したもので、日本語版の刊行を意味しない。略称はRVSOC。第7章のCPUを基礎に、第9章で外部メモリへのバス接続、第20章で周辺回路、第23章でFPGA実装を扱う。図はそのうち本研究につながる部分を示す。授業の例は、東京大学の2022年度、広島大学の2026年度、豊田高専の2025年度、久留米高専の2026年度に、DDCAを教科書・教材欄で確認したもの。版は同一ではなく、久留米高専はARM版である。RVSOCはHarvey Mudd Collegeの2026年春、ダルムシュタット工科大学の2026/27年冬に教科書指定があり、Oklahoma State Universityの2023〜2024年の原稿版の授業使用はASEE論文に報告されている。学校名は過去の例を含み、同じ年度の全採用校の一覧ではない。教材間の矢印は内容の発展を示し、各校の全学生がこの順番で学ぶという意味ではない。本研究は回路とプログラムの拡張例を公開する。教科書の採用だけで教育効果が実証されたとはせず、教育効果や利用者数は測定していない。");
+    "FPGAにCPUや描画回路を実装する先行研究があります。CPUの例がWally、描画回路の例がRasterIXです。また、Wallyの設計を学ぶ教科書RVSOCは、ハーベイ・マッド大学、オクラホマ州立大学、ダルムシュタット工科大学で採用されています。こうした授業での採用から、CPUや周辺回路の設計を学ぶ一定の需要があると考えます。",
+    "Wally: Thompson et al., RISC-V System-on-Chip Design Textbook and Course (2025), Section 4, https://doi.org/10.18260/1-2--57147 ; https://nemo.asee.org/public/conferences/365/papers/48675/download . Official CPU implementation: https://github.com/openhwgroup/cvw . Official RasterIX implementation: https://github.com/ToNi3141/RasterIX . RVSOC textbook adoption: docs/presentation/RVSOC教科書採用の出典.md; source/presentation/rvsoc-adoption/records.json . Harvey Mudd College E154, Spring 2026: https://pages.hmc.edu/harris/class/e154/ . Oklahoma State University, 2023–2024 manuscript use: Thompson et al. (2025), Section 4. TU Darmstadt, Winter 2026/27: https://www.esa.informatik.tu-darmstadt.de/lehre/202627/cai . Official textbook: https://pages.hmc.edu/harris/ddca/rvsocd.html .",
+    "左右はFPGAへの既存回路の実装例であり、互いに独立した図である。本研究での組合せは次のスライドで示す。WallyはCPU・SoCの設計とFPGA実装を扱う教材・公開回路の例、RasterIXは公開された描画回路と表示回路の実装例として挙げる。RasterIXの査読付き論文の存在を主張するものではない。\n\n『RISC-V SoC設計』は英語書名RISC-V System-on-Chip Designの説明用の日本語表記である。Harvey Mudd Collegeは2026年春の授業で教科書指定、Oklahoma State Universityは2023〜2024年に出版前の原稿版を授業で使用、ダルムシュタット工科大学は2026/27年冬の授業で主教科書に指定している。過去の使用を含む確認例であり、同一年度の採用校一覧ではない。ダルムシュタットの実習はASIC設計を扱うため、3校すべてがFPGAでゲーム機を作る授業をしているという意味ではない。\n\n教材採用という事実から、CPUや周辺回路の設計を学ぶ需要があると解釈する。本研究のゲーム機の利用希望者数や教育効果を測定した結果ではない。");
   lead(s,'FPGAにCPUや描画回路を実装する先行研究がある');
   drawPriorImplementations(s,api);
-  line(s,'CPU設計の教科書を使う授業：久留米高専・広島大学 など',590,true,27);
-  line(s,'教科書：『ディジタル回路設計とコンピュータアーキテクチャ』',636,false,25);
+  line(s,'教科書『RISC-V SoC設計』（RVSOC）の採用例',493,true,26);
+  const adoptionExamples=[
+    ['ハーベイ・マッド大学','米国・2026年春'],
+    ['オクラホマ州立大学','米国・2023〜2024年（原稿版）'],
+    ['ダルムシュタット工科大学','ドイツ・2026/27年冬']
+  ];
+  adoptionExamples.forEach(([name,term],i)=>{
+    const x=64+i*384;
+    text(s,name,x,546,368,35,24,true,C.ink);
+    text(s,term,x,586,368,28,19,false,C.ink);
+  });
+  line(s,'教材採用から、CPUや周辺回路の設計を学ぶ需要がうかがえる',632,true,25);
 
   section="本研究の概要";
   s=slide("本研究の概要",45,

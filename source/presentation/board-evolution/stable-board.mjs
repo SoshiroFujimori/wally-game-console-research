@@ -38,26 +38,17 @@ export function drawStableBoard(s,a,{mode='request'}={}){
   }
 
   if(intro){
-    T('HDLによる記述例',112,263,450,32,25,true,C.heading);
-    box(s,'',112,307,450,136,C.white,20,ink,1.8).name='main-board-code-example';
-    const lines=['module example(input logic a, b,','               output logic y);','  assign y = a & b;','endmodule'];
-    lines.forEach((v,i)=>{
-      const sh=T(v,127,316+i*28,423,28,20,false,i===2?blue:ink);
-      sh.text.style={typeface:'Consolas',fontSize:20,color:i===2?blue:ink,wrap:'none',verticalAlignment:'middle'};
-    });
-    const gate=[[780,332],[823,332]];
+    const gate=[[561,332],[604,332]];
     for(let i=1;i<=18;i++){
       const angle=-Math.PI/2+i*Math.PI/18;
-      gate.push([823+43*Math.cos(angle),375+43*Math.sin(angle)]);
+      gate.push([604+43*Math.cos(angle),375+43*Math.sin(angle)]);
     }
-    gate.push([780,418]);
+    gate.push([561,418]);
     polygon(s,gate,C.white,ink,2.2).name='main-board-logic-example';
-    wire(s,730,353,780,353,ink,false,2.5);wire(s,730,397,780,397,ink,false,2.5);
-    wire(s,866,375,973,375,ink,true,2.5);
-    T('a',699,339,30,29,25,true);T('b',699,383,30,29,25,true);T('y',989,361,30,29,25,true);
-    T('論理回路の例（AND）',714,452,341,32,25,true,ink,'center');
-    wire(s,586,375,686,375,blue,true,3);
-    T('回路を実装',574,325,126,30,22,true,blue,'center');
+    wire(s,511,353,561,353,ink,false,2.5);wire(s,511,397,561,397,ink,false,2.5);
+    wire(s,647,375,754,375,ink,true,2.5);
+    T('a',480,339,30,29,25,true);T('b',480,383,30,29,25,true);T('y',770,361,30,29,25,true);
+    T('論理回路の例（AND）',450,452,380,32,25,true,ink,'center');
     return;
   }
 

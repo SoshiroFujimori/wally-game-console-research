@@ -1,21 +1,19 @@
-// Functional examples use the same board and chip boundaries as the main talk.
-// They illustrate existing implementation categories, not a prior combined SoC.
+// Independent FPGA examples precede the combined console in the main talk.
 export function drawPriorImplementations(s,api){
-  const {text,box,wire,C}=api;
+  const {text,box,route,C}=api;
   const frame='#718299';
-  box(s,'',64,175,1152,400,'#F6F8FC',22,frame,1.5);
-  text(s,'FPGAボード（実装する回路の例）',80,178,1000,28,23,true,frame);
-  box(s,'',84,210,1112,312,'#E8EFF9',22,frame,1.8);
-  text(s,'FPGAチップ',100,214,240,25,20,true,frame);
-  text(s,'CPUの実装例',128,266,400,35,29,true,C.heading,'center');
-  text(s,'描画回路の実装例',716,266,400,35,29,true,C.heading,'center');
-  box(s,'CPU Wally',128,330,400,100,C.white,32,C.ink,2.3);
-  box(s,'描画・表示回路 RasterIX',716,330,400,100,C.white,27,C.ink,2.3);
-  text(s,'プログラムの命令を実行する',128,454,400,34,25,false,C.ink,'center');
-  text(s,'画像を作り、映像を出力する',670,454,408,34,25,false,C.ink,'center');
-  wire(s,1100,430,1100,533,C.blue,true,2.7);
-  box(s,'HDMI端子',1020,533,160,32,C.white,20,C.blue,1.8);
-  text(s,'基板上の部品',100,533,290,28,20,true,frame);
+  for(const x of [64,664]){
+    box(s,'',x,175,552,300,'#F6F8FC',22,frame,1.5);
+    text(s,'FPGAボード',x+16,179,490,28,23,true,frame);
+    box(s,'',x+20,214,512,204,'#E8EFF9',22,frame,1.8);
+    text(s,'FPGAチップ',x+36,220,460,25,20,true,frame);
+  }
+  box(s,'CPU Wally',116,270,448,70,C.white,32,C.ink,2.3);
+  box(s,'描画・表示回路 RasterIX',716,270,448,70,C.white,27,C.ink,2.3);
+  text(s,'プログラムの命令を実行する',110,358,460,35,25,false,C.ink,'center');
+  text(s,'画像を作り、映像を出力する',700,358,410,35,25,false,C.ink,'center');
+  route(s,[[1140,340],[1140,432]],C.blue,true,2.7);
+  box(s,'HDMI端子',1052,432,144,30,C.white,20,C.blue,1.8);
 }
 
 // Add an address decoder without moving the CPU, controllers or board parts.
