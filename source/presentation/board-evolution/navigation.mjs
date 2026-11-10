@@ -15,13 +15,12 @@ export const CONTENTS_ITEMS=[
   {number:11,label:'ブロック崩しの実機動画',group:'発表用スライド'},
   {number:12,label:'FPGAの使用量',group:'発表用スライド'},
   {number:13,label:'結論と今後の展望',group:'発表用スライド'},
-  {number:15,label:'DDCAを教材に挙げる授業',group:'教科書の採用例'},
-  {number:16,label:'RVSOCの教科書採用例',group:'教科書の採用例'},
+  {number:15,label:'回路・CPU設計の教科書の利用例',group:'教科書の採用例'},
+  {number:16,label:'SoC設計の教科書',group:'教科書の採用例'},
   {number:17,label:'FPGAチップの構成要素',group:'FPGA'},
-  {number:18,label:'FPGAの使用量',group:'FPGA'},
-  {number:19,label:'命令実行から周辺回路への接続',group:'命令の実行と周辺接続'},
-  {number:20,label:'詳細な全体のブロック図',group:'回路の詳細'},
-  {number:21,label:'描画回路のFPGAパイプライン',group:'回路の詳細'},
+  {number:18,label:'命令実行から周辺回路への接続',group:'命令の実行と周辺接続'},
+  {number:19,label:'詳細な全体のブロック図',group:'回路の詳細'},
+  {number:20,label:'描画回路のFPGAパイプライン',group:'回路の詳細'},
   ...OPENGL_TOPICS.map(record=>({...record,group:'ゲームの描画'})),
 ];
 

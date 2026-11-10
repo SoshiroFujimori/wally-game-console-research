@@ -4,7 +4,7 @@ This builder produces the single published intermediate presentation:
 [slides and narration](../../../docs/presentation/中間発表_主要事項.md) and
 [PowerPoint](../../../docs/presentation/中間発表_主要事項.pptx).
 A cover and twelve presentation slides explain the integration design and its functional evidence. Slide 14
-is clickable contents; slides 15-30 are hidden answer slides. The narration allocation
+is clickable contents; slides 15-29 are hidden answer slides. The narration allocation
 is 335 seconds including the 30-second embedded video, not a timed rehearsal.
 
 ## Main explanation
@@ -13,8 +13,8 @@ is 335 seconds including the 30-second embedded video, not a timed rehearsal.
 | --- | --- | --- |
 | 1 | Title | Private cover retained in the school copy. |
 | 2 | FPGA and external components | HDL and an AND gate illustrate circuit implementation. |
-| 3 | Educational context and objective | DDCA teaching use, the RVSOC/Wally learning path, and a working extension example. |
-| 4 | Existing and added parts | Reused CPU/peripheral/graphics components and local integration. |
+| 3 | Educational context and objective | Three conceptual diagrams connect CPU building blocks, Wally system integration, and the graphics extension. Four DDCA and three RVSOC teaching examples include historical use. |
+| 4 | Existing and added parts | CPU and peripheral controllers are grouped into one box before expansion. |
 | 5 | Program loading | SD control returns data to the CPU, which stores it through DDR control. |
 | 6 | Game execution | CPU execution updates positions, collisions and score. |
 | 7 | Drawing commands | The CPU library prepares commands for the graphics block. |
@@ -22,7 +22,7 @@ is 335 seconds including the 30-second embedded video, not a timed rehearsal.
 | 9 | Image storage | Graphics writes image pixels through DDR control. |
 | 10 | Image output | Display reads image pixels through DDR control and drives the HDMI connector. |
 | 11 | Actual video | The unchanged reviewed 30-second standard-output recording. |
-| 12 | FPGA utilization | Archived implementation report for the exact bitstream in the video. |
+| 12 | FPGA utilization | Historical Wally baseline alongside the exact game-video configuration. |
 | 13 | Conclusion and next steps | Verified game behavior and optional controller/GUI work. |
 
 `core-board.mjs` provides a stable functional diagram. It summarizes the
@@ -72,7 +72,7 @@ is marked as integration work. The drawing and display share one box, with
 image traffic through the AMD controller and output at the HDMI connector.
 The exact modules and connection wrappers remain identified in the notes.
 
-Slide 13 repeats the circuit layout to explain the contribution. Dashed frames
+Slide 13 retains the circuit layout and strengthens the board/chip/circuit hierarchy with nested solid boundaries and fills. Dashed frames
 identify the Wally and RasterIX repositories as acquisition sources. A solid blue adapter
 frame identifies added integration work. The conclusion is the demonstrated
 combination into a game console; it does not claim a worldwide first or that
@@ -154,10 +154,7 @@ the input video against the approved media hashes; `link_slides.py` adds links.
   See `../rvsoc-adoption/`.
 - 17: generic FPGA logic cells, routing and dedicated macro cells, following
   Chu (2018), Sections 2.1.1-2.1.2 and Figure 2.1.
-- 18: Before/After whole-design resource percentages from
-  `experiments/fpga-resource-comparison-20261108/comparison.json`. This is a
-  historical comparison, not isolated attribution to the drawing core.
-- 19: one connected functional diagram integrates the earlier seven load/store,
+- 18: one connected functional diagram integrates the earlier seven load/store,
   memory-interface, decode, SD-copy, drawing-command and image-output views.
   The horizontal CPU layout is retained inside the FPGA board. AD/WD/WE from
   the two memory interfaces enter three coordinated request multiplexers.
@@ -167,20 +164,20 @@ the input video against the approved media hashes; `link_slides.py` adds links.
   command adapter, RasterIX drawing/display and physical board components.
   The load/store examples use x2 as the DDR3 base; the drawing example first
   sets x2 to the command address. The notes distinguish these independent cases.
-- 20: the RVSOC pipeline-derived detailed whole-system diagram. Signal outlines
+- 19: the RVSOC pipeline-derived detailed whole-system diagram. Signal outlines
   are neutral; CPU internals are not marked as explained in the main talk.
-- 21: the official RasterIX FPGA pipeline redrawn for the presentation. Its
+- 20: the official RasterIX FPGA pipeline redrawn for the presentation. Its
   version and differences from measured hardware are in `../rasterix-pipeline/`.
 
-- 22: Game objects and their drawing methods, with the unchanged actual capture.
-- 23: The 640 by 480 game coordinate system and projection setup.
-- 24: One rectangle with actual vertex/color values and its triangle decomposition.
-- 25: Native font pixels, RGBA input and texture registration.
-- 26: The A cell and normalized texture coordinates.
-- 27: Four texture/vertex pairs mapping the cell to a screen rectangle.
-- 28: Modulated text color, alpha and blending over the prior image.
-- 29: CPU library execution, command preparation and hardware pixel processing.
-- 30: Actual frame submission calls and the display-swap completion counter.
+- 21: Game objects and their drawing methods, with the unchanged actual capture.
+- 22: The 640 by 480 game coordinate system and projection setup.
+- 23: One rectangle with actual vertex/color values and its triangle decomposition.
+- 24: Native font pixels, RGBA input and texture registration.
+- 25: The A cell and normalized texture coordinates.
+- 26: Four texture/vertex pairs mapping the cell to a screen rectangle.
+- 27: Modulated text color, alpha and blending over the prior image.
+- 28: CPU library execution, command preparation and hardware pixel processing.
+- 29: Actual frame submission calls and the display-swap completion counter.
 
 `opengl-functions.mjs` derives font diagrams from the pinned product source.
 Its examples explain API semantics and ordinary drawing operations. Detailed
@@ -248,12 +245,20 @@ RVSOC as its textbook. These examples identify an existing teaching context;
 they do not establish adoption or measured educational benefit for this project.
 The source URLs and scope are included in the slide notes.
 
-Slides 12 and 18 read the same
+The textbook page uses Japanese book names rather than abbreviations.
+The Japanese rendering of the English RVSOC title is explained in notes;
+it does not identify a published Japanese edition.
+
+Slide 4 groups the CPU and peripheral controllers while keeping the adapter,
+graphics and board components in the same positions as the subsequent views.
+Slide 13 uses solid nesting for physical containment and dashed frames for
+component provenance. These boundary meanings remain distinct.
+
+Slide 12 reads the
 [standard-display implementation record](../../../experiments/standard-display-resources-20261110/implementation.json).
 The loader validates report hashes, extracted counts and percentages, FPGA
-capacity, and the exact bitstream SHA-256 used by the embedded video. Slide 18
-retains the historical CPU-only comparison, whose revision limits are stated
-in its notes. Earlier experimental-display results remain archived in their
+capacity, and the exact bitstream SHA-256 used by the embedded video. The table includes the historical CPU/peripheral baseline. Its revision
+limits and the whole-design comparison scope are stated in the notes. Earlier experimental-display results remain archived in their
 original experiment directory.
 
 `PRESENTATION_RESOURCE_DIRECTORY` may select a sanitized staging directory

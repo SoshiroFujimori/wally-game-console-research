@@ -15,7 +15,7 @@ export async function loadRvsocAdoption(root) {
 export const RVSOC_ADOPTION_NARRATION = '公開資料で確認できた例は、米国のHarvey Mudd CollegeとOklahoma State University、ドイツのダルムシュタット工科大学の3校です。Harvey Muddの2026年春の授業では教科書に指定され、ダルムシュタット工科大学の授業では主教科書と明記されています。Oklahoma State Universityでは、出版前の原稿を使って授業を行ったことが教育実践論文に報告されています。この表は過去の使用も含む確認例であり、世界の全採用校の一覧ではありません。';
 
 export const RVSOC_ADOPTION_DETAIL = `教科書の指定と授業での使用
-RVSOCはHarrisらのRISC-V System-on-Chip Designを指す。確認日は2026年11月8日。表の時期は根拠となる授業の時期であり、全校を同じ年度の採用校として数えたものではない。
+RVSOCはHarrisらのRISC-V System-on-Chip Designを指す。スライドでは英語の書名を説明用に「RISC-V SoC設計」と表記しており、日本語版の刊行を意味しない。確認日は2026年11月8日。表の時期は根拠となる授業の時期であり、全校を同じ年度の採用校として数えたものではない。
 
 Harvey Mudd College
 公式のE154授業ページは2026年春の授業として公開され、Textbookのリンクを置いている。そこから参照するシラバスのTextbook欄にも本書を指定している。2025年のASEE論文は、同校で2023〜2025年に原稿版を使用した授業も報告している。
@@ -35,7 +35,7 @@ Thompsonら（2025）の第4節は、2023〜2024年の上級SoC設計の授業�
 export function drawRvsocAdoption(slide, api, data, pageNumber) {
   const {text, C} = api;
   text(slide, '米国・ドイツの3校で、教科書の指定・使用実績を確認', 64, 123, 1152, 44, 28, true, C.blue);
-  text(slide, '対象：RISC-V System-on-Chip Design', 64, 176, 1152, 34, 24);
+  text(slide, '対象：『RISC-V SoC設計』', 64, 176, 1152, 34, 24);
   const sources = new Map(data.sources.map(r => [r.id, r.number]));
   const values = [
     ['教育機関（国）', '確認できた時期', '授業と使用形態'],

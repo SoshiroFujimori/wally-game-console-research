@@ -9,7 +9,6 @@ import path from 'node:path';
 import { pathToFileURL } from 'node:url';
 import { spawnSync } from 'node:child_process';
 import { loadRvsocAdoption, drawRvsocAdoption, RVSOC_ADOPTION_NARRATION, RVSOC_ADOPTION_DETAIL } from './rvsoc-adoption.mjs';
-import { loadFpgaUtilization, drawFpgaUtilization, FPGA_UTILIZATION_SOURCE, STANDARD_UTILIZATION_SOURCE, FPGA_UTILIZATION_NARRATION, FPGA_UTILIZATION_DETAIL } from './fpga-utilization.mjs';
 import { drawFpgaResources, FPGA_RESOURCE_SOURCES, FPGA_RESOURCE_NARRATION, FPGA_RESOURCE_DETAIL } from './fpga-resources.mjs';
 import { drawWallyOverview } from './wally-overview.mjs';
 import { drawDdcaMap, summarizeDdca } from './ddca-map.mjs';
@@ -83,17 +82,17 @@ const ddcaData=JSON.parse(await fs.readFile(path.join(ddcaDataRoot,'records.json
 const ddcaGeography=JSON.parse(await fs.readFile(path.join(ddcaDataRoot,'prefectures.json'),'utf8'));
 const ddcaSummary=summarizeDdca(ddcaData);
 const ddcaSources=ddcaData.records.map(r=>`${r.id} ${r.institution}、${r.academic_year===null?'年度不明':r.academic_year+'年度'}「${r.course}」、${r.book_role}。${r.source_url}`).join('\n');
-s=slide('回答用：DDCAを教材に挙げる授業の広がり',0,
+s=slide('回答用：回路・CPU設計の教科書を使う授業',0,
   `DDCAは、高専・大学の学部・大学院の授業で、教科書や参考書として挙げられています。過去の指定も含めて、公式の公開資料から${ddcaSummary.institutions}機関・${ddcaSummary.prefectures}都道府県で確認できました。1枚の地図にまとめ、同じ県で複数の区分を確認した場合は、それらの色の縞模様にしています。すべての採用校を調べたものではありません。`,
   '学校別の出典：docs/presentation/DDCA授業利用の出典.md。確認日：2026-10-26。\n'+ddcaSources+'\n地図：lalamalink, https://github.com/lalamalink/japan-map-svg (CC0 1.0)。',
   `図は、DDCAを公式シラバス・授業資料の教科書・教材・参考書欄で確認した例を示す。日本語版と英語版、MIPS版・ARM版・RISC-V版などを含む。区分別では${ddcaSummary.categories.map(c=>c.label+c.institutions+'機関').join('、')}である。東京大学と広島大学は学部・大学院の両方に例があるが、全体ではそれぞれ1機関と数える。重複を除いた合計は${ddcaSummary.institutions}機関・${ddcaSummary.prefectures}都道府県である。区分は学校名ではなく授業の対象課程を表す。所在地は授業のキャンパスや開催地を使い、大学本部の住所でまとめない。教科書と参考書は出典一覧で区別する。参考書欄への掲載だけから、授業で毎回使うことや全学生の購入までは分からない。年度が分かる資料は${ddcaSummary.firstYear}〜${ddcaSummary.lastYear}年度である。開志専門職大学と長崎大学は授業年度不明、京都大学は2026年度授業ページからリンクされている資料である。現在も同じ指定が続くことや、同一年度の全国分布を示すものではない。縞模様は同じ県に複数の区分があることを示し、各色の面積は機関数に比例しない。灰色はこの一覧で未確認という意味で、使う学校がないという意味ではない。全国の全校・全年度を網羅していないため、色の面積や県数を採用率・市場シェアとして解釈しない。図書館の蔵書だけや書店の取扱いだけは根拠にしない。高知大学の資料は授業名とシラバス掲載図書を対応づけた公式一覧である。長崎大学は公式学部サイトの個別授業紹介を根拠とする。DDCAの掲載例は、RVSOCの採用実績や本研究の教育効果を直接示さない。授業・年度・版・確認箇所はDDCA授業利用の出典.mdを参照。地図の着色と集計はsource/presentation/ddca-adoption/records.jsonから生成する。地図は都道府県の形を簡略化した比較用の図である。`);
-text(s,'教科書・参考書への掲載例（過去の指定を含む）',64,118,1152,38,26,true,C.ink);
+text(s,'『ディジタル回路設計とコンピュータアーキテクチャ』',64,118,1152,38,25,true,C.ink);
 drawDdcaMap(s,api,ddcaData,ddcaGeography);
 
 s.hidden=true;outline[outline.length-1].backup=true;
 
 const adoption = await loadRvsocAdoption(root);
-s=slide('回答用：RVSOCの教科書採用例',0,
+s=slide('回答用：SoC設計の教科書',0,
   RVSOC_ADOPTION_NARRATION,
   adoption.sources.map(r => `[${r.number}] ${r.title}. ${r.url} (${r.locator})`).join('\n'),
   RVSOC_ADOPTION_DETAIL);
@@ -104,14 +103,6 @@ s=slide('回答用：FPGAチップの構成要素',0,
   FPGA_RESOURCE_NARRATION, FPGA_RESOURCE_SOURCES, FPGA_RESOURCE_DETAIL);
 drawFpgaResources(s,api);
 
-s.hidden=true;outline[outline.length-1].backup=true;
-
-const utilization = await loadFpgaUtilization(root);
-s=slide('回答用：FPGAの使用量',0,
-  FPGA_UTILIZATION_NARRATION,
-  `Before: ${FPGA_UTILIZATION_SOURCE}; After: ${STANDARD_UTILIZATION_SOURCE}. Historical whole-design comparison. After bitstream SHA-256: ${utilization.bitstreamSha256}.`,
-  FPGA_UTILIZATION_DETAIL);
-drawFpgaUtilization(s,api,utilization,P.slides.items.length);
 s.hidden=true;outline[outline.length-1].backup=true;
 
 addMergedDatapath({slide,api,outline,DDCA,RVSOC,PRODUCT});
@@ -134,7 +125,7 @@ await fs.writeFile(path.join(workspace,'rasterix-pipeline-graph.json'),JSON.stri
 await addOpenGLSlides({slide,api,root,outline});
 
 // Keep provenance in the notes and the GitHub-readable counterpart.
-for (const number of [4,7,8,9,10,11,13,19,20]) {
+for (const number of [4,7,8,9,10,11,13,18,19]) {
   const o=outline[number-1];
   o.detail += '\n\n' + PROVENANCE_DETAIL;
   o.source += '\n' + PROVENANCE_SOURCE;
@@ -143,21 +134,21 @@ for (const number of [4,7,8,9,10,11,13,19,20]) {
 for(const {page,number} of pageNumbers)if(number!==CONTENTS_SLIDE)linkToSlide(page,CONTENTS_SLIDE);
 await fs.writeFile(path.join(workspace,'wire-audit.json'),JSON.stringify(wiring.finalize(),null,2)+'\n');
 const total=outline.reduce((n,s)=>n+s.seconds,0);
-if(outline.length!==30||total!==335)throw new Error(`Unexpected allocation ${outline.length} slides, ${total} seconds`);
+if(outline.length!==29||total!==335)throw new Error(`Unexpected allocation ${outline.length} slides, ${total} seconds`);
 await fs.writeFile(path.join(workspace,'outline.json'),JSON.stringify(outline,null,2)+'\n');
 const md=[
   '# 中間発表：FPGAを用いた2Dゲーム機の製作',
-  '表紙1枚、発表用12枚、移動用の目次1枚、回答用16枚で構成します。Wallyへの描画機能の追加を、教科書とのつながりと目的、既存回路との分担、接続の設計、実機動画、FPGA使用量の順に説明します。ゲームの動きは30秒の実機動画で示します。',
+  '表紙1枚、発表用12枚、移動用の目次1枚、回答用15枚で構成します。Wallyへの描画機能の追加を、教科書とのつながりと目的、既存回路との分担、接続の設計、実機動画、FPGA使用量の順に説明します。ゲームの動きは30秒の実機動画で示します。',
   '[PowerPoint版](中間発表_主要事項.pptx) / [アブスト](../abstract/アブスト_主要事項.md) / [論文本文](../thesis/本文.md) / [技術付録](../thesis/技術付録.md) / [再生成方法](../../source/presentation/board-evolution/README.md) / [DDCA授業利用の出典](DDCA授業利用の出典.md) / [RVSOC教科書採用の出典](RVSOC教科書採用の出典.md)',
   '[発表の要点を読む](発表の要点.md) / [OpenGLの説明と想定質問](OpenGLの説明と想定質問.md)',
   '## 図の見方',
-  '2枚目ではFPGAと周辺部品、3枚目では教科書と研究の関係を説明します。4〜10枚目と13枚目の構成図は、FPGAボードとチップ外の部品を同じ位置に置き、説明する経路を青で強調します。9枚目は画像を保存する向き、10枚目は画像を読み出して表示する向きを示します。矢印は要求やデータの経路を機能ごとにまとめたもので、一本の信号線を表すものではありません。破線の枠は回路コードの主な提供元です。「Wally」はCPU、「Wallyリポジトリ」はCPUと周辺回路の設計コードの提供元として使います。',
-  '回答用19枚目では、信号を詳しく示しています。ADはアドレス、WDは書込みデータ、WEは1ビットの書込みイネーブル、RDは読出しデータです。有効な読書きの際のWE=1を書込み、WE=0を読出しとして示します。アドレスデコーダが接続先を選び、読出し値も対応する選択信号で選びます。分岐の黒丸は接続を表し、接続しない線の交差には隙間があります。転送の細かなタイミングや待ち処理は省略しています。',
+  '2枚目ではFPGAと周辺部品、3枚目では教科書と研究の関係を説明します。4枚目ではCPUと周辺制御回路を一つの箱にまとめ、5枚目以降で内訳を示します。FPGAボードとチップ外の部品の位置は保ち、説明する経路を青で強調します。13枚目は、ボード、チップ、チップ内の回路を入れ子の枠と塗り分けで示します。9枚目は画像を保存する向き、10枚目は画像を読み出して表示する向きを示します。矢印は要求やデータの経路を機能ごとにまとめたもので、一本の信号線を表すものではありません。破線の枠は回路コードの主な提供元です。「Wally」はCPU、「Wallyリポジトリ」はCPUと周辺回路の設計コードの提供元として使います。',
+  '回答用18枚目では、信号を詳しく示しています。ADはアドレス、WDは書込みデータ、WEは1ビットの書込みイネーブル、RDは読出しデータです。有効な読書きの際のWE=1を書込み、WE=0を読出しとして示します。アドレスデコーダが接続先を選び、読出し値も対応する選択信号で選びます。分岐の黒丸は接続を表し、接続しない線の交差には隙間があります。転送の細かなタイミングや待ち処理は省略しています。',
   '## 回路の提供元',
   PROVENANCE_DETAIL,
   '対応するソースは[回路の提供元一覧](../../source/presentation/board-evolution/README.md#component-provenance)にまとめています。主図では、同じRasterIXリポジトリに含まれる描画と表示を一つの箱にまとめています。実機動画も、この標準表示構成で取得しています。',
   '## 発表時間と回答用スライド',
-  '表紙と発表用12枚の配分は動画30秒を含め335秒です。動画の再生中に結果を説明します。これは練習を実測した時間ではありません。14枚目の目次から本編と回答用の両方へ移動できます。各スライドの右下の番号から目次に戻れます。回答用の15〜30枚目は、通常の順送りでは表示しません。',
+  '表紙と発表用12枚の配分は動画30秒を含め335秒です。動画の再生中に結果を説明します。これは練習を実測した時間ではありません。14枚目の目次から本編と回答用の両方へ移動できます。各スライドの右下の番号から目次に戻れます。回答用の15〜29枚目は、通常の順送りでは表示しません。',
   '## 目次',
   outline.map((o,i)=>'- ['+(i+1)+'. '+o.title.replaceAll('\n','')+'](#slide-'+(i+1)+')'+(o.backup?'（回答用）':'')).join('\n')
 ];
@@ -167,7 +158,7 @@ outline.forEach((o,i)=>md.push('<a id="slide-'+(i+1)+'"></a>\n## '+(i+1)+'. '+o.
   ...(i===14?['[教育機関・授業・年度・指定の種類・出典の一覧](DDCA授業利用の出典.md)',
     'スライドに示した学校名の例：'+ddcaSummary.categories.map(c=>c.label+'は'+c.examples.join('・')).join('、')+'。']:[]),
   ...(i===15?['[教育機関・時期・採用根拠の一覧](RVSOC教科書採用の出典.md)']:[]),
-  ...(i===11||i===17?['[動画と同じ回路の使用量・比較範囲・元レポート](../../experiments/standard-display-resources-20261110/README.md)']:[]),
+  ...(i===11?['[動画と同じ回路の使用量・比較範囲・元レポート](../../experiments/standard-display-resources-20261110/README.md)']:[]),
   ...(i===10?['[30秒の実機動画を開く](../../source/presentation/assets/breakout-standard-dvi-compatible.mp4)','PowerPointには動画を埋め込んでいます。スライドショーで11枚目に進むと自動再生します。']:[]),
   ...(o.navigation?[contentsMarkdown()]:[]),
   o.navigation?'### 目次の使い方':o.backup?'### 質問時の使い方':'### 発表原稿',o.narration,
@@ -179,7 +170,7 @@ md.push('## 動作確認と詳しい実装',
   '主図は製品RTLの役割をまとめた機能図です。書式はRVSOCの図7.11・9.28・23.2を参考にしています。回答用の詳細な回路図、教科書の採用例、FPGAの構成要素・使用量、描画回路の内部については、それぞれのスライドの出典と補足を参照してください。[デザインと再生成方法](../../source/presentation/board-evolution/README.md)に実装箇所をまとめています。',
   '## 以前の発表資料',
   '信号名とアドレスを詳しく示した版は、[変更前のコミットcbec749](https://github.com/SoshiroFujimori/wally-game-console-research/tree/cbec7498c75ca0e17876c7ea99760ed144367732/docs/presentation)に保存されています。',
-  '命令の実行から順に説明した版は、[変更前のコミット40d8a51](https://github.com/SoshiroFujimori/wally-game-console-research/tree/40d8a51bd1ab0d9c9a469146c349cd31b173bdce/docs/presentation)に保存されています。命令の実行から周辺回路へつながる図は、現在の回答用19枚目に統合しています。外部メモリへの接続は、二つのメモリの箱を接続口として残し、AD・WD・WE・RDとアドレスデコーダで示します。');
+  '命令の実行から順に説明した版は、[変更前のコミット40d8a51](https://github.com/SoshiroFujimori/wally-game-console-research/tree/40d8a51bd1ab0d9c9a469146c349cd31b173bdce/docs/presentation)に保存されています。命令の実行から周辺回路へつながる図は、現在の回答用18枚目に統合しています。外部メモリへの接続は、二つのメモリの箱を接続口として残し、AD・WD・WE・RDとアドレスデコーダで示します。');
 await fs.writeFile(path.join(workspace,'中間発表_主要事項.md'),md.join('\n\n')+'\n');
 const raw=path.join(workspace,'raw-candidate.pptx'),poster=path.join(workspace,'poster-candidate.pptx'),candidate=path.join(workspace,'candidate.pptx');
 await(await PresentationFile.exportPptx(P)).save(raw);
@@ -195,13 +186,13 @@ if(audience==='public'){
 // Final package integrity/layout and video relationships are checked separately.
 await fs.mkdir(path.join(workspace,'poster-review'), { recursive: true });
 const posterFinal=path.join(workspace,'poster-review','poster-validated.pptx');
-const validationOptions={workspaceDir:workspace,pythonExecutable:process.env.RUNTIME_PYTHON,integrityValidatorPath:path.join(process.env.PRESENTATION_SKILL,'container_tools/inspect_presentation_package_integrity.py'),layoutValidatorPath:path.join(process.env.PRESENTATION_SKILL,'container_tools/inspect_presentation_layout_geometry.py'),layoutArgs:['--expected-slide-size-emu','12192000,6858000','--validate-bullet-geometry','--validate-heading-fit','--require-native-table-slide','12','--require-native-table-slide','16','--require-native-table-slide','18'],explicitTotalSlideCount:30,requiredNativeTableOwnerSlides:[12,16,18],requiredNativeChartOwnerSlides:[],fontPolicy:{basis:'design',families:[font,latinFont,codeFont]}};
+const validationOptions={workspaceDir:workspace,pythonExecutable:process.env.RUNTIME_PYTHON,integrityValidatorPath:path.join(process.env.PRESENTATION_SKILL,'container_tools/inspect_presentation_package_integrity.py'),layoutValidatorPath:path.join(process.env.PRESENTATION_SKILL,'container_tools/inspect_presentation_layout_geometry.py'),layoutArgs:['--expected-slide-size-emu','12192000,6858000','--validate-bullet-geometry','--validate-heading-fit','--require-native-table-slide','12','--require-native-table-slide','16'],explicitTotalSlideCount:29,requiredNativeTableOwnerSlides:[12,16],requiredNativeChartOwnerSlides:[],fontPolicy:{basis:'design',families:[font,latinFont,codeFont]}};
 await finalizePresentation({...validationOptions,candidatePath:poster,finalPath:posterFinal,verifyArtifactToolImport:false,receiptPath:path.join(workspace,'poster-validation.json')});
 // Import authored content in five contiguous batches to bound the runtime's
 // XML construction size, then inspect the full
 // final package and its native PowerPoint rendering/navigation separately.
 const importChecks=[];
-for(const [batchNumber,first,count] of [[1,0,7],[2,7,7],[3,14,5],[4,19,5],[5,24,6]]){
+for(const [batchNumber,first,count] of [[1,0,7],[2,7,7],[3,14,5],[4,19,5],[5,24,5]]){
   const batch=await Presentation.load(structuredClone(P.toProto()));
   batch.slides.keep(Array.from({length:count},(_,i)=>first+i));
   const batchPath=path.join(workspace,`content-batch-${batchNumber}.pptx`);

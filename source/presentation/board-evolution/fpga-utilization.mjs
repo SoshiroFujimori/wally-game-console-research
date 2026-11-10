@@ -73,21 +73,21 @@ LUT、Slice Registers、Block RAM Tile、DSPの四種類を示す。それぞれ
 export function drawCurrentUtilization(slide, api, data) {
   const {text,C}=api;
   text(slide,'Nexys Video：Artix-7 XC7A200T',64,174,1152,36,26,false,C.ink);
-  const values=[['FPGA内部の資源','主な役割','使用率'],
-    ...data.rows.map(r=>[r.label,r.role,r.after+'%'])];
-  const table=slide.tables.add({rows:5,columns:3,left:64,top:227,width:1152,height:362,
-    columnWidths:[360,520,272],values});
+  const values=[['FPGA内部の資源','主な役割','Wally\n基本構成','ゲーム機\n構成'],
+    ...data.rows.map(r=>[r.label,r.role,r.before+'%',r.after+'%'])];
+  const table=slide.tables.add({rows:5,columns:4,left:64,top:227,width:1152,height:362,
+    columnWidths:[320,312,260,260],values});
   table.styleOptions={headerRow:false,bandedRows:false,firstColumn:false,lastColumn:false};
   table.borders.assign({fill:C.ink,width:1,style:'solid'});
-  table.rows[0].height=62;
-  for(let r=1;r<5;r++)table.rows[r].height=75;
-  for(let r=0;r<5;r++)for(let c=0;c<3;c++){
+  table.rows[0].height=70;
+  for(let r=1;r<5;r++)table.rows[r].height=73;
+  for(let r=0;r<5;r++)for(let c=0;c<4;c++){
     const cell=table.getCell(r,c);
     cell.fill=r===0?C.heading:r%2===0?C.pale:C.white;
-    cell.text.style={typeface:c===2&&r>0?'Arial':'Yu Gothic',
-      fontSize:r===0?25:c===2?31:25,bold:r===0||c===2,
-      color:r===0?C.white:C.ink,alignment:c===2?'center':'left',verticalAlignment:'middle',wrap:'square'};
-    cell.text.insets={left:18,right:14,top:5,bottom:5};
+    cell.text.style={typeface:c>=2&&r>0?'Arial':'Yu Gothic',
+      fontSize:r===0?24:c>=2?30:23,bold:r===0||c>=2,
+      color:r===0?C.white:C.ink,alignment:c>=2?'center':'left',verticalAlignment:'middle',wrap:'square'};
+    cell.text.insets={left:14,right:10,top:5,bottom:5};
   }
 }
 
