@@ -1,26 +1,23 @@
 import {OPENGL_TOPICS} from './opengl-functions.mjs';
 // Native slide navigation. The slide names remain editable text objects.
-export const CONTENTS_SLIDE=14;
+export const CONTENTS_SLIDE=11;
 export const CONTENTS_ITEMS=[
   {"number": 1, "label": "表紙", "group": "発表用スライド"},
-  {"number": 2, "label": "FPGAと周辺部品", "group": "発表用スライド"},
-  {"number": 3, "label": "CPU・描画回路の先行研究", "group": "発表用スライド"},
-  {"number": 4, "label": "授業と教科書", "group": "発表用スライド"},
-  {"number": 5, "label": "本研究の構成と追加部分", "group": "発表用スライド"},
-  {"number": 6, "label": "読込みと描画命令のプログラム", "group": "発表用スライド"},
-  {"number": 7, "label": "アドレスへの書込みで操作する", "group": "発表用スライド"},
-  {"number": 8, "label": "アドレスデコーダ", "group": "発表用スライド"},
-  {"number": 9, "label": "接続回路で違いに対応する", "group": "発表用スライド"},
-  {"number": 10, "label": "画像の保存と映像出力", "group": "発表用スライド"},
-  {"number": 11, "label": "FPGAの使用量", "group": "発表用スライド"},
-  {"number": 12, "label": "ブロック崩しの実機動画", "group": "発表用スライド"},
-  {"number": 13, "label": "まとめと今後の展望", "group": "発表用スライド"},
-  {"number": 15, "label": "回路・CPU設計の教科書の利用例", "group": "教科書の採用例"},
-  {"number": 16, "label": "SoC設計の教科書", "group": "教科書の採用例"},
-  {"number": 17, "label": "FPGAチップの構成要素", "group": "FPGA"},
-  {"number": 18, "label": "命令実行から周辺回路への接続", "group": "命令の実行と周辺接続"},
-  {"number": 19, "label": "詳細な全体のブロック図", "group": "回路の詳細"},
-  {"number": 20, "label": "描画回路のFPGAパイプライン", "group": "回路の詳細"},
+  {"number": 2, "label": "FPGAとは", "group": "発表用スライド"},
+  {"number": 3, "label": "先行研究と教育現状", "group": "発表用スライド"},
+  {"number": 4, "label": "本研究の概要", "group": "発表用スライド"},
+  {"number": 5, "label": "ソフトウェアの概要", "group": "発表用スライド"},
+  {"number": 6, "label": "アドレスの割当て", "group": "発表用スライド"},
+  {"number": 7, "label": "接続回路", "group": "発表用スライド"},
+  {"number": 8, "label": "FPGAの使用量", "group": "発表用スライド"},
+  {"number": 9, "label": "ブロック崩しの実機動画", "group": "発表用スライド"},
+  {"number": 10, "label": "まとめと今後の展望", "group": "発表用スライド"},
+  {"number": 12, "label": "回路・CPU設計の教科書の利用例", "group": "教科書の採用例"},
+  {"number": 13, "label": "SoC設計の教科書", "group": "教科書の採用例"},
+  {"number": 14, "label": "FPGAチップの構成要素", "group": "FPGA"},
+  {"number": 15, "label": "命令実行から周辺回路への接続", "group": "命令の実行と周辺接続"},
+  {"number": 16, "label": "詳細な全体のブロック図", "group": "回路の詳細"},
+  {"number": 17, "label": "描画回路のFPGAパイプライン", "group": "回路の詳細"},
   ...OPENGL_TOPICS.map(record=>({...record,group:'ゲームの描画'})),
 ];
 
@@ -43,8 +40,8 @@ export function drawContents(s,api){
     label.name=`contents-label-${record.number}`;
     linkToSlide(number,record.number);linkToSlide(label,record.number);
   };
-  CONTENTS_ITEMS.slice(0,13).forEach((r,i)=>item(r,64,193+i*32));
-  CONTENTS_ITEMS.slice(13).forEach((r,i)=>item(r,668,193+i*26,true));
+  CONTENTS_ITEMS.slice(0,10).forEach((r,i)=>item(r,64,193+i*32));
+  CONTENTS_ITEMS.slice(10).forEach((r,i)=>item(r,668,193+i*26,true));
   text(s,'項目をクリックすると、そのスライドへ移動します',64,628,1152,34,24,true,C.ink);
   text(s,'各スライドの右下の番号をクリックすると、この目次に戻れます',64,670,1100,31,21,false,C.old);
 }

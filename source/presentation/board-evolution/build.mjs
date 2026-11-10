@@ -1,9 +1,18 @@
+import { addOpenGLSlides } from './opengl-functions.mjs';
+import {addMergedDatapath} from './merged-datapath.mjs';
 import { addMainSlides } from './main-slides.mjs';
+import {STANDARD_UTILIZATION_SOURCE} from './fpga-utilization.mjs';
+import { CONTENTS_SLIDE, drawContents, linkToSlide, contentsMarkdown, navigationTargets } from './navigation.mjs';
+import { drawRasterixPipeline, RASTERIX_PIPELINE_SOURCE, RASTERIX_PIPELINE_NARRATION, RASTERIX_PIPELINE_DETAIL } from './rasterix-pipeline.mjs';
 import { createCircuitWiring } from './circuit-wiring.mjs';
 import fs from 'node:fs/promises';
 import path from 'node:path';
 import { pathToFileURL } from 'node:url';
 import { spawnSync } from 'node:child_process';
+import { loadRvsocAdoption, drawRvsocAdoption, RVSOC_ADOPTION_NARRATION, RVSOC_ADOPTION_DETAIL } from './rvsoc-adoption.mjs';
+import { drawFpgaResources, FPGA_RESOURCE_SOURCES, FPGA_RESOURCE_NARRATION, FPGA_RESOURCE_DETAIL } from './fpga-resources.mjs';
+import { drawWallyOverview } from './wally-overview.mjs';
+import { drawDdcaMap, summarizeDdca } from './ddca-map.mjs';
 
 const [root, workspace] = process.argv.slice(2);
 if (!root || !workspace) throw new Error('Usage: build.mjs RESEARCH_ROOT PRIVATE_BUILD_DIRECTORY');
@@ -13,7 +22,7 @@ await fs.mkdir(path.join(workspace, 'final'), { recursive: true });
 await fs.mkdir(path.join(workspace, 'slides'), { recursive: true });
 const P = Presentation.create({ slideSize: { width: 1280, height: 720 } });
 const C = { ink:'#231F20', blue:'#1572C3', pale:'#E5EBF8', chip:'#CCD9F1', ip:'#77A3DC', old:'#777777', heading:'#0078BA', white:'#FFFFFF' };
-const font='Yu Gothic', latinFont='Arial', codeFont='Consolas'; let serial=0; const outline=[];
+const font='Yu Gothic', latinFont='Arial', codeFont='Consolas'; let serial=0; const outline=[]; const pageNumbers=[];
 function text(s,value,x,y,w,h,size=28,bold=false,color=C.ink,align='left') {
   const sh=s.shapes.add({geometry:'textbox',name:'text-'+(++serial),position:{left:x,top:y,width:w,height:h},fill:'none',line:{fill:'none',width:0}});
   sh.text=value; sh.text.style={typeface:/^[\x00-\x7f\s]+$/.test(value)?latinFont:font,fontSize:size,bold,color,alignment:align,verticalAlignment:'middle',wrap:'square'}; sh.text.insets=0; return sh;
@@ -40,7 +49,7 @@ function slide(title,seconds,narration,source,detail,diagramOnly=false) {
   if(!diagramOnly){
     // Keep a fixed footer box and right edge for one- and two-digit numbers.
     const page=text(s,String(n),1200,686,56,22,16,false,C.old,'right');
-    page.name=`slide-number-${n}`;
+    page.name=`contents-return-${n}`;pageNumbers.push({page,number:n});
   }
   s.speakerNotes.text=`説明時間の目安：${seconds}秒\n\n${narration}\n\n出典：${source}\n\n補足説明：${detail}`;
   outline.push({title,seconds,narration,source,detail});return s;
@@ -64,31 +73,93 @@ const PROVENANCE_SOURCE='Wally upstream: https://github.com/openhwgroup/cvw . Of
 await addMainSlides({slide,api,cover,root,DDCA,RVSOC,PRODUCT,BASIC,POSTER,VIDEO,outline});
 
 
+let s=slide('目次：発表・回答用スライド',0,
+  '質問に関係する項目をクリックすると、そのスライドへ移動します。移動した後は右下のスライド番号をクリックすると、この目次へ戻れます。',
+  '',
+  '表紙1枚と発表用9枚の後に置く操作用の目次である。発表用スライドと回答用スライドの両方へ移動できる。回答用スライドは、教科書の採用例、FPGAの構成要素、命令の実行から周辺回路へつながる統合図、回路の詳細、ゲームの描画の順にまとめる。この目次と回答用の15枚は通常の順送りでは表示しない。各スライド右下の番号から目次を開き、回答用スライドを選べる。本編の説明時間には目次の操作時間を含めない。');
+drawContents(s,api);s.hidden=true;outline[outline.length-1].navigation=true;outline[outline.length-1].hidden=true;
+
+const ddcaDataRoot=process.env.PRESENTATION_DDCA_ASSET_DIRECTORY||path.join(root,'source/presentation/ddca-adoption');
+const ddcaData=JSON.parse(await fs.readFile(path.join(ddcaDataRoot,'records.json'),'utf8'));
+const ddcaGeography=JSON.parse(await fs.readFile(path.join(ddcaDataRoot,'prefectures.json'),'utf8'));
+const ddcaSummary=summarizeDdca(ddcaData);
+const ddcaSources=ddcaData.records.map(r=>`${r.id} ${r.institution}、${r.academic_year===null?'年度不明':r.academic_year+'年度'}「${r.course}」、${r.book_role}。${r.source_url}`).join('\n');
+s=slide('回答用：回路・CPU設計の教科書を使う授業',0,
+  `DDCAは、高専・大学の学部・大学院の授業で、教科書や参考書として挙げられています。過去の指定も含めて、公式の公開資料から${ddcaSummary.institutions}機関・${ddcaSummary.prefectures}都道府県で確認できました。1枚の地図にまとめ、同じ県で複数の区分を確認した場合は、それらの色の縞模様にしています。すべての採用校を調べたものではありません。`,
+  '学校別の出典：docs/presentation/DDCA授業利用の出典.md。確認日：2026-10-26。\n'+ddcaSources+'\n地図：lalamalink, https://github.com/lalamalink/japan-map-svg (CC0 1.0)。',
+  `図は、DDCAを公式シラバス・授業資料の教科書・教材・参考書欄で確認した例を示す。日本語版と英語版、MIPS版・ARM版・RISC-V版などを含む。区分別では${ddcaSummary.categories.map(c=>c.label+c.institutions+'機関').join('、')}である。東京大学と広島大学は学部・大学院の両方に例があるが、全体ではそれぞれ1機関と数える。重複を除いた合計は${ddcaSummary.institutions}機関・${ddcaSummary.prefectures}都道府県である。区分は学校名ではなく授業の対象課程を表す。所在地は授業のキャンパスや開催地を使い、大学本部の住所でまとめない。教科書と参考書は出典一覧で区別する。参考書欄への掲載だけから、授業で毎回使うことや全学生の購入までは分からない。年度が分かる資料は${ddcaSummary.firstYear}〜${ddcaSummary.lastYear}年度である。開志専門職大学と長崎大学は授業年度不明、京都大学は2026年度授業ページからリンクされている資料である。現在も同じ指定が続くことや、同一年度の全国分布を示すものではない。縞模様は同じ県に複数の区分があることを示し、各色の面積は機関数に比例しない。灰色はこの一覧で未確認という意味で、使う学校がないという意味ではない。全国の全校・全年度を網羅していないため、色の面積や県数を採用率・市場シェアとして解釈しない。図書館の蔵書だけや書店の取扱いだけは根拠にしない。高知大学の資料は授業名とシラバス掲載図書を対応づけた公式一覧である。長崎大学は公式学部サイトの個別授業紹介を根拠とする。DDCAの掲載例は、RVSOCの採用実績や本研究の教育効果を直接示さない。授業・年度・版・確認箇所はDDCA授業利用の出典.mdを参照。地図の着色と集計はsource/presentation/ddca-adoption/records.jsonから生成する。地図は都道府県の形を簡略化した比較用の図である。`);
+text(s,'『ディジタル回路設計とコンピュータアーキテクチャ』',64,118,1152,38,25,true,C.ink);
+drawDdcaMap(s,api,ddcaData,ddcaGeography);
+
+s.hidden=true;outline[outline.length-1].backup=true;
+
+const adoption = await loadRvsocAdoption(root);
+s=slide('回答用：SoC設計の教科書',0,
+  RVSOC_ADOPTION_NARRATION,
+  adoption.sources.map(r => `[${r.number}] ${r.title}. ${r.url} (${r.locator})`).join('\n'),
+  RVSOC_ADOPTION_DETAIL);
+drawRvsocAdoption(s,api,adoption,P.slides.items.length);
+s.hidden=true;outline[outline.length-1].backup=true;
+
+s=slide('回答用：FPGAチップの構成要素',0,
+  FPGA_RESOURCE_NARRATION, FPGA_RESOURCE_SOURCES, FPGA_RESOURCE_DETAIL);
+drawFpgaResources(s,api);
+
+s.hidden=true;outline[outline.length-1].backup=true;
+
+addMergedDatapath({slide,api,outline,DDCA,RVSOC,PRODUCT});
+
+s=slide('回答用：詳細な全体のブロック図',0,
+  'RVSOCのパイプライン図を基にした全体図です。PC、レジスタ群、ALU、段間レジスタ、書戻しの経路を保ち、実機のメモリ接続と本研究の描画接続を付け加えています。質問に応じて関係する経路をたどります。',
+  RVSOC+' Figure 7.11 (pipeline datapath), Figures 9.20 and 9.28 (uncore, decoding and return selection), Chapters 10–13 and 23. '+PRODUCT+' console/src/wally/wallypipelinedcore.sv; console/src/uncore/uncore.sv; console/src/ieu/datapath.sv; console/src/ifu/ifu.sv; console/src/lsu/lsu.sv. console/src/mmu/adrdecs.sv; console/src/uncore/ahbapbbridge.sv; console/src/ebu/ebu.sv; console/src/ieu/regfile.sv; console/config/derivlist.txt; console/fpga/generator/rasterixmem.tcl; console/fpga/src/rasterixdisplay.sv.',
+  "図の範囲\nRVSOC図7.11のパイプライン配置、図9.20のSoC階層、図9.28のアドレス判定と応答選択を基に、実機構成の主要な接続を示す。CPU・描画側の接続は製品リビジョン261832d48832dd6e26c4971ab8893ce61200688b、構成fpganexysvideo_rasterixを基にする。表示回路はRasterIXに同梱されたdvi_framebufferと、本研究の接続・制御ラッパーをまとめて示す。PC、レジスタ群、ALU、段間レジスタ、書戻しの位置関係を保つ。図は機能を追うためのブロック図であり、全RTLと等価な回路図や、物理配置図ではない。細長い箱はレジスタ、台形はMUX、切欠きのある記号はALUを表す。接続点の丸がない交差は接続を意味しない。同名のHRDATAとFlagsEは、線を引き回さず同じ信号への接続を示している。\n\nアドレス判定と応答選択\nebuは命令側IFUとデータ側LSUの要求を仲裁して、HADDRや読み書きの要求を出す。HADDRは接続先にもadrdecsにも渡る。adrdecsはアドレスとアクセス幅を調べ、各領域を選ぶHSEL信号を出す。読み書きするデータを保存したり、中継したりする回路ではない。図のHSELの線は複数の選択信号をまとめた線で、Boot ROM、RAM、APB周辺回路、外部DDRメモリを同じ1ビットで一斉に選ぶ意味ではない。RTLではadrdecsのSelRegionsをHSELRegionsとして受け、HSELBootRom、HSELRam、HSELEXTなどに分ける。HSIZE[1:0]もadrdecsへ入力する。\n読み書きには要求を受け付けてから応答するまで時間がかかるため、uncoreには選択情報を保持するレジスタと、返ってきた応答を選ぶ論理がある。図の「選択保持」と「応答選択」はこれらをまとめた表記である。HRDATAは選択された読み出しデータで、wallypipelinedcore内のIFUとLSUへ直接配られる。HRDATA自体はebuを通らない。HREADYとHRESPはebuへ戻る。HREADYは要求の進行に使われる。この版のebuはHRESPを入力端子として受けるが、内部では参照していない。HREADYは接続先や選択保持レジスタにも戻るが、その配線は省略する。AHBの要求線はアドレス、書込みデータ、制御の束であり、一つの電気信号ではない。\n\nメモリと周辺回路\nuncoreにはrom_ahbによるBoot ROMとram_ahbによるRAMがある。外付けDDR3への要求はHSELEXTで選び、ahbaxibridge、clkconverter、共有メモリ接続、MIGを通す。APB接続ではahbapbbridgeが周辺回路ごとの選択をPSELへ引き継ぎ、PRDATAとPREADYから応答を選ぶ。\nSDカードにつながるのはsdcというインスタンスで、使うモジュールはspi_apbである。PSEL[5]で選択し、SDCCmd、SDCIn、SDCCLK、SDCCSをカードへつなぐ。別のspiインスタンスとは区別する。描画用の外部APB窓口はPSEL[7]をPSELEXTとして取り出し、rasterix_apbへつなぐ。UART、GPIO、通常のSPI、CLINT、PLIC、PWMは図では一つの箱にまとめる。IROMとDTIMは実機構成では無効なので、命令側とデータ側にはキャッシュとバス接続を示す。\n\nCPU内部\nレジスタ群から読み出した二つの値は段間レジスタを通り、3入力MUXで、その値、Writeback段のResultW、Memory段のIFResultMから選ぶ。その後の2入力MUXがPCや即値との選択を行う。比較器compのFlagsEはcontrollerへ渡る。ALUのアドレス出力と演算結果は別の経路である。演算結果側の「結果選択」はaltresultmuxとieuresultmuxをまとめており、「他」の入力には即値またはPCLinkEを使う経路を含む。Memory段ではFIntResMとの選択がある。これらを経た結果はM/Wレジスタを通って書戻し側へ進む。制御信号ResultSrcWと、演算結果のデータ線は別々である。\nWriteDataMは、キャッシュを使う書込みではD-cacheへ、使わない書込みではahbcacheinterfaceへ届く。図では書込み値の整形、バイト選択、アトミック処理などをまとめる。読み出し値はキャッシュ側と非キャッシュ側から選ばれ、値の整形と保持処理を経てReadDataWになる。IFUの非キャッシュ命令の選択、圧縮命令の展開、予測、例外、MMU・キャッシュ内部は省略する。regfileのクロック入力の丸は立下りでの書込みを示す。段間レジスタは立上りで状態を更新する。レジスタ書込み先RdW、RegWriteW、MUXの選択信号、ハザードの入力など、すべての制御配線は描いていない。FPU・MDU・CSRの内部や、書戻し前の追加の結果選択も省略する。\n\n描画と表示\n描画接続回路はrasterix_apb、描画回路はRasterIX_IF、表示回路はrasterixdisplayに対応する。命令と応答の二つのaxiscdcは、20 MHzのCPU側と100 MHzの描画側をつなぐ。矢印はデータの進む向きを示し、逆向きのreadyなどは省略する。表示先の通知と切替完了は、描画回路と表示回路の間の制御情報である。画素をこの線で直接渡すわけではない。\nCPUと描画回路は読出し・書込み、表示回路は読出し要求と画素の応答を、共有DDR3接続でやり取りする。図のSmartConnectと、描画回路の横のAXI FIFOはrasterixmem_wrapperに含まれる。後者はgpubufferであり、命令・応答のaxiscdcとは別のFIFOである。表示用AXIは、今回の標準構成では25.2 MHzである。SmartConnect側が100 MHz側との接続も扱う。描画接続回路、二つのaxiscdc、RasterIX_IF、rasterixdisplay、rasterixmem_wrapperはrasterixラッパーの内部にあるが、この外枠は省略する。映像は表示回路と差動出力を経てHDMI OUT端子から出る。状態通知の同期回路、映像クロック生成、リセット配線、割込み配線は省略する。\n\n色の意味\n詳細図の信号線と枠は黒で示す。CPU内部の各部分を本編で説明済みとして色分けしない。濃い塗りはAMD提供IP、薄い青の背景はFPGAや機能単位のまとまりを示す。");
+drawWallyOverview(s,api);
+
+s.hidden=true; outline[outline.length-1].backup=true;
+
+s=slide('回答用：描画回路のFPGAパイプライン',0,
+  RASTERIX_PIPELINE_NARRATION,RASTERIX_PIPELINE_SOURCE,RASTERIX_PIPELINE_DETAIL);
+const pipelineGraph=drawRasterixPipeline(s,api);
+
+s.hidden=true;outline[outline.length-1].backup=true;
+await fs.writeFile(path.join(workspace,'rasterix-pipeline-graph.json'),JSON.stringify(pipelineGraph,null,2)+'\n');
+
+await addOpenGLSlides({slide,api,root,outline});
+
+// Restore the original answer notes without changing the ten-slide main talk.
+for (const number of [15,16]) {
+  const o=outline[number-1];
+  o.detail += '\n\n' + PROVENANCE_DETAIL;
+  o.source += '\n' + PROVENANCE_SOURCE;
+  P.slides.items[number-1].speakerNotes.text=`説明時間の目安：${o.seconds}秒\n\n${o.narration}\n\n出典：${o.source}\n\n補足説明：${o.detail}`;
+}
+for(const {page,number} of pageNumbers)if(number!==CONTENTS_SLIDE)linkToSlide(page,CONTENTS_SLIDE);
 await fs.writeFile(path.join(workspace,'wire-audit.json'),JSON.stringify(wiring.finalize(),null,2)+'\n');
 const total=outline.reduce((n,s)=>n+s.seconds,0);
-if(outline.length!==10||total!==330)throw new Error(`Unexpected allocation ${outline.length} slides, ${total} seconds`);
+if(outline.length!==26||total!==330)throw new Error(`Unexpected allocation ${outline.length} slides, ${total} seconds`);
 await fs.writeFile(path.join(workspace,'outline.json'),JSON.stringify(outline,null,2)+'\n');
 const md=[
   '# 中間発表：FPGAを用いた2Dゲーム機の製作',
-  '表紙1枚と発表用9枚の計10枚です。背景、本研究の概要、ソフトウェア、ハードウェア、実行結果、まとめの順に説明します。実行結果は使用量、動画の順です。',
+  '本編は表紙1枚と発表用9枚の計10枚です。その後に目次1枚と回答用15枚が続き、ファイル全体は26枚です。背景、本研究の概要、ソフトウェア、ハードウェア、実行結果、まとめの順に説明します。実行結果は使用量、動画の順です。',
   '[PowerPoint版](中間発表_主要事項.pptx) / [発表の要点](発表の要点.md) / [論文](../thesis/本文.md) / [技術付録](../thesis/技術付録.md)',
   '## 目次',
-  ...outline.map((o,i)=>`${i+1}. [${o.title}](#slide-${i+1})`)
+  contentsMarkdown()
 ];
 outline.forEach((o,i)=>md.push(
   `<a id="slide-${i+1}"></a>`, `## ${i+1}. ${o.title}`,
   `![${o.title}](slides/slide-${String(i+1).padStart(2,'0')}.png)`,
   ...(i===8?['[実機動画を再生する](../../source/presentation/assets/breakout-standard-dvi-compatible.mp4)']:[]),
   '### 説明原稿',o.narration,
-  '<details>\n<summary>補足説明と出典</summary>\n',o.detail,o.source?'出典：'+o.source:'','\n</details>'
+  '<details>\n<summary>補足説明と出典</summary>\n',o.detail,o.source?'出典：'+o.source:'','\n</details>',...(o.navigation?[]:['[移動用の目次へ戻る](#slide-11)'])
 ));
 md.push('## 詳しい説明と以前の資料',
-  '計画上の時間配分は動画30秒を含め330秒です。実測した発表時間ではありません。',
-  '[回答用スライドを含む以前の資料](https://github.com/SoshiroFujimori/wally-game-console-research/tree/55c3d006e68652b288fdc91a579cf6d6a1f3794d/docs/presentation)と、[OpenGLの説明と想定質問](OpenGLの説明と想定質問.md)も参照できます。',
+  '本編の計画上の時間配分は動画30秒を含め330秒です。実測した発表時間ではありません。目次11枚目と回答用12〜26枚目は非表示で、通常の順送りでは10枚目のまとめで終了します。右下の番号から目次へ移動し、回答用スライドを選べます。',
+  '[以前の資料](https://github.com/SoshiroFujimori/wally-game-console-research/tree/55c3d006e68652b288fdc91a579cf6d6a1f3794d/docs/presentation)と、[OpenGLの説明と想定質問](OpenGLの説明と想定質問.md)も参照できます。',
   '回路の役割と提供元、記録した構成の版、比較範囲は各スライドの補足に示します。[再生成方法](../../source/presentation/board-evolution/README.md)から公開ソースを確認できます。');
 await fs.writeFile(path.join(workspace,'中間発表_主要事項.md'),md.join('\n\n')+'\n');
 const raw=path.join(workspace,'raw-candidate.pptx'),poster=path.join(workspace,'poster-candidate.pptx'),candidate=path.join(workspace,'candidate.pptx');
 await(await PresentationFile.exportPptx(P)).save(raw);
+await fs.writeFile(path.join(workspace,'navigation-targets.json'),JSON.stringify(navigationTargets(P),null,2)+'\n');
 if(audience==='public'){
   const scrub=spawnSync(process.env.RUNTIME_PYTHON,[path.join(root,'tools/publication/sanitize.py'),raw,poster,'--config',path.join(root,'.private/redactions.json')],{encoding:'utf8'});
   if(scrub.status!==0)throw new Error(scrub.stderr||scrub.stdout||'Privacy sanitization failed');
@@ -100,13 +171,13 @@ if(audience==='public'){
 // Final package integrity/layout and video relationships are checked separately.
 await fs.mkdir(path.join(workspace,'poster-review'), { recursive: true });
 const posterFinal=path.join(workspace,'poster-review','poster-validated.pptx');
-const validationOptions={workspaceDir:workspace,pythonExecutable:process.env.RUNTIME_PYTHON,integrityValidatorPath:path.join(process.env.PRESENTATION_SKILL,'container_tools/inspect_presentation_package_integrity.py'),layoutValidatorPath:path.join(process.env.PRESENTATION_SKILL,'container_tools/inspect_presentation_layout_geometry.py'),layoutArgs:['--expected-slide-size-emu','12192000,6858000','--validate-bullet-geometry','--validate-heading-fit','--require-native-table-slide','8'],explicitTotalSlideCount:10,requiredNativeTableOwnerSlides:[8],requiredNativeChartOwnerSlides:[],fontPolicy:{basis:'design',families:[font,latinFont,codeFont]}};
+const validationOptions={workspaceDir:workspace,pythonExecutable:process.env.RUNTIME_PYTHON,integrityValidatorPath:path.join(process.env.PRESENTATION_SKILL,'container_tools/inspect_presentation_package_integrity.py'),layoutValidatorPath:path.join(process.env.PRESENTATION_SKILL,'container_tools/inspect_presentation_layout_geometry.py'),layoutArgs:['--expected-slide-size-emu','12192000,6858000','--validate-bullet-geometry','--validate-heading-fit','--require-native-table-slide','8','--require-native-table-slide','13'],explicitTotalSlideCount:26,requiredNativeTableOwnerSlides:[8,13],requiredNativeChartOwnerSlides:[],fontPolicy:{basis:'design',families:[font,latinFont,codeFont]}};
 await finalizePresentation({...validationOptions,candidatePath:poster,finalPath:posterFinal,verifyArtifactToolImport:false,receiptPath:path.join(workspace,'poster-validation.json')});
-// Import authored content in two contiguous batches to bound the runtime's
+// Import authored content in five contiguous batches to bound the runtime's
 // XML construction size, then inspect the full
 // final package and its native PowerPoint rendering/navigation separately.
 const importChecks=[];
-for(const [batchNumber,first,count] of [[1,0,5],[2,5,5]]){
+for(const [batchNumber,first,count] of [[1,0,5],[2,5,5],[3,10,6],[4,16,5],[5,21,5]]){
   const batch=await Presentation.load(structuredClone(P.toProto()));
   batch.slides.keep(Array.from({length:count},(_,i)=>first+i));
   const batchPath=path.join(workspace,`content-batch-${batchNumber}.pptx`);
@@ -120,7 +191,11 @@ for(const [batchNumber,first,count] of [[1,0,5],[2,5,5]]){
   }
 }
 await fs.writeFile(path.join(workspace,'content-import-checks.json'),JSON.stringify({wholeDeckImport:'validated_in_contiguous_batches',batches:importChecks},null,2)+'\n');
-const embedding=spawnSync(process.env.RUNTIME_PYTHON,[path.join(import.meta.dirname,'embed_video.py'),posterFinal,candidate,path.join(root,VIDEO),'--review',path.join(root,'publication/media-review.json'),'--slide','9','--autoplay'],{encoding:'utf8'});
+const linked=path.join(workspace,'linked-candidate.pptx');
+const linking=spawnSync(process.env.RUNTIME_PYTHON,[path.join(import.meta.dirname,'link_slides.py'),posterFinal,linked,path.join(workspace,'navigation-targets.json')],{encoding:'utf8'});
+if(linking.status!==0)throw new Error(linking.stderr||linking.stdout||'Slide linking failed');
+await fs.writeFile(path.join(workspace,'navigation-links.json'),linking.stdout);
+const embedding=spawnSync(process.env.RUNTIME_PYTHON,[path.join(import.meta.dirname,'embed_video.py'),linked,candidate,path.join(root,VIDEO),'--review',path.join(root,'publication/media-review.json'),'--slide','9','--autoplay'],{encoding:'utf8'});
 if(embedding.status!==0)throw new Error(embedding.stderr||embedding.stdout||'Video embedding failed');
 await fs.writeFile(path.join(workspace,'video-embedding.json'),embedding.stdout);
 if(process.env.PRESENTATION_PREVIEW_ONLY==='1'){

@@ -1,14 +1,16 @@
-# Ten-slide research presentation
+# Research presentation with answer slides
 
-This builder produces the current published presentation, with one cover and
-nine content slides. It follows the research outline: FPGA background, prior
+This builder produces the current published presentation, with one cover,
+nine content slides, one hidden contents slide and fifteen hidden answer slides. It follows the research outline: FPGA background, prior
 implementations and teaching, research overview, software, two hardware topics,
 resource utilization, the recorded game, and the conclusion.
 
 The planned allocation is 330 seconds including the 30-second embedded video.
-This is a plan, not a timed rehearsal. No hidden or answer slides are appended.
-The prior complete deck and its answer slides remain in Git history at
-`55c3d006e68652b288fdc91a579cf6d6a1f3794d`.
+This is a plan, not a timed rehearsal. The first ten slides retain the original
+research outline. Contents is slide 11; answers are slides 12-26. The total
+file has 26 slides. Native links connect every page number to contents and each
+contents entry to its destination; hidden slides are skipped during ordinary
+sequential presentation.
 
 ## Content and evidence
 
@@ -71,12 +73,22 @@ Run with the bundled Artifact Tool runtime described in the parent README:
 node source/presentation/build.mjs RESEARCH_ROOT PRIVATE_BUILD_DIRECTORY
 ```
 
-The builder creates a ten-slide PPTX and Markdown narration. Editable content
-is imported and rendered in two contiguous batches. Package integrity, geometry,
-fonts, the native utilization table on slide 8, and video relationships are
+The builder creates a 26-slide PPTX and Markdown narration. Editable content
+is imported and rendered in five contiguous batches. Package integrity, geometry,
+fonts, the native tables on slides 8 and 13, internal navigation, and video relationships are
 checked. Inspect all slides in a native PowerPoint render before publication.
 Keep build files outside OneDrive and import only selected sanitized output.
 Public cover identities are redacted; private school copies remain local.
 
-The prior answer-slide modules remain as reusable source and are not invoked by
-this ten-slide builder. Their numbering belongs to the archived complete deck.
+## Answer slides
+
+The teaching examples and FPGA elements are on slides 12-14. The combined
+datapath is on slide 15, the detailed whole-system diagram on slide 16 and the
+RasterIX pipeline on slide 17. Slides 18-26 retain the nine OpenGL explanations.
+Their body content and geometry are preserved from the previous complete deck;
+page numbers and internal references are updated to the current positions.
+`navigation.mjs` defines contents and native slide targets.
+
+The earlier 29-slide version remains at
+`55c3d006e68652b288fdc91a579cf6d6a1f3794d`; the ten-slide main-only checkpoint is
+`fd2ca0fd1ae85a17b9693081808dd79a58b40e68`.
