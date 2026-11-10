@@ -95,7 +95,7 @@ export function drawMergedDatapath(s,a){
 
   R([[1015,555],[1015,590]],C.blue,true,2.1);
   T('描画命令の値',907,562,102,23,14,true,C.blue);
-  B('rasterix','描画・表示回路',906,590,160,44,C.white,18,C.blue);
+  B('rasterix','描画回路',906,590,160,44,C.white,18,C.blue);
   T('既存回路 RasterIX',906,635,162,14,11.5,true,C.blue,'center');
   R([[1066,612],[1078,612],[1078,330],[1050,330],[1050,355]],C.blue,'both',2.1);
   T('画像',1053,332,32,18,14,true,C.blue);

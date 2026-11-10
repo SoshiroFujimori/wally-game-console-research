@@ -98,3 +98,5 @@ describe. The numbering and internal references follow the current positions.
 The earlier 29-slide version remains at
 `55c3d006e68652b288fdc91a579cf6d6a1f3794d`; the ten-slide main-only checkpoint is
 `fd2ca0fd1ae85a17b9693081808dd79a58b40e68`.
+
+Diagram labels use `描画回路` as the short name for the combined drawing and display functions.

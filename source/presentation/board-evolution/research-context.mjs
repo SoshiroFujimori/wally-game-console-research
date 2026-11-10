@@ -31,7 +31,7 @@ export function drawConsoleEvolution(s,api,{mode='addition'}={}){
     {id:'sd',x:330,w:150,c:existing,label:'SDカード\n制御回路',ad:375,en:450,wd:360,we:395},
     {id:'ddr',x:510,w:150,c:memory,label:'DDRメモリ\n制御回路',ad:555,en:630,wd:540,we:575},
     {id:'gpio',x:690,w:120,c:existing,label:'その他の\n周辺回路',ad:735,en:790,wd:720,we:755},
-    {id:'graphics',x:934,w:242,c:graphics,label:'描画・表示回路',ad:980,en:1140,wd:980,we:1090}
+    {id:'graphics',x:934,w:242,c:graphics,label:'描画回路',ad:980,en:1140,wd:980,we:1090}
   ];
   if(decode){
     // AD and WD reach every illustrated target; independent enable outputs
