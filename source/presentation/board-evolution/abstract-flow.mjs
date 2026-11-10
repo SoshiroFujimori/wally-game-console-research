@@ -10,7 +10,7 @@ export function drawAbstractSystem(s, api, focus='all', {compact=false}={}) {
   const R=(points,key,arrow=true)=>route(s,points.map(([x,y])=>[ox+x,oy+y*sy]),active(key)?C.blue:gray,arrow,active(key)?3:1.6);
   B('',0,0,1152,355,C.pale,23,C.ink,2);
   T('FPGAボード / Nexys Video',14,5,680,34,25,true);
-  if(focus==='request')T('SD制御：0x13000〜0x13FFF',573,8,560,29,20,true,C.blue,'right');
+  if(focus==='request')T('SDカード制御：0x13000〜0x13FFF',573,8,560,29,20,true,C.blue,'right');
   if(focus==='command')T('接続回路：0x10080000〜0x100800FF',517,8,616,29,20,true,C.blue,'right');
   B('',20,44,930,292,C.chip,23,C.ink,2.4);
   T('FPGAチップ',34,46,220,28,22,true);
@@ -19,8 +19,8 @@ export function drawAbstractSystem(s, api, focus='all', {compact=false}={}) {
   reused.line={style:'dashed',fill:C.old,width:1.3};
   T('Wallyの既存構成を利用',52,80,435,28,20,true,C.ink);
   B('CPU\nWally',65,121,120,64,C.white,24);
-  B('SD制御',360,121,165,60,C.white,25);
-  B('DDR制御\nAMD製IP',725,121,185,60,C.ip,22);
+  B('SDカード制御',360,121,165,60,C.white,25);
+  B('DDRメモリ制御\nAMD製IP',725,121,185,60,C.ip,22);
   B('接続回路\n本研究で追加',360,264,165,61,C.white,21,C.blue,3);
   const rix=B('',680,250,250,80,'none',23,C.old,1.3);
   rix.line={style:'dashed',fill:C.old,width:1.3};
@@ -59,8 +59,8 @@ export function drawAbstractAccess(s,api,{reading=false,target='ddr',address='0x
   T('AD = '+address,88,239,212,28,22,true,blue);
   T(reading?'WD：使わない':'WD = '+value,350,282,330,29,23,true,reading?gray:blue);
   T(reading?'WE = 0（読む）':'WE = 1（書く）',350,326,300,29,23,true,blue);
-  const defs=[{x:520,name:target==='sd'?'SD制御\n'+(reading?'受信用レジスタ':'送信用レジスタ'):'SD制御',select:'S0',on:target==='sd'},
-              {x:750,name:'DDR制御',select:'S1',on:target==='ddr'},
+  const defs=[{x:520,name:target==='sd'?'SDカード制御\n'+(reading?'受信用レジスタ':'送信用レジスタ'):'SDカード制御',select:'S0',on:target==='sd'},
+              {x:750,name:'DDRメモリ制御',select:'S1',on:target==='ddr'},
               {x:980,name:'描画命令の\n接続回路',select:'S2',on:false}];
   // Shared forward signals have a single trunk with explicit branch dots.
   for(const [signal,y0,railX,yRail,offset,col] of [

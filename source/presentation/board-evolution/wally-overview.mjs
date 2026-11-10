@@ -42,7 +42,7 @@ export function drawWallyOverview(s, api) {
   T('濃い塗り：AMD製IP　[R]：RasterIXリポジトリ由来',0,24,780,23,14,false,C.ink);
 
   // Board components outside the programmable chip.
-  B('DDR3',800,0,144,36,C.white,19,blue);
+  B('DDR3メモリ',800,0,144,36,C.white,19,blue);
   B('SD card',970,0,135,36,C.white,19,blue);
   B('',0,51,1140,544,C.chip,18,C.ink,2.2);
   T('FPGA / fpgaTop',15,55,355,29,24,true);
@@ -88,7 +88,7 @@ export function drawWallyOverview(s, api) {
 
   // APB responses are selected inside ahbapbbridge. SDC is a second
   // spi_apb instance, not the unrelated spi instance tied off at fpgaTop.
-  B('SD制御  sdc\nspi_apb',750,136,108,33,known,13,blue);
+  B('SDカード制御\nsdc / spi_apb',750,136,108,33,known,12.5,blue);
   B('UART / GPIO / SPI\nCLINT / PLIC / PWM',750,198,108,27,C.white,10);
   W(686,158,720,158,blue,'start',1.5);J(720,158,blue);
   W(720,152,720,207,blue,false,1.5);
@@ -103,7 +103,7 @@ export function drawWallyOverview(s, api) {
   B('clkconverter',922,138,181,30,C.ip,16);
   B(expanded?'SmartConnect':'AXI connection',922,188,181,30,C.ip,15);
   B('',922,238,181,34,C.ip,14,blue,2.2);
-  T('DDR / MIG（AMD製IP）',925,239,175,32,13.5,true,C.ink,'center');
+  T('DDRメモリ制御\nMIG（AMD製IP）',925,239,175,32,13,true,C.ink,'center');
   BI([[1012,119],[1012,138]],blue);
   BI([[1012,168],[1012,188]],blue);
   BI([[1012,218],[1012,238]],blue);

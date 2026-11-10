@@ -42,8 +42,8 @@ export function drawMemoryPorts(s,a,{focus='all'}={}){
   }
 
   const defs=[
-    {x:662,label:'SD制御',key:'sd',select:'S0'},
-    {x:850,label:'DDR制御\nAMD製IP',key:'ddr',select:'S1'},
+    {x:662,label:'SDカード制御',key:'sd',select:'S0'},
+    {x:850,label:'DDRメモリ制御\nAMD製IP',key:'ddr',select:'S1'},
     {x:1038,label:'描画命令の\n接続回路',key:'gpu',select:'S2'}];
   const on=d=>focus==='all'||(focus==='copy'&&d.key!=='gpu')||(focus==='command'&&d.key==='gpu');
   box(s,'アドレスデコーダ',632,205,238,48,C.white,23,blue,2.3);
@@ -76,7 +76,7 @@ export function drawMemoryPorts(s,a,{focus='all'}={}){
   R([[582,580],[318,580],[318,347],[302,347]],rd,true,3);
   R([[318,534],[302,534]],rd,true,3);junction(s,318,534,rd,5);
   T('RD',514,586,46,25,19,true,rd);
-  T(focus==='copy'?'CPUはSD制御から値を読み、同じ値をDDR制御へ書く':
+  T(focus==='copy'?'CPUはSDカード制御から値を読み、同じ値をDDRメモリ制御へ書く':
     focus==='command'?'描画用のアドレスを出すと、S2で描画命令の接続回路を選ぶ':
     '選んだ回路のRDを返し、アクセスを行った側が受け取る',64,650,1152,30,23,true);
 }

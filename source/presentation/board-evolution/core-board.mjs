@@ -46,9 +46,10 @@ export function drawCoreBoard(s,a,{mode='overview'}={}) {
     route(s,[[1150,430],[1150,533]],faded,true,2.4);
     route(s,[[1080,430],[1080,481],[752,481],[752,430]],faded,'both',2.7);
     T('基板上の部品',100,533,290,28,20,true,frame);
-    for(const [name,label,x] of [['sd-card','SDスロット',435],['ddr-memory','DDR3メモリ',645],['hdmi','HDMI端子',1030]]){
-      B(name,x,533,150,32,false);
-      T(label,x+4,535,142,26,20,true,faded,'center');
+    for(const [name,label,x] of [['sd-card','SDカードスロット',415],['ddr-memory','DDR3メモリ',645],['hdmi','HDMI端子',1030]]){
+      const width=name==='sd-card'?190:150;
+      B(name,x,533,width,32,false);
+      T(label,x+4,535,width-8,26,20,true,faded,'center');
     }
     return;
   }
@@ -66,10 +67,10 @@ export function drawCoreBoard(s,a,{mode='overview'}={}) {
   T('CPU',121,340,148,35,27,true,cpu?C.ink:faded,'center');
   T('Wally',121,377,148,31,26,false,cpu?C.ink:faded,'center');
   B('sd',440,330,155,100,sd);
-  T('SD制御',445,348,145,32,25,true,sd?C.ink:faded,'center');
+  T('SDカード制御',445,348,145,32,21,true,sd?C.ink:faded,'center');
   T('カードと通信',445,385,145,26,19,false,sd?C.ink:faded,'center');
   B('ddr',640,330,155,100,ddr,provenance?C.white:C.pale);
-  T('DDR制御',645,348,145,32,25,true,ddr?C.ink:faded,'center');
+  T('DDRメモリ制御',645,348,145,32,20,true,ddr?C.ink:faded,'center');
   T('AMD製IP',645,385,145,26,21,false,ddr?C.ink:faded,'center');
   const adapter=B('adapter',840,330,155,100,command,C.pale);
   if(provenance)adapter.line={fill:C.blue,width:3.1};
@@ -85,9 +86,10 @@ export function drawCoreBoard(s,a,{mode='overview'}={}) {
   R(mode==='image-read'?[...imagePath].reverse():imagePath,on('image','image-write','image-read'),mode.startsWith('image-')?true:'both',2.7);
   T(mode==='image-write'?'画像の保存':mode==='image-read'?'読み出した画像':'画像の保存・読出し',845,486,235,26,18,true,col(on('image','image-write','image-read')),'center');
   T(hierarchy?'チップ外の部品':'基板上の部品',100,533,290,28,20,true,hierarchy?C.ink:frame);
-  for(const [name,label,x,active] of [['sd-card','SDスロット',435,sd],['ddr-memory','DDR3メモリ',645,ddr],['hdmi','HDMI端子',1030,on('image','image-read')]]) {
-    B(name,x,533,150,32,active);
-    T(label,x+4,535,142,26,20,true,active?C.ink:faded,'center');
+  for(const [name,label,x,active] of [['sd-card','SDカードスロット',415,sd],['ddr-memory','DDR3メモリ',645,ddr],['hdmi','HDMI端子',1030,on('image','image-read')]]) {
+    const width=name==='sd-card'?190:150;
+    B(name,x,533,width,32,active);
+    T(label,x+4,535,width-8,26,20,true,active?C.ink:faded,'center');
   }
 }
 

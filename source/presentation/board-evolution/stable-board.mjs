@@ -4,7 +4,7 @@ export const MAIN_BOARD = {
   board:[64,175,1152,400], chip:[84,210,1112,312],
   wally:[96,244,719,270], cpu:[112,342,126,96], decoder:[318,250,180,54],
   sd:[440,381,155,72], ddr:[640,381,155,72], adapter:[840,381,155,72],
-  rasterix:[1030,381,150,72], card:[435,533,150,32],
+  rasterix:[1030,381,150,72], card:[415,533,190,32],
   memory:[645,533,150,32], hdmi:[1030,533,150,32]
 };
 
@@ -32,9 +32,9 @@ export function drawStableBoard(s,a,{mode='request'}={}){
   B('chip','',chipFill,22,frame,1.8);
   T('FPGAチップ',100,214,240,25,20,true,intro?ink:frame);
   T('基板上の部品',100,533,290,28,20,true,intro?ink:frame);
-  for(const [name,label,on] of [['card','SDスロット',sd||intro],['memory','DDR3メモリ',memory||intro],['hdmi','HDMI端子',image||intro]]){
+  for(const [name,label,on] of [['card','SDカードスロット',sd||intro],['memory','DDR3メモリ',memory||intro],['hdmi','HDMI端子',image||intro]]){
     B(name,'',on?C.white:fadedFill,20,provenance?frame:on?blue:edge,provenance?1.3:on?2.2:1.3);
-    T(label,MAIN_BOARD[name][0]+4,535,142,26,20,true,provenance?frame:on?ink:muted,'center');
+    T(label,MAIN_BOARD[name][0]+4,535,MAIN_BOARD[name][2]-8,26,20,true,provenance?frame:on?ink:muted,'center');
   }
 
   if(intro){
@@ -109,8 +109,8 @@ export function drawStableBoard(s,a,{mode='request'}={}){
   T(values[1],102,298,196,22,18,true,color(writing));
   T(values[2],102,321,196,20,17,true,color(transfer));
   const defs=[
-    {name:'sd',x:440,label:'SD制御',sub:mode==='request'?'送信用レジスタ':is('receive','copy')?'受信用レジスタ':'送受信レジスタ',select:'S0',on:sd,write:mode==='request',read:is('receive','copy')},
-    {name:'ddr',x:640,label:'DDR制御',sub:'AMD製IP',select:'S1',on:memory,write:is('write','copy'),read:mode==='execute'},
+    {name:'sd',x:440,label:'SDカード制御',sub:mode==='request'?'送信用レジスタ':is('receive','copy')?'受信用レジスタ':'送受信レジスタ',select:'S0',on:sd,write:mode==='request',read:is('receive','copy')},
+    {name:'ddr',x:640,label:'DDRメモリ制御',sub:'AMD製IP',select:'S1',on:memory,write:is('write','copy'),read:mode==='execute'},
     {name:'adapter',x:840,select:'S2',on:command,write:command,read:false}];
 
   // Shared lines remain connected. Only the path relevant to the described

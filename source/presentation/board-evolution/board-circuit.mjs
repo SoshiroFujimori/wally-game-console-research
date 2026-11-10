@@ -43,7 +43,7 @@ export function drawBoard(s,a,stage,{ports=false,combined=false}={}){
 
   if(!chipOnly){
     // Repositories are acquisition sources, not a claim of sole authorship.
-    const wally = stage >= 6 ? 'CPU・バス・SD制御・DDR接続' : 'CPU・バス・DDR接続';
+    const wally = stage >= 6 ? 'CPU・バス・SDカード制御・DDR接続' : 'CPU・バス・DDR接続';
     t('Wallyリポジトリ：' + wally,64,181,690,29,20,true);
     if(stage>=7)t('RasterIXリポジトリ：' + (display?'描画・表示':'描画'),765,181,451,29,20,true);
     b('board','',C.pale);
@@ -103,7 +103,7 @@ export function drawBoard(s,a,stage,{ports=false,combined=false}={}){
     if(stage>=6)dot(trunk,453,memoryColor);
     if(stage>=7)dot(trunk,479,command?blue:gray);
     if(stage>=6){
-      b('sd','SD制御',sdFocus?C.pale:white,23,sdColor);
+      b('sd','SDカード制御',sdFocus?C.pale:white,23,sdColor);
       bi([[1004,336],[1051,336]],sdColor);
       wire(trunk,336,857,336,sdColor);
     }
@@ -270,7 +270,7 @@ function drawIntroBoard(s,a,research){
     t('y',948,397,28,30,25,true);
     t('回路の例（AND）',672,479,318,33,23,true,C.ink,'center');
   }
-  for(const [name,label,y]of[['card','SDスロット',304],['memory','DDR3メモリ',388],['hdmi','HDMI OUT',472]]){
+  for(const [name,label,y]of[['card','SDカードスロット',304],['memory','DDR3メモリ',388],['hdmi','HDMI OUT',472]]){
     box(name,1041,y,157,57);
     t(label,1047,y+10,145,37,21,true,C.ink,'center');
     W(s,1006,y+28.5,1041,y+28.5,C.ink,false,2.3);

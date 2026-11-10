@@ -1,19 +1,19 @@
 // Conceptual RISC-V fragments. The loader copies received bytes and jumps
 // to DDR; the game fragment illustrates a command-port write after loading.
 export const LOAD_ASM = [
-  ["li   s0,0x1304C", "SDの受信口"],
-  ["li   s1,0x80000000", "DDRの先頭"],
+  ["li   s0,0x1304C", "SDカードの受信口"],
+  ["li   s1,0x80000000", "DDRメモリの先頭"],
   ["li   s2,0x80001000", "読込終端（例）"],
   ["copy:", ""],
   ["lbu  t0,0(s0)", "1バイト読む"],
-  ["sb   t0,0(s1)", "DDRへ保存"],
+  ["sb   t0,0(s1)", "DDRメモリへ保存"],
   ["addi s1,s1,1", "保存先を+1"],
   ["bltu s1,s2,copy", "終端まで繰返す"],
   ["li   t0,0x80000000", "実行先"],
-  ["jr   t0", "DDRへ分岐"]
+  ["jr   t0", "DDRメモリへ分岐"]
 ];
 export const GAME_ASM = [
-  ["game:", "DDRの先頭"],
+  ["game:", "DDRメモリの先頭"],
   ["...", "ゲームの計算"],
   ["...", "描画命令を用意"],
   ["li   t0,0x10080000", "描画命令の送信口"],
