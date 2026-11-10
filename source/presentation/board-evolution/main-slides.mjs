@@ -76,23 +76,23 @@ export async function addMainSlides(ctx) {
   text(s,'回路とプログラムを公開\n拡張の方法を参照できる',876,539,340,58,23,false,C.ink,'center');
   line(s,'目的：Wallyの学習者に、2Dゲーム機への拡張例を示す',634,true,28);
 
-  s=slide('製作したゲームプログラム',30,
-    'ブロック崩しのプログラムをC++で作りました。まずボールやパドルの位置を更新し、衝突したブロックを消して得点を増やします。次に、更新した状態から四角形と文字の位置や色を指定します。描画命令を作る部分には、RasterIX付属のOpenGL互換ライブラリを使います。この処理を繰り返してゲームを進めます。続いて、このプログラムを動かす回路を説明します。',
-    'console/examples/rasterix/breakout.cpp: main(), present(); console/examples/rasterix/Breakout.hpp: Game::step(), Game::automatic(), scene(); console/examples/rasterix/BreakoutRenderer.hpp: Renderer::draw(); console/addins/rasterix/lib. Game source revision ed6a1c09b34d597dcde92ec26a4f5a97cbf18a17; RasterIX revision 9269a01c9bd4c3342bfa70ef8e3cdd751c15c6d0.',
-    '青い二つの処理は本研究で用意したC++のゲーム側の処理、右の処理はRasterIX付属の既存ライブラリの役割を表す。いずれもCPU上で実行するソフトウェアである。CPUの枠内は処理の流れを示しており、それぞれの専用回路をFPGAに追加したという意味ではない。Game::step()がゲーム状態を更新し、scene()がその状態を四角形と文字の描画指定にまとめ、Renderer::draw()が描画関数を呼ぶ。ライブラリが用意した命令は、Wally用のソフトウェア接続部分を通して回路へ送る。実際のメインループは経過時間に応じてゲーム状態を0回以上更新し、描画を提出して表示切替完了を待つ。図は役割と繰返しを要約したもので、状態更新と画面切替が常に一対一とは示していない。パドルは自動操作で、ゲームコントローラは未実装である。起動時の初期化、待ち、エラー確認、時間管理はこの図では省略する。プログラムの存在と働きを説明し、描画呼出しの最適化や新しい描画方式の提案は本編では扱わない。');
-  lead(s,'ゲームの状態を計算し、四角形と文字の描画を指定する');
-  drawGameProgram(s,api);
-  line(s,'ゲームの進行と描画指定を、C++で実装',585,true,28);
-  line(s,'パドルは自動操作し、描画には既存ライブラリを利用',631,false,27);
-
   s=slide('既存回路と本研究で追加した部分',25,
-    '左は、CPUのWallyと周辺部品を制御する回路をまとめたものです。右の描画・表示には、RasterIXに含まれる回路を使います。本研究では、これらをつなぐ接続部分と、ブロック崩しのプログラムを追加しました。次から、左のまとまりを開いて、ゲームが動くまでの流れを説明します。',
+    '左は、CPUのWallyと周辺部品を制御する回路をまとめたものです。右の描画・表示には、RasterIXに含まれる回路を使います。本研究では、これらをつなぐ接続部分と、ブロック崩しのプログラムを追加しました。次に、プログラムからこうした回路を操作する方法を説明します。',
     `${PRODUCT} console/examples/rasterix/Breakout.hpp; console/examples/rasterix/BreakoutRenderer.hpp; console/examples/rasterix/WallyBusConnector.hpp; console/fpga/src/rasterixdisplay.sv.`,
     '主な既存回路はCPU、SD制御、DDR制御IP、RasterIXの描画・表示本体である。本研究ではNexys Videoへの対応、バス接続、クロック間の受渡しの構成、メモリ接続、表示の制御などを追加した。青枠は命令経路の代表的な接続部分を示す。その中にはAMD製のIPも含む。ゲームプログラムはCPU上で動くソフトウェアなので、回路の提供元を示す破線枠には含めていない。');
   lead(s,'既存のCPU・描画回路を利用し、接続部分とゲームを追加');
   drawCoreBoard(s,api,{mode:'abstract'});
   line(s,'既存回路：CPUと周辺制御回路、描画・表示回路',585,false,27);
   line(s,'本研究：回路間の接続と、ブロック崩しのプログラム',631,true,28);
+
+  s=slide('プログラムから回路を操作する',30,
+    'プログラムは、決められたアドレスへの読み書きで回路を操作します。例えば上のコードでは、描画命令の数値を0x10080000へ書き、接続回路へ送ります。下のコードでは、0x10080008から接続回路の状態を読み出します。このように、メモリと同じ読み書き命令で回路を操作する仕組みをMMIOといいます。描画命令の作成には既存ライブラリを使い、Wallyから送受信する接続プログラムを実装しました。',
+    'console/examples/rasterix/WallyBusConnector.hpp: constructor, writeData(), readData(); console/fpga/src/rasterix_apb.sv: register map, CommandWrite, ReadData; console/src/uncore/uncore.sv; console/config/derivlist.txt; console/config/rv64gc/config.vh. Product revision ed6a1c09b34d597dcde92ec26a4f5a97cbf18a17.',
+    'MMIOはMemory-Mapped I/Oの略で、メモリ空間内の特定のアドレスを周辺回路の操作に割り当てる。実装ではアドレス判定で接続先の回路を選び、さらに回路内のオフセットで命令送信や状態読出しなどの操作を選ぶ。0x10080000への32ビット書込みは描画命令の1語を送る。0x10080008の読出しはSTATUSを返し、bit 0は命令の受入れ可能状態、bit 1は応答の有効状態、bit 2は描画側のBusyである。commandは既存ライブラリが作った命令列中の1語、statusは読み出した状態を受け取る変数を意味する。図はCPU上のソフトウェアから接続回路への操作を示す機能図で、アドレス線・選択信号やバス変換を一本ずつ描いたものではない。概念コードは物理アドレスと操作の対応を示しており、そのまま実行する完成コードではない。実際のWallyBusConnectorは/dev/memをmmapして得た仮想アドレスをvolatile uint32_tポインタとして使い、配列の要素へアクセスする。writeData()は命令列を順に書き、末尾の1語は0x10080004へ書いて終端を通知する。順序制御にはfenceを使う。readData()はSTATUSのbit 1で応答を待ってからRESPを読む。上下のコードは書込みと読出しの二つの操作例であり、描画命令を送るたびにSTATUSを読む実装や、STATUSを読むと描画完了が分かるという意味ではない。図では初期化、アドレスの対応づけ、volatile指定、末尾の通知、順序制御、待ちの細部を省略する。Wally用の送受信部分は本研究で追加したプログラムで、OpenGL互換ライブラリそのものはRasterIXの既存実装を使う。');
+  lead(s,'決められたアドレスに値を書くと、その回路へ届く');
+  drawGameProgram(s,api);
+  line(s,'MMIO：メモリと同じ読み書き命令で、回路を操作',585,true,28);
+  line(s,'描画命令はRasterIX付属ライブラリが用意する',631,false,27);
 
   s=slide('SDカードからプログラムを読み込む',30,
     'まず、SDカードに保存したゲームプログラムを読み込みます。CPUがSD制御に読出しを要求すると、SD制御がカードと通信し、データをCPUへ返します。CPUは受け取ったデータをDDR制御へ渡し、メモリに保存します。この繰返しで、プログラムを実行に使うメモリへ用意します。',
@@ -104,7 +104,7 @@ export async function addMainSlides(ctx) {
   line(s,'DDR3：読み込んだプログラムを実行するときの置き場所',630,false,27);
 
   s=slide('CPUがゲームプログラムを実行する',25,
-    '読み込んだプログラムは、CPUが実行する命令の列です。CPUは、DDR制御を通してメモリ上の命令を読み出し、その指示に従って計算を進めます。先ほどの位置や得点の更新も、この命令の実行によって行われます。',
+    '読み込んだプログラムは、CPUが実行する命令の列です。CPUは、DDR制御を通してメモリ上の命令を読み出し、その指示に従って計算を進めます。ボールの位置や得点の更新も、この命令の実行によって行われます。',
     'console/examples/rasterix/Breakout.hpp: Game::step(), scene(); console/examples/rasterix/breakout.cpp.',
     'ゲームのルールと状態更新はCPUで実行するプログラムの仕事である。描画回路はゲームの当たり判定や得点の規則を決めない。DDR3へのアクセスはDDR制御を介する。CPU内部のキャッシュや仮想アドレスなどは機能図では省略している。パドルは現在、自動操作のプログラムが動かしている。');
   lead(s,'DDR3上の命令を読み出し、ゲームの計算を進める');

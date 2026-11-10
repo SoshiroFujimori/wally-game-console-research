@@ -14,8 +14,8 @@ is 335 seconds including the 30-second embedded video, not a timed rehearsal.
 | 1 | Title | Private cover retained in the school copy. |
 | 2 | FPGA and external components | HDL and an AND gate illustrate circuit implementation. |
 | 3 | Educational context and objective | Three conceptual diagrams connect CPU building blocks, Wally system integration, and the graphics extension. Four DDCA and three RVSOC teaching examples include historical use. |
-| 4 | Created game program | C++ updates game state and specifies geometry/text; the existing library prepares commands. |
-| 5 | Existing and added parts | CPU and peripheral controllers are grouped into one box before expansion. |
+| 4 | Existing and added parts | CPU and peripheral controllers are grouped into one box before expansion. |
+| 5 | Software access through MMIO | Conceptual 32-bit writes to CMD and reads from STATUS, based on the actual Wally connector and RTL register map. |
 | 6 | Program loading | SD control returns data to the CPU, which stores it through DDR control. |
 | 7 | Game execution | CPU execution updates positions, collisions and score. |
 | 8 | Drawing commands | The CPU library prepares commands for the graphics block. |
@@ -25,10 +25,12 @@ is 335 seconds including the 30-second embedded video, not a timed rehearsal.
 | 12 | Actual video | The unchanged reviewed 30-second standard-output recording. |
 | 13 | Conclusion and next steps | Verified game behavior and optional controller/GUI work. |
 
-`game-program.mjs` places the C++ game flow inside the CPU, with created
-game logic/drawing requests and the existing RasterIX library identified.
-The three software stages summarize roles, not three additional hardware
-blocks or an exact one-update-per-frame schedule.
+`game-program.mjs` shows conceptual MMIO operations inside the CPU: a
+32-bit write to `0x10080000` (CMD) and a read from `0x10080008` (STATUS).
+The actual Wally connector maps these physical addresses before access;
+the notes retain mapping, volatile, final-word and ordering details.
+The two operations illustrate access semantics, not a per-frame polling
+sequence. The RasterIX library supplies the command words.
 
 `core-board.mjs` provides a stable functional diagram. It summarizes the
 transfers rather than drawing individual bus wires. `stable-board.mjs` retains
@@ -256,7 +258,7 @@ The textbook page uses Japanese book names rather than abbreviations.
 The Japanese rendering of the English RVSOC title is explained in notes;
 it does not identify a published Japanese edition.
 
-Slide 5 groups the CPU and peripheral controllers while keeping the adapter,
+Slide 4 groups the CPU and peripheral controllers while keeping the adapter,
 graphics and board components in the same positions as the subsequent views.
 Slide 13 uses solid nesting for physical containment and dashed frames for
 component provenance. These boundary meanings remain distinct.
