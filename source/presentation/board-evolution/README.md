@@ -1,13 +1,13 @@
 # Research presentation with answer slides
 
 This builder produces the current published presentation, with one cover,
-eight content slides, one hidden contents slide and fifteen hidden answer slides. It follows the research outline: FPGA background, prior
+eight content slides, one hidden contents slide and seventeen hidden answer slides. It follows the research outline: FPGA background, prior
 implementations and teaching, research overview, software, address decoding,
 resource utilization, the recorded game, and the conclusion.
 
 The planned allocation is 330 seconds including the 30-second embedded video.
 This is a plan, not a timed rehearsal. The first nine slides form the main talk. Contents is slide 10; answers are
-slides 11-25. The total file has 25 slides. Native links connect every page number to contents and each
+slides 11-27. The total file has 27 slides. Native links connect every page number to contents and each
 contents entry to its destination; hidden slides are skipped during ordinary
 sequential presentation.
 
@@ -80,24 +80,36 @@ Run with the bundled Artifact Tool runtime described in the parent README:
 node source/presentation/build.mjs RESEARCH_ROOT PRIVATE_BUILD_DIRECTORY
 ```
 
-The builder creates a 25-slide PPTX and Markdown narration. Editable content
-is imported and rendered in five contiguous batches. Package integrity, geometry,
-fonts, the native tables on slides 7 and 12, internal navigation, and video relationships are
+The builder creates a 27-slide PPTX and Markdown narration. Editable content
+is imported and rendered in six contiguous batches. Package integrity, geometry,
+fonts, the native tables on slides 7, 12, 14 and 15, internal navigation, and video relationships are
 checked. Inspect all slides in a native PowerPoint render before publication.
 Keep build files outside OneDrive and import only selected sanitized output.
 Public cover identities are redacted; private school copies remain local.
 
 ## Answer slides
 
-The teaching examples and FPGA elements are on slides 11-13. The combined
-datapath is on slide 14, the detailed whole-system diagram on slide 15 and the
-RasterIX pipeline on slide 16. Slides 17-25 retain the nine OpenGL explanations.
-Their body content is retained, with diagram labels aligned to the objects they
-describe. The numbering and internal references follow the current positions.
-`navigation.mjs` defines contents and native slide targets. The six categories are
-textbook adoption (11-12), FPGA and CPU (13-15), graphics hardware (16),
-OpenGL geometry (17-19), OpenGL text (20-23), and OpenGL execution/display
-(24-25). Slide numbers and answer-body content are preserved.
+The teaching examples and FPGA elements are on slides 11-13. Wally's active
+features are native tables on slides 14-15. The combined datapath is on slide
+16, the whole-system diagram on slide 17, and the RasterIX pipeline on slide 18.
+Slides 19-27 retain the nine OpenGL explanations. Existing slide bodies are
+retained; their page numbers and internal references follow these positions.
+`navigation.mjs` defines contents and native slide targets. The six categories
+are textbook adoption (11-12), FPGA and CPU (13-17), graphics hardware (18),
+OpenGL geometry (19-21), OpenGL text (22-25), and OpenGL execution/display
+(26-27). Main slides and contents retain their positions.
+
+`wally-features.mjs` draws the two tables. `wally-features.json` records the
+configuration inheritance, effective parameters, hardware revision, bitstream
+hash and the hashes of nineteen supporting configuration/RTL files. The builder
+checks those hashes against `console/` and checks the recorded bitstream identity.
+The selected files match both the frozen hardware source and the current console
+reference. The tables describe configured hardware, not new runtime tests of
+every ISA extension or virtual-memory mode. In particular, the FPGA configuration
+overrides `BPRED_SIZE` to 12: Gshare has 4,096 two-bit entries, the BTB has 1,024
+entries, and the return-address stack has sixteen entries. Each cache is 16 KiB,
+four-way, with 64-byte lines. Extended explanations and source links are in the
+companion Markdown for slides 14-15.
 
 The earlier 29-slide version remains at
 `55c3d006e68652b288fdc91a579cf6d6a1f3794d`; the ten-slide main-only checkpoint is

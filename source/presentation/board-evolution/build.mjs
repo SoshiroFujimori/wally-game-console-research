@@ -1,3 +1,4 @@
+import {addWallyFeatureSlides} from './wally-features.mjs';
 import { addOpenGLSlides } from './opengl-functions.mjs';
 import {addMergedDatapath} from './merged-datapath.mjs';
 import { addMainSlides } from './main-slides.mjs';
@@ -78,7 +79,7 @@ await addMainSlides({slide,api,cover,root,DDCA,RVSOC,PRODUCT,BASIC,POSTER,VIDEO,
 let s=slide('目次：発表・回答用スライド',0,
   '質問に関係する項目をクリックすると、そのスライドへ移動します。移動した後は右下のスライド番号をクリックすると、この目次へ戻れます。',
   '',
-  '表紙1枚と発表用8枚の後に置く操作用の目次である。発表用スライドと回答用スライドの両方へ移動できる。回答用スライドは、教科書の採用例、FPGAの構成要素、命令の実行から周辺回路へつながる統合図、回路の詳細、ゲームの描画の順にまとめる。この目次と回答用の15枚は通常の順送りでは表示しない。各スライド右下の番号から目次を開き、回答用スライドを選べる。本編の説明時間には目次の操作時間を含めない。');
+  '表紙1枚と発表用8枚の後に置く操作用の目次である。発表用スライドと回答用スライドの両方へ移動できる。回答用スライドは、教科書の採用例、FPGAの構成要素、命令の実行から周辺回路へつながる統合図、回路の詳細、ゲームの描画の順にまとめる。この目次と回答用の17枚は通常の順送りでは表示しない。各スライド右下の番号から目次を開き、回答用スライドを選べる。本編の説明時間には目次の操作時間を含めない。');
 drawContents(s,api);s.hidden=true;outline[outline.length-1].navigation=true;outline[outline.length-1].hidden=true;
 
 const ddcaDataRoot=process.env.PRESENTATION_DDCA_ASSET_DIRECTORY||path.join(root,'source/presentation/ddca-adoption');
@@ -109,6 +110,8 @@ drawFpgaResources(s,api);
 
 s.hidden=true;outline[outline.length-1].backup=true;
 
+await addWallyFeatureSlides({slide,api,root,outline});
+
 addMergedDatapath({slide,api,outline,DDCA,RVSOC,PRODUCT});
 
 s=slide('回答用：詳細な全体のブロック図',0,
@@ -129,7 +132,7 @@ await fs.writeFile(path.join(workspace,'rasterix-pipeline-graph.json'),JSON.stri
 await addOpenGLSlides({slide,api,root,outline});
 
 // Keep complete source attribution in the companion Markdown.
-for (const number of [15,16]) {
+for (const number of [17,18]) {
   const o=outline[number-1];
   o.detail += '\n\n' + PROVENANCE_DETAIL;
   o.source += '\n' + PROVENANCE_SOURCE;
@@ -137,11 +140,11 @@ for (const number of [15,16]) {
 for(const {page,number} of pageNumbers)if(number!==CONTENTS_SLIDE)linkToSlide(page,CONTENTS_SLIDE);
 await fs.writeFile(path.join(workspace,'wire-audit.json'),JSON.stringify(wiring.finalize(),null,2)+'\n');
 const total=outline.reduce((n,s)=>n+s.seconds,0);
-if(outline.length!==25||total!==330)throw new Error(`Unexpected allocation ${outline.length} slides, ${total} seconds`);
+if(outline.length!==27||total!==330)throw new Error(`Unexpected allocation ${outline.length} slides, ${total} seconds`);
 await fs.writeFile(path.join(workspace,'outline.json'),JSON.stringify(outline,null,2)+'\n');
 const md=[
   '# 中間発表：FPGAを用いた2Dゲーム機の製作',
-  '本編は表紙1枚と発表用8枚の計9枚です。その後に目次1枚と回答用15枚が続き、ファイル全体は25枚です。背景、本研究の概要、ソフトウェア、ハードウェア、実行結果、まとめの順に説明します。実行結果は使用量、動画の順です。',
+  '本編は表紙1枚と発表用8枚の計9枚です。その後に目次1枚と回答用17枚が続き、ファイル全体は27枚です。背景、本研究の概要、ソフトウェア、ハードウェア、実行結果、まとめの順に説明します。実行結果は使用量、動画の順です。',
   '[PowerPoint版](中間発表_主要事項.pptx) / [発表の要点](発表の要点.md) / [論文](../thesis/本文.md) / [技術付録](../thesis/技術付録.md)',
   '## 目次',
   contentsMarkdown()
@@ -154,7 +157,7 @@ outline.forEach((o,i)=>md.push(
   '<details>\n<summary>補足説明と出典</summary>\n',o.detail,o.source?'出典：'+o.source:'','\n</details>',...(o.navigation?[]:['[移動用の目次へ戻る](#slide-10)'])
 ));
 md.push('## 詳しい説明と以前の資料',
-  '本編の計画上の時間配分は動画30秒を含め330秒です。実測した発表時間ではありません。目次10枚目と回答用11〜25枚目は非表示で、通常の順送りでは9枚目のまとめで終了します。右下の番号から目次へ移動し、回答用スライドを選べます。',
+  '本編の計画上の時間配分は動画30秒を含め330秒です。実測した発表時間ではありません。目次10枚目と回答用11〜27枚目は非表示で、通常の順送りでは9枚目のまとめで終了します。右下の番号から目次へ移動し、回答用スライドを選べます。',
   '[以前の資料](https://github.com/SoshiroFujimori/wally-game-console-research/tree/55c3d006e68652b288fdc91a579cf6d6a1f3794d/docs/presentation)と、[OpenGLの説明と想定質問](OpenGLの説明と想定質問.md)も参照できます。',
   '回路の役割と提供元、記録した構成の版、比較範囲は各スライドの補足に示します。[再生成方法](../../source/presentation/board-evolution/README.md)から公開ソースを確認できます。');
 await fs.writeFile(path.join(workspace,'中間発表_主要事項.md'),md.join('\n\n')+'\n');
@@ -172,13 +175,13 @@ if(audience==='public'){
 // Final package integrity/layout and video relationships are checked separately.
 await fs.mkdir(path.join(workspace,'poster-review'), { recursive: true });
 const posterFinal=path.join(workspace,'poster-review','poster-validated.pptx');
-const validationOptions={workspaceDir:workspace,pythonExecutable:process.env.RUNTIME_PYTHON,integrityValidatorPath:path.join(process.env.PRESENTATION_SKILL,'container_tools/inspect_presentation_package_integrity.py'),layoutValidatorPath:path.join(process.env.PRESENTATION_SKILL,'container_tools/inspect_presentation_layout_geometry.py'),layoutArgs:['--expected-slide-size-emu','12192000,6858000','--validate-bullet-geometry','--validate-heading-fit','--require-native-table-slide','7','--require-native-table-slide','12'],explicitTotalSlideCount:25,requiredNativeTableOwnerSlides:[7,12],requiredNativeChartOwnerSlides:[],fontPolicy:{basis:'design',families:[font,latinFont,codeFont]}};
+const validationOptions={workspaceDir:workspace,pythonExecutable:process.env.RUNTIME_PYTHON,integrityValidatorPath:path.join(process.env.PRESENTATION_SKILL,'container_tools/inspect_presentation_package_integrity.py'),layoutValidatorPath:path.join(process.env.PRESENTATION_SKILL,'container_tools/inspect_presentation_layout_geometry.py'),layoutArgs:['--expected-slide-size-emu','12192000,6858000','--validate-bullet-geometry','--validate-heading-fit','--require-native-table-slide','7','--require-native-table-slide','12','--require-native-table-slide','14','--require-native-table-slide','15'],explicitTotalSlideCount:27,requiredNativeTableOwnerSlides:[7,12,14,15],requiredNativeChartOwnerSlides:[],fontPolicy:{basis:'design',families:[font,latinFont,codeFont]}};
 await finalizePresentation({...validationOptions,candidatePath:poster,finalPath:posterFinal,verifyArtifactToolImport:false,receiptPath:path.join(workspace,'poster-validation.json')});
-// Import authored content in five contiguous batches to bound the runtime's
+// Import authored content in six contiguous batches to bound the runtime's
 // XML construction size, then inspect the full
 // final package and its native PowerPoint rendering/navigation separately.
 const importChecks=[];
-for(const [batchNumber,first,count] of [[1,0,5],[2,5,4],[3,9,6],[4,15,5],[5,20,5]]){
+for(const [batchNumber,first,count] of [[1,0,5],[2,5,4],[3,9,6],[4,15,5],[5,20,5],[6,25,2]]){
   const batch=await Presentation.load(structuredClone(P.toProto()));
   batch.slides.keep(Array.from({length:count},(_,i)=>first+i));
   const batchPath=path.join(workspace,`content-batch-${batchNumber}.pptx`);

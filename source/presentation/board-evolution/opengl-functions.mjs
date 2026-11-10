@@ -23,15 +23,15 @@ const REFERENCES={
 };
 
 export const OPENGL_TOPICS=[
-  {number:17,label:'画面の要素と描き方'},
-  {number:18,label:'ゲーム画面の座標'},
-  {number:19,label:'四角形の色と四隅'},
-  {number:20,label:'文字画像の用意と登録'},
-  {number:21,label:'画像内のAを選ぶ座標'},
-  {number:22,label:'画像と画面の座標の対応'},
-  {number:23,label:'文字の色と透明な部分'},
-  {number:24,label:'CPUと描画回路の分担'},
-  {number:25,label:'描画命令の提出と表示切替'},
+  {number:19,label:'画面の要素と描き方'},
+  {number:20,label:'ゲーム画面の座標'},
+  {number:21,label:'四角形の色と四隅'},
+  {number:22,label:'文字画像の用意と登録'},
+  {number:23,label:'画像内のAを選ぶ座標'},
+  {number:24,label:'画像と画面の座標の対応'},
+  {number:25,label:'文字の色と透明な部分'},
+  {number:26,label:'CPUと描画回路の分担'},
+  {number:27,label:'描画命令の提出と表示切替'},
 ];
 
 // Derive editable font pixels from the pinned implementation.

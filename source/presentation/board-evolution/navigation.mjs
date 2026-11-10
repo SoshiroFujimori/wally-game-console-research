@@ -1,14 +1,14 @@
 import {OPENGL_TOPICS} from './opengl-functions.mjs';
 
-// Keep the existing slide numbers so saved references remain valid.
+// Keep the main talk and contents positions stable when adding answer topics.
 export const CONTENTS_SLIDE=10;
 export const ANSWER_CATEGORIES=[
   {label:'教科書・教育',numbers:[11,12]},
-  {label:'FPGA・CPU',numbers:[13,14,15]},
-  {label:'描画回路',numbers:[16]},
-  {label:'OpenGL：図形',numbers:[17,18,19]},
-  {label:'OpenGL：文字',numbers:[20,21,22,23]},
-  {label:'OpenGL：実行と表示',numbers:[24,25]},
+  {label:'FPGA・CPU',numbers:[13,14,15,16,17]},
+  {label:'描画回路',numbers:[18]},
+  {label:'OpenGL：図形',numbers:[19,20,21]},
+  {label:'OpenGL：文字',numbers:[22,23,24,25]},
+  {label:'OpenGL：実行と表示',numbers:[26,27]},
 ];
 const answerCategories=new Map(ANSWER_CATEGORIES.flatMap(group=>group.numbers.map(number=>[number,group.label])));
 export const CONTENTS_ITEMS=[
@@ -24,9 +24,11 @@ export const CONTENTS_ITEMS=[
   {number:11,label:'回路・CPU設計の教科書の利用例',shortLabel:'DDCAの授業利用例'},
   {number:12,label:'SoC設計の教科書',shortLabel:'RVSOCの採用大学'},
   {number:13,label:'FPGAチップの構成要素'},
-  {number:14,label:'命令実行から周辺回路への接続',shortLabel:'命令実行と周辺回路の接続'},
-  {number:15,label:'詳細な全体のブロック図',shortLabel:'詳細な全体ブロック図'},
-  {number:16,label:'描画回路のFPGAパイプライン',shortLabel:'FPGAパイプライン'},
+  {number:14,label:'Wallyの命令実行と分岐予測',shortLabel:'Wally：命令実行・分岐予測'},
+  {number:15,label:'Wallyのメモリと特権機能',shortLabel:'Wally：メモリ・特権機能'},
+  {number:16,label:'命令実行から周辺回路への接続',shortLabel:'命令実行と周辺回路の接続'},
+  {number:17,label:'詳細な全体のブロック図',shortLabel:'詳細な全体ブロック図'},
+  {number:18,label:'描画回路のFPGAパイプライン',shortLabel:'FPGAパイプライン'},
   ...OPENGL_TOPICS,
 ].map(record=>({...record,group:answerCategories.get(record.number)||'発表用スライド'}));
 
@@ -66,7 +68,7 @@ export function drawContents(s,api){
   };
   group(0,438,193,372);
   group(1,438,312,372);
-  group(2,438,465,372);
+  group(2,438,540,372);
   group(3,848,193,368);
   group(4,848,346,368);
   group(5,848,533,368);
