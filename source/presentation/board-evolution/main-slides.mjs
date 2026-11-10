@@ -14,7 +14,8 @@ export async function addMainSlides(ctx) {
   const slide=(...args)=>{
     const page=baseSlide(...args);
     if(section){
-      text(page,section,64,7,1152,23,18,true,C.heading,'right').name=`section-label-${ctx.outline.length}`;
+      // Center the category in the title row and align it with the body edge.
+      text(page,section,960,60,256,28,18,true,C.heading,'right').name=`section-label-${ctx.outline.length}`;
       ctx.outline.at(-1).section=section;
     }
     return page;
