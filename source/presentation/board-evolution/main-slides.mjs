@@ -1,11 +1,10 @@
 import fs from 'node:fs/promises';
 import path from 'node:path';
 import {drawStableBoard} from './stable-board.mjs';
-import {drawCoreBoard} from './core-board.mjs';
-import {drawPriorImplementations,drawAddressDecode} from './research-context.mjs';
+import {drawPriorImplementations,drawAddressDecode,drawConsoleEvolution} from './research-context.mjs';
 import {loadFpgaUtilization,drawCurrentUtilization,FPGA_UTILIZATION_SOURCE,STANDARD_UTILIZATION_SOURCE,FPGA_UTILIZATION_DETAIL} from './fpga-utilization.mjs';
 
-// The nine content slides follow the research outline in presentation order.
+// The eight content slides follow the research outline in presentation order.
 export async function addMainSlides(ctx) {
   const {slide:baseSlide,api,cover,root,DDCA,RVSOC,PRODUCT,BASIC,POSTER,VIDEO}=ctx;
   const {text,wire,box,junction,C}=api;
@@ -38,81 +37,55 @@ export async function addMainSlides(ctx) {
   line(s,'基板上に、FPGAチップ・SDカードスロット・DDRメモリなどがある',603,true,26);
 
   section="背景";
-  s=slide("先行研究と教育現状",35,
-    "FPGAにCPUや描画回路を実装する先行研究があります。CPUの例がWally、描画回路の例がRasterIXです。また、Wallyの設計を学ぶ教科書RVSOCは、ハーベイ・マッド大学、オクラホマ州立大学、ダルムシュタット工科大学で採用されています。こうした授業での採用から、CPUや周辺回路の設計を学ぶ一定の需要があると考えます。",
-    "Wally: Thompson et al., RISC-V System-on-Chip Design Textbook and Course (2025), Section 4, https://doi.org/10.18260/1-2--57147 ; https://nemo.asee.org/public/conferences/365/papers/48675/download . Official CPU implementation: https://github.com/openhwgroup/cvw . Official RasterIX implementation: https://github.com/ToNi3141/RasterIX . RVSOC textbook adoption: docs/presentation/RVSOC教科書採用の出典.md; source/presentation/rvsoc-adoption/records.json . Harvey Mudd College E154, Spring 2026: https://pages.hmc.edu/harris/class/e154/ . Oklahoma State University, 2023–2024 manuscript use: Thompson et al. (2025), Section 4. TU Darmstadt, Winter 2026/27: https://www.esa.informatik.tu-darmstadt.de/lehre/202627/cai . Official textbook: https://pages.hmc.edu/harris/ddca/rvsocd.html .",
-    "左右はFPGAへの既存回路の実装例であり、互いに独立した図である。本研究での組合せは次のスライドで示す。WallyはCPU・SoCの設計とFPGA実装を扱う教材・公開回路の例、RasterIXは公開された描画回路と表示回路の実装例として挙げる。RasterIXの査読付き論文の存在を主張するものではない。\n\n『RISC-V SoC設計』は英語書名RISC-V System-on-Chip Designの説明用の日本語表記である。Harvey Mudd Collegeは2026年春の授業で教科書指定、Oklahoma State Universityは2023〜2024年に出版前の原稿版を授業で使用、ダルムシュタット工科大学は2026/27年冬の授業で主教科書に指定している。過去の使用を含む確認例であり、同一年度の採用校一覧ではない。ダルムシュタットの実習はASIC設計を扱うため、3校すべてがFPGAでゲーム機を作る授業をしているという意味ではない。\n\n教材採用という事実から、CPUや周辺回路の設計を学ぶ需要があると解釈する。本研究のゲーム機の利用希望者数や教育効果を測定した結果ではない。");
-  lead(s,'FPGAにCPUや描画回路を実装する先行研究がある');
+  s=slide("先行研究と教育現状",55,
+    "FPGAにCPUや描画回路を実装する先行研究があります。左はCPUのWallyと、SDカードやDDRメモリを制御する周辺回路です。SDカードスロットに挿したSDカードからプログラムをDDRメモリに読み込み、CPUで実行できます。右は描画・表示回路のRasterIXです。また、Wallyの設計を学ぶ教科書RVSOCは、ここに示す大学で採用されています。こうした教材採用から、CPUや周辺回路の設計を学ぶ一定の需要があると考えます。",
+    "Wally: Thompson et al., RISC-V System-on-Chip Design Textbook and Course (2025), Section 4, https://doi.org/10.18260/1-2--57147 ; https://nemo.asee.org/public/conferences/365/papers/48675/download . Official CPU implementation: https://github.com/openhwgroup/cvw . Official RasterIX implementation: https://github.com/ToNi3141/RasterIX . RVSOC textbook adoption: docs/presentation/RVSOC教科書採用の出典.md; source/presentation/rvsoc-adoption/records.json . Harvey Mudd College E154, Spring 2026: https://pages.hmc.edu/harris/class/e154/ . Oklahoma State University, 2023–2024 manuscript use: Thompson et al. (2025), Section 4. TU Darmstadt, Winter 2026/27: https://www.esa.informatik.tu-darmstadt.de/lehre/202627/cai . Official textbook: https://pages.hmc.edu/harris/ddca/rvsocd.html . Wally FPGA configuration: console/config/derivlist.txt; console/src/uncore/uncore.sv; console/fpga/src/fpgaTopNexysVideo.sv. Boot from SD and main memory: RISC-V System-on-Chip Design, Chapters 20 and 23.",
+    "二つのFPGAは既存の実装例を別々に示す。左はCPU Wally、SDカード制御、DDRメモリ制御、GPIOなどを含む構成の機能図である。CPUが起動用プログラムを実行してSDカードの内容を読み出し、DDRメモリに配置する。後から実行する命令はDDRメモリなどからCPUに読み込まれるため、SDカードを命令メモリとして直接実行するという意味ではない。図の読出し・書込みの経路は、複数の信号とバス制御をまとめる。右の図は描画・表示機能と映像端子の関係を示す例であり、必要なCPU・外部メモリ等を網羅した回路図ではない。\n\nCPUと周辺制御はWallyリポジトリの既存回路を使う。DDRメモリ制御の本体はAMD製MIG IPであり、Wallyの生成・接続の仕組みと本研究のNexys Video用設定を利用している。描画本体RasterIX_IFと表示本体dvi_framebufferは公式RasterIXリポジトリに含まれる。後者はultraembedded由来の回路である。\n\n『RISC-V SoC設計』は英語書名RISC-V System-on-Chip Designの説明用の日本語表記である。Harvey Mudd Collegeは2026年春の授業で教科書指定、Oklahoma State Universityは2023〜2024年に出版前の原稿版を授業で使用、ダルムシュタット工科大学は2026/27年冬の授業で主教科書に指定している。過去の使用を含む確認例であり、同一年度の採用校一覧ではない。ダルムシュタットの実習はASIC設計を扱うため、3校すべてがFPGAでゲーム機を作る授業をしているという意味ではない。\n\n教材採用という事実から、CPUや周辺回路の設計を学ぶ需要があると解釈する。本研究のゲーム機の利用希望者数や教育効果を測定した結果ではない。");
+  lead(s,'SDカードのプログラムを読み込み、CPUで実行できる');
   drawPriorImplementations(s,api);
-  line(s,'教科書『RISC-V SoC設計』（RVSOC）の採用例',493,true,26);
-  const adoptionExamples=[
-    ['ハーベイ・マッド大学','米国・2026年春'],
-    ['オクラホマ州立大学','米国・2023〜2024年（原稿版）'],
-    ['ダルムシュタット工科大学','ドイツ・2026/27年冬']
-  ];
-  adoptionExamples.forEach(([name,term],i)=>{
-    const x=64+i*384;
-    text(s,name,x,546,368,35,24,true,C.ink);
-    text(s,term,x,586,368,28,19,false,C.ink);
-  });
-  line(s,'教材採用から、CPUや周辺回路の設計を学ぶ需要がうかがえる',632,true,25);
+  line(s,'CPU・SoC設計の教科書 RVSOC の採用例',580,true,25);
+  line(s,'ハーベイ・マッド大学 ／ オクラホマ州立大学 ／ ダルムシュタット工科大学',618,false,22);
+  line(s,'教材採用から、CPUや周辺回路の設計を学ぶ需要がうかがえる',658,true,23);
 
   section="本研究の概要";
-  s=slide("本研究の概要",45,
-    "次に、本研究の概要です。既存の教育用CPUであるWallyと、既存の描画回路であるRasterIXを組み合わせ、ゲーム機の回路を構成しました。この組合せを、教育用CPUの拡張例として示します。両回路の間には、描画回路を接続するための回路を用意しました。また、Wallyを含む既存の構成には、SDカードからプログラムを読み込んで実行する仕組みがあります。この組合せで動く、ブロック崩しのプログラムも用意しました。",
+  s=slide("本研究の概要",55,
+    "この既存の構成を拡張して、ゲーム機を製作しました。灰色のCPUやSDカード制御、DDRメモリ制御は、先ほどと同じです。周辺回路として、青色の描画・表示回路を追加しました。さらに、SDカードに入れるプログラムをブロック崩しにしました。CPUがそのプログラムを実行し、描画命令を送ることで、HDMI端子からゲーム画面を出力します。この組合せを、教育用CPUの拡張例として示します。",
     "Product revision 261832d48832dd6e26c4971ab8893ce61200688b. console/fpga/src/fpgaTopNexysVideo.sv; console/fpga/src/rasterix.sv; console/fpga/src/rasterix_apb.sv; console/fpga/generator/axiscdc.tcl. console/examples/rasterix/Breakout.hpp; console/examples/rasterix/BreakoutRenderer.hpp; console/examples/rasterix/WallyBusConnector.hpp; console/fpga/src/rasterixdisplay.sv.\nWally upstream: https://github.com/openhwgroup/cvw . Official RasterIX: https://github.com/ToNi3141/RasterIX/tree/9269a01c9bd4c3342bfa70ef8e3cdd751c15c6d0 . RTL: console/src/wally/wallypipelinedcore.sv; console/src/uncore/uncore.sv; console/src/uncore/spi_apb.sv; console/fpga/generator/ddr3-nexysvideo.tcl; console/fpga/generator/wally.tcl; console/fpga/src/rasterixdisplay.sv. RasterIX: rtl/RasterIX/RasterIX_IF.v; rtl/3rdParty/core_dvi_framebuffer/README.md; rtl/3rdParty/core_dvi_framebuffer/src_v/dvi_framebuffer.v. Standard-output evidence: experiments/dvi-recovery-20261109/results.json.",
-    "主な既存回路はCPU、SDカード制御、DDRメモリ制御IP、RasterIXの描画・表示本体である。本研究ではNexys Videoへの対応、バス接続、クロック間の受渡しの構成、メモリ接続、表示の制御などを追加した。青枠は命令経路の代表的な接続部分を示す。その中にはAMD製のIPも含む。ゲームプログラムはCPU上で動くソフトウェアなので、回路の提供元を示す破線枠には含めていない。\n\nCPU・バス・SDカード制御はWallyリポジトリ（CVW）の既存RTLを利用する。DDRメモリ制御はWallyリポジトリの生成・接続の仕組みを利用し、回路本体はAMD製MIG IPである。Nexys Video用の設定は本研究で追加した。標準構成の描画本体RasterIX_IFと表示本体dvi_framebufferは、同じ公式RasterIXリポジトリから取得する。表示本体はrtl/3rdParty/core_dvi_framebufferに同梱されたultraembedded由来の回路で、RasterIXの作者がすべて新規に設計したという意味ではない。バスから描画回路への変換、画面切替などの接続処理は本研究で追加した。本資料の実機動画は、RasterIX同梱の表示本体を利用する標準構成で取得した。表示本体そのものを本研究で新規設計したという主張ではない。");
-  lead(s,'既存の教育用CPUと描画回路を組み合わせ、ゲーム機を作る');
-  drawCoreBoard(s,api,{mode:'abstract'});
-  line(s,'既存の機能：SDカードからプログラムを読み込み、CPUで実行',585,false,27);
-  line(s,'本研究で用意：両回路をつなぐ接続回路と、ゲームプログラム',631,true,27);
+    "前のスライドとCPU、SDカード制御、DDRメモリ制御、GPIO、SDカードの位置をそろえ、二つの既存実装例を一つのチップ内の構成へまとめている。青色は本研究で組み込んだ描画・表示機能とSDカード上のゲームプログラムを示す。青色の回路のすべてを独自開発したという意味ではなく、描画・表示本体はRasterIXリポジトリの既存回路である。\n\nCPUと周辺制御はWallyリポジトリの既存回路を使う。DDRメモリ制御の本体はAMD製MIG IPであり、Wallyの生成・接続の仕組みと本研究のNexys Video用設定を利用している。描画本体RasterIX_IFと表示本体dvi_framebufferは公式RasterIXリポジトリに含まれる。後者はultraembedded由来の回路である。\n\n図はCPUが周辺回路を操作する関係を示す概念図である。実装では、CPU側と描画側の通信形式・クロックの対応を含む制御が必要で、その機能を描画側の接続にまとめて描いている。配線1本だけで既存の二つの回路が直接接続できるという意味ではない。");
+  lead(s,'描画・表示回路を追加し、SDカードのプログラムをゲームに変える');
+  drawConsoleEvolution(s,api,{mode:'addition'});
+  line(s,'回路：CPUの周辺回路として、描画・表示回路を追加',585,true,27);
+  line(s,'プログラム：SDカードにブロック崩しを保存',631,true,27);
 
   section="ソフトウェアの概要";
-  s=slide("ソフトウェアの概要",45,
-    "次に、ソフトウェアの概要です。Wallyを含む既存の構成では、回路ごとにアドレスを割り当て、プログラムからアクセスできます。今回の描画回路にも、アクセスするためのアドレスを割り当てました。そこに、描画の指示を意味する数値を書き込みます。図の例では、0x10080000というアドレスへの書込みです。この数値を接続回路が描画回路へ渡すことで、画像を描画し、HDMI端子から映像を出力できます。",
-    "Product revision 261832d48832dd6e26c4971ab8893ce61200688b. console/fpga/src/fpgaTopNexysVideo.sv; console/fpga/src/rasterix.sv; console/fpga/src/rasterix_apb.sv; console/fpga/generator/axiscdc.tcl. console/examples/rasterix/WallyBusConnector.hpp; console/examples/rasterix/BreakoutRenderer.hpp; console/addins/rasterix/lib.\nWally upstream: https://github.com/openhwgroup/cvw . Official RasterIX: https://github.com/ToNi3141/RasterIX/tree/9269a01c9bd4c3342bfa70ef8e3cdd751c15c6d0 . RTL: console/src/wally/wallypipelinedcore.sv; console/src/uncore/uncore.sv; console/src/uncore/spi_apb.sv; console/fpga/generator/ddr3-nexysvideo.tcl; console/fpga/generator/wally.tcl; console/fpga/src/rasterixdisplay.sv. RasterIX: rtl/RasterIX/RasterIX_IF.v; rtl/3rdParty/core_dvi_framebuffer/README.md; rtl/3rdParty/core_dvi_framebuffer/src_v/dvi_framebuffer.v. Standard-output evidence: experiments/dvi-recovery-20261109/results.json.",
-    "C言語による書込みの概念例である。commandはCPU上のライブラリが用意した描画命令列の1語を表す。実際には、命令列の複数の語を順に送り、転送完了や表示切替の制御も行う。実行可能な完全な送信プログラムではなく、アドレスへの書込みと回路の操作の対応を示す。実装はvolatile付きの入出力アクセスを使う。接続回路のコマンド送信口は0x10080000である。描画・表示回路がDDR3上の画像を介して映像を出力するため、一度の書込みだけで画面全体が完成するという意味ではない。\n\n主な既存回路はCPU、SDカード制御、DDRメモリ制御IP、RasterIXの描画・表示本体である。本研究ではNexys Videoへの対応、バス接続、クロック間の受渡しの構成、メモリ接続、表示の制御などを追加した。青枠は命令経路の代表的な接続部分を示す。その中にはAMD製のIPも含む。ゲームプログラムはCPU上で動くソフトウェアなので、回路の提供元を示す破線枠には含めていない。\n\nCPU・バス・SDカード制御はWallyリポジトリ（CVW）の既存RTLを利用する。DDRメモリ制御はWallyリポジトリの生成・接続の仕組みを利用し、回路本体はAMD製MIG IPである。Nexys Video用の設定は本研究で追加した。標準構成の描画本体RasterIX_IFと表示本体dvi_framebufferは、同じ公式RasterIXリポジトリから取得する。表示本体はrtl/3rdParty/core_dvi_framebufferに同梱されたultraembedded由来の回路で、RasterIXの作者がすべて新規に設計したという意味ではない。バスから描画回路への変換、画面切替などの接続処理は本研究で追加した。本資料の実機動画は、RasterIX同梱の表示本体を利用する標準構成で取得した。表示本体そのものを本研究で新規設計したという主張ではない。");
-  lead(s,'回路ごとに割り当てたアドレスに、プログラムからアクセスする');
-  drawCoreBoard(s,api,{mode:'command'});
-  const code=text(s,'*(unsigned int *)0x10080000 = command;',64,585,1152,40,31,false,C.blue);
-  code.text.style={typeface:'Consolas',fontSize:31,color:C.blue,alignment:'left',verticalAlignment:'middle',wrap:'none'};
-  line(s,'command：描画の指示を表す数値 → 描画回路へ送信',635,true,27);
+  s=slide("ソフトウェアの概要",55,
+    "次に、プログラムから回路を操作する方法です。通常のメモリ領域のアドレスに書き込むと、DDRメモリに値が保存されます。上のコードは、0x80000000への書込みです。一方、描画回路に割り当てた領域のアドレスに書き込むと、その数値を描画命令として送れます。下のコードでは、0x10080000に書き込んでいます。このように、メモリへの読出しや書込みと同じ形式で周辺回路を操作する仕組みをMMIOといいます。",
+    "Product revision 261832d48832dd6e26c4971ab8893ce61200688b. console/fpga/src/fpgaTopNexysVideo.sv; console/fpga/src/rasterix.sv; console/fpga/src/rasterix_apb.sv; console/fpga/generator/axiscdc.tcl. console/examples/rasterix/WallyBusConnector.hpp; console/examples/rasterix/BreakoutRenderer.hpp; console/addins/rasterix/lib.\nWally upstream: https://github.com/openhwgroup/cvw . Official RasterIX: https://github.com/ToNi3141/RasterIX/tree/9269a01c9bd4c3342bfa70ef8e3cdd751c15c6d0 . RTL: console/src/wally/wallypipelinedcore.sv; console/src/uncore/uncore.sv; console/src/uncore/spi_apb.sv; console/fpga/generator/ddr3-nexysvideo.tcl; console/fpga/generator/wally.tcl; console/fpga/src/rasterixdisplay.sv. RasterIX: rtl/RasterIX/RasterIX_IF.v; rtl/3rdParty/core_dvi_framebuffer/README.md; rtl/3rdParty/core_dvi_framebuffer/src_v/dvi_framebuffer.v. Standard-output evidence: experiments/dvi-recovery-20261109/results.json. Address ranges: console/config/derivlist.txt (fpganexysvideo), console/config/rv64gc/config.vh (EXT_IO_BASE and EXT_IO_RANGE).",
+    "Nexys Video構成のDDRメモリ領域は0x80000000〜0x9FFFFFFF、描画回路へアクセスする領域は0x10080000〜0x100800FFである。0x10080000は描画命令の送信口を表す。CPUは書込み先のアドレスを出し、その領域に対応する相手へアクセスする。通常のDDRメモリへの書込みは、キャッシュや書込みバッファを経由する場合があり、Cの1行とDDR端子の動作が同じ瞬間に対応するという意味ではない。\n\n二つのC文は、アクセス先の違いを示す概念例である。valueはメモリに保存する値、commandはCPU上のライブラリが作った描画命令列の1語である。実際には複数の語を順に送り、転送や表示切替を管理する。実装ではvolatileやメモリ属性、アドレスのマッピングも扱う。概念例をそのまま実行してよいという意味ではない。\n\nCPUと周辺制御はWallyリポジトリの既存回路を使う。DDRメモリ制御の本体はAMD製MIG IPであり、Wallyの生成・接続の仕組みと本研究のNexys Video用設定を利用している。描画本体RasterIX_IFと表示本体dvi_framebufferは公式RasterIXリポジトリに含まれる。後者はultraembedded由来の回路である。\n\n図はCPUが周辺回路を操作する関係を示す概念図である。実装では、CPU側と描画側の通信形式・クロックの対応を含む制御が必要で、その機能を描画側の接続にまとめて描いている。配線1本だけで既存の二つの回路が直接接続できるという意味ではない。");
+  lead(s,'アドレスの範囲によって、書込み先が変わる（MMIO）');
+  drawConsoleEvolution(s,api,{mode:'access'});
+  const cases=[['通常のメモリ領域 → 値を保存','*(unsigned int *)0x80000000 = value;'],['描画回路の領域 → 命令を送信','*(unsigned int *)0x10080000 = command;']];
+  cases.forEach(([label,program],i)=>{
+    text(s,label,64,588+i*48,410,37,23,true,C.heading);
+    const code=text(s,program,486,588+i*48,730,37,25,false,C.blue);
+    code.text.style={typeface:'Consolas',fontSize:25,color:C.blue,alignment:'left',verticalAlignment:'middle',wrap:'none'};
+  });
 
   section="ハードウェアの概要";
   s=slide("ハードウェア：アドレスの割当て",40,
-    "次に、ハードウェアの概要です。Wallyの周辺回路には、アドレスデコーダがあります。これは、CPUからのアドレスを調べ、そのアドレスに対応する回路のイネーブル信号を出す回路です。本研究では、この既存の仕組みの設定を変更し、描画回路用のアドレス領域を割り当てました。例えば0x10080000に書き込むと接続回路が選ばれ、描画命令の数値が渡ります。",
+    "書込み先を回路側で選ぶのが、アドレスデコーダです。CPUから受け取ったアドレスを調べ、それぞれの周辺回路へイネーブル信号を出します。図では、描画回路に対応するアドレスなので、描画回路のイネーブルだけが1で、ほかは0です。これにより、書込みデータを受け付ける回路が選ばれます。本研究では、既存の設定を変更して、描画回路用のアドレス領域を割り当てました。",
     "console/config/rv64gc/config.vh: EXT_IO_BASE=0x10080000, EXT_IO_RANGE=0xFF; console/config/derivlist.txt: fpganexysvideo_rasterix; console/src/mmu/adrdecs.sv; console/src/uncore/uncore.sv: PSELEXT; console/fpga/src/rasterix_apb.sv: command port.\nWally upstream: https://github.com/openhwgroup/cvw . Official RasterIX: https://github.com/ToNi3141/RasterIX/tree/9269a01c9bd4c3342bfa70ef8e3cdd751c15c6d0 . RTL: console/src/wally/wallypipelinedcore.sv; console/src/uncore/uncore.sv; console/src/uncore/spi_apb.sv; console/fpga/generator/ddr3-nexysvideo.tcl; console/fpga/generator/wally.tcl; console/fpga/src/rasterixdisplay.sv. RasterIX: rtl/RasterIX/RasterIX_IF.v; rtl/3rdParty/core_dvi_framebuffer/README.md; rtl/3rdParty/core_dvi_framebuffer/src_v/dvi_framebuffer.v. Standard-output evidence: experiments/dvi-recovery-20261109/results.json.",
-    "Wallyの既存の外部APB領域を有効にし、描画接続回路へ接続している。アドレスデコーダのRTLを一から書いたという意味ではなく、その既存の領域選択機能と構成パラメータを利用した。図はCPUの書込みを、アドレス、書込みデータ、書込みイネーブル、接続先の選択に分けた概念図である。実際にはAHBからAPBへの変換や転送の段階があるが、この図では省略している。有効なアクセスでWE=1が書込み、WE=0が読出しを示す。読み出しデータの戻り経路は、書込みだけを説明するこの図では省略した。0x10080000〜0x100800FFは接続回路用の領域で、その中の0x10080000が描画命令の送信口である。アドレス下位のビットが、接続回路内でアクセスするレジスタを指定する。\n\nCPU・バス・SDカード制御はWallyリポジトリ（CVW）の既存RTLを利用する。DDRメモリ制御はWallyリポジトリの生成・接続の仕組みを利用し、回路本体はAMD製MIG IPである。Nexys Video用の設定は本研究で追加した。標準構成の描画本体RasterIX_IFと表示本体dvi_framebufferは、同じ公式RasterIXリポジトリから取得する。表示本体はrtl/3rdParty/core_dvi_framebufferに同梱されたultraembedded由来の回路で、RasterIXの作者がすべて新規に設計したという意味ではない。バスから描画回路への変換、画面切替などの接続処理は本研究で追加した。本資料の実機動画は、RasterIX同梱の表示本体を利用する標準構成で取得した。表示本体そのものを本研究で新規設計したという主張ではない。");
-  lead(s,'アドレスデコーダが、アクセス先のイネーブル信号を出す');
+    "図のADはアドレス、WDは書込みデータ、WEは書込みイネーブル、ENは各回路の選択を表す。AD・WD・WEは図にあるすべての対象へ渡り、アドレスデコーダはSDカード制御、DDRメモリ制御、GPIO、描画・表示のそれぞれに独立したイネーブルを出す。0x10080000への書込みの例なので、描画用のENだけが1となる。複数のENを同じ1本の線としてまとめてはいない。\n\n実装では、AHBとAPBなどの段階に応じて領域判定と選択信号の引継ぎがある。図はその働きを一つのアドレスデコーダにまとめた概念図である。読み出しデータの戻り経路と待ち応答は省略している。GPIOなどは、複数の周辺回路を代表する箱である。図の描画側の箱は、0x10080000〜0x100800FFのCPU用アクセス窓口から先の機能をまとめている。\n\nCPUと周辺制御はWallyリポジトリの既存回路を使う。DDRメモリ制御の本体はAMD製MIG IPであり、Wallyの生成・接続の仕組みと本研究のNexys Video用設定を利用している。描画本体RasterIX_IFと表示本体dvi_framebufferは公式RasterIXリポジトリに含まれる。後者はultraembedded由来の回路である。\n\n図はCPUが周辺回路を操作する関係を示す概念図である。実装では、CPU側と描画側の通信形式・クロックの対応を含む制御が必要で、その機能を描画側の接続にまとめて描いている。配線1本だけで既存の二つの回路が直接接続できるという意味ではない。");
+  lead(s,'アドレスデコーダが、各周辺回路へイネーブル信号を出す');
   drawAddressDecode(s,api);
-  line(s,'既存の設定を変更し、描画回路用のアドレス領域を割り当てた',585,true,26);
-  line(s,'割り当てた範囲：0x10080000〜0x100800FF',631,false,28);
-
-  section="ハードウェアの概要";
-  s=slide("ハードウェア：接続回路",40,
-    "CPUと描画回路の間には、通信方式とクロック周波数の違いがあります。そのため、両回路の間に用意した接続回路で、この違いに対応しました。CPU側の書込みを、描画回路側で受け取れる信号のやり取りに合わせます。また、異なるクロックの間でデータを渡すために、AMD製の回路を組み込みました。これによって、CPUから描画回路へ命令を渡せるようにしました。",
-    "Product revision 261832d48832dd6e26c4971ab8893ce61200688b. console/fpga/src/fpgaTopNexysVideo.sv; console/fpga/src/rasterix.sv; console/fpga/src/rasterix_apb.sv; console/fpga/generator/axiscdc.tcl. console/fpga/src/rasterix_apb.sv; console/fpga/src/rasterix.sv; console/fpga/generator/axiscdc.tcl. AMD PG085: https://docs.amd.com/r/en-US/pg085-axi4stream-infrastructure/Overview-of-Features\nWally upstream: https://github.com/openhwgroup/cvw . Official RasterIX: https://github.com/ToNi3141/RasterIX/tree/9269a01c9bd4c3342bfa70ef8e3cdd751c15c6d0 . RTL: console/src/wally/wallypipelinedcore.sv; console/src/uncore/uncore.sv; console/src/uncore/spi_apb.sv; console/fpga/generator/ddr3-nexysvideo.tcl; console/fpga/generator/wally.tcl; console/fpga/src/rasterixdisplay.sv. RasterIX: rtl/RasterIX/RasterIX_IF.v; rtl/3rdParty/core_dvi_framebuffer/README.md; rtl/3rdParty/core_dvi_framebuffer/src_v/dvi_framebuffer.v. Standard-output evidence: experiments/dvi-recovery-20261109/results.json.",
-    "CPU側のAPB書込みを、RasterIX側のAXI4-Streamに対応させる部分は本研究で追加したRTLである。描画命令そのものを別の命令に変える処理ではなく、データと受渡しの制御信号を対応させる。クロック間にはAMD製AXI4-Stream Data FIFOを非同期設定で使う。標準構成はCPU側20 MHz、描画側100 MHzである。FIFOの内部回路を独自に発明した、またはこの方式が最速だという主張はしない。形式に合わせる部分は追加したRTL、クロック間の受渡しはAMD製IPである。\n\nCPU・バス・SDカード制御はWallyリポジトリ（CVW）の既存RTLを利用する。DDRメモリ制御はWallyリポジトリの生成・接続の仕組みを利用し、回路本体はAMD製MIG IPである。Nexys Video用の設定は本研究で追加した。標準構成の描画本体RasterIX_IFと表示本体dvi_framebufferは、同じ公式RasterIXリポジトリから取得する。表示本体はrtl/3rdParty/core_dvi_framebufferに同梱されたultraembedded由来の回路で、RasterIXの作者がすべて新規に設計したという意味ではない。バスから描画回路への変換、画面切替などの接続処理は本研究で追加した。本資料の実機動画は、RasterIX同梱の表示本体を利用する標準構成で取得した。表示本体そのものを本研究で新規設計したという主張ではない。");
-  lead(s,'CPU側と描画回路側の、通信方式とクロック周波数の違いに対応');
-  drawCoreBoard(s,api,{mode:'adapter'});
-  line(s,'両回路の間に、それぞれの違いに対応する接続回路を用意',579,true,27);
-  box(s,'CPU',64,628,130,49,C.white,25,C.ink,2.2);
-  wire(s,194,652,254,652,C.blue,true,3);
-  box(s,'',254,628,320,49,C.white,25,C.blue,2.5);
-  text(s,'受渡しの形式を合わせる',262,631,304,27,24,true,C.blue,'center');
-  text(s,'本研究で追加した回路',262,659,304,16,14,false,C.old,'center');
-  wire(s,574,652,634,652,C.blue,true,3);
-  box(s,'',634,628,330,49,C.pale,25,C.blue,2.5);
-  text(s,'異なるクロック間で渡す',642,631,314,27,24,true,C.blue,'center');
-  text(s,'AMD製の回路',642,659,314,16,14,false,C.old,'center');
-  wire(s,964,652,1024,652,C.blue,true,3);
-  box(s,'描画回路',1024,628,192,49,C.white,25,C.ink,2.2);
+  line(s,'描画回路だけ EN = 1、ほかの周辺回路は EN = 0',585,true,27);
+  line(s,'追加したアドレス範囲：0x10080000〜0x100800FF',631,false,27);
 
   section="実行結果";
   s=slide("実行結果：FPGAの使用量",25,
     "次に、実行結果です。まず、FPGA内部のリソースの使用量を示します。FPGAには、論理回路やメモリなど、実装に使える資源の数に上限があります。表は、Wallyの基本構成と、今回のゲーム機構成の使用率です。ゲーム機では、LUTが約50%、チップ内のBlock RAMが約59%でした。CPUや周辺制御、描画・表示を含む回路を、一つのFPGAに実装できました。",
     "Before: experiments/fpga-resource-comparison-20261108/comparison.json; After: experiments/standard-display-resources-20261110/implementation.json; experiments/dvi-recovery-20261109/README.md; results.json; media-review.json. Captured 2026-11-09. Standard bitstream SHA-256: 16173de97a91e711cd7bc5389acd9739807adebedf192efc29fe78f5b96c0acf. Latest game executable SHA-256: 5c360babde59c6d9fc72fe58edc5729da2b2b8480c2f3a5208980d2f7d2c558b. Video: experiments/dvi-recovery-20261109/media/latest-standard-dvi-30s.mp4",
-    "比較する構成\nBeforeは2026年9月8日に保存したNexys Video対応時のCPUと周辺回路、Afterは2026年10月8日に保存した標準表示のゲーム機構成である。どちらもArtix-7 XC7A200T（xc7a200tsbg484-1）、Vivado 2025.2による配置配線後の記録を使う。Afterはスライド12の実機動画と同じ回路設定データで、スライド11もこの値を示す。\n\nBeforeの根拠\nexperiments/fpga-resource-comparison-20261108/before-utilization.rptを使う。日付は2026年9月8日13:16:56、DesignはfpgaTop、Design StateはRoutedである。Nexys Video対応時の描画機能がない構成として保存された記録である。レポートにGitリビジョンや回路設定データのハッシュは記載されておらず、特定のコミットから完全に再生成した結果とは主張しない。元ファイルと公開用コピーのハッシュはcomparison.jsonに区別して記録した。\n\nAfterの根拠\nexperiments/standard-display-resources-20261110/implementation.jsonとutilization.rptを使う。製品RTLは261832d48832dd6e26c4971ab8893ce61200688b、公式RasterIXは9269a01c9bd4c3342bfa70ef8e3cdd751c15c6d0。回路設定データのSHA-256は16173de97a91e711cd7bc5389acd9739807adebedf192efc29fe78f5b96c0acfで、11月9日の映像記録に一致する。レポートは11月10日に保存済みの検証ディレクトリから取り出して確認し、再配置配線や新たな実機試験は行っていない。公開コピーはホスト名や個人用パスを除去した。\n\n比較の範囲\n開発前後に保存した実装全体を参考比較する。CPUのRTLなどの版や各種設定を固定して描画機能だけを追加した比較ではない。したがって、差をRasterIX単体の使用量と解釈しない。動作するゲーム機全体が対象FPGAに収まることは、Afterの実装記録と対応する実機動画から確認できる。\n\n掲載値\nLUT、Slice Registers、Block RAM Tile、DSPの四種類を示す。それぞれの搭載数に対する使用数の割合で、異なる資源の割合は合算しない。Block RAMはFPGA内のメモリで、ボード上のDDR3は含まれない。未使用資源の数だけから任意の拡張が可能とは判断できず、回路を追加する場合は配置配線とタイミングを再確認する。");
+    "比較する構成\nBeforeは2026年9月8日に保存したNexys Video対応時のCPUと周辺回路、Afterは2026年10月8日に保存した標準表示のゲーム機構成である。どちらもArtix-7 XC7A200T（xc7a200tsbg484-1）、Vivado 2025.2による配置配線後の記録を使う。Afterは実機動画と同じ回路設定データであり、この表はその構成の使用率を示す。\n\nBeforeの根拠\nexperiments/fpga-resource-comparison-20261108/before-utilization.rptを使う。日付は2026年9月8日13:16:56、DesignはfpgaTop、Design StateはRoutedである。Nexys Video対応時の描画機能がない構成として保存された記録である。レポートにGitリビジョンや回路設定データのハッシュは記載されておらず、特定のコミットから完全に再生成した結果とは主張しない。元ファイルと公開用コピーのハッシュはcomparison.jsonに区別して記録した。\n\nAfterの根拠\nexperiments/standard-display-resources-20261110/implementation.jsonとutilization.rptを使う。製品RTLは261832d48832dd6e26c4971ab8893ce61200688b、公式RasterIXは9269a01c9bd4c3342bfa70ef8e3cdd751c15c6d0。回路設定データのSHA-256は16173de97a91e711cd7bc5389acd9739807adebedf192efc29fe78f5b96c0acfで、11月9日の映像記録に一致する。レポートは11月10日に保存済みの検証ディレクトリから取り出して確認し、再配置配線や新たな実機試験は行っていない。公開コピーはホスト名や個人用パスを除去した。\n\n比較の範囲\n開発前後に保存した実装全体を参考比較する。CPUのRTLなどの版や各種設定を固定して描画機能だけを追加した比較ではない。したがって、差をRasterIX単体の使用量と解釈しない。動作するゲーム機全体が対象FPGAに収まることは、Afterの実装記録と対応する実機動画から確認できる。\n\n掲載値\nLUT、Slice Registers、Block RAM Tile、DSPの四種類を示す。それぞれの搭載数に対する使用数の割合で、異なる資源の割合は合算しない。Block RAMはFPGA内のメモリで、ボード上のDDR3は含まれない。未使用資源の数だけから任意の拡張が可能とは判断できず、回路を追加する場合は配置配線とタイミングを再確認する。");
   lead(s,'Wallyの基本構成と、製作したゲーム機の使用率');
   const utilization=await loadFpgaUtilization(root);
   drawCurrentUtilization(s,api,utilization);
@@ -129,11 +102,12 @@ export async function addMainSlides(ctx) {
 
   section="まとめ";
   s=slide("まとめと今後の展望",25,
-    "まとめです。既存の教育用CPUに、既存の描画回路を接続しました。両回路の間の接続回路とゲームプログラムを用意し、ブロック崩しが動作することを確認しました。今後は、ホーム画面などのGUI、またはゲームコントローラによる操作の実装に取り組みます。",
+    "まとめです。既存のCPUと周辺回路に、青色の描画・表示回路を追加しました。また、SDカードにブロック崩しのプログラムを入れ、この構成でゲームが動くことを確認しました。教育用CPUをゲーム機へ拡張した例を示せました。今後は、ホーム画面などのGUI、またはゲームコントローラによる操作の実装に取り組みます。",
     "Product revision 261832d48832dd6e26c4971ab8893ce61200688b. console/fpga/src/fpgaTopNexysVideo.sv; console/fpga/src/rasterix.sv; console/fpga/src/rasterix_apb.sv; console/fpga/generator/axiscdc.tcl. experiments/dvi-recovery-20261109/README.md; results.json; media-review.json. Captured 2026-11-09. Standard bitstream SHA-256: 16173de97a91e711cd7bc5389acd9739807adebedf192efc29fe78f5b96c0acf. Latest game executable SHA-256: 5c360babde59c6d9fc72fe58edc5729da2b2b8480c2f3a5208980d2f7d2c558b. Video: experiments/dvi-recovery-20261109/media/latest-standard-dvi-30s.mp4\nWally upstream: https://github.com/openhwgroup/cvw . Official RasterIX: https://github.com/ToNi3141/RasterIX/tree/9269a01c9bd4c3342bfa70ef8e3cdd751c15c6d0 . RTL: console/src/wally/wallypipelinedcore.sv; console/src/uncore/uncore.sv; console/src/uncore/spi_apb.sv; console/fpga/generator/ddr3-nexysvideo.tcl; console/fpga/generator/wally.tcl; console/fpga/src/rasterixdisplay.sv. RasterIX: rtl/RasterIX/RasterIX_IF.v; rtl/3rdParty/core_dvi_framebuffer/README.md; rtl/3rdParty/core_dvi_framebuffer/src_v/dvi_framebuffer.v. Standard-output evidence: experiments/dvi-recovery-20261109/results.json.",
-    "結論は、接続を実装した構成で、ブロック崩しの自動操作によるゲーム進行と映像出力を確認したことである。今回の組合せを他のCPUやボードにもそのまま適用できるという結論ではない。今後の候補はゲームコントローラへの対応とホーム画面などのGUIであり、実装する項目は今後選択する。図の実線の入れ子は、ボードの上にチップがあり、その内側に回路を実装したという階層を示す。SDカードスロットやDDR3メモリはチップ外で、同じボード上にある。破線は既存回路の提供元を示し、物理的なチップの境界ではない。\n\nCPU・バス・SDカード制御はWallyリポジトリ（CVW）の既存RTLを利用する。DDRメモリ制御はWallyリポジトリの生成・接続の仕組みを利用し、回路本体はAMD製MIG IPである。Nexys Video用の設定は本研究で追加した。標準構成の描画本体RasterIX_IFと表示本体dvi_framebufferは、同じ公式RasterIXリポジトリから取得する。表示本体はrtl/3rdParty/core_dvi_framebufferに同梱されたultraembedded由来の回路で、RasterIXの作者がすべて新規に設計したという意味ではない。バスから描画回路への変換、画面切替などの接続処理は本研究で追加した。本資料の実機動画は、RasterIX同梱の表示本体を利用する標準構成で取得した。表示本体そのものを本研究で新規設計したという主張ではない。");
-  lead(s,'既存の教育用CPUに描画回路を接続し、ゲーム機を製作した');
-  drawCoreBoard(s,api,{mode:'hierarchy'});
-  line(s,'成果：教育用CPUの拡張例として、ブロック崩しの動作を確認',585,true,27);
+    "本研究の概要と同じ図を使い、CPU・周辺回路・SDカードの位置を保って製作内容をまとめる。描画・表示回路とSDカード上のゲームプログラムを青色で示す。実機確認の範囲は、ブロック崩しの自動プレイによるゲーム進行と映像出力である。今後の候補はホーム画面などのGUIとゲームコントローラであり、実装項目は今後選ぶ。\n\nCPUと周辺制御はWallyリポジトリの既存回路を使う。DDRメモリ制御の本体はAMD製MIG IPであり、Wallyの生成・接続の仕組みと本研究のNexys Video用設定を利用している。描画本体RasterIX_IFと表示本体dvi_framebufferは公式RasterIXリポジトリに含まれる。後者はultraembedded由来の回路である。\n\n図はCPUが周辺回路を操作する関係を示す概念図である。実装では、CPU側と描画側の通信形式・クロックの対応を含む制御が必要で、その機能を描画側の接続にまとめて描いている。配線1本だけで既存の二つの回路が直接接続できるという意味ではない。");
+  lead(s,'既存のCPUと周辺回路を拡張し、ブロック崩しを動かせた');
+  drawConsoleEvolution(s,api,{mode:'addition'});
+  line(s,'成果：描画・表示回路とゲームプログラムによる拡張例',585,true,27);
   line(s,'今後：ホーム画面などのGUI、またはゲームコントローラを実装',634,false,27);
+
 }

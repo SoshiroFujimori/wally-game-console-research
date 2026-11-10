@@ -1,6 +1,6 @@
 import {OPENGL_TOPICS} from './opengl-functions.mjs';
 // Native slide navigation. The slide names remain editable text objects.
-export const CONTENTS_SLIDE=11;
+export const CONTENTS_SLIDE=10;
 export const CONTENTS_ITEMS=[
   {"number": 1, "label": "表紙", "group": "発表用スライド"},
   {"number": 2, "label": "FPGAとは", "group": "発表用スライド"},
@@ -8,16 +8,15 @@ export const CONTENTS_ITEMS=[
   {"number": 4, "label": "本研究の概要", "group": "発表用スライド"},
   {"number": 5, "label": "ソフトウェアの概要", "group": "発表用スライド"},
   {"number": 6, "label": "アドレスの割当て", "group": "発表用スライド"},
-  {"number": 7, "label": "接続回路", "group": "発表用スライド"},
-  {"number": 8, "label": "FPGAの使用量", "group": "発表用スライド"},
-  {"number": 9, "label": "ブロック崩しの実機動画", "group": "発表用スライド"},
-  {"number": 10, "label": "まとめと今後の展望", "group": "発表用スライド"},
-  {"number": 12, "label": "回路・CPU設計の教科書の利用例", "group": "教科書の採用例"},
-  {"number": 13, "label": "SoC設計の教科書", "group": "教科書の採用例"},
-  {"number": 14, "label": "FPGAチップの構成要素", "group": "FPGA"},
-  {"number": 15, "label": "命令実行から周辺回路への接続", "group": "命令の実行と周辺接続"},
-  {"number": 16, "label": "詳細な全体のブロック図", "group": "回路の詳細"},
-  {"number": 17, "label": "描画回路のFPGAパイプライン", "group": "回路の詳細"},
+  {"number": 7, "label": "FPGAの使用量", "group": "発表用スライド"},
+  {"number": 8, "label": "ブロック崩しの実機動画", "group": "発表用スライド"},
+  {"number": 9, "label": "まとめと今後の展望", "group": "発表用スライド"},
+  {"number": 11, "label": "回路・CPU設計の教科書の利用例", "group": "教科書の採用例"},
+  {"number": 12, "label": "SoC設計の教科書", "group": "教科書の採用例"},
+  {"number": 13, "label": "FPGAチップの構成要素", "group": "FPGA"},
+  {"number": 14, "label": "命令実行から周辺回路への接続", "group": "命令の実行と周辺接続"},
+  {"number": 15, "label": "詳細な全体のブロック図", "group": "回路の詳細"},
+  {"number": 16, "label": "描画回路のFPGAパイプライン", "group": "回路の詳細"},
   ...OPENGL_TOPICS.map(record=>({...record,group:'ゲームの描画'})),
 ];
 
@@ -40,8 +39,8 @@ export function drawContents(s,api){
     label.name=`contents-label-${record.number}`;
     linkToSlide(number,record.number);linkToSlide(label,record.number);
   };
-  CONTENTS_ITEMS.slice(0,10).forEach((r,i)=>item(r,64,193+i*32));
-  CONTENTS_ITEMS.slice(10).forEach((r,i)=>item(r,668,193+i*26,true));
+  CONTENTS_ITEMS.slice(0,9).forEach((r,i)=>item(r,64,193+i*32));
+  CONTENTS_ITEMS.slice(9).forEach((r,i)=>item(r,668,193+i*26,true));
   text(s,'項目をクリックすると、そのスライドへ移動します',64,628,1152,34,24,true,C.ink);
   text(s,'各スライドの右下の番号をクリックすると、この目次に戻れます',64,670,1100,31,21,false,C.old);
 }

@@ -1258,7 +1258,30 @@
     "5673d1f4a60eb5ed6eddc60316fc2c175773086ffbcf61b651ac01168cf9e81c",
     "5cd8bf8f3cec7b747843bf00db6df41aa8827670de9d77e8ba844e52fb20744c",
     "95441d5ea66076892b06bf10975866de0f6d8cfddce580862604f9f30364a79e",
-    "04f17ecc437760db709588df422150d1f7820980e32c44e5cd4480e3e970c803"
+    "04f17ecc437760db709588df422150d1f7820980e32c44e5cd4480e3e970c803",
+    "ad7f6f5a843e32f462e8758d2edc172e2ffd6505b006668e8229f4c78775c2d9",
+    "ff3e1c18fb054e977d8c2b1e7b02e93a86f2917734b99d83bfc4558a012f3a9b",
+    "030c14089f5c03e2d7fcfb4af1853ba105042bea102b233ae4ebba9434453ed3",
+    "9a149888e06ee74d81bd7bc311bc22eb18e890989c2f4a3dd70a11a2077c1cbe",
+    "2bd63ffeae9c862cf7c6ee461ee0e01b40f0bde10571f23d46a4bbfd71ffd64f",
+    "0b64e9960750c9dea6a79b3cb88bf453dc08af6d763275a524e72c2e42fba3e8",
+    "cc57158622bb0a5b948a84fcacb7ebfc82b01da50c26a8dfeb65e66e2ec113ff",
+    "6c584e2c335ce969fd45c9a3cdc89eab483a5101b6eda3edebefca6bc98788c6",
+    "f52988ed05cc751e4af257235ca291bd76ca62b043cb892565f84a8da6faf645",
+    "6e69e93e9fb4f3d38ab76eec0863347b2e8d9dacfd3e19203cc7bf719f582e0a",
+    "292c2b4f246dd1e8b3bc7c439964e09177e9f41765b0d1e4739d62a4d025fbf6",
+    "894237c69f22a4bb6344d9e5761973dfe2c8505b47c3483de82bfea1b2fcaf57",
+    "658193cd808237bb1c90249ef1ef82d32ea2aba3d3ac00287759c5f46e3ff19f",
+    "ac580083724a19edabf25213b8e07f828d9363ca94b301fa6b8eaea8d305e164",
+    "f8fd96c187cdaf3a1493c2c4fc17628b14e0f63256d83d64ce7e2f13fdc13f48",
+    "4c8932efa7fca0bdf1bca6ecd17ccd6172702916b1ba4c20b2515e6f0770695f",
+    "8a02e3080bc56e57dee3033c78184488fddcd9aecdaf096cdae2b3421a3c6c98",
+    "d0e5da64c88a37c23ee7549bcd3b0434923bfd9db71e7b90ec789713f26f7a29",
+    "5d459f59b8b31b05dac3ca95127dea899c07ee8c58503e07f6e5ac1ae63ab60f",
+    "8515f0cdf88d75487155f45f9ee09d97643b99a300fe0873d5ce7bfd52aacfd3",
+    "5ca87d3b4509d71d11f3db9151f9486481940931ee9b470074897bb189ccf9c5",
+    "5949e81c34bc0f231b194c4ccf1ad9a773760b89ddf514e579d8a3af23e6d085",
+    "49aac1ba5195ae18848d98cd65b68c8fcb2c09b3049b17fd1db89949fc9da4e7"
   ],
   "reviews": {
     "abstract-based-presentation-20261108": "Reviewed all 18 native PowerPoint slide renders and the private cover. Main slides use functional circuits and address-access examples; source differences remain in notes and reproduction records. Confirmed 51 internal links, six hidden question slides, original embedded video hash, and cover-only differences between editions. Reviewed the revised abstract diagram, color and monochrome one-page Word renders, code lines and title placement. Public image metadata was cleaned without changing decoded pixels; newly embedded PNGs match visually reviewed sources.",
@@ -1295,6 +1318,7 @@
     "presentation-user-outline-20261110": "Reviewed the user-directed background, research overview, software, hardware, results and conclusion sequence in native PowerPoint. The twelve main slides retain numbered C teaching fragments and add an address-decoding write path. CPU and drawing prior work and teaching examples have source notes. Resource utilization on slide 11 precedes the unchanged embedded automatic-play video on slide 12. The existing clip was visually checked near 1.1 seconds for a paddle rebound and 2.1 seconds for brick removal and rebound; this was not a new hardware experiment. The 29-slide package has 84 internal navigation links, native tables on slides 11 and 16, hidden contents and hidden answers. Answer-slide body text and rendering are unchanged after renumbering. Public and private copies differ only in cover identity. The submitted abstracts remain unchanged. Public images contain no private identity or paths.",
     "presentation-original-ten-20261110": "Reviewed ten native PowerPoint slide renders: cover and nine content slides following the supplied research outline. CPU/drawing prior implementations and teaching share one background slide. MMIO is explained with one conceptual C write; address decoding and clock/protocol adaptation each retain a slide. The native utilization table is on slide 8, before the unchanged reviewed 30-second automatic-play video on slide 9. All ten slides are visible; no answer slides or navigation links are appended. Public and private packages differ only in cover identity. Public images contain no private identity or paths. Previous answer slides remain reachable through pinned Git-history links. No new hardware measurement was made, and submitted abstracts are unchanged.",
     "presentation-restore-answers-20261110": "Restored the fifteen answer slides after the unchanged ten-slide main talk. Slide 11 contains clickable contents; slides 11-26 are hidden during ordinary sequential presentation. The 26-slide package contains 75 internal navigation links, native tables on slides 8 and 13, and the unchanged 30-second embedded video on slide 9. Main-slide text, notes and native rendered pixels match the preceding ten-slide deck. Answer body text and pixels match the archived complete deck except for page and table numbers. The contents and all restored answers were visually reviewed. Public media contain no private identities or paths. Private and public copies differ only in cover identity; submitted abstracts remain unchanged. No new hardware experiment was performed.",
-    "presentation-fpga-background-20261110": "Removed the HDL code sample from slide 2 and centered the existing logic-gate example. Slide 3 shows independent FPGA boards for Wally and RasterIX and names three documented RVSOC textbook adoption examples, retaining the manuscript-use date for Oklahoma State. The educational motivation is stated as an inference about learning CPU and peripheral circuit design. Both changed slides were visually reviewed at native PowerPoint resolution. The other 24 slides retain identical rendered pixels, body text and notes. All 75 navigation links, hidden answers and the 30-second embedded video are preserved. Public media contain no private identities or paths. Public and private copies differ only in cover identity. Submitted abstracts remain unchanged."
+    "presentation-fpga-background-20261110": "Removed the HDL code sample from slide 2 and centered the existing logic-gate example. Slide 3 shows independent FPGA boards for Wally and RasterIX and names three documented RVSOC textbook adoption examples, retaining the manuscript-use date for Oklahoma State. The educational motivation is stated as an inference about learning CPU and peripheral circuit design. Both changed slides were visually reviewed at native PowerPoint resolution. The other 24 slides retain identical rendered pixels, body text and notes. All 75 navigation links, hidden answers and the 30-second embedded video are preserved. Public media contain no private identities or paths. Public and private copies differ only in cover identity. Submitted abstracts remain unchanged.",
+    "presentation-console-evolution-20261110": "Reviewed native PowerPoint renders of the updated CPU/peripheral overview, console expansion, memory-mapped writes, independent decoder enables and summary. The SD controller connects first to the slot, with the inserted card beyond it. Main diagrams omit a separate adapter box and preserve the same component locations. The standalone adapter slide was removed, leaving nine main slides including the cover. Contents is slide 10; fifteen retained answers are slides 11-25 and remain hidden. The unchanged answer bodies and resource table were compared against the previous render apart from page/table numbering. All 72 native navigation links were checked. The unchanged 30-second video is embedded on slide 8. Public/private packages differ only in cover identity. Public media contain no private identities or paths. Submitted abstracts and product files were not changed."
   }
 }

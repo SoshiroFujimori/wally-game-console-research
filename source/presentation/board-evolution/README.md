@@ -1,46 +1,47 @@
 # Research presentation with answer slides
 
 This builder produces the current published presentation, with one cover,
-nine content slides, one hidden contents slide and fifteen hidden answer slides. It follows the research outline: FPGA background, prior
-implementations and teaching, research overview, software, two hardware topics,
+eight content slides, one hidden contents slide and fifteen hidden answer slides. It follows the research outline: FPGA background, prior
+implementations and teaching, research overview, software, address decoding,
 resource utilization, the recorded game, and the conclusion.
 
 The planned allocation is 330 seconds including the 30-second embedded video.
-This is a plan, not a timed rehearsal. The first ten slides retain the original
-research outline. Contents is slide 11; answers are slides 12-26. The total
-file has 26 slides. Native links connect every page number to contents and each
+This is a plan, not a timed rehearsal. The first nine slides form the main talk. Contents is slide 10; answers are
+slides 11-25. The total file has 25 slides. Native links connect every page number to contents and each
 contents entry to its destination; hidden slides are skipped during ordinary
 sequential presentation.
 
 ## Content and evidence
 
 `main-slides.mjs` contains the slide text and speaker narration.
-`core-board.mjs`, `stable-board.mjs` and `research-context.mjs` retain the board,
-chip and component positions used in the earlier presentation. Solid boundaries
-show physical containment; dashed boundaries show component repositories.
-Only the paths relevant to the current explanation are emphasized.
+`stable-board.mjs` draws the FPGA introduction. `research-context.mjs` keeps
+CPU, controllers, removable media and video output in fixed positions across
+slides 3-6 and 9. Solid boundaries show board and chip containment; the dashed
+boundary identifies existing Wally repository components. The SD controller
+connects to the physical slot, with the inserted card drawn beyond the slot.
 
-Slide 3 introduces Wally and RasterIX as examples of FPGA implementations.
-Wally's educational system is described by Thompson et al., *RISC-V System-on-Chip
-Design Textbook and Course* (2025), DOI 10.18260/1-2--57147. RasterIX is cited
-through its official implementation. The listed schools use CPU/circuit-design
-textbooks; the slide does not claim that every listed course builds the entire
-CPU on an FPGA. Sources and scope are retained in the notes.
+Slide 3 introduces Wally with existing peripheral controllers and a separate
+RasterIX FPGA example. The CPU can load a program from SD into main memory and
+execute it. RVSOC adoption examples establish a teaching context. Slide 4 combines
+these functions, highlighting graphics integration and the SD card game program.
+The summary reuses that composition. The simplified main diagrams aggregate
+protocol and clock-domain adaptation into the graphics path; the implementation
+and detailed answer diagrams are unchanged.
 
-Slide 5 uses one conceptual C write to the command port at `0x10080000`.
-The notes identify the code as an explanatory fragment and explain the real
-transfer and runtime requirements. Slide 6 uses the enabled existing APB region
-`0x10080000` through `0x100800FF`; it does not imply a newly written decoder.
-Slide 7 distinguishes the locally written protocol adapter from the AMD IP
-used for clock-domain crossing.
+Slide 5 compares conceptual C writes to DDR at `0x80000000` and the drawing
+command port at `0x10080000`. The DDR address range is `0x80000000` through
+`0x9FFFFFFF`; the enabled external APB range is `0x10080000` through `0x100800FF`.
+Notes identify the fragments as explanatory examples. Slide 6 draws independent
+decoder-enable paths to every illustrated peripheral, with the graphics target
+selected for the demonstrated command address.
 
-Slide 8 loads and validates `experiments/standard-display-resources-20261110`.
+Slide 7 loads and validates `experiments/standard-display-resources-20261110`.
 Both columns include CPU and peripheral circuits; their difference is not an
 isolated measurement of the RasterIX core. The After column is tied to the
 standard-display bitstream used in the recorded demonstration. Evidence and
 revision limitations remain in the speaker notes.
 
-Slide 9 embeds `source/presentation/assets/breakout-standard-dvi-compatible.mp4`
+Slide 8 embeds `source/presentation/assets/breakout-standard-dvi-compatible.mp4`
 and starts it automatically. The recording and poster come from
 `experiments/dvi-recovery-20261109`. It shows automatic play and retains the
 latest title-top layout. The embedded media are hash-checked and unchanged.
@@ -73,18 +74,18 @@ Run with the bundled Artifact Tool runtime described in the parent README:
 node source/presentation/build.mjs RESEARCH_ROOT PRIVATE_BUILD_DIRECTORY
 ```
 
-The builder creates a 26-slide PPTX and Markdown narration. Editable content
+The builder creates a 25-slide PPTX and Markdown narration. Editable content
 is imported and rendered in five contiguous batches. Package integrity, geometry,
-fonts, the native tables on slides 8 and 13, internal navigation, and video relationships are
+fonts, the native tables on slides 7 and 12, internal navigation, and video relationships are
 checked. Inspect all slides in a native PowerPoint render before publication.
 Keep build files outside OneDrive and import only selected sanitized output.
 Public cover identities are redacted; private school copies remain local.
 
 ## Answer slides
 
-The teaching examples and FPGA elements are on slides 12-14. The combined
-datapath is on slide 15, the detailed whole-system diagram on slide 16 and the
-RasterIX pipeline on slide 17. Slides 18-26 retain the nine OpenGL explanations.
+The teaching examples and FPGA elements are on slides 11-13. The combined
+datapath is on slide 14, the detailed whole-system diagram on slide 15 and the
+RasterIX pipeline on slide 16. Slides 17-25 retain the nine OpenGL explanations.
 Their body content and geometry are preserved from the previous complete deck;
 page numbers and internal references are updated to the current positions.
 `navigation.mjs` defines contents and native slide targets.
