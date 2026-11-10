@@ -2,7 +2,7 @@ import fs from 'node:fs/promises';
 import path from 'node:path';
 import {drawStableBoard} from './stable-board.mjs';
 import {drawCoreBoard} from './core-board.mjs';
-import {drawGameProgram} from './game-program.mjs';
+import {drawGameProgram,drawCodeQuote,C_PROGRAM_DETAIL} from './game-program.mjs';
 
 // A bounded integration result and its functional evidence form the main talk.
 // Detailed architecture and OpenGL API material remain in the answer slides.
@@ -86,39 +86,39 @@ export async function addMainSlides(ctx) {
   line(s,'本研究：回路間の接続と、ブロック崩しのプログラム',631,true,28);
 
   s=slide('プログラムの読込みと描画命令の送信',40,
-    '左は、SDカードからゲームの機械語をDDR3へ移す処理です。受信した1バイトを読み、DDR3に書いて、保存先のアドレスを進めます。全体を移したら、jr命令でDDR3上の開始位置へジャンプします。すると右の、元はSDカードにあったゲームの命令がCPUで実行されます。ゲームは描画命令の数値列を用意し、その値を0x10080000へ書いて描画回路に送ります。左はプログラムを読み込む処理、右は読み込まれたプログラムです。',
-    'console/fpga/zsbl/spi.h: SPI_RXDATA, spi_readbyte(); console/fpga/zsbl/boot.c: disk_read() received-byte loop; console/examples/rasterix/WallyBusConnector.hpp: writeData(); console/examples/rasterix/breakout.cpp; console/fpga/src/rasterix_apb.sv: CMD register; console/config/rv64gc/config.vh: EXT_MEM_BASE, EXT_IO_BASE. Product revision ed6a1c09b34d597dcde92ec26a4f5a97cbf18a17.',
-    '概念例の範囲\n左と右は、CPU上で役割の異なるプログラムが順に動くことを示す。左の処理がSDカードからゲームをDDR3へコピーし、開始位置へ分岐した後、右のゲームの命令をCPUが実行する。CPUがSDカード内の機械語をその場で直接実行するという意味ではない。図中のコードはRISC-Vの実在する命令・疑似命令を用いた概念的な断片で、実機ソフトウェアの逆アセンブルではない。SDカードには機械語が保存され、読みやすくアセンブリ表記で示している。読込み側は既存の起動・読込み処理の役割をまとめたもので、このローダーを新たに製作したという主張ではない。実際にはブートローダーとOSが初期化、ファイル読込み、プログラム配置、実行環境の準備を行う。\n\nコピーと分岐\ns0はSDカード制御の受信レジスタ0x1304C、s1はDDR3の書込み先、s2は読込み終端を保持する。lbuで受信済みの1バイトを読み、sbでDDR3へ保存する。addiで保存先を1バイト進め、bltuで終端未満ならcopyへ戻る。例では0x80000000から0x80000FFFまで4096バイトをコピーするが、実際のゲームのサイズや開始アドレスを測定・指定した値ではない。最後のliでt0へ0x80000000を置き、jr t0でPCをそのアドレスに変更する。jrはjalr x0,0(t0)の疑似命令である。liも定数の大きさにより複数の実命令になる。SDの初期化、読出し要求、転送を進めるための送信、受信待ち、領域やファイルの選択、エラー確認、コピー後の命令フェッチの同期などは概念例では省略する。受信レジスタを読むだけでSD通信が自動的に進むと主張するものではない。\n\n読み込まれたゲーム\ngameは、この概念例ではDDR3の開始位置0x80000000に置いたゲームの入口を示す。省略記号の部分でゲームの状態を更新し、既存のOpenGL互換ライブラリを使って描画命令列を準備する。a0はその命令列の先頭アドレスを表す。lw t1,0(a0)で命令列から32ビットの1語を読み、sw t1,0(t0)で0x10080000の命令ポートに書く。ここでいう描画命令は描画回路用の数値であり、CPUが実行するRISC-V命令とは異なる。実際のWally用接続プログラムは、対応づけた仮想アドレスをvolatileポインタでアクセスし、最後の1語は0x10080004へ送って終端を知らせ、fenceで順序を制御する。これらと残りの命令列の送信、画面切替・待ち処理は省略記号に含む。コード中の...は説明上の省略であり、アセンブラの命令ではない。青い折れ線は実行先の移動、右向きの矢印は描画命令の転送を示す機能図で、物理的な一本の信号線ではない。');
-  lead(s,'SDカードのゲームをDDR3へコピーし、その命令をCPUで実行');
+    'CPUで行う処理を、C言語で示します。左は、SDカードから受信したゲームプログラムをDDRメモリへコピーする処理です。6行目で1バイトずつ読み書きし、7行目でコピー先のゲームを呼び出します。右は、元はSDカードに保存されていたゲームの処理です。位置や得点を更新して描画命令を用意し、13〜14行目で描画回路の送信口へ書きます。以降の回路の図でも、この行番号を使って対応を説明します。',
+    'console/fpga/zsbl/spi.h: SPI_RXDATA, spi_readbyte(); console/fpga/zsbl/boot.c: disk_read() received-byte loop; console/examples/rasterix/WallyBusConnector.hpp: writeData(); console/examples/rasterix/Breakout.hpp: Game::step(); console/examples/rasterix/BreakoutRenderer.hpp; console/fpga/src/rasterix_apb.sv: CMD register. Product revision ed6a1c09b34d597dcde92ec26a4f5a97cbf18a17.',
+    C_PROGRAM_DETAIL);
+  lead(s,'SDカードのゲームをDDRメモリへコピーし、CPUで実行する');
   drawGameProgram(s,api);
-  line(s,'jrで実行先をDDR3へ移し、swで描画命令を送る',658,true,27);
+  line(s,'6行目：コピー → 7行目：ゲームを開始 → 13〜14行目：描画命令を送信',658,true,25);
 
   s=slide('SDカードからプログラムを読み込む',30,
-    'まず、SDカードに保存したゲームプログラムを読み込みます。CPUがSDカード制御に読出しを要求すると、SDカード制御がカードと通信し、データをCPUへ返します。CPUは受け取ったデータをDDRメモリ制御へ渡し、メモリに保存します。この繰返しで、プログラムを実行に使うメモリへ用意します。',
+    '5枚目の6行目に対応します。右辺の*sdでは、CPUがSDカード制御の受信口から1バイトを読みます。左辺のddr[i]では、CPUがその値をDDRメモリ制御へ渡し、メモリに保存します。繰返しでiを増やすと、保存先も1バイトずつ進み、SDカードの内容がDDRメモリへコピーされます。',
     'console/fpga/zsbl/spi.h; console/fpga/zsbl/boot.c; console/src/uncore/spi_apb.sv; console/examples/rasterix/README.md.',
-    'SDカードは電源を切ってもプログラムを保存できる媒体である。DDR3は実行中のプログラムやデータを置くメモリである。図はCPUが制御回路を介してSDの内容を受け取り、DDR3へ保存する役割を示す。実機ではブートローダーやOSが読み込みと配置を担う。ゲームが直接SDカード制御の物理アドレスを参照するという説明ではない。矢印は要求やデータをまとめた機能的な経路であり、一本の実配線を意味しない。');
+    '引用は5枚目6行目のddr[i] = *sd;である。右辺の読出しの後、その値を左辺へ書く二つのアクセスを表す。sdは固定した受信口、ddr[i]は進んでいく保存先である。SDカードは電源を切ってもプログラムを保存できる媒体である。DDR3は実行中のプログラムやデータを置くメモリである。図はCPUが制御回路を介してSDの内容を受け取り、DDR3へ保存する役割を示す。実機ではブートローダーやOSが読み込みと配置を担う。ゲームが直接SDカード制御の物理アドレスを参照するという説明ではない。矢印は要求やデータをまとめた機能的な経路であり、一本の実配線を意味しない。');
   lead(s,'SDカード制御がカードから読み出し、CPUがDDR3へ保存する');
   drawCoreBoard(s,api,{mode:'copy'});
-  line(s,'SDカード：プログラムの保存場所',583,true,28);
-  line(s,'DDR3：読み込んだプログラムを実行するときの置き場所',630,false,27);
+  drawCodeQuote(s,api,'copy');
+  line(s,'*sd から受信した1バイトを読み、ddr[i] へコピーする',631,true,26);
 
   s=slide('CPUがゲームプログラムを実行する',25,
-    '読み込んだプログラムは、CPUが実行する命令の列です。CPUは、DDRメモリ制御を通してメモリ上の命令を読み出し、その指示に従って計算を進めます。ボールの位置や得点の更新も、この命令の実行によって行われます。',
+    '5枚目の7行目は、DDRメモリに読み込んだゲームを呼び出す式です。ddrが指す場所をプログラムの開始位置として扱い、末尾の括弧で呼び出します。CPUの実行先がそこへ移り、DDRメモリ制御を通して命令を読み出します。その命令に従い、ゲームの位置や得点などを計算します。',
     'console/examples/rasterix/Breakout.hpp: Game::step(), scene(); console/examples/rasterix/breakout.cpp.',
-    'ゲームのルールと状態更新はCPUで実行するプログラムの仕事である。描画回路はゲームの当たり判定や得点の規則を決めない。DDR3へのアクセスはDDRメモリ制御を介する。CPU内部のキャッシュや仮想アドレスなどは機能図では省略している。パドルは現在、自動操作のプログラムが動かしている。');
+    '引用は5枚目7行目の関数ポインタを使った呼出しである。ゲームの入口をddrの指す先頭に配置する説明用の仮定を置く。実機のローダーやOSのエントリ処理をそのまま表したものではない。ゲームのルールと状態更新はCPUで実行するプログラムの仕事である。描画回路はゲームの当たり判定や得点の規則を決めない。DDR3へのアクセスはDDRメモリ制御を介する。CPU内部のキャッシュや仮想アドレスなどは機能図では省略している。パドルは現在、自動操作のプログラムが動かしている。');
   lead(s,'DDR3上の命令を読み出し、ゲームの計算を進める');
   drawCoreBoard(s,api,{mode:'execute'});
-  line(s,'CPUはメモリから命令を読み出して実行する',584,false,27);
-  line(s,'命令に従い、位置や得点などのデータを更新する',631,true,28);
+  drawCodeQuote(s,api,'execute');
+  line(s,'DDRメモリ上のゲームへ実行先を移し、その命令を読み出す',631,true,26);
 
   s=slide('ゲームから描画命令を送る',25,
-    'CPUは、描く図形の位置や色を、RasterIX付属のライブラリへ渡します。ライブラリが描画回路用の命令を作り、CPUが接続回路へ送ります。描画回路は受け取った命令に従って、ブロックやボールなどの画素を塗ります。',
+    '5枚目の13〜14行目に対応します。commands[i]は、既存ライブラリが用意した描画命令の1語です。CPUがこれを0x10080000へ書くと、接続回路がその書込みを受け取り、描画回路へ値を渡します。iを増やしながら繰り返すことで、用意した命令列を送ります。',
     `${PRODUCT} console/examples/rasterix/WallyBusConnector.hpp; console/examples/rasterix/BreakoutRenderer.hpp; console/addins/rasterix/lib.`,
-    '付属ライブラリはOpenGL互換の描画指定をCPU上で処理し、描画回路に渡す数値列を用意する。Wally用のソフトウェア接続部分が、その値を決められた入出力アドレスへ書く。接続回路は値を受け取り、RasterIXへ渡す。ブロック、壁、パドル、ボールは四角形で、文字は画像を貼った四角形で表す。関数名やテクスチャ座標の具体例は回答用22〜30枚目にある。');
+    '引用は5枚目13〜14行目を一行にまとめたもの。commandsは描画命令の配列、iはその中の位置、countは語数を表す。付属ライブラリはOpenGL互換の描画指定をCPU上で処理し、描画回路に渡す数値列を用意する。Wally用のソフトウェア接続部分が、その値を決められた入出力アドレスへ書く。接続回路は値を受け取り、RasterIXへ渡す。ブロック、壁、パドル、ボールは四角形で、文字は画像を貼った四角形で表す。関数名やテクスチャ座標の具体例は回答用22〜30枚目にある。');
   lead(s,'図形の位置や色を、ライブラリが描画命令にする');
   drawCoreBoard(s,api,{mode:'command'});
-  line(s,'CPU：ゲームの計算と、描画命令の送信',584,true,28);
-  line(s,'描画回路：命令に従って画像の画素を塗る',631,false,27);
+  drawCodeQuote(s,api,'command');
+  line(s,'0x10080000 への書込みを、接続回路が描画命令として受け取る',631,true,25);
 
   s=slide('接続回路で受渡しの違いに対応する',40,
     '接続で対応したのは、受渡しの形式と、動作周波数の違いです。CPU側の書込みと、描画回路側の命令の受取りでは、使う信号のやり取りが異なります。そこで、書込みを受けて、描画回路側へデータを渡す回路を追加しました。また、CPU側と描画側は異なるクロックで動くため、その間の受渡しにはAMD製の回路を使いました。この二つを組み合わせて、命令が届く経路を作りました。',
