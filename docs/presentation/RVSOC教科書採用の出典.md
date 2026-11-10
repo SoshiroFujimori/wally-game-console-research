@@ -1,6 +1,6 @@
 # RVSOCの教科書採用例と出典
 
-[回答用スライド16](中間発表_主要事項.md#slide-16) / [プレゼンテーション](README.md)
+[回答用スライド16](https://github.com/SoshiroFujimori/wally-game-console-research/blob/55c3d006e68652b288fdc91a579cf6d6a1f3794d/docs/presentation/中間発表_主要事項.md#slide-16) / [プレゼンテーション](README.md)
 
 確認日：2026年11月8日。対象書籍は *RISC-V System-on-Chip Design* である。
 公式の授業資料に教科書として指定されている場合と、教員が授業で使用したと報告している場合を掲載した。

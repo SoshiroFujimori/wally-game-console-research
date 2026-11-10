@@ -1,278 +1,82 @@
-# Abstract-based presentation
+# Ten-slide research presentation
 
-This builder produces the single published intermediate presentation:
-[slides and narration](../../../docs/presentation/中間発表_主要事項.md) and
-[PowerPoint](../../../docs/presentation/中間発表_主要事項.pptx).
-A cover and twelve presentation slides explain the background, integration,
-software, hardware, implementation results and conclusion. Slide 14 is hidden
-clickable contents; slides 15-29 are hidden answer slides. The planned allocation
-is 345 seconds including the 30-second embedded video, not a timed rehearsal.
+This builder produces the current published presentation, with one cover and
+nine content slides. It follows the research outline: FPGA background, prior
+implementations and teaching, research overview, software, two hardware topics,
+resource utilization, the recorded game, and the conclusion.
 
-## Main explanation
+The planned allocation is 330 seconds including the 30-second embedded video.
+This is a plan, not a timed rehearsal. No hidden or answer slides are appended.
+The prior complete deck and its answer slides remain in Git history at
+`55c3d006e68652b288fdc91a579cf6d6a1f3794d`.
 
-| Slide | Section | Subject |
-| --- | --- | --- |
-| 1 | Title | Private cover identity is retained only in the school copy. |
-| 2 | Background | FPGA chip and physical board components. |
-| 3 | Background | Existing CPU and drawing implementations on FPGAs. |
-| 4 | Background | CPU design textbooks and teaching examples. |
-| 5 | Research overview | Existing circuits, added connection and game software. |
-| 6 | Software | Numbered conceptual C for loading, starting and drawing. |
-| 7 | Software | MMIO command writes quote lines 13-14 from slide 6. |
-| 8 | Hardware | Address decoding selects the drawing-command interface. |
-| 9 | Hardware | Transfer-format adaptation and clock-domain crossing. |
-| 10 | Hardware | Image storage in DDR and output through the HDMI connector. |
-| 11 | Results | Resource utilization of the baseline and game configurations. |
-| 12 | Results | The unchanged reviewed 30-second automatic-play video. |
-| 13 | Conclusion | CPU/drawing integration and optional GUI or controller work. |
+## Content and evidence
 
-`game-program.mjs` defines the C teaching fragments and their quotation from one
-source of truth. Runtime setup, helper functions and entry placement are
-abstractions; these fragments are not the complete loader or actual C++ game.
-The notes retain the physical addresses, source correspondence and omitted
-protocol/runtime details.
+`main-slides.mjs` contains the slide text and speaker narration.
+`core-board.mjs`, `stable-board.mjs` and `research-context.mjs` retain the board,
+chip and component positions used in the earlier presentation. Solid boundaries
+show physical containment; dashed boundaries show component repositories.
+Only the paths relevant to the current explanation are emphasized.
 
-`core-board.mjs` preserves the positions of the CPU, controllers, adapter,
-drawing/display block and physical parts. `research-context.mjs` adds the
-prior-implementation examples and a signal-level address-decoding view. The
-latter shows the write path, not the full timing of the AHB/APB interfaces.
-The diagram uses the existing decoder with the enabled external APB region;
-it does not claim that the decoder RTL was rewritten from scratch.
+Slide 3 introduces Wally and RasterIX as examples of FPGA implementations.
+Wally's educational system is described by Thompson et al., *RISC-V System-on-Chip
+Design Textbook and Course* (2025), DOI 10.18260/1-2--57147. RasterIX is cited
+through its official implementation. The listed schools use CPU/circuit-design
+textbooks; the slide does not claim that every listed course builds the entire
+CPU on an FPGA. Sources and scope are retained in the notes.
 
-Wally's educational implementation is described by Thompson et al.,
-[RISC-V System-on-Chip Design Textbook and Course](https://doi.org/10.18260/1-2--57147).
-RasterIX is cited through its official implementation and examples. Teaching
-records distinguish textbook adoption from evidence that students implemented
-the entire CPU on an FPGA. No worldwide-first claim or measured educational
-effect is made.
+Slide 5 uses one conceptual C write to the command port at `0x10080000`.
+The notes identify the code as an explanatory fragment and explain the real
+transfer and runtime requirements. Slide 6 uses the enabled existing APB region
+`0x10080000` through `0x100800FF`; it does not imply a newly written decoder.
+Slide 7 distinguishes the locally written protocol adapter from the AMD IP
+used for clock-domain crossing.
 
-## Design and circuit lines
+Slide 8 loads and validates `experiments/standard-display-resources-20261110`.
+Both columns include CPU and peripheral circuits; their difference is not an
+isolated measurement of the RasterIX core. The After column is tied to the
+standard-display bitstream used in the recorded demonstration. Evidence and
+revision limitations remain in the speaker notes.
 
-The board/chip/IP palette follows RVSOC Figure 23.2: `#E5EBF8`, `#CCD9F1`,
-and `#77A3DC`, with `#231F20` ink. The code panels use a pale fill, monospaced
-code and horizontal rules. Yu Gothic, Arial and Consolas adapt the book's
-style to an editable 1280 by 720 slide canvas.
-
-`circuit-wiring.mjs` draws editable filled shaft polygons and solid heads.
-Shafts end at the head base; PowerPoint line caps cannot protrude through
-the tip. Heads are placed after the other diagram objects. Junction dots
-retain continuous connections when crossings are cut.
-Unconnected crossings have gaps in the line geometry; connected branches have
-dots. Distinct signals use separate lanes. Package geometry checks must be
-supplemented with native PowerPoint rendering and inspection.
+Slide 9 embeds `source/presentation/assets/breakout-standard-dvi-compatible.mp4`
+and starts it automatically. The recording and poster come from
+`experiments/dvi-recovery-20261109`. It shows automatic play and retains the
+latest title-top layout. The embedded media are hash-checked and unchanged.
+No controller operation or game frame-rate measurement is claimed.
 
 ## Component provenance
 
-Repository labels identify where the reused components are obtained; they do
-not imply that one project authored every included component. The component positions stay fixed across the repeated functional views.
-
-| Diagram component | Acquisition source and implementation |
+| Component | Implementation source |
 | --- | --- |
-| CPU, bus and SD control | Wally/CVW RTL: `console/src/wally/wallypipelinedcore.sv`, `console/src/ebu/ebu.sv`, `console/src/uncore/uncore.sv`, and `console/src/uncore/spi_apb.sv`. |
-| DDR control | Wally's FPGA build integrates AMD MIG IP. `console/fpga/generator/ddr3-nexysvideo.tcl` generates the IP; the Nexys Video settings were added in this work. This is not Wally-authored DDR-controller RTL. |
-| Drawing core | Official RasterIX: `rtl/RasterIX/RasterIX_IF.v`. |
-| Standard display core | The same official RasterIX repository includes `rtl/3rdParty/core_dvi_framebuffer/src_v/dvi_framebuffer.v`, originally from ultraembedded. |
-| Integration logic | This work adds `rasterix_apb.sv`, `rasterix.sv` and the swap/configuration wrapper in `rasterixdisplay.sv` on the Wally side. These wrappers are not labeled as upstream RasterIX components. |
-| Display used in the embedded video | The unchanged standard display configuration, using the RasterIX-bundled `dvi_framebuffer`. See [the recorded configuration](../../../experiments/dvi-recovery-20261109/README.md). |
+| CPU, bus, SD control | Existing Wally/CVW RTL. |
+| DDR memory control | AMD MIG IP integrated through the Wally FPGA build; Nexys Video configuration was added in this work. |
+| Drawing core | Official RasterIX, `rtl/RasterIX/RasterIX_IF.v`. |
+| Display core | RasterIX-bundled `rtl/3rdParty/core_dvi_framebuffer/src_v/dvi_framebuffer.v`, originally from ultraembedded. |
+| Integration | Local `rasterix_apb.sv`, `rasterix.sv`, and the control wrapper in `rasterixdisplay.sv`, including instantiated AMD IP. |
 
-The upstream sources are [Wally/CVW](https://github.com/openhwgroup/cvw) and
-[official RasterIX at the recorded revision](https://github.com/ToNi3141/RasterIX/tree/9269a01c9bd4c3342bfa70ef8e3cdd751c15c6d0).
-The main functional diagrams group circuitry from the Wally repository and the
-RasterIX drawing/display circuits by acquisition source. The command adapter
-is marked as integration work. The drawing and display share one box, with
-image traffic through the AMD controller and output at the HDMI connector.
-The exact modules and connection wrappers remain identified in the notes.
+The diagram groups drawing and display in one box by repository source. It does
+not assign authorship of third-party components to the repository maintainer.
+The current physical build and video use the standard RasterIX-bundled display.
 
-Slide 13 retains the circuit layout and strengthens the board/chip/circuit hierarchy with nested solid boundaries and fills. Dashed frames
-identify the Wally and RasterIX repositories as acquisition sources. A solid blue adapter
-frame identifies added integration work. The conclusion is the demonstrated
-combination into a game console; it does not claim a worldwide first or that
-every primitive inside an adapter is newly invented. The AMD controller remains
-identified as vendor IP, and peripheral address selection includes the added
-configuration for the drawing circuit.
+## Design and generation
 
-## Embedded demonstration
+The RVSOC-style blue/black palette, Yu Gothic, Arial and Consolas, and editable
+1280 by 720 canvas are retained. `circuit-wiring.mjs` uses native filled shafts
+and heads so shafts do not protrude beyond arrowheads. Junction dots mark
+connected branches; unconnected crossings use gaps.
 
-The presentation embeds [the compatible distribution copy](../assets/breakout-standard-dvi-compatible.mp4)
-and starts it automatically when slide 12 is entered in the slideshow.
-The original experiment recording is preserved. The distribution file uses
-H.264 High, level 4.2, yuv420p and retains the original 1920 by 1080 frame size,
-60 frames per second, 1800 frames and 30-second duration. See the
-[encoding and source record](../assets/breakout-standard-dvi-compatible.json).
-The video is packaged internally, with no local-file dependency.
-
-## Detailed-diagram connectivity
-
-The answer diagram follows the CPU and drawing connections of product revision
-`261832d48832dd6e26c4971ab8893ce61200688b` and the
-`fpganexysvideo_rasterix` configuration. It preserves the pipeline layout
-while using RVSOC Figure 9.28 for decoding and response selection.
-The drawing is a functional projection, not an RTL-equivalent netlist.
-Named `HRDATA` and `FlagsE` ports denote the same nets without long return
-wires. Crossings without a junction dot do not join nets. Bus lines aggregate
-separate channels/signals; the HSEL bundle contains a distinct select for
-each destination.
-
-| Diagram element | RTL correspondence |
-| --- | --- |
-| Address decoding | `uncore.sv` instantiates `adrdecs(HADDR, ..., HSIZE[1:0], HSELRegions)`. It produces selects, not read/write data. |
-| Selected return | `uncore.sv` holds select state and selects `HRDATA`, `HREADY` and `HRESP`. Their exact per-signal expressions remain in the RTL. |
-| EBU | `ebu.sv` arbitrates IFU/LSU requests. `wallypipelinedcore.sv` distributes `HRDATA` directly to IFU and LSU; it does not traverse EBU. |
-| Boot ROM and RAM | `rom_ahb` and `ram_ahb` are enabled in the FPGA configuration. IROM/DTIM are disabled. |
-| SD control | Instance `sdc` uses module `spi_apb` with `PSEL[5]` and the SDC pins. The separate `spi` instance is not connected to the SD slot. |
-| External drawing port | `ahbapbbridge` passes `PSEL[7]` as `PSELEXT` to `rasterix_apb`. |
-| Forwarding | `datapath.sv` uses two mux3 selectors for register data, `ResultW` and `IFResultM`, before its two ALU operand selectors. |
-| Result routing | Execute alternative-result selection is grouped; the Memory-stage FPU integer selection is separate. Result data and `ResultSrcW` control use distinct lines. |
-| Store routing | `lsu.sv` routes store data to D-cache or the uncached bus path. Byte selection, alignment and atomic processing are grouped. |
-| Register-file clock | `regfile.sv` writes on `negedge clk`, shown by an inverted clock input. Pipeline registers use rising edges. |
-| Shared DDR | `rasterixmem.tcl` connects CPU, buffered GPU AXI and read-only display AXI to SmartConnect and MIG. The GPU AXI buffer differs from command/response FIFOs. |
-| Display | `rasterixdisplay.sv` exchanges read requests/responses with memory and swap control with RasterIX. Pixel data do not travel on the swap-control link. |
-
-The `rasterix` wrapper outline, IFU uncached-instruction selection, compressed
-instruction expansion, load/store formatting, prediction, privilege/FPU/MDU
-internals and many control/reset/clock/interrupt nets are omitted. Speaker
-notes describe the aggregation boundaries. AMD IP fill is independent of
-the blue outlines used for functions covered in the main presentation.
-
-## Recorded demonstration and scope
-
-Slide 12 embeds the compatible H.264 distribution copy of
-`experiments/dvi-recovery-20261109/media/latest-standard-dvi-30s.mp4`, using its
-reviewed `latest-start.png` poster. Slide 11 first shows resource utilization for
-the exact standard-display bitstream. Slide 9 explains the adapter roles,
-and slide 10 combines image storage and display.
-The latest title-top executable
-is shown using the unchanged standard display bitstream and RasterIX-bundled
-drawing/display cores. Local connection and control wrappers remain integration
-work. The player is automatic; controller input is not implemented. Recorded
-video rate is not a game-FPS measurement.
-
-The main talk reports motion, removal of hit blocks and score updates.
-It makes no repeated-boot, long-duration or universal display claim.
-The acquisition conditions, revisions and hashes are retained in the experiment
-record. The utilization table uses this same standard-display bitstream for
-its After column. The previous experimental-display comparison remains archived.
-
-The video starts automatically in a slideshow. Internal slide
-jumps and return links are native OOXML relationships. `embed_video.py` checks
-the input video against the approved media hashes; `link_slides.py` adds links.
-
-## Answer slides
-
-- 15: DDCA teaching/reference-book listings on one prefecture map, including
-  historical examples. See `../ddca-adoption/` for sources and counting scope.
-- 16: three documented RVSOC textbook-use examples, including draft use.
-  See `../rvsoc-adoption/`.
-- 17: generic FPGA logic cells, routing and dedicated macro cells, following
-  Chu (2018), Sections 2.1.1-2.1.2 and Figure 2.1.
-- 18: one connected functional diagram integrates the earlier seven load/store,
-  memory-interface, decode, SD-copy, drawing-command and image-output views.
-  The horizontal CPU layout is retained inside the FPGA board. AD/WD/WE from
-  the two memory interfaces enter three coordinated request multiplexers.
-  Decoding selects the target, and a response selector returns RD to the
-  interfaces. S0-S2 are named connections rather than long overlapping wires.
-  The same drawing includes SD registers, the AMD DDR controller, drawing
-  command adapter, RasterIX drawing/display and physical board components.
-  The load/store examples use x2 as the DDR3 base; the drawing example first
-  sets x2 to the command address. The notes distinguish these independent cases.
-- 19: the RVSOC pipeline-derived detailed whole-system diagram. Signal outlines
-  are neutral; CPU internals are not marked as explained in the main talk.
-- 20: the official RasterIX FPGA pipeline redrawn for the presentation. Its
-  version and differences from measured hardware are in `../rasterix-pipeline/`.
-
-- 21: Game objects and their drawing methods, with the unchanged actual capture.
-- 22: The 640 by 480 game coordinate system and projection setup.
-- 23: One rectangle with actual vertex/color values and its triangle decomposition.
-- 24: Native font pixels, RGBA input and texture registration.
-- 25: The A cell and normalized texture coordinates.
-- 26: Four texture/vertex pairs mapping the cell to a screen rectangle.
-- 27: Modulated text color, alpha and blending over the prior image.
-- 28: CPU library execution, command preparation and hardware pixel processing.
-- 29: Actual frame submission calls and the display-swap completion counter.
-
-`opengl-functions.mjs` derives font diagrams from the pinned product source.
-Its examples explain API semantics and ordinary drawing operations. Detailed
-notes and [OpenGL questions](../../../docs/presentation/OpenGLの説明と想定質問.md)
-cover immediate mode, VBO availability, fixed-function scope, filtering,
-CPU/hardware responsibilities, compilation, command transfer and completion.
-No VBO performance comparison or API compliance certification is claimed.
-The main talk remains twelve content slides and retains its 345-second allocation.
-The previous two-slide OpenGL explanation is preserved at commit
-`99463b338d9facfd78cbd46582219b535af6a07c`.
-
-## Build and publication
-
-Use the bundled Artifact Tool runtime described in the parent README:
+Run with the bundled Artifact Tool runtime described in the parent README:
 
 ```sh
 node source/presentation/build.mjs RESEARCH_ROOT PRIVATE_BUILD_DIRECTORY
 ```
 
-The builder creates PPTX, Markdown, preview images and private QA records.
-The still-frame content is re-imported in five contiguous batches to keep
-the runtime XML construction size bounded. The final
-video-bearing package receives integrity/layout checks and native PowerPoint
-rendering. Inspect all slides, private cover, video identity and internal links.
-Keep build data outside OneDrive. Import only reviewed public outputs, update
-the media hashes and publication manifest, and run the local privacy audit.
+The builder creates a ten-slide PPTX and Markdown narration. Editable content
+is imported and rendered in two contiguous batches. Package integrity, geometry,
+fonts, the native utilization table on slide 8, and video relationships are
+checked. Inspect all slides in a native PowerPoint render before publication.
+Keep build files outside OneDrive and import only selected sanitized output.
+Public cover identities are redacted; private school copies remain local.
 
-## Previous version
-
-The original pipeline-based presentation is preserved at commit
-`40d8a51bd1ab0d9c9a469146c349cd31b173bdce`:
-[published files at that revision](https://github.com/SoshiroFujimori/wally-game-console-research/tree/40d8a51bd1ab0d9c9a469146c349cd31b173bdce/docs/presentation).
-The earlier abstract-based deck is preserved at commit
-`1c826a0363901f2a77e8bbb0e8748c168bbb2cbc` and local annotated tag
-`presentation-before-latest-abstract-20261109`. The tag is a local checkpoint;
-the commit is also available in public Git history. Export old files into a
-separate directory when comparing or restoring; do not reset unrelated work
-or the product checkout.
-
-The version before splitting the two compound explanations into twelve content
-slides is commit `fbb34c27ab0f1e5fab338257976076bea32fdbbc`.
-
-The revision before the SD-first explanation is commit
-`b0cdac50bbcc638a736b7e1737b33dbf72b6c8d3`.
-
-`merged-datapath.mjs` defines the integrated answer slide.
-`board-circuit.mjs` preserves the earlier datapath coordinates and provides a
-combined view with externally connected ports. `memory-ports.mjs` supplies
-the retained functional correspondence and scope notes. The legacy seven-view
-builder `datapath-backups.mjs` remains source material and is not invoked by
-the current deck. Independent request outputs are never shorted together.
-
-The revision before unifying the main-talk board geometry is commit
-`f4c3d1d13ade4ef0db3428ac08e6d8bd105bf09f`.
-
-The seven-view question section before integration is preserved at commit
-`e6484b91a443f65896ab058a1204c87ae9fe3360`.
-
-## Educational context and implementation resources
-
-Slide 4 links the DDCA CPU-design foundation to RVSOC/Wally and this game's
-integration example. The cited 2026 Hiroshima University syllabus explicitly
-lists DDCA as a textbook, and the Spring 2026 Harvey Mudd E154 page identifies
-RVSOC as its textbook. These examples identify an existing teaching context;
-they do not establish adoption or measured educational benefit for this project.
-The source URLs and scope are included in the slide notes.
-
-The textbook page uses Japanese book names rather than abbreviations.
-The Japanese rendering of the English RVSOC title is explained in notes;
-it does not identify a published Japanese edition.
-
-Slide 5 groups the CPU and peripheral controllers while keeping the adapter,
-graphics and board components in the same positions as the subsequent views.
-Slide 13 uses solid nesting for physical containment and dashed frames for
-component provenance. These boundary meanings remain distinct.
-
-Main slide 11 reads the
-[standard-display implementation record](../../../experiments/standard-display-resources-20261110/implementation.json).
-The loader validates report hashes, extracted counts and percentages, FPGA
-capacity, and the exact bitstream SHA-256 used by the embedded video. The table includes the historical CPU/peripheral baseline. Its revision
-limits and the whole-design comparison scope are stated in the notes. Earlier experimental-display results remain archived in their
-original experiment directory.
-
-`PRESENTATION_RESOURCE_DIRECTORY` may select a sanitized staging directory
-containing `implementation.json` and `utilization.rpt` for publication review.
-Normal builds resolve the checked-in experiment directory without this variable.
-The existing video and the nine OpenGL answer slides are retained.
+The prior answer-slide modules remain as reusable source and are not invoked by
+this ten-slide builder. Their numbering belongs to the archived complete deck.
