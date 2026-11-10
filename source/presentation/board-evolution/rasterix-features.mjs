@@ -27,17 +27,17 @@ function drawTable(slide,api,rows){
   const {text,C}=api;
   text(slide,'今回の構成：RasterIX_IF ／ 描画回路100 MHz',64,121,1152,38,25,true,C.blue);
   const values=[['機能','今回の設定・方式','働き'],...rows];
-  const table=slide.tables.add({rows:9,columns:3,left:64,top:174,width:1152,height:522,columnWidths:[206,450,496],values});
+  const table=slide.tables.add({rows:9,columns:3,left:64,top:174,width:1152,height:504,columnWidths:[206,450,496],values});
   table.styleOptions={headerRow:false,bandedRows:false,firstColumn:false,lastColumn:false};
   table.borders.assign({fill:C.ink,width:1,style:'solid'});
-  table.rows[0].height=42;
-  for(let r=1;r<9;r++)table.rows[r].height=60;
+  table.rows[0].height=40;
+  for(let r=1;r<9;r++)table.rows[r].height=58;
   for(let r=0;r<9;r++)for(let c=0;c<3;c++){
     const cell=table.getCell(r,c);
     cell.fill=r===0?C.heading:r%2===0?C.pale:C.white;
     cell.text.style={typeface:'Yu Gothic',fontSize:r===0?23:c===0?22:21,bold:r===0||c===0,color:r===0?C.white:C.ink,alignment:'left',verticalAlignment:'middle',wrap:'square'};
-    cell.text.insets={left:12,right:10,top:3,bottom:3};
   }
+  table.cells.block({row:0,column:0,rowCount:values.length,columnCount:3}).assign({margins:{left:9.6,right:9.6,top:3,bottom:3}});
 }
 
 export async function addRasterixFeatureSlides({slide,api,root,outline}){

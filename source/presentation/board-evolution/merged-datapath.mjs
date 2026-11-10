@@ -68,7 +68,7 @@ export function drawMergedDatapath(s,a){
   targets.forEach((d,i)=>{
     const c=d.key==='adapter'?C.blue:C.ink;
     B(d.key,'',906,d.y,160,70,d.fill,18,c);
-    T(d.label,942,d.y+5,116,23,d.key==='adapter'?20:16,true,c,'center');
+    T(d.label,939,d.y+5,122,23,d.key==='adapter'?20:16,true,c,'center');
     T(d.sub,942,d.y+31,116,34,13,true,C.ink,'center');
     for(let q=0;q<3;q++){
       const y=d.y+15+q*15;
@@ -101,7 +101,7 @@ export function drawMergedDatapath(s,a){
   T('画像',1053,332,32,18,14,true,C.blue);
   B('sd-slot','SDカード\nスロット',1115,225,87,70,C.white,15);
   B('ddr-chip','DDR3\nメモリ',1115,355,87,70,C.white,17);
-  B('hdmi','HDMI\nOUT',1115,590,87,44,C.white,15);
+  B('hdmi','HDMI\nOUT',1115,587,87,50,C.white,15);
   R([[1066,260],[1115,260]],C.ink,'both',2.1);
   R([[1066,390],[1115,390]],C.ink,'both',2.1);
   R([[1066,621],[1115,621]],C.blue,true,2.1);

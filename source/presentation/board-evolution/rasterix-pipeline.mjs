@@ -20,17 +20,17 @@ export const RASTERIX_PIPELINE_DETAIL = `この図は、公式RasterIXリポジ�
 // All processing nodes from the official conceptual diagram are retained.
 // Coordinates are slide pixels. The two Broadcast nodes have distinct IDs.
 export const PIPELINE_NODES = [
-  ['stream','Frame Streaming\nCore',78,204,206,48],
+  ['stream','Frame Streaming\nCore',78,201,206,54],
   ['parser','Command Parser',78,270,206,48],
   ['rasterizer','Rasterizer',78,336,206,48],
   ['broadcast','Broadcast',78,402,206,48],
-  ['attributes','Attribute\nInterpolation',78,468,206,48],
+  ['attributes','Attribute\nInterpolation',78,465,206,54],
   ['tmu0','TMU 0',322,206,150,46],
   ['tmu1','TMU 1',322,288,150,46,'optional'],
   ['fog','Fog',322,370,150,46],
   ['concat','Concat',322,520,150,50],
-  ['cache0','Texture Cache\nMMU',522,206,164,46],
-  ['cache1','Texture Cache\nMMU',522,288,164,46,'optional'],
+  ['cache0','Texture Cache\nMMU',522,203,164,52],
+  ['cache1','Texture Cache\nMMU',522,285,164,52,'optional'],
   ['read-color','Framebuffer Reader\nColor',522,374,164,46,'memory'],
   ['read-depth','Framebuffer Reader\nDepth',522,426,164,46,'memory'],
   ['read-stencil','Framebuffer Reader\nStencil',522,478,164,46,'memory'],
@@ -68,12 +68,12 @@ export function drawRasterixPipeline(s, api) {
     shape.name='rasterix-'+id;
     if(kind==='optional')shape.line={style:'dashed',fill:color,width:1.8};
     const size=kind==='memory'?17:19;
-    text(s,label,x+4,y+2,w-8,h-4,size,false,color,'center');
+    text(s,label,x+2,y+2,w-4,h-4,size,false,color,'center');
   }
-  edge('stream','parser',[[181,252],[181,270]]);
+  edge('stream','parser',[[181,255],[181,270]]);
   edge('parser','rasterizer',[[181,318],[181,336]]);
   edge('rasterizer','broadcast',[[181,384],[181,402]]);
-  edge('broadcast','attributes',[[181,450],[181,468]]);
+  edge('broadcast','attributes',[[181,450],[181,465]]);
   edge('attributes','tmu0',[[284,492],[307,492],[307,229],[322,229]]);
   edge('tmu0','tmu1',[[397,252],[397,288]]);
   edge('tmu1','fog',[[397,334],[397,370]]);

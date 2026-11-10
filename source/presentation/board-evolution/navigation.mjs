@@ -43,8 +43,8 @@ export function linkToSlide(shape,number){
 export function addAnswerCategory(slide,number,api){
   const category=answerCategories.get(number);
   if(!category)return;
-  // Use the free strip above the title; keep the diagram and title unchanged.
-  api.text(slide,category,816,7,400,24,18,true,api.C.heading,'right').name=`answer-category-${number}`;
+  // Match the main slides' title row and right body margin.
+  api.text(slide,category,960,60,256,28,18,true,api.C.heading,'right').name=`answer-category-${number}`;
 }
 
 export function drawContents(s,api){

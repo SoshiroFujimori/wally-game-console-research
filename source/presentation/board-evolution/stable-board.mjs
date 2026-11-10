@@ -15,7 +15,7 @@ export function drawStableBoard(s,a,{mode='request'}={}){
   const is=(...modes)=>modes.includes(mode);
   const purpose=mode==='purpose',intro=mode==='implementation',image=mode==='image';
   const layout=intro?{...MAIN_BOARD,chip:[84,210,1112,290],
-    card:[315,532,180,38],memory:[510,532,150,38],hdmi:[1008,532,180,38]}:MAIN_BOARD;
+    card:[315,532,196,38],memory:[530,532,150,38],hdmi:[1008,532,180,38]}:MAIN_BOARD;
   const provenance=mode==='provenance';
   const sd=is('request','receive','copy','provenance'),memory=is('write','copy','execute','image','provenance');
   const command=is('command','contribution','provenance'),reading=is('receive','copy','execute','provenance');

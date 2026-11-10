@@ -302,9 +302,9 @@ CMakeはRasterIXをサブディレクトリとして取り込み、ゲームをg
     box(s,'',64,205,754,290,C.pale,18,C.ink,1.6);
     label('CPU（Wally）が実行する処理',84,219,714,28,C.blue,true);
     box(s,'ゲーム\n座標と色',88,304,174,118,C.white,24,C.ink,1.5);
-    box(s,'RasterIXライブラリ\n頂点の処理',307,304,222,118,C.white,22,C.ink,1.5);
+    box(s,'RasterIXライブラリ\n頂点の処理',303,304,230,118,C.white,22,C.ink,1.5);
     box(s,'メモリ上に\n命令列を用意',574,304,220,118,C.white,23,C.ink,1.5);
-    wire(s,262,363,307,363,C.ink,true,2);wire(s,529,363,574,363,C.ink,true,2);
+    wire(s,262,363,303,363,C.ink,true,2);wire(s,533,363,574,363,C.ink,true,2);
     box(s,'',928,205,288,290,C.pale,18,C.ink,1.6);
     label('描画回路',948,219,248,28,C.blue,true);
     label('図形の内側の画素',948,310,248,23);

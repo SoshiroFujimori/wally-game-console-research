@@ -1366,7 +1366,28 @@
     "5d377934e026eb8f4b9d73da3c0f14b7d0f02495f125d0a6e2f42baea47aa34b",
     "53f81ea51d1ce9b01f4cdbc514ec13136e503919bef8803170ff5f1540121486",
     "0f2d9cac9de9a384e87cc36fed09e293714cb867b1dc5bf59f1f17011dd1fc06",
-    "55cafae3df9d53fd4fc6b7183362b343f1565d694ac0a622d3f7c755cd2395c6"
+    "55cafae3df9d53fd4fc6b7183362b343f1565d694ac0a622d3f7c755cd2395c6",
+    "88874de570463b92fae57eddf18889168d1b0aa29d038610ec6b3d6360ecb0b1",
+    "f10e7c34a8e07a4983b5dfc7208ebe23532fd62c9b60942c0829f7d7638f2616",
+    "874648c4253fe58aa663d218ee3448fec9069eb9133c00555e8d01da9696e7d4",
+    "3cdfedd7074d9cff40b139a3810714371b427912ee076e9503ed6edf2af7251e",
+    "44b81bd2bce6a7502446afdc2421ba3bb2541315ed4caa4e17c511ba97a85c51",
+    "0ef317f9571b29b7eddb466223b94b7c4d5c0e2c5d5e709fb1c913ae37f4d396",
+    "5bec40eebaea0c768ee21915743a8e48aae4048f8ef83f783f6b3a5c69afa852",
+    "608ef762485ae22f7f1548659fc30f011480c436ee3341c8ca24eedf31bf8b6a",
+    "0d9d5566e33c3090e3e72e7154de3bfb6fffd4f94f82597fc1b3bf6628f56e11",
+    "19e9e9a1a554ae07c1628b875e68534c29ba09d61ff61d8ce41b0e28ff66f152",
+    "4db3381f0a725f3f27ab95660c433c7b2b9589e45d3c5d040439746a79af6ef7",
+    "42742167b0267a09d07a0ccccaa05aa2fe871d0c26fc5a7b07a5dcdef3a0c013",
+    "073fb6213c7afdc2aa4853f648e8d461dd4f711178abdcc57fbad934297194d5",
+    "9f79d171f79c707e4c23c85aa3d5c61978fdfe698b499e133113e03da0c69f07",
+    "c9988ec921e75291dca97bbc8e5b766b5007db9e3db5b1b8bfd41fe22979ae30",
+    "7b0502824f2b6c9aa07da802315c750573d513c0628542659bc39d936e5016de",
+    "bfdef5d77752c0988718cb955a6c6ff20447967dfb699d27c43249b552bad26c",
+    "b4f79a06e84894671aa891853d9b554f9930bf130ca5a786ee4e08d1a3541aca",
+    "30b7511dd8a5c5aa389ebd7588b8cbbad26d78872753fd0d519b979dca5ce862",
+    "14703f1d121fb7d26e558ca4264747c149cebd54df9d7581795b793a274a4dbe",
+    "3afd7ded05b7422ffbda533ce70d29a3b40a58de14a44bd5ec9f8c324c941ff5"
   ],
   "reviews": {
     "abstract-based-presentation-20261108": "Reviewed all 18 native PowerPoint slide renders and the private cover. Main slides use functional circuits and address-access examples; source differences remain in notes and reproduction records. Confirmed 51 internal links, six hidden question slides, original embedded video hash, and cover-only differences between editions. Reviewed the revised abstract diagram, color and monochrome one-page Word renders, code lines and title placement. Public image metadata was cleaned without changing decoded pixels; newly embedded PNGs match visually reviewed sources.",
@@ -1413,6 +1434,7 @@
     "presentation-wally-features-20261110": "Visually reviewed the contents and two native Wally feature tables in PowerPoint renders, with a review of renumbered answer slides. Tables 14-15 cover execution, Gshare/BTB/RAS, caches, MMU, privilege, protection and counters for the recorded fpganexysvideo_rasterix configuration. Main-slide pixels and existing answer-body pixels remain unchanged; answer page numbers after insertion increase by two. All 27 slides retain the intended hidden states and empty notes. Verified 84 internal links. Embedded video is unchanged. Private cover identities remain outside the public copy.",
     "presentation-rasterix-features-20261110": "Visually reviewed the categorized contents and two native RasterIX feature tables in PowerPoint renders. Slides 18-19 cover triangle rendering, interpolation, texturing, tests, blending, CPU/FPGA roles, memory and bundled display for the recorded configuration. Main-slide and existing answer-body pixels remain unchanged; answer numbers from the prior slide 18 increase by two. All 29 slides retain the intended hidden states and empty notes. Verified 90 native internal links and 108 cell bounds across the Wally and RasterIX tables. Embedded video is unchanged. Private identities remain outside the public copy.",
     "presentation-structure-labels-20261110": "Reviewed native PowerPoint renders of slides 3, 5, 6 and contents. Updated the example-circuits title and the software/hardware structure titles, categories and navigation labels. Pixel changes on slides 3, 5 and 6 are confined to the title row; all other slide bodies are pixel-identical. Verified all 29 hidden states, empty notes, 90 native slide links and unchanged embedded media. Public/private copies differ only on the private cover. Published preview metadata was stripped without changing decoded pixels.",
-    "presentation-background-title-20261110": "Reviewed the native PowerPoint renders of both background slide titles and matching contents labels. Other slides and the diagrams below the titles are pixel-identical. All 29 slide states, empty notes, 90 internal links and embedded media are preserved. Public/private copies differ only on the private cover; preview metadata was removed without changing pixels."
+    "presentation-background-title-20261110": "Reviewed the native PowerPoint renders of both background slide titles and matching contents labels. Other slides and the diagrams below the titles are pixel-identical. All 29 slide states, empty notes, 90 internal links and embedded media are preserved. Public/private copies differ only on the private cover; preview metadata was removed without changing pixels.",
+    "presentation-layout-final-20261110": "Reviewed all 29 native PowerPoint renders. Aligned answer categories with the main title row, reserved footer space under feature tables and the video, and enlarged tight diagram label boxes. All slide text, source prose, embedded media, pipeline node connections, hidden states, empty notes and 90 internal links are preserved. Native PowerPoint text measurements show no text overflow above the one-point rounding tolerance. Public/private packages differ only in the cover identity; preview metadata was removed without changing pixels."
   }
 }
