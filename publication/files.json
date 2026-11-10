@@ -382,8 +382,8 @@
       "sha256": "bb34ea7992d62ac796a46b34afe89f38229a5284e5c3464a552d19eb4adf2730"
     },
     "docs/thesis/appendix/04-rasterix/README.md": {
-      "bytes": 2469,
-      "sha256": "8ef4da1461909c67bd1f65d170ad87d9e8f7ce259775ca9535a584e2e28b9c60"
+      "bytes": 4006,
+      "sha256": "fe8103aa6df6c65374f18b413f6e8b884dc4bbb49bf82513cad0602da1f0de59"
     },
     "docs/thesis/appendix/04-rasterix/command-bit-layout.md": {
       "bytes": 13570,
@@ -394,8 +394,8 @@
       "sha256": "a8c26d6d13e76a54f94b58b3ebd4f1ab727404a4e28d7c47148d7f542cf111be"
     },
     "docs/thesis/appendix/04-rasterix/commands.md": {
-      "bytes": 14355,
-      "sha256": "22022d8a048f47ff75dbc5a0cf77a1d2653ee5d70845b654731a7033f85bff92"
+      "bytes": 24610,
+      "sha256": "644a0e0545cf5889f6dfa462af8ee80d129e3f474027576a88901b0d404f36b6"
     },
     "docs/thesis/appendix/04-rasterix/configuration-calculations.md": {
       "bytes": 27653,
@@ -414,12 +414,12 @@
       "sha256": "34d2e23a9314fa8a480f06a847dd27cd1e52d4ccd0dc36562eb23b3026e38eee"
     },
     "docs/thesis/appendix/04-rasterix/fragment-tests-blending.md": {
-      "bytes": 9570,
-      "sha256": "f143f973e36e03d8c66077f1e209783f644b127e7d1b00df6dfcfadc9bb4752d"
+      "bytes": 17441,
+      "sha256": "9f7f2f948abc985d417fa34b21042db6411b3a6b2f9d6bf69eb2ade498ed3d94"
     },
     "docs/thesis/appendix/04-rasterix/framebuffer-display.md": {
-      "bytes": 42090,
-      "sha256": "9b45260741044bde77a68c98236fa7e184b68955a874fe7d7a0fe37688a9f619"
+      "bytes": 49679,
+      "sha256": "168fc04f7036baecb7b0ae3825a9edc417d6df1b84b700c9d132c1b96d35ec30"
     },
     "docs/thesis/appendix/04-rasterix/framebuffer-memory-display.md": {
       "bytes": 12068,
@@ -442,8 +442,8 @@
       "sha256": "71b92826a6a350ea1bafffa10073a2f747dc7fced4945cf24736664e2cb8694c"
     },
     "docs/thesis/appendix/04-rasterix/rasterization.md": {
-      "bytes": 18971,
-      "sha256": "a8706cb5e1126eca19fbec263eea1b9005fbc6bdebdec294d1ea3f5021aec355"
+      "bytes": 26592,
+      "sha256": "4dd2e33aca7760049f2b892a207420f7133c4fc7762bd1afa3435a318004a66a"
     },
     "docs/thesis/appendix/04-rasterix/rasterizer-interpolation.md": {
       "bytes": 11592,
@@ -462,16 +462,16 @@
       "sha256": "4a8eeb23783a620e01ad04d2372038f8833741bb3ac6100119378961bdce888e"
     },
     "docs/thesis/appendix/04-rasterix/textures-pixel-pipeline.md": {
-      "bytes": 15109,
-      "sha256": "f82c46b58d5a46ce7711d8c8235792b57d6a26814342391a9c2a7f9fb68efce2"
+      "bytes": 25016,
+      "sha256": "b5c020196dfa7541f6eebe72a905f2bfba4d8382b8144248df2b990a0fad578d"
     },
     "docs/thesis/appendix/04-rasterix/triangle-descriptors.md": {
       "bytes": 18761,
       "sha256": "4f658729ab498e7efd988a2e7ee46dfad1f1a05519afb885b64d513a19760a36"
     },
     "docs/thesis/appendix/04-rasterix/walkthrough.md": {
-      "bytes": 28677,
-      "sha256": "d07394cfdbcc0e85b15cc4ec0ac65f227c2ee5dc400b009d9e14418069dbc01b"
+      "bytes": 38450,
+      "sha256": "c343359d319a5993084620f60e5a0d5aad8952969ad6e1b636c062579bad70a8"
     },
     "docs/thesis/appendix/05-integration/README.md": {
       "bytes": 1817,
@@ -538,8 +538,8 @@
       "sha256": "1bf1d513e622eea2f1b6cce28e0db6e4a1f8c73914c748206b56ebcdf7133dcc"
     },
     "docs/thesis/appendix/references.md": {
-      "bytes": 8469,
-      "sha256": "d3f89474afecf72b6503a055f0f18b32f4c3fa2f983f3bf0ea604082c828f1b6"
+      "bytes": 9531,
+      "sha256": "b5795afef00877bef14d2128e684a0f662c0755517eee585fd57a36e37276e8d"
     },
     "docs/thesis/figs/accept-one-word.png": {
       "bytes": 177064,
@@ -1024,6 +1024,46 @@
     "docs/thesis/figs/gate-transfer.svg": {
       "bytes": 5301,
       "sha256": "84ac47c7bee2aca690e844714ae1afd07be2ebafcd2538df4c5e2731ee99f7b3"
+    },
+    "docs/thesis/figs/graphics-alpha-example.png": {
+      "bytes": 331850,
+      "sha256": "d0c3a4512370b2c0d47574320493b3aa2df7a33092479c2abf667bb380450459"
+    },
+    "docs/thesis/figs/graphics-alpha-example.svg": {
+      "bytes": 6661,
+      "sha256": "7850044d550babe788073cf00348dce9f5970ab0cc72b6acc0aac7aa78a5bf9e"
+    },
+    "docs/thesis/figs/graphics-data-journey.png": {
+      "bytes": 361686,
+      "sha256": "92b0e63cd90947c03240f32d9ffa00cb8c4b8be1037e07d29fe6617b52559351"
+    },
+    "docs/thesis/figs/graphics-data-journey.svg": {
+      "bytes": 8079,
+      "sha256": "fe809c05f791a2b2dd11f568b1c4188ebf594a1e94c322b29c3f369b2f1bb23b"
+    },
+    "docs/thesis/figs/graphics-refresh-example.png": {
+      "bytes": 217177,
+      "sha256": "e6b655cac48b14d9fc266c8d19bc614eae7f622605d9aeaad0d7748f292dd327"
+    },
+    "docs/thesis/figs/graphics-refresh-example.svg": {
+      "bytes": 5693,
+      "sha256": "235386783dffbc72665dff3d9e82515d9ff567c2cedb3d0127d105e4692deaf5"
+    },
+    "docs/thesis/figs/graphics-state-snapshot.png": {
+      "bytes": 303852,
+      "sha256": "e78e550eb303ea2897d5564aa213aecda9d484f422f4e596846ff6af3880358b"
+    },
+    "docs/thesis/figs/graphics-state-snapshot.svg": {
+      "bytes": 4666,
+      "sha256": "1dc5273482cb6b007ad12d4016700d062b69c1c92e4d63c0b29aed536d4fe72c"
+    },
+    "docs/thesis/figs/graphics-uv-example.png": {
+      "bytes": 376694,
+      "sha256": "83c1e948cad555b6a6bf18a9b73885288027e90d86d81d79e517e2124a3b2d55"
+    },
+    "docs/thesis/figs/graphics-uv-example.svg": {
+      "bytes": 14500,
+      "sha256": "d0b6dbe93533fa8ee3247fd98575ebe986adcd7042bfaa7b377b0d43bb3b3cc4"
     },
     "docs/thesis/figs/guide-address-views.png": {
       "bytes": 184018,
@@ -5294,12 +5334,12 @@
       "sha256": "ffe0493880dd0f7ca48d3d71dfa08833a3856b55d217a37d9c93202461dea026"
     },
     "docs/thesis/技術付録.docx": {
-      "bytes": 38395994,
-      "sha256": "161efc4191c1ff262b3ee83353db8655fba9aa08c38db1c151fb62943cf1b7fe"
+      "bytes": 39887167,
+      "sha256": "ecaebd07d9c1f35d3afad92aea872c561f59283c3233ed72126cf25648dbc9db"
     },
     "docs/thesis/技術付録.md": {
-      "bytes": 39331,
-      "sha256": "5dd11340611fd94dc8fa70a5e338aee9e68c0cd7548a070b4ef93c4d628f7ebf"
+      "bytes": 40223,
+      "sha256": "e5ccabf9f467b698db17909770ccb1bae4a7eb845a1c818e02394f61b6338262"
     },
     "docs/thesis/本文.docx": {
       "bytes": 9203053,
@@ -12570,8 +12610,8 @@
       "sha256": "b37af8468ab90cc774380eae7acce80700a22c2cdb02aa7e1d27bf6da8ad7d04"
     },
     "publication/media-review.json": {
-      "bytes": 165517,
-      "sha256": "f5fd3851384e8fb506f23f1b01a5443e34119c6442de37e6668b148865fe7fbe"
+      "bytes": 166452,
+      "sha256": "d1dbca3f776a2735ce82e8fd670253fe31aa0d2098cee9c6aa45ebbbe2ffaa1c"
     },
     "publication/policy.json": {
       "bytes": 635,
@@ -12794,8 +12834,8 @@
       "sha256": "385c92df55e8af257663b5023c0453a3033fee6ffa1bd0d71d8784e8f62f5475"
     },
     "source/thesis/README.md": {
-      "bytes": 2008,
-      "sha256": "446f35607e064308228554836d0d7d3e68e95da070146fc6c1a897a313c54ffc"
+      "bytes": 2421,
+      "sha256": "ce348ffd77fb541022fc39b603a4ffba4c83d73cf3f8298a52f3abd49a30951a"
     },
     "source/thesis/appendix/01-hdl-fpga/abstraction-levels.md": {
       "bytes": 7818,
@@ -12950,8 +12990,8 @@
       "sha256": "353fb4e683a4952c2250726741df53338ff9e2d51010a59d8e9872cbc94d508a"
     },
     "source/thesis/appendix/04-rasterix/commands.md": {
-      "bytes": 12296,
-      "sha256": "aec9f42323dea6908d4218fcdd6c18a1da9df7291209202332ac908b199122aa"
+      "bytes": 21788,
+      "sha256": "e0c0df3697defba46b32ca072f82846482713a04d26f5b8b509187071f81faa8"
     },
     "source/thesis/appendix/04-rasterix/configuration-calculations.md": {
       "bytes": 25022,
@@ -12970,12 +13010,12 @@
       "sha256": "46b9bfde14528f6d91a4d0c7c8babc9a7c18b17bc7aa37529c8b1e5d15b04430"
     },
     "source/thesis/appendix/04-rasterix/fragment-tests-blending.md": {
-      "bytes": 8038,
-      "sha256": "5f83a6ebfc0e9932f26479f3977f13c9db5dfc069c00693c53466aca5c849ea4"
+      "bytes": 15282,
+      "sha256": "8b7320e1225ee3e2551b1546b1fa81d80da5a84cf5088b402c2d29db80c8846f"
     },
     "source/thesis/appendix/04-rasterix/framebuffer-display.md": {
-      "bytes": 37774,
-      "sha256": "eefa2c893ce5606f862adb72e4f481631f2671c62bcc6cbe12bea5c9cca879f6"
+      "bytes": 44716,
+      "sha256": "db8470d8c7befcda1568737edeb1f47ae6d900742017043af6003061c4e83352"
     },
     "source/thesis/appendix/04-rasterix/framebuffer-memory-display.md": {
       "bytes": 10328,
@@ -12998,8 +13038,8 @@
       "sha256": "25983b2362f8489a8efb5e27ec1760734717c47436c0825af6fdbb1fbc5a1585"
     },
     "source/thesis/appendix/04-rasterix/rasterization.md": {
-      "bytes": 16676,
-      "sha256": "d961d5ac1f42a32607cd4604913bfe58f8c2d45fd94200c1ec15de24f15a887f"
+      "bytes": 23747,
+      "sha256": "3c74d79e2197149ea525f5b9b75ab7f33ecd44520cb24e467502ad414ba88124"
     },
     "source/thesis/appendix/04-rasterix/rasterizer-interpolation.md": {
       "bytes": 10052,
@@ -13018,16 +13058,16 @@
       "sha256": "df0521683597bb4be065f98b5eabf5e8f0d9ee452fa2d8c8c3f2b40fc07892bd"
     },
     "source/thesis/appendix/04-rasterix/textures-pixel-pipeline.md": {
-      "bytes": 13320,
-      "sha256": "f6cf0db52346ec53536298155f1660785221f6f146edfa63f6c621c88912db06"
+      "bytes": 22503,
+      "sha256": "fab9e1f5c83fdc297b92fb02bd34e8d5977cd7438b11f6525600bbbc71c0a3e7"
     },
     "source/thesis/appendix/04-rasterix/triangle-descriptors.md": {
       "bytes": 16752,
       "sha256": "7598f738794d1656a9456c44be1ef8060b680e37921b9dcc979f4dbf0c4e1939"
     },
     "source/thesis/appendix/04-rasterix/walkthrough.md": {
-      "bytes": 25729,
-      "sha256": "7ecd4d08d55166d0731d39b0870298dcbf4d5b21bd0ec1d2a61fc475dfd01382"
+      "bytes": 34801,
+      "sha256": "87b7eeea1752cd11565885bb3d4debeefad5486404429f7adb7bf596f22a6199"
     },
     "source/thesis/appendix/05-integration/board-reproduction.md": {
       "bytes": 35152,
@@ -13090,20 +13130,20 @@
       "sha256": "5583ce304d03c5b6767aeb83961aa666900a05ca04957ecd00cfd0f04e4b10f1"
     },
     "source/thesis/appendix/chapters.json": {
-      "bytes": 87233,
-      "sha256": "2968b93c30f7bca41feba26d50a655ad335daf5b2af85df80ea0a957d2b3c19d"
+      "bytes": 88151,
+      "sha256": "09afe5c01ba71cb9d56c1a1ec274e4c3c7b0714879de7f0c578566ff841221e0"
     },
     "source/thesis/appendix/references.md": {
-      "bytes": 7141,
-      "sha256": "b93c78eba63ec4c5efc93e32bef6bb96a98b3babb2471eb5e4403185a1279130"
+      "bytes": 8090,
+      "sha256": "2a8c550647f7a6125b3b557cfdba1ba04d028498e3381b4653bdb47208339bcf"
     },
     "source/thesis/appendix_assembly.py": {
-      "bytes": 3794,
-      "sha256": "a07e77c8d80b5c813c3adb01a1edc78e766b026fb894fc4121047cc9af4ba42c"
+      "bytes": 5437,
+      "sha256": "282f256b9cf2c063de2539018fb615ea3e5502c42e7ac2a3a1ef4a0ddf97b798"
     },
     "source/thesis/build.py": {
-      "bytes": 20504,
-      "sha256": "c97e7351de3cb40b5f47675eb048460432ed12c0ad4552eef94a62ac3c0ff122"
+      "bytes": 21291,
+      "sha256": "c16aac165544373aa5af718141327388b3823a371f721f4a16cf55328a47da5a"
     },
     "source/thesis/figlib.py": {
       "bytes": 3411,
@@ -13144,6 +13184,46 @@
     "source/thesis/figs/fifo-choice.svg": {
       "bytes": 8010,
       "sha256": "104bb9cad206cac91e62c564e8fad0a51d7a2f737daa057d89b1bc77befe1d01"
+    },
+    "source/thesis/figs/graphics-alpha-example.png": {
+      "bytes": 331850,
+      "sha256": "d0c3a4512370b2c0d47574320493b3aa2df7a33092479c2abf667bb380450459"
+    },
+    "source/thesis/figs/graphics-alpha-example.svg": {
+      "bytes": 6661,
+      "sha256": "7850044d550babe788073cf00348dce9f5970ab0cc72b6acc0aac7aa78a5bf9e"
+    },
+    "source/thesis/figs/graphics-data-journey.png": {
+      "bytes": 361686,
+      "sha256": "92b0e63cd90947c03240f32d9ffa00cb8c4b8be1037e07d29fe6617b52559351"
+    },
+    "source/thesis/figs/graphics-data-journey.svg": {
+      "bytes": 8079,
+      "sha256": "fe809c05f791a2b2dd11f568b1c4188ebf594a1e94c322b29c3f369b2f1bb23b"
+    },
+    "source/thesis/figs/graphics-refresh-example.png": {
+      "bytes": 217177,
+      "sha256": "e6b655cac48b14d9fc266c8d19bc614eae7f622605d9aeaad0d7748f292dd327"
+    },
+    "source/thesis/figs/graphics-refresh-example.svg": {
+      "bytes": 5693,
+      "sha256": "235386783dffbc72665dff3d9e82515d9ff567c2cedb3d0127d105e4692deaf5"
+    },
+    "source/thesis/figs/graphics-state-snapshot.png": {
+      "bytes": 303852,
+      "sha256": "e78e550eb303ea2897d5564aa213aecda9d484f422f4e596846ff6af3880358b"
+    },
+    "source/thesis/figs/graphics-state-snapshot.svg": {
+      "bytes": 4666,
+      "sha256": "1dc5273482cb6b007ad12d4016700d062b69c1c92e4d63c0b29aed536d4fe72c"
+    },
+    "source/thesis/figs/graphics-uv-example.png": {
+      "bytes": 376694,
+      "sha256": "83c1e948cad555b6a6bf18a9b73885288027e90d86d81d79e517e2124a3b2d55"
+    },
+    "source/thesis/figs/graphics-uv-example.svg": {
+      "bytes": 14500,
+      "sha256": "d0b6dbe93533fa8ee3247fd98575ebe986adcd7042bfaa7b377b0d43bb3b3cc4"
     },
     "source/thesis/figs/guide-address-views.png": {
       "bytes": 184018,
@@ -13488,6 +13568,10 @@
     "source/thesis/figures_fifo_main.py": {
       "bytes": 8016,
       "sha256": "c46c0603cc484179543a7ee9fcc97d9995efc5dadc8bff03062b52615c35325c"
+    },
+    "source/thesis/figures_graphics.py": {
+      "bytes": 5972,
+      "sha256": "d665a162668c496f1bffd0d25b676fa9894fb01ffb661aec6c25ab89ce2fbb33"
     },
     "source/thesis/figures_main_comprehension.py": {
       "bytes": 4310,

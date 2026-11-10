@@ -46,6 +46,14 @@
 
 [ArmAXI20] Arm, AMBA AXI and ACE Protocol Specification, ARM IHI 0022H, 2020, A3.2.1, A3.3, A6.1. https://developer.arm.com/-/media/Arm%20Developer%20Community/PDF/IHI0022H_amba_axi_protocol_spec.pdf
 
+[RasterIX26] ToNi3141, RasterIX, 2026年11月10日に参照した製品固定版9269a01c9bd4c3342bfa70ef8e3cdd751c15c6d0。README、VertexQueue、PrimitiveAssembler、ImageConverter、TexEnvReg、RasterIX_IF。https://github.com/ToNi3141/RasterIX/tree/9269a01c9bd4c3342bfa70ef8e3cdd751c15c6d0
+
+[GLTexImage] Khronos Group, OpenGL 2.1 Reference Pages, glTexImage2D。画像の入力形式、保存形式、寸法、レベルの引数。https://registry.khronos.org/OpenGL-Refpages/gl2.1/xhtml/glTexImage2D.xml
+
+[GLTexParameter] Khronos Group, OpenGL 2.1 Reference Pages, glTexParameter。nearest、linear、mipmapを用いる縮小フィルタと、テクスチャの端の扱い。https://registry.khronos.org/OpenGL-Refpages/gl2.1/xhtml/glTexParameter.xml
+
+[GLBlend] Khronos Group, OpenGL 2.1 Reference Pages, glBlendFunc。候補色と保存済みの色に掛ける係数。https://registry.khronos.org/OpenGL-Refpages/gl2.1/xhtml/glBlendFunc.xml
+
 ### 本研究で保存した実験記録
 
 E1〜E7は本研究の測定資料を区別する識別子であり、外部文献の著者・年を表す記号ではない。日付、条件、ログを併記し、本文の結果と対応させる。

@@ -34,3 +34,11 @@ than the Markdown edition.
 
 Private redaction settings remain under `.private/`. Run tests, reference
 checks, local privacy checks and publication-manifest checks before publication.
+
+## Graphics explanations
+
+Chapters 37–40 and 52–53 connect terminology, OpenGL calls, numerical examples,
+and the pinned Breakout implementation. The Part IV index links directly to
+the relevant sections. `figures_graphics.py` generates the five worked-example
+SVGs; rasterize and review them before publishing their PNG copies. These
+illustrations explain data and timing and are not hardware measurements.

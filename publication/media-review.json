@@ -24,7 +24,8 @@
     "abstract_external_parts_20261109": "Reviewed the shared scope panel for the three physical board parts and the role descriptions contained in each component outline. DDR3 stores the two labelled content types; no fixed partition sizes are implied. Signal routes and all 26 arrowheads are unchanged. Reviewed the one-page public/private Word renders and grayscale legibility. Embedded images match the reviewed pixels; the game image and abstract paragraphs are unchanged.",
     "abstract_no_circled_labels_20261109": "Reviewed the circuit figure and both one-page native Word renders after removing the circled numeric cross-references from labels, body text and alternative text. All figure geometry and signal routes are unchanged. Embedded images match reviewed source pixels; the game image is unchanged.",
     "abstract_diagram_balance_20261109": "Reviewed the balanced internal board margins, inset address-range text and centered readback labels in color and grayscale at column size. All signal paths, block geometry, labels and 26 arrowheads are preserved under a shared horizontal translation. Moved label ink bounds do not overlap labels, wires or arrowheads. Both one-page document editions were rendered and reviewed; document text and gameplay pixels are unchanged. Embedded figure pixels match the reviewed source images.",
-    "abstract_junction_continuity_20261109": "Reviewed all 13 black-dot junctions in the rendered circuit diagram: each incident wire remains continuous immediately outside its dot. Pixel checks confirmed the previous gaps and their removal; representative crossings between different nets retain their clearance. All 26 arrowheads and signal roles are retained. The DDR write-data branch was moved slightly to keep its junction clear of the nearby write-enable crossing. Reviewed enlarged details, column-size color and grayscale proofs, and both one-page Word editions. Document text and gameplay pixels are unchanged; embedded figure pixels match reviewed source images."
+    "abstract_junction_continuity_20261109": "Reviewed all 13 black-dot junctions in the rendered circuit diagram: each incident wire remains continuous immediately outside its dot. Pixel checks confirmed the previous gaps and their removal; representative crossings between different nets retain their clearance. All 26 arrowheads and signal roles are retained. The DDR write-data branch was moved slightly to keep its junction clear of the nearby write-enable crossing. Reviewed enlarged details, column-size color and grayscale proofs, and both one-page Word editions. Document text and gameplay pixels are unchanged; embedded figure pixels match reviewed source images.",
+    "graphics-appendix-20261110": "Reviewed five new graphics diagrams and all changed Word page bodies after native Word PDF export and bundled document rendering. Checked labels, data directions, worked examples, caption numbering, table flow and chapter-end layout. Unchanged page bodies were matched to the prior edition by exact pixels, excluding page-number footers. All 999 printed contents entries match actual Word bookmark pages. New source and embedded PNGs match the visually reviewed diagrams in decoded dimensions and RGBA pixels; image metadata was removed."
   },
   "sha256": [
     "00eb0240b0906cb38ef39044d105b2cd8723b71ca90db2e875bee6944ceb6b92",
@@ -1353,7 +1354,12 @@
     "72069d2a89cc409d860519456425159515bc3d999b55a5c403126553283639db",
     "ebf4a545d9cb0b58002037740a951618ea6c9518275a0938fa843e627f9520cf",
     "a3349a02a20c68fc2bd97ee26ccd50c7be4238a25f128df746b89ff785b39402",
-    "ced29163c1df04489eda00658de06492b2cedcb247b4877ad54f1365ed1e7a56"
+    "ced29163c1df04489eda00658de06492b2cedcb247b4877ad54f1365ed1e7a56",
+    "83c1e948cad555b6a6bf18a9b73885288027e90d86d81d79e517e2124a3b2d55",
+    "92b0e63cd90947c03240f32d9ffa00cb8c4b8be1037e07d29fe6617b52559351",
+    "d0c3a4512370b2c0d47574320493b3aa2df7a33092479c2abf667bb380450459",
+    "e6b655cac48b14d9fc266c8d19bc614eae7f622605d9aeaad0d7748f292dd327",
+    "e78e550eb303ea2897d5564aa213aecda9d484f422f4e596846ff6af3880358b"
   ],
   "reviews": {
     "abstract-based-presentation-20261108": "Reviewed all 18 native PowerPoint slide renders and the private cover. Main slides use functional circuits and address-access examples; source differences remain in notes and reproduction records. Confirmed 51 internal links, six hidden question slides, original embedded video hash, and cover-only differences between editions. Reviewed the revised abstract diagram, color and monochrome one-page Word renders, code lines and title placement. Public image metadata was cleaned without changing decoded pixels; newly embedded PNGs match visually reviewed sources.",

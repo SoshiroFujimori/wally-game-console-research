@@ -76,7 +76,8 @@ while i<len(lines):
   section=next((x['text'] for x in reversed(tokens) if x['kind']=='heading'),'')
   name=re.sub(r'^(?:\d+|[A-Z])\.\d+\s+','',section)
   number=f'{chapter}.{table_number}' if chapter else f'案内{table_number}'
-  tokens.append(dict(kind='table',rows=rows,text=f'表{number}  {name}'));continue
+  table_title = '表IV.1  グラフィックの説明を探すための案内' if rows[0]==['知りたいこと','読む範囲','具体的に追う内容'] else f'表{number}  {name}'
+  tokens.append(dict(kind='table',rows=rows,text=table_title));continue
  group=[line];i+=1
  while i<len(lines) and lines[i].strip() and not lines[i].startswith(('#','|','![','```')):
   group.append(lines[i]);i+=1
@@ -120,7 +121,7 @@ for name in ['Caption']:
 footer=sec.footer.paragraphs[0];footer.clear();footer.alignment=WD_ALIGN_PARAGRAPH.CENTER;footer.paragraph_format.first_line_indent=Pt(0)
 field=OxmlElement('w:fldSimple');field.set(qn('w:instr'),'PAGE');footer._p.append(field)
 doc.core_properties.title=TITLE;doc.core_properties.author='';doc.core_properties.subject='Wallyと公式RasterIXを用いたFPGAゲーム機の設計と検証'
-revision_date='2026年11月8日' if NAME=='技術付録' else '2026年10月13日'
+revision_date='2026年11月10日' if NAME=='技術付録' else '2026年10月13日'
 for t,style in [('2026年度 卒業研究論文' if NAME=='本文' else '卒業研究論文 技術付録','Subtitle'),(TITLE.replace('ための技術付録','ための\n技術付録'),'Title'),('所属・学籍情報 非公開\n研究者（非公開）','Subtitle'),('指導教員 非公開','Subtitle'),(revision_date+' 改訂','Subtitle')]:
  p=doc.add_paragraph(t,style);p.alignment=WD_ALIGN_PARAGRAPH.CENTER;p.paragraph_format.first_line_indent=Pt(0);p.paragraph_format.space_before=Pt(30);p.paragraph_format.space_after=Pt(24)
 
@@ -261,8 +262,15 @@ for ti,t in enumerate(tokens):
   # Keep the last explanatory unit of these chapters together instead of
   # stranding its closing paragraph on a nearly empty page.
   if NAME=='本文' and t['text'].startswith(('7.11 ','8.8 ')):p.paragraph_format.page_break_before=True
+  if NAME=='技術付録' and section.startswith(('52.17 ','52.18 ','52.19 ','52.20 ','52.21 ','53.17 ','53.18 ','53.19 ')):
+   p.paragraph_format.space_before=Pt(8);p.paragraph_format.space_after=Pt(5)
  elif kind=='para':
   p=inline(doc.add_paragraph(),t['text'])
+  # Avoid short chapter-end spill pages without reducing the body font.
+  if NAME=='技術付録' and section.startswith(('52.17 ','52.18 ','52.19 ','52.20 ','52.21 ')):
+   p.paragraph_format.line_spacing=Pt(16);p.paragraph_format.space_after=Pt(2)
+  if NAME=='技術付録' and section.startswith(('53.17 ','53.18 ','53.19 ')):
+   p.paragraph_format.line_spacing=Pt(16.5);p.paragraph_format.space_after=Pt(2)
   if NAME=='本文' and section.startswith('3.6 ') and ti+1<len(tokens) and tokens[ti+1]['kind']!='heading':p.paragraph_format.keep_with_next=True
   if NAME=='本文' and section.startswith('8.9 ') and ti+1<len(tokens) and tokens[ti+1]['kind']=='para':p.paragraph_format.keep_with_next=True
   if t['text'].startswith('['):
