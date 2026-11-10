@@ -56,7 +56,7 @@ export async function loadFpgaUtilization(root) {
 export const FPGA_UTILIZATION_NARRATION = '開発時に保存したCPU構成と、今回のゲーム機構成の使用率を比較します。BeforeはCPUと周辺回路、Afterは今回の動画で使った描画・表示機能付きの構成です。LUTは36.22%から49.90%、Block RAMは23.01%から58.90%になっています。どちらも同じFPGAで、CPUやメモリ制御などを含む回路全体の値です。開発中にはほかの回路も変わっているため、差のすべてが描画回路だけの使用量とはいえません。';
 
 export const FPGA_UTILIZATION_DETAIL = `比較する構成
-Beforeは2026年9月8日に保存したNexys Video対応時のCPUと周辺回路、Afterは2026年10月8日に保存した標準表示のゲーム機構成である。どちらもArtix-7 XC7A200T（xc7a200tsbg484-1）、Vivado 2025.2による配置配線後の記録を使う。Afterはスライド11の実機動画と同じ回路設定データで、スライド12もこの値を示す。
+Beforeは2026年9月8日に保存したNexys Video対応時のCPUと周辺回路、Afterは2026年10月8日に保存した標準表示のゲーム機構成である。どちらもArtix-7 XC7A200T（xc7a200tsbg484-1）、Vivado 2025.2による配置配線後の記録を使う。Afterはスライド12の実機動画と同じ回路設定データで、スライド11もこの値を示す。
 
 Beforeの根拠
 experiments/fpga-resource-comparison-20261108/before-utilization.rptを使う。日付は2026年9月8日13:16:56、DesignはfpgaTop、Design StateはRoutedである。Nexys Video対応時の描画機能がない構成として保存された記録である。レポートにGitリビジョンや回路設定データのハッシュは記載されておらず、特定のコミットから完全に再生成した結果とは主張しない。元ファイルと公開用コピーのハッシュはcomparison.jsonに区別して記録した。
