@@ -70,8 +70,9 @@ and heads so shafts do not protrude beyond arrowheads. Junction dots mark
 connected branches; unconnected crossings use gaps. Board components have shared
 positions in the overview and operational diagrams. Keep card labels clear of
 the slot outline, signal names clear of block boundaries, and clock symbols
-clear of register labels. The contents uses separate row spacing for the main
-talk and answers, with a divider before the OpenGL topics.
+clear of register labels. The contents has one column for the main talk and two columns for answers.
+Six category headings group the answer topics. Each answer slide repeats its
+category above the title, and a category heading links to its first slide.
 
 Run with the bundled Artifact Tool runtime described in the parent README:
 
@@ -93,7 +94,10 @@ datapath is on slide 14, the detailed whole-system diagram on slide 15 and the
 RasterIX pipeline on slide 16. Slides 17-25 retain the nine OpenGL explanations.
 Their body content is retained, with diagram labels aligned to the objects they
 describe. The numbering and internal references follow the current positions.
-`navigation.mjs` defines contents and native slide targets.
+`navigation.mjs` defines contents and native slide targets. The six categories are
+textbook adoption (11-12), FPGA and CPU (13-15), graphics hardware (16),
+OpenGL geometry (17-19), OpenGL text (20-23), and OpenGL execution/display
+(24-25). Slide numbers and answer-body content are preserved.
 
 The earlier 29-slide version remains at
 `55c3d006e68652b288fdc91a579cf6d6a1f3794d`; the ten-slide main-only checkpoint is

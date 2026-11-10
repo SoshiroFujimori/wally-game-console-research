@@ -2,7 +2,7 @@ import { addOpenGLSlides } from './opengl-functions.mjs';
 import {addMergedDatapath} from './merged-datapath.mjs';
 import { addMainSlides } from './main-slides.mjs';
 import {STANDARD_UTILIZATION_SOURCE} from './fpga-utilization.mjs';
-import { CONTENTS_SLIDE, drawContents, linkToSlide, contentsMarkdown, navigationTargets } from './navigation.mjs';
+import { CONTENTS_SLIDE, drawContents, linkToSlide, contentsMarkdown, navigationTargets, addAnswerCategory } from './navigation.mjs';
 import { drawRasterixPipeline, RASTERIX_PIPELINE_SOURCE, RASTERIX_PIPELINE_NARRATION, RASTERIX_PIPELINE_DETAIL } from './rasterix-pipeline.mjs';
 import { createCircuitWiring } from './circuit-wiring.mjs';
 import fs from 'node:fs/promises';
@@ -51,6 +51,7 @@ function slide(title,seconds,narration,source,detail,diagramOnly=false) {
     const page=text(s,String(n),1200,686,56,22,16,false,C.old,'right');
     page.name=`contents-return-${n}`;pageNumbers.push({page,number:n});
   }
+  addAnswerCategory(s,n,api);
   // Narration and source attribution are published in the companion Markdown.
   s.speakerNotes.text='';
   outline.push({title,seconds,narration,source,detail});return s;

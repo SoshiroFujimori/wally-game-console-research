@@ -1309,7 +1309,23 @@
     "558f705091a2123990bdfc7408912c44c7fda7ad2133e4c92d1b5aae2ac93a52",
     "69678266e4051ae1e6707a62431470f6f8653ceaccc9fcba74057ccc4e672dda",
     "9f8c282a24f2ceb27a73520af25c93d723a9420c39a641ec682c425e6bddfc13",
-    "777afec0129e56963684d4b6a14b15d76753940093909abb74e78eb6677d6f32"
+    "777afec0129e56963684d4b6a14b15d76753940093909abb74e78eb6677d6f32",
+    "6374824b3864b5c603075078f987cd57ab7f5654cd21cec901ea956aab9c1371",
+    "48521f698edac41457743304888afb7c0beb9164ffc61755c2833177dff7c86a",
+    "5cdf4e1d0ff4318a0d8f4100703cfeb56e9172fabb66c611e239552e19f40536",
+    "32050eff866a8962266d36da728777f7a7624f4f05da262ce78584e4a820e940",
+    "3095a032f583b858d4ea648ff3de620c8fd21f088755a17a067562fdb2189cd0",
+    "5f346bfb52c67774f8e6e8449b1da9c4594ff7442e0403c4e4d928f44375e4a5",
+    "c2eb7d84763f1fdf69ebe32b14279cc5a6ca93afc65f34b5ed6db2ce060cdd1e",
+    "06542b735a83b3d31fa567af03ca3912a8b5b6af88f36255592d9aa161d5a942",
+    "043c9c2e1dac28fdb90607ff86a738e27a58214528b1ef96c2dc3711fa6f925a",
+    "0d85082d32b3bfb4bb5c1be78ef29d14a027f425d83911d35c107c9637f3dfdc",
+    "2f64bde80ea433c1d5f41ce0800c753c1f9538f862e39215afebe502c21771b6",
+    "4019b3ae4152140614895bfa54250b0fd5345b26214b0ac736e9c5d0d9a348c1",
+    "30b60b7738da8d6df3bc6e96d6139d49a86e712e7976d3fb054033b81f8a8961",
+    "679994a380696f8032b4bfdc9839e79b00398552d196a1a0bd48b0f692194309",
+    "7513c376f4ad4046e82d36fb44efb740d266bdfc506be59dad2f8bb367f9c676",
+    "5a96b61494a1bbf9d3a15a499275cfcb3db1a271996e4cac7ac5ba689fe7b853"
   ],
   "reviews": {
     "abstract-based-presentation-20261108": "Reviewed all 18 native PowerPoint slide renders and the private cover. Main slides use functional circuits and address-access examples; source differences remain in notes and reproduction records. Confirmed 51 internal links, six hidden question slides, original embedded video hash, and cover-only differences between editions. Reviewed the revised abstract diagram, color and monochrome one-page Word renders, code lines and title placement. Public image metadata was cleaned without changing decoded pixels; newly embedded PNGs match visually reviewed sources.",
@@ -1351,6 +1367,7 @@
     "presentation-layout-review-20261110": "Reviewed all 25 slides in native PowerPoint renders. Improved the introductory gate scale, shared physical-component alignment, SD card labels, decoder input labels, MMIO code alignment, contents row spacing, source footer, flip-flop clock clearance, detailed-diagram labels and glyph explanation alignment. The final slide text preserves the prior presentation content; only a redundant table-number caption was removed. All presenter notes were removed at the user's request. Both resource tables and the unchanged 30-second embedded video remain intact. All 72 native slide links and hidden states were checked. Public/private packages differ only in cover identity. Public images contain no private identities or paths. Submitted abstracts and product files were not changed.",
     "presentation-category-alignment-20261110": "Visually reviewed all eight changed slides in native PowerPoint renders. Category labels are vertically centered with their titles and right-aligned with the body edge. No title or content overlaps were found. Pixel comparison confirmed that all other slide areas and all other slides remain unchanged. All 25 slide texts, 72 internal links, hidden states and the unchanged 30-second video were verified. Presenter notes remain empty. Public and private packages differ only in cover identity. The public images contain no private identities or paths. Submitted abstracts remain unchanged.",
     "presentation-drawing-label-20261110": "Visually reviewed the six changed native PowerPoint slides. Combined drawing/display labels use the shorter Japanese name for drawing circuit. All other slide pixels remain unchanged. All 25 slides retain empty presenter notes, hidden states, 72 internal links and the unchanged 30-second embedded video. The private version differs only in its cover identity. Submitted abstracts remain unchanged.",
-    "presentation-chip-wording-20261110": "Visually reviewed slides 7 and 10 in native PowerPoint renders. Resource utilization refers explicitly to the FPGA chip, including the title, table header, conclusion and contents entry. All other slide pixels remain unchanged. All 25 slides retain empty presenter notes, hidden states, 72 internal links and the unchanged 30-second embedded video. The private version differs only in its cover identity. Submitted abstracts remain unchanged."
+    "presentation-chip-wording-20261110": "Visually reviewed slides 7 and 10 in native PowerPoint renders. Resource utilization refers explicitly to the FPGA chip, including the title, table header, conclusion and contents entry. All other slide pixels remain unchanged. All 25 slides retain empty presenter notes, hidden states, 72 internal links and the unchanged 30-second embedded video. The private version differs only in its cover identity. Submitted abstracts remain unchanged.",
+    "presentation-answer-categories-20261110": "Visually reviewed the categorized contents and all fifteen answer slides in native PowerPoint renders. Six headings group textbook adoption, FPGA/CPU, graphics hardware, OpenGL geometry, OpenGL text and OpenGL execution/display. Category labels occupy the strip above answer titles. Main-slide pixels and answer-body pixels remain unchanged. All 25 slides retain their numbering, hidden states, empty presenter notes and unchanged embedded video. Verified 78 internal navigation links, including category jumps. Private cover identities remain outside the public copy."
   }
 }
