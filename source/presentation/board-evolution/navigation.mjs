@@ -6,7 +6,7 @@ export const CONTENTS_ITEMS=[
   {number:2,label:'FPGAチップと周辺部品',group:'発表用スライド'},
   {number:3,label:'教科書とのつながり・研究目的',group:'発表用スライド'},
   {number:4,label:'既存回路と追加した部分',group:'発表用スライド'},
-  {number:5,label:'MMIOで回路を操作する',group:'発表用スライド'},
+  {number:5,label:'読込みから描画命令の送信まで',group:'発表用スライド'},
   {number:6,label:'SDカードから読み込む',group:'発表用スライド'},
   {number:7,label:'CPUがゲームを実行する',group:'発表用スライド'},
   {number:8,label:'ゲームから描画命令を送る',group:'発表用スライド'},

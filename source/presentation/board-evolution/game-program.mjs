@@ -1,41 +1,61 @@
-// Conceptual MMIO operations inside the CPU. Board and graphics positions
-// follow the adjacent integration diagrams.
+// Conceptual RISC-V fragments. The loader copies received bytes and jumps
+// to DDR; the game fragment illustrates a command-port write after loading.
+export const LOAD_ASM = [
+  ["li   s0,0x1304C", "SDの受信口"],
+  ["li   s1,0x80000000", "DDRの先頭"],
+  ["li   s2,0x80001000", "読込終端（例）"],
+  ["copy:", ""],
+  ["lbu  t0,0(s0)", "1バイト読む"],
+  ["sb   t0,0(s1)", "DDRへ保存"],
+  ["addi s1,s1,1", "保存先を+1"],
+  ["bltu s1,s2,copy", "終端まで繰返す"],
+  ["li   t0,0x80000000", "実行先"],
+  ["jr   t0", "DDRへ分岐"]
+];
+export const GAME_ASM = [
+  ["game:", "DDRの先頭"],
+  ["...", "ゲームの計算"],
+  ["...", "描画命令を用意"],
+  ["li   t0,0x10080000", "描画命令の送信口"],
+  ["lw   t1,0(a0)", "命令列から1語"],
+  ["sw   t1,0(t0)", "回路へ送信"],
+  ["...", "続きの処理"]
+];
+
 export function drawGameProgram(s, api) {
-  const {text,box,wire,C}=api;
+  const {text,box,wire,route,C}=api;
   const frame='#718299', faded='#A6B2C3', edge='#BBC6D6';
-  const mono=(value,x,y,w,color=C.ink)=>{
-    const sh=text(s,value,x,y,w,32,24,false,color);
-    sh.text.style={typeface:'Consolas',fontSize:24,bold:false,color,
+  const code=(rows,x)=>rows.forEach(([value,comment],i)=>{
+    const active=/^(lbu|sb |jr |sw )/.test(value);
+    const sh=text(s,value,x,316+i*25,251,26,23,false,active?C.blue:C.ink);
+    sh.text.style={typeface:'Consolas',fontSize:23,bold:false,color:active?C.blue:C.ink,
       alignment:'left',verticalAlignment:'middle',wrap:'none'};
-    return sh;
-  };
-  box(s,'',64,175,1152,400,'#F6F8FC',22,frame,1.5);
+    if(comment)text(s,comment,x+257,316+i*25,145,26,17,false,active?C.blue:C.ink);
+  });
+  box(s,'',64,175,1152,471,'#F6F8FC',22,frame,1.5);
   text(s,'FPGAボード / Nexys Video',80,178,760,28,23,true,frame);
-  box(s,'',84,210,1112,312,'#E8EFF9',22,frame,1.8);
+  box(s,'',84,210,1112,378,'#E8EFF9',22,frame,1.8);
   text(s,'FPGAチップ',100,214,240,25,20,true,frame);
+  box(s,'',112,244,880,332,C.white,22,C.ink,2.2);
+  text(s,'CPU Wallyが実行する命令の例',128,249,848,31,25,true,C.ink);
+  text(s,'読込み側のプログラム',128,283,404,28,23,true,C.blue);
+  text(s,'DDR3に読み込んだゲーム',580,283,396,28,23,true,C.blue);
+  code(LOAD_ASM,128);
+  code(GAME_ASM,580);
+  route(s,[[538,554],[558,554],[558,329],[578,329]],C.blue,true,2.3);
+  text(s,'a0：描画命令列の先頭アドレス',580,520,396,28,18,false,frame);
 
-  box(s,'',112,252,600,252,C.white,22,C.ink,2.2);
-  text(s,'CPU Wally上のプログラム',128,259,568,34,27,true,C.ink);
-  text(s,'接続プログラムの操作を表す概念コード',128,297,568,24,18,false,frame);
-  text(s,'// 描画命令を接続回路へ送る',128,329,568,28,22,false,C.ink);
-  mono('*(uint32_t *)0x10080000 = command;',128,362,568,C.blue);
-  text(s,'// 接続回路の状態を読み出す',128,411,568,28,22,false,C.ink);
-  mono('status = *(uint32_t *)0x10080008;',128,444,568,C.blue);
-
-  box(s,'',840,330,155,148,C.pale,22,C.blue,2.4);
-  text(s,'接続回路',845,337,145,34,25,true,C.blue,'center');
-  text(s,'命令の受取り',845,384,145,28,19,false,C.ink,'center');
-  text(s,'状態の読出し',845,441,145,28,19,false,C.ink,'center');
-  box(s,'描画・表示\n回路',1030,330,150,100,'#F5F7FB',24,edge,1.2);
-  wire(s,712,378,840,378,C.blue,true,3);
-  text(s,'書込み',719,343,114,28,22,true,C.blue,'center');
-  wire(s,840,460,712,460,C.blue,true,3);
-  text(s,'読出し',719,423,114,28,22,true,C.blue,'center');
-  wire(s,995,380,1030,380,faded,true,2.5);
-  wire(s,1150,430,1150,533,faded,true,2.4);
-  text(s,'基板上の部品',100,533,290,28,20,true,frame);
-  for(const [label,x] of [['SDスロット',435],['DDR3メモリ',645],['HDMI端子',1030]]) {
-    box(s,'',x,533,150,32,'#F5F7FB',20,edge,1.2);
-    text(s,label,x+4,535,142,26,20,true,faded,'center');
+  box(s,'接続回路',1030,401,150,83,C.pale,25,C.blue,2.4);
+  box(s,'描画・表示\n回路',1030,510,150,64,'#F5F7FB',22,edge,1.2);
+  wire(s,992,454,1030,454,C.blue,true,3);
+  wire(s,1105,484,1105,510,C.blue,true,2.5);
+  wire(s,1150,574,1150,599,faded,true,2.4);
+  text(s,'基板上の部品',100,599,290,28,20,true,frame);
+  for(const [label,sub,x] of [['SDカード','ゲームを保存',435],['DDR3メモリ','コピーしたゲーム',645]]){
+    box(s,'',x,595,150,43,C.white,20,C.blue,1.6);
+    text(s,label,x+4,596,142,22,18,true,C.ink,'center');
+    text(s,sub,x+4,617,142,20,16,false,C.blue,'center');
   }
+  box(s,'',1030,599,150,35,'#F5F7FB',20,edge,1.2);
+  text(s,'HDMI端子',1034,601,142,28,20,true,faded,'center');
 }

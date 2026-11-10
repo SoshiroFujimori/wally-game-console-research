@@ -75,8 +75,8 @@ await addMainSlides({slide,api,cover,root,DDCA,RVSOC,PRODUCT,BASIC,POSTER,VIDEO}
 let s=slide('目次：発表・回答用スライド',0,
   '質問に関係する項目をクリックすると、そのスライドへ移動します。移動した後は右下のスライド番号をクリックすると、この目次へ戻れます。',
   '',
-  '表紙1枚と発表用12枚の後に置く操作用の目次である。発表用スライドと回答用スライドの両方へ移動できる。回答用スライドは、教科書の採用例、FPGAの構成要素と使用量、命令の実行から周辺回路へつながる統合図、回路の詳細、ゲームの描画の順にまとめる。回答用の16枚は通常の順送りでは表示しないが、目次から選んで開ける。本編の説明時間には目次の操作時間を含めない。');
-drawContents(s,api);outline[outline.length-1].navigation=true;
+  '表紙1枚と発表用12枚の後に置く操作用の目次である。発表用スライドと回答用スライドの両方へ移動できる。回答用スライドは、教科書の採用例、FPGAの構成要素と使用量、命令の実行から周辺回路へつながる統合図、回路の詳細、ゲームの描画の順にまとめる。この目次と回答用の16枚は通常の順送りでは表示しない。各スライド右下の番号から目次を開き、回答用スライドを選べる。本編の説明時間には目次の操作時間を含めない。');
+drawContents(s,api);s.hidden=true;outline[outline.length-1].navigation=true;outline[outline.length-1].hidden=true;
 
 const ddcaDataRoot=process.env.PRESENTATION_DDCA_ASSET_DIRECTORY||path.join(root,'source/presentation/ddca-adoption');
 const ddcaData=JSON.parse(await fs.readFile(path.join(ddcaDataRoot,'records.json'),'utf8'));
@@ -146,26 +146,26 @@ for (const number of [4,8,9,10,11,12,13,19,20]) {
 for(const {page,number} of pageNumbers)if(number!==CONTENTS_SLIDE)linkToSlide(page,CONTENTS_SLIDE);
 await fs.writeFile(path.join(workspace,'wire-audit.json'),JSON.stringify(wiring.finalize(),null,2)+'\n');
 const total=outline.reduce((n,s)=>n+s.seconds,0);
-if(outline.length!==30||total!==335)throw new Error(`Unexpected allocation ${outline.length} slides, ${total} seconds`);
+if(outline.length!==30||total!==345)throw new Error(`Unexpected allocation ${outline.length} slides, ${total} seconds`);
 await fs.writeFile(path.join(workspace,'outline.json'),JSON.stringify(outline,null,2)+'\n');
 const md=[
   '# 中間発表：FPGAを用いた2Dゲーム機の製作',
-  '表紙1枚、発表用12枚、移動用の目次1枚、回答用16枚で構成します。教科書とのつながりと目的、既存回路と追加した部分、MMIOで回路を操作するプログラム、読込みから描画・表示までの流れ、実機動画の順に説明します。FPGA使用量は回答用18枚目にまとめています。ゲームの動きは30秒の実機動画で示します。',
+  '表紙1枚、発表用12枚、移動用の目次1枚、回答用16枚で構成します。教科書とのつながりと目的、既存回路と追加した部分、SDカードからDDR3へ読み込んだプログラムの実行、読込みから描画・表示までの流れ、実機動画の順に説明します。FPGA使用量は回答用18枚目にまとめています。ゲームの動きは30秒の実機動画で示します。',
   '[PowerPoint版](中間発表_主要事項.pptx) / [アブスト](../abstract/アブスト_主要事項.md) / [論文本文](../thesis/本文.md) / [技術付録](../thesis/技術付録.md) / [再生成方法](../../source/presentation/board-evolution/README.md) / [DDCA授業利用の出典](DDCA授業利用の出典.md) / [RVSOC教科書採用の出典](RVSOC教科書採用の出典.md)',
   '[発表の要点を読む](発表の要点.md) / [OpenGLの説明と想定質問](OpenGLの説明と想定質問.md)',
   '## 図の見方',
-  '2枚目ではFPGAと周辺部品、3枚目では教科書と研究の関係を説明します。4枚目ではCPUと周辺制御回路を一つの箱にまとめます。5枚目ではMMIOによる命令送信と状態読出しを概念コードで示し、6枚目以降で読込みから映像出力までの流れを説明します。FPGAボードとチップ外の部品の位置は保ち、説明する経路を青で強調します。13枚目は、ボード、チップ、チップ内の回路を入れ子の枠と塗り分けで示します。10枚目は画像を保存する向き、11枚目は画像を読み出して表示する向きを示します。矢印は要求やデータの経路を機能ごとにまとめたもので、一本の信号線を表すものではありません。破線の枠は回路コードの主な提供元です。「Wally」はCPU、「Wallyリポジトリ」はCPUと周辺回路の設計コードの提供元として使います。',
+  '2枚目ではFPGAと周辺部品、3枚目では教科書と研究の関係を説明します。4枚目ではCPUと周辺制御回路を一つの箱にまとめます。5枚目ではSDカードからDDR3へのコピー、実行先の分岐、描画命令の送信を概念的なアセンブリで示し、6枚目以降で読込みから映像出力までの流れを説明します。FPGAボードとチップ外の部品の位置は保ち、説明する経路を青で強調します。13枚目は、ボード、チップ、チップ内の回路を入れ子の枠と塗り分けで示します。10枚目は画像を保存する向き、11枚目は画像を読み出して表示する向きを示します。矢印は要求やデータの経路を機能ごとにまとめたもので、一本の信号線を表すものではありません。破線の枠は回路コードの主な提供元です。「Wally」はCPU、「Wallyリポジトリ」はCPUと周辺回路の設計コードの提供元として使います。',
   '回答用19枚目では、信号を詳しく示しています。ADはアドレス、WDは書込みデータ、WEは1ビットの書込みイネーブル、RDは読出しデータです。有効な読書きの際のWE=1を書込み、WE=0を読出しとして示します。アドレスデコーダが接続先を選び、読出し値も対応する選択信号で選びます。分岐の黒丸は接続を表し、接続しない線の交差には隙間があります。転送の細かなタイミングや待ち処理は省略しています。',
   '## 回路の提供元',
   PROVENANCE_DETAIL,
   '対応するソースは[回路の提供元一覧](../../source/presentation/board-evolution/README.md#component-provenance)にまとめています。主図では、同じRasterIXリポジトリに含まれる描画と表示を一つの箱にまとめています。実機動画も、この標準表示構成で取得しています。',
   '## 発表時間と回答用スライド',
-  '表紙と発表用12枚の配分は動画30秒を含め335秒です。動画の再生中に結果を説明します。これは練習を実測した時間ではありません。14枚目の目次から本編と回答用の両方へ移動できます。各スライドの右下の番号から目次に戻れます。回答用の15〜30枚目は、通常の順送りでは表示しません。',
+  '表紙と発表用12枚の配分は動画30秒を含め345秒です。動画の再生中に結果を説明します。これは練習を実測した時間ではありません。14枚目の目次から本編と回答用の両方へ移動できます。各スライドの右下の番号から目次に戻れます。14枚目の目次と回答用の15〜30枚目は、通常の順送りでは表示しません。',
   '## 目次',
   outline.map((o,i)=>'- ['+(i+1)+'. '+o.title.replaceAll('\n','')+'](#slide-'+(i+1)+')'+(o.backup?'（回答用）':'')).join('\n')
 ];
 outline.forEach((o,i)=>md.push('<a id="slide-'+(i+1)+'"></a>\n## '+(i+1)+'. '+o.title.replaceAll('\n',''),
-  o.navigation?'項目名から移動できます。PowerPointでは右下の番号から、この目次へ戻れます。':o.backup?'質問時に参照する資料。本編の発表時間には含めません。':'説明時間の配分：'+o.seconds+'秒',
+  o.navigation?'非表示の目次です。PowerPointでは各スライド右下の番号から開き、項目名から移動できます。':o.backup?'質問時に参照する資料。本編の発表時間には含めません。':'説明時間の配分：'+o.seconds+'秒',
   '!['+o.title.replaceAll('\n','')+'](slides/slide-'+String(i+1).padStart(2,'0')+'.png)',
   ...(i===14?['[教育機関・授業・年度・指定の種類・出典の一覧](DDCA授業利用の出典.md)',
     'スライドに示した学校名の例：'+ddcaSummary.categories.map(c=>c.label+'は'+c.examples.join('・')).join('、')+'。']:[]),

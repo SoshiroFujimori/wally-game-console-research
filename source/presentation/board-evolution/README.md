@@ -4,8 +4,8 @@ This builder produces the single published intermediate presentation:
 [slides and narration](../../../docs/presentation/中間発表_主要事項.md) and
 [PowerPoint](../../../docs/presentation/中間発表_主要事項.pptx).
 A cover and twelve presentation slides explain the integration design and its functional evidence. Slide 14
-is clickable contents; slides 15-30 are hidden answer slides. The narration allocation
-is 335 seconds including the 30-second embedded video, not a timed rehearsal.
+is hidden clickable contents; slides 15-30 are hidden answer slides. The narration allocation
+is 345 seconds including the 30-second embedded video, not a timed rehearsal.
 
 ## Main explanation
 
@@ -15,7 +15,7 @@ is 335 seconds including the 30-second embedded video, not a timed rehearsal.
 | 2 | FPGA and external components | HDL and an AND gate illustrate circuit implementation. |
 | 3 | Educational context and objective | Three conceptual diagrams connect CPU building blocks, Wally system integration, and the graphics extension. Four DDCA and three RVSOC teaching examples include historical use. |
 | 4 | Existing and added parts | CPU and peripheral controllers are grouped into one box before expansion. |
-| 5 | Software access through MMIO | Conceptual 32-bit writes to CMD and reads from STATUS, based on the actual Wally connector and RTL register map. |
+| 5 | Loading, execution and drawing commands | Conceptual RISC-V assembly copies received bytes to DDR, jumps to its entry, and writes a graphics command word from the loaded program. |
 | 6 | Program loading | SD control returns data to the CPU, which stores it through DDR control. |
 | 7 | Game execution | CPU execution updates positions, collisions and score. |
 | 8 | Drawing commands | The CPU library prepares commands for the graphics block. |
@@ -25,12 +25,15 @@ is 335 seconds including the 30-second embedded video, not a timed rehearsal.
 | 12 | Actual video | The unchanged reviewed 30-second standard-output recording. |
 | 13 | Conclusion and next steps | Verified game behavior and optional controller/GUI work. |
 
-`game-program.mjs` shows conceptual MMIO operations inside the CPU: a
-32-bit write to `0x10080000` (CMD) and a read from `0x10080008` (STATUS).
-The actual Wally connector maps these physical addresses before access;
-the notes retain mapping, volatile, final-word and ordering details.
-The two operations illustrate access semantics, not a per-frame polling
-sequence. The RasterIX library supplies the command words.
+`game-program.mjs` shows two conceptual RISC-V fragments. The left fragment
+copies received SD bytes to DDR and jumps to its entry; the right fragment
+represents game code loaded there, including a 32-bit command-port write.
+The 4096-byte size and start address are examples, not measured executable
+properties. Notes retain omitted SD protocol, runtime, instruction-fetch
+synchronization and command-stream details. The real SD reading uses existing
+software; the sketch does not claim a newly implemented loader. `...` denotes
+omitted code rather than an assembly instruction. Slide 14 is hidden from
+ordinary advance but remains reachable from each slide's page-number link.
 
 `core-board.mjs` provides a stable functional diagram. It summarizes the
 transfers rather than drawing individual bus wires. `stable-board.mjs` retains
@@ -194,7 +197,7 @@ notes and [OpenGL questions](../../../docs/presentation/OpenGLの説明と想定
 cover immediate mode, VBO availability, fixed-function scope, filtering,
 CPU/hardware responsibilities, compilation, command transfer and completion.
 No VBO performance comparison or API compliance certification is claimed.
-The main talk remains twelve content slides and retains its 335-second allocation.
+The main talk remains twelve content slides and retains its 345-second allocation.
 The previous two-slide OpenGL explanation is preserved at commit
 `99463b338d9facfd78cbd46582219b535af6a07c`.
 
