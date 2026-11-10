@@ -65,8 +65,12 @@ export async function addMainSlides(ctx) {
   lead(s,'アドレスの範囲によって、書込み先が変わる（MMIO）');
   drawConsoleEvolution(s,api,{mode:'access'});
   const cases=[['通常のメモリ領域 → 値を保存','*(unsigned int *)0x80000000 = value;'],['描画回路の領域 → 命令を送信','*(unsigned int *)0x10080000 = command;']];
+  box(s,'',64,584,1152,94,C.pale,20,C.pale,0);
+  wire(s,64,584,1216,584,C.ink,false,1.1);
+  wire(s,64,631,1216,631,'#BBC6D6',false,0.8);
+  wire(s,64,678,1216,678,C.ink,false,1.1);
   cases.forEach(([label,program],i)=>{
-    text(s,label,64,588+i*48,410,37,23,true,C.heading);
+    text(s,label,76,588+i*48,398,37,23,true,C.heading);
     const code=text(s,program,486,588+i*48,730,37,25,false,C.blue);
     code.text.style={typeface:'Consolas',fontSize:25,color:C.blue,alignment:'left',verticalAlignment:'middle',wrap:'none'};
   });

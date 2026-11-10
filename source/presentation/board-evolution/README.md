@@ -25,13 +25,13 @@ RasterIX FPGA example. The CPU can load a program from SD into main memory and
 execute it. RVSOC adoption examples establish a teaching context. Slide 4 combines
 these functions, highlighting graphics integration and the SD card game program.
 The summary reuses that composition. The simplified main diagrams aggregate
-protocol and clock-domain adaptation into the graphics path; the implementation
-and detailed answer diagrams are unchanged.
+protocol and clock-domain adaptation into the graphics path. The answer diagrams
+retain the implementation details and the original horizontal CPU datapath.
 
 Slide 5 compares conceptual C writes to DDR at `0x80000000` and the drawing
 command port at `0x10080000`. The DDR address range is `0x80000000` through
 `0x9FFFFFFF`; the enabled external APB range is `0x10080000` through `0x100800FF`.
-Notes identify the fragments as explanatory examples. Slide 6 draws independent
+The companion Markdown identifies the fragments as explanatory examples. Slide 6 draws independent
 decoder-enable paths to every illustrated peripheral, with the graphics target
 selected for the demonstrated command address.
 
@@ -39,7 +39,8 @@ Slide 7 loads and validates `experiments/standard-display-resources-20261110`.
 Both columns include CPU and peripheral circuits; their difference is not an
 isolated measurement of the RasterIX core. The After column is tied to the
 standard-display bitstream used in the recorded demonstration. Evidence and
-revision limitations remain in the speaker notes.
+revision limitations remain in the companion Markdown. PowerPoint presenter
+notes are empty in both public and private copies.
 
 Slide 8 embeds `source/presentation/assets/breakout-standard-dvi-compatible.mp4`
 and starts it automatically. The recording and poster come from
@@ -66,7 +67,11 @@ The current physical build and video use the standard RasterIX-bundled display.
 The RVSOC-style blue/black palette, Yu Gothic, Arial and Consolas, and editable
 1280 by 720 canvas are retained. `circuit-wiring.mjs` uses native filled shafts
 and heads so shafts do not protrude beyond arrowheads. Junction dots mark
-connected branches; unconnected crossings use gaps.
+connected branches; unconnected crossings use gaps. Board components have shared
+positions in the overview and operational diagrams. Keep card labels clear of
+the slot outline, signal names clear of block boundaries, and clock symbols
+clear of register labels. The contents uses separate row spacing for the main
+talk and answers, with a divider before the OpenGL topics.
 
 Run with the bundled Artifact Tool runtime described in the parent README:
 
@@ -86,8 +91,8 @@ Public cover identities are redacted; private school copies remain local.
 The teaching examples and FPGA elements are on slides 11-13. The combined
 datapath is on slide 14, the detailed whole-system diagram on slide 15 and the
 RasterIX pipeline on slide 16. Slides 17-25 retain the nine OpenGL explanations.
-Their body content and geometry are preserved from the previous complete deck;
-page numbers and internal references are updated to the current positions.
+Their body content is retained, with diagram labels aligned to the objects they
+describe. The numbering and internal references follow the current positions.
 `navigation.mjs` defines contents and native slide targets.
 
 The earlier 29-slide version remains at

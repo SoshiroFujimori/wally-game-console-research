@@ -33,16 +33,17 @@ export function drawContents(s,api){
   wire(s,64,178,608,178,C.ink,false,1.2);
   wire(s,668,178,1216,178,C.ink,false,1.2);
   const item=(record,x,y,compact=false)=>{
-    const number=text(s,String(record.number),x,y,46,compact?26:31,compact?23:25,true,C.heading,'right');
-    const label=text(s,record.label,x+63,y,481,compact?26:31,compact?22:24,false,C.ink);
+    const number=text(s,String(record.number),x,y,46,compact?28:34,compact?23:25,true,C.heading,'right');
+    const label=text(s,record.label,x+63,y,481,compact?28:34,compact?22:24,false,C.ink);
     number.name=`contents-number-${record.number}`;
     label.name=`contents-label-${record.number}`;
     linkToSlide(number,record.number);linkToSlide(label,record.number);
   };
-  CONTENTS_ITEMS.slice(0,9).forEach((r,i)=>item(r,64,193+i*32));
-  CONTENTS_ITEMS.slice(9).forEach((r,i)=>item(r,668,193+i*26,true));
-  text(s,'項目をクリックすると、そのスライドへ移動します',64,628,1152,34,24,true,C.ink);
-  text(s,'各スライドの右下の番号をクリックすると、この目次に戻れます',64,670,1100,31,21,false,C.old);
+  CONTENTS_ITEMS.slice(0,9).forEach((r,i)=>item(r,64,193+i*40));
+  CONTENTS_ITEMS.slice(9).forEach((r,i)=>item(r,668,193+i*28+(i>=6?8:0),true));
+  wire(s,731,363,1216,363,'#BBC6D6',false,0.9);
+  text(s,'項目をクリックすると、そのスライドへ移動します',64,635,1152,34,24,true,C.ink);
+  text(s,'各スライドの右下の番号をクリックすると、この目次に戻れます',64,674,1100,27,21,false,C.old);
 }
 
 export function contentsMarkdown(){

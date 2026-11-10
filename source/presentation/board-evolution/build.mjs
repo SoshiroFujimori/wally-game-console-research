@@ -51,7 +51,8 @@ function slide(title,seconds,narration,source,detail,diagramOnly=false) {
     const page=text(s,String(n),1200,686,56,22,16,false,C.old,'right');
     page.name=`contents-return-${n}`;pageNumbers.push({page,number:n});
   }
-  s.speakerNotes.text=`説明時間の目安：${seconds}秒\n\n${narration}\n\n出典：${source}\n\n補足説明：${detail}`;
+  // Narration and source attribution are published in the companion Markdown.
+  s.speakerNotes.text='';
   outline.push({title,seconds,narration,source,detail});return s;
 }
 const api={text,box,polygon,route,wire,junction,C};
@@ -126,12 +127,11 @@ await fs.writeFile(path.join(workspace,'rasterix-pipeline-graph.json'),JSON.stri
 
 await addOpenGLSlides({slide,api,root,outline});
 
-// Restore the original answer notes without changing the ten-slide main talk.
+// Keep complete source attribution in the companion Markdown.
 for (const number of [15,16]) {
   const o=outline[number-1];
   o.detail += '\n\n' + PROVENANCE_DETAIL;
   o.source += '\n' + PROVENANCE_SOURCE;
-  P.slides.items[number-1].speakerNotes.text=`説明時間の目安：${o.seconds}秒\n\n${o.narration}\n\n出典：${o.source}\n\n補足説明：${o.detail}`;
 }
 for(const {page,number} of pageNumbers)if(number!==CONTENTS_SLIDE)linkToSlide(page,CONTENTS_SLIDE);
 await fs.writeFile(path.join(workspace,'wire-audit.json'),JSON.stringify(wiring.finalize(),null,2)+'\n');

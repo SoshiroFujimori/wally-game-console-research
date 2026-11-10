@@ -15,10 +15,10 @@ export function drawConsoleEvolution(s,api,{mode='addition'}={}){
   for(const [x,width] of split?[[64,800],[904,312]]:[[64,1152]]){
     box(s,'',x,175,width,400,'#F6F8FC',22,frame,1.5);
     T('FPGAボード',x+16,179,width-32,28,23,true,frame);
-    box(s,'',x+20,210,width-40,297,'#E8EFF9',22,frame,1.8);
+    box(s,'',x+20,210,width-40,290,'#E8EFF9',22,frame,1.8);
     T('FPGAチップ',x+36,215,width-72,25,20,true,frame);
   }
-  const origin=box(s,'',100,245,724,252,'none',20,edge,1.2);
+  const origin=box(s,'',100,245,724,245,'none',20,edge,1.2);
   origin.line={style:'dashed',fill:frame,width:1.2};
   T('Wallyリポジトリの既存回路',340,decode?215:249,466,24,19,true,existing,'right');
   T('RasterIXリポジトリ',934,249,242,26,19,true,graphics,'center');
@@ -44,7 +44,7 @@ export function drawConsoleEvolution(s,api,{mode='addition'}={}){
       if(i<nodes.length-1)wire(s,n.ad,335,nodes[i+1].ad,335,C.blue,false,3);
       wire(s,n.ad,335,n.ad,350,C.blue,true,3);
       if(i<nodes.length-1)junction(s,n.ad,335,C.blue,4.5);
-      R([[322,260+i*18],[n.en,260+i*18],[n.en,350]],n.id==='graphics'?C.blue:frame,true,1.4);
+      R([[322,260+i*18],[n.en,260+i*18],[n.en,350]],n.id==='graphics'?C.blue:frame,true,1.8);
     });
     for(const [signal,yStart,xRail,yRail,width] of [['wd',382,294,451,3],['we',412,310,480,1.4]]){
       R([[270,yStart],[xRail,yStart],[xRail,yRail],[nodes[0][signal],yRail]],C.blue,false,width);
@@ -55,8 +55,8 @@ export function drawConsoleEvolution(s,api,{mode='addition'}={}){
         if(i<nodes.length-1)junction(s,x,yRail,C.blue,4.5);
       });
     }
-    T('WD：描画命令',112,445,171,25,18,true,C.blue);
-    T('WE = 1',112,473,166,25,18,true,C.blue);
+    T('WD：描画命令',112,435,171,25,18,true,C.blue);
+    T('WE = 1',112,461,166,25,18,true,C.blue);
   }else{
     // This path summarizes reads and writes, not a single physical net.
     const centers=[405,585,750];
@@ -77,27 +77,27 @@ export function drawConsoleEvolution(s,api,{mode='addition'}={}){
     const active=n.id==='graphics'&&!split||n.id==='ddr'&&access;
     box(s,'',n.x,350,n.w,80,active?'#DCEAF9':C.white,22,n.c,active?3:2);
     if(decode){
-      T('AD',n.ad-15,352,30,19,14,true,C.blue,'center');
-      T('EN='+Number(n.id==='graphics'),n.en-24,352,48,19,14,true,n.id==='graphics'?C.blue:frame,'center');
+      T('AD',n.ad-15,352,30,21,15,true,C.blue,'center');
+      T('EN='+Number(n.id==='graphics'),n.en-24,352,48,21,15,true,n.id==='graphics'?C.blue:frame,'center');
     }
-    T(n.label,n.x+6,decode?373:359,n.w-12,n.id==='graphics'?32:58,n.id==='graphics'?24:21,true,n.c,'center');
-    if(n.id==='graphics')T('RasterIX',n.x+6,decode?405:396,n.w-12,24,20,false,n.c,'center');
+    T(n.label,n.x+6,decode?375:359,n.w-12,n.id==='graphics'?(decode?28:32):(decode?49:58),decode?(n.id==='graphics'?22:20):(n.id==='graphics'?24:21),true,n.c,'center');
+    if(n.id==='graphics')T('RasterIX',n.x+6,decode?404:396,n.w-12,decode?22:24,decode?18:20,false,n.c,'center');
   });
   // The controller connects to the slot first; the card is inserted into it.
   const program=!split,highlightProgram=program&&!decode&&!access;
   const cardColor=highlightProgram?C.blue:existing;
-  R([[405,430],[405,510]],existing,'both',2.2);
-  box(s,'',315,510,180,26,C.white,18,frame,1.5);
-  T('SDカードスロット',319,512,172,21,16,true,frame,'center');
-  polygon(s,[[330,535],[468,535],[480,547],[480,570],[330,570]],highlightProgram?'#DCEAF9':C.white,cardColor,highlightProgram?2.8:1.8);
-  T('SDカード',334,536,142,14,12,true,cardColor,'center');
-  T(program?'ブロック崩し':'プログラム',334,550,142,19,18,true,cardColor,'center');
-  R([[585,430],[585,538]],memory,'both',2.2);
-  box(s,'DDR3メモリ',510,538,150,35,C.white,21,memory,1.8);
-  R([[1098,430],[1098,538]],graphics,true,2.4);
-  box(s,'HDMI端子',1008,538,180,35,C.white,22,graphics,1.8);
+  R([[405,430],[405,504]],existing,'both',2.2);
+  box(s,'',315,504,180,25,C.white,18,frame,1.5);
+  T('SDカードスロット',319,505,172,23,17,true,frame,'center');
+  polygon(s,[[330,528],[468,528],[480,540],[480,570],[330,570]],highlightProgram?'#DCEAF9':C.white,cardColor,highlightProgram?2.8:1.8);
+  T('SDカード',334,530,142,19,15,true,cardColor,'center');
+  T(program?'ブロック崩し':'プログラム',334,549,142,21,18,true,cardColor,'center');
+  R([[585,430],[585,532]],memory,'both',2.2);
+  box(s,'DDR3メモリ',510,532,150,38,C.white,21,memory,1.8);
+  R([[1098,430],[1098,532]],graphics,true,2.4);
+  box(s,'HDMI端子',1008,532,180,38,C.white,22,graphics,1.8);
   if(!split&&!decode){
-    R([[960,430],[960,465],[624,465],[624,430]],access?C.blue:frame,'both',2.3);
-    T('画像の保存・読出し',635,470,178,23,16,false,frame,'center');
+    R([[960,430],[960,456],[624,456],[624,430]],access?C.blue:frame,'both',2.3);
+    T('画像の保存・読出し',635,462,178,23,16,false,frame,'center');
   }
 }

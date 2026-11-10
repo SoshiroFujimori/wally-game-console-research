@@ -10,7 +10,7 @@ export function drawMergedDatapath(s,a){
     const r=box(s,label,x,y,w,h,fill,z,stroke,thick);r.name='merged-'+name;return r;
   };
   const R=(points,c=C.ink,arrow=true,width=2.1)=>route(s,points,c,arrow,width);
-  B('board','',64,126,1152,540,C.pale,18,C.ink,1.8);
+  B('board','',64,126,1152,553,C.pale,18,C.ink,1.8);
   T('FPGAボード / Nexys Video',78,128,353,25,21,true);
   T('AD：アドレス　WD：書込みデータ　WE：1 bit　RD：読出しデータ',434,130,760,23,17,true);
   B('chip','',80,158,1006,492,C.chip,18,C.ink,2.1);
@@ -52,8 +52,8 @@ export function drawMergedDatapath(s,a){
   const rail=[810,830,850],outY=[532,541,550];
   for(let i=0;i<3;i++)R([[centers[i],512],[centers[i],outY[i]],[rail[i],outY[i]],[rail[i],240+i*15]],C.ink,false,i===2?1.1:2.1);
 
-  B('decode','アドレス\nデコーダ',580,475,145,45,C.white,18);
-  R([[810,330],[800,330],[800,458],[650,458],[650,475]],C.ink,true,2.1);
+  B('decode','アドレス\nデコーダ',580,470,145,56,C.white,18);
+  R([[810,330],[800,330],[800,458],[650,458],[650,470]],C.ink,true,2.1);
   junction(s,810,330,C.ink,4);
   for(let i=0;i<3;i++){
     const y=485+i*16;
@@ -91,12 +91,12 @@ export function drawMergedDatapath(s,a){
   R([[585,592],[560,592],[560,632],[86,632],[86,442],[ix[3],442],[ix[3],endY]],C.blue,true,2.1);
   R([[560,632],[dx[3],632],[dx[3],endY]],C.blue,true,2.1);
   junction(s,560,632,C.blue,4);
-  T('RDを両接続口へ返す',571,652,238,17,12,true,C.blue);
+  T('RDを両接続口へ返す',571,654,238,19,13,true,C.blue);
 
   R([[1015,555],[1015,590]],C.blue,true,2.1);
   T('描画命令の値',907,562,102,23,14,true,C.blue);
   B('rasterix','描画・表示回路',906,590,160,44,C.white,18,C.blue);
-  T('既存回路 RasterIX',906,635,162,16,12,true,C.blue,'center');
+  T('既存回路 RasterIX',906,635,162,14,11.5,true,C.blue,'center');
   R([[1066,612],[1078,612],[1078,330],[1050,330],[1050,355]],C.blue,'both',2.1);
   T('画像',1053,332,32,18,14,true,C.blue);
   B('sd-slot','SDカード\nスロット',1115,225,87,70,C.white,15);
@@ -113,7 +113,7 @@ export function drawMergedDatapath(s,a){
     'SD受信値を読む → DDR3のdst[i++]へ書く',
     '描画：sw x1,0(x2)、x2=0x10080000'];
   examples.forEach((v,i)=>T(v,102,553+i*19,439,19,15,i<2,C.ink));
-  T('SD読出しとDDR書込みを交互に繰り返す',102,648,445,18,13,true);
+  T('SD読出しとDDR書込みを交互に繰り返す',102,654,445,19,13,true);
 }
 
 export function addMergedDatapath({slide,api,outline,DDCA,RVSOC,PRODUCT}){

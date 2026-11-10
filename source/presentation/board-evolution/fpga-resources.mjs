@@ -64,7 +64,8 @@ export function drawFpgaResources(s, api) {
   route(s, [[340,402],[340,370],[642,370]], C.ink, false, 2.2);
   text(s, 'そのまま出す', 390, 326, 212, 30, 22, false, C.ink, 'center');
 
-  box(s, 'D-type\nflip-flop (DFF)', 386, 393, 198, 82, C.white, 25);
+  box(s, '', 386, 393, 198, 82, C.white, 25);
+  text(s, 'D-type\nflip-flop (DFF)', 393, 397, 184, 61, 24, true, C.ink, 'center');
   route(s, [[340,402],[340,434],[386,434]], C.ink, true, 2.2);
   wire(s, 584, 434, 642, 434, C.ink, false, 2.2);
   polygon(s, [[475,475],[485,465],[495,475]], C.white, C.ink, 1.8);
@@ -77,7 +78,7 @@ export function drawFpgaResources(s, api) {
   text(s, '出力', 701, 363, 65, 30, 20);
   wire(s, 663, 488, 663, 450, C.ink, false, 1.8);
   text(s, '設定で選択', 610, 491, 163, 30, 21, false, C.ink, 'center');
-  text(s, 'Multiplexer (MUX)', 610, 522, 163, 26, 18, true, C.ink, 'center');
+  text(s, 'Multiplexer (MUX)', 596, 522, 180, 26, 18, true, C.ink, 'center');
 
   // Macro cells supplement generic logic; block memory is outside the cell.
   box(s, '', 810, 242, 384, 313, C.pale, 25, C.ink, 1.8);

@@ -205,7 +205,7 @@ glGenTexturesはテクスチャ名を取得する。glBindTextureは操作・描
     lead('画像の幅と高さをそれぞれ1として、使う範囲を指定する');
     atlas(s,api,font,64,263,5,true);
     label('画像全体：幅64、高さ32',64,207,390,25,C.ink,true);
-    label('Aの区画（拡大図）',431,207,345,24,C.ink,true);
+    text(s,'Aの区画（拡大図）',454,207,300,36,24,true,C.ink,'center');
     wire(s,400,337,500,337,C.ink,true,2.2);
     box(s,'',540,263,128,128,'#A7B9D1',18,C.blue,2.4);
     glyph(s,api,font.glyphs.get('A'),540,263,16);
@@ -215,8 +215,8 @@ glGenTexturesはテクスチャ名を取得する。glBindTextureは操作・描
     mono('v1 = 16/32 = 0.5',772,415,444,26,C.blue);
     label('u：画像の横位置',64,457,420,26,C.blue,true);
     label('v：画像の縦位置',64,503,420,26,C.blue,true);
-    label('Aの8×8区画',495,438,240,24,C.ink,true);
-    label('横24〜32、縦8〜16',451,480,300,23);
+    text(s,'Aの8×8区画',454,438,300,36,24,true,C.ink,'center');
+    text(s,'横24〜32、縦8〜16',454,480,300,36,23,false,C.ink,'center');
     wire(s,64,558,1216,558,C.ink,false,1.1);
     label('Aを別の場所や大きさで描いても、画像内で選ぶ範囲は同じ',64,590,1152,27,C.heading,true);
     label('画面上の位置と大きさは、次の図の頂点座標で決める',64,642,1152,25);

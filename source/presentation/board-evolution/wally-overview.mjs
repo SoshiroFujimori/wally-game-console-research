@@ -9,6 +9,7 @@ export function drawWallyOverview(s, api) {
   const X=x=>ox+kx*x, Y=y=>oy+ky*y;
   const T=(v,x,y,w,h=22,z=16,b=false,c=C.ink,a='left')=>{
     // Preserve the intended center while fitting native font line metrics.
+    z=Math.max(z,10);
     const height=Math.max(h*ky,v.split('\n').length*z*k*1.2+0.4);
     return text(s,v,X(x),Y(y)+(h*ky-height)/2,w*kx,height,z*k,b,c,a);
   };

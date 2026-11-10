@@ -63,6 +63,5 @@ export function drawRvsocAdoption(slide, api, data, pageNumber) {
   }
   text(slide, '出版前の原稿を使った過去の授業も含む', 64, 578, 1152, 37, 25, true);
   text(slide, '公開資料で確認できた例。世界の全採用校を網羅した一覧ではない', 64, 628, 1152, 32, 22);
-  text(slide, '表 '+pageNumber, 64, 684, 63, 30, 17, true, C.heading);
-  text(slide, '[1] HMC授業資料　[2] ASEE 2025 §4　[3] TU Darmstadt授業資料（確認：2026-11-08）', 131, 684, 1028, 30, 16);
+  text(slide, '[1] HMC授業資料　[2] ASEE 2025 §4　[3] TU Darmstadt授業資料（確認：2026-11-08）', 64, 674, 1120, 28, 17);
 }

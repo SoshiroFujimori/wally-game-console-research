@@ -14,6 +14,8 @@ export function drawStableBoard(s,a,{mode='request'}={}){
   const fadedFill='#F5F7FB',chipFill='#E8EFF9';
   const is=(...modes)=>modes.includes(mode);
   const purpose=mode==='purpose',intro=mode==='implementation',image=mode==='image';
+  const layout=intro?{...MAIN_BOARD,chip:[84,210,1112,290],
+    card:[315,532,180,38],memory:[510,532,150,38],hdmi:[1008,532,180,38]}:MAIN_BOARD;
   const provenance=mode==='provenance';
   const sd=is('request','receive','copy','provenance'),memory=is('write','copy','execute','image','provenance');
   const command=is('command','contribution','provenance'),reading=is('receive','copy','execute','provenance');
@@ -22,7 +24,7 @@ export function drawStableBoard(s,a,{mode='request'}={}){
   const color=on=>provenance?'#8999AE':on?blue:muted;
   const T=(v,x,y,w,h=26,z=20,b=false,c=ink,align='left')=>text(s,v,x,y,w,h,z,b,c,align);
   const B=(name,label='',fill=C.white,z=22,stroke=ink,width=2.2)=>{
-    const sh=box(s,label,...MAIN_BOARD[name],fill,z,stroke,width);
+    const sh=box(s,label,...layout[name],fill,z,stroke,width);
     sh.name='main-board-'+name;return sh;
   };
   const R=(p,c=ink,ar=true,w=2.7)=>route(s,p,c,ar,w);
@@ -34,21 +36,24 @@ export function drawStableBoard(s,a,{mode='request'}={}){
   T('基板上の部品',100,533,290,28,20,true,intro?ink:frame);
   for(const [name,label,on] of [['card','SDカードスロット',sd||intro],['memory','DDR3メモリ',memory||intro],['hdmi','HDMI端子',image||intro]]){
     B(name,'',on?C.white:fadedFill,20,provenance?frame:on?blue:edge,provenance?1.3:on?2.2:1.3);
-    T(label,MAIN_BOARD[name][0]+4,535,MAIN_BOARD[name][2]-8,26,20,true,provenance?frame:on?ink:muted,'center');
+    T(label,layout[name][0]+4,intro?538:535,layout[name][2]-8,26,20,true,provenance?frame:on?ink:muted,'center');
   }
 
   if(intro){
+    // Enlarge the example without implying that this one gate controls a port.
+    const gx=x=>640+(x-640)*1.3,gy=y=>360+(y-375)*1.3;
     const gate=[[561,332],[604,332]];
     for(let i=1;i<=18;i++){
       const angle=-Math.PI/2+i*Math.PI/18;
       gate.push([604+43*Math.cos(angle),375+43*Math.sin(angle)]);
     }
     gate.push([561,418]);
-    polygon(s,gate,C.white,ink,2.2).name='main-board-logic-example';
-    wire(s,511,353,561,353,ink,false,2.5);wire(s,511,397,561,397,ink,false,2.5);
-    wire(s,647,375,754,375,ink,true,2.5);
-    T('a',480,339,30,29,25,true);T('b',480,383,30,29,25,true);T('y',770,361,30,29,25,true);
-    T('論理回路の例（AND）',450,452,380,32,25,true,ink,'center');
+    polygon(s,gate.map(([x,y])=>[gx(x),gy(y)]),C.white,ink,2.6).name='main-board-logic-example';
+    wire(s,gx(511),gy(353),gx(561),gy(353),ink,false,2.7);
+    wire(s,gx(511),gy(397),gx(561),gy(397),ink,false,2.7);
+    wire(s,gx(647),gy(375),gx(754),gy(375),ink,true,2.7);
+    T('a',gx(480),gy(353)-18,35,36,28,true);T('b',gx(480),gy(397)-18,35,36,28,true);T('y',gx(770),gy(375)-18,35,36,28,true);
+    T('論理回路の例（AND）',430,448,420,36,27,true,ink,'center');
     return;
   }
 
