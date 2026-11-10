@@ -2,7 +2,7 @@ import fs from 'node:fs/promises';
 import path from 'node:path';
 import {drawStableBoard} from './stable-board.mjs';
 import {drawCoreBoard} from './core-board.mjs';
-import {loadFpgaUtilization,drawCurrentUtilization,STANDARD_UTILIZATION_SOURCE,FPGA_UTILIZATION_SOURCE} from './fpga-utilization.mjs';
+import {drawGameProgram} from './game-program.mjs';
 
 // A bounded integration result and its functional evidence form the main talk.
 // Detailed architecture and OpenGL API material remain in the answer slides.
@@ -76,6 +76,15 @@ export async function addMainSlides(ctx) {
   text(s,'回路とプログラムを公開\n拡張の方法を参照できる',876,539,340,58,23,false,C.ink,'center');
   line(s,'目的：Wallyの学習者に、2Dゲーム機への拡張例を示す',634,true,28);
 
+  s=slide('製作したゲームプログラム',30,
+    'ブロック崩しのプログラムをC++で作りました。まずボールやパドルの位置を更新し、衝突したブロックを消して得点を増やします。次に、更新した状態から四角形と文字の位置や色を指定します。描画命令を作る部分には、RasterIX付属のOpenGL互換ライブラリを使います。この処理を繰り返してゲームを進めます。続いて、このプログラムを動かす回路を説明します。',
+    'console/examples/rasterix/breakout.cpp: main(), present(); console/examples/rasterix/Breakout.hpp: Game::step(), Game::automatic(), scene(); console/examples/rasterix/BreakoutRenderer.hpp: Renderer::draw(); console/addins/rasterix/lib. Game source revision ed6a1c09b34d597dcde92ec26a4f5a97cbf18a17; RasterIX revision 9269a01c9bd4c3342bfa70ef8e3cdd751c15c6d0.',
+    '青い二つの処理は本研究で用意したC++のゲーム側の処理、右の処理はRasterIX付属の既存ライブラリの役割を表す。いずれもCPU上で実行するソフトウェアである。CPUの枠内は処理の流れを示しており、それぞれの専用回路をFPGAに追加したという意味ではない。Game::step()がゲーム状態を更新し、scene()がその状態を四角形と文字の描画指定にまとめ、Renderer::draw()が描画関数を呼ぶ。ライブラリが用意した命令は、Wally用のソフトウェア接続部分を通して回路へ送る。実際のメインループは経過時間に応じてゲーム状態を0回以上更新し、描画を提出して表示切替完了を待つ。図は役割と繰返しを要約したもので、状態更新と画面切替が常に一対一とは示していない。パドルは自動操作で、ゲームコントローラは未実装である。起動時の初期化、待ち、エラー確認、時間管理はこの図では省略する。プログラムの存在と働きを説明し、描画呼出しの最適化や新しい描画方式の提案は本編では扱わない。');
+  lead(s,'ゲームの状態を計算し、四角形と文字の描画を指定する');
+  drawGameProgram(s,api);
+  line(s,'ゲームの進行と描画指定を、C++で実装',585,true,28);
+  line(s,'パドルは自動操作し、描画には既存ライブラリを利用',631,false,27);
+
   s=slide('既存回路と本研究で追加した部分',25,
     '左は、CPUのWallyと周辺部品を制御する回路をまとめたものです。右の描画・表示には、RasterIXに含まれる回路を使います。本研究では、これらをつなぐ接続部分と、ブロック崩しのプログラムを追加しました。次から、左のまとまりを開いて、ゲームが動くまでの流れを説明します。',
     `${PRODUCT} console/examples/rasterix/Breakout.hpp; console/examples/rasterix/BreakoutRenderer.hpp; console/examples/rasterix/WallyBusConnector.hpp; console/fpga/src/rasterixdisplay.sv.`,
@@ -94,19 +103,19 @@ export async function addMainSlides(ctx) {
   line(s,'SDカード：プログラムの保存場所',583,true,28);
   line(s,'DDR3：読み込んだプログラムを実行するときの置き場所',630,false,27);
 
-  s=slide('CPUがゲームプログラムを実行する',30,
-    'CPUは、DDR3に読み込んだプログラムを実行します。ブロック崩しでは、ボールやパドルの位置を計算し、壁やブロックに当たったかを調べます。当たったら進む向きや得点を変えます。ゲームをどう進めるかはCPUが計算し、次に、その結果を画面に描かせます。',
+  s=slide('CPUがゲームプログラムを実行する',25,
+    '読み込んだプログラムは、CPUが実行する命令の列です。CPUは、DDR制御を通してメモリ上の命令を読み出し、その指示に従って計算を進めます。先ほどの位置や得点の更新も、この命令の実行によって行われます。',
     'console/examples/rasterix/Breakout.hpp: Game::step(), scene(); console/examples/rasterix/breakout.cpp.',
     'ゲームのルールと状態更新はCPUで実行するプログラムの仕事である。描画回路はゲームの当たり判定や得点の規則を決めない。DDR3へのアクセスはDDR制御を介する。CPU内部のキャッシュや仮想アドレスなどは機能図では省略している。パドルは現在、自動操作のプログラムが動かしている。');
-  lead(s,'CPUが、ボールの位置・衝突・得点を計算する');
+  lead(s,'DDR3上の命令を読み出し、ゲームの計算を進める');
   drawCoreBoard(s,api,{mode:'execute'});
-  line(s,'位置を更新し、壁・パドル・ブロックとの衝突を調べる',584,false,27);
-  line(s,'計算した結果を、次のゲーム画面に反映する',631,true,28);
+  line(s,'CPUはメモリから命令を読み出して実行する',584,false,27);
+  line(s,'命令に従い、位置や得点などのデータを更新する',631,true,28);
 
   s=slide('ゲームから描画命令を送る',25,
     'CPUは、描く図形の位置や色を、RasterIX付属のライブラリへ渡します。ライブラリが描画回路用の命令を作り、CPUが接続回路へ送ります。描画回路は受け取った命令に従って、ブロックやボールなどの画素を塗ります。',
     `${PRODUCT} console/examples/rasterix/WallyBusConnector.hpp; console/examples/rasterix/BreakoutRenderer.hpp; console/addins/rasterix/lib.`,
-    '付属ライブラリはOpenGL互換の描画指定をCPU上で処理し、描画回路に渡す数値列を用意する。Wally用のソフトウェア接続部分が、その値を決められた入出力アドレスへ書く。接続回路は値を受け取り、RasterIXへ渡す。ブロック、壁、パドル、ボールは四角形で、文字は画像を貼った四角形で表す。関数名やテクスチャ座標の具体例は回答用21〜29枚目にある。');
+    '付属ライブラリはOpenGL互換の描画指定をCPU上で処理し、描画回路に渡す数値列を用意する。Wally用のソフトウェア接続部分が、その値を決められた入出力アドレスへ書く。接続回路は値を受け取り、RasterIXへ渡す。ブロック、壁、パドル、ボールは四角形で、文字は画像を貼った四角形で表す。関数名やテクスチャ座標の具体例は回答用22〜30枚目にある。');
   lead(s,'図形の位置や色を、ライブラリが描画命令にする');
   drawCoreBoard(s,api,{mode:'command'});
   line(s,'CPU：ゲームの計算と、描画命令の送信',584,true,28);
@@ -156,15 +165,6 @@ export async function addMainSlides(ctx) {
   text(s,'640×480画素のゲーム画面を出力し、プログラムで自動操作',64,126,1152,38,27,true,C.blue);
   s.images.add({blob:await fs.readFile(path.join(root,POSTER)),contentType:'image/png',alt:'標準表示構成で動くブロック崩しの実機動画',fit:'contain',position:{left:200,top:173,width:880,height:495}});
   text(s,'ボールの移動・ブロックの消去・得点の変化を確認',64,681,1080,29,22,true,C.blue,'center');
-
-  const utilization=await loadFpgaUtilization(root);
-  s=slide('FPGAの使用量',25,
-    '元のWally構成と、描画・表示を追加したゲーム機構成を比べます。論理回路に使うLUTは約36%から50%、チップ内メモリは約23%から59%になっています。どちらもCPUやメモリ制御を含む構成全体の値です。ゲーム機の構成も一つのFPGAに収まり、先ほどの動画のように動きました。',
-    `Before: ${FPGA_UTILIZATION_SOURCE}; After: ${STANDARD_UTILIZATION_SOURCE}; experiments/standard-display-resources-20261110/utilization.rpt; ${BASIC}`,
-    'Wally基本構成は、2026年9月8日に保存した、CPUと周辺回路を備えるNexys Video用の構成である。CPUコアだけの値ではない。使用率はLUT 36.22%、Slice Registers 11.68%、Block RAM Tile 23.01%、DSP 3.38%である。元レポートにGitリビジョンや回路設定データのハッシュは記録されていない。開発中にはその他の回路や設定も変わっているため、両構成の差を描画回路単体の使用量とはしない。ゲーム機構成には、標準表示構成の配置配線後の使用量を使う。2026年10月8日に保存された実装レポートを使用し、回路設定データのSHA-256が11月9日の実機動画で使ったものと一致することを確認した。LUTは67166/134600で49.90%、Slice Registersは50890/269200で18.90%、Block RAM Tileは215/365で58.90%、DSPは61/740で8.24%。CPU、バス、DDR制御、描画・表示などをすべて含む。LUT、レジスタ、Block RAM、DSPはそれぞれ異なる種類の資源なので、割合は合算しない。Block RAMはFPGAチップ内のメモリを指し、ボード上のDDR3を含めない。使用率は各資源の使用数を搭載数で割った値である。未使用の資源があっても、任意の回路を追加できる保証にはならない。比較に使った元レポートと構成の範囲は、出典の再現資料で確認できる。');
-  lead(s,'Wallyの基本構成と、製作したゲーム機の使用率を比較');
-  drawCurrentUtilization(s,api,utilization);
-  line(s,'CPU・メモリ制御・描画・表示を、1個のFPGAに実装できた',631,true,27);
 
   s=slide('結論と今後の展望',20,
     'WallyとRasterIXの接続を設計し、ブロック崩しの画面が更新されることを実機で確認しました。CPUに描画機能を追加する拡張例として、設計コードと動作記録を公開しています。今後は、ゲームコントローラによる操作や、ホーム画面などのGUIを追加したいと考えています。',

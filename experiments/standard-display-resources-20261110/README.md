@@ -29,7 +29,7 @@ CPU、バス、DDR制御、描画・表示を含むFPGA全体の値である。�
 
 ## 発表での利用
 
-[発表資料](../../docs/presentation/中間発表_主要事項.md#slide-12)の12枚目では、[2026年9月8日のCPU構成の記録](../fpga-resource-comparison-20261108/before-utilization.rpt)を「Wally基本構成」、この標準表示構成を「ゲーム機構成」として比較する。
+[発表資料](../../docs/presentation/中間発表_主要事項.md#slide-18)の回答用18枚目では、[2026年9月8日のCPU構成の記録](../fpga-resource-comparison-20261108/before-utilization.rpt)を「Wally基本構成」、この標準表示構成を「ゲーム機構成」として比較する。
 
 Beforeは、Nexys Video対応時のCPUと周辺回路の構成として保存されたレポートで、回路設定データのハッシュやGitリビジョンは特定できていない。二つの構成でCPUの版や各設定を固定していないため、差を描画回路単体の使用量と解釈しない。比較に使うBeforeの値と元ファイルの来歴は[既存の比較記録](../fpga-resource-comparison-20261108/comparison.json)にある。
 

@@ -1,6 +1,7 @@
 import { addOpenGLSlides } from './opengl-functions.mjs';
 import {addMergedDatapath} from './merged-datapath.mjs';
 import { addMainSlides } from './main-slides.mjs';
+import {loadFpgaUtilization,drawCurrentUtilization,STANDARD_UTILIZATION_SOURCE,FPGA_UTILIZATION_SOURCE} from './fpga-utilization.mjs';
 import { CONTENTS_SLIDE, drawContents, linkToSlide, contentsMarkdown, navigationTargets } from './navigation.mjs';
 import { drawRasterixPipeline, RASTERIX_PIPELINE_SOURCE, RASTERIX_PIPELINE_NARRATION, RASTERIX_PIPELINE_DETAIL } from './rasterix-pipeline.mjs';
 import { createCircuitWiring } from './circuit-wiring.mjs';
@@ -105,6 +106,17 @@ drawFpgaResources(s,api);
 
 s.hidden=true;outline[outline.length-1].backup=true;
 
+  const utilization=await loadFpgaUtilization(root);
+  s=slide('回答用：FPGAの使用量',0,
+    '元のWally構成と、描画・表示を追加したゲーム機構成を比べます。論理回路に使うLUTは約36%から50%、チップ内メモリは約23%から59%になっています。どちらもCPUやメモリ制御を含む構成全体の値です。ゲーム機の構成も一つのFPGAに収まり、実機動画のように動きました。',
+    `Before: ${FPGA_UTILIZATION_SOURCE}; After: ${STANDARD_UTILIZATION_SOURCE}; experiments/standard-display-resources-20261110/utilization.rpt; ${BASIC}`,
+    'Wally基本構成は、2026年9月8日に保存した、CPUと周辺回路を備えるNexys Video用の構成である。CPUコアだけの値ではない。使用率はLUT 36.22%、Slice Registers 11.68%、Block RAM Tile 23.01%、DSP 3.38%である。元レポートにGitリビジョンや回路設定データのハッシュは記録されていない。開発中にはその他の回路や設定も変わっているため、両構成の差を描画回路単体の使用量とはしない。ゲーム機構成には、標準表示構成の配置配線後の使用量を使う。2026年10月8日に保存された実装レポートを使用し、回路設定データのSHA-256が11月9日の実機動画で使ったものと一致することを確認した。LUTは67166/134600で49.90%、Slice Registersは50890/269200で18.90%、Block RAM Tileは215/365で58.90%、DSPは61/740で8.24%。CPU、バス、DDR制御、描画・表示などをすべて含む。LUT、レジスタ、Block RAM、DSPはそれぞれ異なる種類の資源なので、割合は合算しない。Block RAMはFPGAチップ内のメモリを指し、ボード上のDDR3を含めない。使用率は各資源の使用数を搭載数で割った値である。未使用の資源があっても、任意の回路を追加できる保証にはならない。比較に使った元レポートと構成の範囲は、出典の再現資料で確認できる。');
+  text(s,'Wallyの基本構成と、製作したゲーム機の使用率を比較',64,119,1152,38,27,true,C.blue);
+  drawCurrentUtilization(s,api,utilization);
+  text(s,'CPU・メモリ制御・描画・表示を、1個のFPGAに実装できた',64,631,1152,38,27,true,C.heading);
+
+  s.hidden=true;outline[outline.length-1].backup=true;
+
 addMergedDatapath({slide,api,outline,DDCA,RVSOC,PRODUCT});
 
 s=slide('回答用：詳細な全体のブロック図',0,
@@ -125,7 +137,7 @@ await fs.writeFile(path.join(workspace,'rasterix-pipeline-graph.json'),JSON.stri
 await addOpenGLSlides({slide,api,root,outline});
 
 // Keep provenance in the notes and the GitHub-readable counterpart.
-for (const number of [4,7,8,9,10,11,13,18,19]) {
+for (const number of [5,8,9,10,11,12,13,19,20]) {
   const o=outline[number-1];
   o.detail += '\n\n' + PROVENANCE_DETAIL;
   o.source += '\n' + PROVENANCE_SOURCE;
@@ -134,21 +146,21 @@ for (const number of [4,7,8,9,10,11,13,18,19]) {
 for(const {page,number} of pageNumbers)if(number!==CONTENTS_SLIDE)linkToSlide(page,CONTENTS_SLIDE);
 await fs.writeFile(path.join(workspace,'wire-audit.json'),JSON.stringify(wiring.finalize(),null,2)+'\n');
 const total=outline.reduce((n,s)=>n+s.seconds,0);
-if(outline.length!==29||total!==335)throw new Error(`Unexpected allocation ${outline.length} slides, ${total} seconds`);
+if(outline.length!==30||total!==335)throw new Error(`Unexpected allocation ${outline.length} slides, ${total} seconds`);
 await fs.writeFile(path.join(workspace,'outline.json'),JSON.stringify(outline,null,2)+'\n');
 const md=[
   '# 中間発表：FPGAを用いた2Dゲーム機の製作',
-  '表紙1枚、発表用12枚、移動用の目次1枚、回答用15枚で構成します。Wallyへの描画機能の追加を、教科書とのつながりと目的、既存回路との分担、接続の設計、実機動画、FPGA使用量の順に説明します。ゲームの動きは30秒の実機動画で示します。',
+  '表紙1枚、発表用12枚、移動用の目次1枚、回答用16枚で構成します。教科書とのつながりと目的、作成したゲームプログラム、そのプログラムを動かす回路の構成、実機動画の順に説明します。FPGA使用量は回答用18枚目にまとめています。ゲームの動きは30秒の実機動画で示します。',
   '[PowerPoint版](中間発表_主要事項.pptx) / [アブスト](../abstract/アブスト_主要事項.md) / [論文本文](../thesis/本文.md) / [技術付録](../thesis/技術付録.md) / [再生成方法](../../source/presentation/board-evolution/README.md) / [DDCA授業利用の出典](DDCA授業利用の出典.md) / [RVSOC教科書採用の出典](RVSOC教科書採用の出典.md)',
   '[発表の要点を読む](発表の要点.md) / [OpenGLの説明と想定質問](OpenGLの説明と想定質問.md)',
   '## 図の見方',
-  '2枚目ではFPGAと周辺部品、3枚目では教科書と研究の関係を説明します。4枚目ではCPUと周辺制御回路を一つの箱にまとめ、5枚目以降で内訳を示します。FPGAボードとチップ外の部品の位置は保ち、説明する経路を青で強調します。13枚目は、ボード、チップ、チップ内の回路を入れ子の枠と塗り分けで示します。9枚目は画像を保存する向き、10枚目は画像を読み出して表示する向きを示します。矢印は要求やデータの経路を機能ごとにまとめたもので、一本の信号線を表すものではありません。破線の枠は回路コードの主な提供元です。「Wally」はCPU、「Wallyリポジトリ」はCPUと周辺回路の設計コードの提供元として使います。',
-  '回答用18枚目では、信号を詳しく示しています。ADはアドレス、WDは書込みデータ、WEは1ビットの書込みイネーブル、RDは読出しデータです。有効な読書きの際のWE=1を書込み、WE=0を読出しとして示します。アドレスデコーダが接続先を選び、読出し値も対応する選択信号で選びます。分岐の黒丸は接続を表し、接続しない線の交差には隙間があります。転送の細かなタイミングや待ち処理は省略しています。',
+  '2枚目ではFPGAと周辺部品、3枚目では教科書と研究の関係を説明します。4枚目ではCPU上で動くゲームプログラムの処理と既存ライブラリの役割を示します。5枚目ではCPUと周辺制御回路を一つの箱にまとめ、6枚目以降で内訳を示します。FPGAボードとチップ外の部品の位置は保ち、説明する経路を青で強調します。13枚目は、ボード、チップ、チップ内の回路を入れ子の枠と塗り分けで示します。10枚目は画像を保存する向き、11枚目は画像を読み出して表示する向きを示します。矢印は要求やデータの経路を機能ごとにまとめたもので、一本の信号線を表すものではありません。破線の枠は回路コードの主な提供元です。「Wally」はCPU、「Wallyリポジトリ」はCPUと周辺回路の設計コードの提供元として使います。',
+  '回答用19枚目では、信号を詳しく示しています。ADはアドレス、WDは書込みデータ、WEは1ビットの書込みイネーブル、RDは読出しデータです。有効な読書きの際のWE=1を書込み、WE=0を読出しとして示します。アドレスデコーダが接続先を選び、読出し値も対応する選択信号で選びます。分岐の黒丸は接続を表し、接続しない線の交差には隙間があります。転送の細かなタイミングや待ち処理は省略しています。',
   '## 回路の提供元',
   PROVENANCE_DETAIL,
   '対応するソースは[回路の提供元一覧](../../source/presentation/board-evolution/README.md#component-provenance)にまとめています。主図では、同じRasterIXリポジトリに含まれる描画と表示を一つの箱にまとめています。実機動画も、この標準表示構成で取得しています。',
   '## 発表時間と回答用スライド',
-  '表紙と発表用12枚の配分は動画30秒を含め335秒です。動画の再生中に結果を説明します。これは練習を実測した時間ではありません。14枚目の目次から本編と回答用の両方へ移動できます。各スライドの右下の番号から目次に戻れます。回答用の15〜29枚目は、通常の順送りでは表示しません。',
+  '表紙と発表用12枚の配分は動画30秒を含め335秒です。動画の再生中に結果を説明します。これは練習を実測した時間ではありません。14枚目の目次から本編と回答用の両方へ移動できます。各スライドの右下の番号から目次に戻れます。回答用の15〜30枚目は、通常の順送りでは表示しません。',
   '## 目次',
   outline.map((o,i)=>'- ['+(i+1)+'. '+o.title.replaceAll('\n','')+'](#slide-'+(i+1)+')'+(o.backup?'（回答用）':'')).join('\n')
 ];
@@ -158,19 +170,19 @@ outline.forEach((o,i)=>md.push('<a id="slide-'+(i+1)+'"></a>\n## '+(i+1)+'. '+o.
   ...(i===14?['[教育機関・授業・年度・指定の種類・出典の一覧](DDCA授業利用の出典.md)',
     'スライドに示した学校名の例：'+ddcaSummary.categories.map(c=>c.label+'は'+c.examples.join('・')).join('、')+'。']:[]),
   ...(i===15?['[教育機関・時期・採用根拠の一覧](RVSOC教科書採用の出典.md)']:[]),
-  ...(i===11?['[動画と同じ回路の使用量・比較範囲・元レポート](../../experiments/standard-display-resources-20261110/README.md)']:[]),
-  ...(i===10?['[30秒の実機動画を開く](../../source/presentation/assets/breakout-standard-dvi-compatible.mp4)','PowerPointには動画を埋め込んでいます。スライドショーで11枚目に進むと自動再生します。']:[]),
+  ...(i===17?['[動画と同じ回路の使用量・比較範囲・元レポート](../../experiments/standard-display-resources-20261110/README.md)']:[]),
+  ...(i===11?['[30秒の実機動画を開く](../../source/presentation/assets/breakout-standard-dvi-compatible.mp4)','PowerPointには動画を埋め込んでいます。スライドショーで12枚目に進むと自動再生します。']:[]),
   ...(o.navigation?[contentsMarkdown()]:[]),
   o.navigation?'### 目次の使い方':o.backup?'### 質問時の使い方':'### 発表原稿',o.narration,
   '<details>\n<summary>補足説明と出典</summary>\n',o.detail,o.source?'出典：'+o.source:'','\n</details>',...(o.navigation?[]:['[移動用の目次へ戻る](#slide-14)'])));
 md.push('## 動作確認と詳しい実装',
-  '11枚目の動画は、[標準表示構成の30秒の実機記録](../../experiments/dvi-recovery-20261109/README.md)です。最新の文字配置のゲームを実行し、ボールの移動・反射とブロック消去を確認しました。これは自動プレイであり、コントローラによる操作ではありません。取得条件と構成の版は再現資料に保存しています。',
+  '12枚目の動画は、[標準表示構成の30秒の実機記録](../../experiments/dvi-recovery-20261109/README.md)です。最新の文字配置のゲームを実行し、ボールの移動・反射とブロック消去を確認しました。これは自動プレイであり、コントローラによる操作ではありません。取得条件と構成の版は再現資料に保存しています。',
   '詳しい実装と再現手順は[技術付録](../thesis/技術付録.md)にまとめています。コントローラへの対応やホーム画面などのGUIの充実は今後の拡充候補です。',
   '## 図と書式の出典',
   '主図は製品RTLの役割をまとめた機能図です。書式はRVSOCの図7.11・9.28・23.2を参考にしています。回答用の詳細な回路図、教科書の採用例、FPGAの構成要素・使用量、描画回路の内部については、それぞれのスライドの出典と補足を参照してください。[デザインと再生成方法](../../source/presentation/board-evolution/README.md)に実装箇所をまとめています。',
   '## 以前の発表資料',
   '信号名とアドレスを詳しく示した版は、[変更前のコミットcbec749](https://github.com/SoshiroFujimori/wally-game-console-research/tree/cbec7498c75ca0e17876c7ea99760ed144367732/docs/presentation)に保存されています。',
-  '命令の実行から順に説明した版は、[変更前のコミット40d8a51](https://github.com/SoshiroFujimori/wally-game-console-research/tree/40d8a51bd1ab0d9c9a469146c349cd31b173bdce/docs/presentation)に保存されています。命令の実行から周辺回路へつながる図は、現在の回答用18枚目に統合しています。外部メモリへの接続は、二つのメモリの箱を接続口として残し、AD・WD・WE・RDとアドレスデコーダで示します。');
+  '命令の実行から順に説明した版は、[変更前のコミット40d8a51](https://github.com/SoshiroFujimori/wally-game-console-research/tree/40d8a51bd1ab0d9c9a469146c349cd31b173bdce/docs/presentation)に保存されています。命令の実行から周辺回路へつながる図は、現在の回答用19枚目に統合しています。外部メモリへの接続は、二つのメモリの箱を接続口として残し、AD・WD・WE・RDとアドレスデコーダで示します。');
 await fs.writeFile(path.join(workspace,'中間発表_主要事項.md'),md.join('\n\n')+'\n');
 const raw=path.join(workspace,'raw-candidate.pptx'),poster=path.join(workspace,'poster-candidate.pptx'),candidate=path.join(workspace,'candidate.pptx');
 await(await PresentationFile.exportPptx(P)).save(raw);
@@ -186,13 +198,13 @@ if(audience==='public'){
 // Final package integrity/layout and video relationships are checked separately.
 await fs.mkdir(path.join(workspace,'poster-review'), { recursive: true });
 const posterFinal=path.join(workspace,'poster-review','poster-validated.pptx');
-const validationOptions={workspaceDir:workspace,pythonExecutable:process.env.RUNTIME_PYTHON,integrityValidatorPath:path.join(process.env.PRESENTATION_SKILL,'container_tools/inspect_presentation_package_integrity.py'),layoutValidatorPath:path.join(process.env.PRESENTATION_SKILL,'container_tools/inspect_presentation_layout_geometry.py'),layoutArgs:['--expected-slide-size-emu','12192000,6858000','--validate-bullet-geometry','--validate-heading-fit','--require-native-table-slide','12','--require-native-table-slide','16'],explicitTotalSlideCount:29,requiredNativeTableOwnerSlides:[12,16],requiredNativeChartOwnerSlides:[],fontPolicy:{basis:'design',families:[font,latinFont,codeFont]}};
+const validationOptions={workspaceDir:workspace,pythonExecutable:process.env.RUNTIME_PYTHON,integrityValidatorPath:path.join(process.env.PRESENTATION_SKILL,'container_tools/inspect_presentation_package_integrity.py'),layoutValidatorPath:path.join(process.env.PRESENTATION_SKILL,'container_tools/inspect_presentation_layout_geometry.py'),layoutArgs:['--expected-slide-size-emu','12192000,6858000','--validate-bullet-geometry','--validate-heading-fit','--require-native-table-slide','16','--require-native-table-slide','18'],explicitTotalSlideCount:30,requiredNativeTableOwnerSlides:[16,18],requiredNativeChartOwnerSlides:[],fontPolicy:{basis:'design',families:[font,latinFont,codeFont]}};
 await finalizePresentation({...validationOptions,candidatePath:poster,finalPath:posterFinal,verifyArtifactToolImport:false,receiptPath:path.join(workspace,'poster-validation.json')});
 // Import authored content in five contiguous batches to bound the runtime's
 // XML construction size, then inspect the full
 // final package and its native PowerPoint rendering/navigation separately.
 const importChecks=[];
-for(const [batchNumber,first,count] of [[1,0,7],[2,7,7],[3,14,5],[4,19,5],[5,24,5]]){
+for(const [batchNumber,first,count] of [[1,0,7],[2,7,7],[3,14,5],[4,19,5],[5,24,6]]){
   const batch=await Presentation.load(structuredClone(P.toProto()));
   batch.slides.keep(Array.from({length:count},(_,i)=>first+i));
   const batchPath=path.join(workspace,`content-batch-${batchNumber}.pptx`);
@@ -211,7 +223,7 @@ const linked=path.join(workspace,'linked-candidate.pptx');
 const linking=spawnSync(process.env.RUNTIME_PYTHON,[path.join(root,'source/presentation/board-evolution/link_slides.py'),posterFinal,linked,path.join(workspace,'navigation-targets.json')],{encoding:'utf8'});
 if(linking.status!==0)throw new Error(linking.stderr||linking.stdout||'Slide linking failed');
 await fs.writeFile(path.join(workspace,'navigation-links.json'),linking.stdout);
-const embedding=spawnSync(process.env.RUNTIME_PYTHON,[path.join(import.meta.dirname,'embed_video.py'),linked,candidate,path.join(root,VIDEO),'--review',path.join(root,'publication/media-review.json'),'--slide','11','--autoplay'],{encoding:'utf8'});
+const embedding=spawnSync(process.env.RUNTIME_PYTHON,[path.join(import.meta.dirname,'embed_video.py'),linked,candidate,path.join(root,VIDEO),'--review',path.join(root,'publication/media-review.json'),'--slide','12','--autoplay'],{encoding:'utf8'});
 if(embedding.status!==0)throw new Error(embedding.stderr||embedding.stdout||'Video embedding failed');
 await fs.writeFile(path.join(workspace,'video-embedding.json'),embedding.stdout);
 if(process.env.PRESENTATION_PREVIEW_ONLY==='1'){
