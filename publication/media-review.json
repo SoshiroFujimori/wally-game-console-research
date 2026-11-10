@@ -1340,7 +1340,20 @@
     "3dfef36696da910ad282b9cb1f7d4afb4e2d46a4993626aad1d797554066f31c",
     "a78758e18ddacafaf768339fe37bc19933ab75c47855885075ccf1728f69015a",
     "3d69c8f8f87c020eb22b28c6537c436464a2cfbc3d3e075da463b54bc9a707e3",
-    "b989a2deab0723a2857f87f2e45cc7eddb406457e5824a6da5d0d865b20d4220"
+    "b989a2deab0723a2857f87f2e45cc7eddb406457e5824a6da5d0d865b20d4220",
+    "f4c7f71b41780529f6dfd23aef20e8798dbba224deba271e537e279c3f4786be",
+    "54b6757bea9c5604cbec04a4210cfa93b4a5c758dff59105797df1392b17c8ad",
+    "0f509a1e560a5d9d1b0541cad01553a5ccb234ed1e145c9aeaef24126751f179",
+    "80250fc422497547249b19fcd420cdbf816c90781bf5103ed08a90d980b5dc02",
+    "7eb064a989dd4e5a741dc05ce13fa69433889c24efecee06550baed5c2b006c9",
+    "e0bb7b282c32649095080066fd6a974b1c87854bbbf654c8cddc655df0091741",
+    "ae720d68e29786cc7efb17d72ee976e8b8e9653eace416fb60f071189dd1d2bd",
+    "5b1d74600dafda812464431cd21abaa7ca00dc17a2b367b9c263ec47c1cc7d83",
+    "11398b616ae2c6c58da84902c9d7a3cc2e31c0d94f4650483dec0537f48ccf2c",
+    "72069d2a89cc409d860519456425159515bc3d999b55a5c403126553283639db",
+    "ebf4a545d9cb0b58002037740a951618ea6c9518275a0938fa843e627f9520cf",
+    "a3349a02a20c68fc2bd97ee26ccd50c7be4238a25f128df746b89ff785b39402",
+    "ced29163c1df04489eda00658de06492b2cedcb247b4877ad54f1365ed1e7a56"
   ],
   "reviews": {
     "abstract-based-presentation-20261108": "Reviewed all 18 native PowerPoint slide renders and the private cover. Main slides use functional circuits and address-access examples; source differences remain in notes and reproduction records. Confirmed 51 internal links, six hidden question slides, original embedded video hash, and cover-only differences between editions. Reviewed the revised abstract diagram, color and monochrome one-page Word renders, code lines and title placement. Public image metadata was cleaned without changing decoded pixels; newly embedded PNGs match visually reviewed sources.",
@@ -1384,6 +1397,7 @@
     "presentation-drawing-label-20261110": "Visually reviewed the six changed native PowerPoint slides. Combined drawing/display labels use the shorter Japanese name for drawing circuit. All other slide pixels remain unchanged. All 25 slides retain empty presenter notes, hidden states, 72 internal links and the unchanged 30-second embedded video. The private version differs only in its cover identity. Submitted abstracts remain unchanged.",
     "presentation-chip-wording-20261110": "Visually reviewed slides 7 and 10 in native PowerPoint renders. Resource utilization refers explicitly to the FPGA chip, including the title, table header, conclusion and contents entry. All other slide pixels remain unchanged. All 25 slides retain empty presenter notes, hidden states, 72 internal links and the unchanged 30-second embedded video. The private version differs only in its cover identity. Submitted abstracts remain unchanged.",
     "presentation-answer-categories-20261110": "Visually reviewed the categorized contents and all fifteen answer slides in native PowerPoint renders. Six headings group textbook adoption, FPGA/CPU, graphics hardware, OpenGL geometry, OpenGL text and OpenGL execution/display. Category labels occupy the strip above answer titles. Main-slide pixels and answer-body pixels remain unchanged. All 25 slides retain their numbering, hidden states, empty presenter notes and unchanged embedded video. Verified 78 internal navigation links, including category jumps. Private cover identities remain outside the public copy.",
-    "presentation-wally-features-20261110": "Visually reviewed the contents and two native Wally feature tables in PowerPoint renders, with a review of renumbered answer slides. Tables 14-15 cover execution, Gshare/BTB/RAS, caches, MMU, privilege, protection and counters for the recorded fpganexysvideo_rasterix configuration. Main-slide pixels and existing answer-body pixels remain unchanged; answer page numbers after insertion increase by two. All 27 slides retain the intended hidden states and empty notes. Verified 84 internal links. Embedded video is unchanged. Private cover identities remain outside the public copy."
+    "presentation-wally-features-20261110": "Visually reviewed the contents and two native Wally feature tables in PowerPoint renders, with a review of renumbered answer slides. Tables 14-15 cover execution, Gshare/BTB/RAS, caches, MMU, privilege, protection and counters for the recorded fpganexysvideo_rasterix configuration. Main-slide pixels and existing answer-body pixels remain unchanged; answer page numbers after insertion increase by two. All 27 slides retain the intended hidden states and empty notes. Verified 84 internal links. Embedded video is unchanged. Private cover identities remain outside the public copy.",
+    "presentation-rasterix-features-20261110": "Visually reviewed the categorized contents and two native RasterIX feature tables in PowerPoint renders. Slides 18-19 cover triangle rendering, interpolation, texturing, tests, blending, CPU/FPGA roles, memory and bundled display for the recorded configuration. Main-slide and existing answer-body pixels remain unchanged; answer numbers from the prior slide 18 increase by two. All 29 slides retain the intended hidden states and empty notes. Verified 90 native internal links and 108 cell bounds across the Wally and RasterIX tables. Embedded video is unchanged. Private identities remain outside the public copy."
   }
 }
