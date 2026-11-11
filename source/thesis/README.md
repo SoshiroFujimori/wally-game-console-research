@@ -42,3 +42,8 @@ and the pinned Breakout implementation. The Part IV index links directly to
 the relevant sections. `figures_graphics.py` generates the five worked-example
 SVGs; rasterize and review them before publishing their PNG copies. These
 illustrations explain data and timing and are not hardware measurements.
+
+`figures_opengl_program.py` adds seventeen code-oriented diagrams for sections
+38.19–38.33. They follow one red rectangle and the A glyph through state,
+coordinates, texture registration, sampling, modulation, blending and frame
+submission. Keep these explanations separate from optimization experiments.

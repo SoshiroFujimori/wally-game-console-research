@@ -93,6 +93,15 @@
 <a id="ref_glblend"></a>
 [GLBlend] Khronos Group, OpenGL 2.1 Reference Pages, glBlendFunc。候補色と保存済みの色に掛ける係数。https://registry.khronos.org/OpenGL-Refpages/gl2.1/xhtml/glBlendFunc.xml
 
+<a id="ref_breakoutgl26"></a>
+[BreakoutGL26] Wally Game Console, BreakoutRenderer.hpp、Breakout.hpp、breakout.cpp、WallyBusConnector.hpp, 2026年11月11日参照。製品固定版ed6a1c09b34d597dcde92ec26a4f5a97cbf18a17。https://github.com/SoshiroFujimori/wally-game-console/tree/ed6a1c09b34d597dcde92ec26a4f5a97cbf18a17/examples/rasterix
+
+<a id="ref_glbegin21"></a>
+[GLBegin21] Khronos Group, OpenGL 2.1 Reference Pages, glBegin。頂点のまとまりの指定。https://registry.khronos.org/OpenGL-Refpages/gl2.1/xhtml/glBegin.xml
+
+<a id="ref_glvertex21"></a>
+[GLVertex21] Khronos Group, OpenGL 2.1 Reference Pages, glVertex。頂点の位置を指定し、現在の属性とともに記録する。https://registry.khronos.org/OpenGL-Refpages/gl2.1/xhtml/glVertex.xml
+
 <a id="h4096"></a>
 ## 本研究で保存した実験記録
 
